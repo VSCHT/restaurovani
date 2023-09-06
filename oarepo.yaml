@@ -1,4 +1,5 @@
 config:
+  oarepo_cli: .venv/nrp/bin/nrp
   project_package: restaurovani
   python: python3.9
 type: monorepo
