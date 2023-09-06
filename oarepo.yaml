@@ -2,4 +2,18 @@ config:
   oarepo_cli: .venv/nrp/bin/nrp
   project_package: restaurovani
   python: python3.9
+sites:
+  restaurovani-site:
+    author_email: miroslav.simek@cesnet.cz
+    author_name: miroslav.simek@cesnet.cz
+    copyright_holder: UCT Prague
+    pdm_name: restaurovani-site
+    repository_name: "Repozit\xE1\u0159 dokumentace restaurov\xE1n\xED um\u011Bleck\xFD\
+      ch p\u0159edm\u011Bt\u016F"
+    site_dir: sites/restaurovani-site
+    site_package: restaurovani_site
+    transifex_project: restaurovani
+    use_oarepo_vocabularies: 'yes'
+    www: https://restaurovani.vscht.cz
+    year: '2023'
 type: monorepo
