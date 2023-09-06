@@ -1,0 +1,12 @@
+oarepo==11.0.44
+cachetools==5.3.1
+deepmerge==1.1.0
+et-xmlfile==1.1.0
+frozendict==2.3.8
+jinja2-simple-tags==0.5.0
+langcodes==3.3.0
+oarepo-runtime==1.4.2
+oarepo-ui==5.0.53
+oarepo-vocabularies==2.0.27
+openpyxl==3.1.2
+python-dotenv==1.0.0

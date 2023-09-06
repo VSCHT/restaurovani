@@ -7,6 +7,7 @@ sites:
     author_email: miroslav.simek@cesnet.cz
     author_name: miroslav.simek@cesnet.cz
     copyright_holder: UCT Prague
+    init_database: 'yes'
     pdm_name: restaurovani-site
     repository_name: "Repozit\xE1\u0159 dokumentace restaurov\xE1n\xED um\u011Bleck\xFD\
       ch p\u0159edm\u011Bt\u016F"
