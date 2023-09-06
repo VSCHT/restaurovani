@@ -1,0 +1,4 @@
+config:
+  project_package: restaurovani
+  python: python3.9
+type: monorepo
