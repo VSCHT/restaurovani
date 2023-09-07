@@ -60,4 +60,4 @@ restorationObject:
           type: integer
     restorationRequestor:
       type: vocabulary
-      vocabulary-type: RestorationRequestors
+      vocabulary-type: Institutions
