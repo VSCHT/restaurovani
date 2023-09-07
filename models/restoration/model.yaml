@@ -3,11 +3,14 @@ record:
   - invenio
   - ./files.yaml
   - ./custom_fields.yaml
+  - ./mapping_settings.yaml
   module:
     qualified: restoration
   properties:
     use:
     - ./metadata.yaml
+  draft: {}
+  draft_files: {}
   permissions:
     presets:
     - everyone
@@ -15,10 +18,8 @@ record:
     type: rstr
 settings:
   i18n-languages:
-  - en
-profiles:
-- record
-- files
+  - cs
+profiles: [record, draft, files, draft_files]
 plugins:
   packages:
   - oarepo-model-builder-files==4.*
@@ -26,3 +27,6 @@ plugins:
   - oarepo-model-builder-vocabularies==4.*
   - oarepo-model-builder-relations==4.*
   - oarepo-model-builder-tests==4.*
+  - oarepo-model-builder-drafts
+  - oarepo-model-builder-draft-files
+  - oarepo-model-builder-multilingual

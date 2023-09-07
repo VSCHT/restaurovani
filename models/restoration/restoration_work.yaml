@@ -1,0 +1,39 @@
+restorationWork:
+  properties:
+    abstract:
+      type: multilingual
+    literature:
+      type: fulltext
+    sisId:
+      type: keyword
+    supervisor:
+      type: object
+      properties:
+        sisCode:
+          type: keyword
+        fullName:
+          type: keyword
+        comment:
+          type: keyword
+        institution:
+          type: vocabulary
+          vocabulary-type: Institutions
+    workType:
+      type: vocabulary
+      vocabulary-type: WorkTypes
+    examinationMethods[]:
+      type: vocabulary
+      vocabulary-type: ExaminationMethods
+    restorationMethods[]:
+      type: vocabulary
+      vocabulary-type: RestorationMethods
+    restorationPeriod:
+      properties:
+        since:
+          type: date
+          format: date
+        until:
+          type: date
+          format: date
+
+

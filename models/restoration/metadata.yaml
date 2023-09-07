@@ -1,2 +1,7 @@
 metadata:
-  properties: {}
+  properties:
+    use: ["./restoration_object.yaml", "./restoration_work.yaml""]
+    category:
+      type: keyword
+    submissionStatus:
+      type: keyword
