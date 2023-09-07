@@ -16,6 +16,7 @@ models:
     use_relations: 'yes'
     use_tests: 'yes'
     use_vocabularies: 'yes'
+    merge_changes: overwrite
 sites:
   restaurovani-site:
     author_email: miroslav.simek@cesnet.cz
@@ -23,7 +24,7 @@ sites:
     copyright_holder: UCT Prague
     init_database: 'yes'
     pdm_name: restaurovani-site
-    repository_name: "Repozit\xE1\u0159 dokumentace restaurov\xE1n\xED um\u011Bleck\xFD\
+    repository_name: "Repozit\xE1\u0159 restaurov\xE1n\xED um\u011Bleck\xFD\
       ch p\u0159edm\u011Bt\u016F"
     site_dir: sites/restaurovani-site
     site_package: restaurovani_site
