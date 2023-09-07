@@ -19,6 +19,7 @@ record:
 settings:
   i18n-languages:
   - cs
+  supported-langs: [cs, en]
 profiles: [record, draft, files, draft_files]
 plugins:
   packages:
