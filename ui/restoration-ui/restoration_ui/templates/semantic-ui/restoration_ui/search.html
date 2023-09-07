@@ -1,0 +1,15 @@
+{%- extends config.BASE_TEMPLATE %}
+{%- set title = _("Search results") ~ " | " ~ _("restoration-ui") %}
+
+{%- block javascript %}
+    {{ super() }}
+    {{ webpack['restoration_ui_components.js']}}
+    {{ webpack['restoration_ui_components.css']}}
+    {{ webpack['restoration_ui_search.js'] }}
+{%- endblock %}
+
+{%- block page_body %}
+<div class="ui main container">
+  <div data-invenio-search-config='{{ search_app_config(app_id="Restoration_ui.Search") | tojson }}'></div>
+</div>
+{%- endblock page_body %}

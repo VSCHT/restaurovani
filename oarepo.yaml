@@ -44,3 +44,22 @@ sites:
     www: https://restaurovani.vscht.cz
     year: '2023'
 type: monorepo
+ui:
+  restoration-ui:
+    cookiecutter_api_service: restoration
+    cookiecutter_app_name: restoration-ui
+    cookiecutter_app_package: restoration_ui
+    cookiecutter_author: ''
+    cookiecutter_author_email: ''
+    cookiecutter_ext_name: RestorationUiExtension
+    cookiecutter_local_model_path: ../../models/restoration
+    cookiecutter_model_package: restoration
+    cookiecutter_repository_url: ''
+    cookiecutter_resource: RestorationUiResource
+    cookiecutter_resource_config: RestorationUiResourceConfig
+    cookiecutter_ui_record_serializer_class: restoration.resources.records.ui.RestorationUIJSONSerializer
+    model_name: restoration
+    sites:
+    - restaurovani-site
+    ui_dir: ui/restoration-ui
+    url_prefix: /prace/
