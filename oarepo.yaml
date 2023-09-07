@@ -2,6 +2,13 @@ config:
   oarepo_cli: .venv/nrp/bin/nrp
   project_package: restaurovani
   python: python3.9
+local:
+  restoration-common:
+    branch: null
+    github_clone_url: null
+    local_dir: local/restoration-common
+    sites:
+    - restaurovani-site
 models:
   restoration:
     merge_changes: overwrite
