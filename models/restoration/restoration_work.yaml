@@ -31,9 +31,7 @@ restorationWork:
       properties:
         since:
           type: date
-          format: date
         until:
           type: date
-          format: date
 
 

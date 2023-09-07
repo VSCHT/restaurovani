@@ -11,7 +11,7 @@ restorationObject:
       type: nested
       properties:
         name:
-          type: multilingual-v1.0.0.json#/MultilingualString
+          type: multilingual
         main:
           type: boolean
         restorationMethods[]:
