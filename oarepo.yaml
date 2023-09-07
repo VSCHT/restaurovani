@@ -4,10 +4,15 @@ config:
   python: python3.9
 models:
   restoration:
+    merge_changes: overwrite
     model_dir: models/restoration
     model_package: restoration
     permissions_preset: everyone
     pid_type: rstr
+    run_tests: skip
+    sites:
+    - restaurovani-site
+    update_opensearch: run
     use_custom_fields: 'yes'
     use_docs: 'no'
     use_files: 'yes'
@@ -16,7 +21,6 @@ models:
     use_relations: 'yes'
     use_tests: 'yes'
     use_vocabularies: 'yes'
-    merge_changes: overwrite
 sites:
   restaurovani-site:
     author_email: miroslav.simek@cesnet.cz
@@ -24,8 +28,8 @@ sites:
     copyright_holder: UCT Prague
     init_database: 'yes'
     pdm_name: restaurovani-site
-    repository_name: "Repozit\xE1\u0159 restaurov\xE1n\xED um\u011Bleck\xFD\
-      ch p\u0159edm\u011Bt\u016F"
+    repository_name: "Repozit\xE1\u0159 restaurov\xE1n\xED um\u011Bleck\xFDch p\u0159\
+      edm\u011Bt\u016F"
     site_dir: sites/restaurovani-site
     site_package: restaurovani_site
     transifex_project: restaurovani

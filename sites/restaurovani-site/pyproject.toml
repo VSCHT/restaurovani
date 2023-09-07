@@ -8,6 +8,7 @@ authors = [
 ]
 dependencies = [
     "oarepo>=11,<12",
+    "restoration @ file:///${PROJECT_ROOT}/../../models/restoration",
     "site @ file:///${PROJECT_ROOT}/site",
 ]
 requires-python = ">=3.9,<3.11"
