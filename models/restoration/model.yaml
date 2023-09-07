@@ -28,5 +28,5 @@ plugins:
   - oarepo-model-builder-relations==4.*
   - oarepo-model-builder-tests==4.*
   - oarepo-model-builder-drafts
-  - oarepo-model-builder-draft-files
+  - oarepo-model-builder-drafts-files
   - oarepo-model-builder-multilingual
