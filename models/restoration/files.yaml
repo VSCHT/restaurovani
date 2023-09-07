@@ -1,0 +1,6 @@
+files:
+  use:
+  - invenio_files
+  module:
+    qualified: restoration
+  properties: {}

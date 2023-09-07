@@ -1,0 +1,28 @@
+record:
+  use:
+  - invenio
+  - ./files.yaml
+  - ./custom_fields.yaml
+  module:
+    qualified: restoration
+  properties:
+    use:
+    - ./metadata.yaml
+  permissions:
+    presets:
+    - everyone
+  pid:
+    type: rstr
+settings:
+  i18n-languages:
+  - en
+profiles:
+- record
+- files
+plugins:
+  packages:
+  - oarepo-model-builder-files==4.*
+  - oarepo-model-builder-cf==4.*
+  - oarepo-model-builder-vocabularies==4.*
+  - oarepo-model-builder-relations==4.*
+  - oarepo-model-builder-tests==4.*

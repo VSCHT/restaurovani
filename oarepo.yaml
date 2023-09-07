@@ -2,6 +2,20 @@ config:
   oarepo_cli: .venv/nrp/bin/nrp
   project_package: restaurovani
   python: python3.9
+models:
+  restoration:
+    model_dir: models/restoration
+    model_package: restoration
+    permissions_preset: everyone
+    pid_type: rstr
+    use_custom_fields: 'yes'
+    use_docs: 'no'
+    use_files: 'yes'
+    use_metadata: 'yes'
+    use_nr_vocabularies: 'no'
+    use_relations: 'yes'
+    use_tests: 'yes'
+    use_vocabularies: 'yes'
 sites:
   restaurovani-site:
     author_email: miroslav.simek@cesnet.cz
