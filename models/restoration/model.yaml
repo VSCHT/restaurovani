@@ -19,7 +19,14 @@ record:
 settings:
   i18n-languages:
   - cs
-  supported-langs: [cs, en]
+  supported-langs:
+    cs:
+      keyword:
+        type: keyword
+      text:
+        analyzer: czech
+    en:
+      text: {}
 profiles: [record, draft, files, draft_files]
 plugins:
   packages:
