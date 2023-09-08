@@ -318,9 +318,7 @@
                             "title": {
                                 "fields": {
                                     "sort": {
-                                        "type": "icu_collation_keyword",
-                                        "index": false,
-                                        "language": "cs"
+                                        "type": "keyword"
                                     }
                                 },
                                 "type": "keyword"
