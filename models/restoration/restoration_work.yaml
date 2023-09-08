@@ -24,7 +24,7 @@ restorationWork:
         part:
           type: relation
           model: "#part"
-          keys: [ id, name ]
+          keys: [ id ]
         restorationMethods[]:
           type: vocabulary
           vocabulary-type: RestorationMethods
