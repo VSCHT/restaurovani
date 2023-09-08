@@ -1,23 +1,31 @@
 restorationObject:
   type: object
   properties:
-    keywords:
+    title:
+      type: keyword
+      mapping:
+        fields:
+          sort:
+            type: icu_collation_keyword
+            index: false
+            language: cs
+    keywords[]:
       type: keyword
     description:
       type: fulltext
       mapping:
         analyzer: czech
-    parts:
+    parts[]:
       type: nested
+      id: part
       properties:
+        id:
+          type: keyword
         name:
           type: multilingual
         main:
           type: boolean
-        restorationMethods[]:
-          type: vocabulary
-          vocabulary-type: RestorationMethods
-        fabricationTechnology:
+        fabricationTechnologies[]:
           type: vocabulary
           vocabulary-type: FabricationTechnologies
         materialType:
@@ -26,13 +34,13 @@ restorationObject:
         secondaryMaterialTypes[]:
           type: vocabulary
           vocabulary-type: MaterialTypes
-        color:
+        colors[]:
           type: vocabulary
           vocabulary-type: Colors
-    itemType:
+    itemType[]:
       type: vocabulary
       vocabulary-type: ItemTypes
-    dimensions:
+    dimensions[]:
       properties:
         dimension:
           type: vocabulary
@@ -60,4 +68,4 @@ restorationObject:
           type: integer
     restorationRequestor:
       type: vocabulary
-      vocabulary-type: Institutions
+      vocabulary-type: Requestors

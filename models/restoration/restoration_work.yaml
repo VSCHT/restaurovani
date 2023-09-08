@@ -2,11 +2,11 @@ restorationWork:
   properties:
     abstract:
       type: multilingual
-    literature:
+    literature[]:
       type: fulltext
     sisId:
       type: keyword
-    supervisor:
+    supervisors[]:
       type: object
       properties:
         sisCode:
@@ -18,6 +18,16 @@ restorationWork:
         institution:
           type: vocabulary
           vocabulary-type: Institutions
+    parts[]:
+      type: nested
+      properties:
+        part:
+          type: relation
+          model: "#part"
+          keys: [ id, name ]
+        restorationMethods[]:
+          type: vocabulary
+          vocabulary-type: RestorationMethods
     workType:
       type: vocabulary
       vocabulary-type: WorkTypes

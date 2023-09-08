@@ -70,6 +70,15 @@ Institutions:
       en: Institutions
   - source: files/Institutions.yaml
 
+Requestors:
+  - writer: vocabulary
+    vocabulary: Requestors
+    pid_type: v-reqs
+    title:
+      cs: Zadavatelé
+      en: Requestors
+  - source: files/Requestors.yaml
+
 WorkTypes:
   - writer: vocabulary
     vocabulary: WorkTypes
