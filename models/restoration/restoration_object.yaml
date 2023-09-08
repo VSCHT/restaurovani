@@ -1,0 +1,63 @@
+restorationObject:
+  type: object
+  properties:
+    keywords:
+      type: keyword
+    description:
+      type: fulltext
+      mapping:
+        analyzer: czech
+    parts:
+      type: nested
+      properties:
+        name:
+          type: multilingual
+        main:
+          type: boolean
+        restorationMethods[]:
+          type: vocabulary
+          vocabulary-type: RestorationMethods
+        fabricationTechnology:
+          type: vocabulary
+          vocabulary-type: FabricationTechnologies
+        materialType:
+          type: vocabulary
+          vocabulary-type: MaterialTypes
+        secondaryMaterialTypes[]:
+          type: vocabulary
+          vocabulary-type: MaterialTypes
+        color:
+          type: vocabulary
+          vocabulary-type: Colors
+    itemType:
+      type: vocabulary
+      vocabulary-type: ItemTypes
+    dimensions:
+      properties:
+        dimension:
+          type: vocabulary
+          vocabulary-type: Dimensions
+        unit:
+          type: keyword
+        value:
+          type: float
+    stylePeriod:
+      properties:
+        period:
+          type: vocabulary
+          vocabulary-type: StylePeriods
+        startYear:
+          type: integer
+        endYear:
+          type: integer
+    archeologic:
+      type: boolean
+    creationPeriod:
+      properties:
+        since:
+          type: integer
+        until:
+          type: integer
+    restorationRequestor:
+      type: vocabulary
+      vocabulary-type: Institutions

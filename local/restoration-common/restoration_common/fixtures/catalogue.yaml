@@ -1,0 +1,89 @@
+RestorationMethods:
+  - writer: vocabulary
+    vocabulary: RestorationMethods
+    pid_type: v-resm
+    title:
+      cs: Metody restaurování
+      en: Restoration methods
+  - source: files/RestorationMethods.yaml
+
+FabricationTechnologies:
+  - writer: vocabulary
+    vocabulary: FabricationTechnologies
+    pid_type: v-fabt
+    title:
+      cs: Technologie výroby
+      en: Fabrication Technologies
+  - source: files/FabricationTechnologies.yaml
+
+MaterialTypes:
+  - writer: vocabulary
+    vocabulary: MaterialTypes
+    pid_type: v-matt
+    title:
+      cs: Typy materiálů
+      en: Material Types
+  - source: files/MaterialTypes.yaml
+
+Colors:
+  - writer: vocabulary
+    vocabulary: Colors
+    pid_type: v-colo
+    title:
+      cs: Barvy a optické vlastnosti
+      en: Colors and Optical Properties
+  - source: files/Colors.yaml
+
+ItemTypes:
+  - writer: vocabulary
+    vocabulary: ItemTypes
+    pid_type: v-item
+    title:
+      cs: Typy položek
+      en: Item Types
+  - source: files/ItemTypes.yaml
+
+Dimensions:
+  - writer: vocabulary
+    vocabulary: Dimensions
+    pid_type: v-dim
+    title:
+      cs: Míry a váhy
+      en: Dimensions
+  - source: files/Dimensions.yaml
+
+StylePeriods:
+  - writer: vocabulary
+    vocabulary: StylePeriods
+    pid_type: v-stp
+    title:
+      cs: Období vzniku
+      en: Creation Periods
+  - source: files/StylePeriods.yaml
+
+Institutions:
+  - writer: vocabulary
+    vocabulary: Institutions
+    pid_type: v-inst
+    title:
+      cs: Instituce
+      en: Institutions
+  - source: files/Institutions.yaml
+
+WorkTypes:
+  - writer: vocabulary
+    vocabulary: WorkTypes
+    pid_type: v-wkt
+    title:
+      cs: Typy prací
+      en: Work Types
+  - source: files/WorkTypes.yaml
+
+ExaminationMethods:
+  - writer: vocabulary
+    vocabulary: ExaminationMethods
+    pid_type: v-exm
+    title:
+      cs: Metody průzkumu
+      en: Examination Methods
+  - source: files/ExaminationMethods.yaml

@@ -1,0 +1,675 @@
+id: pravek
+props:
+  endYear: '-3500'
+  startYear: '-3000000'
+title:
+  cs: pravěk
+---
+hierarchy:
+  parent: pravek
+id: pravek-paleolit
+props:
+  endYear: '-8000'
+  startYear: '-2500000'
+title:
+  cs: paleolit
+---
+hierarchy:
+  parent: pravek
+id: pravek-mezolit
+props:
+  endYear: '-8000'
+  startYear: '-10000'
+title:
+  cs: mezolit
+---
+hierarchy:
+  parent: pravek
+id: pravek-neolit
+props:
+  endYear: '-5000'
+  startYear: '-8000'
+title:
+  cs: neolit
+---
+hierarchy:
+  parent: pravek-neolit
+id: pravek-neolit-kultura-s-linearni-keramikou
+title:
+  cs: kultura s lineární keramikou
+---
+hierarchy:
+  parent: pravek-neolit
+id: pravek-neolit-sarecky-stupen-kultury-se-linearni-keramikou
+title:
+  cs: šárecký stupeň kultury se lineární keramikou
+---
+hierarchy:
+  parent: pravek-neolit
+id: pravek-neolit-zeliezovska-skupina
+title:
+  cs: želiezovská skupina
+---
+hierarchy:
+  parent: pravek-neolit
+id: pravek-neolit-kultura-vinca
+title:
+  cs: kultura Vinča
+---
+hierarchy:
+  parent: pravek-neolit
+id: pravek-neolit-kultura-s-vypichanou-keramikou
+title:
+  cs: kultura s vypíchanou keramikou
+---
+hierarchy:
+  parent: pravek-neolit
+id: pravek-neolit-bukovohorska-kultura
+title:
+  cs: bukovohorská kultura
+---
+hierarchy:
+  parent: pravek-neolit
+id: pravek-neolit-lengyelsky-komplex-malovanych-kultur
+title:
+  cs: lengyelský komplex malovaných kultur
+---
+hierarchy:
+  parent: pravek-neolit
+id: pravek-neolit-kultura-s-moravskou-malovanou-keramikou
+title:
+  cs: kultura s moravskou malovanou keramikou
+---
+hierarchy:
+  parent: pravek-neolit
+id: pravek-neolit-jarmucka-kultura
+title:
+  cs: jarmucká kultura
+---
+hierarchy:
+  parent: pravek
+id: pravek-eneolit
+props:
+  endYear: '-2200'
+  startYear: '-5000'
+title:
+  cs: eneolit
+---
+hierarchy:
+  parent: pravek-eneolit
+id: pravek-eneolit-michelsberska-kultura
+title:
+  cs: michelsberská kultura
+---
+hierarchy:
+  parent: pravek-eneolit
+id: pravek-eneolit-kultura-s-kanelovanou-keramikou
+title:
+  cs: kultura s kanelovanou keramikou
+---
+hierarchy:
+  parent: pravek-eneolit
+id: pravek-eneolit-kultura-s-kulovitymi-amforami
+title:
+  cs: kultura s kulovitými amforami
+---
+hierarchy:
+  parent: pravek-eneolit
+id: pravek-eneolit-chamska-kultura
+title:
+  cs: chamská kultura
+---
+hierarchy:
+  parent: pravek-eneolit
+id: pravek-eneolit-jevisovicka-kultura
+title:
+  cs: jevišovická kultura
+---
+hierarchy:
+  parent: pravek-eneolit
+id: pravek-eneolit-rivnacska-kultura
+title:
+  cs: řivnáčská kultura
+---
+hierarchy:
+  parent: pravek-eneolit
+id: pravek-eneolit-badenska-kultura
+title:
+  cs: badenská kultura
+---
+hierarchy:
+  parent: pravek-eneolit
+id: pravek-eneolit-bosacka-skupina
+title:
+  cs: bošácká skupina
+---
+hierarchy:
+  parent: pravek-eneolit
+id: pravek-eneolit-kultura-se-snurovou-keramikou
+title:
+  cs: kultura se šňůrovou keramikou
+---
+hierarchy:
+  parent: pravek-eneolit
+id: pravek-eneolit-kultura-zvoncovitych-poharu
+title:
+  cs: kultura zvoncovitých pohárů
+---
+hierarchy:
+  parent: pravek-eneolit
+id: pravek-eneolit-kultura-nalevkovitych-poharu
+title:
+  cs: kultura nálevkovitých pohárů
+---
+hierarchy:
+  parent: pravek
+id: pravek-chalkolit
+props:
+  endYear: '-2200'
+  startYear: '-5000'
+title:
+  cs: chalkolit
+---
+hierarchy:
+  parent: pravek-chalkolit
+id: pravek-chalkolit-samarrska-kultura
+title:
+  cs: samarrská kultura
+---
+hierarchy:
+  parent: pravek-chalkolit
+id: pravek-chalkolit-obeidska-kultura
+title:
+  cs: obeidská kultura
+---
+hierarchy:
+  parent: pravek-chalkolit
+id: pravek-chalkolit-chlafska-kultura
+title:
+  cs: chláfská kultura
+---
+hierarchy:
+  parent: pravek
+id: pravek-doba-bronzova
+props:
+  endYear: '-800'
+  startYear: '-2300'
+title:
+  cs: doba bronzová
+---
+hierarchy:
+  parent: pravek-doba-bronzova
+id: pravek-doba-bronzova-uneticka-kultura
+title:
+  cs: únětická kultura
+---
+hierarchy:
+  parent: pravek-doba-bronzova
+id: pravek-doba-bronzova-nitranska-kultura
+title:
+  cs: nitranská kultura
+---
+hierarchy:
+  parent: pravek-doba-bronzova
+id: pravek-doba-bronzova-komplex-mohylovych-kultur
+title:
+  cs: komplex mohylových kultur
+---
+hierarchy:
+  parent: pravek-doba-bronzova
+id: pravek-doba-bronzova-kultury-popelnicovych-poli
+title:
+  cs: kultury popelnicových polí
+---
+hierarchy:
+  parent: pravek-doba-bronzova
+id: pravek-doba-bronzova-velaticka-kultura
+title:
+  cs: velatická kultura
+---
+hierarchy:
+  parent: pravek-doba-bronzova
+id: pravek-doba-bronzova-milavecska-kultura
+title:
+  cs: milavečská kultura
+---
+hierarchy:
+  parent: pravek-doba-bronzova
+id: pravek-doba-bronzova-kultura-knovizska
+title:
+  cs: kultura knovízská
+---
+hierarchy:
+  parent: pravek-doba-bronzova
+id: pravek-doba-bronzova-slezska-kultura
+title:
+  cs: slezská kultura
+---
+hierarchy:
+  parent: pravek-doba-bronzova
+id: pravek-doba-bronzova-podolska-kultura
+title:
+  cs: podolská kultura
+---
+hierarchy:
+  parent: pravek-doba-bronzova
+id: pravek-doba-bronzova-kultura-stitarska
+title:
+  cs: kultura štítarská
+---
+hierarchy:
+  parent: pravek
+id: pravek-doba-zelezna
+props:
+  endYear: '0'
+  startYear: '-750'
+title:
+  cs: doba železná
+---
+hierarchy:
+  parent: pravek-doba-zelezna
+id: pravek-doba-zelezna-doba-halstatska
+props:
+  endYear: '-450'
+  startYear: '-750'
+title:
+  cs: doba halštatská
+---
+hierarchy:
+  parent: pravek-doba-zelezna
+id: pravek-doba-zelezna-doba-latenska
+props:
+  endYear: '0'
+  startYear: '-450'
+title:
+  cs: doba laténská
+---
+hierarchy:
+  parent: pravek
+id: pravek-doba-rimska
+props:
+  endYear: '400'
+  startYear: '0'
+title:
+  cs: doba římská
+---
+hierarchy:
+  parent: pravek
+id: pravek-doba-stehovani-narodu
+props:
+  endYear: '700'
+  startYear: '300'
+title:
+  cs: doba stěhování národů
+---
+id: starovek
+props:
+  endYear: '600'
+  startYear: '-3500'
+title:
+  cs: starověk
+---
+hierarchy:
+  parent: starovek
+id: starovek-staroveky-sumer
+title:
+  cs: starověký Sumer
+---
+hierarchy:
+  parent: starovek
+id: starovek-staroveka-babylonie
+title:
+  cs: starověká Babylónie
+---
+hierarchy:
+  parent: starovek
+id: starovek-staroveka-persie
+title:
+  cs: starověká Persie
+---
+hierarchy:
+  parent: starovek
+id: starovek-staroveky-egypt
+title:
+  cs: starověký Egypt
+---
+id: antika
+props:
+  endYear: '600'
+  startYear: '-800'
+title:
+  cs: antika
+---
+hierarchy:
+  parent: antika
+id: antika-archaicke-recko
+props:
+  endYear: '-500'
+  startYear: '-800'
+title:
+  cs: archaické Řecko
+---
+hierarchy:
+  parent: antika
+id: antika-klasicke-recko
+props:
+  endYear: '-323'
+  startYear: '-480'
+title:
+  cs: klasické Řecko
+---
+hierarchy:
+  parent: antika
+id: antika-helenismus
+props:
+  endYear: '-31'
+  startYear: '-323'
+title:
+  cs: helénismus
+---
+hierarchy:
+  parent: antika
+id: antika-etruske-umeni
+props:
+  endYear: '-100'
+  startYear: '-800'
+title:
+  cs: etruské umění
+---
+hierarchy:
+  parent: antika
+id: antika-rimska-antika
+props:
+  endYear: '476'
+  startYear: '-753'
+title:
+  cs: římská antika
+---
+hierarchy:
+  parent: antika-rimska-antika
+id: antika-rimska-antika-rimske-kralovstvi
+props:
+  endYear: '-509'
+  startYear: '-753'
+title:
+  cs: období římské království
+---
+hierarchy:
+  parent: antika-rimska-antika
+id: antika-rimska-antika-doba-rimske-republiky
+props:
+  endYear: '-27'
+  startYear: '-509'
+title:
+  cs: doba římské republiky
+---
+hierarchy:
+  parent: antika-rimska-antika
+id: antika-rimska-antika-obdobi-rimskeho-cisarstvi
+props:
+  endYear: '285'
+  startYear: '-27'
+title:
+  cs: období římského císařství
+---
+hierarchy:
+  parent: antika-rimska-antika
+id: antika-rimska-antika-rimska-pozdni-antika
+props:
+  endYear: '476'
+  startYear: '285'
+title:
+  cs: římská pozdní antika
+---
+hierarchy:
+  parent: antika
+id: antika-krestanska-antika-rane-krestanske-umeni
+props:
+  endYear: '600'
+  startYear: '100'
+title:
+  cs: křesťanská antika (raně křesťanské umění)
+---
+hierarchy:
+  parent: antika
+id: antika-pozdni-antika
+props:
+  endYear: '600'
+  startYear: '300'
+title:
+  cs: pozdní antika/počátky středověku
+---
+id: stredovek
+props:
+  endYear: '1500'
+  startYear: '476'
+title:
+  cs: středověk
+---
+hierarchy:
+  parent: stredovek
+id: stredovek-doba-rane-hradistni
+title:
+  cs: doba raně hradištní
+---
+hierarchy:
+  parent: stredovek
+id: stredovek-rany-stredovek
+title:
+  cs: raný středověk
+---
+hierarchy:
+  parent: stredovek
+id: stredovek-vrcholny-stredovek
+title:
+  cs: vrcholný středověk
+---
+hierarchy:
+  parent: stredovek
+id: stredovek-pozdni-stredovek
+title:
+  cs: pozdní středověk
+---
+hierarchy:
+  parent: stredovek
+id: stredovek-byzantske-umeni-byzanc
+props:
+  endYear: '1453'
+  startYear: '476'
+title:
+  cs: byzantské umění (Byzanc)
+---
+hierarchy:
+  parent: stredovek
+id: stredovek-predromanske-umeni
+title:
+  cs: předrománské umění
+---
+hierarchy:
+  parent: stredovek
+id: stredovek-karolinske-umeni
+title:
+  cs: karolinské umění
+---
+hierarchy:
+  parent: stredovek
+id: stredovek-otonske-umeni
+title:
+  cs: otonské umění
+---
+hierarchy:
+  parent: stredovek
+id: stredovek-romanske-umeni
+title:
+  cs: románské umění
+---
+hierarchy:
+  parent: stredovek
+id: stredovek-gotika
+title:
+  cs: gotika
+---
+hierarchy:
+  parent: stredovek
+id: stredovek-islam
+props:
+  startYear: '622'
+title:
+  cs: islám
+---
+id: rany-novovek
+props:
+  endYear: '1800'
+  startYear: '1492'
+title:
+  cs: raný novověk
+---
+hierarchy:
+  parent: rany-novovek
+id: rany-novovek-renesance
+title:
+  cs: renesance
+---
+hierarchy:
+  parent: rany-novovek
+id: rany-novovek-manyrismus
+title:
+  cs: manýrismus
+---
+hierarchy:
+  parent: rany-novovek
+id: rany-novovek-baroko
+title:
+  cs: baroko
+---
+hierarchy:
+  parent: rany-novovek
+id: rany-novovek-rokoko
+title:
+  cs: rokoko
+---
+hierarchy:
+  parent: rany-novovek
+id: rany-novovek-klasicismus
+title:
+  cs: barokní klasicismus
+---
+id: novovek-moderni-doba
+props:
+  startYear: '1789'
+title:
+  cs: novověk/moderní doba
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-kubismus
+title:
+  cs: kubismus
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-modernismus
+title:
+  cs: modernismus
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-art-deco
+title:
+  cs: art deco
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-funkcionalismus
+title:
+  cs: funkcionalismus
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-purismus
+title:
+  cs: purismus
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-konstruktivismus
+title:
+  cs: konstruktivismus
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-bruselsky-styl
+title:
+  cs: bruselský styl
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-empir
+title:
+  cs: empír
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-biedermeier
+title:
+  cs: biedermeier
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-historismus
+title:
+  cs: historismus
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-druhe-rokoko
+title:
+  cs: druhé rokoko
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-antikizujici-styl-19-stoleti
+title:
+  cs: antikizující styl 19. století
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-neogotika
+title:
+  cs: neogotika
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-neorenesance
+title:
+  cs: neorenesance
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-neobaroko
+title:
+  cs: neobaroko
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-orientalizujici-styl-19-stoleti
+title:
+  cs: orientalizující styl 19. století
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-esteticke-hnuti
+title:
+  cs: estetické hnutí
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-hnuti-arts-and-crafts-umeni-a-remesla
+title:
+  cs: hnutí Arts and Crafts (Umění a řemesla)
+---
+hierarchy:
+  parent: novovek-moderni-doba
+id: novovek-moderni-doba-secese
+title:
+  cs: secese

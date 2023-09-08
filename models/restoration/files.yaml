@@ -1,0 +1,13 @@
+files:
+  use:
+  - invenio_files
+  module:
+    qualified: restoration
+  properties:
+    fileType:
+      type: keyword
+      enum:
+        - photo
+        - document
+    featured:
+      type: boolean

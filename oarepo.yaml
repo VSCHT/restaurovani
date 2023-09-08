@@ -2,8 +2,34 @@ config:
   oarepo_cli: .venv/nrp/bin/nrp
   project_package: restaurovani
   python: python3.9
-  sites:
-  - restaurovani-site
+
+local:
+  restoration-common:
+    branch: null
+    github_clone_url: null
+    local_dir: local/restoration-common
+    sites:
+    - restaurovani-site
+models:
+  restoration:
+    merge_changes: overwrite
+    model_dir: models/restoration
+    model_package: restoration
+    permissions_preset: everyone
+    pid_type: rstr
+    run_tests: skip
+    sites:
+    - restaurovani-site
+    update_opensearch: run
+    use_custom_fields: 'yes'
+    use_docs: 'no'
+    use_files: 'yes'
+    use_metadata: 'yes'
+    use_nr_vocabularies: 'no'
+    use_relations: 'yes'
+    use_tests: 'yes'
+    use_vocabularies: 'yes'
+
 sites:
   restaurovani-site:
     author_email: miroslav.simek@cesnet.cz
@@ -11,8 +37,8 @@ sites:
     copyright_holder: UCT Prague
     init_database: 'yes'
     pdm_name: restaurovani-site
-    repository_name: "Repozit\xE1\u0159 dokumentace restaurov\xE1n\xED um\u011Bleck\xFD\
-      ch p\u0159edm\u011Bt\u016F"
+    repository_name: "Repozit\xE1\u0159 restaurov\xE1n\xED um\u011Bleck\xFDch p\u0159\
+      edm\u011Bt\u016F"
     site_dir: sites/restaurovani-site
     site_package: restaurovani_site
     transifex_project: restaurovani
@@ -20,3 +46,22 @@ sites:
     www: https://restaurovani.vscht.cz
     year: '2023'
 type: monorepo
+ui:
+  restoration-ui:
+    cookiecutter_api_service: restoration
+    cookiecutter_app_name: restoration-ui
+    cookiecutter_app_package: restoration_ui
+    cookiecutter_author: ''
+    cookiecutter_author_email: ''
+    cookiecutter_ext_name: RestorationUiExtension
+    cookiecutter_local_model_path: ../../models/restoration
+    cookiecutter_model_package: restoration
+    cookiecutter_repository_url: ''
+    cookiecutter_resource: RestorationUiResource
+    cookiecutter_resource_config: RestorationUiResourceConfig
+    cookiecutter_ui_record_serializer_class: restoration.resources.records.ui.RestorationUIJSONSerializer
+    model_name: restoration
+    sites:
+    - restaurovani-site
+    ui_dir: ui/restoration-ui
+    url_prefix: /prace/
