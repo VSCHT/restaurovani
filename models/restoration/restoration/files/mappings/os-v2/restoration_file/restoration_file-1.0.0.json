@@ -1,0 +1,26 @@
+{
+    "mappings": {
+        "properties": {
+            "$schema": {
+                "type": "keyword"
+            },
+            "created": {
+                "type": "date",
+                "format": "basic_date||strict_date"
+            },
+            "featured": {
+                "type": "boolean"
+            },
+            "fileType": {
+                "type": "keyword"
+            },
+            "id": {
+                "type": "keyword"
+            },
+            "updated": {
+                "type": "date",
+                "format": "basic_date||strict_date"
+            }
+        }
+    }
+}
