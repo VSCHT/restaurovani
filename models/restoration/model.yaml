@@ -23,8 +23,8 @@ settings:
     cs:
       keyword:
         type: keyword
+        ignore_above: 256
       text:
-        analyzer: czech
     en:
       text: {}
 profiles: [record, draft, files, draft_files]
