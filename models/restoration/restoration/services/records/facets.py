@@ -21,6 +21,11 @@ metadata_restorationObject_archeologic = TermsFacet(
     label=_("metadata/restorationObject/archeologic.label"),
 )
 
+metadata_restorationObject_category = TermsFacet(
+    field="metadata.restorationObject.category",
+    label=_("metadata/restorationObject/category.label"),
+)
+
 metadata_restorationObject_creationPeriod_since = TermsFacet(
     field="metadata.restorationObject.creationPeriod.since",
     label=_("metadata/restorationObject/creationPeriod/since.label"),
@@ -29,6 +34,32 @@ metadata_restorationObject_creationPeriod_since = TermsFacet(
 metadata_restorationObject_creationPeriod_until = TermsFacet(
     field="metadata.restorationObject.creationPeriod.until",
     label=_("metadata/restorationObject/creationPeriod/until.label"),
+)
+
+metadata_restorationObject_description_cs = TermsFacet(
+    field="metadata.restorationObject.description.cs.keyword",
+    label=_("metadata/restorationObject/description.label"),
+)
+
+metadata_restorationObject_description_en = TermsFacet(
+    field="metadata.restorationObject.description.en.keyword",
+    label=_("metadata/restorationObject/description.label"),
+)
+
+metadata_restorationObject_description_lang = NestedLabeledFacet(
+    path="metadata.restorationObject.description",
+    nested_facet=TermsFacet(
+        field="metadata.restorationObject.description.lang",
+        label=_("metadata/restorationObject/description/lang.label"),
+    ),
+)
+
+metadata_restorationObject_description_value = NestedLabeledFacet(
+    path="metadata.restorationObject.description",
+    nested_facet=TermsFacet(
+        field="metadata.restorationObject.description.value.keyword",
+        label=_("metadata/restorationObject/description/value.label"),
+    ),
 )
 
 metadata_restorationObject_dimensions_dimension = VocabularyFacet(
@@ -47,9 +78,9 @@ metadata_restorationObject_dimensions_value = TermsFacet(
     label=_("metadata/restorationObject/dimensions/value.label"),
 )
 
-metadata_restorationObject_itemType = VocabularyFacet(
-    field="metadata.restorationObject.itemType",
-    label=_("metadata/restorationObject/itemType.label"),
+metadata_restorationObject_itemTypes = VocabularyFacet(
+    field="metadata.restorationObject.itemTypes",
+    label=_("metadata/restorationObject/itemTypes.label"),
     vocabulary="ItemTypes",
 )
 
@@ -170,9 +201,30 @@ metadata_restorationObject_stylePeriod_startYear = TermsFacet(
     label=_("metadata/restorationObject/stylePeriod/startYear.label"),
 )
 
-metadata_restorationObject_title = TermsFacet(
-    field="metadata.restorationObject.title",
+metadata_restorationObject_title_cs = TermsFacet(
+    field="metadata.restorationObject.title.cs.keyword",
     label=_("metadata/restorationObject/title.label"),
+)
+
+metadata_restorationObject_title_en = TermsFacet(
+    field="metadata.restorationObject.title.en.keyword",
+    label=_("metadata/restorationObject/title.label"),
+)
+
+metadata_restorationObject_title_lang = NestedLabeledFacet(
+    path="metadata.restorationObject.title",
+    nested_facet=TermsFacet(
+        field="metadata.restorationObject.title.lang",
+        label=_("metadata/restorationObject/title/lang.label"),
+    ),
+)
+
+metadata_restorationObject_title_value = NestedLabeledFacet(
+    path="metadata.restorationObject.title",
+    nested_facet=TermsFacet(
+        field="metadata.restorationObject.title.value.keyword",
+        label=_("metadata/restorationObject/title/value.label"),
+    ),
 )
 
 metadata_restorationWork_abstract_cs = TermsFacet(
@@ -240,6 +292,11 @@ metadata_restorationWork_restorationPeriod_until = DateTimeFacet(
     label=_("metadata/restorationWork/restorationPeriod/until.label"),
 )
 
+metadata_restorationWork_restorer = TermsFacet(
+    field="metadata.restorationWork.restorer",
+    label=_("metadata/restorationWork/restorer.label"),
+)
+
 metadata_restorationWork_sisId = TermsFacet(
     field="metadata.restorationWork.sisId",
     label=_("metadata/restorationWork/sisId.label"),
@@ -255,10 +312,9 @@ metadata_restorationWork_supervisors_fullName = TermsFacet(
     label=_("metadata/restorationWork/supervisors/fullName.label"),
 )
 
-metadata_restorationWork_supervisors_institution = VocabularyFacet(
+metadata_restorationWork_supervisors_institution = TermsFacet(
     field="metadata.restorationWork.supervisors.institution",
     label=_("metadata/restorationWork/supervisors/institution.label"),
-    vocabulary="Institutions",
 )
 
 metadata_restorationWork_supervisors_sisCode = TermsFacet(

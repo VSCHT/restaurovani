@@ -87,6 +87,14 @@
                             "hint": "metadata/restorationObject/archeologic.hint",
                             "facet": "metadata_restorationObject_archeologic"
                         },
+                        "category": {
+                            "detail": "keyword",
+                            "input": "keyword",
+                            "help": "metadata/restorationObject/category.help",
+                            "label": "metadata/restorationObject/category.label",
+                            "hint": "metadata/restorationObject/category.hint",
+                            "facet": "metadata_restorationObject_category"
+                        },
                         "creationPeriod": {
                             "detail": false,
                             "input": false,
@@ -113,11 +121,37 @@
                             }
                         },
                         "description": {
-                            "detail": "fulltext",
-                            "input": "fulltext",
+                            "detail": "multilingual",
+                            "input": "array",
                             "help": "metadata/restorationObject/description.help",
                             "label": "metadata/restorationObject/description.label",
-                            "hint": "metadata/restorationObject/description.hint"
+                            "hint": "metadata/restorationObject/description.hint",
+                            "child": {
+                                "detail": "multilingual",
+                                "input": "i18nStr",
+                                "help": "metadata/restorationObject/description.help",
+                                "label": "metadata/restorationObject/description.label",
+                                "hint": "metadata/restorationObject/description.hint",
+                                "facet": "metadata_restorationObject_description_cs",
+                                "children": {
+                                    "lang": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/description/lang.help",
+                                        "label": "metadata/restorationObject/description/lang.label",
+                                        "hint": "metadata/restorationObject/description/lang.hint",
+                                        "facet": "metadata_restorationObject_description_lang"
+                                    },
+                                    "value": {
+                                        "detail": "fulltext+keyword",
+                                        "input": "fulltext+keyword",
+                                        "help": "metadata/restorationObject/description/value.help",
+                                        "label": "metadata/restorationObject/description/value.label",
+                                        "hint": "metadata/restorationObject/description/value.hint",
+                                        "facet": "metadata_restorationObject_description_value"
+                                    }
+                                }
+                            }
                         },
                         "dimensions": {
                             "detail": "array",
@@ -183,41 +217,41 @@
                                 }
                             }
                         },
-                        "itemType": {
+                        "itemTypes": {
                             "detail": "array",
                             "input": "array",
-                            "help": "metadata/restorationObject/itemType.help",
-                            "label": "metadata/restorationObject/itemType.label",
-                            "hint": "metadata/restorationObject/itemType.hint",
+                            "help": "metadata/restorationObject/itemTypes.help",
+                            "label": "metadata/restorationObject/itemTypes.label",
+                            "hint": "metadata/restorationObject/itemTypes.hint",
                             "child": {
                                 "detail": "vocabulary_item",
                                 "edit": "vocabulary_item",
                                 "input": "vocabulary",
-                                "help": "metadata/restorationObject/itemType.help",
-                                "label": "metadata/restorationObject/itemType.label",
-                                "hint": "metadata/restorationObject/itemType.hint",
-                                "facet": "metadata_restorationObject_itemType",
+                                "help": "metadata/restorationObject/itemTypes.help",
+                                "label": "metadata/restorationObject/itemTypes.label",
+                                "hint": "metadata/restorationObject/itemTypes.hint",
+                                "facet": "metadata_restorationObject_itemTypes",
                                 "children": {
                                     "id": {
                                         "detail": "keyword",
                                         "input": "keyword",
-                                        "help": "metadata/restorationObject/itemType/id.help",
-                                        "label": "metadata/restorationObject/itemType/id.label",
-                                        "hint": "metadata/restorationObject/itemType/id.hint"
+                                        "help": "metadata/restorationObject/itemTypes/id.help",
+                                        "label": "metadata/restorationObject/itemTypes/id.label",
+                                        "hint": "metadata/restorationObject/itemTypes/id.hint"
                                     },
                                     "title": {
                                         "detail": false,
                                         "input": false,
-                                        "help": "metadata/restorationObject/itemType/title.help",
-                                        "label": "metadata/restorationObject/itemType/title.label",
-                                        "hint": "metadata/restorationObject/itemType/title.hint"
+                                        "help": "metadata/restorationObject/itemTypes/title.help",
+                                        "label": "metadata/restorationObject/itemTypes/title.label",
+                                        "hint": "metadata/restorationObject/itemTypes/title.hint"
                                     },
                                     "@v": {
                                         "detail": "keyword",
                                         "input": "keyword",
-                                        "help": "metadata/restorationObject/itemType/@v.help",
-                                        "label": "metadata/restorationObject/itemType/@v.label",
-                                        "hint": "metadata/restorationObject/itemType/@v.hint"
+                                        "help": "metadata/restorationObject/itemTypes/@v.help",
+                                        "label": "metadata/restorationObject/itemTypes/@v.label",
+                                        "hint": "metadata/restorationObject/itemTypes/@v.hint"
                                     }
                                 }
                             }
@@ -541,12 +575,37 @@
                             }
                         },
                         "title": {
-                            "detail": "keyword",
-                            "input": "keyword",
+                            "detail": "multilingual",
+                            "input": "array",
                             "help": "metadata/restorationObject/title.help",
                             "label": "metadata/restorationObject/title.label",
                             "hint": "metadata/restorationObject/title.hint",
-                            "facet": "metadata_restorationObject_title"
+                            "child": {
+                                "detail": "multilingual",
+                                "input": "i18nStr",
+                                "help": "metadata/restorationObject/title.help",
+                                "label": "metadata/restorationObject/title.label",
+                                "hint": "metadata/restorationObject/title.hint",
+                                "facet": "metadata_restorationObject_title_cs",
+                                "children": {
+                                    "lang": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/title/lang.help",
+                                        "label": "metadata/restorationObject/title/lang.label",
+                                        "hint": "metadata/restorationObject/title/lang.hint",
+                                        "facet": "metadata_restorationObject_title_lang"
+                                    },
+                                    "value": {
+                                        "detail": "fulltext+keyword",
+                                        "input": "fulltext+keyword",
+                                        "help": "metadata/restorationObject/title/value.help",
+                                        "label": "metadata/restorationObject/title/value.label",
+                                        "hint": "metadata/restorationObject/title/value.hint",
+                                        "facet": "metadata_restorationObject_title_value"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -787,6 +846,14 @@
                                 }
                             }
                         },
+                        "restorer": {
+                            "detail": "keyword",
+                            "input": "keyword",
+                            "help": "metadata/restorationWork/restorer.help",
+                            "label": "metadata/restorationWork/restorer.label",
+                            "hint": "metadata/restorationWork/restorer.hint",
+                            "facet": "metadata_restorationWork_restorer"
+                        },
                         "sisId": {
                             "detail": "keyword",
                             "input": "keyword",
@@ -825,36 +892,12 @@
                                         "facet": "metadata_restorationWork_supervisors_fullName"
                                     },
                                     "institution": {
-                                        "detail": "vocabulary_item",
-                                        "edit": "vocabulary_item",
-                                        "input": "vocabulary",
+                                        "detail": "keyword",
+                                        "input": "keyword",
                                         "help": "metadata/restorationWork/supervisors/institution.help",
                                         "label": "metadata/restorationWork/supervisors/institution.label",
                                         "hint": "metadata/restorationWork/supervisors/institution.hint",
-                                        "facet": "metadata_restorationWork_supervisors_institution",
-                                        "children": {
-                                            "id": {
-                                                "detail": "keyword",
-                                                "input": "keyword",
-                                                "help": "metadata/restorationWork/supervisors/institution/id.help",
-                                                "label": "metadata/restorationWork/supervisors/institution/id.label",
-                                                "hint": "metadata/restorationWork/supervisors/institution/id.hint"
-                                            },
-                                            "title": {
-                                                "detail": false,
-                                                "input": false,
-                                                "help": "metadata/restorationWork/supervisors/institution/title.help",
-                                                "label": "metadata/restorationWork/supervisors/institution/title.label",
-                                                "hint": "metadata/restorationWork/supervisors/institution/title.hint"
-                                            },
-                                            "@v": {
-                                                "detail": "keyword",
-                                                "input": "keyword",
-                                                "help": "metadata/restorationWork/supervisors/institution/@v.help",
-                                                "label": "metadata/restorationWork/supervisors/institution/@v.label",
-                                                "hint": "metadata/restorationWork/supervisors/institution/@v.hint"
-                                            }
-                                        }
+                                        "facet": "metadata_restorationWork_supervisors_institution"
                                     },
                                     "sisCode": {
                                         "detail": "keyword",

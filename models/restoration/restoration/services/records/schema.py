@@ -51,13 +51,15 @@ class RestorationObjectSchema(ma.Schema):
 
     archeologic = ma.fields.Boolean()
 
+    category = ma.fields.String()
+
     creationPeriod = ma.fields.Nested(lambda: CreationPeriodSchema())
 
-    description = ma.fields.String()
+    description = MultilingualField(I18nStrField())
 
     dimensions = ma.fields.List(ma.fields.Nested(lambda: DimensionsItemSchema()))
 
-    itemType = ma.fields.List(ma.fields.Nested(lambda: DimensionSchema()))
+    itemTypes = ma.fields.List(ma.fields.Nested(lambda: DimensionSchema()))
 
     keywords = ma.fields.List(ma.fields.String())
 
@@ -67,7 +69,7 @@ class RestorationObjectSchema(ma.Schema):
 
     stylePeriod = ma.fields.Nested(lambda: StylePeriodSchema())
 
-    title = ma.fields.String()
+    title = MultilingualField(I18nStrField())
 
 
 class RestorationWorkSchema(ma.Schema):
@@ -85,6 +87,8 @@ class RestorationWorkSchema(ma.Schema):
     restorationMethods = ma.fields.List(ma.fields.Nested(lambda: DimensionSchema()))
 
     restorationPeriod = ma.fields.Nested(lambda: RestorationPeriodSchema())
+
+    restorer = ma.fields.String()
 
     sisId = ma.fields.String()
 
@@ -145,19 +149,6 @@ class StylePeriodSchema(ma.Schema):
     startYear = ma.fields.Integer()
 
 
-class SupervisorsItemSchema(ma.Schema):
-    class Meta:
-        unknown = ma.RAISE
-
-    comment = ma.fields.String()
-
-    fullName = ma.fields.String()
-
-    institution = ma.fields.Nested(lambda: DimensionSchema())
-
-    sisCode = ma.fields.String()
-
-
 class CreationPeriodSchema(ma.Schema):
     class Meta:
         unknown = ma.RAISE
@@ -194,6 +185,19 @@ class RestorationPeriodSchema(ma.Schema):
     since = ma.fields.String(validate=[validate_date("%Y-%m-%d")])
 
     until = ma.fields.String(validate=[validate_date("%Y-%m-%d")])
+
+
+class SupervisorsItemSchema(ma.Schema):
+    class Meta:
+        unknown = ma.RAISE
+
+    comment = ma.fields.String()
+
+    fullName = ma.fields.String()
+
+    institution = ma.fields.String()
+
+    sisCode = ma.fields.String()
 
 
 class FilesOptionsSchema(ma.Schema):

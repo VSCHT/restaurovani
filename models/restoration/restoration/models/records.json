@@ -698,6 +698,9 @@
                             "archeologic": {
                                 "type": "boolean"
                             },
+                            "category": {
+                                "type": "keyword"
+                            },
                             "creationPeriod": {
                                 "type": "object",
                                 "marshmallow": {
@@ -720,9 +723,64 @@
                                 }
                             },
                             "description": {
-                                "type": "fulltext",
+                                "type": "array",
                                 "mapping": {
                                     "analyzer": "czech"
+                                },
+                                "marshmallow": {
+                                    "field-class": "MultilingualField",
+                                    "imports": [
+                                        {
+                                            "import": "oarepo_runtime.i18n.schema.MultilingualField"
+                                        }
+                                    ]
+                                },
+                                "ui": {
+                                    "detail": "multilingual",
+                                    "marshmallow": {
+                                        "field-class": "MultilingualUIField",
+                                        "imports": [
+                                            {
+                                                "import": "oarepo_runtime.i18n.ui_schema.MultilingualUIField"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "items": {
+                                    "type": "i18nStr",
+                                    "marshmallow": {
+                                        "class": null,
+                                        "field-class": "I18nStrField",
+                                        "imports": [
+                                            {
+                                                "import": "oarepo_runtime.i18n.schema.I18nStrField"
+                                            }
+                                        ],
+                                        "generate": false
+                                    },
+                                    "ui": {
+                                        "detail": "multilingual",
+                                        "marshmallow": {
+                                            "class": null,
+                                            "field-class": "I18nStrUIField",
+                                            "imports": [
+                                                {
+                                                    "import": "oarepo_runtime.i18n.ui_schema.I18nStrUIField"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "sample": {
+                                        "skip": false
+                                    },
+                                    "properties": {
+                                        "lang": {
+                                            "type": "keyword"
+                                        },
+                                        "value": {
+                                            "type": "fulltext+keyword"
+                                        }
+                                    }
                                 }
                             },
                             "dimensions": {
@@ -862,7 +920,7 @@
                                     }
                                 }
                             },
-                            "itemType": {
+                            "itemTypes": {
                                 "type": "array",
                                 "items": {
                                     "type": "vocabulary",
@@ -1776,11 +1834,66 @@
                                 }
                             },
                             "title": {
-                                "type": "keyword",
+                                "type": "array",
                                 "mapping": {
                                     "fields": {
                                         "sort": {
                                             "type": "keyword"
+                                        }
+                                    }
+                                },
+                                "marshmallow": {
+                                    "field-class": "MultilingualField",
+                                    "imports": [
+                                        {
+                                            "import": "oarepo_runtime.i18n.schema.MultilingualField"
+                                        }
+                                    ]
+                                },
+                                "ui": {
+                                    "detail": "multilingual",
+                                    "marshmallow": {
+                                        "field-class": "MultilingualUIField",
+                                        "imports": [
+                                            {
+                                                "import": "oarepo_runtime.i18n.ui_schema.MultilingualUIField"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "items": {
+                                    "type": "i18nStr",
+                                    "marshmallow": {
+                                        "class": null,
+                                        "field-class": "I18nStrField",
+                                        "imports": [
+                                            {
+                                                "import": "oarepo_runtime.i18n.schema.I18nStrField"
+                                            }
+                                        ],
+                                        "generate": false
+                                    },
+                                    "ui": {
+                                        "detail": "multilingual",
+                                        "marshmallow": {
+                                            "class": null,
+                                            "field-class": "I18nStrUIField",
+                                            "imports": [
+                                                {
+                                                    "import": "oarepo_runtime.i18n.ui_schema.I18nStrUIField"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "sample": {
+                                        "skip": false
+                                    },
+                                    "properties": {
+                                        "lang": {
+                                            "type": "keyword"
+                                        },
+                                        "value": {
+                                            "type": "fulltext+keyword"
                                         }
                                     }
                                 }
@@ -2286,6 +2399,9 @@
                                     }
                                 }
                             },
+                            "restorer": {
+                                "type": "keyword"
+                            },
                             "sisId": {
                                 "type": "keyword"
                             },
@@ -2311,117 +2427,7 @@
                                             "type": "keyword"
                                         },
                                         "institution": {
-                                            "type": "vocabulary",
-                                            "vocabulary-type": "Institutions",
-                                            "imports": [
-                                                {
-                                                    "import": "invenio_vocabularies.records.api.Vocabulary"
-                                                }
-                                            ],
-                                            "model": "vocabularies",
-                                            "keys": [
-                                                "id",
-                                                "title"
-                                            ],
-                                            "marshmallow": {
-                                                "generate": false,
-                                                "class": "restoration.services.records.schema.DimensionSchema"
-                                            },
-                                            "ui": {
-                                                "marshmallow": {
-                                                    "generate": false,
-                                                    "class": "restoration.services.records.ui_schema.DimensionUISchema"
-                                                },
-                                                "detail": "vocabulary_item",
-                                                "edit": "vocabulary_item"
-                                            },
-                                            "pid-field": "Vocabulary.pid.with_type_ctx(\"Institutions\")",
-                                            "facets": {
-                                                "args": [
-                                                    "vocabulary='Institutions'"
-                                                ]
-                                            },
-                                            "properties": {
-                                                "id": {
-                                                    "marshmallow": {
-                                                        "field-class": "ma.fields.String",
-                                                        "validators": [],
-                                                        "imports": []
-                                                    },
-                                                    "ui": {
-                                                        "marshmallow": {
-                                                            "field-class": "ma.fields.String",
-                                                            "validators": [],
-                                                            "imports": []
-                                                        }
-                                                    },
-                                                    "type": "keyword",
-                                                    "mapping": {
-                                                        "fields": {
-                                                            "text": {
-                                                                "type": "search_as_you_type"
-                                                            }
-                                                        }
-                                                    },
-                                                    "sample": {
-                                                        "skip": true
-                                                    }
-                                                },
-                                                "title": {
-                                                    "marshmallow": {
-                                                        "generate": false,
-                                                        "field": "i18n_strings",
-                                                        "field-class": "ma.fields.Nested",
-                                                        "validators": [],
-                                                        "class": "invenio_vocabularies.services.records.schema.TitleSchema",
-                                                        "imports": [
-                                                            {
-                                                                "import": "invenio_vocabularies.services.schema.i18n_strings"
-                                                            }
-                                                        ]
-                                                    },
-                                                    "ui": {
-                                                        "marshmallow": {
-                                                            "field": "VocabularyI18nStrUIField()",
-                                                            "generate": false,
-                                                            "imports": [
-                                                                {
-                                                                    "import": "oarepo_vocabularies.services.ui_schema.VocabularyI18nStrUIField"
-                                                                }
-                                                            ]
-                                                        }
-                                                    },
-                                                    "mapping": {
-                                                        "dynamic": true,
-                                                        "properties": {
-                                                            "en": {
-                                                                "type": "search_as_you_type",
-                                                                "copy_to": "title_sort"
-                                                            }
-                                                        }
-                                                    },
-                                                    "type": "object",
-                                                    "propertyNames": {
-                                                        "pattern": "^[a-z]{2}$"
-                                                    },
-                                                    "additionalProperties": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "@v": {
-                                                    "type": "keyword",
-                                                    "marshmallow": {
-                                                        "field-name": "_version",
-                                                        "field-class": "ma.fields.String"
-                                                    },
-                                                    "ui": {
-                                                        "marshmallow": {
-                                                            "field-name": "_version",
-                                                            "field-class": "ma.fields.String"
-                                                        }
-                                                    }
-                                                }
-                                            }
+                                            "type": "keyword"
                                         },
                                         "sisCode": {
                                             "type": "keyword"

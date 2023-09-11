@@ -20,8 +20,45 @@
                     "restorationObject": {
                         "type": "object",
                         "properties": {
+                            "description_cs": {
+                                "type": "text",
+                                "analyzer": "czech",
+                                "fields": {
+                                    "keyword": {
+                                        "type": "keyword"
+                                    }
+                                }
+                            },
+                            "description_en": {
+                                "type": "text",
+                                "fields": {
+                                    "keyword": {
+                                        "type": "keyword"
+                                    }
+                                }
+                            },
+                            "title_cs": {
+                                "type": "text",
+                                "analyzer": "czech",
+                                "fields": {
+                                    "keyword": {
+                                        "type": "keyword"
+                                    }
+                                }
+                            },
+                            "title_en": {
+                                "type": "text",
+                                "fields": {
+                                    "keyword": {
+                                        "type": "keyword"
+                                    }
+                                }
+                            },
                             "archeologic": {
                                 "type": "boolean"
+                            },
+                            "category": {
+                                "type": "keyword"
                             },
                             "creationPeriod": {
                                 "type": "object",
@@ -36,7 +73,20 @@
                             },
                             "description": {
                                 "analyzer": "czech",
-                                "type": "text"
+                                "type": "nested",
+                                "properties": {
+                                    "lang": {
+                                        "type": "keyword"
+                                    },
+                                    "value": {
+                                        "type": "text",
+                                        "fields": {
+                                            "keyword": {
+                                                "type": "keyword"
+                                            }
+                                        }
+                                    }
+                                }
                             },
                             "dimensions": {
                                 "type": "object",
@@ -75,7 +125,7 @@
                                     }
                                 }
                             },
-                            "itemType": {
+                            "itemTypes": {
                                 "type": "object",
                                 "properties": {
                                     "id": {
@@ -321,7 +371,20 @@
                                         "type": "keyword"
                                     }
                                 },
-                                "type": "keyword"
+                                "type": "nested",
+                                "properties": {
+                                    "lang": {
+                                        "type": "keyword"
+                                    },
+                                    "value": {
+                                        "type": "text",
+                                        "fields": {
+                                            "keyword": {
+                                                "type": "keyword"
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     },
@@ -471,6 +534,9 @@
                                     }
                                 }
                             },
+                            "restorer": {
+                                "type": "keyword"
+                            },
                             "sisId": {
                                 "type": "keyword"
                             },
@@ -484,30 +550,7 @@
                                         "type": "keyword"
                                     },
                                     "institution": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "fields": {
-                                                    "text": {
-                                                        "type": "search_as_you_type"
-                                                    }
-                                                },
-                                                "type": "keyword"
-                                            },
-                                            "title": {
-                                                "dynamic": true,
-                                                "properties": {
-                                                    "en": {
-                                                        "type": "search_as_you_type",
-                                                        "copy_to": "title_sort"
-                                                    }
-                                                },
-                                                "type": "object"
-                                            },
-                                            "@v": {
-                                                "type": "keyword"
-                                            }
-                                        }
+                                        "type": "keyword"
                                     },
                                     "sisCode": {
                                         "type": "keyword"

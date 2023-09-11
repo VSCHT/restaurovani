@@ -51,8 +51,8 @@ class RestorationRecord(InvenioRecord):
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("Dimensions"),
         ),
-        itemType=PIDRelation(
-            "metadata.restorationObject.itemType",
+        itemTypes=PIDRelation(
+            "metadata.restorationObject.itemTypes",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("ItemTypes"),
         ),
@@ -105,11 +105,6 @@ class RestorationRecord(InvenioRecord):
             "metadata.restorationWork.restorationMethods",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("RestorationMethods"),
-        ),
-        institution=PIDRelation(
-            "metadata.restorationWork.supervisors.institution",
-            keys=["id", "title"],
-            pid_field=Vocabulary.pid.with_type_ctx("Institutions"),
         ),
         workType=PIDRelation(
             "metadata.restorationWork.workType",
@@ -153,8 +148,8 @@ class RestorationDraft(InvenioDraft):
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("Dimensions"),
         ),
-        itemType=PIDRelation(
-            "metadata.restorationObject.itemType",
+        itemTypes=PIDRelation(
+            "metadata.restorationObject.itemTypes",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("ItemTypes"),
         ),
@@ -207,11 +202,6 @@ class RestorationDraft(InvenioDraft):
             "metadata.restorationWork.restorationMethods",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("RestorationMethods"),
-        ),
-        institution=PIDRelation(
-            "metadata.restorationWork.supervisors.institution",
-            keys=["id", "title"],
-            pid_field=Vocabulary.pid.with_type_ctx("Institutions"),
         ),
         workType=PIDRelation(
             "metadata.restorationWork.workType",

@@ -23,6 +23,9 @@
                         "archeologic": {
                             "type": "boolean"
                         },
+                        "category": {
+                            "type": "string"
+                        },
                         "creationPeriod": {
                             "type": "object",
                             "properties": {
@@ -35,7 +38,18 @@
                             }
                         },
                         "description": {
-                            "type": "string"
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "lang": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
                         },
                         "dimensions": {
                             "type": "array",
@@ -65,7 +79,7 @@
                                 }
                             }
                         },
-                        "itemType": {
+                        "itemTypes": {
                             "type": "array",
                             "items": {
                                 "type": "object",
@@ -221,7 +235,18 @@
                             }
                         },
                         "title": {
-                            "type": "string"
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "lang": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -331,6 +356,9 @@
                                 }
                             }
                         },
+                        "restorer": {
+                            "type": "string"
+                        },
                         "sisId": {
                             "type": "string"
                         },
@@ -346,18 +374,7 @@
                                         "type": "string"
                                     },
                                     "institution": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "type": "string"
-                                            },
-                                            "title": {
-                                                "type": "object"
-                                            },
-                                            "@v": {
-                                                "type": "string"
-                                            }
-                                        }
+                                        "type": "string"
                                     },
                                     "sisCode": {
                                         "type": "string"
