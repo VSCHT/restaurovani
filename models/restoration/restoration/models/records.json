@@ -1832,13 +1832,6 @@
                             },
                             "title": {
                                 "type": "array",
-                                "mapping": {
-                                    "fields": {
-                                        "sort": {
-                                            "type": "keyword"
-                                        }
-                                    }
-                                },
                                 "marshmallow": {
                                     "field-class": "MultilingualField",
                                     "imports": [
