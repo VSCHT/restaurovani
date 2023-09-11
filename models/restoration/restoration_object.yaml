@@ -2,7 +2,7 @@ restorationObject:
   type: object
   properties:
     title:
-      type: keyword
+      type: multilingual
       mapping:
         fields:
           sort:
@@ -12,8 +12,10 @@ restorationObject:
 #            language: cs
     keywords[]:
       type: keyword
+    category:
+      type: keyword
     description:
-      type: fulltext
+      type: multilingual
       mapping:
         analyzer: czech
     parts[]:
@@ -38,7 +40,7 @@ restorationObject:
         colors[]:
           type: vocabulary
           vocabulary-type: Colors
-    itemType[]:
+    itemTypes[]:
       type: vocabulary
       vocabulary-type: ItemTypes
     dimensions[]:

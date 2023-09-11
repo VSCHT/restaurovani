@@ -6,6 +6,8 @@ restorationWork:
       type: fulltext
     sisId:
       type: keyword
+    restorer:
+      type: keyword
     supervisors[]:
       type: object
       properties:
@@ -16,8 +18,7 @@ restorationWork:
         comment:
           type: keyword
         institution:
-          type: vocabulary
-          vocabulary-type: Institutions
+          type: keyword
     parts[]:
       type: nested
       properties:
