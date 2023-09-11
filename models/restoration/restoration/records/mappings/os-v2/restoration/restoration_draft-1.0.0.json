@@ -22,7 +22,6 @@
                         "properties": {
                             "description_cs": {
                                 "type": "text",
-                                "analyzer": "czech",
                                 "fields": {
                                     "keyword": {
                                         "type": "keyword"
@@ -39,7 +38,6 @@
                             },
                             "title_cs": {
                                 "type": "text",
-                                "analyzer": "czech",
                                 "fields": {
                                     "keyword": {
                                         "type": "keyword"
@@ -158,7 +156,6 @@
                                 "properties": {
                                     "name_cs": {
                                         "type": "text",
-                                        "analyzer": "czech",
                                         "fields": {
                                             "keyword": {
                                                 "type": "keyword"
@@ -387,7 +384,6 @@
                         "properties": {
                             "abstract_cs": {
                                 "type": "text",
-                                "analyzer": "czech",
                                 "fields": {
                                     "keyword": {
                                         "type": "keyword"
