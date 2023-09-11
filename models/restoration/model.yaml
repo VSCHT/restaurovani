@@ -10,7 +10,7 @@ record:
     use:
     - ./metadata.yaml
   draft: {}
-  draft_files: {}
+  draft-files: {}
   permissions:
     presets:
     - everyone
