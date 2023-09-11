@@ -20,13 +20,8 @@ settings:
   i18n-languages:
   - cs
   supported-langs:
-    cs:
-      keyword:
-        type: keyword
-        ignore_above: 256
-      text:
-    en:
-      text: {}
+    cs: {}
+    en: {}
 profiles: [record, draft, files, draft_files]
 plugins:
   packages:
