@@ -16,8 +16,6 @@ restorationObject:
       type: keyword
     description:
       type: multilingual
-      mapping:
-        analyzer: czech
     parts[]:
       type: nested
       id: part
