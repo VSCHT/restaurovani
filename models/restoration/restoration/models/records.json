@@ -724,9 +724,6 @@
                             },
                             "description": {
                                 "type": "array",
-                                "mapping": {
-                                    "analyzer": "czech"
-                                },
                                 "marshmallow": {
                                     "field-class": "MultilingualField",
                                     "imports": [

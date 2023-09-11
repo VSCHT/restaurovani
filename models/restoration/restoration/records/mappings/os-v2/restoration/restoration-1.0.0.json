@@ -72,7 +72,6 @@
                                 }
                             },
                             "description": {
-                                "analyzer": "czech",
                                 "type": "nested",
                                 "properties": {
                                     "lang": {
