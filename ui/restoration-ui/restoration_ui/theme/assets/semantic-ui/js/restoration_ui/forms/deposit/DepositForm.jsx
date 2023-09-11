@@ -588,7 +588,6 @@ export const DepositForm = () => {
                 class=" form main-page__btn__addPredmety"
                 aria-label="tlacitko vytvoreni predmetu"
               >
-                
                 VYTVORIT PREDMET
               </button>
             </Form>
