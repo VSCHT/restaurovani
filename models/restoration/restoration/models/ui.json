@@ -1,0 +1,958 @@
+{
+    "module": "restoration.models",
+    "file": "restoration/models/ui.json",
+    "alias": "restoration_file",
+    "detail": "file",
+    "input": "file",
+    "help": ".help",
+    "label": ".label",
+    "hint": ".hint",
+    "children": {
+        "$schema": {
+            "detail": "keyword",
+            "input": "keyword",
+            "help": "$schema.help",
+            "label": "$schema.label",
+            "hint": "$schema.hint",
+            "facet": "_schema"
+        },
+        "created": {
+            "detail": "date",
+            "input": "date",
+            "help": "created.help",
+            "label": "created.label",
+            "hint": "created.hint",
+            "facet": "created"
+        },
+        "featured": {
+            "detail": "boolean",
+            "input": "boolean",
+            "help": "featured.help",
+            "label": "featured.label",
+            "hint": "featured.hint",
+            "facet": "featured"
+        },
+        "fileType": {
+            "detail": "keyword",
+            "input": "keyword",
+            "help": "fileType.help",
+            "label": "fileType.label",
+            "hint": "fileType.hint",
+            "enum": "fileType.enum",
+            "facet": "fileType"
+        },
+        "id": {
+            "detail": "keyword",
+            "input": "keyword",
+            "help": "id.help",
+            "label": "id.label",
+            "hint": "id.hint",
+            "facet": "_id"
+        },
+        "updated": {
+            "detail": "date",
+            "input": "date",
+            "help": "updated.help",
+            "label": "updated.label",
+            "hint": "updated.hint",
+            "facet": "updated"
+        },
+        "metadata": {
+            "detail": "metadatum",
+            "input": "metadatum",
+            "help": "metadata.help",
+            "label": "metadata.label",
+            "hint": "metadata.hint",
+            "children": {
+                "category": {
+                    "detail": "keyword",
+                    "input": "keyword",
+                    "help": "metadata/category.help",
+                    "label": "metadata/category.label",
+                    "hint": "metadata/category.hint",
+                    "facet": "metadata_category"
+                },
+                "restorationObject": {
+                    "detail": false,
+                    "input": false,
+                    "help": "metadata/restorationObject.help",
+                    "label": "metadata/restorationObject.label",
+                    "hint": "metadata/restorationObject.hint",
+                    "children": {
+                        "archeologic": {
+                            "detail": "boolean",
+                            "input": "boolean",
+                            "help": "metadata/restorationObject/archeologic.help",
+                            "label": "metadata/restorationObject/archeologic.label",
+                            "hint": "metadata/restorationObject/archeologic.hint",
+                            "facet": "metadata_restorationObject_archeologic"
+                        },
+                        "category": {
+                            "detail": "keyword",
+                            "input": "keyword",
+                            "help": "metadata/restorationObject/category.help",
+                            "label": "metadata/restorationObject/category.label",
+                            "hint": "metadata/restorationObject/category.hint",
+                            "facet": "metadata_restorationObject_category"
+                        },
+                        "creationPeriod": {
+                            "detail": false,
+                            "input": false,
+                            "help": "metadata/restorationObject/creationPeriod.help",
+                            "label": "metadata/restorationObject/creationPeriod.label",
+                            "hint": "metadata/restorationObject/creationPeriod.hint",
+                            "children": {
+                                "since": {
+                                    "detail": "integer",
+                                    "input": "integer",
+                                    "help": "metadata/restorationObject/creationPeriod/since.help",
+                                    "label": "metadata/restorationObject/creationPeriod/since.label",
+                                    "hint": "metadata/restorationObject/creationPeriod/since.hint",
+                                    "facet": "metadata_restorationObject_creationPeriod_since"
+                                },
+                                "until": {
+                                    "detail": "integer",
+                                    "input": "integer",
+                                    "help": "metadata/restorationObject/creationPeriod/until.help",
+                                    "label": "metadata/restorationObject/creationPeriod/until.label",
+                                    "hint": "metadata/restorationObject/creationPeriod/until.hint",
+                                    "facet": "metadata_restorationObject_creationPeriod_until"
+                                }
+                            }
+                        },
+                        "description": {
+                            "detail": "multilingual",
+                            "input": "array",
+                            "help": "metadata/restorationObject/description.help",
+                            "label": "metadata/restorationObject/description.label",
+                            "hint": "metadata/restorationObject/description.hint",
+                            "child": {
+                                "detail": "multilingual",
+                                "input": "i18nStr",
+                                "help": "metadata/restorationObject/description.help",
+                                "label": "metadata/restorationObject/description.label",
+                                "hint": "metadata/restorationObject/description.hint",
+                                "facet": "metadata_restorationObject_description_cs",
+                                "children": {
+                                    "lang": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/description/lang.help",
+                                        "label": "metadata/restorationObject/description/lang.label",
+                                        "hint": "metadata/restorationObject/description/lang.hint",
+                                        "facet": "metadata_restorationObject_description_lang"
+                                    },
+                                    "value": {
+                                        "detail": "fulltext+keyword",
+                                        "input": "fulltext+keyword",
+                                        "help": "metadata/restorationObject/description/value.help",
+                                        "label": "metadata/restorationObject/description/value.label",
+                                        "hint": "metadata/restorationObject/description/value.hint",
+                                        "facet": "metadata_restorationObject_description_value"
+                                    }
+                                }
+                            }
+                        },
+                        "dimensions": {
+                            "detail": "array",
+                            "input": "array",
+                            "help": "metadata/restorationObject/dimensions.help",
+                            "label": "metadata/restorationObject/dimensions.label",
+                            "hint": "metadata/restorationObject/dimensions.hint",
+                            "child": {
+                                "detail": "dimension",
+                                "input": "dimension",
+                                "help": "metadata/restorationObject/dimensions.help",
+                                "label": "metadata/restorationObject/dimensions.label",
+                                "hint": "metadata/restorationObject/dimensions.hint",
+                                "children": {
+                                    "dimension": {
+                                        "detail": "vocabulary_item",
+                                        "edit": "vocabulary_item",
+                                        "input": "vocabulary",
+                                        "help": "metadata/restorationObject/dimensions/dimension.help",
+                                        "label": "metadata/restorationObject/dimensions/dimension.label",
+                                        "hint": "metadata/restorationObject/dimensions/dimension.hint",
+                                        "facet": "metadata_restorationObject_dimensions_dimension",
+                                        "children": {
+                                            "id": {
+                                                "detail": "keyword",
+                                                "input": "keyword",
+                                                "help": "metadata/restorationObject/dimensions/dimension/id.help",
+                                                "label": "metadata/restorationObject/dimensions/dimension/id.label",
+                                                "hint": "metadata/restorationObject/dimensions/dimension/id.hint"
+                                            },
+                                            "title": {
+                                                "detail": false,
+                                                "input": false,
+                                                "help": "metadata/restorationObject/dimensions/dimension/title.help",
+                                                "label": "metadata/restorationObject/dimensions/dimension/title.label",
+                                                "hint": "metadata/restorationObject/dimensions/dimension/title.hint"
+                                            },
+                                            "@v": {
+                                                "detail": "keyword",
+                                                "input": "keyword",
+                                                "help": "metadata/restorationObject/dimensions/dimension/@v.help",
+                                                "label": "metadata/restorationObject/dimensions/dimension/@v.label",
+                                                "hint": "metadata/restorationObject/dimensions/dimension/@v.hint"
+                                            }
+                                        }
+                                    },
+                                    "unit": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/dimensions/unit.help",
+                                        "label": "metadata/restorationObject/dimensions/unit.label",
+                                        "hint": "metadata/restorationObject/dimensions/unit.hint",
+                                        "facet": "metadata_restorationObject_dimensions_unit"
+                                    },
+                                    "value": {
+                                        "detail": "float",
+                                        "input": "float",
+                                        "help": "metadata/restorationObject/dimensions/value.help",
+                                        "label": "metadata/restorationObject/dimensions/value.label",
+                                        "hint": "metadata/restorationObject/dimensions/value.hint",
+                                        "facet": "metadata_restorationObject_dimensions_value"
+                                    }
+                                }
+                            }
+                        },
+                        "itemTypes": {
+                            "detail": "array",
+                            "input": "array",
+                            "help": "metadata/restorationObject/itemTypes.help",
+                            "label": "metadata/restorationObject/itemTypes.label",
+                            "hint": "metadata/restorationObject/itemTypes.hint",
+                            "child": {
+                                "detail": "vocabulary_item",
+                                "edit": "vocabulary_item",
+                                "input": "vocabulary",
+                                "help": "metadata/restorationObject/itemTypes.help",
+                                "label": "metadata/restorationObject/itemTypes.label",
+                                "hint": "metadata/restorationObject/itemTypes.hint",
+                                "facet": "metadata_restorationObject_itemTypes",
+                                "children": {
+                                    "id": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/itemTypes/id.help",
+                                        "label": "metadata/restorationObject/itemTypes/id.label",
+                                        "hint": "metadata/restorationObject/itemTypes/id.hint"
+                                    },
+                                    "title": {
+                                        "detail": false,
+                                        "input": false,
+                                        "help": "metadata/restorationObject/itemTypes/title.help",
+                                        "label": "metadata/restorationObject/itemTypes/title.label",
+                                        "hint": "metadata/restorationObject/itemTypes/title.hint"
+                                    },
+                                    "@v": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/itemTypes/@v.help",
+                                        "label": "metadata/restorationObject/itemTypes/@v.label",
+                                        "hint": "metadata/restorationObject/itemTypes/@v.hint"
+                                    }
+                                }
+                            }
+                        },
+                        "keywords": {
+                            "detail": "array",
+                            "input": "array",
+                            "help": "metadata/restorationObject/keywords.help",
+                            "label": "metadata/restorationObject/keywords.label",
+                            "hint": "metadata/restorationObject/keywords.hint",
+                            "child": {
+                                "detail": "keyword",
+                                "input": "keyword",
+                                "help": "metadata/restorationObject/keywords.help",
+                                "label": "metadata/restorationObject/keywords.label",
+                                "hint": "metadata/restorationObject/keywords.hint",
+                                "facet": "metadata_restorationObject_keywords"
+                            }
+                        },
+                        "parts": {
+                            "detail": "array",
+                            "input": "array",
+                            "help": "metadata/restorationObject/parts.help",
+                            "label": "metadata/restorationObject/parts.label",
+                            "hint": "metadata/restorationObject/parts.hint",
+                            "child": {
+                                "detail": "part",
+                                "input": "part",
+                                "help": "metadata/restorationObject/parts.help",
+                                "label": "metadata/restorationObject/parts.label",
+                                "hint": "metadata/restorationObject/parts.hint",
+                                "children": {
+                                    "colors": {
+                                        "detail": "array",
+                                        "input": "array",
+                                        "help": "metadata/restorationObject/parts/colors.help",
+                                        "label": "metadata/restorationObject/parts/colors.label",
+                                        "hint": "metadata/restorationObject/parts/colors.hint",
+                                        "child": {
+                                            "detail": "vocabulary_item",
+                                            "edit": "vocabulary_item",
+                                            "input": "vocabulary",
+                                            "help": "metadata/restorationObject/parts/colors.help",
+                                            "label": "metadata/restorationObject/parts/colors.label",
+                                            "hint": "metadata/restorationObject/parts/colors.hint",
+                                            "facet": "metadata_restorationObject_parts_colors",
+                                            "children": {
+                                                "id": {
+                                                    "detail": "keyword",
+                                                    "input": "keyword",
+                                                    "help": "metadata/restorationObject/parts/colors/id.help",
+                                                    "label": "metadata/restorationObject/parts/colors/id.label",
+                                                    "hint": "metadata/restorationObject/parts/colors/id.hint"
+                                                },
+                                                "title": {
+                                                    "detail": false,
+                                                    "input": false,
+                                                    "help": "metadata/restorationObject/parts/colors/title.help",
+                                                    "label": "metadata/restorationObject/parts/colors/title.label",
+                                                    "hint": "metadata/restorationObject/parts/colors/title.hint"
+                                                },
+                                                "@v": {
+                                                    "detail": "keyword",
+                                                    "input": "keyword",
+                                                    "help": "metadata/restorationObject/parts/colors/@v.help",
+                                                    "label": "metadata/restorationObject/parts/colors/@v.label",
+                                                    "hint": "metadata/restorationObject/parts/colors/@v.hint"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "fabricationTechnologies": {
+                                        "detail": "array",
+                                        "input": "array",
+                                        "help": "metadata/restorationObject/parts/fabricationTechnologies.help",
+                                        "label": "metadata/restorationObject/parts/fabricationTechnologies.label",
+                                        "hint": "metadata/restorationObject/parts/fabricationTechnologies.hint",
+                                        "child": {
+                                            "detail": "vocabulary_item",
+                                            "edit": "vocabulary_item",
+                                            "input": "vocabulary",
+                                            "help": "metadata/restorationObject/parts/fabricationTechnologies.help",
+                                            "label": "metadata/restorationObject/parts/fabricationTechnologies.label",
+                                            "hint": "metadata/restorationObject/parts/fabricationTechnologies.hint",
+                                            "facet": "metadata_restorationObject_parts_fabricationTechnologies",
+                                            "children": {
+                                                "id": {
+                                                    "detail": "keyword",
+                                                    "input": "keyword",
+                                                    "help": "metadata/restorationObject/parts/fabricationTechnologies/id.help",
+                                                    "label": "metadata/restorationObject/parts/fabricationTechnologies/id.label",
+                                                    "hint": "metadata/restorationObject/parts/fabricationTechnologies/id.hint"
+                                                },
+                                                "title": {
+                                                    "detail": false,
+                                                    "input": false,
+                                                    "help": "metadata/restorationObject/parts/fabricationTechnologies/title.help",
+                                                    "label": "metadata/restorationObject/parts/fabricationTechnologies/title.label",
+                                                    "hint": "metadata/restorationObject/parts/fabricationTechnologies/title.hint"
+                                                },
+                                                "@v": {
+                                                    "detail": "keyword",
+                                                    "input": "keyword",
+                                                    "help": "metadata/restorationObject/parts/fabricationTechnologies/@v.help",
+                                                    "label": "metadata/restorationObject/parts/fabricationTechnologies/@v.label",
+                                                    "hint": "metadata/restorationObject/parts/fabricationTechnologies/@v.hint"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "id": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/parts/id.help",
+                                        "label": "metadata/restorationObject/parts/id.label",
+                                        "hint": "metadata/restorationObject/parts/id.hint",
+                                        "facet": "metadata_restorationObject_parts_id"
+                                    },
+                                    "main": {
+                                        "detail": "boolean",
+                                        "input": "boolean",
+                                        "help": "metadata/restorationObject/parts/main.help",
+                                        "label": "metadata/restorationObject/parts/main.label",
+                                        "hint": "metadata/restorationObject/parts/main.hint",
+                                        "facet": "metadata_restorationObject_parts_main"
+                                    },
+                                    "materialType": {
+                                        "detail": "vocabulary_item",
+                                        "edit": "vocabulary_item",
+                                        "input": "vocabulary",
+                                        "help": "metadata/restorationObject/parts/materialType.help",
+                                        "label": "metadata/restorationObject/parts/materialType.label",
+                                        "hint": "metadata/restorationObject/parts/materialType.hint",
+                                        "facet": "metadata_restorationObject_parts_materialType",
+                                        "children": {
+                                            "id": {
+                                                "detail": "keyword",
+                                                "input": "keyword",
+                                                "help": "metadata/restorationObject/parts/materialType/id.help",
+                                                "label": "metadata/restorationObject/parts/materialType/id.label",
+                                                "hint": "metadata/restorationObject/parts/materialType/id.hint"
+                                            },
+                                            "title": {
+                                                "detail": false,
+                                                "input": false,
+                                                "help": "metadata/restorationObject/parts/materialType/title.help",
+                                                "label": "metadata/restorationObject/parts/materialType/title.label",
+                                                "hint": "metadata/restorationObject/parts/materialType/title.hint"
+                                            },
+                                            "@v": {
+                                                "detail": "keyword",
+                                                "input": "keyword",
+                                                "help": "metadata/restorationObject/parts/materialType/@v.help",
+                                                "label": "metadata/restorationObject/parts/materialType/@v.label",
+                                                "hint": "metadata/restorationObject/parts/materialType/@v.hint"
+                                            }
+                                        }
+                                    },
+                                    "name": {
+                                        "detail": "multilingual",
+                                        "input": "array",
+                                        "help": "metadata/restorationObject/parts/name.help",
+                                        "label": "metadata/restorationObject/parts/name.label",
+                                        "hint": "metadata/restorationObject/parts/name.hint",
+                                        "child": {
+                                            "detail": "multilingual",
+                                            "input": "i18nStr",
+                                            "help": "metadata/restorationObject/parts/name.help",
+                                            "label": "metadata/restorationObject/parts/name.label",
+                                            "hint": "metadata/restorationObject/parts/name.hint",
+                                            "facet": "metadata_restorationObject_parts_name_cs",
+                                            "children": {
+                                                "lang": {
+                                                    "detail": "keyword",
+                                                    "input": "keyword",
+                                                    "help": "metadata/restorationObject/parts/name/lang.help",
+                                                    "label": "metadata/restorationObject/parts/name/lang.label",
+                                                    "hint": "metadata/restorationObject/parts/name/lang.hint",
+                                                    "facet": "metadata_restorationObject_parts_name_lang"
+                                                },
+                                                "value": {
+                                                    "detail": "fulltext+keyword",
+                                                    "input": "fulltext+keyword",
+                                                    "help": "metadata/restorationObject/parts/name/value.help",
+                                                    "label": "metadata/restorationObject/parts/name/value.label",
+                                                    "hint": "metadata/restorationObject/parts/name/value.hint",
+                                                    "facet": "metadata_restorationObject_parts_name_value"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "secondaryMaterialTypes": {
+                                        "detail": "array",
+                                        "input": "array",
+                                        "help": "metadata/restorationObject/parts/secondaryMaterialTypes.help",
+                                        "label": "metadata/restorationObject/parts/secondaryMaterialTypes.label",
+                                        "hint": "metadata/restorationObject/parts/secondaryMaterialTypes.hint",
+                                        "child": {
+                                            "detail": "vocabulary_item",
+                                            "edit": "vocabulary_item",
+                                            "input": "vocabulary",
+                                            "help": "metadata/restorationObject/parts/secondaryMaterialTypes.help",
+                                            "label": "metadata/restorationObject/parts/secondaryMaterialTypes.label",
+                                            "hint": "metadata/restorationObject/parts/secondaryMaterialTypes.hint",
+                                            "facet": "metadata_restorationObject_parts_secondaryMaterialTypes",
+                                            "children": {
+                                                "id": {
+                                                    "detail": "keyword",
+                                                    "input": "keyword",
+                                                    "help": "metadata/restorationObject/parts/secondaryMaterialTypes/id.help",
+                                                    "label": "metadata/restorationObject/parts/secondaryMaterialTypes/id.label",
+                                                    "hint": "metadata/restorationObject/parts/secondaryMaterialTypes/id.hint"
+                                                },
+                                                "title": {
+                                                    "detail": false,
+                                                    "input": false,
+                                                    "help": "metadata/restorationObject/parts/secondaryMaterialTypes/title.help",
+                                                    "label": "metadata/restorationObject/parts/secondaryMaterialTypes/title.label",
+                                                    "hint": "metadata/restorationObject/parts/secondaryMaterialTypes/title.hint"
+                                                },
+                                                "@v": {
+                                                    "detail": "keyword",
+                                                    "input": "keyword",
+                                                    "help": "metadata/restorationObject/parts/secondaryMaterialTypes/@v.help",
+                                                    "label": "metadata/restorationObject/parts/secondaryMaterialTypes/@v.label",
+                                                    "hint": "metadata/restorationObject/parts/secondaryMaterialTypes/@v.hint"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "restorationRequestor": {
+                            "detail": "vocabulary_item",
+                            "edit": "vocabulary_item",
+                            "input": "vocabulary",
+                            "help": "metadata/restorationObject/restorationRequestor.help",
+                            "label": "metadata/restorationObject/restorationRequestor.label",
+                            "hint": "metadata/restorationObject/restorationRequestor.hint",
+                            "facet": "metadata_restorationObject_restorationRequestor",
+                            "children": {
+                                "id": {
+                                    "detail": "keyword",
+                                    "input": "keyword",
+                                    "help": "metadata/restorationObject/restorationRequestor/id.help",
+                                    "label": "metadata/restorationObject/restorationRequestor/id.label",
+                                    "hint": "metadata/restorationObject/restorationRequestor/id.hint"
+                                },
+                                "title": {
+                                    "detail": false,
+                                    "input": false,
+                                    "help": "metadata/restorationObject/restorationRequestor/title.help",
+                                    "label": "metadata/restorationObject/restorationRequestor/title.label",
+                                    "hint": "metadata/restorationObject/restorationRequestor/title.hint"
+                                },
+                                "@v": {
+                                    "detail": "keyword",
+                                    "input": "keyword",
+                                    "help": "metadata/restorationObject/restorationRequestor/@v.help",
+                                    "label": "metadata/restorationObject/restorationRequestor/@v.label",
+                                    "hint": "metadata/restorationObject/restorationRequestor/@v.hint"
+                                }
+                            }
+                        },
+                        "stylePeriod": {
+                            "detail": false,
+                            "input": false,
+                            "help": "metadata/restorationObject/stylePeriod.help",
+                            "label": "metadata/restorationObject/stylePeriod.label",
+                            "hint": "metadata/restorationObject/stylePeriod.hint",
+                            "children": {
+                                "endYear": {
+                                    "detail": "integer",
+                                    "input": "integer",
+                                    "help": "metadata/restorationObject/stylePeriod/endYear.help",
+                                    "label": "metadata/restorationObject/stylePeriod/endYear.label",
+                                    "hint": "metadata/restorationObject/stylePeriod/endYear.hint",
+                                    "facet": "metadata_restorationObject_stylePeriod_endYear"
+                                },
+                                "period": {
+                                    "detail": "vocabulary_item",
+                                    "edit": "vocabulary_item",
+                                    "input": "vocabulary",
+                                    "help": "metadata/restorationObject/stylePeriod/period.help",
+                                    "label": "metadata/restorationObject/stylePeriod/period.label",
+                                    "hint": "metadata/restorationObject/stylePeriod/period.hint",
+                                    "facet": "metadata_restorationObject_stylePeriod_period",
+                                    "children": {
+                                        "id": {
+                                            "detail": "keyword",
+                                            "input": "keyword",
+                                            "help": "metadata/restorationObject/stylePeriod/period/id.help",
+                                            "label": "metadata/restorationObject/stylePeriod/period/id.label",
+                                            "hint": "metadata/restorationObject/stylePeriod/period/id.hint"
+                                        },
+                                        "title": {
+                                            "detail": false,
+                                            "input": false,
+                                            "help": "metadata/restorationObject/stylePeriod/period/title.help",
+                                            "label": "metadata/restorationObject/stylePeriod/period/title.label",
+                                            "hint": "metadata/restorationObject/stylePeriod/period/title.hint"
+                                        },
+                                        "@v": {
+                                            "detail": "keyword",
+                                            "input": "keyword",
+                                            "help": "metadata/restorationObject/stylePeriod/period/@v.help",
+                                            "label": "metadata/restorationObject/stylePeriod/period/@v.label",
+                                            "hint": "metadata/restorationObject/stylePeriod/period/@v.hint"
+                                        }
+                                    }
+                                },
+                                "startYear": {
+                                    "detail": "integer",
+                                    "input": "integer",
+                                    "help": "metadata/restorationObject/stylePeriod/startYear.help",
+                                    "label": "metadata/restorationObject/stylePeriod/startYear.label",
+                                    "hint": "metadata/restorationObject/stylePeriod/startYear.hint",
+                                    "facet": "metadata_restorationObject_stylePeriod_startYear"
+                                }
+                            }
+                        },
+                        "title": {
+                            "detail": "multilingual",
+                            "input": "array",
+                            "help": "metadata/restorationObject/title.help",
+                            "label": "metadata/restorationObject/title.label",
+                            "hint": "metadata/restorationObject/title.hint",
+                            "child": {
+                                "detail": "multilingual",
+                                "input": "i18nStr",
+                                "help": "metadata/restorationObject/title.help",
+                                "label": "metadata/restorationObject/title.label",
+                                "hint": "metadata/restorationObject/title.hint",
+                                "facet": "metadata_restorationObject_title_cs",
+                                "children": {
+                                    "lang": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/title/lang.help",
+                                        "label": "metadata/restorationObject/title/lang.label",
+                                        "hint": "metadata/restorationObject/title/lang.hint",
+                                        "facet": "metadata_restorationObject_title_lang"
+                                    },
+                                    "value": {
+                                        "detail": "fulltext+keyword",
+                                        "input": "fulltext+keyword",
+                                        "help": "metadata/restorationObject/title/value.help",
+                                        "label": "metadata/restorationObject/title/value.label",
+                                        "hint": "metadata/restorationObject/title/value.hint",
+                                        "facet": "metadata_restorationObject_title_value"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "restorationWork": {
+                    "detail": false,
+                    "input": false,
+                    "help": "metadata/restorationWork.help",
+                    "label": "metadata/restorationWork.label",
+                    "hint": "metadata/restorationWork.hint",
+                    "children": {
+                        "abstract": {
+                            "detail": "multilingual",
+                            "input": "array",
+                            "help": "metadata/restorationWork/abstract.help",
+                            "label": "metadata/restorationWork/abstract.label",
+                            "hint": "metadata/restorationWork/abstract.hint",
+                            "child": {
+                                "detail": "multilingual",
+                                "input": "i18nStr",
+                                "help": "metadata/restorationWork/abstract.help",
+                                "label": "metadata/restorationWork/abstract.label",
+                                "hint": "metadata/restorationWork/abstract.hint",
+                                "facet": "metadata_restorationWork_abstract_cs",
+                                "children": {
+                                    "lang": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationWork/abstract/lang.help",
+                                        "label": "metadata/restorationWork/abstract/lang.label",
+                                        "hint": "metadata/restorationWork/abstract/lang.hint",
+                                        "facet": "metadata_restorationWork_abstract_lang"
+                                    },
+                                    "value": {
+                                        "detail": "fulltext+keyword",
+                                        "input": "fulltext+keyword",
+                                        "help": "metadata/restorationWork/abstract/value.help",
+                                        "label": "metadata/restorationWork/abstract/value.label",
+                                        "hint": "metadata/restorationWork/abstract/value.hint",
+                                        "facet": "metadata_restorationWork_abstract_value"
+                                    }
+                                }
+                            }
+                        },
+                        "examinationMethods": {
+                            "detail": "array",
+                            "input": "array",
+                            "help": "metadata/restorationWork/examinationMethods.help",
+                            "label": "metadata/restorationWork/examinationMethods.label",
+                            "hint": "metadata/restorationWork/examinationMethods.hint",
+                            "child": {
+                                "detail": "vocabulary_item",
+                                "edit": "vocabulary_item",
+                                "input": "vocabulary",
+                                "help": "metadata/restorationWork/examinationMethods.help",
+                                "label": "metadata/restorationWork/examinationMethods.label",
+                                "hint": "metadata/restorationWork/examinationMethods.hint",
+                                "facet": "metadata_restorationWork_examinationMethods",
+                                "children": {
+                                    "id": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationWork/examinationMethods/id.help",
+                                        "label": "metadata/restorationWork/examinationMethods/id.label",
+                                        "hint": "metadata/restorationWork/examinationMethods/id.hint"
+                                    },
+                                    "title": {
+                                        "detail": false,
+                                        "input": false,
+                                        "help": "metadata/restorationWork/examinationMethods/title.help",
+                                        "label": "metadata/restorationWork/examinationMethods/title.label",
+                                        "hint": "metadata/restorationWork/examinationMethods/title.hint"
+                                    },
+                                    "@v": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationWork/examinationMethods/@v.help",
+                                        "label": "metadata/restorationWork/examinationMethods/@v.label",
+                                        "hint": "metadata/restorationWork/examinationMethods/@v.hint"
+                                    }
+                                }
+                            }
+                        },
+                        "literature": {
+                            "detail": "array",
+                            "input": "array",
+                            "help": "metadata/restorationWork/literature.help",
+                            "label": "metadata/restorationWork/literature.label",
+                            "hint": "metadata/restorationWork/literature.hint",
+                            "child": {
+                                "detail": "fulltext",
+                                "input": "fulltext",
+                                "help": "metadata/restorationWork/literature.help",
+                                "label": "metadata/restorationWork/literature.label",
+                                "hint": "metadata/restorationWork/literature.hint"
+                            }
+                        },
+                        "parts": {
+                            "detail": "array",
+                            "input": "array",
+                            "help": "metadata/restorationWork/parts.help",
+                            "label": "metadata/restorationWork/parts.label",
+                            "hint": "metadata/restorationWork/parts.hint",
+                            "child": {
+                                "detail": "part",
+                                "input": "part",
+                                "help": "metadata/restorationWork/parts.help",
+                                "label": "metadata/restorationWork/parts.label",
+                                "hint": "metadata/restorationWork/parts.hint",
+                                "children": {
+                                    "part": {
+                                        "detail": "relation",
+                                        "input": "relation",
+                                        "help": "metadata/restorationWork/parts/part.help",
+                                        "label": "metadata/restorationWork/parts/part.label",
+                                        "hint": "metadata/restorationWork/parts/part.hint",
+                                        "children": {
+                                            "id": {
+                                                "detail": "keyword",
+                                                "input": "keyword",
+                                                "help": "metadata/restorationObject/parts/id.help",
+                                                "label": "metadata/restorationObject/parts/id.label",
+                                                "hint": "metadata/restorationObject/parts/id.hint",
+                                                "facet": "metadata_restorationObject_parts_id"
+                                            },
+                                            "@v": {
+                                                "detail": "keyword",
+                                                "input": "keyword",
+                                                "help": "metadata/restorationWork/parts/part/@v.help",
+                                                "label": "metadata/restorationWork/parts/part/@v.label",
+                                                "hint": "metadata/restorationWork/parts/part/@v.hint",
+                                                "facet": "metadata_restorationWork_parts_part__version"
+                                            }
+                                        }
+                                    },
+                                    "restorationMethods": {
+                                        "detail": "array",
+                                        "input": "array",
+                                        "help": "metadata/restorationWork/parts/restorationMethods.help",
+                                        "label": "metadata/restorationWork/parts/restorationMethods.label",
+                                        "hint": "metadata/restorationWork/parts/restorationMethods.hint",
+                                        "child": {
+                                            "detail": "vocabulary_item",
+                                            "edit": "vocabulary_item",
+                                            "input": "vocabulary",
+                                            "help": "metadata/restorationWork/parts/restorationMethods.help",
+                                            "label": "metadata/restorationWork/parts/restorationMethods.label",
+                                            "hint": "metadata/restorationWork/parts/restorationMethods.hint",
+                                            "facet": "metadata_restorationWork_parts_restorationMethods",
+                                            "children": {
+                                                "id": {
+                                                    "detail": "keyword",
+                                                    "input": "keyword",
+                                                    "help": "metadata/restorationWork/parts/restorationMethods/id.help",
+                                                    "label": "metadata/restorationWork/parts/restorationMethods/id.label",
+                                                    "hint": "metadata/restorationWork/parts/restorationMethods/id.hint"
+                                                },
+                                                "title": {
+                                                    "detail": false,
+                                                    "input": false,
+                                                    "help": "metadata/restorationWork/parts/restorationMethods/title.help",
+                                                    "label": "metadata/restorationWork/parts/restorationMethods/title.label",
+                                                    "hint": "metadata/restorationWork/parts/restorationMethods/title.hint"
+                                                },
+                                                "@v": {
+                                                    "detail": "keyword",
+                                                    "input": "keyword",
+                                                    "help": "metadata/restorationWork/parts/restorationMethods/@v.help",
+                                                    "label": "metadata/restorationWork/parts/restorationMethods/@v.label",
+                                                    "hint": "metadata/restorationWork/parts/restorationMethods/@v.hint"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "restorationMethods": {
+                            "detail": "array",
+                            "input": "array",
+                            "help": "metadata/restorationWork/restorationMethods.help",
+                            "label": "metadata/restorationWork/restorationMethods.label",
+                            "hint": "metadata/restorationWork/restorationMethods.hint",
+                            "child": {
+                                "detail": "vocabulary_item",
+                                "edit": "vocabulary_item",
+                                "input": "vocabulary",
+                                "help": "metadata/restorationWork/restorationMethods.help",
+                                "label": "metadata/restorationWork/restorationMethods.label",
+                                "hint": "metadata/restorationWork/restorationMethods.hint",
+                                "facet": "metadata_restorationWork_restorationMethods",
+                                "children": {
+                                    "id": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationWork/restorationMethods/id.help",
+                                        "label": "metadata/restorationWork/restorationMethods/id.label",
+                                        "hint": "metadata/restorationWork/restorationMethods/id.hint"
+                                    },
+                                    "title": {
+                                        "detail": false,
+                                        "input": false,
+                                        "help": "metadata/restorationWork/restorationMethods/title.help",
+                                        "label": "metadata/restorationWork/restorationMethods/title.label",
+                                        "hint": "metadata/restorationWork/restorationMethods/title.hint"
+                                    },
+                                    "@v": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationWork/restorationMethods/@v.help",
+                                        "label": "metadata/restorationWork/restorationMethods/@v.label",
+                                        "hint": "metadata/restorationWork/restorationMethods/@v.hint"
+                                    }
+                                }
+                            }
+                        },
+                        "restorationPeriod": {
+                            "detail": false,
+                            "input": false,
+                            "help": "metadata/restorationWork/restorationPeriod.help",
+                            "label": "metadata/restorationWork/restorationPeriod.label",
+                            "hint": "metadata/restorationWork/restorationPeriod.hint",
+                            "children": {
+                                "since": {
+                                    "detail": "date",
+                                    "input": "date",
+                                    "help": "metadata/restorationWork/restorationPeriod/since.help",
+                                    "label": "metadata/restorationWork/restorationPeriod/since.label",
+                                    "hint": "metadata/restorationWork/restorationPeriod/since.hint",
+                                    "facet": "metadata_restorationWork_restorationPeriod_since"
+                                },
+                                "until": {
+                                    "detail": "date",
+                                    "input": "date",
+                                    "help": "metadata/restorationWork/restorationPeriod/until.help",
+                                    "label": "metadata/restorationWork/restorationPeriod/until.label",
+                                    "hint": "metadata/restorationWork/restorationPeriod/until.hint",
+                                    "facet": "metadata_restorationWork_restorationPeriod_until"
+                                }
+                            }
+                        },
+                        "restorer": {
+                            "detail": "keyword",
+                            "input": "keyword",
+                            "help": "metadata/restorationWork/restorer.help",
+                            "label": "metadata/restorationWork/restorer.label",
+                            "hint": "metadata/restorationWork/restorer.hint",
+                            "facet": "metadata_restorationWork_restorer"
+                        },
+                        "sisId": {
+                            "detail": "keyword",
+                            "input": "keyword",
+                            "help": "metadata/restorationWork/sisId.help",
+                            "label": "metadata/restorationWork/sisId.label",
+                            "hint": "metadata/restorationWork/sisId.hint",
+                            "facet": "metadata_restorationWork_sisId"
+                        },
+                        "supervisors": {
+                            "detail": "array",
+                            "input": "array",
+                            "help": "metadata/restorationWork/supervisors.help",
+                            "label": "metadata/restorationWork/supervisors.label",
+                            "hint": "metadata/restorationWork/supervisors.hint",
+                            "child": {
+                                "detail": "supervisor",
+                                "input": "supervisor",
+                                "help": "metadata/restorationWork/supervisors.help",
+                                "label": "metadata/restorationWork/supervisors.label",
+                                "hint": "metadata/restorationWork/supervisors.hint",
+                                "children": {
+                                    "comment": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationWork/supervisors/comment.help",
+                                        "label": "metadata/restorationWork/supervisors/comment.label",
+                                        "hint": "metadata/restorationWork/supervisors/comment.hint",
+                                        "facet": "metadata_restorationWork_supervisors_comment"
+                                    },
+                                    "fullName": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationWork/supervisors/fullName.help",
+                                        "label": "metadata/restorationWork/supervisors/fullName.label",
+                                        "hint": "metadata/restorationWork/supervisors/fullName.hint",
+                                        "facet": "metadata_restorationWork_supervisors_fullName"
+                                    },
+                                    "institution": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationWork/supervisors/institution.help",
+                                        "label": "metadata/restorationWork/supervisors/institution.label",
+                                        "hint": "metadata/restorationWork/supervisors/institution.hint",
+                                        "facet": "metadata_restorationWork_supervisors_institution"
+                                    },
+                                    "sisCode": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationWork/supervisors/sisCode.help",
+                                        "label": "metadata/restorationWork/supervisors/sisCode.label",
+                                        "hint": "metadata/restorationWork/supervisors/sisCode.hint",
+                                        "facet": "metadata_restorationWork_supervisors_sisCode"
+                                    }
+                                }
+                            }
+                        },
+                        "workType": {
+                            "detail": "vocabulary_item",
+                            "edit": "vocabulary_item",
+                            "input": "vocabulary",
+                            "help": "metadata/restorationWork/workType.help",
+                            "label": "metadata/restorationWork/workType.label",
+                            "hint": "metadata/restorationWork/workType.hint",
+                            "facet": "metadata_restorationWork_workType",
+                            "children": {
+                                "id": {
+                                    "detail": "keyword",
+                                    "input": "keyword",
+                                    "help": "metadata/restorationWork/workType/id.help",
+                                    "label": "metadata/restorationWork/workType/id.label",
+                                    "hint": "metadata/restorationWork/workType/id.hint"
+                                },
+                                "title": {
+                                    "detail": false,
+                                    "input": false,
+                                    "help": "metadata/restorationWork/workType/title.help",
+                                    "label": "metadata/restorationWork/workType/title.label",
+                                    "hint": "metadata/restorationWork/workType/title.hint"
+                                },
+                                "@v": {
+                                    "detail": "keyword",
+                                    "input": "keyword",
+                                    "help": "metadata/restorationWork/workType/@v.help",
+                                    "label": "metadata/restorationWork/workType/@v.label",
+                                    "hint": "metadata/restorationWork/workType/@v.hint"
+                                }
+                            }
+                        }
+                    }
+                },
+                "submissionStatus": {
+                    "detail": "keyword",
+                    "input": "keyword",
+                    "help": "metadata/submissionStatus.help",
+                    "label": "metadata/submissionStatus.label",
+                    "hint": "metadata/submissionStatus.hint",
+                    "facet": "metadata_submissionStatus"
+                }
+            }
+        }
+    }
+}
