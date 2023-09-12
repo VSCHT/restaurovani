@@ -1,23 +1,25 @@
 restorationObject:
   type: object
   properties:
-    keywords:
+    title:
+      type: multilingual
+    keywords[]:
+      type: keyword
+    category:
       type: keyword
     description:
-      type: fulltext
-      mapping:
-        analyzer: czech
-    parts:
+      type: multilingual
+    parts[]:
       type: nested
+      id: part
       properties:
+        id:
+          type: keyword
         name:
           type: multilingual
         main:
           type: boolean
-        restorationMethods[]:
-          type: vocabulary
-          vocabulary-type: RestorationMethods
-        fabricationTechnology:
+        fabricationTechnologies[]:
           type: vocabulary
           vocabulary-type: FabricationTechnologies
         materialType:
@@ -26,13 +28,13 @@ restorationObject:
         secondaryMaterialTypes[]:
           type: vocabulary
           vocabulary-type: MaterialTypes
-        color:
+        colors[]:
           type: vocabulary
           vocabulary-type: Colors
-    itemType:
+    itemTypes[]:
       type: vocabulary
       vocabulary-type: ItemTypes
-    dimensions:
+    dimensions[]:
       properties:
         dimension:
           type: vocabulary
@@ -60,4 +62,4 @@ restorationObject:
           type: integer
     restorationRequestor:
       type: vocabulary
-      vocabulary-type: Institutions
+      vocabulary-type: Requestors

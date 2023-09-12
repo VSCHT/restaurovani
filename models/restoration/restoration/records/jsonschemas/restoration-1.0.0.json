@@ -23,6 +23,9 @@
                         "archeologic": {
                             "type": "boolean"
                         },
+                        "category": {
+                            "type": "string"
+                        },
                         "creationPeriod": {
                             "type": "object",
                             "properties": {
@@ -35,115 +38,116 @@
                             }
                         },
                         "description": {
-                            "type": "string"
-                        },
-                        "dimensions": {
-                            "type": "object",
-                            "properties": {
-                                "dimension": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "title": {
-                                            "type": "object"
-                                        },
-                                        "@v": {
-                                            "type": "string"
-                                        }
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "lang": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
                                     }
-                                },
-                                "unit": {
-                                    "type": "string"
-                                },
-                                "value": {
-                                    "type": "number"
                                 }
                             }
                         },
-                        "itemType": {
-                            "type": "object",
-                            "properties": {
-                                "id": {
-                                    "type": "string"
-                                },
-                                "title": {
-                                    "type": "object"
-                                },
-                                "@v": {
-                                    "type": "string"
+                        "dimensions": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "dimension": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "title": {
+                                                "type": "object"
+                                            },
+                                            "@v": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "unit": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        },
+                        "itemTypes": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "object"
+                                    },
+                                    "@v": {
+                                        "type": "string"
+                                    }
                                 }
                             }
                         },
                         "keywords": {
-                            "type": "string"
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
                         },
                         "parts": {
-                            "type": "object",
-                            "properties": {
-                                "color": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "title": {
-                                            "type": "object"
-                                        },
-                                        "@v": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "fabricationTechnology": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "title": {
-                                            "type": "object"
-                                        },
-                                        "@v": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "main": {
-                                    "type": "boolean"
-                                },
-                                "materialType": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "title": {
-                                            "type": "object"
-                                        },
-                                        "@v": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "name": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "lang": {
-                                                "type": "string"
-                                            },
-                                            "value": {
-                                                "type": "string"
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "colors": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "title": {
+                                                    "type": "object"
+                                                },
+                                                "@v": {
+                                                    "type": "string"
+                                                }
                                             }
                                         }
-                                    }
-                                },
-                                "restorationMethods": {
-                                    "type": "array",
-                                    "items": {
+                                    },
+                                    "fabricationTechnologies": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "title": {
+                                                    "type": "object"
+                                                },
+                                                "@v": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "main": {
+                                        "type": "boolean"
+                                    },
+                                    "materialType": {
                                         "type": "object",
                                         "properties": {
                                             "id": {
@@ -156,21 +160,35 @@
                                                 "type": "string"
                                             }
                                         }
-                                    }
-                                },
-                                "secondaryMaterialTypes": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "type": "string"
-                                            },
-                                            "title": {
-                                                "type": "object"
-                                            },
-                                            "@v": {
-                                                "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "lang": {
+                                                    "type": "string"
+                                                },
+                                                "value": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "secondaryMaterialTypes": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "title": {
+                                                    "type": "object"
+                                                },
+                                                "@v": {
+                                                    "type": "string"
+                                                }
                                             }
                                         }
                                     }
@@ -215,6 +233,20 @@
                                     "type": "integer"
                                 }
                             }
+                        },
+                        "title": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "lang": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -253,7 +285,46 @@
                             }
                         },
                         "literature": {
-                            "type": "string"
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "parts": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "part": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "@v": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "restorationMethods": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "title": {
+                                                    "type": "object"
+                                                },
+                                                "@v": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         },
                         "restorationMethods": {
                             "type": "array",
@@ -285,34 +356,29 @@
                                 }
                             }
                         },
+                        "restorer": {
+                            "type": "string"
+                        },
                         "sisId": {
                             "type": "string"
                         },
-                        "supervisor": {
-                            "type": "object",
-                            "properties": {
-                                "comment": {
-                                    "type": "string"
-                                },
-                                "fullName": {
-                                    "type": "string"
-                                },
-                                "institution": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "type": "string"
-                                        },
-                                        "title": {
-                                            "type": "object"
-                                        },
-                                        "@v": {
-                                            "type": "string"
-                                        }
+                        "supervisors": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "comment": {
+                                        "type": "string"
+                                    },
+                                    "fullName": {
+                                        "type": "string"
+                                    },
+                                    "institution": {
+                                        "type": "string"
+                                    },
+                                    "sisCode": {
+                                        "type": "string"
                                     }
-                                },
-                                "sisCode": {
-                                    "type": "string"
                                 }
                             }
                         },

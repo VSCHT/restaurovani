@@ -4,7 +4,7 @@ from oarepo_ui.resources import BabelComponent
 
 class RestorationUiResourceConfig(RecordsUIResourceConfig):
     template_folder = "../templates"
-    url_prefix = "/prace/"
+    url_prefix = "/objekty/"
     blueprint_name = "restoration-ui"
     ui_serializer_class = "restoration.resources.records.ui.RestorationUIJSONSerializer"
     api_service = "restoration"

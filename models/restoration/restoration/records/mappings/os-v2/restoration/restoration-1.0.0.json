@@ -2,26 +2,69 @@
     "mappings": {
         "properties": {
             "$schema": {
-                "type": "keyword"
+                "type": "keyword",
+                "ignore_above": 1024
             },
             "created": {
                 "type": "date",
                 "format": "strict_date_time||strict_date_time_no_millis||basic_date_time||basic_date_time_no_millis||basic_date||strict_date||strict_date_hour_minute_second||strict_date_hour_minute_second_fraction"
             },
             "id": {
-                "type": "keyword"
+                "type": "keyword",
+                "ignore_above": 1024
             },
             "metadata": {
                 "type": "object",
                 "properties": {
                     "category": {
-                        "type": "keyword"
+                        "type": "keyword",
+                        "ignore_above": 1024
                     },
                     "restorationObject": {
                         "type": "object",
                         "properties": {
+                            "description_cs": {
+                                "type": "text",
+                                "fields": {
+                                    "keyword": {
+                                        "type": "keyword",
+                                        "ignore_above": 256
+                                    }
+                                }
+                            },
+                            "description_en": {
+                                "type": "text",
+                                "fields": {
+                                    "keyword": {
+                                        "type": "keyword",
+                                        "ignore_above": 256
+                                    }
+                                }
+                            },
+                            "title_cs": {
+                                "type": "text",
+                                "fields": {
+                                    "keyword": {
+                                        "type": "keyword",
+                                        "ignore_above": 256
+                                    }
+                                }
+                            },
+                            "title_en": {
+                                "type": "text",
+                                "fields": {
+                                    "keyword": {
+                                        "type": "keyword",
+                                        "ignore_above": 256
+                                    }
+                                }
+                            },
                             "archeologic": {
                                 "type": "boolean"
+                            },
+                            "category": {
+                                "type": "keyword",
+                                "ignore_above": 1024
                             },
                             "creationPeriod": {
                                 "type": "object",
@@ -35,8 +78,22 @@
                                 }
                             },
                             "description": {
-                                "analyzer": "czech",
-                                "type": "text"
+                                "type": "nested",
+                                "properties": {
+                                    "lang": {
+                                        "ignore_above": 256,
+                                        "type": "keyword"
+                                    },
+                                    "value": {
+                                        "type": "text",
+                                        "fields": {
+                                            "keyword": {
+                                                "type": "keyword",
+                                                "ignore_above": 256
+                                            }
+                                        }
+                                    }
+                                }
                             },
                             "dimensions": {
                                 "type": "object",
@@ -50,7 +107,8 @@
                                                         "type": "search_as_you_type"
                                                     }
                                                 },
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 1024
                                             },
                                             "title": {
                                                 "dynamic": true,
@@ -63,19 +121,21 @@
                                                 "type": "object"
                                             },
                                             "@v": {
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 1024
                                             }
                                         }
                                     },
                                     "unit": {
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     },
                                     "value": {
                                         "type": "float"
                                     }
                                 }
                             },
-                            "itemType": {
+                            "itemTypes": {
                                 "type": "object",
                                 "properties": {
                                     "id": {
@@ -84,7 +144,8 @@
                                                 "type": "search_as_you_type"
                                             }
                                         },
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     },
                                     "title": {
                                         "dynamic": true,
@@ -97,22 +158,24 @@
                                         "type": "object"
                                     },
                                     "@v": {
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     }
                                 }
                             },
                             "keywords": {
-                                "type": "keyword"
+                                "type": "keyword",
+                                "ignore_above": 1024
                             },
                             "parts": {
                                 "type": "nested",
                                 "properties": {
                                     "name_cs": {
                                         "type": "text",
-                                        "analyzer": "czech",
                                         "fields": {
                                             "keyword": {
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 256
                                             }
                                         }
                                     },
@@ -120,11 +183,12 @@
                                         "type": "text",
                                         "fields": {
                                             "keyword": {
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 256
                                             }
                                         }
                                     },
-                                    "color": {
+                                    "colors": {
                                         "type": "object",
                                         "properties": {
                                             "id": {
@@ -133,7 +197,8 @@
                                                         "type": "search_as_you_type"
                                                     }
                                                 },
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 1024
                                             },
                                             "title": {
                                                 "dynamic": true,
@@ -146,11 +211,12 @@
                                                 "type": "object"
                                             },
                                             "@v": {
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 1024
                                             }
                                         }
                                     },
-                                    "fabricationTechnology": {
+                                    "fabricationTechnologies": {
                                         "type": "object",
                                         "properties": {
                                             "id": {
@@ -159,7 +225,8 @@
                                                         "type": "search_as_you_type"
                                                     }
                                                 },
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 1024
                                             },
                                             "title": {
                                                 "dynamic": true,
@@ -172,9 +239,14 @@
                                                 "type": "object"
                                             },
                                             "@v": {
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 1024
                                             }
                                         }
+                                    },
+                                    "id": {
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     },
                                     "main": {
                                         "type": "boolean"
@@ -188,7 +260,8 @@
                                                         "type": "search_as_you_type"
                                                     }
                                                 },
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 1024
                                             },
                                             "title": {
                                                 "dynamic": true,
@@ -201,7 +274,8 @@
                                                 "type": "object"
                                             },
                                             "@v": {
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 1024
                                             }
                                         }
                                     },
@@ -209,41 +283,17 @@
                                         "type": "nested",
                                         "properties": {
                                             "lang": {
+                                                "ignore_above": 256,
                                                 "type": "keyword"
                                             },
                                             "value": {
                                                 "type": "text",
                                                 "fields": {
                                                     "keyword": {
-                                                        "type": "keyword"
+                                                        "type": "keyword",
+                                                        "ignore_above": 256
                                                     }
                                                 }
-                                            }
-                                        }
-                                    },
-                                    "restorationMethods": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "fields": {
-                                                    "text": {
-                                                        "type": "search_as_you_type"
-                                                    }
-                                                },
-                                                "type": "keyword"
-                                            },
-                                            "title": {
-                                                "dynamic": true,
-                                                "properties": {
-                                                    "en": {
-                                                        "type": "search_as_you_type",
-                                                        "copy_to": "title_sort"
-                                                    }
-                                                },
-                                                "type": "object"
-                                            },
-                                            "@v": {
-                                                "type": "keyword"
                                             }
                                         }
                                     },
@@ -256,7 +306,8 @@
                                                         "type": "search_as_you_type"
                                                     }
                                                 },
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 1024
                                             },
                                             "title": {
                                                 "dynamic": true,
@@ -269,7 +320,8 @@
                                                 "type": "object"
                                             },
                                             "@v": {
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 1024
                                             }
                                         }
                                     }
@@ -284,7 +336,8 @@
                                                 "type": "search_as_you_type"
                                             }
                                         },
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     },
                                     "title": {
                                         "dynamic": true,
@@ -297,7 +350,8 @@
                                         "type": "object"
                                     },
                                     "@v": {
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     }
                                 }
                             },
@@ -316,7 +370,8 @@
                                                         "type": "search_as_you_type"
                                                     }
                                                 },
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 1024
                                             },
                                             "title": {
                                                 "dynamic": true,
@@ -329,12 +384,31 @@
                                                 "type": "object"
                                             },
                                             "@v": {
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 1024
                                             }
                                         }
                                     },
                                     "startYear": {
                                         "type": "integer"
+                                    }
+                                }
+                            },
+                            "title": {
+                                "type": "nested",
+                                "properties": {
+                                    "lang": {
+                                        "ignore_above": 256,
+                                        "type": "keyword"
+                                    },
+                                    "value": {
+                                        "type": "text",
+                                        "fields": {
+                                            "keyword": {
+                                                "type": "keyword",
+                                                "ignore_above": 256
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -345,10 +419,10 @@
                         "properties": {
                             "abstract_cs": {
                                 "type": "text",
-                                "analyzer": "czech",
                                 "fields": {
                                     "keyword": {
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 256
                                     }
                                 }
                             },
@@ -356,7 +430,8 @@
                                 "type": "text",
                                 "fields": {
                                     "keyword": {
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 256
                                     }
                                 }
                             },
@@ -364,13 +439,15 @@
                                 "type": "nested",
                                 "properties": {
                                     "lang": {
+                                        "ignore_above": 256,
                                         "type": "keyword"
                                     },
                                     "value": {
                                         "type": "text",
                                         "fields": {
                                             "keyword": {
-                                                "type": "keyword"
+                                                "type": "keyword",
+                                                "ignore_above": 256
                                             }
                                         }
                                     }
@@ -385,7 +462,8 @@
                                                 "type": "search_as_you_type"
                                             }
                                         },
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     },
                                     "title": {
                                         "dynamic": true,
@@ -398,12 +476,59 @@
                                         "type": "object"
                                     },
                                     "@v": {
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     }
                                 }
                             },
                             "literature": {
                                 "type": "text"
+                            },
+                            "parts": {
+                                "type": "nested",
+                                "properties": {
+                                    "part": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "keyword",
+                                                "ignore_above": 1024
+                                            },
+                                            "@v": {
+                                                "type": "keyword",
+                                                "ignore_above": 1024
+                                            }
+                                        }
+                                    },
+                                    "restorationMethods": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "fields": {
+                                                    "text": {
+                                                        "type": "search_as_you_type"
+                                                    }
+                                                },
+                                                "type": "keyword",
+                                                "ignore_above": 1024
+                                            },
+                                            "title": {
+                                                "dynamic": true,
+                                                "properties": {
+                                                    "en": {
+                                                        "type": "search_as_you_type",
+                                                        "copy_to": "title_sort"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "@v": {
+                                                "type": "keyword",
+                                                "ignore_above": 1024
+                                            }
+                                        }
+                                    }
+                                }
                             },
                             "restorationMethods": {
                                 "type": "object",
@@ -414,7 +539,8 @@
                                                 "type": "search_as_you_type"
                                             }
                                         },
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     },
                                     "title": {
                                         "dynamic": true,
@@ -427,7 +553,8 @@
                                         "type": "object"
                                     },
                                     "@v": {
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     }
                                 }
                             },
@@ -444,46 +571,32 @@
                                     }
                                 }
                             },
-                            "sisId": {
-                                "type": "keyword"
+                            "restorer": {
+                                "type": "keyword",
+                                "ignore_above": 1024
                             },
-                            "supervisor": {
+                            "sisId": {
+                                "type": "keyword",
+                                "ignore_above": 1024
+                            },
+                            "supervisors": {
                                 "type": "object",
                                 "properties": {
                                     "comment": {
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     },
                                     "fullName": {
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     },
                                     "institution": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "fields": {
-                                                    "text": {
-                                                        "type": "search_as_you_type"
-                                                    }
-                                                },
-                                                "type": "keyword"
-                                            },
-                                            "title": {
-                                                "dynamic": true,
-                                                "properties": {
-                                                    "en": {
-                                                        "type": "search_as_you_type",
-                                                        "copy_to": "title_sort"
-                                                    }
-                                                },
-                                                "type": "object"
-                                            },
-                                            "@v": {
-                                                "type": "keyword"
-                                            }
-                                        }
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     },
                                     "sisCode": {
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     }
                                 }
                             },
@@ -496,7 +609,8 @@
                                                 "type": "search_as_you_type"
                                             }
                                         },
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     },
                                     "title": {
                                         "dynamic": true,
@@ -509,14 +623,16 @@
                                         "type": "object"
                                     },
                                     "@v": {
-                                        "type": "keyword"
+                                        "type": "keyword",
+                                        "ignore_above": 1024
                                     }
                                 }
                             }
                         }
                     },
                     "submissionStatus": {
-                        "type": "keyword"
+                        "type": "keyword",
+                        "ignore_above": 1024
                     }
                 }
             },

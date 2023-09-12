@@ -37,9 +37,6 @@
             "extra-code": "",
             "module": "tests"
         },
-        "sample": {
-            "file": "data/sample_data.yaml"
-        },
         "search-options": {
             "skip": true,
             "generate": true,
@@ -90,47 +87,10 @@
                 }
             ]
         },
+        "sample": {
+            "file": "data/sample_data.yaml"
+        },
         "model-name": "Restoration",
-        "config": {
-            "generate": true,
-            "module": "restoration.config",
-            "extra_code": "",
-            "imports": []
-        },
-        "ext": {
-            "generate": true,
-            "module": "restoration.ext",
-            "class": "restoration.ext.RestorationExt",
-            "base-classes": [],
-            "extra_code": "",
-            "alias": "restoration",
-            "imports": []
-        },
-        "api-blueprint": {
-            "generate": true,
-            "alias": "restoration_file",
-            "extra_code": "",
-            "module": "restoration.views.files.api",
-            "function": "restoration.views.files.api.create_api_blueprint",
-            "imports": []
-        },
-        "app-blueprint": {
-            "generate": true,
-            "alias": "restoration_file",
-            "extra_code": "",
-            "module": "restoration.views.files.app",
-            "function": "restoration.views.files.app.create_app_blueprint",
-            "imports": []
-        },
-        "saved-model": {
-            "file": "restoration/models/files.json",
-            "module": "restoration.models",
-            "alias": "restoration_file"
-        },
-        "proxy": {
-            "module": "restoration.proxies",
-            "generate": true
-        },
         "record": {
             "class": "restoration.files.api.RestorationFile",
             "base-classes": [
@@ -181,6 +141,46 @@
             "generate": true,
             "skip": false
         },
+        "config": {
+            "generate": true,
+            "module": "restoration.config",
+            "extra_code": "",
+            "imports": []
+        },
+        "ext": {
+            "generate": true,
+            "module": "restoration.ext",
+            "class": "restoration.ext.RestorationExt",
+            "base-classes": [],
+            "extra_code": "",
+            "alias": "restoration",
+            "imports": []
+        },
+        "api-blueprint": {
+            "generate": true,
+            "alias": "restoration_file",
+            "extra_code": "",
+            "module": "restoration.views.files.api",
+            "function": "restoration.views.files.api.create_api_blueprint",
+            "imports": []
+        },
+        "app-blueprint": {
+            "generate": true,
+            "alias": "restoration_file",
+            "extra_code": "",
+            "module": "restoration.views.files.app",
+            "function": "restoration.views.files.app.create_app_blueprint",
+            "imports": []
+        },
+        "saved-model": {
+            "file": "restoration/models/files.json",
+            "module": "restoration.models",
+            "alias": "restoration_file"
+        },
+        "proxy": {
+            "module": "restoration.proxies",
+            "generate": true
+        },
         "translations": {
             "module": "restoration.translations",
             "alias": "restoration_file"
@@ -222,41 +222,6 @@
                 }
             ]
         },
-        "json-serializer": {
-            "module": "restoration.resources.files.ui",
-            "class": "restoration.resources.files.ui.RestorationFileUIJSONSerializer",
-            "base-classes": [
-                "MarshmallowSerializer"
-            ],
-            "imports": [
-                {
-                    "import": "flask_resources.BaseListSchema"
-                },
-                {
-                    "import": "flask_resources.MarshmallowSerializer"
-                },
-                {
-                    "import": "flask_resources.serializers.JSONSerializer"
-                }
-            ],
-            "extra-code": "",
-            "generate": true
-        },
-        "multilingual-dumper": {
-            "generate": true,
-            "module": "restoration.files.multilingual_dumper",
-            "class": "restoration.files.multilingual_dumper.MultilingualSearchDumper",
-            "base-classes": [
-                "MultilingualDumper"
-            ],
-            "extra-code": "",
-            "extensions": [],
-            "imports": [
-                {
-                    "import": "oarepo_runtime.i18n.dumper.MultilingualDumper"
-                }
-            ]
-        },
         "record-metadata": {
             "use-versioning": false,
             "generate": true,
@@ -281,6 +246,21 @@
             ],
             "table": "restoration_file_metadata",
             "alias": "restoration_file"
+        },
+        "multilingual-dumper": {
+            "generate": true,
+            "module": "restoration.files.multilingual_dumper",
+            "class": "restoration.files.multilingual_dumper.MultilingualSearchDumper",
+            "base-classes": [
+                "MultilingualDumper"
+            ],
+            "extra-code": "",
+            "extensions": [],
+            "imports": [
+                {
+                    "import": "oarepo_runtime.i18n.dumper.MultilingualDumper"
+                }
+            ]
         },
         "service-config": {
             "base-classes": [
@@ -352,6 +332,26 @@
                     "import": "invenio_pidstore.providers.recordid_v2.RecordIdProviderV2"
                 }
             ]
+        },
+        "json-serializer": {
+            "module": "restoration.resources.files.ui",
+            "class": "restoration.resources.files.ui.RestorationFileUIJSONSerializer",
+            "base-classes": [
+                "MarshmallowSerializer"
+            ],
+            "imports": [
+                {
+                    "import": "flask_resources.BaseListSchema"
+                },
+                {
+                    "import": "flask_resources.MarshmallowSerializer"
+                },
+                {
+                    "import": "flask_resources.serializers.JSONSerializer"
+                }
+            ],
+            "extra-code": "",
+            "generate": true
         },
         "draft-parent-record": {
             "skip": true

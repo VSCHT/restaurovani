@@ -51,21 +51,25 @@ class RestorationObjectSchema(ma.Schema):
 
     archeologic = ma.fields.Boolean()
 
+    category = ma.fields.String()
+
     creationPeriod = ma.fields.Nested(lambda: CreationPeriodSchema())
 
-    description = ma.fields.String()
+    description = MultilingualField(I18nStrField())
 
-    dimensions = ma.fields.Nested(lambda: DimensionsSchema())
+    dimensions = ma.fields.List(ma.fields.Nested(lambda: DimensionsItemSchema()))
 
-    itemType = ma.fields.Nested(lambda: DimensionSchema())
+    itemTypes = ma.fields.List(ma.fields.Nested(lambda: DimensionSchema()))
 
-    keywords = ma.fields.String()
+    keywords = ma.fields.List(ma.fields.String())
 
-    parts = ma.fields.Nested(lambda: PartsSchema())
+    parts = ma.fields.List(ma.fields.Nested(lambda: PartsItemSchema()))
 
     restorationRequestor = ma.fields.Nested(lambda: DimensionSchema())
 
     stylePeriod = ma.fields.Nested(lambda: StylePeriodSchema())
+
+    title = MultilingualField(I18nStrField())
 
 
 class RestorationWorkSchema(ma.Schema):
@@ -76,20 +80,24 @@ class RestorationWorkSchema(ma.Schema):
 
     examinationMethods = ma.fields.List(ma.fields.Nested(lambda: DimensionSchema()))
 
-    literature = ma.fields.String()
+    literature = ma.fields.List(ma.fields.String())
+
+    parts = ma.fields.List(ma.fields.Nested(lambda: RestorationWorkPartsItemSchema()))
 
     restorationMethods = ma.fields.List(ma.fields.Nested(lambda: DimensionSchema()))
 
     restorationPeriod = ma.fields.Nested(lambda: RestorationPeriodSchema())
 
+    restorer = ma.fields.String()
+
     sisId = ma.fields.String()
 
-    supervisor = ma.fields.Nested(lambda: SupervisorSchema())
+    supervisors = ma.fields.List(ma.fields.Nested(lambda: SupervisorsItemSchema()))
 
     workType = ma.fields.Nested(lambda: DimensionSchema())
 
 
-class DimensionsSchema(ma.Schema):
+class DimensionsItemSchema(ma.Schema):
     class Meta:
         unknown = ma.RAISE
 
@@ -100,13 +108,17 @@ class DimensionsSchema(ma.Schema):
     value = ma.fields.Float()
 
 
-class PartsSchema(ma.Schema):
+class PartsItemSchema(ma.Schema):
     class Meta:
         unknown = ma.RAISE
 
-    color = ma.fields.Nested(lambda: DimensionSchema())
+    _id = ma.fields.String(data_key="id", attribute="id")
 
-    fabricationTechnology = ma.fields.Nested(lambda: DimensionSchema())
+    colors = ma.fields.List(ma.fields.Nested(lambda: DimensionSchema()))
+
+    fabricationTechnologies = ma.fields.List(
+        ma.fields.Nested(lambda: DimensionSchema())
+    )
 
     main = ma.fields.Boolean()
 
@@ -114,9 +126,16 @@ class PartsSchema(ma.Schema):
 
     name = MultilingualField(I18nStrField())
 
-    restorationMethods = ma.fields.List(ma.fields.Nested(lambda: DimensionSchema()))
-
     secondaryMaterialTypes = ma.fields.List(ma.fields.Nested(lambda: DimensionSchema()))
+
+
+class RestorationWorkPartsItemSchema(ma.Schema):
+    class Meta:
+        unknown = ma.RAISE
+
+    part = ma.fields.Nested(lambda: PartSchema())
+
+    restorationMethods = ma.fields.List(ma.fields.Nested(lambda: DimensionSchema()))
 
 
 class StylePeriodSchema(ma.Schema):
@@ -128,19 +147,6 @@ class StylePeriodSchema(ma.Schema):
     period = ma.fields.Nested(lambda: DimensionSchema())
 
     startYear = ma.fields.Integer()
-
-
-class SupervisorSchema(ma.Schema):
-    class Meta:
-        unknown = ma.RAISE
-
-    comment = ma.fields.String()
-
-    fullName = ma.fields.String()
-
-    institution = ma.fields.Nested(lambda: DimensionSchema())
-
-    sisCode = ma.fields.String()
 
 
 class CreationPeriodSchema(ma.Schema):
@@ -163,6 +169,15 @@ class DimensionSchema(ma.Schema):
     title = i18n_strings
 
 
+class PartSchema(ma.Schema):
+    class Meta:
+        unknown = ma.RAISE
+
+    _id = ma.fields.String(data_key="id", attribute="id")
+
+    _version = ma.fields.String(data_key="@v", attribute="@v")
+
+
 class RestorationPeriodSchema(ma.Schema):
     class Meta:
         unknown = ma.RAISE
@@ -170,6 +185,19 @@ class RestorationPeriodSchema(ma.Schema):
     since = ma.fields.String(validate=[validate_date("%Y-%m-%d")])
 
     until = ma.fields.String(validate=[validate_date("%Y-%m-%d")])
+
+
+class SupervisorsItemSchema(ma.Schema):
+    class Meta:
+        unknown = ma.RAISE
+
+    comment = ma.fields.String()
+
+    fullName = ma.fields.String()
+
+    institution = ma.fields.String()
+
+    sisCode = ma.fields.String()
 
 
 class FilesOptionsSchema(ma.Schema):

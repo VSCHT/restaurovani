@@ -31,21 +31,25 @@ class RestorationObjectUISchema(ma.Schema):
 
     archeologic = ma.fields.Boolean()
 
+    category = ma.fields.String()
+
     creationPeriod = ma.fields.Nested(lambda: CreationPeriodUISchema())
 
-    description = ma.fields.String()
+    description = MultilingualUIField(I18nStrUIField())
 
-    dimensions = ma.fields.Nested(lambda: DimensionsUISchema())
+    dimensions = ma.fields.List(ma.fields.Nested(lambda: DimensionsItemUISchema()))
 
-    itemType = ma.fields.Nested(lambda: DimensionUISchema())
+    itemTypes = ma.fields.List(ma.fields.Nested(lambda: DimensionUISchema()))
 
-    keywords = ma.fields.String()
+    keywords = ma.fields.List(ma.fields.String())
 
-    parts = ma.fields.Nested(lambda: PartsUISchema())
+    parts = ma.fields.List(ma.fields.Nested(lambda: PartsItemUISchema()))
 
     restorationRequestor = ma.fields.Nested(lambda: DimensionUISchema())
 
     stylePeriod = ma.fields.Nested(lambda: StylePeriodUISchema())
+
+    title = MultilingualUIField(I18nStrUIField())
 
 
 class RestorationWorkUISchema(ma.Schema):
@@ -56,20 +60,24 @@ class RestorationWorkUISchema(ma.Schema):
 
     examinationMethods = ma.fields.List(ma.fields.Nested(lambda: DimensionUISchema()))
 
-    literature = ma.fields.String()
+    literature = ma.fields.List(ma.fields.String())
+
+    parts = ma.fields.List(ma.fields.Nested(lambda: RestorationWorkPartsItemUISchema()))
 
     restorationMethods = ma.fields.List(ma.fields.Nested(lambda: DimensionUISchema()))
 
     restorationPeriod = ma.fields.Nested(lambda: RestorationPeriodUISchema())
 
+    restorer = ma.fields.String()
+
     sisId = ma.fields.String()
 
-    supervisor = ma.fields.Nested(lambda: SupervisorUISchema())
+    supervisors = ma.fields.List(ma.fields.Nested(lambda: SupervisorsItemUISchema()))
 
     workType = ma.fields.Nested(lambda: DimensionUISchema())
 
 
-class DimensionsUISchema(ma.Schema):
+class DimensionsItemUISchema(ma.Schema):
     class Meta:
         unknown = ma.RAISE
 
@@ -80,13 +88,17 @@ class DimensionsUISchema(ma.Schema):
     value = ma.fields.Float()
 
 
-class PartsUISchema(ma.Schema):
+class PartsItemUISchema(ma.Schema):
     class Meta:
         unknown = ma.RAISE
 
-    color = ma.fields.Nested(lambda: DimensionUISchema())
+    _id = ma.fields.String(data_key="id", attribute="id")
 
-    fabricationTechnology = ma.fields.Nested(lambda: DimensionUISchema())
+    colors = ma.fields.List(ma.fields.Nested(lambda: DimensionUISchema()))
+
+    fabricationTechnologies = ma.fields.List(
+        ma.fields.Nested(lambda: DimensionUISchema())
+    )
 
     main = ma.fields.Boolean()
 
@@ -94,11 +106,18 @@ class PartsUISchema(ma.Schema):
 
     name = MultilingualUIField(I18nStrUIField())
 
-    restorationMethods = ma.fields.List(ma.fields.Nested(lambda: DimensionUISchema()))
-
     secondaryMaterialTypes = ma.fields.List(
         ma.fields.Nested(lambda: DimensionUISchema())
     )
+
+
+class RestorationWorkPartsItemUISchema(ma.Schema):
+    class Meta:
+        unknown = ma.RAISE
+
+    part = ma.fields.Nested(lambda: PartUISchema())
+
+    restorationMethods = ma.fields.List(ma.fields.Nested(lambda: DimensionUISchema()))
 
 
 class StylePeriodUISchema(ma.Schema):
@@ -110,19 +129,6 @@ class StylePeriodUISchema(ma.Schema):
     period = ma.fields.Nested(lambda: DimensionUISchema())
 
     startYear = ma.fields.Integer()
-
-
-class SupervisorUISchema(ma.Schema):
-    class Meta:
-        unknown = ma.RAISE
-
-    comment = ma.fields.String()
-
-    fullName = ma.fields.String()
-
-    institution = ma.fields.Nested(lambda: DimensionUISchema())
-
-    sisCode = ma.fields.String()
 
 
 class CreationPeriodUISchema(ma.Schema):
@@ -145,6 +151,15 @@ class DimensionUISchema(ma.Schema):
     title = VocabularyI18nStrUIField()
 
 
+class PartUISchema(ma.Schema):
+    class Meta:
+        unknown = ma.RAISE
+
+    _id = ma.fields.String(data_key="id", attribute="id")
+
+    _version = ma.fields.String(data_key="@v", attribute="@v")
+
+
 class RestorationPeriodUISchema(ma.Schema):
     class Meta:
         unknown = ma.RAISE
@@ -152,3 +167,16 @@ class RestorationPeriodUISchema(ma.Schema):
     since = l10n.LocalizedDate()
 
     until = l10n.LocalizedDate()
+
+
+class SupervisorsItemUISchema(ma.Schema):
+    class Meta:
+        unknown = ma.RAISE
+
+    comment = ma.fields.String()
+
+    fullName = ma.fields.String()
+
+    institution = ma.fields.String()
+
+    sisCode = ma.fields.String()

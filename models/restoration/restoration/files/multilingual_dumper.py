@@ -5,7 +5,9 @@ class MultilingualSearchDumper(MultilingualDumper):
     """Multilingual search dumper."""
 
     paths = [
+        "/metadata/restorationObject/description",
         "/metadata/restorationObject/parts/name",
+        "/metadata/restorationObject/title",
         "/metadata/restorationWork/abstract",
     ]
     SUPPORTED_LANGS = ["cs", "en"]

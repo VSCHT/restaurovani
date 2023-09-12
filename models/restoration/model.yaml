@@ -10,7 +10,7 @@ record:
     use:
     - ./metadata.yaml
   draft: {}
-  draft_files: {}
+  draft-files: {}
   permissions:
     presets:
     - everyone
@@ -20,13 +20,8 @@ settings:
   i18n-languages:
   - cs
   supported-langs:
-    cs:
-      keyword:
-        type: keyword
-      text:
-        analyzer: czech
-    en:
-      text: {}
+    cs: {}
+    en: {}
 profiles: [record, draft, files, draft_files]
 plugins:
   packages:
