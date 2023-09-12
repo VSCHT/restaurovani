@@ -32,3 +32,5 @@ htmlcov/
 # Virtualenv #
 ##############
 .venv
+
+restoration_common/old_data/data

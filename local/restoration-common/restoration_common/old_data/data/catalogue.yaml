@@ -1,4 +1,0 @@
-objects:
-  - writer: service
-    service: restoration
-  - source: data.yaml
