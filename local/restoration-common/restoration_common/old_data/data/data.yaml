@@ -4287,7 +4287,7 @@ metadata:
     - id: mikr-svetelna-mikroskopie-identifikace-vlaken
     - id: spektro-sem-eds
     parts:
-    - id: f9b6c13bc4f148abad93c84a553c1697
+    - id: 9362db98344b462b8f2a65bb03896118
       restorationMethods:
       - id: kovy-odstranovani-koroznich-produktu
     restorationMethods:
@@ -7776,7 +7776,7 @@ metadata:
     - id: mikr-svetelna-mikroskopie-identifikace-vlaken
     - id: mikr-svetelna-mikroskopie-rozbor-vazeb
     parts:
-    - id: 3391cc3f6bdd4dd1a2987e909447b3e7
+    - id: 51f0290d54a9409f907d61e24bf2285a
       restorationMethods:
       - id: textil-sita-skeletaz
     restorationMethods:
@@ -11694,7 +11694,7 @@ metadata:
     - id: mikr-sem
     - id: spektro-xrf
     parts:
-    - id: f1878a983f1044efbba922a83de68964
+    - id: 4e2b7154b77440ad9df529f8d8b8f4c0
       restorationMethods: []
     restorationMethods:
     - id: test-trest
@@ -19076,7 +19076,7 @@ metadata:
     - id: mikr-sem
     - id: spektro-xrf
     parts:
-    - id: 439dcebfd6a14d91a86dd60940cc3245
+    - id: c8574a8687084157afb25577d560b500
       restorationMethods: []
     restorationMethods:
     - id: test-zhotoveni-kopie
@@ -31026,7 +31026,7 @@ metadata:
     - id: spektro-sem-eds
     - id: zit-dukazove-reakce-identifikace-prirodnich-polymeru
     parts:
-    - id: 833f8f5b0b5c465a87f49e51ce743502
+    - id: 78eaad74d663404ea7d91698fecc48d6
       restorationMethods:
       - id: textil-sita-skeletaz-i-lepeni
     restorationMethods:
@@ -36472,7 +36472,7 @@ metadata:
         další studium, výzkum apod.
     examinationMethods: []
     parts:
-    - id: e4f474ac557342e2892f561e8b7b6342
+    - id: 74d4e6f556ad4c31a67ae38b4bb2fc9a
       restorationMethods: []
     restorationMethods: []
     restorationPeriod:
@@ -44644,7 +44644,7 @@ metadata:
     - id: spektro-sem-eds
     - id: zit-dukazove-reakce-identifikace-prirodnich-polymeru
     parts:
-    - id: 671b3a1d67f847838a1849786dd18d59
+    - id: a217914327c744dba8f3402456af85a4
       restorationMethods:
       - id: textil-sita-skeletaz
     restorationMethods:
