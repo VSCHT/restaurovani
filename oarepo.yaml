@@ -2,8 +2,6 @@ config:
   oarepo_cli: .venv/nrp/bin/nrp
   project_package: restaurovani
   python: python3.9
-  sites:
-  - restaurovani-site
 local:
   restoration-common:
     branch: null

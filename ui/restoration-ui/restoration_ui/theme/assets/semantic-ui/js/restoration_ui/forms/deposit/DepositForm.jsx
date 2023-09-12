@@ -70,12 +70,13 @@ export const DepositForm = () => {
       <Formik
         initialValues={{
           kategorie: "",
-          keywords: [],
-          popis: "",
+          keyword: [],
+          description: "",
           restorationMethods: [],
           fabricationTechnology: "",
           materialType: "",
-          secondaryMaterialTypes: "",
+          secondaryMaterialTypes: [],
+          color: "",
           dimensions: [{ dimension: "", value: "", unit: "" }],
           archeologic: false,
           creationPeriod: [{ since: "", until: "" }],
@@ -85,7 +86,8 @@ export const DepositForm = () => {
         }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
+            console.log(JSON.stringify(values))
+            // alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
           }, 400);
         }}
@@ -100,45 +102,45 @@ export const DepositForm = () => {
           isSubmitting,
         }) => (
           <>
-            <Form class="vert-div predmety__form" onSubmit={handleSubmit}>
-              <h3 class="predmety__form__h">Predmet</h3>
+            <Form className="vert-div predmety__form" onSubmit={handleSubmit}>
+              <h3 className="predmety__form__h">Predmet</h3>
 
-              <div class="vert-div predmety__form-main">
-                <div class="vert-div predmety__form__div">
-                  <div class="vert-div predmety__form__div">
-                    <label for="description" class="predmety__form__div__label">
+              <div className="vert-div predmety__form-main">
+                <div className="vert-div predmety__form__div">
+                  <div className="vert-div predmety__form__div">
+                    <label htmlFor="keyword" className="predmety__form__div__label">
                       Klíčová slova
                     </label>
                     <Field
                       type="text"
-                      id="keywords"
-                      name="keywords"
-                      class="predmety__form__div__input"
+                      id="keyword"
+                      name="keyword"
+                      className="predmety__form__div__input"
                       aria-label="Klíčová slova"
                     />
                   </div>
 
-                  <div class="vert-div predmety__form__div">
-                    <label for="description" class="predmety__form__div__label">
+                  <div className="vert-div predmety__form__div">
+                    <label htmlFor="description" className="predmety__form__div__label">
                       Popis
                     </label>
                     <Field
                       type="text"
                       id="description"
                       name="description"
-                      class="predmety__form__div__input"
+                      className="predmety__form__div__input"
                       aria-label="Popis"
                     />
                   </div>
 
-                  <div class="vert-div predmety__form__div">
-                    <label for="kategorie" class="predmety__form__div__label">
+                  <div className="vert-div predmety__form__div">
+                    <label htmlFor="kategorie" className="predmety__form__div__label">
                       Kategorie materialu
                     </label>
-                    <div class="horiz-div predmety__form__div__input-radio">
-                      <label class="predmety__form__div__label horiz-div">
+                    <div className="horiz-div predmety__form__div__input-radio">
+                      <label className="predmety__form__div__label horiz-div">
                         <Field
-                          class="predmety__form__div__radio"
+                          className="predmety__form__div__radio"
                           type="radio"
                           id="kovy"
                           name="kategorie"
@@ -147,9 +149,9 @@ export const DepositForm = () => {
                         />
                         Kovy
                       </label>
-                      <label class="predmety__form__div__label horiz-div">
+                      <label className="predmety__form__div__label horiz-div">
                         <Field
-                          class="predmety__form__div__radio"
+                          className="predmety__form__div__radio"
                           type="radio"
                           id="textil"
                           name="kategorie"
@@ -158,9 +160,9 @@ export const DepositForm = () => {
                         />
                         Textil
                       </label>
-                      <label class="predmety__form__div__label horiz-div">
+                      <label className="predmety__form__div__label horiz-div">
                         <Field
-                          class="predmety__form__div__radio"
+                         className="predmety__form__div__radio"
                           type="radio"
                           id="keramika"
                           name="kategorie"
@@ -169,9 +171,9 @@ export const DepositForm = () => {
                         />
                         Keramika
                       </label>
-                      <label class="predmety__form__div__label horiz-div">
+                      <label className="predmety__form__div__label horiz-div">
                         <Field
-                          class="predmety__form__div__radio"
+                         className="predmety__form__div__radio"
                           type="radio"
                           id="sklo"
                           name="kategorie"
@@ -182,71 +184,84 @@ export const DepositForm = () => {
                       </label>
                     </div>
                   </div>
-                  <div class="vert-div predmety__form__div">
-                    <div class="vert-div predmety__form__div">
+                  <div className="vert-div predmety__form__div">
+                    <div className="vert-div predmety__form__div">
                       <label
-                        for="RestorationMethods"
-                        class="predmety__form__div__label"
+                        htmlFor="RestorationMethods"
+                       className="predmety__form__div__label"
                       >
                         Metoda restaurace:
                       </label>
                       <VocabularySelectField
-                        className="predmety__form__div__input"
                         type={`RestorationMethods?h-parent=${values.kategorie}`}
+                        fieldPath="restorationMethods"
+                        multiple={true}
                       />
                     </div>
 
-                    <div class="vert-div predmety__form__div">
+                    <div className="vert-div predmety__form__div">
                       <label
-                        for="fabricationTechnology"
-                        class="predmety__form__div__label"
+                        htmlFor="fabricationTechnology"
+                       className="predmety__form__div__label"
                       >
                         Technologie Fabrikace:
                       </label>
                       <VocabularySelectField
                         name="fabricationTechnology"
-                        class="predmety__form__div__input"
+                        fieldPath="fabricationTechnology"
                         type={`FabricationTechnologies?h-parent=${values.kategorie}`}
                       />
                     </div>
 
-                    <div class="vert-div predmety__form__div">
+                    <div className="vert-div predmety__form__div">
                       <label
-                        for="materialType"
-                        class="predmety__form__div__label"
+                        htmlFor="materialType"
+                       className="predmety__form__div__label"
                       >
                         Typ Materialu:
                       </label>
                       <VocabularySelectField
-                        class="predmety__form__div__input"
+                        fieldPath="materialType"
                         type={`MaterialTypes?h-parent=${values.kategorie}`}
                       />
                     </div>
-                    <div class="vert-div predmety__form__div">
+                    <div className="vert-div predmety__form__div">
                       <label
-                        for="materialTypes"
-                        class="predmety__form__div__label"
+                        htmlFor="secondaryMaterialTypes"
+                       className="predmety__form__div__label"
                       >
                         Additional typy Materialu:
                       </label>
                       <VocabularySelectField
-                        class="predmety__form__div__input"
                         type={`MaterialTypes?h-parent=${values.kategorie}`}
+                        fieldPath="secondaryMaterialTypes"
                         multiple={true}
                       />
                     </div>
-                    <div class="vert-div predmety__form__div">
-                      <label for="colors" class="predmety__form__div__label">
+                    <div className="vert-div predmety__form__div">
+                      <label
+                        htmlFor="itemType"
+                       className="predmety__form__div__label"
+                      >
+                        Typ predmetu:
+                      </label>
+                      <VocabularySelectField
+                        type={`ItemTypes?h-parent=${values.kategorie}`}
+                        fieldPath="itemType"
+                      />
+                    </div>
+                    <div className="vert-div predmety__form__div">
+                      <label htmlFor="color" className="predmety__form__div__label">
                         Barvy:
                       </label>
                       <VocabularySelectField
-                        class="predmety__form__div__input"
-                        type={`Colors?h-parent=${values.kategorie}`}
+                        fieldPath="color"
+                        type={`Colors`}
                       />
                     </div>
 
-                    <div class="vert-div predmety__form__div">
-                      <label class="predmety__form__div__label">Rozmery:</label>
+                    <div className="vert-div predmety__form__div">
+                      <label className="predmety__form__div__label">Rozmery:</label>
 
                       <div>
                         <FieldArray name="dimensions">
@@ -255,17 +270,16 @@ export const DepositForm = () => {
                               {values.dimensions.length > 0 &&
                                 values.dimensions.map((dimension, index) => (
                                   <div className="horiz-div" key={index}>
-                                    <div class="vert-div predmety__form__div">
+                                    <div className="vert-div predmety__form__div">
                                       <label
-                                        for={`dimensions.${index}.dimension`}
-                                        class="predmety__form__div__label"
+                                        htmlFor={`dimensions.${index}.dimension`}
+                                       className="predmety__form__div__label"
                                       >
                                         Parametry
                                       </label>
                                       <VocabularySelectField
-                                        className="predmety__form__div__input"
                                         type={`Dimensions`}
-                                        name={`dimensions.${index}.dimension`}
+                                        fieldPath={`dimensions.${index}.dimension`}
                                       />
                                     </div>
 
@@ -288,10 +302,10 @@ export const DepositForm = () => {
                                       />
                                     </div>
 
-                                    <div class="vert-div predmety__form__div predmety__form__div-unit">
+                                    <div className="vert-div predmety__form__div predmety__form__div-unit">
                                       <label
-                                        for="unit"
-                                        class="predmety__form__div__label"
+                                        htmlFor="unit"
+                                       className="predmety__form__div__label"
                                       >
                                         Unit:
                                       </label>
@@ -305,9 +319,9 @@ export const DepositForm = () => {
                                         <option value="cm">cm</option>
                                         <option value="mm">mm</option>
                                         <option value="metr">metr</option>
-                                        <option value="cm">cm</option>
-                                        <option value="mm">mm</option>
-                                        <option value="metr">metr</option>
+                                        <option value="kg">kg</option>
+                                        <option value="mg">mg</option>
+                                        <option value="gram">gram</option>
                                       </Field>
                                     </div>
                                     <ErrorMessage
@@ -344,92 +358,63 @@ export const DepositForm = () => {
 
                     <div>
                       <FieldArray name="stylePeriod">
-                        {({ insert, remove, push }) => (
-                          <div>
-                            {values.stylePeriod.length > 0 &&
-                              values.stylePeriod.map((stylePeriod, index) => (
-                                <div className="horiz-div" key={index}>
-                                  <div class="vert-div predmety__form__div">
-                                    <label
-                                      for={`stylePeriod.${index}.period`}
-                                      class="predmety__form__div__label"
-                                    >
-                                      period
-                                    </label>
-                                    <VocabularySelectField
-                                      className="predmety__form__div__input"
-                                      type={`StylePeriods`}
-                                      name={`stylePeriod.${index}.period`}
-                                    />
-                                  </div>
-
-                                  <div className="vert-div predmety__form__div">
-                                    <label
-                                      htmlFor={`stylePeriod.${index}.startYear`}
-                                    >
-                                      StartYear
-                                    </label>
-                                    <Field
-                                      className="predmety__form__div__input"
-                                      name={`dimensistylePeriodons.${index}.startYear`}
-                                      placeholder="StartYear"
-                                      type="number"
-                                    />
-                                    <ErrorMessage
-                                      name={`stylePeriod.${index}.startYear`}
-                                      component="div"
-                                      className="field-error"
-                                    />
-                                  </div>
-
-                                  <div className="vert-div predmety__form__div">
-                                    <label
-                                      htmlFor={`stylePeriod.${index}.endYear`}
-                                    >
-                                      End Year
-                                    </label>
-                                    <Field
-                                      className="predmety__form__div__input"
-                                      name={`dimensistylePeriodons.${index}.endYear`}
-                                      placeholder="endYear"
-                                      type="number"
-                                    />
-                                    <ErrorMessage
-                                      name={`stylePeriod.${index}.endYear`}
-                                      component="div"
-                                      className="field-error"
-                                    />
-                                  </div>
-
-                                  <div className="vert-div">
-                                    <button
-                                      type="button"
-                                      className="secondary"
-                                      onClick={() => remove(index)}
-                                    >
-                                      X
-                                    </button>
-                                  </div>
+                       
+                              <div className="horiz-div">
+                                <div className="vert-div predmety__form__div">
+                                  <label
+                                    htmlFor={`stylePeriod[0].period`}
+                                   className="predmety__form__div__label"
+                                  >
+                                    period
+                                  </label>
+                                  <VocabularySelectField
+                                    type={`StylePeriods`}
+                                    fieldPath={`stylePeriod[0].period`}
+                                  />
                                 </div>
-                              ))}
-                            <button
-                              type="button"
-                              className="secondary"
-                              onClick={() =>
-                                push({ period: "", startYear: "", endYear: "" })
-                              }
-                            >
-                              Add style Perios
-                            </button>
-                          </div>
-                        )}
+
+                                <div className="vert-div predmety__form__div">
+                                  <label htmlFor={`stylePeriod.startYear`}>
+                                    StartYear
+                                  </label>
+                                  <Field
+                                    className="predmety__form__div__input"
+                                    name={`stylePeriod[0].startYear`}
+                                    placeholder="StartYear"
+                                    type="year"
+                                  />
+                                  <ErrorMessage
+                                    name={`stylePeriod[0].startYear`}
+                                    component="div"
+                                    className="field-error"
+                                  />
+                                </div>
+
+                                <div className="vert-div predmety__form__div">
+                                  <label htmlFor={`stylePeriod[0].endYear`}>
+                                    End Year
+                                  </label>
+                                  <Field
+                                    className="predmety__form__div__input"
+                                    name={`stylePeriod.[0].endYear`}
+                                    placeholder="endYear"
+                                    type="year"
+                                  />
+                                  <ErrorMessage
+                                    name={`stylePeriod.endYear`}
+                                    component="div"
+                                    className="field-error"
+                                  />
+                                </div>
+                              </div>
+                            
                       </FieldArray>
                     </div>
 
-                    <div class="vert-div predmety__form__div">
+                    <div className="vert-div predmety__form__div">
                       <label
-                        for="archeologic"
-                        class="predmety__form__div__label"
+                        htmlFor="archeologic"
+                        className="predmety__form__div__label"
                       >
                         <Field
                           type="checkbox"
@@ -441,105 +426,107 @@ export const DepositForm = () => {
                       </label>
                     </div>
 
-                    <div class="vert-div predmety__form__div">
-                      <label
-                        for="creationPeriod-od"
-                        class="predmety__form__div__label"
-                      >
-                        Perioda tvorby od
-                      </label>
-                      <Field
-                        type="date"
-                        id="creationPeriod-od"
-                        name="since"
-                        class="predmety__form__div__input"
-                        aria-label="Perioda tvorby od"
-                      />
+                    <div>
+                      <FieldArray name="creationPeriod">
+                      
+                                <div className="horiz-div" >
+                                  <div className="vert-div predmety__form__div">
+                                    <label htmlFor={`creationPeriod[0].since`}>
+                                      Od
+                                    </label>
+                                    <Field
+                                      className="predmety__form__div__input"
+                                      name={`creationPeriod[0].since`}
+                                      placeholder="Since"
+                                      type="date"
+                                    />
+                                    <ErrorMessage
+                                      name={`creationPeriod[0].since`}
+                                      component="div"
+                                      className="field-error"
+                                    />
+                                  </div>
+
+                                  <div className="vert-div predmety__form__div">
+                                    <label htmlFor={`creationPeriod[0].until`}>
+                                      Until
+                                    </label>
+                                    <Field
+                                      className="predmety__form__div__input"
+                                      name={`creationPeriod[0].until`}
+                                      placeholder="Until"
+                                      type="date"
+                                    />
+                                    <ErrorMessage
+                                      name={`creationPeriod[0].until`}
+                                      component="div"
+                                      className="field-error"
+                                    />
+                                  </div>
+                                </div>
+                      </FieldArray>
                     </div>
-                    <div class="vert-div predmety__form__div">
+
+                    
+                    
+                    <div className="vert-div predmety__form__div">
                       <label
-                        for="creationPeriod-do"
-                        class="predmety__form__div__label"
+                        htmlFor="restorationRequestor"
+                       className="predmety__form__div__label"
                       >
-                        Perioda tvorby do
+                        Zadatel restaurace:
                       </label>
-                      <Field
-                        type="date"
-                        id="creationPeriod-do"
-                        name="until"
-                        class="predmety__form__div__input"
-                        aria-label="Perioda tvorby do"
+                      <VocabularySelectField
+                        type={`Institutions`}
+                        fieldPath="restorationRequestor"
                       />
-                    </div>
-                    <div class="vert-div predmety__form__div">
-                      <label
-                        for="restorationRequestor"
-                        class="predmety__form__div__label"
-                      >
-                        Žadatel reataurace
-                      </label>
-                      <Field
-                        component="select"
-                        name="restorationRequestor"
-                        id="restorationRequestor"
-                        form="restorationRequestor"
-                        class="predmety__form__div__input"
-                      >
-                        <option value="cirkevni-sprava">Církevní správa</option>
-                        <option value="soukromy-vlastnik">
-                          Soukromý vlastník
-                        </option>
-                        <option value="ostatni-zadavatele">
-                          Ostatní zadavatelé
-                        </option>
-                      </Field>
                     </div>
                   </div>
                 </div>
               </div>
               <button
-                class=" form main-page__btn__addPredmety"
+               className="form main-page__btn__addPredmety"
                 aria-label="tlacitko ulozeni predmetu"
               >
                 Uložit
               </button>
             </Form>
 
-            <Form class="vert-div predmety__form" onSubmit={handleSubmit}>
-              <h3 class="predmety__form__h">Vytvoreni noveho predmetu</h3>
-              <div class="vert-div predmety__form-main">
-                <div class="vert-div predmety__form__div">
-                  <label for="subjectName" class="predmety__form__div__label">
+            <Form className="vert-div predmety__form" onSubmit={handleSubmit}>
+              <h3 className="predmety__form__h">Vytvoreni noveho predmetu</h3>
+              <div className="vert-div predmety__form-main">
+                <div className="vert-div predmety__form__div">
+                  <label htmlFor="subjectName" className="predmety__form__div__label">
                     Nazev predmetu
                   </label>
                   <Field
                     type="text"
                     id="subjectName"
                     name="subjectName"
-                    class="predmety__form__div__input"
+                   className="predmety__form__div__input"
                     aria-label="Nazev predmetu"
                   />
                 </div>
-                <div class="vert-div predmety__form__div">
-                  <label for="fullName" class="predmety__form__div__label">
+                <div className="vert-div predmety__form__div">
+                  <label htmlFor="fullName" className="predmety__form__div__label">
                     Restauroval(a)
                   </label>
                   <Field
                     type="text"
                     id="fullName"
                     name="fullName"
-                    class="predmety__form__div__input"
+                   className="predmety__form__div__input"
                     aria-label="Restauroval(a)"
                   />
                 </div>
-                <div class="vert-div predmety__form__div">
-                  <label for="" class="predmety__form__div__label">
+                <div className="vert-div predmety__form__div">
+                  <label htmlFor="" className="predmety__form__div__label">
                     Kategorie
                   </label>
-                  <div class="horiz-div predmety__form__div__input-radio">
-                    <label class="predmety__form__div__label horiz-div">
+                  <div className="horiz-div predmety__form__div__input-radio">
+                    <label className="predmety__form__div__label horiz-div">
                       <Field
-                        class="predmety__form__div__radio"
+                       className="predmety__form__div__radio"
                         type="radio"
                         id="Kovy"
                         name="category"
@@ -548,9 +535,9 @@ export const DepositForm = () => {
                       />
                       Kovy
                     </label>
-                    <label class="predmety__form__div__label horiz-div">
+                    <label className="predmety__form__div__label horiz-div">
                       <Field
-                        class="predmety__form__div__radio"
+                       className="predmety__form__div__radio"
                         type="radio"
                         id="Textil"
                         name="category"
@@ -559,9 +546,9 @@ export const DepositForm = () => {
                       />
                       Textil
                     </label>
-                    <label class="predmety__form__div__label horiz-div">
+                    <label className="predmety__form__div__label horiz-div">
                       <Field
-                        class="predmety__form__div__radio"
+                       className="predmety__form__div__radio"
                         type="radio"
                         id="Keramika"
                         name="category"
@@ -570,9 +557,9 @@ export const DepositForm = () => {
                       />
                       Keramika
                     </label>
-                    <label class="predmety__form__div__label horiz-div">
+                    <label className="predmety__form__div__label horiz-div">
                       <Field
-                        class="predmety__form__div__radio"
+                       className="predmety__form__div__radio"
                         type="radio"
                         id="Sklo"
                         name="category"
@@ -585,10 +572,9 @@ export const DepositForm = () => {
                 </div>
               </div>
               <button
-                class=" form main-page__btn__addPredmety"
+               className=" form main-page__btn__addPredmety"
                 aria-label="tlacitko vytvoreni predmetu"
               >
-                
                 VYTVORIT PREDMET
               </button>
             </Form>
