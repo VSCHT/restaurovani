@@ -16,6 +16,9 @@ nrp oarepo cf init
 # load vocabularies
 nrp oarepo fixtures load
 
+# create bucket for files
+invenio files location create --default default s3://default
+
 # grab the data from the old repository and transform them to the new format
 cd /tmp
 python3 -m venv venv
