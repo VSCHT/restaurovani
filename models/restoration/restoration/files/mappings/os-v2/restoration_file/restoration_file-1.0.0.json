@@ -2,7 +2,8 @@
     "mappings": {
         "properties": {
             "$schema": {
-                "type": "keyword"
+                "type": "keyword",
+                "ignore_above": 1024
             },
             "created": {
                 "type": "date",
@@ -12,10 +13,12 @@
                 "type": "boolean"
             },
             "fileType": {
-                "type": "keyword"
+                "type": "keyword",
+                "ignore_above": 1024
             },
             "id": {
-                "type": "keyword"
+                "type": "keyword",
+                "ignore_above": 1024
             },
             "updated": {
                 "type": "date",

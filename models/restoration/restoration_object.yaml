@@ -2,20 +2,13 @@ restorationObject:
   type: object
   properties:
     title:
-      type: keyword
-      mapping:
-        fields:
-          sort:
-            type: keyword
-#            type: icu_collation_keyword
-#            index: false
-#            language: cs
+      type: multilingual
     keywords[]:
       type: keyword
+    category:
+      type: keyword
     description:
-      type: fulltext
-      mapping:
-        analyzer: czech
+      type: multilingual
     parts[]:
       type: nested
       id: part
@@ -38,7 +31,7 @@ restorationObject:
         colors[]:
           type: vocabulary
           vocabulary-type: Colors
-    itemType[]:
+    itemTypes[]:
       type: vocabulary
       vocabulary-type: ItemTypes
     dimensions[]:

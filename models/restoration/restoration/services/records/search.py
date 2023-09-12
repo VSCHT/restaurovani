@@ -14,11 +14,26 @@ class RestorationSearchOptions(InvenioSearchOptions):
         "metadata_restorationObject_archeologic": (
             facets.metadata_restorationObject_archeologic
         ),
+        "metadata_restorationObject_category": (
+            facets.metadata_restorationObject_category
+        ),
         "metadata_restorationObject_creationPeriod_since": (
             facets.metadata_restorationObject_creationPeriod_since
         ),
         "metadata_restorationObject_creationPeriod_until": (
             facets.metadata_restorationObject_creationPeriod_until
+        ),
+        "metadata_restorationObject_description_cs": (
+            facets.metadata_restorationObject_description_cs
+        ),
+        "metadata_restorationObject_description_en": (
+            facets.metadata_restorationObject_description_en
+        ),
+        "metadata_restorationObject_description_lang": (
+            facets.metadata_restorationObject_description_lang
+        ),
+        "metadata_restorationObject_description_value": (
+            facets.metadata_restorationObject_description_value
         ),
         "metadata_restorationObject_dimensions_dimension": (
             facets.metadata_restorationObject_dimensions_dimension
@@ -29,8 +44,8 @@ class RestorationSearchOptions(InvenioSearchOptions):
         "metadata_restorationObject_dimensions_value": (
             facets.metadata_restorationObject_dimensions_value
         ),
-        "metadata_restorationObject_itemType": (
-            facets.metadata_restorationObject_itemType
+        "metadata_restorationObject_itemTypes": (
+            facets.metadata_restorationObject_itemTypes
         ),
         "metadata_restorationObject_keywords": (
             facets.metadata_restorationObject_keywords
@@ -77,7 +92,18 @@ class RestorationSearchOptions(InvenioSearchOptions):
         "metadata_restorationObject_stylePeriod_startYear": (
             facets.metadata_restorationObject_stylePeriod_startYear
         ),
-        "metadata_restorationObject_title": facets.metadata_restorationObject_title,
+        "metadata_restorationObject_title_cs": (
+            facets.metadata_restorationObject_title_cs
+        ),
+        "metadata_restorationObject_title_en": (
+            facets.metadata_restorationObject_title_en
+        ),
+        "metadata_restorationObject_title_lang": (
+            facets.metadata_restorationObject_title_lang
+        ),
+        "metadata_restorationObject_title_value": (
+            facets.metadata_restorationObject_title_value
+        ),
         "metadata_restorationWork_abstract_cs": (
             facets.metadata_restorationWork_abstract_cs
         ),
@@ -108,6 +134,7 @@ class RestorationSearchOptions(InvenioSearchOptions):
         "metadata_restorationWork_restorationPeriod_until": (
             facets.metadata_restorationWork_restorationPeriod_until
         ),
+        "metadata_restorationWork_restorer": facets.metadata_restorationWork_restorer,
         "metadata_restorationWork_sisId": facets.metadata_restorationWork_sisId,
         "metadata_restorationWork_supervisors_comment": (
             facets.metadata_restorationWork_supervisors_comment
