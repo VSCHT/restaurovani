@@ -29,3 +29,6 @@ class RestorationUiResourceConfig(RecordsUIResourceConfig):
         "edit": {"layout": "restoration_ui/deposit.html"},
         "create": {"layout": "restoration_ui/deposit.html"},
     }
+    def search_app_config(self, identity, api_config, overrides={}, **kwargs):
+        return super().search_app_config(identity, api_config,
+                                     overrides=overrides, endpoint='/api/user/restoration/', **kwargs)

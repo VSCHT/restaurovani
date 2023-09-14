@@ -15,6 +15,11 @@ import {
 } from "formik";
 import { VocabularySelectField } from "@js/oarepo_vocabularies";
 
+
+const inputStyles={
+  'borderRadius': '1px solid #555',
+   'border': '40px'
+}
 const CurrentRecord = (props) => {
   const { record } = props;
   return (
@@ -49,8 +54,8 @@ export const DepositForm = () => {
     ? submitContextType.create
     : submitContextType.update;
 
-  // console.log(formConfig)
-  // console.log(record)
+  console.log(formConfig)
+  console.log(record)
 
   const { onSubmit } = useOnSubmit({
     apiUrl: formConfig.createUrl || formConfig.updateUrl,
@@ -69,7 +74,7 @@ export const DepositForm = () => {
     <Container>
       <Formik
         initialValues={{
-          kategorie: "",
+          category: "",
           keyword: [],
           description: "",
           restorationMethods: [],
@@ -77,11 +82,11 @@ export const DepositForm = () => {
           materialType: "",
           secondaryMaterialTypes: [],
           color: "",
-          dimensions: [{ dimension: "", value: "", unit: "" }],
+          dimensions: [{ dimension: {id:'', title: {}}, value: "", unit: "" }],
           archeologic: false,
-          creationPeriod: [{ since: "", until: "" }],
-          restorationRequestor: "",
-          stylePeriod: [{ period: "", startYear: "", endYear: "" }],
+          creationPeriod: { since: "", until: "" },
+          restorationRequestor: {id:'', title: {}},
+          stylePeriod: { period: {id:'', title: {}}, startYear: "", endYear: "" },
           itemType: "",
         }}
         onSubmit={(values, { setSubmitting }) => {
@@ -134,7 +139,7 @@ export const DepositForm = () => {
                   </div>
 
                   <div className="vert-div predmety__form__div">
-                    <label htmlFor="kategorie" className="predmety__form__div__label">
+                    <label htmlFor="category" className="predmety__form__div__label">
                       Kategorie materialu
                     </label>
                     <div className="horiz-div predmety__form__div__input-radio">
@@ -143,7 +148,7 @@ export const DepositForm = () => {
                           className="predmety__form__div__radio"
                           type="radio"
                           id="kovy"
-                          name="kategorie"
+                          name="category"
                           value="kovy"
                           aria-label="Kovy"
                         />
@@ -154,7 +159,7 @@ export const DepositForm = () => {
                           className="predmety__form__div__radio"
                           type="radio"
                           id="textil"
-                          name="kategorie"
+                          name="category"
                           value="textil"
                           aria-label="Textil"
                         />
@@ -165,7 +170,7 @@ export const DepositForm = () => {
                          className="predmety__form__div__radio"
                           type="radio"
                           id="keramika"
-                          name="kategorie"
+                          name="category"
                           value="keramika"
                           aria-label="Keramika"
                         />
@@ -176,7 +181,7 @@ export const DepositForm = () => {
                          className="predmety__form__div__radio"
                           type="radio"
                           id="sklo"
-                          name="kategorie"
+                          name="category"
                           value="sklo"
                           aria-label="Sklo"
                         />
@@ -193,7 +198,7 @@ export const DepositForm = () => {
                         Metoda restaurace:
                       </label>
                       <VocabularySelectField
-                        type={`RestorationMethods?h-parent=${values.kategorie}`}
+                        type={`RestorationMethods?h-parent=${values.category}`}
                         fieldPath="restorationMethods"
                         multiple={true}
                       />
@@ -209,7 +214,7 @@ export const DepositForm = () => {
                       <VocabularySelectField
                         name="fabricationTechnology"
                         fieldPath="fabricationTechnology"
-                        type={`FabricationTechnologies?h-parent=${values.kategorie}`}
+                        type={`FabricationTechnologies?h-parent=${values.category}`}
                       />
                     </div>
 
@@ -218,11 +223,11 @@ export const DepositForm = () => {
                         htmlFor="materialType"
                        className="predmety__form__div__label"
                       >
-                        Typ Materialu:
+                        Typy Materialu:
                       </label>
                       <VocabularySelectField
                         fieldPath="materialType"
-                        type={`MaterialTypes?h-parent=${values.kategorie}`}
+                        type={`MaterialTypes?h-parent=${values.category}`}
                       />
                     </div>
                     <div className="vert-div predmety__form__div">
@@ -230,10 +235,10 @@ export const DepositForm = () => {
                         htmlFor="secondaryMaterialTypes"
                        className="predmety__form__div__label"
                       >
-                        Additional typy Materialu:
+                        Vedlejší typy materiálu:
                       </label>
                       <VocabularySelectField
-                        type={`MaterialTypes?h-parent=${values.kategorie}`}
+                        type={`MaterialTypes?h-parent=${values.category}`}
                         fieldPath="secondaryMaterialTypes"
                         multiple={true}
                       />
@@ -246,7 +251,7 @@ export const DepositForm = () => {
                         Typ predmetu:
                       </label>
                       <VocabularySelectField
-                        type={`ItemTypes?h-parent=${values.kategorie}`}
+                        type={`ItemTypes?h-parent=${values.category}`}
                         fieldPath="itemType"
                       />
                     </div>
@@ -261,16 +266,16 @@ export const DepositForm = () => {
                     </div>
 
                     <div className="vert-div predmety__form__div">
-                      <label className="predmety__form__div__label">Rozmery:</label>
-
-                      <div>
+                     
                         <FieldArray name="dimensions">
                           {({ insert, remove, push }) => (
                             <div>
                               {values.dimensions.length > 0 &&
                                 values.dimensions.map((dimension, index) => (
-                                  <div className="horiz-div" key={index}>
-                                    <div className="vert-div predmety__form__div">
+                                  
+                                  <div className="horiz-div predmety__form__div" key={index}>
+                                    <div className="horiz-div predmety__form__div-small">
+                                    <div className="vert-div predmety__form__div-small__div">
                                       <label
                                         htmlFor={`dimensions.${index}.dimension`}
                                        className="predmety__form__div__label"
@@ -279,18 +284,18 @@ export const DepositForm = () => {
                                       </label>
                                       <VocabularySelectField
                                         type={`Dimensions`}
-                                        fieldPath={`dimensions.${index}.dimension`}
+                                        fieldPath={`dimensions.${index}.dimension.id`}
                                       />
                                     </div>
 
-                                    <div className="vert-div predmety__form__div">
-                                      <label
+                                    <div className="vert-div predmety__form__div-small__div">
+                                      <label className="predmety__form__div__label"
                                         htmlFor={`dimensions.${index}.value`}
                                       >
                                         Value
                                       </label>
                                       <Field
-                                        className="predmety__form__div__input"
+                                        className="predmety__form__div__input predmety__form__div__input-small"
                                         name={`dimensions.${index}.value`}
                                         placeholder="Value"
                                         type="number"
@@ -302,7 +307,7 @@ export const DepositForm = () => {
                                       />
                                     </div>
 
-                                    <div className="vert-div predmety__form__div predmety__form__div-unit">
+                                    <div className="vert-div predmety__form__div-small__div predmety__form__div-unit">
                                       <label
                                         htmlFor="unit"
                                        className="predmety__form__div__label"
@@ -314,7 +319,7 @@ export const DepositForm = () => {
                                         name={`dimensions.${index}.unit`}
                                         id="dimensions"
                                         form="dimensions"
-                                        className="predmety__form__div__input"
+                                        className="predmety__form__div__input predmety__form__div__input-small"
                                       >
                                         <option value="cm">cm</option>
                                         <option value="mm">mm</option>
@@ -323,80 +328,81 @@ export const DepositForm = () => {
                                         <option value="mg">mg</option>
                                         <option value="gram">gram</option>
                                       </Field>
-                                    </div>
+                                    
                                     <ErrorMessage
                                       name={`dimensions.${index}.unit`}
                                       component="div"
                                       className="field-error"
                                     />
-
+                                    </div>
+                                    </div>
                                     <div className="vert-div">
                                       <button
                                         type="button"
-                                        className="secondary"
+                                        className="predmety__form__div__button-small predmety__form__div__button-small-delete"
                                         onClick={() => remove(index)}
                                       >
-                                        X
+                                        x
                                       </button>
                                     </div>
                                   </div>
                                 ))}
                               <button
                                 type="button"
-                                className="secondary"
+                                className="predmety__form__div__button-small"
                                 onClick={() =>
-                                  push({ dimension: "", value: "", unit: "" })
+                                  push({ dimension: {id:'', title:{}}, value: "", unit: "" })
                                 }
                               >
-                                Add Dimension
+                                Dodat
                               </button>
                             </div>
                           )}
                         </FieldArray>
-                      </div>
+                      
                     </div>
 
                     <div>
                       <FieldArray name="stylePeriod">
                        
-                              <div className="horiz-div">
+                              <div className="horiz-div predmety__form__div-small">
                                 <div className="vert-div predmety__form__div">
                                   <label
-                                    htmlFor={`stylePeriod[0].period`}
+                                    htmlFor={`stylePeriod.period`}
                                    className="predmety__form__div__label"
                                   >
-                                    period
+                                    Perioda
                                   </label>
                                   <VocabularySelectField
                                     type={`StylePeriods`}
-                                    fieldPath={`stylePeriod[0].period`}
+                                    fieldPath={`stylePeriod.period.id`}
                                   />
                                 </div>
 
                                 <div className="vert-div predmety__form__div">
-                                  <label htmlFor={`stylePeriod.startYear`}>
-                                    StartYear
+                                  <label className="predmety__form__div__label" htmlFor={`stylePeriod.startYear`}>
+                                    Počáteční rok
                                   </label>
                                   <Field
-                                    className="predmety__form__div__input"
-                                    name={`stylePeriod[0].startYear`}
+                                    className="predmety__form__div__input predmety__form__div__input-small"
+                                    name={`stylePeriod.startYear`}
                                     placeholder="StartYear"
                                     type="year"
                                   />
                                   <ErrorMessage
-                                    name={`stylePeriod[0].startYear`}
+                                    name={`stylePeriod.startYear`}
                                     component="div"
                                     className="field-error"
                                   />
                                 </div>
 
                                 <div className="vert-div predmety__form__div">
-                                  <label htmlFor={`stylePeriod[0].endYear`}>
-                                    End Year
+                                  <label htmlFor={`stylePeriod.endYear`}>
+                                    Končicí rok
                                   </label>
                                   <Field
-                                    className="predmety__form__div__input"
-                                    name={`stylePeriod.[0].endYear`}
+                                    className="predmety__form__div__input predmety__form__div__input-small"
+                                    name={`stylePeriod.endYear`}
                                     placeholder="endYear"
                                     type="year"
                                   />
@@ -411,10 +417,10 @@ export const DepositForm = () => {
                       </FieldArray>
                     </div>
 
-                    <div className="vert-div predmety__form__div">
+                    <div className="vert-div predmety__form__div predmety__form__div">
                       <label
                         htmlFor="archeologic"
-                        className="predmety__form__div__label"
+                        className="horiz-div predmety__form__div__label predmety__form__div__checkbox"
                       >
                         <Field
                           type="checkbox"
@@ -422,43 +428,45 @@ export const DepositForm = () => {
                           name="archeologic"
                           aria-label="Archeologicky nalez"
                         />
-                        Archeologicky nalez
+                        Archeologicky nález
                       </label>
                     </div>
 
                     <div>
                       <FieldArray name="creationPeriod">
                       
-                                <div className="horiz-div" >
+                                <div className="horiz-div predmety__form__div-small" >
                                   <div className="vert-div predmety__form__div">
-                                    <label htmlFor={`creationPeriod[0].since`}>
+                                    <label className="predmety__form__div__label"
+                                    htmlFor={`creationPeriod.since`}>
                                       Od
                                     </label>
                                     <Field
                                       className="predmety__form__div__input"
-                                      name={`creationPeriod[0].since`}
+                                      name={`creationPeriod.since`}
                                       placeholder="Since"
                                       type="date"
                                     />
                                     <ErrorMessage
-                                      name={`creationPeriod[0].since`}
+                                      name={`creationPeriod.since`}
                                       component="div"
                                       className="field-error"
                                     />
                                   </div>
 
                                   <div className="vert-div predmety__form__div">
-                                    <label htmlFor={`creationPeriod[0].until`}>
-                                      Until
+                                    <label className="predmety__form__div__label"
+                                    htmlFor={`creationPeriod.until`}>
+                                      Do
                                     </label>
                                     <Field
                                       className="predmety__form__div__input"
-                                      name={`creationPeriod[0].until`}
+                                      name={`creationPeriod.until`}
                                       placeholder="Until"
                                       type="date"
                                     />
                                     <ErrorMessage
-                                      name={`creationPeriod[0].until`}
+                                      name={`creationPeriod.until`}
                                       component="div"
                                       className="field-error"
                                     />
@@ -474,11 +482,11 @@ export const DepositForm = () => {
                         htmlFor="restorationRequestor"
                        className="predmety__form__div__label"
                       >
-                        Zadatel restaurace:
+                        Žadatel restaurace:
                       </label>
                       <VocabularySelectField
                         type={`Institutions`}
-                        fieldPath="restorationRequestor"
+                        fieldPath="restorationRequestor.id"
                       />
                     </div>
                   </div>
@@ -497,7 +505,7 @@ export const DepositForm = () => {
               <div className="vert-div predmety__form-main">
                 <div className="vert-div predmety__form__div">
                   <label htmlFor="subjectName" className="predmety__form__div__label">
-                    Nazev predmetu
+                    Název předmětu
                   </label>
                   <Field
                     type="text"
@@ -575,7 +583,7 @@ export const DepositForm = () => {
                className=" form main-page__btn__addPredmety"
                 aria-label="tlacitko vytvoreni predmetu"
               >
-                VYTVORIT PREDMET
+                VÝTVOŘIT PŘEDMĚT
               </button>
             </Form>
           </>

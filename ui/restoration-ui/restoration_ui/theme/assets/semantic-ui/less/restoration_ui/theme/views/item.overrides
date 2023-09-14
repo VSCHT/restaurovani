@@ -1,0 +1,9 @@
+.item.predmety__card{
+    margin-top: 30px !important;
+    background-color: #ffffff !important;
+    display: flex !important;
+    position: relative !important;
+    width: 100% !important;
+    flex-direction: row !important;
+    padding: 25px !important;
+  }

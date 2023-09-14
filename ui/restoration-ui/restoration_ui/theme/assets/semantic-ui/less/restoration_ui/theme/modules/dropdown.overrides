@@ -1,0 +1,42 @@
+
+
+body .ui.selection.dropdown  {
+    border-radius: @selectionBorderRadius;
+    border: @selectionBorder;
+    width: 100%
+}
+
+.ui.selection.dropdown.active {
+    border-radius: @selectionBorderRadius;
+    border: @selectionBorder;
+
+}
+
+.ui.selection.active.dropdown:hover {
+    border: 1px solid #111111
+}
+
+body .ui.selection.dropdown input{
+    padding: 0px 15px;
+}
+.ui.multiple.search.dropdown > input.search{
+    padding: 0px 15px;
+}
+
+.ui.selection.active.dropdown .menu{
+    border: @selectionBorder;
+
+}
+.ui.selection.active.dropdown:hover .menu {
+    border: 1px solid #111111
+}
+.ui.selection.active.dropdown .menu.active{
+    border: @selectionBorder;
+
+}
+
+.ui.selection.active.dropdown .menu:hover{
+    
+    border: 1px solid #111111
+
+}

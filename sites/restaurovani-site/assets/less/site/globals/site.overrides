@@ -330,13 +330,13 @@ h4 {
     top: 180px;
     left: 15vw;
   }
-  .predmety__card {
-    margin-top: 30px;
-    background-color: white;
-    height: 200px;
-    padding: 25px;
+  .predmety__card-content {
+    background-color: #ffffff;
+    
+    
     display: flex;
     position: relative;
+    width: 100%
   }
   .predmety__card__img-container {
     display: flex;
@@ -501,7 +501,7 @@ h4 {
   .predmety__form__div__input {
     font-family: Noto_Sans_regular;
     width: 100% ;
-    height: 35px;
+    height: 37px;
     border: solid #555 1px;
     border-radius: 40px;
     padding: 0px 15px;
@@ -510,9 +510,54 @@ h4 {
     width: calc(30vw - 30px);
     gap: 10px;
   }
-  .predmety__form__div-unit{
-    width: calc(10vw - 30px);
+   .horiz-div.predmety__form__div {
+    width: calc(30vw - 30px);
+    gap: 10px;
+
+    align-items: flex-end;
   }
+  .predmety__form__div__button-small{
+     height: 35px;
+    border: solid #555 1px;
+    border-radius: 60px;
+    background-color: white;
+    font-family: Noto_Sans_regular;
+    
+    margin-top: 15px;
+  }
+
+  .predmety__form__div__button-small-delete{
+     height: 35px;
+    border: none;
+    background-color: white;
+    font-family: Noto_Sans_regular;
+    
+    margin-top: 15px;
+  }
+  
+   .predmety__form__div__input-small {
+    font-family: Noto_Sans_regular;
+    height: 37px;
+    border: solid #555 1px;
+    border-radius: 40px;
+    padding: 0px 15px;
+  }
+  .predmety__form__div-small{
+    gap: 5px;
+    width: 100%;
+
+    align-items: flex-end;
+  }
+ .predmety__form__div-small__div{
+    width: 40%;
+    gap: 10px;
+
+  }
+  .predmety__form__div__checkbox{
+    gap: 10px;
+    align-items: center
+  }
+  
   .predmety__form {
     align-items: center;
     gap: 30px;

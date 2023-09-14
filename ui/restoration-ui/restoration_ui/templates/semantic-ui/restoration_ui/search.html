@@ -1,15 +1,290 @@
-{%- extends config.BASE_TEMPLATE %}
-{%- set title = _("Search results") ~ " | " ~ _("restoration-ui") %}
+{%- extends config.BASE_TEMPLATE %} {%- set title = _("Search results") ~ " | "
+~ _("restoration-ui") %} 
 
-{%- block javascript %}
-    {{ super() }}
-    {{ webpack['restoration_ui_components.js']}}
-    {{ webpack['restoration_ui_components.css']}}
-    {{ webpack['restoration_ui_search.js'] }}
-{%- endblock %}
+{%- block javascript %} 
+{{ super() }} {{
+webpack['restoration_ui_components.js']}} {{
+webpack['restoration_ui_components.css']}} {{
+webpack['restoration_ui_search.js'] }} {%- endblock %} 
 
-{%- block page_body %}
-<div class="ui main container">
-  <div data-invenio-search-config='{{ search_app_config(app_id="Restoration_ui.Search") | tojson }}'></div>
+
+
+{%- block page_body_content %}
+
+{%- block bg %}
+<div class="predmety__body-bg">
+<div class="pages__predmety">
+<div class="horiz-div">
+  <div class="horiz-div predmety__title-search-fixed">
+    <div class="horiz-div predmety__title-search">
+      <h2 class="predmety__title">Restaurovane predmety</h2>
+      <div class="horiz-div predmety__title-search__searchbar">
+        <input
+          type="text"
+          class="predmety__input-search"
+          placeholder="Hledat..."
+          aria-label="Search for items"
+        />
+        <!-- <div 
+    data-invenio-search-config='{{ search_app_config(app_id="Restoration_ui.Search") | tojson }}'
+  ></div> -->
+        <button
+          class="btn predmety__input-search__searchbar-burger"
+          aria-label="Toggle Filter Menu"
+        >
+          <img
+            rel="icon"
+            src="/static/images/menu-icon-black.png"
+            alt="burger filter button"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+
+<div class="vert-div predmety_main-container">
+  {%- block page_body %}
+  
+<div class="vert-div predmety__cards">
+  <div 
+    data-invenio-search-config='{{ search_app_config(app_id="Restoration_ui.Search") | tojson }}'
+  ></div>
 </div>
 {%- endblock page_body %}
+</div>
+
+
+<div class="vert-div predmety__aside">
+  <!-- logo -->
+  <div class="vsht-logo div__vsht-logo predmety__div__vsht-logo">
+    <img
+      class="vsht-logo image__vsht-logo predmety__image__vsht-logo"
+      src="/static/images/logo_VSHT.png"
+      alt="vsht logo"
+    />
+    <p class="vsht-logo text__vsht-logo predmety__text__vsht-logo">
+      VYSOKÁ ŠKOLA<br />
+      CHEMICKO-TECHNOLOGICKÁ<br />
+      V PRAZE
+    </p>
+  </div>
+
+  <!-- filtr comp -->
+  <div
+    class="vert-div predmety__aside__filter"
+    aria-label="Filter Options"
+  >
+    <div>
+      <button class="predmety__aside__btn" aria-label="Tlacitko dodat novy predmet">
+        Novy predmet<img
+          src="/static/images/plus-square.png"
+          alt="add new icon"
+        />
+      </button>
+    </div>
+    <div>
+      <div>
+        <button
+          class="predmety__aside__dropdown-btn"
+          aria-label="Filter podle obdobi vzniku"
+        >
+          Obdobi vzniku
+          <img
+            src="/static/images/chevron-down.png"
+            class="predmety__aside__dropdown-icon"
+            alt="dropdown icon"
+          />
+        </button>
+        <div class="predmety__aside__dropdown-container">
+          <label
+            ><input
+              type="checkbox"
+              value="filtrA"
+              name="Filtr A"
+              aria-label="Filter A"
+            />Filtr A</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              value="filtrB"
+              name="Filtr B"
+              aria-label="Filter B"
+            />Filtr B</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              value="filtrC"
+              name="Filtr C"
+              aria-label="Filter C"
+            />Filtr C</label
+          >
+        </div>
+      </div>
+      <div>
+        <button
+          class="predmety__aside__dropdown-btn"
+          aria-label="Filter podle typu predmetu"
+        >
+          Typ predmetu
+          <img
+            src="/static/images/chevron-down.png"
+            class="predmety__aside__dropdown-icon"
+            alt="dropdown icon"
+          />
+        </button>
+        <div class="predmety__aside__dropdown-container">
+          <label
+            ><input
+              type="checkbox"
+              value="filtrA"
+              name="Filtr A"
+              aria-label="Filter A"
+            />Filtr A</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              value="filtrB"
+              name="Filtr B"
+              aria-label="Filter B"
+            />Filtr B</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              value="filtrC"
+              name="Filtr C"
+              aria-label="Filter C"
+            />Filtr C</label
+          >
+        </div>
+      </div>
+      <div>
+        <button
+          class="predmety__aside__dropdown-btn"
+          aria-label="Filter podle archeologickeho nalezu"
+        >
+          Archeologicky nalez
+          <img
+            src="/static/images/chevron-down.png"
+            class="predmety__aside__dropdown-icon"
+            alt="dropdown icon"
+          />
+        </button>
+        <div class="predmety__aside__dropdown-container">
+          <label
+            ><input
+              type="checkbox"
+              value="filtrA"
+              name="Filtr A"
+              aria-label="Filter A"
+            />Filtr A</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              value="filtrB"
+              name="Filtr B"
+              aria-label="Filter B"
+            />Filtr B</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              value="filtrC"
+              name="Filtr C"
+              aria-label="Filter C"
+            />Filtr C</label
+          >
+        </div>
+      </div>
+      <div>
+        <button
+          class="predmety__aside__dropdown-btn"
+          aria-label="Filter podle kategorie"
+        >
+          Kategorie
+          <img
+            src="/static/images/chevron-down.png"
+            class="predmety__aside__dropdown-icon"
+            alt="dropdown icon"
+          />
+        </button>
+        <div class="predmety__aside__dropdown-container">
+          <label
+            ><input
+              type="checkbox"
+              value="filtrA"
+              name="Filtr A"
+              aria-label="Filter A"
+            />Filtr A</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              value="filtrB"
+              name="Filtr B"
+              aria-label="Filter B"
+            />Filtr B</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              value="filtrC"
+              name="Filtr C"
+              aria-label="Filter C"
+            />Filtr C</label
+          >
+        </div>
+      </div>
+      <div>
+        <button
+          class="btn predmety__aside__dropdown-btn"
+          aria-label="Filter podle autoru zanamu"
+        >
+          Autor zaznamu
+          <img
+            src="/static/images/chevron-down.png"
+            class="predmety__aside__dropdown-icon"
+            alt="dropdown icon"
+          />
+        </button>
+
+        <div class="predmety__aside__dropdown-container">
+          <label
+            ><input
+              type="checkbox"
+              value="filtrA"
+              name="Filtr A"
+              aria-label="Filter A"
+            />Filtr A</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              value="filtrB"
+              name="Filtr B"
+              aria-label="Filter B"
+            />Filtr B</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              value="filtrC"
+              name="Filtr C"
+              aria-label="Filter C"
+            />Filtr C</label
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+</div>
+{%- endblock bg %}
+{%- endblock page_body_content %}

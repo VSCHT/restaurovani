@@ -17,21 +17,19 @@ const ItemHeader = ({ title, searchUrl, selfLink }) => {
   );
   return (
     <Item.Header as="h2">
-      <a href={viewLink}>{title}</a>
+      {/* <a href={viewLink}>{title}</a> */}
     </Item.Header>
   );
 };
 
-const ItemSubheader = ({
-}) => {
+const ItemSubheader = ({}) => {
   // just an example
   return (
     <>
       <Item.Meta>
         <Grid columns={1}>
           <Grid.Column>
-            <Grid.Row className="ui double separated creatibutors">
-            </Grid.Row>
+            <Grid.Row className="ui double separated creatibutors"></Grid.Row>
           </Grid.Column>
         </Grid>
       </Item.Meta>
@@ -47,7 +45,18 @@ export const ResultsListItemComponent = ({
 }) => {
   const searchAppConfig = useContext(SearchConfigurationContext);
 
-  const title = _get(result, "metadata.title", '<no title>')
+  const title = _get(
+    result,
+    "metadata.restorationObject.title",
+    "<no title>"
+  )[0].value;
+
+  const restorer = _get(
+    result,
+    "metadata.restorationWork.restorer",
+    "<no data>"
+  );
+  const created = _get(result, "created", "<no data>");
 
   return (
     <Overridable
@@ -55,22 +64,51 @@ export const ResultsListItemComponent = ({
       result={result}
       title={title}
     >
-      <Item key={result.id}>
-        <Item.Content>
+      <Item className="predmety__card"  key={result.id}>
+        <div className="horiz-div predmety__card-content">
+          <div class="predmety__card__img-container">
+            <img
+              src="/static/images/img_placeholder.png"
+              alt="foto predmetu"
+            />
+          </div>
+          <div class="vert-div predmety__card__info">
+            <div class="vert-div predmety__card__main-info">
+              <p
+                class="predmety__card__title"
+                
+                searchUrl={searchAppConfig.ui_endpoint}
+                selfLink={`${result.id}/edit`}
+              >{title}</p>
+              <p class="parag">{restorer}</p>
+            </div>
+            <div class="horiz-div predmety__card__extra-info">
+              <p class="parag">Vlozeno {created}</p>
+              <button
+                class="predmety__card__btn"
+                aria-label="Tlacitko tevrit detaily"
+              >
+                DETAIL
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* <Item.Content>
           <Grid>
             <Grid.Row columns={1}>
               <Grid.Column className="results-list item-main">
                 <ItemHeader
                   title={title}
                   searchUrl={searchAppConfig.ui_endpoint}
-                  selfLink={result.links.self}
+                  selfLink={`${result.id}/edit`}
                 />
                 <ItemSubheader/>
                 <Item.Description/>
               </Grid.Column>
             </Grid.Row>
           </Grid>
-        </Item.Content>
+
+        </Item.Content> */}
       </Item>
     </Overridable>
   );
@@ -89,9 +127,13 @@ ResultsListItemComponent.defaultProps = {
 
 export const ResultsListItem = (props) => {
   return (
+    
     <Overridable id={buildUID("ResultsListItem", "", props.appName)} {...props}>
+       
       <ResultsListItemComponent {...props} />
+      
     </Overridable>
+    
   );
 };
 

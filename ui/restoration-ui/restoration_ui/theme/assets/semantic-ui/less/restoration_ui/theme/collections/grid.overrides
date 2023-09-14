@@ -1,0 +1,44 @@
+
+
+.grid.horiz-div.predmety__card-content{
+background-color: #ffffff;
+display: flex;
+    position: relative;
+    width: 100%
+}
+
+
+.grid.vert-div.predmety__card__info{
+    margin-left: 35px;
+    width: 65%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.grid.predmety__card__img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.grid.predmety__card__img-container img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.grid.vert-div.predmety__card__main-info{
+    gap: 6px;
+}
+
+.grid.horiz-div.predmety__card__extra-info{
+    justify-content: space-between;
+    width: 100%;
+}
+
+.grid.predmety__card__extra-info p {
+    width: 150px;
+    color: #757670;
+}

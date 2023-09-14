@@ -68,8 +68,10 @@
   </head>
 
   <body{% if body_css_classes %} class="{{ body_css_classes|join(' ') }}"{% endif %}{% if g.ln %} lang="{{ g.ln.split('_', 1)[0]|safe }}"{% if rtl_direction %} {{ rtl_direction|safe }}{% endif %}{% endif %} itemscope itemtype="http://schema.org/WebPage" data-spy="scroll" data-target=".scrollspy-target">
-    <div class="pages__predmety">
-        <div class="main-page__menu">
+    <!-- <div class="pages__predmety">
+        <div class="main-page__menu"> -->
+
+
             {%- block topMenu %}
             <div class="main-page__menu" aria-label="Main Menu">
                 <button class="btn main-page__menu__btn">
@@ -108,12 +110,10 @@
                 </button>
               </div>
             {%- endblock topMenu %}
-        </div>
-        {%- block bg %}
-    <div class="details__bg">
-        <div class="details__container">
-          <div class="vert-div">
+        <!-- </div> -->
 
+        
+          
     {%- block body %}
 
       {%- block bypasslinks %}
@@ -133,9 +133,24 @@
 
         <main id="main">
         <div class="invenio-page-body">
+          {%- block page_body_content %}
+
+
+          {%- block bg %}
+        
+    <div class="details__bg">
+        <div class="details__container">
           {%- block page_body %}
+          <div class="vert-div">
             {% include "invenio_theme/body.html" %}
+          </div>
           {%- endblock page_body %}
+        </div>
+        </div>
+        {%- endblock bg %}
+
+
+          {%- endblock page_body_content %}
         </div>
         </main>
 
@@ -154,10 +169,7 @@
       {%- endblock %}
 
     {%- endblock body %}
-</div>
-</div>
-</div>
-{%- endblock bg %}
-</div>
+ 
+<!-- </div> -->
   </body>
 </html>
