@@ -12,7 +12,7 @@ webpack['restoration_ui_search.js'] }} {%- endblock %}
 {%- block page_body_content %}
 
 {%- block bg %}
-<div class="predmety__body-bg">
+<!-- <div class="predmety__body-bg">
 <div class="pages__predmety">
 <div class="horiz-div">
   <div class="horiz-div predmety__title-search-fixed">
@@ -25,9 +25,7 @@ webpack['restoration_ui_search.js'] }} {%- endblock %}
           placeholder="Hledat..."
           aria-label="Search for items"
         />
-        <!-- <div 
-    data-invenio-search-config='{{ search_app_config(app_id="Restoration_ui.Search") | tojson }}'
-  ></div> -->
+       
         <button
           class="btn predmety__input-search__searchbar-burger"
           aria-label="Toggle Filter Menu"
@@ -42,20 +40,23 @@ webpack['restoration_ui_search.js'] }} {%- endblock %}
     </div>
   </div>
 
-<div class="vert-div predmety_main-container">
+<div class="vert-div predmety_main-container"> -->
   {%- block page_body %}
-  
-<div class="vert-div predmety__cards">
+   
+
+<!-- <div class="vert-div predmety__cards"> -->
   <div 
     data-invenio-search-config='{{ search_app_config(app_id="Restoration_ui.Search") | tojson }}'
-  ></div>
+  >
 </div>
+  
+<!-- </div> -->
 {%- endblock page_body %}
-</div>
+<!-- </div>
 
 
 <div class="vert-div predmety__aside">
-  <!-- logo -->
+ 
   <div class="vsht-logo div__vsht-logo predmety__div__vsht-logo">
     <img
       class="vsht-logo image__vsht-logo predmety__image__vsht-logo"
@@ -69,7 +70,7 @@ webpack['restoration_ui_search.js'] }} {%- endblock %}
     </p>
   </div>
 
-  <!-- filtr comp -->
+  
   <div
     class="vert-div predmety__aside__filter"
     aria-label="Filter Options"
@@ -285,6 +286,6 @@ webpack['restoration_ui_search.js'] }} {%- endblock %}
 
 </div>
 </div>
-</div>
+</div> -->
 {%- endblock bg %}
 {%- endblock page_body_content %}

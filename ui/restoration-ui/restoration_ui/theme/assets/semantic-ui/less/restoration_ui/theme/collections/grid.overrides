@@ -1,44 +1,333 @@
-
-
 .grid.horiz-div.predmety__card-content{
-background-color: #ffffff;
+background-color:                          #ffffff ;
+display: flex                              ;
+position: relative                         ;
+width: 100%;
 display: flex;
-    position: relative;
-    width: 100%
+flex-direction: row;
+align-items: center;
+}
+.grid.predmety__card{
+margin-top: 30px !important    ;
+background-color:              #ffffff !important;
+display: flex !important       ;
+position: relative !important  ;
+width: 100% !important         ;
+flex-direction: row !important ;
+
+padding: 25px !important ;
+
+}
+.ui.grid.vert-div.predmety__form{
+display: flex                              ;
+flex-direction: column                     ;
+align-items: center                        ;
+gap: 30px                                  ;
+}
+ui.grid.horiz-div{
+display: flex                              ;
+flex-direction: row                        ;
+align-items: center                        ;
+}
+ui.grid.vert-div{
+display: flex                              ;
+flex-direction: column                     ;
+}
+ui.grid.predmety__title-search__searchbar{
+justify-content: space-between             ;
+width: 100%                                ;
 }
 
+ui.grid.vert-div.predmety_main-container{
+width: 50vw !important                    ;
+position: relative !important             ;
+top: 220px !important                     ;
+left: 5vw !important                     ;
+}
+
+.ui.grid.predmety__cards{
+width: 90vw !important                                      ;
+margin: 0 auto !important                                   ;
+gap: 70px !important                                        ;
+}
+.column.vert-div.predmety__aside{
+display: flex                       !important                        ;
+direction: column                !important                            ;
+position: fixed                  !important                            ;
+top: 100px                      !important                             ;
+right: 10vw                     !important                             ;
+gap: 60px                       !important                             ;
+height: auto                    !important                             ;
+width: 20vw !important                                      ;
+align-content: stretch           !important                            ;
+}
+
+.row.vsht-logo.div__vsht-logo.predmety__div__vsht-logo{
+display: flex             !important                                    ;
+flex-direction: row      !important                                     ;
+align-items: center      !important                                     ;
+}
+.ui.grid.predmety__aside__filter{
+gap: 20px                                                   ;
+}
+ui.grid.predmety__title-search-fixed{
+position: fixed                                             ;
+left: 15vw                                                  ;
+top: 47px                                                   ;
+background-color:                                           #eaeae2;
+height: 150px                                               ;
+width: 50vw                                                 ;
+align-items: flex-end !important                            ;
+z-index: 1                                                  ;
+padding-bottom: 15px                                        ;
+}
 
 .grid.vert-div.predmety__card__info{
-    margin-left: 35px;
-    width: 65%;
-    height: 100%;
-    justify-content: space-between;
+margin-left: 35px                    ;
+width: 65%                           ;
+height: 100%                         ;
+justify-content: space-between       ;
 }
 
 .grid.predmety__card__img-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+display: flex                         ;
+align-items: center                   ;
+justify-content: center               ;
+overflow: hidden                      ;
 }
 
 .grid.predmety__card__img-container img {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
+max-width: 100%                           ;
+max-height: 100%                          ;
+width: auto                               ;
+height: auto                              ;
 }
 
 .grid.vert-div.predmety__card__main-info{
-    gap: 6px;
+gap: 6px    !important                              ;
 }
 
 .grid.horiz-div.predmety__card__extra-info{
-    justify-content: space-between;
-    width: 100%;
+justify-content: space-between              ;
+width: 100%                                 ;
 }
 
 .grid.predmety__card__extra-info p {
-    width: 150px;
-    color: #757670;
+width: 150px                         ;
+color:                               #757670;
+}
+
+.ui.grid.vert-div.predmety__aside{
+
+}
+
+grid.predmety__aside__dropdown-btn{
+text-decoration: none               ;
+font-size: 15px                     ;
+font-family: Noto_Sans_regular      ;
+color:                              #222;
+display: flex                       ;
+justify-content: space-between      ;
+border: none                        ;
+background: none                    ;
+width: 100%                         ;
+text-align: left                    ;
+cursor: pointer                     ;
+outline: none                       ;
+height: 40px                        ;
+align-items: center                 ;
+}
+
+.grid.predmety__aside__dropdown-container{
+;
+background-color:                          #eaeae2;
+flex-direction: column                     ;
+color:                                     #555555;
+margin-left: 10px                          ;
+margin-top: 10px                           ;
+margin-bottom: 10px                        ;
+gap: 5px
+}
+
+.grid.predmety__aside__btn{
+border: none                       ;
+background-color:                  #9b9b93;
+color: white                       ;
+height: 40px                       ;
+display: flex                      ;
+width: 100%                        ;
+flex-direction: row                ;
+align-items: center                ;
+justify-content: space-between     ;
+border: none                       ;
+font-size: 16px                    ;
+cursor: pointer                    ;
+font-family: Noto_Sans_semibold    ;
+margin-top: 10px                   ;
+}
+.grid.predmety__aside__btn:hover {
+background-color:                  #aaaaa2;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px){
+.grid.horiz-div.predmety__card-content{
+background-color:                                                  #ffffff ;
+display: flex                                                      ;
+position: relative                                                 ;
+width: 100%;
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+.ui.grid.vert-div.predmety__form{
+display: flex                                                      ;
+flex-direction: column                                             ;
+align-items: center                                                ;
+gap: 30px                                                          ;
+}
+ui.grid.horiz-div{
+display: flex                                                      ;
+flex-direction: row                                                ;
+align-items: center                                                ;
+}
+ui.grid.vert-div{
+display: flex                                                      ;
+flex-direction: column                                             ;
+}
+ui.grid.predmety__title-search__searchbar{
+justify-content: space-between                                     ;
+width: 100%                                                        ;
+}
+
+ui.grid.vert-div.predmety_main-container{
+width: 50vw !important                    ;
+position: relative !important             ;
+top: 220px !important                     ;
+
+}
+.ui.grid.predmety__cards{
+width: 90vw !important                                      ;
+margin: 0 auto !important                                   ;
+gap: 70px !important                                        ;
+}
+ui.grid.vert-div.predmety__aside{
+display: flex                                               ;
+direction: column                                           ;
+position: fixed                                             ;
+top: 100px                                                  ;
+right: 10vw                                                 ;
+gap: 60px                                                   ;
+height: auto                                                ;
+width: 20vw !important                                      ;
+align-content: stretch                                      ;
+}
+
+
+
+.ui.grid.vsht-logo.div__vsht-logo.predmety__div__vsht-logo{
+display: flex            !important                                     ;
+flex-direction: row       !important                                    ;
+align-items: center       !important                                    ;
+}
+.ui.grid.predmety__aside__filter{
+gap: 20px                                                   ;
+}
+ui.grid.predmety__title-search-fixed{
+position: fixed                                             ;
+left: 15vw                                                  ;
+top: 47px                                                   ;
+background-color:                                           #eaeae2;
+height: 150px                                               ;
+width: 50vw                                                 ;
+align-items: flex-end !important                            ;
+z-index: 1                                                  ;
+padding-bottom: 15px                                        ;
+}
+
+.grid.vert-div.predmety__card__info{
+margin-left: 35px                    ;
+width: 65%                           ;
+height: 100%                         ;
+justify-content: space-between       ;
+}
+
+.grid.predmety__card__img-container {
+display: flex                         ;
+align-items: center                   ;
+justify-content: center               ;
+overflow: hidden                      ;
+}
+
+.grid.predmety__card__img-container img {
+max-width: 100%                           ;
+max-height: 100%                          ;
+width: auto                               ;
+height: auto                              ;
+}
+
+.grid.vert-div.predmety__card__main-info{
+gap: 6px        !important                           ;
+}
+
+.grid.horiz-div.predmety__card__extra-info{
+justify-content: space-between              ;
+width: 100%                                 ;
+}
+
+.grid.predmety__card__extra-info p {
+width: 150px                         ;
+color:                               #757670;
+}
+
+.ui.grid.vert-div.predmety__aside{
+
+}
+
+grid.predmety__aside__dropdown-btn{
+text-decoration: none               ;
+font-size: 15px                     ;
+font-family: Noto_Sans_regular      ;
+color:                              #222;
+display: flex                       ;
+justify-content: space-between      ;
+border: none                        ;
+background: none                    ;
+width: 100%                         ;
+text-align: left                    ;
+cursor: pointer                     ;
+outline: none                       ;
+height: 40px                        ;
+align-items: center                 ;
+}
+
+.grid.predmety__aside__dropdown-container{
+;
+background-color:                          #eaeae2;
+flex-direction: column                     ;
+color:                                     #555555;
+margin-left: 10px                          ;
+margin-top: 10px                           ;
+margin-bottom: 10px                        ;
+gap: 5px
+}
+
+.grid.predmety__aside__btn{
+border: none                       ;
+background-color:                  #9b9b93;
+color: white                       ;
+height: 40px                       ;
+display: flex                      ;
+width: 100%                        ;
+flex-direction: row                ;
+align-items: center                ;
+justify-content: space-between     ;
+border: none                       ;
+font-size: 16px                    ;
+cursor: pointer                    ;
+font-family: Noto_Sans_semibold    ;
+margin-top: 10px                   ;
+}
+.grid.predmety__aside__btn:hover {
+background-color:                  #aaaaa2;
+}
 }

@@ -24,6 +24,7 @@
   flex-direction: column;
 }
 
+
 h3,
 h2,
 h4 {
@@ -245,7 +246,7 @@ h4 {
   .main-page__input-search {
     border-radius: 32px;
     height: 30px;
-    width: 18vw ;
+    width: calc(18vw - 30px);
     border: solid 1px #9b9b93;
     padding: 0px 15px;
     font-family: Noto_Sans_regular;
@@ -327,7 +328,7 @@ h4 {
   .predmety_main-container {
     width: 50vw;
     position: relative;
-    top: 180px;
+    top: 200px;
     left: 15vw;
   }
   .predmety__card-content {
@@ -564,6 +565,7 @@ h4 {
   }
   .predmety__form__div__input-radio {
     justify-content: space-between;
+    width: 90%
   }
   .predmety__form__h {
     font-family: Noto_Sans_regular;
@@ -997,7 +999,7 @@ h4 {
   .main-page__input-search {
     border-radius: 32px;
     height: 30px;
-    width: 18vw;
+    width: calc(18vw - 30px);
     border: solid 1px #9b9b93;
     padding: 0px 15px;
     font-family: Noto_Sans_regular;

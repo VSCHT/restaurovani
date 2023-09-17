@@ -1,4 +1,10 @@
 {%- extends "invenio_theme/frontpage.html" %} 
+{%- block javascript %}
+      
+
+{% include config.THEME_JAVASCRIPT_TEMPLATE %}
+{%- endblock javascript %}
+
 {% block bg%}
 {% block body %}
 <main>

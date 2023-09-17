@@ -1,0 +1,8 @@
+.header.predmety__title{
+    color: #1b1919;
+    font-size: 45px !important;
+    font-family: Noto_Sans_regular;
+    word-wrap: break-word;
+    margin: 0px;
+    width: 470px;
+}

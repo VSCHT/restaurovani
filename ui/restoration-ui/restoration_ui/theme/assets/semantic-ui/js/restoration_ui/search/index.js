@@ -6,17 +6,20 @@ import {
   CountElement,
   ErrorElement,
   SearchAppFacets,
-  SearchAppLayout,
+  SearchApp,
   SearchAppResultOptions,
   SearchAppSearchbarContainer,
   SearchFiltersToggleElement,
-  SearchAppSort
+  SearchAppSort, SearchBar
 } from '@js/oarepo_ui/search'
 import {
   EmptyResultsElement,
   MultipleSearchBarElement,
   ResultsGridItemWithState,
-  ResultsListItemWithState
+  ResultsListItemWithState,
+  SearchAppLayout,
+  SearchBarCustom
+  
 } from './components'
 import { parametrize, overrideStore } from 'react-overridable'
 
@@ -25,6 +28,7 @@ const appName = 'Restoration_ui.Search'
 const SearchAppSearchbarContainerWithConfig = parametrize(SearchAppSearchbarContainer, { appName: appName })
 const ResultsListItemWithConfig = parametrize(ResultsListItemWithState, { appName: appName })
 const ResultsGridItemWithConfig = parametrize(ResultsGridItemWithState, { appName: appName })
+// const SearchAppLayoutWithConfig = parametrize(SearchAppLayoutWithState, { appName: appName })
 
 export const defaultComponents = {
   [`${appName}.ActiveFilters.element`]: ActiveFiltersElement,
@@ -42,6 +46,7 @@ export const defaultComponents = {
   [`${appName}.SearchApp.resultOptions`]: SearchAppResultOptions,
   [`${appName}.SearchFilters.Toggle.element`]: SearchFiltersToggleElement,
   [`${appName}.SearchBar.element`]: MultipleSearchBarElement,
+  
 }
 
 const overriddenComponents = overrideStore.getAll()

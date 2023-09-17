@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
 import _isEmpty from "lodash/isEmpty";
 import PropTypes from "prop-types";
-import { BaseForm, TextField, FieldLabel } from "react-invenio-forms";
-import { Container, Header, Message } from "semantic-ui-react";
+import {
+  AccordionField,
+  BaseForm,
+  TextField,
+  FieldLabel,
+  SelectField,
+  RadioField,
+  BooleanField, GroupField
+} from "react-invenio-forms";
+
+import { Container, Header, Message, Radio, Button, Grid} from "semantic-ui-react";
 import { DepositValidationSchema } from "./DepositValidationSchema";
 import { useFormConfig, useOnSubmit, submitContextType } from "@js/oarepo_ui";
 import {
@@ -14,12 +23,11 @@ import {
   ErrorMessage,
 } from "formik";
 import { VocabularySelectField } from "@js/oarepo_vocabularies";
+import _get from "lodash/get";
+import Overridable from "react-overridable";
+import { i18next } from "@translations/restoration_ui/i18next";
 
 
-const inputStyles={
-  'borderRadius': '1px solid #555',
-   'border': '40px'
-}
 const CurrentRecord = (props) => {
   const { record } = props;
   return (
@@ -29,6 +37,8 @@ const CurrentRecord = (props) => {
     </Message>
   );
 };
+
+
 
 CurrentRecord.propTypes = {
   record: PropTypes.object,
@@ -48,14 +58,30 @@ RecordPreviewer.defaultProps = {
   record: undefined,
 };
 
+const units = [
+  { value: "kg", text: "kg" },
+  { value: "mg", text: "mg" },
+  { value: "cm", text: "cm" },
+  { value: "metr", text: "metr" },
+  { value: "mm", text: "mm" },
+];
+
+const categories = [
+  { value: "sklo", text: "sklo" },
+  { value: "keramika", text: "keramika" },
+  { value: "kovy", text: "kovy" },
+];
+
 export const DepositForm = () => {
   const { record, formConfig } = useFormConfig();
   const context = formConfig.createUrl
     ? submitContextType.create
     : submitContextType.update;
 
-  console.log(formConfig)
-  console.log(record)
+  const metadata = _get(formConfig, "metadata", "no metadata");
+  console.log(formConfig);
+  console.log(record);
+  console.log(metadata);
 
   const { onSubmit } = useOnSubmit({
     apiUrl: formConfig.createUrl || formConfig.updateUrl,
@@ -69,526 +95,1077 @@ export const DepositForm = () => {
       console.error("Sumbission failed", error);
     },
   });
-
+  const [dimensions, setDimensions]= useState([{dimension: { id:'' }, value:'', unit:''}])
+  const newDimension={dimension: { id:'' }, value:'', unit:''}
+  const handleAddDimension=()=>{
+      setDimensions([...dimensions, newDimension])
+      console.log(dimensions)
+  }
+  const [selectedRadio, setSelectedRadio]= useState('');
+  const handleRadio=(value)=>{
+    setSelectedRadio(value)
+  }
   return (
     <Container>
-      <Formik
-        initialValues={{
-          category: "",
-          keyword: [],
-          description: "",
-          restorationMethods: [],
-          fabricationTechnology: "",
-          materialType: "",
-          secondaryMaterialTypes: [],
-          color: "",
-          dimensions: [{ dimension: {id:'', title: {}}, value: "", unit: "" }],
-          archeologic: false,
-          creationPeriod: { since: "", until: "" },
-          restorationRequestor: {id:'', title: {}},
-          stylePeriod: { period: {id:'', title: {}}, startYear: "", endYear: "" },
-          itemType: "",
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            console.log(JSON.stringify(values))
-            // alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+      <BaseForm
+        onSubmit={() => {console.log(record)}}
+        formik={{
+          initialValues: record,
+          validateOnChange: false,
+          validateOnBlur: false,
+          enableReinitialize: true,
         }}
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-        }) => (
-          <>
-            <Form className="vert-div predmety__form" onSubmit={handleSubmit}>
-              <h3 className="predmety__form__h">Predmet</h3>
-
-              <div className="vert-div predmety__form-main">
+        <Overridable id="NrDocs.Deposit.AccordionFieldFiles.container">
+          <AccordionField
+            includesPaths={["files.enabled"]}
+            active
+            label={i18next.t("Files")}
+          ></AccordionField>
+        </Overridable>
+        <Overridable id="NrDocs.Deposit.AccordionFieldBasicInformation.container">
+          <AccordionField
+            includesPaths={[
+              "metadata.restorationObject.materialType",
+              "metadata.restorationObject.restorationMethods",
+              "metadata.restorationObject.fabricationTechnology",
+              "metadata.restorationObject.secondaryMaterialTypes",
+              "metadata.restorationObject.itemTypes",
+              "metadata.restorationObject.color",
+              "metadata.restorationObject.dimensions",
+              "metadata.restorationObject.stylePeriod",
+              "metadata.restorationObject.restorationRequestor",
+              "metadata.restorationObject.description",
+              "metadata.restorationObject.title",
+              "metadata.restorationObject.archeologic",
+              "metadata.restorationObject.creationPeriod",
+              "metadata.restorationObject.category",
+            ]}
+            active
+            label={i18next.t("Basic information")}
+          >
+            <Grid className="vert-div predmety__form" >
+              <div>
+            <h3 className="predmety__form__h">Vytvoreni noveho predmetu</h3>
+            </div>
+            <div className="vert-div predmety__form-main">
+              <div className="vert-div predmety__form__div">
                 <div className="vert-div predmety__form__div">
-                  <div className="vert-div predmety__form__div">
-                    <label htmlFor="keyword" className="predmety__form__div__label">
-                      Klíčová slova
-                    </label>
-                    <Field
-                      type="text"
-                      id="keyword"
-                      name="keyword"
-                      className="predmety__form__div__input"
-                      aria-label="Klíčová slova"
-                    />
-                  </div>
+                  <TextField
+                    name="metadata.keyword"
+                    aria-label="Klíčová slova"
+                    fieldPath="metadata.keyword"
+                    label={
+                      <FieldLabel
+                        htmlFor="metadata.keyword"
+                        className="predmety__form__div__label"
+                        label={i18next.t("Klíčová slova")}
+                      />
+                    }
+                  />
+                </div>
 
-                  <div className="vert-div predmety__form__div">
-                    <label htmlFor="description" className="predmety__form__div__label">
-                      Popis
-                    </label>
-                    <Field
-                      type="text"
-                      id="description"
-                      name="description"
-                      className="predmety__form__div__input"
+                <div className="vert-div predmety__form__div">
+                  
+                    <TextField
+                      name="metadata.restorationObject.description"
                       aria-label="Popis"
+                      fieldPath="metadata.restorationObject.description"
+                      label={
+                        <FieldLabel
+                          htmlFor="metadata.restorationObject.description"
+                          className="predmety__form__div__label"
+                          label={i18next.t("Popis")}
+                        ></FieldLabel>
+                      }
                     />
-                  </div>
+                 
+                </div>
 
-                  <div className="vert-div predmety__form__div">
-                    <label htmlFor="category" className="predmety__form__div__label">
-                      Kategorie materialu
-                    </label>
-                    <div className="horiz-div predmety__form__div__input-radio">
-                      <label className="predmety__form__div__label horiz-div">
-                        <Field
-                          className="predmety__form__div__radio"
-                          type="radio"
-                          id="kovy"
-                          name="category"
-                          value="kovy"
-                          aria-label="Kovy"
-                        />
-                        Kovy
-                      </label>
-                      <label className="predmety__form__div__label horiz-div">
-                        <Field
-                          className="predmety__form__div__radio"
-                          type="radio"
-                          id="textil"
-                          name="category"
-                          value="textil"
-                          aria-label="Textil"
-                        />
-                        Textil
-                      </label>
-                      <label className="predmety__form__div__label horiz-div">
-                        <Field
-                         className="predmety__form__div__radio"
-                          type="radio"
-                          id="keramika"
-                          name="category"
-                          value="keramika"
-                          aria-label="Keramika"
-                        />
-                        Keramika
-                      </label>
-                      <label className="predmety__form__div__label horiz-div">
-                        <Field
-                         className="predmety__form__div__radio"
-                          type="radio"
-                          id="sklo"
-                          name="category"
-                          value="sklo"
-                          aria-label="Sklo"
-                        />
-                        Sklo
-                      </label>
-                    </div>
-                  </div>
-                  <div className="vert-div predmety__form__div">
-                    <div className="vert-div predmety__form__div">
-                      <label
-                        htmlFor="RestorationMethods"
-                       className="predmety__form__div__label"
-                      >
-                        Metoda restaurace:
-                      </label>
-                      <VocabularySelectField
-                        type={`RestorationMethods?h-parent=${values.category}`}
-                        fieldPath="restorationMethods"
-                        multiple={true}
-                      />
-                    </div>
-
-                    <div className="vert-div predmety__form__div">
-                      <label
-                        htmlFor="fabricationTechnology"
-                       className="predmety__form__div__label"
-                      >
-                        Technologie Fabrikace:
-                      </label>
-                      <VocabularySelectField
-                        name="fabricationTechnology"
-                        fieldPath="fabricationTechnology"
-                        type={`FabricationTechnologies?h-parent=${values.category}`}
-                      />
-                    </div>
-
-                    <div className="vert-div predmety__form__div">
-                      <label
-                        htmlFor="materialType"
-                       className="predmety__form__div__label"
-                      >
-                        Typy Materialu:
-                      </label>
-                      <VocabularySelectField
-                        fieldPath="materialType"
-                        type={`MaterialTypes?h-parent=${values.category}`}
-                      />
-                    </div>
-                    <div className="vert-div predmety__form__div">
-                      <label
-                        htmlFor="secondaryMaterialTypes"
-                       className="predmety__form__div__label"
-                      >
-                        Vedlejší typy materiálu:
-                      </label>
-                      <VocabularySelectField
-                        type={`MaterialTypes?h-parent=${values.category}`}
-                        fieldPath="secondaryMaterialTypes"
-                        multiple={true}
-                      />
-                    </div>
-                    <div className="vert-div predmety__form__div">
-                      <label
-                        htmlFor="itemType"
-                       className="predmety__form__div__label"
-                      >
-                        Typ predmetu:
-                      </label>
-                      <VocabularySelectField
-                        type={`ItemTypes?h-parent=${values.category}`}
-                        fieldPath="itemType"
-                      />
-                    </div>
-                    <div className="vert-div predmety__form__div">
-                      <label htmlFor="color" className="predmety__form__div__label">
-                        Barvy:
-                      </label>
-                      <VocabularySelectField
-                        fieldPath="color"
-                        type={`Colors`}
-                      />
-                    </div>
-
-                    <div className="vert-div predmety__form__div">
+                <div className="vert-div predmety__form__div" >
+                
+                    <GroupField fieldPath="metadata.restorationObject.category" className="horiz-div predmety__form__div__input-radio">
+                    <div className="predmety__form__div__label horiz-div"><Radio label="Kovy" className="predmety__form__div__radio" checked={selectedRadio=="Kovy"} onChange={()=>handleRadio("Kovy")}></Radio></div>
+                    <div className="predmety__form__div__label horiz-div"><Radio label="Textil" className="predmety__form__div__radio" checked={selectedRadio=="Textil"}  onChange={()=>handleRadio("Textil")}></Radio></div>
+                    <div className="predmety__form__div__label horiz-div" ><Radio label="Keramika" className="predmety__form__div__radio" checked={selectedRadio=="Keramika"}  onChange={()=>handleRadio("Keramika")}></Radio></div>
+                    <div className="predmety__form__div__label horiz-div"><Radio label="Sklo" className="predmety__form__div__radio" checked={selectedRadio=="Sklo"}  onChange={()=>handleRadio("Sklo")}></Radio></div>
+                      
+                    </GroupField>
                      
-                        <FieldArray name="dimensions">
-                          {({ insert, remove, push }) => (
-                            <div>
-                              {values.dimensions.length > 0 &&
-                                values.dimensions.map((dimension, index) => (
-                                  
-                                  <div className="horiz-div predmety__form__div" key={index}>
-                                    <div className="horiz-div predmety__form__div-small">
-                                    <div className="vert-div predmety__form__div-small__div">
-                                      <label
-                                        htmlFor={`dimensions.${index}.dimension`}
-                                       className="predmety__form__div__label"
-                                      >
-                                        Parametry
-                                      </label>
-                                      <VocabularySelectField
-                                        type={`Dimensions`}
-                                        fieldPath={`dimensions.${index}.dimension.id`}
-                                      />
-                                    </div>
-
-                                    <div className="vert-div predmety__form__div-small__div">
-                                      <label className="predmety__form__div__label"
-                                        htmlFor={`dimensions.${index}.value`}
-                                      >
-                                        Value
-                                      </label>
-                                      <Field
-                                        className="predmety__form__div__input predmety__form__div__input-small"
-                                        name={`dimensions.${index}.value`}
-                                        placeholder="Value"
-                                        type="number"
-                                      />
-                                      <ErrorMessage
-                                        name={`dimensions.${index}.value`}
-                                        component="div"
-                                        className="field-error"
-                                      />
-                                    </div>
-
-                                    <div className="vert-div predmety__form__div-small__div predmety__form__div-unit">
-                                      <label
-                                        htmlFor="unit"
-                                       className="predmety__form__div__label"
-                                      >
-                                        Unit:
-                                      </label>
-                                      <Field
-                                        component="select"
-                                        name={`dimensions.${index}.unit`}
-                                        id="dimensions"
-                                        form="dimensions"
-                                        className="predmety__form__div__input predmety__form__div__input-small"
-                                      >
-                                        <option value="cm">cm</option>
-                                        <option value="mm">mm</option>
-                                        <option value="metr">metr</option>
-                                        <option value="kg">kg</option>
-                                        <option value="mg">mg</option>
-                                        <option value="gram">gram</option>
-                                      </Field>
-                                    
-                                    <ErrorMessage
-                                      name={`dimensions.${index}.unit`}
-                                      component="div"
-                                      className="field-error"
-                                    />
-                                    </div>
-                                    </div>
-                                    <div className="vert-div">
-                                      <button
-                                        type="button"
-                                        className="predmety__form__div__button-small predmety__form__div__button-small-delete"
-                                        onClick={() => remove(index)}
-                                      >
-                                        x
-                                      </button>
-                                    </div>
-                                  </div>
-                                ))}
-                              <button
-                                type="button"
-                                className="predmety__form__div__button-small"
-                                onClick={() =>
-                                  push({ dimension: {id:'', title:{}}, value: "", unit: "" })
-                                }
-                              >
-                                Dodat
-                              </button>
-                            </div>
-                          )}
-                        </FieldArray>
-                      
-                    </div>
-
-                    <div>
-                      <FieldArray name="stylePeriod">
-                       
-                              <div className="horiz-div predmety__form__div-small">
-                                <div className="vert-div predmety__form__div">
-                                  <label
-                                    htmlFor={`stylePeriod.period`}
-                                   className="predmety__form__div__label"
-                                  >
-                                    Perioda
-                                  </label>
-                                  <VocabularySelectField
-                                    type={`StylePeriods`}
-                                    fieldPath={`stylePeriod.period.id`}
-                                  />
-                                </div>
-
-                                <div className="vert-div predmety__form__div">
-                                  <label className="predmety__form__div__label" htmlFor={`stylePeriod.startYear`}>
-                                    Počáteční rok
-                                  </label>
-                                  <Field
-                                    className="predmety__form__div__input predmety__form__div__input-small"
-                                    name={`stylePeriod.startYear`}
-                                    placeholder="StartYear"
-                                    type="year"
-                                  />
-                                  <ErrorMessage
-                                    name={`stylePeriod.startYear`}
-                                    component="div"
-                                    className="field-error"
-                                  />
-                                </div>
-
-                                <div className="vert-div predmety__form__div">
-                                  <label htmlFor={`stylePeriod.endYear`}>
-                                    Končicí rok
-                                  </label>
-                                  <Field
-                                    className="predmety__form__div__input predmety__form__div__input-small"
-                                    name={`stylePeriod.endYear`}
-                                    placeholder="endYear"
-                                    type="year"
-                                  />
-                                  <ErrorMessage
-                                    name={`stylePeriod.endYear`}
-                                    component="div"
-                                    className="field-error"
-                                  />
-                                </div>
-                              </div>
-                            
-                      </FieldArray>
-                    </div>
-
-                    <div className="vert-div predmety__form__div predmety__form__div">
-                      <label
-                        htmlFor="archeologic"
-                        className="horiz-div predmety__form__div__label predmety__form__div__checkbox"
-                      >
-                        <Field
-                          type="checkbox"
-                          id="archeologic"
-                          name="archeologic"
-                          aria-label="Archeologicky nalez"
-                        />
-                        Archeologicky nález
-                      </label>
-                    </div>
-
-                    <div>
-                      <FieldArray name="creationPeriod">
-                      
-                                <div className="horiz-div predmety__form__div-small" >
-                                  <div className="vert-div predmety__form__div">
-                                    <label className="predmety__form__div__label"
-                                    htmlFor={`creationPeriod.since`}>
-                                      Od
-                                    </label>
-                                    <Field
-                                      className="predmety__form__div__input"
-                                      name={`creationPeriod.since`}
-                                      placeholder="Since"
-                                      type="date"
-                                    />
-                                    <ErrorMessage
-                                      name={`creationPeriod.since`}
-                                      component="div"
-                                      className="field-error"
-                                    />
-                                  </div>
-
-                                  <div className="vert-div predmety__form__div">
-                                    <label className="predmety__form__div__label"
-                                    htmlFor={`creationPeriod.until`}>
-                                      Do
-                                    </label>
-                                    <Field
-                                      className="predmety__form__div__input"
-                                      name={`creationPeriod.until`}
-                                      placeholder="Until"
-                                      type="date"
-                                    />
-                                    <ErrorMessage
-                                      name={`creationPeriod.until`}
-                                      component="div"
-                                      className="field-error"
-                                    />
-                                  </div>
-                                </div>
-                      </FieldArray>
-                    </div>
-
-                    
-                    
-                    <div className="vert-div predmety__form__div">
-                      <label
-                        htmlFor="restorationRequestor"
-                       className="predmety__form__div__label"
-                      >
-                        Žadatel restaurace:
-                      </label>
-                      <VocabularySelectField
-                        type={`Institutions`}
-                        fieldPath="restorationRequestor.id"
-                      />
-                    </div>
-                  </div>
+                   
                 </div>
-              </div>
-              <button
-               className="form main-page__btn__addPredmety"
-                aria-label="tlacitko ulozeni predmetu"
-              >
-                Uložit
-              </button>
-            </Form>
-
-            <Form className="vert-div predmety__form" onSubmit={handleSubmit}>
-              <h3 className="predmety__form__h">Vytvoreni noveho predmetu</h3>
-              <div className="vert-div predmety__form-main">
-                <div className="vert-div predmety__form__div">
-                  <label htmlFor="subjectName" className="predmety__form__div__label">
-                    Název předmětu
-                  </label>
-                  <Field
-                    type="text"
-                    id="subjectName"
-                    name="subjectName"
-                   className="predmety__form__div__input"
-                    aria-label="Nazev predmetu"
-                  />
-                </div>
-                <div className="vert-div predmety__form__div">
-                  <label htmlFor="fullName" className="predmety__form__div__label">
-                    Restauroval(a)
-                  </label>
-                  <Field
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                   className="predmety__form__div__input"
-                    aria-label="Restauroval(a)"
-                  />
-                </div>
-                <div className="vert-div predmety__form__div">
-                  <label htmlFor="" className="predmety__form__div__label">
-                    Kategorie
+                {/* <label
+                    htmlFor="metadata.restorationObject.category"
+                    className="predmety__form__div__label"
+                  >
+                    Kategorie materialu
                   </label>
                   <div className="horiz-div predmety__form__div__input-radio">
                     <label className="predmety__form__div__label horiz-div">
                       <Field
-                       className="predmety__form__div__radio"
+                        className="predmety__form__div__radio"
                         type="radio"
-                        id="Kovy"
-                        name="category"
-                        value="Kovy"
+                        id="kovy"
+                        name="metadata.restorationObject.category"
+                        fieldPath="metadata.restorationObject.category"
+                        value="kovy"
                         aria-label="Kovy"
                       />
                       Kovy
                     </label>
                     <label className="predmety__form__div__label horiz-div">
                       <Field
-                       className="predmety__form__div__radio"
+                        className="predmety__form__div__radio"
                         type="radio"
-                        id="Textil"
-                        name="category"
-                        value="Textil"
+                        id="textil"
+                        name="metadata.restorationObject.category"
+                        fieldPath="metadata.restorationObject.category"
+                        value="textil"
                         aria-label="Textil"
                       />
                       Textil
                     </label>
                     <label className="predmety__form__div__label horiz-div">
                       <Field
-                       className="predmety__form__div__radio"
+                        className="predmety__form__div__radio"
                         type="radio"
-                        id="Keramika"
-                        name="category"
-                        value="Keramika"
+                        id="keramika"
+                        name="metadata.restorationObject.category"
+                        fieldPath="metadata.restorationObject.category"
+                        value="keramika"
                         aria-label="Keramika"
                       />
                       Keramika
                     </label>
                     <label className="predmety__form__div__label horiz-div">
                       <Field
-                       className="predmety__form__div__radio"
+                        className="predmety__form__div__radio"
                         type="radio"
-                        id="Sklo"
-                        name="category"
-                        value="Sklo"
+                        id="sklo"
+                        name="metadata.restorationObject.category"
+                        fieldPath="metadata.restorationObject.category"
+                        value="sklo"
                         aria-label="Sklo"
                       />
                       Sklo
-                    </label>
+                    </label> 
+                  </div>*/}
+
+                <div className="vert-div predmety__form__div">
+                  <div className="vert-div predmety__form__div">
+                    <VocabularySelectField
+                      type={`RestorationMethods`}
+                      fieldPath="metadata.restorationWork.restorationMethods"
+                      multiple={true}
+                      required
+                      clearable
+                      label={
+                        <FieldLabel
+                          htmlFor={
+                            "metadata.restorationWork.restorationMethods"
+                          }
+                          label={i18next.t("Metoda restaurace")}
+                        />
+                      }
+                      placeholder={i18next.t("Select metodu restaurace")}
+                      optionsListName="Metoda restaurace"
+                    />
+                  </div>
+
+                  <div className="vert-div predmety__form__div">
+                    <VocabularySelectField
+                      type={`FabricationTechnologies`}
+                      fieldPath="metadata.fabricationTechnology"
+                      required
+                      clearable
+                      label={
+                        <FieldLabel
+                          htmlFor={"metadata.fabricationTechnology"}
+                          label={i18next.t("Technologie Fabrikace")}
+                        />
+                      }
+                      placeholder={i18next.t("Select technologie Fabrikace")}
+                      optionsListName="Technologie Fabrikace"
+                    />
+                  </div>
+
+                  <div className="vert-div predmety__form__div">
+                    <VocabularySelectField
+                      type={`MaterialTypes`}
+                      fieldPath="metadata.materialType"
+                      required
+                      clearable
+                      label={
+                        <FieldLabel
+                          htmlFor={"metadata.materialType"}
+                          label={i18next.t("Typy Materialu")}
+                        />
+                      }
+                      placeholder={i18next.t("Select Typy Materialue")}
+                      optionsListName="Typy Materialu"
+                    />
+                  </div>
+
+                  <div className="vert-div predmety__form__div">
+                    <VocabularySelectField
+                      type={`MaterialTypes`}
+                      fieldPath="metadata.secondaryMaterialTypes"
+                      required
+                      clearable
+                      label={
+                        <FieldLabel
+                          htmlFor={"metadata.secondaryMaterialTypes"}
+                          label={i18next.t("Vedlejší typy materiálu")}
+                        />
+                      }
+                      placeholder={i18next.t("Select Vedlejší typy materiálu")}
+                      optionsListName="Vedlejší typy materiálu"
+                    />
+                  </div>
+
+                  <div className="vert-div predmety__form__div">
+                    <VocabularySelectField
+                      type={`ItemTypes`}
+                      fieldPath="metadata.restorationObject.itemTypes"
+                      required
+                      clearable
+                      label={
+                        <FieldLabel
+                          htmlFor={"metadata.restorationObject.itemTypes"}
+                          label={i18next.t("Typ predmetu")}
+                        />
+                      }
+                      placeholder={i18next.t("Select Typ predmetu")}
+                      optionsListName="Typ predmetu"
+                    />
+                  </div>
+                  <div className="vert-div predmety__form__div">
+                    <VocabularySelectField
+                      type={`Colors`}
+                      fieldPath="metadata.color"
+                      required
+                      clearable
+                      label={
+                        <FieldLabel
+                          htmlFor={"metadata.color"}
+                          label={i18next.t("Barva")}
+                        />
+                      }
+                      placeholder={i18next.t("Select Barvu")}
+                      optionsListName="Barva"
+                    />
+                  </div>
+
+                  {/* <div className="vert-div predmety__form__div">
+                    <FieldArray name="metadata.restorationObject.dimensions" fieldPath="metadata.restorationObject.dimensions">
+                      {({ insert, remove, push }) => (
+                        <div>
+                    {metadata.restorationObject.dimensions.map((dimension, index) => (
+                              <div
+                                className="horiz-div predmety__form__div"
+                                key={index}
+                              >
+                                <div className="horiz-div predmety__form__div-small">
+                                  <div className="vert-div predmety__form__div-small__div">
+
+                                  <VocabularySelectField
+                      type={`Dimensions`}
+                      fieldPath="metadata.restorationObject.dimensions.${index}.dimension.id"
+                      required
+                      clearable
+                      label={
+                        <FieldLabel
+                          htmlFor={
+                            "metadata.restorationObject.dimensions.${index}.dimension.id"
+                          }
+                          label={i18next.t("Parametr")}
+                        />
+                      }
+                      placeholder={i18next.t("Parametr")}
+                    />
+                                  </div>
+                          </div>
+                          </div>))}
+
+                          <button
+                          type="button"
+                          className="predmety__form__div__button-small"
+                          onClick={() =>
+                            push({
+                              dimension: { id: "", title: {} },
+                              value: "",
+                              unit: "",
+                            })
+                          }
+                        >
+                          Dodat
+                        </button></div>
+              )}
+              </FieldArray>
+                          </div> */}
+
+                  <div className="vert-div predmety__form__div">
+                    <FieldArray
+                      name="metadata.restorationObject.dimensions"
+                      fieldPath="metadata.restorationObject.dimensions"
+                    >
+                      {/* {({ insert, remove, push }) => (
+                        <div>
+                          {metadata.restorationObject.dimensions.length > 0 &&
+                            metadata.restorationObject.dimensions.map((dimension, index) => (
+                              <div
+                                className="horiz-div predmety__form__div"
+                                key={index}
+                              > */}
+                      <div className="horiz-div predmety__form__div-small">
+                        <div className="vert-div predmety__form__div-small__div">
+                          {/* <label
+                                      htmlFor={`metadata.dimensions.${index}.dimension`}
+                                      className="predmety__form__div__label"
+                                    >
+                                      Parametry
+                                    </label>
+                                    <VocabularySelectField
+                                      type={`Dimensions`}
+                                      fieldPath={`metadata.restorationObject.dimensions.${index}.dimension.id`}
+                                    /> */}
+
+                          <VocabularySelectField
+                            type={`Dimensions`}
+                            fieldPath="metadata.restorationObject.dimensions.dimension.id"
+                            required
+                            clearable
+                            label={
+                              <FieldLabel
+                                htmlFor={
+                                  "metadata.restorationObject.dimensions.dimension.id"
+                                }
+                                label={i18next.t("Parametr")}
+                              />
+                            }
+                            placeholder={i18next.t("Parametr")}
+                          />
+                        </div>
+
+                        <div className="vert-div predmety__form__div-small__div">
+                          <TextField
+                            name="metadata.restorationObject.dimensions.value"
+                            aria-label="Value"
+                            fieldPath="metadata.restorationObject.dimensions.value"
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.restorationObject.dimensions.value"
+                                className="predmety__form__div__label"
+                                label={i18next.t("Value")}
+                              ></FieldLabel>
+                            }
+                          />
+                        </div>
+
+                        <div className="vert-div predmety__form__div-small__div predmety__form__div-unit">
+                          <SelectField
+                            name="metadata.restorationObject.dimensions.unit"
+                            aria-label="Unit"
+                            fieldPath="metadata.restorationObject.dimensions.unit"
+                            options={units}
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.restorationObject.dimensions.unit"
+                                className="predmety__form__div__label"
+                                label={i18next.t("Unit")}
+                              ></FieldLabel>
+                            }
+                          />
+                        </div>
+                        <Button
+                            type="button"
+                            className="predmety__form__div__button-small"
+                            onClick={handleAddDimension }
+                            color='grey'
+                          > 
+                            Dodat
+                          </Button>
+                      </div>
+                      {/*         <div className="vert-div">
+                                  <button
+                                    type="button"
+                                    className="predmety__form__div__button-small predmety__form__div__button-small-delete"
+                                    onClick={() => remove(index)}
+                                  >
+                                    x
+                                  </button>*/}
+
+                      {/* </div>
+                            ))} */}
+                      
+                      {/* </div>
+                       )} */}
+                    </FieldArray>
+                  </div>
+
+                  
+                  <div>
+                    <FieldArray name="stylePeriod">
+                      <div className="horiz-div predmety__form__div-small">
+                        <div className="vert-div predmety__form__div">
+                          <VocabularySelectField
+                            type={`StylePeriods`}
+                            fieldPath="metadata.restorationObject.StylePeriods"
+                            multiple={true}
+                            required
+                            clearable
+                            label={
+                              <FieldLabel
+                                htmlFor={
+                                  "metadata.restorationObject.StylePeriods"
+                                }
+                                label={i18next.t("Perioda")}
+                              />
+                            }
+                            placeholder={i18next.t("Perioda")}
+                          />
+                        </div>
+
+                        <div className="vert-div predmety__form__div">
+                          <TextField
+                            name="metadata.stylePeriod.startYear"
+                            aria-label="Počáteční rok"
+                            fieldPath="metadata.stylePeriod.startYear"
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.stylePeriod.startYear"
+                                className="predmety__form__div__label"
+                                label={i18next.t("Počáteční rok")}
+                              ></FieldLabel>
+                            }
+                          />
+                        </div>
+
+                        <div className="vert-div predmety__form__div">
+                          <TextField
+                            name="metadata.stylePeriod.endYear"
+                            aria-label="Končicí rok"
+                            fieldPath="metadata.stylePeriod.endYear"
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.stylePeriod.endYear"
+                                className="predmety__form__div__label"
+                                label={i18next.t("Končicí rok")}
+                              ></FieldLabel>
+                            }
+                          />
+                        </div>
+                      </div>
+                    </FieldArray>
+                  </div>
+
+                  <div className="vert-div predmety__form__div predmety__form__div">
+                    <BooleanField
+                      name="metadata.restorationObject.archeologic"
+                      aria-label="Archeologicky nález"
+                      fieldPath="metadata.restorationObject.archeologic"
+                      label={
+                        <FieldLabel
+                          htmlFor="metadata.restorationObject.archeologic"
+                          className="predmety__form__div__label"
+                          label={i18next.t("Archeologicky nález")}
+                        ></FieldLabel>
+                      }
+                    />
+                  </div>
+
+                  <div>
+                    <FieldArray name="metadata.restorationObject.creationPeriod">
+                      <div className="horiz-div predmety__form__div-small">
+                        <div className="vert-div predmety__form__div">
+                          <TextField
+                            name="metadata.restorationObject.creationPeriod.since"
+                            aria-label="Od"
+                            fieldPath="metadata.restorationObject.creationPeriod.since"
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.restorationObject.creationPeriod.since"
+                                className="predmety__form__div__label"
+                                label={i18next.t("Predioda prace od")}
+                              ></FieldLabel>
+                            }
+                          />
+                        </div>
+
+                        <div className="vert-div predmety__form__div">
+                          <TextField
+                            name="metadata.restorationObject.creationPeriod.until"
+                            aria-label="Do"
+                            fieldPath="metadata.restorationObject.creationPeriod.until"
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.restorationObject.creationPeriod.until"
+                                className="predmety__form__div__label"
+                                label={i18next.t("Predioda prace do")}
+                              ></FieldLabel>
+                            }
+                          />
+                        </div>
+                      </div>
+                    </FieldArray>
+                  </div>
+
+                  <div className="vert-div predmety__form__div">
+                    <VocabularySelectField
+                      type={`Institutions`}
+                      fieldPath="metadata.restorationObject.restorationRequestor"
+                      multiple={true}
+                      required
+                      clearable
+                      label={
+                        <FieldLabel
+                          htmlFor={
+                            "metadata.restorationObject.restorationRequestor"
+                          }
+                          label={i18next.t("Žadatel restaurace")}
+                        />
+                      }
+                      placeholder={i18next.t("Žadatel restaurace")}
+                    />
                   </div>
                 </div>
               </div>
-              <button
-               className=" form main-page__btn__addPredmety"
-                aria-label="tlacitko vytvoreni predmetu"
-              >
-                VÝTVOŘIT PŘEDMĚT
-              </button>
-            </Form>
-          </>
-        )}
-      </Formik>
+            </div>
+            <button
+              className="form main-page__btn__addPredmety"
+              aria-label="tlacitko ulozeni predmetu"
+            >
+              Uložit
+            </button>
+            </Grid>
+          </AccordionField>
+        </Overridable>
+      </BaseForm>
     </Container>
   );
+
+  // return (
+  //   <Container>
+
+  //     <Formik
+  //       initialValues={
+  //         {
+  //         category: "",
+  //         keyword: [],
+  //         description: "",
+  //         restorationMethods: [],
+  //         fabricationTechnology: "",
+  //         materialType: "",
+  //         secondaryMaterialTypes: [],
+  //         color: "",
+  //         dimensions: [{ dimension: {id:'', title: {}}, value: "", unit: "" }],
+  //         archeologic: false,
+  //         creationPeriod: { since: "", until: "" },
+  //         restorationRequestor: {id:'', title: {}},
+  //         stylePeriod: { period: {id:'', title: {}}, startYear: "", endYear: "" },
+  //         itemType: "",
+  //       }
+  //     }
+  //       onSubmit={(values, { setSubmitting }) => {
+  //         setTimeout(() => {
+  //           console.log(JSON.stringify(values))
+  //           // alert(JSON.stringify(values, null, 2));
+  //           setSubmitting(false);
+  //         }, 400);
+  //       }}
+  //     >
+
+  //       {({
+  //         values,
+  //         errors,
+  //         touched,
+  //         handleChange,
+  //         handleBlur,
+  //         handleSubmit,
+  //         isSubmitting,
+  //       }) => (
+  //         <>
+  //           <Form className="vert-div predmety__form" onSubmit={handleSubmit}>
+  //             <h3 className="predmety__form__h">Predmet</h3>
+
+  //             <div className="vert-div predmety__form-main">
+  //               <div className="vert-div predmety__form__div">
+  //                 <div className="vert-div predmety__form__div">
+  //                   <label htmlFor="keyword" className="predmety__form__div__label">
+  //                     Klíčová slova
+  //                   </label>
+  //                   <Field
+  //                     type="text"
+  //                     id="keyword"
+  //                     name="keyword"
+  //                     className="predmety__form__div__input"
+  //                     aria-label="Klíčová slova"
+  //                   />
+  //                 </div>
+
+  //                 <div className="vert-div predmety__form__div">
+  //                   <label htmlFor="description" className="predmety__form__div__label">
+  //                     Popis
+  //                   </label>
+  //                   <Field
+  //                     type="text"
+  //                     id="description"
+  //                     name="description"
+  //                     className="predmety__form__div__input"
+  //                     aria-label="Popis"
+  //                   />
+  //                 </div>
+
+  //                 <div className="vert-div predmety__form__div">
+  //                   <label htmlFor="category" className="predmety__form__div__label">
+  //                     Kategorie materialu
+  //                   </label>
+  //                   <div className="horiz-div predmety__form__div__input-radio">
+  //                     <label className="predmety__form__div__label horiz-div">
+  //                       <Field
+  //                         className="predmety__form__div__radio"
+  //                         type="radio"
+  //                         id="kovy"
+  //                         name="category"
+  //                         value="kovy"
+  //                         aria-label="Kovy"
+  //                       />
+  //                       Kovy
+  //                     </label>
+  //                     <label className="predmety__form__div__label horiz-div">
+  //                       <Field
+  //                         className="predmety__form__div__radio"
+  //                         type="radio"
+  //                         id="textil"
+  //                         name="category"
+  //                         value="textil"
+  //                         aria-label="Textil"
+  //                       />
+  //                       Textil
+  //                     </label>
+  //                     <label className="predmety__form__div__label horiz-div">
+  //                       <Field
+  //                        className="predmety__form__div__radio"
+  //                         type="radio"
+  //                         id="keramika"
+  //                         name="category"
+  //                         value="keramika"
+  //                         aria-label="Keramika"
+  //                       />
+  //                       Keramika
+  //                     </label>
+  //                     <label className="predmety__form__div__label horiz-div">
+  //                       <Field
+  //                        className="predmety__form__div__radio"
+  //                         type="radio"
+  //                         id="sklo"
+  //                         name="category"
+  //                         value="sklo"
+  //                         aria-label="Sklo"
+  //                       />
+  //                       Sklo
+  //                     </label>
+  //                   </div>
+  //                 </div>
+  //                 <div className="vert-div predmety__form__div">
+  //                   <div className="vert-div predmety__form__div">
+  //                     <label
+  //                       htmlFor="RestorationMethods"
+  //                      className="predmety__form__div__label"
+  //                     >
+  //                       Metoda restaurace:
+  //                     </label>
+  //                     <VocabularySelectField
+  //                       type={`RestorationMethods`}
+  //                       fieldPath="restorationMethods"
+  //                       multiple={true}
+  //                     />
+  //                   </div>
+
+  //                   <div className="vert-div predmety__form__div">
+  //                     <label
+  //                       htmlFor="fabricationTechnology"
+  //                      className="predmety__form__div__label"
+  //                     >
+  //                       Technologie Fabrikace:
+  //                     </label>
+  //                     <VocabularySelectField
+  //                       name="fabricationTechnology"
+  //                       fieldPath="fabricationTechnology"
+  //                       type={`FabricationTechnologies`}
+  //                     />
+  //                   </div>
+
+  //                   <div className="vert-div predmety__form__div">
+  //                     <label
+  //                       htmlFor="materialType"
+  //                      className="predmety__form__div__label"
+  //                     >
+  //                       Typy Materialu:
+  //                     </label>
+  //                     <VocabularySelectField
+  //                       fieldPath="materialType"
+  //                       type={`MaterialTypes`}
+  //                     />
+  //                   </div>
+  //                   <div className="vert-div predmety__form__div">
+  //                     <label
+  //                       htmlFor="secondaryMaterialTypes"
+  //                      className="predmety__form__div__label"
+  //                     >
+  //                       Vedlejší typy materiálu:
+  //                     </label>
+  //                     <VocabularySelectField
+  //                       type={`MaterialTypes`}
+  //                       fieldPath="secondaryMaterialTypes"
+  //                       multiple={true}
+  //                     />
+  //                   </div>
+  //                   <div className="vert-div predmety__form__div">
+  //                     <label
+  //                       htmlFor="itemType"
+  //                      className="predmety__form__div__label"
+  //                     >
+  //                       Typ predmetu:
+  //                     </label>
+  //                     <VocabularySelectField
+  //                       type={`ItemTypes`}
+  //                       fieldPath="itemType"
+  //                     />
+  //                   </div>
+  //                   <div className="vert-div predmety__form__div">
+  //                     <label htmlFor="color" className="predmety__form__div__label">
+  //                       Barvy:
+  //                     </label>
+  //                     <VocabularySelectField
+  //                       fieldPath="color"
+  //                       type={`Colors`}
+  //                     />
+  //                   </div>
+
+  //                   <div className="vert-div predmety__form__div">
+
+  //                       <FieldArray name="dimensions">
+  //                         {({ insert, remove, push }) => (
+  //                           <div>
+  //                             {values.dimensions.length > 0 &&
+  //                               values.dimensions.map((dimension, index) => (
+
+  //                                 <div className="horiz-div predmety__form__div" key={index}>
+  //                                   <div className="horiz-div predmety__form__div-small">
+  //                                   <div className="vert-div predmety__form__div-small__div">
+  //                                     <label
+  //                                       htmlFor={`dimensions.${index}.dimension`}
+  //                                      className="predmety__form__div__label"
+  //                                     >
+  //                                       Parametry
+  //                                     </label>
+  //                                     <VocabularySelectField
+  //                                       type={`Dimensions`}
+  //                                       fieldPath={`dimensions.${index}.dimension.id`}
+  //                                     />
+  //                                   </div>
+
+  //                                   <div className="vert-div predmety__form__div-small__div">
+  //                                     <label className="predmety__form__div__label"
+  //                                       htmlFor={`dimensions.${index}.value`}
+  //                                     >
+  //                                       Value
+  //                                     </label>
+  //                                     <Field
+  //                                       className="predmety__form__div__input predmety__form__div__input-small"
+  //                                       name={`dimensions.${index}.value`}
+  //                                       placeholder="Value"
+  //                                       type="number"
+  //                                     />
+  //                                     <ErrorMessage
+  //                                       name={`dimensions.${index}.value`}
+  //                                       component="div"
+  //                                       className="field-error"
+  //                                     />
+  //                                   </div>
+
+  //                                   <div className="vert-div predmety__form__div-small__div predmety__form__div-unit">
+  //                                     <label
+  //                                       htmlFor="unit"
+  //                                      className="predmety__form__div__label"
+  //                                     >
+  //                                       Unit:
+  //                                     </label>
+  //                                     <Field
+  //                                       component="select"
+  //                                       name={`dimensions.${index}.unit`}
+  //                                       id="dimensions"
+  //                                       form="dimensions"
+  //                                       className="predmety__form__div__input predmety__form__div__input-small"
+  //                                     >
+  //                                       <option value="cm">cm</option>
+  //                                       <option value="mm">mm</option>
+  //                                       <option value="metr">metr</option>
+  //                                       <option value="kg">kg</option>
+  //                                       <option value="mg">mg</option>
+  //                                       <option value="gram">gram</option>
+  //                                     </Field>
+
+  //                                   <ErrorMessage
+  //                                     name={`dimensions.${index}.unit`}
+  //                                     component="div"
+  //                                     className="field-error"
+  //                                   />
+  //                                   </div>
+  //                                   </div>
+  //                                   <div className="vert-div">
+  //                                     <button
+  //                                       type="button"
+  //                                       className="predmety__form__div__button-small predmety__form__div__button-small-delete"
+  //                                       onClick={() => remove(index)}
+  //                                     >
+  //                                       x
+  //                                     </button>
+  //                                   </div>
+  //                                 </div>
+  //                               ))}
+  //                             <button
+  //                               type="button"
+  //                               className="predmety__form__div__button-small"
+  //                               onClick={() =>
+  //                                 push({ dimension: {id:'', title:{}}, value: "", unit: "" })
+  //                               }
+  //                             >
+  //                               Dodat
+  //                             </button>
+  //                           </div>
+  //                         )}
+  //                       </FieldArray>
+
+  //                   </div>
+
+  //                   <div>
+  //                     <FieldArray name="stylePeriod">
+
+  //                             <div className="horiz-div predmety__form__div-small">
+  //                               <div className="vert-div predmety__form__div">
+  //                                 <label
+  //                                   htmlFor={`stylePeriod.period`}
+  //                                  className="predmety__form__div__label"
+  //                                 >
+  //                                   Perioda
+  //                                 </label>
+  //                                 <VocabularySelectField
+  //                                   type={`StylePeriods`}
+  //                                   fieldPath={`stylePeriod.period.id`}
+  //                                 />
+  //                               </div>
+
+  //                               <div className="vert-div predmety__form__div">
+  //                                 <label className="predmety__form__div__label" htmlFor={`stylePeriod.startYear`}>
+  //                                   Počáteční rok
+  //                                 </label>
+  //                                 <Field
+  //                                   className="predmety__form__div__input predmety__form__div__input-small"
+  //                                   name={`stylePeriod.startYear`}
+  //                                   placeholder="StartYear"
+  //                                   type="year"
+  //                                 />
+  //                                 <ErrorMessage
+  //                                   name={`stylePeriod.startYear`}
+  //                                   component="div"
+  //                                   className="field-error"
+  //                                 />
+  //                               </div>
+
+  //                               <div className="vert-div predmety__form__div">
+  //                                 <label htmlFor={`stylePeriod.endYear`}>
+  //                                   Končicí rok
+  //                                 </label>
+  //                                 <Field
+  //                                   className="predmety__form__div__input predmety__form__div__input-small"
+  //                                   name={`stylePeriod.endYear`}
+  //                                   placeholder="endYear"
+  //                                   type="year"
+  //                                 />
+  //                                 <ErrorMessage
+  //                                   name={`stylePeriod.endYear`}
+  //                                   component="div"
+  //                                   className="field-error"
+  //                                 />
+  //                               </div>
+  //                             </div>
+
+  //                     </FieldArray>
+  //                   </div>
+
+  //                   <div className="vert-div predmety__form__div predmety__form__div">
+  //                     <label
+  //                       htmlFor="archeologic"
+  //                       className="horiz-div predmety__form__div__label predmety__form__div__checkbox"
+  //                     >
+  //                       <Field
+  //                         type="checkbox"
+  //                         id="archeologic"
+  //                         name="archeologic"
+  //                         aria-label="Archeologicky nalez"
+  //                       />
+  //                       Archeologicky nález
+  //                     </label>
+  //                   </div>
+
+  //                   <div>
+  //                     <FieldArray name="creationPeriod">
+
+  //                               <div className="horiz-div predmety__form__div-small" >
+  //                                 <div className="vert-div predmety__form__div">
+  //                                   <label className="predmety__form__div__label"
+  //                                   htmlFor={`creationPeriod.since`}>
+  //                                     Od
+  //                                   </label>
+  //                                   <Field
+  //                                     className="predmety__form__div__input"
+  //                                     name={`creationPeriod.since`}
+  //                                     placeholder="Since"
+  //                                     type="date"
+  //                                   />
+  //                                   <ErrorMessage
+  //                                     name={`creationPeriod.since`}
+  //                                     component="div"
+  //                                     className="field-error"
+  //                                   />
+  //                                 </div>
+
+  //                                 <div className="vert-div predmety__form__div">
+  //                                   <label className="predmety__form__div__label"
+  //                                   htmlFor={`creationPeriod.until`}>
+  //                                     Do
+  //                                   </label>
+  //                                   <Field
+  //                                     className="predmety__form__div__input"
+  //                                     name={`creationPeriod.until`}
+  //                                     placeholder="Until"
+  //                                     type="date"
+  //                                   />
+  //                                   <ErrorMessage
+  //                                     name={`creationPeriod.until`}
+  //                                     component="div"
+  //                                     className="field-error"
+  //                                   />
+  //                                 </div>
+  //                               </div>
+  //                     </FieldArray>
+  //                   </div>
+
+  //                   <div className="vert-div predmety__form__div">
+  //                     <label
+  //                       htmlFor="restorationRequestor"
+  //                      className="predmety__form__div__label"
+  //                     >
+  //                       Žadatel restaurace:
+  //                     </label>
+  //                     <VocabularySelectField
+  //                       type={`Institutions`}
+  //                       fieldPath="restorationRequestor.id"
+  //                     />
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //             <button
+  //              className="form main-page__btn__addPredmety"
+  //               aria-label="tlacitko ulozeni predmetu"
+  //             >
+  //               Uložit
+  //             </button>
+  //           </Form>
+
+  //           <Form className="vert-div predmety__form" onSubmit={handleSubmit}>
+  //             <h3 className="predmety__form__h">Vytvoreni noveho predmetu</h3>
+  //             <div className="vert-div predmety__form-main">
+  //               <div className="vert-div predmety__form__div">
+  //                 <label htmlFor="subjectName" className="predmety__form__div__label">
+  //                   Název předmětu
+  //                 </label>
+  //                 <Field
+  //                   type="text"
+  //                   id="subjectName"
+  //                   name="subjectName"
+  //                  className="predmety__form__div__input"
+  //                   aria-label="Nazev predmetu"
+  //                 />
+  //               </div>
+  //               <div className="vert-div predmety__form__div">
+  //                 <label htmlFor="fullName" className="predmety__form__div__label">
+  //                   Restauroval(a)
+  //                 </label>
+  //                 <Field
+  //                   type="text"
+  //                   id="fullName"
+  //                   name="fullName"
+  //                  className="predmety__form__div__input"
+  //                   aria-label="Restauroval(a)"
+  //                 />
+  //               </div>
+  //               <div className="vert-div predmety__form__div">
+  //                 <label htmlFor="" className="predmety__form__div__label">
+  //                   Kategorie
+  //                 </label>
+  //                 <div className="horiz-div predmety__form__div__input-radio">
+  //                   <label className="predmety__form__div__label horiz-div">
+  //                     <Field
+  //                      className="predmety__form__div__radio"
+  //                       type="radio"
+  //                       id="Kovy"
+  //                       name="category"
+  //                       value="Kovy"
+  //                       aria-label="Kovy"
+  //                     />
+  //                     Kovy
+  //                   </label>
+  //                   <label className="predmety__form__div__label horiz-div">
+  //                     <Field
+  //                      className="predmety__form__div__radio"
+  //                       type="radio"
+  //                       id="Textil"
+  //                       name="category"
+  //                       value="Textil"
+  //                       aria-label="Textil"
+  //                     />
+  //                     Textil
+  //                   </label>
+  //                   <label className="predmety__form__div__label horiz-div">
+  //                     <Field
+  //                      className="predmety__form__div__radio"
+  //                       type="radio"
+  //                       id="Keramika"
+  //                       name="category"
+  //                       value="Keramika"
+  //                       aria-label="Keramika"
+  //                     />
+  //                     Keramika
+  //                   </label>
+  //                   <label className="predmety__form__div__label horiz-div">
+  //                     <Field
+  //                      className="predmety__form__div__radio"
+  //                       type="radio"
+  //                       id="Sklo"
+  //                       name="category"
+  //                       value="Sklo"
+  //                       aria-label="Sklo"
+  //                     />
+  //                     Sklo
+  //                   </label>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //             <button
+  //              className=" form main-page__btn__addPredmety"
+  //               aria-label="tlacitko vytvoreni predmetu"
+  //             >
+  //               VÝTVOŘIT PŘEDMĚT
+  //             </button>
+  //           </Form>
+  //         </>
+  //       )}
+  //     </Formik>
+
+  //   </Container>
+  // );
 };

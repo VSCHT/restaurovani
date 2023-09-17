@@ -7,11 +7,13 @@ body .ui.selection.dropdown  {
 }
 
 .ui.selection.dropdown.active {
-    border-radius: @selectionBorderRadius;
+    border-radius: 20px;
     border: @selectionBorder;
 
 }
-
+.ui.active.visible.fluid.multiple.search.selection.dropdown{
+ padding: 0px 15px;
+}
 .ui.selection.active.dropdown:hover {
     border: 1px solid #111111
 }
