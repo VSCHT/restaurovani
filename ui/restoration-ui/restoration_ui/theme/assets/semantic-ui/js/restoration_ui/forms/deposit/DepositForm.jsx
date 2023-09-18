@@ -26,6 +26,7 @@ import { VocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import Overridable from "react-overridable";
 import { i18next } from "@translations/restoration_ui/i18next";
+import {useDepositApiClient} from "@js/oarepo_ui";
 
 
 const CurrentRecord = (props) => {
@@ -74,27 +75,26 @@ const categories = [
 
 export const DepositForm = () => {
   const { record, formConfig } = useFormConfig();
-  const context = formConfig.createUrl
-    ? submitContextType.create
-    : submitContextType.update;
-
+  // const context = formConfig.createUrl
+  //   ? submitContextType.create
+  //   : submitContextType.update;
   const metadata = _get(formConfig, "metadata", "no metadata");
   console.log(formConfig);
   console.log(record);
   console.log(metadata);
 
-  const { onSubmit } = useOnSubmit({
-    apiUrl: formConfig.createUrl || formConfig.updateUrl,
-    context: context,
-    onSubmitSuccess: (result) => {
-      window.location.href = editMode
-        ? currentPath.replace("/edit", "")
-        : currentPath.replace("_new", result.id);
-    },
-    onSubmitError: (error) => {
-      console.error("Sumbission failed", error);
-    },
-  });
+  // const { onSubmit } = useOnSubmit({
+  //   apiUrl: formConfig.createUrl || formConfig.updateUrl,
+  //   // context: context,
+  //   onSubmitSuccess: (result) => {
+  //     window.location.href = editMode
+  //       ? currentPath.replace("/edit", "")
+  //       : currentPath.replace("_new", result.id);
+  //   },
+  //   onSubmitError: (error) => {
+  //     console.error("Sumbission failed", error);
+  //   },
+  // });
   const [dimensions, setDimensions]= useState([{dimension: { id:'' }, value:'', unit:''}])
   const newDimension={dimension: { id:'' }, value:'', unit:''}
   const handleAddDimension=()=>{
@@ -114,16 +114,11 @@ export const DepositForm = () => {
           validateOnChange: false,
           validateOnBlur: false,
           enableReinitialize: true,
+          validationSchema: DepositValidationSchema,
         }}
       >
-        <Overridable id="NrDocs.Deposit.AccordionFieldFiles.container">
-          <AccordionField
-            includesPaths={["files.enabled"]}
-            active
-            label={i18next.t("Files")}
-          ></AccordionField>
-        </Overridable>
-        <Overridable id="NrDocs.Deposit.AccordionFieldBasicInformation.container">
+        
+        <Overridable id="Deposit.AccordionFieldBasicInformation.container">
           <AccordionField
             includesPaths={[
               "metadata.restorationObject.materialType",
@@ -641,6 +636,158 @@ export const DepositForm = () => {
           </AccordionField>
         </Overridable>
       </BaseForm>
+
+      <BaseForm
+        onSubmit={() => { useDepositApiClient().publish()}}
+        formik={{
+          initialValues: record,
+          validateOnChange: false,
+          validateOnBlur: false,
+          enableReinitialize: true,
+          validationSchema: DepositValidationSchema,
+        }}
+      >
+        <Overridable id="Deposit.AccordionFieldFiles.container">
+          <AccordionField
+            includesPaths={["files.enabled"]}
+            active
+            label={i18next.t("Files")}
+          ></AccordionField>
+        </Overridable>
+        <Overridable id="Deposit.AccordionFieldBasicInformation.container">
+          <AccordionField
+            includesPaths={[
+              "metadata.restorationWork.restorer",
+              "metadata.restorationObject.title",
+              "metadata.restorationObject.category",
+            ]}
+            active
+            label={i18next.t("Basic information")}
+          >
+            <div className="vert-div predmety__form">
+              <h3 className="predmety__form__h">Vytvoreni noveho predmetu</h3>
+              <div className="vert-div predmety__form-main">
+                <div className="vert-div predmety__form__div">
+
+                <TextField
+                    name="metadata.title"
+                    aria-label="Nazev"
+                    fieldPath="metadata.title"
+                    label={
+                      <FieldLabel
+                        htmlFor="metadata.title"
+                        className="predmety__form__div__label"
+                        label={i18next.t("Nazev")}
+                      />
+                    }
+                  />
+
+                  {/* <label htmlFor="subjectName" className="predmety__form__div__label">
+                    Název předmětu
+                  </label>
+                  <Field
+                    type="text"
+                    id="subjectName"
+                    name="subjectName"
+                   className="predmety__form__div__input"
+                    aria-label="Nazev predmetu"
+                  /> */}
+                </div>
+                <div className="vert-div predmety__form__div">
+                <TextField
+                    name="metadata.restorer"
+                    aria-label="Restauroval(a)"
+                    fieldPath="metadata.restorer"
+                    label={
+                      <FieldLabel
+                        htmlFor="metadata.restorer"
+                        className="predmety__form__div__label"
+                        label={i18next.t("Restauroval(a)")}
+                      />
+                    }
+                  />
+
+                  {/* <label htmlFor="fullName" className="predmety__form__div__label">
+                    Restauroval(a)
+                  </label>
+                  <Field
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                   className="predmety__form__div__input"
+                    aria-label="Restauroval(a)"
+                  /> */}
+                </div>
+                <div className="vert-div predmety__form__div">
+                <GroupField fieldPath="metadata.restorationObject.category" className="horiz-div predmety__form__div__input-radio">
+                    <div className="predmety__form__div__label horiz-div"><Radio label="Kovy" className="predmety__form__div__radio" checked={selectedRadio=="Kovy"} onChange={()=>handleRadio("Kovy")}></Radio></div>
+                    <div className="predmety__form__div__label horiz-div"><Radio label="Textil" className="predmety__form__div__radio" checked={selectedRadio=="Textil"}  onChange={()=>handleRadio("Textil")}></Radio></div>
+                    <div className="predmety__form__div__label horiz-div" ><Radio label="Keramika" className="predmety__form__div__radio" checked={selectedRadio=="Keramika"}  onChange={()=>handleRadio("Keramika")}></Radio></div>
+                    <div className="predmety__form__div__label horiz-div"><Radio label="Sklo" className="predmety__form__div__radio" checked={selectedRadio=="Sklo"}  onChange={()=>handleRadio("Sklo")}></Radio></div>
+                      
+                    </GroupField>
+                  {/* <label htmlFor="" className="predmety__form__div__label">
+                    Kategorie
+                  </label>
+                  <div className="horiz-div predmety__form__div__input-radio">
+                    <label className="predmety__form__div__label horiz-div">
+                      <Field
+                       className="predmety__form__div__radio"
+                        type="radio"
+                        id="Kovy"
+                        name="category"
+                        value="Kovy"
+                        aria-label="Kovy"
+                      />
+                      Kovy
+                    </label>
+                    <label className="predmety__form__div__label horiz-div">
+                      <Field
+                       className="predmety__form__div__radio"
+                        type="radio"
+                        id="Textil"
+                        name="category"
+                        value="Textil"
+                        aria-label="Textil"
+                      />
+                      Textil
+                    </label>
+                    <label className="predmety__form__div__label horiz-div">
+                      <Field
+                       className="predmety__form__div__radio"
+                        type="radio"
+                        id="Keramika"
+                        name="category"
+                        value="Keramika"
+                        aria-label="Keramika"
+                      />
+                      Keramika
+                    </label>
+                    <label className="predmety__form__div__label horiz-div">
+                      <Field
+                       className="predmety__form__div__radio"
+                        type="radio"
+                        id="Sklo"
+                        name="category"
+                        value="Sklo"
+                        aria-label="Sklo"
+                      />
+                      Sklo
+                    </label>
+                  </div> */}
+                </div>
+              </div>
+              <button
+               className=" form main-page__btn__addPredmety"
+               type="submit"
+                aria-label="tlacitko vytvoreni predmetu"
+              >
+                VÝTVOŘIT PŘEDMĚT
+              </button>
+            </div>
+          </AccordionField>
+          </Overridable>
+          </BaseForm>
     </Container>
   );
 
@@ -1076,92 +1223,92 @@ export const DepositForm = () => {
   //             </button>
   //           </Form>
 
-  //           <Form className="vert-div predmety__form" onSubmit={handleSubmit}>
-  //             <h3 className="predmety__form__h">Vytvoreni noveho predmetu</h3>
-  //             <div className="vert-div predmety__form-main">
-  //               <div className="vert-div predmety__form__div">
-  //                 <label htmlFor="subjectName" className="predmety__form__div__label">
-  //                   Název předmětu
-  //                 </label>
-  //                 <Field
-  //                   type="text"
-  //                   id="subjectName"
-  //                   name="subjectName"
-  //                  className="predmety__form__div__input"
-  //                   aria-label="Nazev predmetu"
-  //                 />
-  //               </div>
-  //               <div className="vert-div predmety__form__div">
-  //                 <label htmlFor="fullName" className="predmety__form__div__label">
-  //                   Restauroval(a)
-  //                 </label>
-  //                 <Field
-  //                   type="text"
-  //                   id="fullName"
-  //                   name="fullName"
-  //                  className="predmety__form__div__input"
-  //                   aria-label="Restauroval(a)"
-  //                 />
-  //               </div>
-  //               <div className="vert-div predmety__form__div">
-  //                 <label htmlFor="" className="predmety__form__div__label">
-  //                   Kategorie
-  //                 </label>
-  //                 <div className="horiz-div predmety__form__div__input-radio">
-  //                   <label className="predmety__form__div__label horiz-div">
-  //                     <Field
-  //                      className="predmety__form__div__radio"
-  //                       type="radio"
-  //                       id="Kovy"
-  //                       name="category"
-  //                       value="Kovy"
-  //                       aria-label="Kovy"
-  //                     />
-  //                     Kovy
-  //                   </label>
-  //                   <label className="predmety__form__div__label horiz-div">
-  //                     <Field
-  //                      className="predmety__form__div__radio"
-  //                       type="radio"
-  //                       id="Textil"
-  //                       name="category"
-  //                       value="Textil"
-  //                       aria-label="Textil"
-  //                     />
-  //                     Textil
-  //                   </label>
-  //                   <label className="predmety__form__div__label horiz-div">
-  //                     <Field
-  //                      className="predmety__form__div__radio"
-  //                       type="radio"
-  //                       id="Keramika"
-  //                       name="category"
-  //                       value="Keramika"
-  //                       aria-label="Keramika"
-  //                     />
-  //                     Keramika
-  //                   </label>
-  //                   <label className="predmety__form__div__label horiz-div">
-  //                     <Field
-  //                      className="predmety__form__div__radio"
-  //                       type="radio"
-  //                       id="Sklo"
-  //                       name="category"
-  //                       value="Sklo"
-  //                       aria-label="Sklo"
-  //                     />
-  //                     Sklo
-  //                   </label>
-  //                 </div>
-  //               </div>
-  //             </div>
-  //             <button
-  //              className=" form main-page__btn__addPredmety"
-  //               aria-label="tlacitko vytvoreni predmetu"
-  //             >
-  //               VÝTVOŘIT PŘEDMĚT
-  //             </button>
-  //           </Form>
+            // <Form className="vert-div predmety__form" onSubmit={handleSubmit}>
+            //   <h3 className="predmety__form__h">Vytvoreni noveho predmetu</h3>
+            //   <div className="vert-div predmety__form-main">
+            //     <div className="vert-div predmety__form__div">
+            //       <label htmlFor="subjectName" className="predmety__form__div__label">
+            //         Název předmětu
+            //       </label>
+            //       <Field
+            //         type="text"
+            //         id="subjectName"
+            //         name="subjectName"
+            //        className="predmety__form__div__input"
+            //         aria-label="Nazev predmetu"
+            //       />
+            //     </div>
+            //     <div className="vert-div predmety__form__div">
+            //       <label htmlFor="fullName" className="predmety__form__div__label">
+            //         Restauroval(a)
+            //       </label>
+            //       <Field
+            //         type="text"
+            //         id="fullName"
+            //         name="fullName"
+            //        className="predmety__form__div__input"
+            //         aria-label="Restauroval(a)"
+            //       />
+            //     </div>
+            //     <div className="vert-div predmety__form__div">
+            //       <label htmlFor="" className="predmety__form__div__label">
+            //         Kategorie
+            //       </label>
+            //       <div className="horiz-div predmety__form__div__input-radio">
+            //         <label className="predmety__form__div__label horiz-div">
+            //           <Field
+            //            className="predmety__form__div__radio"
+            //             type="radio"
+            //             id="Kovy"
+            //             name="category"
+            //             value="Kovy"
+            //             aria-label="Kovy"
+            //           />
+            //           Kovy
+            //         </label>
+            //         <label className="predmety__form__div__label horiz-div">
+            //           <Field
+            //            className="predmety__form__div__radio"
+            //             type="radio"
+            //             id="Textil"
+            //             name="category"
+            //             value="Textil"
+            //             aria-label="Textil"
+            //           />
+            //           Textil
+            //         </label>
+            //         <label className="predmety__form__div__label horiz-div">
+            //           <Field
+            //            className="predmety__form__div__radio"
+            //             type="radio"
+            //             id="Keramika"
+            //             name="category"
+            //             value="Keramika"
+            //             aria-label="Keramika"
+            //           />
+            //           Keramika
+            //         </label>
+            //         <label className="predmety__form__div__label horiz-div">
+            //           <Field
+            //            className="predmety__form__div__radio"
+            //             type="radio"
+            //             id="Sklo"
+            //             name="category"
+            //             value="Sklo"
+            //             aria-label="Sklo"
+            //           />
+            //           Sklo
+            //         </label>
+            //       </div>
+            //     </div>
+            //   </div>
+            //   <button
+            //    className=" form main-page__btn__addPredmety"
+            //     aria-label="tlacitko vytvoreni predmetu"
+            //   >
+            //     VÝTVOŘIT PŘEDMĚT
+            //   </button>
+            // </Form>
   //         </>
   //       )}
   //     </Formik>
