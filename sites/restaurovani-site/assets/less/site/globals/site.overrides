@@ -419,6 +419,25 @@ h4 {
     margin: 0px;
   }
 
+ #header-search-bar {
+    position: fixed;
+    top: 150px;
+    z-index: 1000;
+    right: 35vw
+  }
+  #header-search-bar input{
+    border: 1px solid darkgray;
+    background-color: #eaeae2;
+    border-radius: 30px;
+    height: 30px !important;
+    width: 200px !important;
+    padding-left: 15px;
+    position: fixed;
+    top: 150px;
+    z-index: 1000;
+    right: 35vw
+  }
+
   .predmety__input-search {
     border: 1px solid darkgray;
     background-color: #eaeae2;

@@ -43,7 +43,7 @@ webpack['restoration_ui_search.js'] }} {%- endblock %}
 <div class="vert-div predmety_main-container"> -->
   {%- block page_body %}
    
-
+  {%- include "restaurovani_site/searchbar.html" %}
 <!-- <div class="vert-div predmety__cards"> -->
   <div 
     data-invenio-search-config='{{ search_app_config(app_id="Restoration_ui.Search") | tojson }}'
