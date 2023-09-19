@@ -30,6 +30,7 @@ class RestorationServiceConfig(
     schema = RestorationSchema
 
     search = RestorationSearchOptions
+    search_drafts = RestorationSearchOptions
 
     record_cls = RestorationRecord
 
@@ -70,4 +71,5 @@ class RestorationServiceConfig(
                 else_=RecordLink("{+ui}/uploads/{id}"),
             ),
             "versions": RecordLink("{+api}/{self.url_prefix}{id}/versions"),
+            
         }

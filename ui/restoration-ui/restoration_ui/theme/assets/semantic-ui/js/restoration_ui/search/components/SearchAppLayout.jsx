@@ -33,6 +33,7 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
     setDropdownVisible(value);
   };
 
+  
 
   const { appName, buildUID } = useContext(SearchConfigurationContext);
 
@@ -40,7 +41,7 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
   const searchAppConfig = useContext(SearchConfigurationContext);
 
   console.log(searchAppConfig)
-
+const facetsAvailable = !_isEmpty(searchAppConfig.aggs);
 
   return (
     <Container className="predmety__body-bg">
@@ -274,6 +275,12 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
                   />
                 </Grid>
               )}
+              <Grid>
+               <SearchAppFacets
+                aggs={searchAppConfig.aggs}
+                appName={appName}
+                buildUID={buildUID}
+              /></Grid>
             </Grid>
           </Grid.Column>
         </Grid>
