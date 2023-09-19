@@ -32,3 +32,10 @@ class RestorationUiResourceConfig(RecordsUIResourceConfig):
     def search_app_config(self, identity, api_config, overrides={}, **kwargs):
         return super().search_app_config(identity, api_config,
                                      overrides=overrides, endpoint='/api/user/restoration/', **kwargs)
+    
+    def search_active_facets(self, api_config, identity):
+        return [
+            k
+            for k in self.search_available_facets(api_config, identity).keys()
+            if not k.startswith("metadata_abstract")
+        ]

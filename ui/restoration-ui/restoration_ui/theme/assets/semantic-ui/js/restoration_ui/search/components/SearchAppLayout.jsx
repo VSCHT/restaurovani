@@ -4,6 +4,7 @@ import _isEmpty from "lodash/isEmpty";
 import Overridable from "react-overridable";
 import { withState, ActiveFilters } from "react-searchkit";
 import { GridResponsiveSidebarColumn } from "react-invenio-forms";
+import { BucketAggregation } from "react-searchkit";
 import {
   Container,
   Grid,
@@ -19,29 +20,26 @@ import {
   SearchAppResultsPane,
   SearchBar,
   SearchConfigurationContext,
-  
 } from "@js/invenio_search_ui/components";
 import { ResultOptions } from "@js/invenio_search_ui/components/Results";
 
 const ResultOptionsWithState = withState(ResultOptions);
 
-export const SearchAppLayout = ({ hasButtonSidebar }) => {
+export const SearchAppLayout = ({ hasButtonSidebar, config }) => {
   const [sidebarVisible, setSidebarVisible] = React.useState(false);
   const [dropdownVisible, setDropdownVisible] = React.useState("");
 
   const showDropDown = (value) => {
-    setDropdownVisible(value);
+    if (dropdownVisible !== value) {
+      setDropdownVisible(value);
+    } else {
+      setDropdownVisible("");
+    }
   };
-
-  
 
   const { appName, buildUID } = useContext(SearchConfigurationContext);
 
-
   const searchAppConfig = useContext(SearchConfigurationContext);
-
-  console.log(searchAppConfig)
-const facetsAvailable = !_isEmpty(searchAppConfig.aggs);
 
   return (
     <Container className="predmety__body-bg">
@@ -91,196 +89,29 @@ const facetsAvailable = !_isEmpty(searchAppConfig.aggs);
                 />
               </Button>
 
-              <Button
-                className="predmety__aside__dropdown-btn"
-                aria-label="Filter podle obdobi vzniku"
-                onClick={() => showDropDown("obdobivzniku")}
-              >
-                Obdobi vzniku
-                <Image
-                  src="/static/images/chevron-down.png"
-                  className="predmety__aside__dropdown-icon"
-                  alt="dropdown icon"
-                />
-              </Button>
-              {dropdownVisible === "obdobivzniku" && (
-                <Grid className="predmety__aside__dropdown-container">
-                  <Checkbox
-                    value="filtrA"
-                    name="Filtr A"
-                    aria-label="Filter A"
-                    label="Filtr A"
-                  />
-
-                  <Checkbox
-                    value="filtrB"
-                    name="Filtr B"
-                    aria-label="Filter B"
-                    label="Filtr B"
-                  />
-
-                  <Checkbox
-                    value="filtrC"
-                    name="Filtr C"
-                    aria-label="Filter C"
-                    label="Filtr C"
-                  />
-                </Grid>
-              )}
-
-              <Button
-                className="predmety__aside__dropdown-btn"
-                aria-label="Filter podle typu predmetu"
-                onClick={() => showDropDown("typpredmetu")}
-              >
-                Typ predmetu
-                <Image
-                  src="/static/images/chevron-down.png"
-                  className="predmety__aside__dropdown-icon"
-                  alt="dropdown icon"
-                />
-              </Button>
-              {dropdownVisible === "typpredmetu" && (
-                <Grid className="predmety__aside__dropdown-container">
-                  <Checkbox
-                    value="filtrA"
-                    name="Filtr A"
-                    aria-label="Filter A"
-                    label="Filtr A"
-                  />
-
-                  <Checkbox
-                    value="filtrB"
-                    name="Filtr B"
-                    aria-label="Filter B"
-                    label="Filtr B"
-                  />
-
-                  <Checkbox
-                    value="filtrC"
-                    name="Filtr C"
-                    aria-label="Filter C"
-                    label="Filtr C"
-                  />
-                </Grid>
-              )}
-
-              <Button
-                className="predmety__aside__dropdown-btn"
-                aria-label="Filter podle archeologickeho nalezu"
-                onClick={() => showDropDown("archnalez")}
-              >
-                Archeologicky nalez
-                <Image
-                  src="/static/images/chevron-down.png"
-                  className="predmety__aside__dropdown-icon"
-                  alt="dropdown icon"
-                />
-              </Button>
-              {dropdownVisible === "archnalez" && (
-                <Grid className="predmety__aside__dropdown-container">
-                  <Checkbox
-                    value="filtrA"
-                    name="Filtr A"
-                    aria-label="Filter A"
-                    label="Filtr A"
-                  />
-
-                  <Checkbox
-                    value="filtrB"
-                    name="Filtr B"
-                    aria-label="Filter B"
-                    label="Filtr B"
-                  />
-
-                  <Checkbox
-                    value="filtrC"
-                    name="Filtr C"
-                    aria-label="Filter C"
-                    label="Filtr C"
-                  />
-                </Grid>
-              )}
-
-              <Button
-                className="predmety__aside__dropdown-btn"
-                aria-label="Filter podle kategorie"
-                onClick={() => showDropDown("kategorie")}
-              >
-                Kategorie
-                <Image
-                  src="/static/images/chevron-down.png"
-                  className="predmety__aside__dropdown-icon"
-                  alt="dropdown icon"
-                />
-              </Button>
-              {dropdownVisible === "kategorie" && (
-                <Grid className="predmety__aside__dropdown-container">
-                  <Checkbox
-                    value="filtrA"
-                    name="Filtr A"
-                    aria-label="Filter A"
-                    label="Filtr A"
-                  />
-
-                  <Checkbox
-                    value="filtrB"
-                    name="Filtr B"
-                    aria-label="Filter B"
-                    label="Filtr B"
-                  />
-
-                  <Checkbox
-                    value="filtrC"
-                    name="Filtr C"
-                    aria-label="Filter C"
-                    label="Filtr C"
-                  />
-                </Grid>
-              )}
-
-              <Button
-                className="btn predmety__aside__dropdown-btn"
-                aria-label="Filter podle autoru zanamu"
-                onClick={() => showDropDown("autorzaznamu")}
-              >
-                Autor zaznamu
-                <Image
-                  src="/static/images/chevron-down.png"
-                  className="predmety__aside__dropdown-icon"
-                  alt="dropdown icon"
-                />
-              </Button>
-              {dropdownVisible === "autorzaznamu" && (
-                <Grid className="predmety__aside__dropdown-container">
-                  <Checkbox
-                    value="filtrA"
-                    name="Filtr A"
-                    aria-label="Filter A"
-                    label="Filtr A"
-                  />
-
-                  <Checkbox
-                    value="filtrB"
-                    name="Filtr B"
-                    aria-label="Filter B"
-                    label="Filtr B"
-                  />
-
-                  <Checkbox
-                    value="filtrC"
-                    name="Filtr C"
-                    aria-label="Filter C"
-                    label="Filtr C"
-                  />
-                </Grid>
-              )}
-              <Grid>
-               <SearchAppFacets
-                aggs={searchAppConfig.aggs}
-                appName={appName}
-                buildUID={buildUID}
-              /></Grid>
+              {searchAppConfig.aggs.map((agg) => (
+                <>
+                  <Button
+                    className="btn predmety__aside__dropdown-btn"
+                    aria-label="Filter podle autoru zanamu"
+                    onClick={() => showDropDown(agg.title)}
+                  >
+                    {agg.title}
+                    <Image
+                      src="/static/images/chevron-down.png"
+                      className="predmety__aside__dropdown-icon"
+                      alt="dropdown icon"
+                    />
+                  </Button>
+                  {dropdownVisible === agg.title && (
+                    <BucketAggregation
+                      key={agg.aggField}
+                      title={agg.title}
+                      agg={agg}
+                    />
+                  )}
+                </>
+              ))}
             </Grid>
           </Grid.Column>
         </Grid>
