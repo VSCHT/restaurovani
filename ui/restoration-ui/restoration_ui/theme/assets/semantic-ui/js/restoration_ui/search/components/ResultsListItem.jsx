@@ -108,7 +108,7 @@ export const ResultsListItemComponent = ({
                 aria-label="Tlacitko tevrit detaily">DETAIL</Button> */}
                 <DetailsButton className="predmety__card__btn"
                 searchUrl={searchAppConfig.ui_endpoint}
-                selfLink={`${result.id}/detail`}/>
+                selfLink={`${result.id}`}/>
           </Item.Group>
           
         </Item.Content>

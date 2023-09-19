@@ -1,0 +1,237 @@
+{#def metadata, ui, layout, record #}
+{%- set title = metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %}
+{% extends "oarepo_ui/detail.html" %}
+
+{%- block head_links %}
+
+{{ super() }}
+{{ webpack['restoration_ui_components.js']}}
+{{ webpack['restoration_ui_components.css']}}
+
+{% endblock %}
+
+{%- block page_body %}
+{{ metadata.restorationObject }}
+<div class="horiz-div details__div__header">
+    <p class="details__div__header-h">{{metadata.restorationObject.title[0].value}} </p>
+    <div class="horiz-div details__div__header-additional">
+      <p class="details__div__header_p parag">1-200 h.l.</p>
+      <span class="details__div__vr"></span>
+      <p class="details__div__header_p parag">rimska antika</p>
+    </div>
+  </div>
+  <!-- photos -->
+  <div class="horiz-div">
+    <button
+      class="btn details_div_images-container__btn-left"
+      aria-label="Previous Photo"
+    >
+      <img
+        class="details_div_images-container__btn-img"
+        alt="left button"
+        src="../../../../static/images/arrow-icon-left.png"
+      />
+    </button>
+    <div class="details_div_images-container">
+      <div class="horiz-div details_div_images">
+        <div class="predmety__card__img-container details">
+          <img
+            src="../../../../static/images/ItemLandingPage.jpg"
+            alt="foto predmetu"
+          />
+        </div>
+        <div class="predmety__card__img-container details">
+          <img
+            src="../../../../static/images/ItemLandingPage 2.jpg"
+            alt="foto predmetu"
+          />
+        </div>
+        <div class="predmety__card__img-container details">
+          <img
+            src="../../../../static/images/ItemLandingPage 2.jpg"
+            alt="foto predmetu"
+          />
+        </div>
+        <div class="predmety__card__img-container details">
+          <img
+            src="../../../../static/images/ItemLandingPage 2.jpg"
+            alt="foto predmetu"
+          />
+        </div>
+        <div class="predmety__card__img-container details">
+          <img
+            src="../../../../static/images/ItemLandingPage 3.jpg"
+            alt="foto predmetu"
+          />
+        </div>
+      </div>
+    </div>
+    <button
+      class="btn details_div_images-container__btn-right"
+      aria-label="Next Photos"
+    >
+      <img
+        class="details_div_images-container__btn-img"
+        alt="right button"
+        src="../../../../static/images/arrow-icon-right.png"
+      />
+    </button>
+  </div>
+
+  <!-- details -->
+  <div class="horiz-div" aria-label="Detaily predmetu">
+    <span class="vr-huge-vert-mobil"></span>
+    <div class="horiz-div details__div__details">
+      <span class="vr-small"></span>
+      <div class="vert-div details__div__details-box">
+        <div class="details__div__details-box-smaller">
+          <p class="parag">Dotace</p>
+        </div>
+        <div class="details__div__details-box-smaller">
+          <p class="parag">1-200 n.l. finska antika</p>
+        </div>
+      </div>
+      <span class="vr-small"></span>
+      <div class="vert-div details__div__details-box">
+        <div class="details__div__details-box-smaller">
+          <p class="parag">Rozmery</p>
+        </div>
+        <div class="details__div__details-box-smaller">
+          <p class="parag">vyska 96mm</p>
+        </div>
+      </div>
+      <span class="vr-small"></span>
+      <div class="vert-div details__div__details-box">
+        <div class="details__div__details-box-smaller">
+          <p class="parag">Typ predmetu</p>
+        </div>
+        <div class="details__div__details-box-smaller">
+          <p class="parag">sklo ke stolovani archeologicky nalez</p>
+        </div>
+      </div>
+      <span class="vr-small"></span>
+      <div class="vert-div details__div__details-box">
+        <div class="details__div__details-box-smaller">
+          <p class="parag">Material</p>
+        </div>
+        <div class="details__div__details-box-smaller">
+          <p class="parag">sodno-vapenate sklo</p>
+        </div>
+      </div>
+      <span class="vr-small"></span>
+      <div class="vert-div details__div__details-box">
+        <div class="details__div__details-box-smaller">
+          <p class="parag">Technologie</p>
+        </div>
+        <div class="details__div__details-box-smaller">
+          <p class="parag">foukane ryte sklo</p>
+        </div>
+      </div>
+      <span class="vr-small"></span>
+      <div class="vert-div details__div__details-box">
+        <div class="details__div__details-box-smaller">
+          <p class="parag">Barva</p>
+        </div>
+        <div class="details__div__details-box-smaller">
+          <p class="parag">bezbarve sklo</p>
+        </div>
+      </div>
+      <span class="vr-small"></span>
+    </div>
+  </div>
+
+  <!-- desc -->
+  <div class="details__div__desc" aria-label="Popis predmetu">
+    <p class="parag">{{ metadata.restorationObject.description[0].value }}</p>
+  </div>
+  <span class="vr-huge-horiz"></span>
+  <!-- info -->
+  <div
+    class="horiz-div details__div__info"
+    aria-label="Info o predmetu"
+  >
+    <div class="vert-div details__div__info-left">
+      <table summary="Info o predmetu">
+        <tbody>
+          <tr>
+            <td class="parag">Zadavatel</td>
+            <td class="parag">
+              Umelecke prumzslove muzeum v Praze
+            </td>
+          </tr>
+          <tr>
+            <td class="parag">Restaurovala</td>
+            <td class="parag">
+              Marta Balikova, semestarlni prace 5
+            </td>
+          </tr>
+          <tr>
+            <td class="parag">Vedouci prace</td>
+            <td class="parag">
+              Rohanova Dana, doc. Dr. Ing., Ustav skla a keramiky
+              VSHT praha Brozkova Zita, MgA., Umeleckoprumzslove
+              muzeum
+            </td>
+          </tr>
+          <tr>
+            <td class="parag">Metody pruzkumu</td>
+            <td class="parag">filtr, SEM/EDS</td>
+          </tr>
+          <tr>
+            <td class="parag">Metody restaurovani</td>
+            <td class="parag">cisteni, lepeni</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="vr-huge-vert"></span>
+    <div class="vert-div details__div__info-right">
+      <p class="details__div__info-right parag">
+        Restauratorsky zasah/zamer
+      </p>
+      <div class="details__div__info-right__text">
+        <p class="parag">
+          Soubor predmétu, jeho¿ soucásti je také rytá ciska, byl
+          dokumentován. Piedmèty byly odisteny, slepeny, nápisy
+          tuResbudou obnoveny v budoucnu. S vyjimkou nepatrnych
+          úlomkù (mensi nez 2 x 3 mm) byly umistèny vsechny
+          fragmenty. Vyztu nebyla provádêna, stejne jako doplñování
+          predmétù jinymi materiály. K restaurovanym predmétum byly
+          prilozeny i restaurované evidencni stitky, odebrané vzorky
+          nánosú, necistot. Byla provedena reserse, pokus o blizsi
+          zarazeni predmetu. Stav predmé-tú je stabilizován, je
+          moiné je bezpecne ulozit do depozitáre, popripade je
+          vystavit za dodrZeni prislusnych opatreni.
+        </p>
+      </div>
+    </div>
+  </div>
+  <span class="vr-huge-horiz"></span>
+  <!-- docs -->
+  <div class="horiz-div details__div__docs">
+    <p class=" parag">Dokumenty</p>
+    <div class="horiz-div details__div__docs-files">
+      <div class="horiz-div">
+        <img
+          class="details__div__docs-img"
+          src="../../../../static/images/file-icon.png"
+          alt="file icon"
+        />
+        <p class="parag">
+          <a href="">sp5_balikova_anticke sklo.pdf</a>
+        </p>
+      </div>
+      <div class="horiz-div">
+        <img
+          class="details__div__docs-img"
+          src="../../../../static/images/file-icon.png"
+          alt="file icon"
+        />
+        <p class="parag">
+          <a href="">sp5_rohanova_anticke sklo.pdf</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+{%- endblock page_body %}

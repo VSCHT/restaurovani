@@ -19,10 +19,10 @@ class RestorationUiResourceConfig(RecordsUIResourceConfig):
 
     templates = {
         "detail": {
-            "layout": "restoration_ui/detail.html",
+            "layout": "restoration_ui/Detail.html.jinja",
             "blocks": {
-                "record_main_content": "restoration_ui/main.html",
-                "record_sidebar": "restoration_ui/sidebar.html"                
+                "record_main_content": "Main",
+                # "record_sidebar": "Sidebar"                
             },
         },
         "search": {"layout": "restoration_ui/search.html"},
@@ -32,3 +32,9 @@ class RestorationUiResourceConfig(RecordsUIResourceConfig):
     def search_app_config(self, identity, api_config, overrides={}, **kwargs):
         return super().search_app_config(identity, api_config,
                                      overrides=overrides, endpoint='/api/user/restoration/', **kwargs)
+    def search_active_facets(self, api_config, identity):
+        return [
+            k
+            for k in self.search_available_facets(api_config, identity).keys()
+            if not k.startswith("metadata_abstract")
+        ]
