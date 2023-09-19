@@ -23,10 +23,9 @@ const ItemHeader = ({ title, searchUrl, selfLink }) => {
 };
 
 const DetailsButton=({title, searchUrl, selfLink}) => {
-  const viewLink = new URL(
-    selfLink,
-    new URL(searchUrl, window.location.origin)
-  );
+  const viewLink = 
+    new URL(selfLink, window.location.origin)
+  
   return (
     <Button className="predmety__card__btn"
     aria-label="Tlacitko tevrit detaily">
@@ -108,7 +107,7 @@ export const ResultsListItemComponent = ({
                 aria-label="Tlacitko tevrit detaily">DETAIL</Button> */}
                 <DetailsButton className="predmety__card__btn"
                 searchUrl={searchAppConfig.ui_endpoint}
-                selfLink={`${result.id}/detail`}/>
+                selfLink={`${result.id}`}/>
           </Item.Group>
           
         </Item.Content>
