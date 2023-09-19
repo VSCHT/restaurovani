@@ -19,10 +19,10 @@ class RestorationUiResourceConfig(RecordsUIResourceConfig):
 
     templates = {
         "detail": {
-            "layout": "restoration_ui/detail.html",
+            "layout": "restoration_ui/Detail.html.jinja",
             "blocks": {
-                "record_main_content": "restoration_ui/main.html",
-                "record_sidebar": "restoration_ui/sidebar.html"                
+                "record_main_content": "Main",
+                # "record_sidebar": "Sidebar"                
             },
         },
         "search": {"layout": "restoration_ui/search.html"},
