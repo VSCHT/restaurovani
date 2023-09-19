@@ -4,7 +4,7 @@ import _isEmpty from "lodash/isEmpty";
 import Overridable from "react-overridable";
 import { withState, ActiveFilters } from "react-searchkit";
 import { GridResponsiveSidebarColumn } from "react-invenio-forms";
-import { BucketAggregation } from "react-searchkit";
+import { BucketAggregation , SearchBar} from "react-searchkit";
 import {
   Container,
   Grid,
@@ -18,7 +18,7 @@ import { i18next } from "@translations/oarepo_ui/i18next";
 import {
   SearchAppFacets,
   SearchAppResultsPane,
-  SearchBar,
+//   SearchBar,
   SearchConfigurationContext,
 } from "@js/invenio_search_ui/components";
 import { ResultOptions } from "@js/invenio_search_ui/components/Results";
@@ -46,10 +46,12 @@ export const SearchAppLayout = ({ hasButtonSidebar, config }) => {
       <Container className="pages__predmety">
         <Grid className="horiz-div">
           <Container className="horiz-div predmety__title-search-fixed">
+            {/* <SearchBar/> */}
             <Header className="predmety__title">Restaurovane predmety</Header>
-            <Grid className="horiz-div predmety__title-search__searchbar">
-              <SearchBar buildUID={buildUID} appName={appName} />
-            </Grid>
+            <SearchBar/>
+            {/* <Grid className="horiz-div predmety__title-search__searchbar"> */}
+              {/* <SearchBar buildUID={buildUID} appName={appName} /> */}
+            {/* </Grid> */}
           </Container>
           <Grid className="vert-div predmety_main-container">
             <Grid className="vert-div predmety__cards">
@@ -89,29 +91,33 @@ export const SearchAppLayout = ({ hasButtonSidebar, config }) => {
                 />
               </Button>
 
-              {searchAppConfig.aggs.map((agg) => (
-                <>
-                  <Button
-                    className="btn predmety__aside__dropdown-btn"
-                    aria-label="Filter podle autoru zanamu"
-                    onClick={() => showDropDown(agg.title)}
-                  >
-                    {agg.title}
-                    <Image
-                      src="/static/images/chevron-down.png"
-                      className="predmety__aside__dropdown-icon"
-                      alt="dropdown icon"
-                    />
-                  </Button>
-                  {dropdownVisible === agg.title && (
-                    <BucketAggregation
-                      key={agg.aggField}
-                      title={agg.title}
-                      agg={agg}
-                    />
-                  )}
-                </>
-              ))}
+              {/* <div style={{ overflowY: "auto", maxHeight: "100%" }}> */}
+                {searchAppConfig.aggs.map((agg) => {
+                  return (
+                    <>
+                      <Button
+                        className="btn predmety__aside__dropdown-btn"
+                        aria-label="Filter podle autoru zanamu"
+                        onClick={() => showDropDown(agg.title)}
+                      >
+                        {agg.title}
+                        <Image
+                          src="/static/images/chevron-down.png"
+                          className="predmety__aside__dropdown-icon"
+                          alt="dropdown icon"
+                        />
+                      </Button>
+                      {dropdownVisible === agg.title && (
+                        <BucketAggregation
+                          key={agg.aggField}
+                          title={agg.title}
+                          agg={agg}
+                        />
+                      )}
+                    </>
+                  );
+                })}
+              {/* </div> */}
             </Grid>
           </Grid.Column>
         </Grid>

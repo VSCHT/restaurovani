@@ -1,6 +1,7 @@
 .ui.container.predmety__body-bg{
     background-color: #eaeae2;
-    width: 100vw
+    width: 100vw;
+    min-height: 100%;
 }
 
 .container.pages__predmety{
