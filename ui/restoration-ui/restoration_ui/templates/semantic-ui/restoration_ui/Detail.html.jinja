@@ -12,6 +12,12 @@
 
 {%- block page_body %}
 {{ metadata.restorationObject }}
+{{ metadata.restorationWork }}
+<Field label={ _('metadata/restorationObject/title.value') }>
+{{metadata.restorationObject.title[0].value}} 
+</Field>
+
+
 <div class="horiz-div details__div__header">
     <p class="details__div__header-h">{{metadata.restorationObject.title[0].value}} </p>
     <div class="horiz-div details__div__header-additional">
@@ -88,7 +94,7 @@
           <p class="parag">Dotace</p>
         </div>
         <div class="details__div__details-box-smaller">
-          <p class="parag">1-200 n.l. finska antika</p>
+          <p class="parag">1-200 n.l. {{ metadata.restorationObject.stylePeriod.period.title }}</p>
         </div>
       </div>
       <span class="vr-small"></span>
@@ -97,7 +103,11 @@
           <p class="parag">Rozmery</p>
         </div>
         <div class="details__div__details-box-smaller">
-          <p class="parag">vyska 96mm</p>
+        {% for value in metadata.restorationObject.dimensions %}
+        <p class="parag">{{ value.dimension.title }} {{ value.value }}{{ value.unit }}</p>
+            
+            {% endfor %}
+          
         </div>
       </div>
       <span class="vr-small"></span>
@@ -106,7 +116,10 @@
           <p class="parag">Typ predmetu</p>
         </div>
         <div class="details__div__details-box-smaller">
-          <p class="parag">sklo ke stolovani archeologicky nalez</p>
+            {% for value in metadata.restorationObject.itemTypes %}
+        <p class="parag">{{ value.title }} </p>
+            
+            {% endfor %}
         </div>
       </div>
       <span class="vr-small"></span>
@@ -142,6 +155,7 @@
 
   <!-- desc -->
   <div class="details__div__desc" aria-label="Popis predmetu">
+  
     <p class="parag">{{ metadata.restorationObject.description[0].value }}</p>
   </div>
   <span class="vr-huge-horiz"></span>
@@ -156,30 +170,42 @@
           <tr>
             <td class="parag">Zadavatel</td>
             <td class="parag">
-              Umelecke prumzslove muzeum v Praze
+              {{ metadata.restorationObject.restorationRequestor.title }}
             </td>
           </tr>
           <tr>
             <td class="parag">Restaurovala</td>
             <td class="parag">
-              Marta Balikova, semestarlni prace 5
+              {{ metadata.restorationWork.restorer }}, {{ metadata.restorationWork.workType.title}}
             </td>
           </tr>
           <tr>
             <td class="parag">Vedouci prace</td>
+            
             <td class="parag">
-              Rohanova Dana, doc. Dr. Ing., Ustav skla a keramiky
-              VSHT praha Brozkova Zita, MgA., Umeleckoprumzslove
-              muzeum
+           {% for value in metadata.restorationWork.supervisors %}
+              {{ value.fullName }}
+              {{ value.institution }}
+              {% endfor %}
+              
             </td>
+            
           </tr>
           <tr>
             <td class="parag">Metody pruzkumu</td>
-            <td class="parag">filtr, SEM/EDS</td>
+            <td class="parag">
+            {% for value in metadata.restorationWork.examinationMethods %}
+            {{ value.title }}
+            {% endfor %}
+            </td>
           </tr>
           <tr>
             <td class="parag">Metody restaurovani</td>
-            <td class="parag">cisteni, lepeni</td>
+            <td class="parag">
+            {% for value in metadata.restorationWork.restorationMethods %}
+            {{ value.title }}
+            {% endfor %}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -191,17 +217,7 @@
       </p>
       <div class="details__div__info-right__text">
         <p class="parag">
-          Soubor predmétu, jeho¿ soucásti je také rytá ciska, byl
-          dokumentován. Piedmèty byly odisteny, slepeny, nápisy
-          tuResbudou obnoveny v budoucnu. S vyjimkou nepatrnych
-          úlomkù (mensi nez 2 x 3 mm) byly umistèny vsechny
-          fragmenty. Vyztu nebyla provádêna, stejne jako doplñování
-          predmétù jinymi materiály. K restaurovanym predmétum byly
-          prilozeny i restaurované evidencni stitky, odebrané vzorky
-          nánosú, necistot. Byla provedena reserse, pokus o blizsi
-          zarazeni predmetu. Stav predmé-tú je stabilizován, je
-          moiné je bezpecne ulozit do depozitáre, popripade je
-          vystavit za dodrZeni prislusnych opatreni.
+          {{ metadata.restorationWork.abstract[0].value}}
         </p>
       </div>
     </div>
