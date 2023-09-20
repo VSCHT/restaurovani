@@ -2,9 +2,13 @@ import React, { useContext, useEffect, useLocation } from "react";
 import PropTypes from "prop-types";
 import _isEmpty from "lodash/isEmpty";
 import Overridable from "react-overridable";
-import { withState, ActiveFilters } from "react-searchkit";
+import {
+  withState,
+  ActiveFilters,
+  BucketAggregation,
+  SearchBar,
+} from "react-searchkit";
 import { GridResponsiveSidebarColumn } from "react-invenio-forms";
-import { BucketAggregation , SearchBar} from "react-searchkit";
 import {
   Container,
   Grid,
@@ -18,40 +22,38 @@ import { i18next } from "@translations/oarepo_ui/i18next";
 import {
   SearchAppFacets,
   SearchAppResultsPane,
-//   SearchBar,
   SearchConfigurationContext,
 } from "@js/invenio_search_ui/components";
 import { ResultOptions } from "@js/invenio_search_ui/components/Results";
 
 const ResultOptionsWithState = withState(ResultOptions);
 
-export const SearchAppLayout = ({ hasButtonSidebar, config }) => {
+export const SearchAppLayout = ({ hasButtonSidebar }) => {
   const [sidebarVisible, setSidebarVisible] = React.useState(false);
   const [dropdownVisible, setDropdownVisible] = React.useState("");
 
   const showDropDown = (value) => {
-    if (dropdownVisible !== value) {
-      setDropdownVisible(value);
-    } else {
-      setDropdownVisible("");
-    }
+    setDropdownVisible(value);
+    console.log("visible" + dropdownVisible);
   };
-
+  const toggleDropDown = (title) => {
+    setDropdownVisible((prevState) => (prevState === title ? "" : title));
+  };
   const { appName, buildUID } = useContext(SearchConfigurationContext);
 
   const searchAppConfig = useContext(SearchConfigurationContext);
+
 
   return (
     <Container className="predmety__body-bg">
       <Container className="pages__predmety">
         <Grid className="horiz-div">
           <Container className="horiz-div predmety__title-search-fixed">
-            {/* <SearchBar/> */}
             <Header className="predmety__title">Restaurovane predmety</Header>
-            <SearchBar/>
-            {/* <Grid className="horiz-div predmety__title-search__searchbar"> */}
-              {/* <SearchBar buildUID={buildUID} appName={appName} /> */}
-            {/* </Grid> */}
+
+            <Grid className="horiz-div predmety__title-search__searchbar">
+              <SearchBar />
+            </Grid>
           </Container>
           <Grid className="vert-div predmety_main-container">
             <Grid className="vert-div predmety__cards">
@@ -91,32 +93,16 @@ export const SearchAppLayout = ({ hasButtonSidebar, config }) => {
                 />
               </Button>
 
-              {/* <div style={{ overflowY: "auto", maxHeight: "100%" }}> */}
-                {searchAppConfig.aggs.map((agg) => {
-                  return (
-                    <>
-                      <Button
-                        className="btn predmety__aside__dropdown-btn"
-                        aria-label="Filter podle autoru zanamu"
-                        onClick={() => showDropDown(agg.title)}
-                      >
-                        {agg.title}
-                        <Image
-                          src="/static/images/chevron-down.png"
-                          className="predmety__aside__dropdown-icon"
-                          alt="dropdown icon"
-                        />
-                      </Button>
-                      {dropdownVisible === agg.title && (
-                        <BucketAggregation
-                          key={agg.aggField}
-                          title={agg.title}
-                          agg={agg}
-                        />
-                      )}
-                    </>
-                  );
-                })}
+              {/* <div style={{ overflowY: "auto", maxHeight: "300px" }}> */}
+              {searchAppConfig.aggs.map((agg) => {
+                return (
+                  <SearchAppFacets
+                    aggs={searchAppConfig.aggs}
+                    appName={appName}
+                    agg={agg}
+                  />
+                );
+              })}
               {/* </div> */}
             </Grid>
           </Grid.Column>

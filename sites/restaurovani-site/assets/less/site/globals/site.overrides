@@ -438,7 +438,7 @@ h4 {
     right: 35vw
   }
 
-  .predmety__input-search {
+  .predmety__input-search input{
     border: 1px solid darkgray;
     background-color: #eaeae2;
     border-radius: 30px;
@@ -446,6 +446,7 @@ h4 {
     width: 200px;
     padding-left: 15px;
   }
+  
   .horiz-div.predmety__title-search {
     justify-content: space-between;
     width: 100%;
