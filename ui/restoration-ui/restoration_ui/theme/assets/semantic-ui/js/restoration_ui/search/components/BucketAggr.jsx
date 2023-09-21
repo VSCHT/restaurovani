@@ -18,13 +18,11 @@ export const MyBucketAggregationValues = withState(
         <List.Item key={bucket.key}>
           <Checkbox
             style={{ float: "left" }}
-            label={bucket.label}
             value={bucket.key}
             onClick={() => onFilterClicked(bucket.key)}
             checked={isSelected}
-          />{" "}
-          <Label>{bucket.doc_count}</Label>
-          {childAggCmps}
+          />
+          {bucket.label} ( {bucket.doc_count} ){childAggCmps}
         </List.Item>
       </>
     );
@@ -49,34 +47,39 @@ export const MyBucketAggregation = withState(({ title, containerCmp }) => {
     <>
       <Accordion>
         <Accordion.Title
+          className="btn predmety__aside__dropdown-btn"
           active={activeIndex === title}
           index={title}
           onClick={() => handleClick(title)}
         >
-          <Icon name="dropdown" />
-          {title}
+          {
+            (title =
+              title.startsWith("metadata/restorationWork/") ||
+              title.startsWith("metadata/restorationObject/")
+                ? title
+                    .replace(
+                      /^(metadata\/restorationObject\/|metadata\/restorationWork\/)|[\/]+|\.label$/g,
+                      " "
+                    )
+                    .trim()
+                    .toLowerCase()
+                    .replace(/^\w/, (c) => c.toUpperCase())
+                : title)
+          }
+
+          <Image
+            src="/static/images/chevron-down.png"
+            className="predmety__aside__dropdown-icon"
+            alt="dropdown icon"
+          />
         </Accordion.Title>
-        <Accordion.Content active={activeIndex === title}>
-            {containerCmp}
+        <Accordion.Content
+          active={activeIndex === title}
+          class="predmety__aside__dropdown-container"
+        >
+          {containerCmp}
         </Accordion.Content>
       </Accordion>
-      {/* <Button
-        className="btn predmety__aside__dropdown-btn"
-        aria-label={`Filter podle ${title}`}
-        onClick={() => showDropDown(title)}
-      >
-        {title} */}
-        {/* <Image
-      src="/static/images/chevron-down.png"
-      className="predmety__aside__dropdown-icon"
-      alt="dropdown icon"
-    /> */}
-      {/* </Button> */}
-      {/* {dropdownVisible == title && (
-    <>
-                        {{containerCmp}}
-                        </>
-                    )} */}
     </>
   );
 });

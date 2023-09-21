@@ -1,22 +1,82 @@
+@media only screen (min-width: 1300px){
 .ui.container.predmety__body-bg{
-    background-color: #eaeae2;
-    width: 100vw;
-    min-height: 100%;
+background-color:                #eaeae2;
+width: 100vw                     ;
+min-height: 100%                 ;
+background-size: cover           ;
 }
 
 .container.pages__predmety{
-    width: auto !important
+width: auto !important
 }
 
 .ui.container.predmety__title-search-fixed{
-display: flex !important;
-position: fixed                                             ;
-left: 15vw                                                  ;
-top: 47px                                                   ;
-background-color:                                           #eaeae2;
-height: 150px                                               ;
-width: 50vw                                                 ;
-align-items: flex-end  !important                                     ;
-z-index: 1                                                  ;
-padding-bottom: 15px                                        ;
+display: flex !important                    ;
+flex-direction: column !important;
+position: fixed                             ;
+left: 14vw                                  ;
+top: 47px                                   ;
+background-color:                           #eaeae2;
+height: 165px                               ;
+width: 51vw                                 ;
+align-items: flex-end !important            ;
+z-index: 1                                  ;
+padding-bottom: 15px                        ;
+}}
+
+@media only screen and (min-width: 992px) and (max-width: 1300px){
+.ui.container.predmety__body-bg{
+background-color:                                                  #eaeae2;
+width: 100vw         !important                                               ;
+min-height: 100%                                                   ;
+background-size: cover            !important                                  ;
+}
+
+.container.pages__predmety{
+width: auto !important
+}
+
+.ui.container.predmety__title-search-fixed{
+display: flex !important                    ;
+flex-direction: column !important;
+position: fixed                             ;
+left: 14vw                                  ;
+top: 47px                                   ;
+background-color:                           #eaeae2;
+height: 165px                               ;
+width: 51vw                                 ;
+align-items: flex-end !important            ;
+z-index: 1                                  ;
+padding-bottom: 15px                        ;
+}
+
+}
+
+
+@media only screen and (max-width: 992px){
+.ui.container.predmety__body-bg{
+background-color:                                                  #eaeae2;
+width: 100vw         !important                                               ;
+min-height: 100%                                                   ;
+background-size: cover            !important                                  ;
+}
+
+.container.pages__predmety{
+width: auto !important
+}
+
+.ui.container.predmety__title-search-fixed{
+display: flex !important                    ;
+flex-direction: row !important;
+position: fixed                             ;
+top: 52px                                   ;
+background-color:                           #eaeae2;
+height: 260px                               ;
+width: 100vw        !important                         ;
+align-items: flex-end !important            ;
+z-index: 1                                  ;
+padding-bottom: 20px                        ;
+align-items: center !important;
+}
+
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { SearchBar } from "@js/invenio_search_ui/components";
 import { buildUID, withState } from "react-searchkit";
-import { Input, Button } from "semantic-ui-react";
+import { Input, Button, Icon } from "semantic-ui-react";
 
 export const CustomSearchBar = withState(
   ({
@@ -11,40 +11,39 @@ export const CustomSearchBar = withState(
     uiProps,
     onKeyPress,
     queryString,
+    executeSearch,
     ...actionProps
   }) => {
-    const handleReset = () => {
-      onInputChange("");
-      onBtnSearchClick();
+    const handleReset = (q) => {
+      onInputChange(q);
+      executeSearch()
     };
 
     
     return (
-      <div>
+      
         <Input
           className="predmety__input-search"
-        //   action={{
-        //     // content: "Search",
-        //     onClick: onBtnSearchClick,
-        //     ...actionProps,
-        //   }}
           {...uiProps}
           placeholder={placeholder || "Hledat..."}
           onChange={(_, { value }) => {
             onInputChange(value);
           }}
           value={queryString}
-          // icon={
-          //   <Button
-          //     onClick={handleReset}
-          //     style={{ backgroundColor: colors.base }}
-          //   >
-          //     <Icon name="delete" />
-          //   </Button>
-          // }
+          icon={
+            queryString !== ''?
+           ( <Button
+              onClick={()=>handleReset('')}
+              className='predmety__btn-reset'
+            >
+              <Icon name="delete" />
+            </Button> ): 'none'
+          }
           onKeyPress={onKeyPress}
+        
+        
         ></Input>
-      </div>
+      
     );
   }
 );

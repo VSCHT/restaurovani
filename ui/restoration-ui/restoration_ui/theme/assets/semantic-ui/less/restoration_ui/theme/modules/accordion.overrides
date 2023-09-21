@@ -1,0 +1,16 @@
+.ui.accordion .title.btn.predmety__aside__dropdown-btn {
+    width: 20vw !important;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Noto_Sans_regular;
+    color: #222;
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    height: 40px;
+    align-items: center;
+}

@@ -1,0 +1,14 @@
+
+
+
+.ui.input.predmety__input-search input {
+    border: 1px solid darkgray !important;
+    background-color: #eaeae2 !important;
+    border-radius: 30px !important;
+    padding-left: 30px !important;
+    font-size: 16px !important;
+    font-family: Noto_Sans_bold !important;
+    color: #a9a9a9 !important;
+    height: 35px !important;
+    width: 220px !important;
+}

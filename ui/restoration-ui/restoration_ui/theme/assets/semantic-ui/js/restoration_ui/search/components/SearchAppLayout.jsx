@@ -46,14 +46,16 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
 
   return (
     <Container className="predmety__body-bg">
-      <Container className="pages__predmety">
+      <Container className=" predmety__body-bg pages__predmety">
         <Grid className="horiz-div">
           <Container className="horiz-div predmety__title-search-fixed">
+            <Grid.Row  className="horiz-div predmety__title-search">
             <Header className="predmety__title">Restaurovane predmety</Header>
 
-            <Grid className="horiz-div predmety__title-search__searchbar">
+            {/* <Grid className="horiz-div predmety__title-search__searchbar"> */}
               <SearchBar />
-            </Grid>
+            {/* </Grid> */}
+            </Grid.Row>
           </Container>
           <Grid className="vert-div predmety_main-container">
             <Grid className="vert-div predmety__cards">
@@ -93,17 +95,12 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
                 />
               </Button>
 
-              {/* <div style={{ overflowY: "auto", maxHeight: "300px" }}> */}
-              {searchAppConfig.aggs.map((agg) => {
-                return (
+              
                   <SearchAppFacets
                     aggs={searchAppConfig.aggs}
                     appName={appName}
-                    agg={agg}
+                    // agg={agg}
                   />
-                );
-              })}
-              {/* </div> */}
             </Grid>
           </Grid.Column>
         </Grid>

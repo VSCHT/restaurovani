@@ -4,7 +4,15 @@ import Overridable from "react-overridable";
 
 import _get from "lodash/get";
 
-import { Grid, Item, Label, List, Icon, Image, Button } from "semantic-ui-react";
+import {
+  Grid,
+  Item,
+  Label,
+  List,
+  Icon,
+  Image,
+  Button,
+} from "semantic-ui-react";
 import { withState, buildUID } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
 
@@ -22,30 +30,18 @@ const ItemHeader = ({ title, searchUrl, selfLink }) => {
   );
 };
 
-const DetailsButton=({title, searchUrl, selfLink}) => {
-  const viewLink = 
-    new URL(selfLink, window.location.origin)
-  
-  return (
-    <Button className="predmety__card__btn"
-    aria-label="Tlacitko tevrit detaily">
-      <a className="predmety__card__btn" href={viewLink}>DETAIL</a>
-    </Button>
-  );
-};
+const DetailsButton = ({ title, searchUrl, selfLink }) => {
+  const viewLink = new URL(selfLink, window.location.origin);
 
-const ItemSubheader = ({}) => {
-  // just an example
   return (
-    <>
-      <Item.Meta>
-        <Grid columns={1}>
-          <Grid.Column>
-            <Grid.Row className="ui double separated creatibutors"></Grid.Row>
-          </Grid.Column>
-        </Grid>
-      </Item.Meta>
-    </>
+    <Button
+      className="predmety__card__btn"
+      aria-label="Tlacitko tevrit detaily"
+    >
+      <a className="predmety__card__btn" href={viewLink}>
+        DETAIL
+      </a>
+    </Button>
   );
 };
 
@@ -62,8 +58,6 @@ export const ResultsListItemComponent = ({
     "metadata.restorationObject.title",
     "<no title>"
   )[0].value;
- 
-
 
   const restorer = _get(
     result,
@@ -71,7 +65,6 @@ export const ResultsListItemComponent = ({
     "<no data>"
   );
 
-  
   const created = _get(result, "created", "<no data>");
 
   return (
@@ -80,85 +73,36 @@ export const ResultsListItemComponent = ({
       result={result}
       title={title}
     >
-      <Grid className="predmety__card"  key={result.id}>
-
-      <Item className="horiz-div predmety__card-content">
-        <Grid className="predmety__card__img-container">
-        <Item.Image
+      <Grid className="predmety__card" key={result.id}>
+        <Item className="horiz-div predmety__card-content">
+          <Grid className="predmety__card__img-container">
+            <Item.Image
               src="/static/images/img_placeholder.png"
               alt="foto predmetu"
             />
-        </Grid>
-        <Item.Content className="vert-div predmety__card__info">
-        
-          <Grid.Column className="vert-div predmety__card__main-info">
-            <ItemHeader
-                  className="predmety__card__title"
-                  title={title}
-                  searchUrl={searchAppConfig.ui_endpoint}
-                  selfLink={`${result.id}/edit`}
-                />
-                <Item.Description className="parag">{restorer}</Item.Description>
-                
-          </Grid.Column>
-          <Item.Group className="horiz-div predmety__card__extra-info">
-            <Item.Extra className="horiz-div predmety__card__extra-info">Vlozeno: {created} </Item.Extra>
-            {/* <Button className="predmety__card__btn"
-                aria-label="Tlacitko tevrit detaily">DETAIL</Button> */}
-                <DetailsButton className="predmety__card__btn"
-                searchUrl={searchAppConfig.ui_endpoint}
-                selfLink={`${result.id}`}/>
-          </Item.Group>
-          
-        </Item.Content>
-
-
-      </Item>
-
-        {/* <div className="horiz-div predmety__card-content">
-          <div class="predmety__card__img-container">
-            <img
-              src="/static/images/img_placeholder.png"
-              alt="foto predmetu"
-            />
-          </div>
-          <div class="vert-div predmety__card__info">
-            <div class="vert-div predmety__card__main-info">
-              <p
-                class="predmety__card__title"
-                
+          </Grid>
+          <Item.Content className="vert-div predmety__card__info">
+            <Grid.Column className="vert-div predmety__card__main-info">
+              <ItemHeader
+                className="predmety__card__title"
+                title={title}
                 searchUrl={searchAppConfig.ui_endpoint}
                 selfLink={`${result.id}/edit`}
-              >{title}</p>
-              <p class="parag">{restorer}</p>
-            </div>
-            <div class="horiz-div predmety__card__extra-info">
-              <p class="parag">Vlozeno {created}</p>
-              <button
-                class="predmety__card__btn"
-                aria-label="Tlacitko tevrit detaily"
-              >
-                DETAIL
-              </button>
-            </div>
-          </div>
-        </div> */}
-        {/* <Item.Content>
-          <Grid>
-            <Grid.Row columns={1}>
-              <Grid.Column className="results-list item-main">
-                <ItemHeader
-                  title={title}
-                  searchUrl={searchAppConfig.ui_endpoint}
-                  selfLink={`${result.id}/edit`}
-                />
-                <ItemSubheader/>
-                <Item.Description/>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-
-        </Item.Content> */}
+              />
+              <Item.Description className="parag">{restorer}</Item.Description>
+            </Grid.Column>
+            <Item.Group className="horiz-div predmety__card__extra-info">
+              <Item.Extra className="horiz-div predmety__card__extra-info">
+                <p class="parag">Vlozeno: {created.slice(0, 12)}</p>
+              </Item.Extra>
+              <DetailsButton
+                className="predmety__card__btn"
+                searchUrl={searchAppConfig.ui_endpoint}
+                selfLink={`${result.id}`}
+              />
+            </Item.Group>
+          </Item.Content>
+        </Item>
       </Grid>
     </Overridable>
   );
@@ -177,13 +121,9 @@ ResultsListItemComponent.defaultProps = {
 
 export const ResultsListItem = (props) => {
   return (
-    
     <Overridable id={buildUID("ResultsListItem", "", props.appName)} {...props}>
-       
       <ResultsListItemComponent {...props} />
-      
     </Overridable>
-    
   );
 };
 
@@ -200,7 +140,6 @@ ResultsListItem.defaultProps = {
 
 export const ResultsListItemWithState = withState(
   ({ currentQueryState, updateQueryState, result, appName }) => (
-    
     <ResultsListItem
       currentQueryState={currentQueryState}
       updateQueryState={updateQueryState}
