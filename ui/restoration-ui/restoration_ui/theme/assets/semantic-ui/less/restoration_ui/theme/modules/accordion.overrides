@@ -1,4 +1,6 @@
-.ui.accordion .title.btn.predmety__aside__dropdown-btn {
+
+@media only screen and (min-width: 992px){
+    .ui.accordion .title.btn.predmety__aside__dropdown-btn {
     width: 20vw !important;
     text-decoration: none;
     font-size: 16px;
@@ -13,4 +15,23 @@
     outline: none;
     height: 40px;
     align-items: center;
+}
+}
+@media only screen and (max-width: 992px){
+.ui.accordion .title.btn.predmety__aside__dropdown-btn {
+    width: 40vw !important;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: Noto_Sans_regular;
+    color: #222;
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    height: 47px;
+    align-items: center;
+}
 }

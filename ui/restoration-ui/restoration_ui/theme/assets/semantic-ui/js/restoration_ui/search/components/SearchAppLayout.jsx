@@ -39,6 +39,12 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
   const toggleDropDown = (title) => {
     setDropdownVisible((prevState) => (prevState === title ? "" : title));
   };
+
+  const togglemenu=()=>{
+    document.getElementsByClassName('predmety__aside')[0].style.display ==='none !important' ?
+    document.getElementsByClassName('predmety__aside')[0].setAttribute('style', 'display: flex !important'):
+    document.getElementsByClassName('predmety__aside')[0].setAttribute('style', 'display: none !important');
+  }
   const { appName, buildUID } = useContext(SearchConfigurationContext);
 
   const searchAppConfig = useContext(SearchConfigurationContext);
@@ -52,9 +58,20 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
             <Grid.Row  className="horiz-div predmety__title-search">
             <Header className="predmety__title">Restaurovane predmety</Header>
 
-            {/* <Grid className="horiz-div predmety__title-search__searchbar"> */}
+            <Grid className="horiz-div predmety__title-search__searchbar">
               <SearchBar />
-            {/* </Grid> */}
+              <Button
+                  className="btn predmety__input-search__searchbar-burger"
+                  aria-label="Toggle Filter Menu"
+                  onClick={togglemenu}
+                >
+                  <Image
+                    rel="icon"
+                    src="/static/images/menu-icon-black.png"
+                    alt="burger filter button"
+                  />
+                </Button>
+            </Grid>
             </Grid.Row>
           </Container>
           <Grid className="vert-div predmety_main-container">
@@ -81,7 +98,7 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
               </Label>
             </Grid.Row>
             <Grid
-              class="vert-div predmety__aside__filter"
+              className="vert-div predmety__aside__filter"
               aria-label="Filter Options"
             >
               <Button
@@ -99,7 +116,6 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
                   <SearchAppFacets
                     aggs={searchAppConfig.aggs}
                     appName={appName}
-                    // agg={agg}
                   />
             </Grid>
           </Grid.Column>
@@ -108,18 +124,3 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
     </Container>
   );
 };
-
-// SearchAppLayout.propTypes = {
-//   config: PropTypes.shape({
-//     searchApi: PropTypes.object.isRequired, // same as ReactSearchKit.searchApi
-//     initialQueryState: PropTypes.shape({
-//       queryString: PropTypes.string,
-//       sortBy: PropTypes.string,
-//       sortOrder: PropTypes.string,
-//       page: PropTypes.number,
-//       size: PropTypes.number,
-//       hiddenParams: PropTypes.array,
-//       layout: PropTypes.oneOf(["list", "grid"]),
-//     }),
-//   }),
-// };

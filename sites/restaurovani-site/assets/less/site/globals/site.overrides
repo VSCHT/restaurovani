@@ -397,10 +397,10 @@ h4 {
   .horiz-div.predmety__title-search-fixed {
     position: fixed;
     display: flex !important;
-    left: 15vw;
+    left: 14vw;
     top: 47px;
     background-color: #eaeae2;
-    height: 150px;
+    height: 165px;
     width: 50vw;
     align-items: flex-end;
     z-index: 1;
@@ -817,6 +817,8 @@ h4 {
     display: flex;
     flex-direction: row;
     align-items: center;
+    position: fixed;
+    z-index: 1000;
   }
   .text__vsht-logo {
     font-size: 10px;
@@ -1100,7 +1102,7 @@ h4 {
     left: 15vw;
   }
   .predmety__card {
-    margin-top: 30px;
+    margin-top: 45px !important;
     background-color: white;
     height: 200px;
     padding: 25px;
@@ -1125,13 +1127,13 @@ h4 {
   }
   .predmety__card__title {
     font-family: Noto_Sans_semibold;
-    font-size: 25px;
+    font-size: 21px;
   }
   .predmety__card__info {
     margin-left: 35px;
 
     width: 65%;
-    height: 100%;
+    height: 80%;
     justify-content: space-between;
   }
 
@@ -1191,23 +1193,29 @@ h4 {
 
   .horiz-div.predmety__title-search {
     justify-content: space-between;
-    width: 100%;
+    width: 45%;
+    align-self: flex-start;
   }
 
   /* aside part */
 
   .vert-div.predmety__aside {
-    position: fixed;
+    position: relative !important;
     top: 100px;
-    right: 10vw;
+    right: -20vw !important;
     gap: 60px;
     height: auto;
     width: 20vw;
     align-content: stretch;
+    flex-wrap: wrap;
+    display: flex !important
   }
 
   .predmety__aside__filter {
-    gap: 20px;
+    gap: 10px;
+    display: flex;
+    position: relative;
+    top: 120px
   }
 
   .predmety__aside__dropdown-btn {
@@ -1750,6 +1758,7 @@ h4 {
 
   .predmety__title-search__searchbar {
     gap: 40px;
+    align-items: center !important;
   }
   .predmety__input-search__searchbar-burger img {
     width: 50px;
@@ -1757,7 +1766,7 @@ h4 {
   }
  
   .horiz-div.predmety__title-search {
-    gap: 60px;
+    gap: 50px;
     flex-direction: column;
     margin: 0 auto;
   }
@@ -1784,7 +1793,7 @@ h4 {
     width: 100vw;
     position: relative;
     top: 350px;
-    margin: 0 auto;
+    margin: 0 auto !important;
   }
   .predmety__cards {
     width: 90vw;
@@ -1802,7 +1811,9 @@ h4 {
 
   .predmety__card__title {
     font-family: Noto_Sans_semibold;
-    font-size: 35px;
+    font-size: 25px;
+    width: 35vw;
+    line-height:27px
   }
 
   p {
@@ -1810,11 +1821,11 @@ h4 {
   }
 
   .predmety__card__info {
-    margin-left: 40px;
+    margin-left: 30px;
 
-    height: 100%;
+    height: 80%;
     justify-content: space-between;
-    width: 450px;
+    width: 45vw;
   }
 
   .predmety__card__img-container {
@@ -1847,25 +1858,27 @@ h4 {
   }
 
   .predmety__card__extra-info {
-    justify-content: space-between;
-    gap: 5px;
   }
 
   .predmety__card__extra-info p {
-    width: 150px;
+    width: 130px;
+    font-size: 16px;
+    display: none
   }
 
   /* aside part */
   .vert-div.predmety__aside {
-    position: fixed;
-    top: 200px;
+    position: fixed !important;
+    top: 270px;
     gap: 60px;
     height: auto;
-    width: 50vw;
+    width: 100vw !important;
     align-content: stretch;
     background-color: #eaeae2;
     padding: 30px 40px;
-    visibility: hidden;
+    flex-wrap: wrap;
+    margin: 0 auto !important;
+    display: none !important;
   }
 
   .predmety__aside__filter {
@@ -2182,7 +2195,7 @@ h4 {
     line-height: 28px;
     word-wrap: break-word;
     font-family: Noto_Sans_regular;
-    font-size: 25px;
+    font-size: 20px;
   }
   .vr-small {
     visibility: hidden;
