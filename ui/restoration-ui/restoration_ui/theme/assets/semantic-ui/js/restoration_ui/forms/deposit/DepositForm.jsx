@@ -19,6 +19,7 @@ import {
   Radio,
   Button,
   Grid,
+  Label
 } from "semantic-ui-react";
 import { DepositValidationSchema } from "./DepositValidationSchema";
 import { useFormConfig, useOnSubmit, submitContextType } from "@js/oarepo_ui";
@@ -65,6 +66,7 @@ RecordPreviewer.defaultProps = {
   record: undefined,
 };
 
+
 const units = [
   { value: "kg", text: "kg" },
   { value: "mg", text: "mg" },
@@ -87,6 +89,7 @@ export const DepositForm = () => {
   console.log(metadata);
 
 
+  document.getElementsByClassName('mt-20')[0].style.display='none'
  
   const [selectedRadio, setSelectedRadio] = useState("");
   const handleRadio = (value) => {
@@ -146,9 +149,14 @@ export const DepositForm = () => {
                   />
                 </div>
                 <div className="vert-div predmety__form__div">
+                  <Label
+                        for="metadata.restorationObject.category"
+                        className="predmety__form__div__label"
+                      >Kategorie</Label>
                   <GroupField
                     fieldPath="metadata.restorationObject.category"
                     className="horiz-div predmety__form__div__input-radio"
+                    
                   >
                     <div className="predmety__form__div__label horiz-div">
                       <Radio
@@ -185,13 +193,6 @@ export const DepositForm = () => {
                   </GroupField>
                 </div>
               </div>
-              <button
-                className=" form main-page__btn__addPredmety"
-                type="submit"
-                aria-label="tlacitko vytvoreni predmetu"
-              >
-                VÝTVOŘIT PŘEDMĚT
-              </button>
               <SaveButton/>
 
               

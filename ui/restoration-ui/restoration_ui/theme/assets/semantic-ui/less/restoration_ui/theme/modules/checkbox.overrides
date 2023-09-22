@@ -1,0 +1,40 @@
+.ui.radio.checkbox.predmety__form__div__radio input{
+    appearance: none;
+  background-color: #fff  !important;
+  margin: 0  !important;
+  color: #333  !important;
+  width: 20px  !important;
+  height: 20px  !important;
+  border: 2px solid #333  !important;
+  border-radius: 50%  !important;
+  display: grid  !important;
+  place-content: center  !important;
+}
+
+.ui.radio.checkbox.predmety__form__div__radio input::before {
+  content: ""  !important;
+  width: 8px  !important;
+  height: 8px  !important;
+  border-radius: 50%  !important;
+  transform: scale(0)  !important;
+  background-color: #E0472B  !important;
+}
+.ui.radio.checkbox.predmety__form__div__radio input:checked::before {
+  transform: scale(1) !important;
+}
+
+.ui.radio.checkbox.predmety__form__div__radio::before {
+  
+  width: 8px  !important;
+  height: 8px  !important;
+  border-radius: 50%  !important;
+  transform: scale(0)  !important;
+  background-color: #E0472B  !important;
+}
+.ui.checked.radio.checkbox.predmety__form__div__radio::before{
+    transform: scale(1) !important;
+}
+
+.ui.checkbox.radio.predmety__form__div__radio input[type="radio"] {
+    color: #E0472B
+}

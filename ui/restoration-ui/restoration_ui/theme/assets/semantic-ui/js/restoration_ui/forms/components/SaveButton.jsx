@@ -6,20 +6,18 @@ import { useDepositApiClient } from "@js/oarepo_ui";
 export const SaveButton = ({ ...uiProps }) => {
   const { isSubmitting, save } = useDepositApiClient();
 
-  console.log(useDepositApiClient)
+  console.log(useDepositApiClient);
 
   return (
     <Button
       name="save"
+      className="form main-page__btn__addPredmety"
+      aria-label="tlacitko vytvoreni predmetu"
       disabled={isSubmitting}
       loading={isSubmitting}
-      color="grey"
       onClick={() => save()}
-      icon="save"
-      labelPosition="left"
-      content={i18next.t("Save")}
+      content="VÝTVOŘIT PŘEDMĚT"
       type="submit"
-      {...uiProps}
     />
   );
 };

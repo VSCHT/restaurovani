@@ -577,7 +577,7 @@ h4 {
     gap: 10px;
   }
 
-  .predmety__form__div__radio {
+.predmety__form__div__radio {
     appearance: none;
     background-color: #fff;
     margin: 0;
@@ -594,7 +594,7 @@ h4 {
     margin: 0px 0px 5px;
     gap: 10px;
   }
-  .predmety__form__div__radio::before {
+ .predmety__form__div__radio::before {
     content: "";
     width: 8px;
     height: 8px;
@@ -602,7 +602,7 @@ h4 {
     transform: scale(0);
     background-color: #e0472b;
   }
-  .predmety__form__div__radio:checked::before {
+ .predmety__form__div__radio:checked::before {
     transform: scale(1);
   }
 
@@ -611,7 +611,8 @@ h4 {
   .details__bg {
     background-image: url("../../../../static/images/bgDetails.png");
 
-    height: 100%;
+    height: auto;
+    min-height:100vh;
 
     background-position: center;
     background-repeat: no-repeat;
@@ -1321,7 +1322,8 @@ h4 {
   .details__bg {
     background-image: url("../../../../static/images/bgDetails.png");
 
-    height: 100%;
+    height: auto;
+    min-height: 100vh;
 
     background-position: center;
     background-repeat: no-repeat;
@@ -2013,6 +2015,7 @@ h4 {
     background-image: url("../../../../static/images/bgDetails.png");
 
     height: auto;
+    min-height: 100vh;
 
     background-position: center;
     background-repeat: no-repeat;
