@@ -10,20 +10,19 @@
 
 {% endblock %}
 
-{%- block page_body %}
-{{ metadata.restorationObject }}
-{{ metadata.restorationWork }}
 <Field label={ _('metadata/restorationObject/title.value') }>
 {{metadata.restorationObject.title[0].value}} 
 </Field>
+{%- block page_body %}
+
 
 
 <div class="horiz-div details__div__header">
     <p class="details__div__header-h">{{metadata.restorationObject.title[0].value}} </p>
     <div class="horiz-div details__div__header-additional">
-      <p class="details__div__header_p parag">1-200 h.l.</p>
+      <p class="details__div__header_p parag">{{ metadata.restorationObject.stylePeriod.startYear }} {% if metadata.restorationObject.stylePeriod.endYear %} - {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}</p>
       <span class="details__div__vr"></span>
-      <p class="details__div__header_p parag">rimska antika</p>
+      <p class="details__div__header_p parag">{{ metadata.restorationObject.stylePeriod.period.title }}</p>
     </div>
   </div>
   <!-- photos -->
@@ -94,7 +93,7 @@
           <p class="parag">Dotace</p>
         </div>
         <div class="details__div__details-box-smaller">
-          <p class="parag">1-200 n.l. {{ metadata.restorationObject.stylePeriod.period.title }}</p>
+          <p class="parag">{{ metadata.restorationObject.stylePeriod.startYear }} {% if metadata.restorationObject.stylePeriod.endYear %} - {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}{{ metadata.restorationObject.stylePeriod.period.title }}</p>
         </div>
       </div>
       <span class="vr-small"></span>
@@ -212,9 +211,11 @@
     </div>
     <span class="vr-huge-vert"></span>
     <div class="vert-div details__div__info-right">
+    <div>
       <p class="details__div__info-right parag">
         Restauratorsky zasah/zamer
       </p>
+      </div>
       <div class="details__div__info-right__text">
         <p class="parag">
           {{ metadata.restorationWork.abstract[0].value}}
