@@ -16,34 +16,33 @@ export const CustomSearchBar = withState(
   }) => {
     const handleReset = (q) => {
       onInputChange(q);
-      executeSearch()
+      onBtnSearchClick();
+      executeSearch();
     };
 
-    
     return (
-      
-        <Input
-          className="predmety__input-search"
-          {...uiProps}
-          placeholder={placeholder || "Hledat..."}
-          onChange={(_, { value }) => {
-            onInputChange(value);
-          }}
-          value={queryString}
-          icon={
-            queryString !== ''?
-           ( <Button
-              onClick={()=>handleReset('')}
-              className='predmety__btn-reset'
+      <Input
+        className="predmety__input-search"
+        {...uiProps}
+        placeholder={placeholder || "Hledat..."}
+        onChange={(_, { value }) => {
+          onInputChange(value);
+        }}
+        value={queryString}
+        icon={
+          queryString !== "" ? (
+            <Button
+              onClick={() => handleReset("")}
+              className="predmety__btn-reset"
             >
               <Icon name="delete" />
-            </Button> ): 'none'
-          }
-          onKeyPress={onKeyPress}
-        
-        
-        ></Input>
-      
+            </Button>
+          ) : (
+            "none"
+          )
+        }
+        onKeyPress={onKeyPress}
+      ></Input>
     );
   }
 );
