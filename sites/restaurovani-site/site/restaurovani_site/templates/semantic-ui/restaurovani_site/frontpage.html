@@ -71,13 +71,18 @@
               <!-- actions-buttons -->
               <div class="vert-div main-page__div__btn ">
                 <div>
-                  <input
-                    class="main-page__input-search parag"
-                    type="text"
-                    placeholder="Vyhledat předmět ..."
-                    aria-label="Hledat predmet"
-                  />
-                </div>
+                 
+
+
+                 <form action="{{ url_for('restoration-ui.search') }}"  role="search">
+                        
+                            <input type="text" name="q" class="main-page__input-search parag" placeholder="{{ _('Vyhledat předmět ...') }}">
+                            
+                        </form>
+                        
+                  
+                </div> 
+                
                 <div>
                   <button
                     class="main-page__btn__addPredmety parag"
