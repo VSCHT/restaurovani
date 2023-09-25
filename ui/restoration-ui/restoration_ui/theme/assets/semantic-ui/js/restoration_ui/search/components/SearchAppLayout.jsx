@@ -41,9 +41,9 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
   };
 
   const togglemenu=()=>{
-    document.getElementsByClassName('predmety__aside')[0].style.display ==='none !important' ?
-    document.getElementsByClassName('predmety__aside')[0].setAttribute('style', 'display: flex !important'):
-    document.getElementsByClassName('predmety__aside')[0].setAttribute('style', 'display: none !important');
+    document.getElementsByClassName('.column.vert-div.predmety__aside')[0].style.display ==='none !important' ?
+    document.getElementsByClassName('.column.vert-div.predmety__aside')[0].setAttribute('style', 'display: flex !important'):
+    document.getElementsByClassName('.column.vert-div.predmety__aside')[0].setAttribute('style', 'display: none !important');
   }
   const { appName, buildUID } = useContext(SearchConfigurationContext);
 

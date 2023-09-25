@@ -49,9 +49,9 @@ h4 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    z-index: 1000;
+    z-index: 1000 !important;
     position: relative;
-    width: 300px
+    width: 300px;
   }
   .text__vsht-logo {
     font-size: 11px;
@@ -67,6 +67,7 @@ h4 {
   .image__vsht-logo {
     width: 40px;
     margin-right: 10px;
+    
   }
 
   /* main page */
@@ -331,7 +332,7 @@ h4 {
   /* main part--cards */
 
   .predmety_main-container {
-    width: 51vw;
+    width: 53vw;
     position: relative;
     top: 180px;
     left: 15vw;
@@ -349,7 +350,7 @@ h4 {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    width: 270px !important;
+    width: 245px !important;
     /* height: 100vh */
   }
   .predmety__card__img-container img {
@@ -366,7 +367,7 @@ h4 {
     font-size: 25px;
   }
   .predmety__card__info {
-    margin-left: 35px;
+    margin-left: 25px;
     width: 65%;
     height: 100%;
     justify-content: space-between;
@@ -460,7 +461,7 @@ padding: 25px !important ;
 
   .horiz-div.predmety__title-search {
     justify-content: space-between;
-    width: 48%;
+    width: 49vw;
   }
 
   /* aside part */
@@ -1116,7 +1117,7 @@ padding: 25px !important ;
   .predmety_main-container {
     width: 50vw;
     position: relative;
-    top: 180px;
+    top: 185px;
     left: 11vw;
   }
   .predmety__card {
@@ -1151,7 +1152,7 @@ padding: 25px !important ;
     margin-left: 35px;
 
     width: 65%;
-    height: 80%;
+    height: 90%;
     justify-content: space-between;
   }
    .predmety__cards {
@@ -1875,6 +1876,7 @@ padding: 25px !important ;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    width: 305px;
   }
   .predmety__card__img-container img {
     max-width: 100%;

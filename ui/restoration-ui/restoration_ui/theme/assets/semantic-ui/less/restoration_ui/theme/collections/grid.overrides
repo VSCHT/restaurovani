@@ -428,7 +428,18 @@ width: 20vw !important                                      ;
 align-content: stretch                                      ;
 }
 
-
+ui.column.vert-div.predmety__aside {
+    position: fixed !important;
+    top: 270px;
+    gap: 60px;
+    height: auto;
+    width: 100vw !important;
+    align-content: stretch;
+    background-color: #eaeae2;
+    padding: 30px 40px;
+    flex-wrap: wrap;
+    margin: 0 auto !important;
+    display: none !important;}
 
 .ui.grid.vsht-logo.div__vsht-logo.predmety__div__vsht-logo{
 display: flex            !important                                     ;
