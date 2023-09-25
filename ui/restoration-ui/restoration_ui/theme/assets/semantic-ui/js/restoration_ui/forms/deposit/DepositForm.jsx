@@ -155,7 +155,7 @@ export const DepositForm = () => {
                       name="metadata.restorationObject.description"
                       aria-label="Popis"
                       fieldPath="metadata.restorationObject.description"
-                      value={record.metadata.restorationWork?.abstract?.[0]?.value}
+                      value={record.metadata?.restorationWork?.abstract?.[0]?.value}
                       label={
                         <FieldLabel
                           htmlFor="metadata.restorationObject.description"
@@ -220,7 +220,7 @@ export const DepositForm = () => {
                         multiple={true}
                         required
                         placeholder={"Vyberte metodu restaurace"}
-                        value={record.metadata.restorationWork?.restorationMethods[0]?.id}
+                        value={record.metadata?.restorationWork?.restorationMethods[0]?.id}
                         clearable
                         label={
                           <FieldLabel
@@ -239,7 +239,7 @@ export const DepositForm = () => {
                         type={`FabricationTechnologies`}
                         fieldPath="metadata.fabricationTechnology"
                         placeholder={"Vyberte technologie fabrikace"}
-                        value={record.metadata.restorationWork?.fabricationMethods?.id}
+                        value={record.metadata?.restorationWork?.fabricationMethods?.id}
                         required
                         multiple={false}
                         clearable
@@ -261,7 +261,7 @@ export const DepositForm = () => {
                         multiple={false}
                         clearable
                         placeholder={"Vyberte typy materialu"}
-                        value={record.metadata.restorationWork?.materialType?.id}
+                        value={record.metadata?.restorationWork?.materialType?.id}
                         label={
                           <FieldLabel
                             htmlFor={"metadata.materialType"}
@@ -281,7 +281,7 @@ export const DepositForm = () => {
                         multiple={true}
                         clearable
                         placeholder={"Vyberte vedlejší typy materiálu"}
-                        value={record.metadata.restorationWork?.secondaryMaterialTypes?.[0]?.id}
+                        value={record.metadata?.restorationWork?.secondaryMaterialTypes?.[0]?.id}
                         label={
                           <FieldLabel
                             htmlFor={"metadata.secondaryMaterialTypes"}
@@ -299,7 +299,7 @@ export const DepositForm = () => {
                         required
                         multiple={false}
                         placeholder={"Vyberte typ predmetu"}
-                        value={record.metadata.restorationWork?.itemTypes?.id}
+                        value={record.metadata?.restorationWork?.itemTypes?.id}
                         clearable
                         label={
                           <FieldLabel
@@ -354,8 +354,8 @@ export const DepositForm = () => {
                                           />
                                         }
                                         value={
-                                          record.metadata.restorationObject
-                                            .dimensions[index].dimension.id
+                                          record.metadata?.restorationObject
+                                            ?.dimensions?.[index]?.dimension?.id
                                         }
                                       />
                                     </div>
@@ -366,7 +366,7 @@ export const DepositForm = () => {
                                         aria-label="Value"
                                         fieldPath="metadata.restorationObject.dimensions.value"
                                         value={
-                                          record.metadata.restorationObject
+                                          record.metadata?.restorationObject
                                             ?.dimensions?.[index]?.value
                                         }
                                         label={
@@ -386,7 +386,7 @@ export const DepositForm = () => {
                                         fieldPath="metadata.restorationObject.dimensions.unit"
                                         options={units}
                                         value={
-                                          record.metadata.restorationObject
+                                          record.metadata?.restorationObject
                                             ?.dimensions?.[index]?.unit
                                         }
                                         label={
@@ -402,10 +402,10 @@ export const DepositForm = () => {
                                     <button
                                       type="button"
                                       className="predmety__form__div__button-small predmety__form__div__button-small-delete"
-                                      onClick={() => {record.metadata.restorationObject
-                                        .dimensions.splice(index, 1);
-                                      console.log(record.metadata.restorationObject
-                                        .dimensions)}}
+                                      onClick={() => {record.metadata?.restorationObject
+                                        ?.dimensions.splice(index, 1);
+                                      console.log(record.metadata?.restorationObject
+                                        ?.dimensions)}}
                                     >
                                       x
                                     </button>
@@ -422,8 +422,8 @@ export const DepositForm = () => {
                               className="predmety__form__div__button-small"
                               color="grey"
                               onClick={() => {
-                                const data = record.metadata.restorationObject
-                                .dimensions;
+                                const data = record.metadata?.restorationObject
+                                ?.dimensions;
                                 data.push({
                                   dimension: { title: "" },
                                   value: "",
@@ -447,7 +447,7 @@ export const DepositForm = () => {
                               type={`StylePeriods`}
                               fieldPath="metadata.restorationObject.stylePeriod"
                               value={
-                                record.metadata.restorationObject?.stylePeriod
+                                record.metadata?.restorationObject?.stylePeriod
                                   ?.period?.id
                               }
                               clearable
@@ -501,7 +501,7 @@ export const DepositForm = () => {
                         name="metadata.restorationObject.archeologic"
                         aria-label="Archeologicky nález"
                         fieldPath="metadata.restorationObject.archeologic"
-                        value={record.metadata.restorationObject?.archeologic}
+                        value={record.metadata?.restorationObject?.archeologic}
                         label={
                           <FieldLabel
                             htmlFor="metadata.restorationObject.archeologic"
@@ -520,7 +520,7 @@ export const DepositForm = () => {
                               name="metadata.restorationWork.restorationPeriod.since"
                               aria-label="Od"
                               value={
-                                record.metadata.restorationWork
+                                record.metadata?.restorationWork
                                   ?.restorationPeriod?.since
                               }
                               fieldPath="metadata.restorationWork.restorationPeriod.since"
@@ -540,7 +540,7 @@ export const DepositForm = () => {
                               aria-label="Do"
                               fieldPath="metadata.restorationWork.restorationPeriod.until"
                               value={
-                                record.metadata.restorationWork
+                                record.metadata?.restorationWork
                                   ?.restorationPeriod?.until
                               }
                               label={
@@ -562,7 +562,7 @@ export const DepositForm = () => {
                         fieldPath="metadata.restorationObject.restorationRequestor"
                         multiple={false}
                         value={
-                          record.metadata.restorationObject?.restorationRequestor
+                          record.metadata?.restorationObject?.restorationRequestor
                             ?.id
                         }
                         required
