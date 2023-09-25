@@ -49,6 +49,9 @@ h4 {
     display: flex;
     flex-direction: row;
     align-items: center;
+    z-index: 1000;
+    position: relative;
+    width: 300px
   }
   .text__vsht-logo {
     font-size: 11px;
@@ -328,14 +331,14 @@ h4 {
   /* main part--cards */
 
   .predmety_main-container {
-    width: 50vw;
+    width: 51vw;
     position: relative;
     top: 180px;
     left: 15vw;
   }
   .predmety__card-content {
     background-color: #ffffff;
-    
+    padding: 0px !important;
     
     display: flex;
     position: relative;
@@ -346,6 +349,7 @@ h4 {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    width: 270px !important;
     /* height: 100vh */
   }
   .predmety__card__img-container img {
@@ -392,6 +396,18 @@ h4 {
   .predmety__card__btn:hover {
     background-color: #e76c50;
   }
+  .grid.predmety__card{
+margin-top: 45px !important    ;
+background-color:              #ffffff !important;
+display: flex !important       ;
+position: relative !important  ;
+width: 100% !important         ;
+flex-direction: row !important ;
+left: 1vw !important;
+height: 250px !important;
+padding: 25px !important ;
+
+}
 
   /* title and searchbar  */
   .horiz-div.predmety__title-search-fixed {
@@ -444,19 +460,20 @@ h4 {
 
   .horiz-div.predmety__title-search {
     justify-content: space-between;
-    width: 100%;
+    width: 48%;
   }
 
   /* aside part */
 
   .vert-div.predmety__aside {
-    position: fixed;
+    position: relative;
     top: 100px;
-    right: 10vw;
-    gap: 60px;
+    right: -20vw;
+    gap: 75px;
     height: auto;
-    width: 20vw;
+    width: 20vw !important;
     align-content: stretch;
+    display: flex !important
   }
 
   .predmety__aside__filter {
@@ -507,6 +524,7 @@ h4 {
     cursor: pointer;
     font-family: Noto_Sans_semibold;
     margin-top: 10px;
+    z-index: 1000
   }
 
   .predmety__aside__btn:hover {
@@ -1099,7 +1117,7 @@ h4 {
     width: 50vw;
     position: relative;
     top: 180px;
-    left: 15vw;
+    left: 11vw;
   }
   .predmety__card {
     margin-top: 45px !important;
@@ -1114,7 +1132,7 @@ h4 {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    /* width: 50% */
+    width: 260px !important
   }
   .predmety__card__img-container img {
     max-width: 100%;
@@ -1136,7 +1154,23 @@ h4 {
     height: 80%;
     justify-content: space-between;
   }
+   .predmety__cards {
+    width: 70vw;
+    margin: 0 auto !important;
+    gap: 70px;
+  }
+.grid.predmety__card{
+margin-top: 45px !important    ;
+background-color:              #ffffff !important;
+display: flex !important       ;
+position: relative !important  ;
+width: 100% !important         ;
+flex-direction: row !important ;
+left: 2vw !important;
+height: 250px !important;
+padding: 25px !important ;
 
+}
   .predmety__card__extra-info {
     justify-content: space-between;
     width: 100%;
@@ -1144,6 +1178,14 @@ h4 {
   .predmety__card__extra-info p {
     width: 150px;
     opacity: 60;
+  }
+  .predmety__card-content {
+    background-color: #ffffff;
+    padding: 0px !important;
+    
+    display: flex;
+    position: relative;
+    width: 100%
   }
 
   .predmety__card__btn {
@@ -1193,7 +1235,7 @@ h4 {
 
   .horiz-div.predmety__title-search {
     justify-content: space-between;
-    width: 45%;
+    width: 48%;
     align-self: flex-start;
   }
 
@@ -1202,7 +1244,7 @@ h4 {
   .vert-div.predmety__aside {
     position: relative !important;
     top: 100px;
-    right: -20vw !important;
+    right: -25vw !important;
     gap: 60px;
     height: auto;
     width: 20vw;
@@ -1797,11 +1839,11 @@ h4 {
   }
   .predmety__cards {
     width: 90vw;
-    margin: 0 auto;
+    margin: 0 auto !important;
     gap: 70px;
   }
   .predmety__card {
-    margin-top: 0 auto;
+    margin: 50px auto !important;
     background-color: white;
     height: 300px;
     padding: 35px;
@@ -1837,7 +1879,7 @@ h4 {
   .predmety__card__img-container img {
     max-width: 100%;
     max-height: 100%;
-    width: 300px;
+    width: 240px;
     height: auto;
   }
 
@@ -1858,12 +1900,13 @@ h4 {
   }
 
   .predmety__card__extra-info {
+    justify-content: space-between;
+    width: 100%;
   }
 
   .predmety__card__extra-info p {
-    width: 130px;
+    width: 160px;
     font-size: 16px;
-    display: none
   }
 
   /* aside part */

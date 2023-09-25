@@ -49,7 +49,7 @@ width: auto !important
 display: flex !important                    ;
 flex-direction: column !important;
 position: fixed                             ;
-left: 14vw                                  ;
+left: 12vw                                  ;
 top: 47px                                   ;
 background-color:                           #eaeae2;
 height: 165px                               ;

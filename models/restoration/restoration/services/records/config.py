@@ -67,7 +67,7 @@ class RestorationServiceConfig(
             ),
             "self_html": ConditionalLink(
                 cond=is_record,
-                if_=RecordLink("{+ui}{self.url_prefix}{id}"),
+                if_=RecordLink("{+ui}/restoration/{id}"),
                 else_=RecordLink("{+ui}/uploads/{id}"),
             ),
             "versions": RecordLink("{+api}/{self.url_prefix}{id}/versions"),

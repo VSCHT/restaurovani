@@ -55,7 +55,7 @@ border-radius: 20px          !important   ;
 height: 35px                 !important   ;
 width: 100px                !important    ;
 border: none                 !important   ;
-margin: 10px                !important    ;
+margin-bottom: 10px                !important    ;
 font-size: 13px             !important   ;
 font-family: Noto_Sans_semibold !important;
 }}
@@ -117,7 +117,7 @@ color: white         !important           ;
 background-color:               #de4929 !important;
 border-radius: 40px          !important   ;
 height: 60px                 !important   ;
-width: 30vw                !important    ;
+width: 16vw                !important    ;
 border: none                 !important   ;
 margin: 10px                !important    ;
 font-size: 20px             !important   ;
