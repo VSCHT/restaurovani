@@ -1,21 +1,21 @@
 .ui.container.predmety__body-bg{
-    background-color: #eaeae2;
-    width: 100vw
+background-color:                #eaeae2;
+width: 100vw
 }
 
 .container.pages__predmety{
-    width: auto !important
+width: auto !important
 }
 
 .ui.container.predmety__title-search-fixed{
-display: flex !important;
-position: fixed                                             ;
-left: 15vw                                                  ;
-top: 47px                                                   ;
-background-color:                                           #eaeae2;
-height: 150px                                               ;
-width: 50vw                                                 ;
-align-items: flex-end  !important                                     ;
-z-index: 1                                                  ;
-padding-bottom: 15px                                        ;
+display: flex !important                    ;
+position: fixed                             ;
+left: 15vw                                  ;
+top: 47px                                   ;
+background-color:                           #eaeae2;
+height: 150px                               ;
+width: 50vw                                 ;
+align-items: flex-end !important            ;
+z-index: 1                                  ;
+padding-bottom: 15px                        ;
 }

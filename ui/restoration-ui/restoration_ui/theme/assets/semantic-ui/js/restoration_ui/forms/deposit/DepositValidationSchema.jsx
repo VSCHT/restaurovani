@@ -3,7 +3,7 @@
 import * as Yup from "yup";
 import { i18next } from "@translations/restoration_ui/i18next";
 
-const requiredMessage = i18next.t("This field is required");
+const requiredMessage = "This field is required";
 const edtfRegEx = /^(\d{4})(-(\d{2})(-(\d{2}))?)?(\/\d{4}(-\d{2}(-\d{2})?)?)?$/;
 
 export const DepositValidationSchema = Yup.object().shape({
@@ -16,9 +16,8 @@ export const DepositValidationSchema = Yup.object().shape({
       Yup.object().shape({
         unit: Yup.string().required(requiredMessage),
         value: Yup.number().required(requiredMessage),
-        dimension: Yup.object().shape({
-          id: Yup.string().required(requiredMessage),
-        }),
+        dimension: Yup.string().required(requiredMessage),
+        
       })
     ),
     restorationRequestor: Yup.string().required(requiredMessage),
