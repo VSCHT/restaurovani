@@ -1276,6 +1276,10 @@ h4 {
   }
   .predmety__form__div__input-radio {
     justify-content: space-between;
+      column-gap: 190px;
+  flex-wrap: wrap;
+  width: 90%;
+  row-gap:20px
   }
   .predmety__form__h {
     font-family: Noto_Sans_regular;
@@ -1409,6 +1413,17 @@ h4 {
     width: 10vw;
     height: 30px;
     text-align: center;
+  }
+    .predmety__form__div-small{
+    gap: 5px;
+    width: 100%;
+
+    align-items: flex-end;
+  }
+ .predmety__form__div-small__div{
+    width: 40%;
+    gap: 10px;
+
   }
   .details__div__desc p {
     margin-top: 40px;
@@ -1930,11 +1945,11 @@ h4 {
 
   .predmety__form__h {
     font-family: Noto_Sans_regular;
-    font-size: 35px;
+    font-size: 25px;
   }
   .predmety__form__div__label {
     font-family: Noto_Sans_regular;
-    font-size: 25px;
+    font-size: 14px;
     gap: 10px;
   }
 
@@ -1974,6 +1989,10 @@ h4 {
   }
   .predmety__form__div__input-radio {
     justify-content: space-between;
+    column-gap: 190px;
+  flex-wrap: wrap;
+  width: 80%;
+  row-gap:20px
   }
 
   .predmety__form__div__radio {
@@ -1992,6 +2011,13 @@ h4 {
   .predmety__form-main {
     margin: 0px 0px 5px;
     gap: 20px;
+  }
+   .predmety__form__div-small{
+    gap: 5px;
+    width: 100%;
+    align-items: flex-end;
+  }
+
   }
   .form.main-page__btn__addPredmety {
     width: 250px;
