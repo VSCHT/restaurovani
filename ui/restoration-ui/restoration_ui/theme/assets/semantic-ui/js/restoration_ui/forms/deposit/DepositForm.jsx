@@ -37,7 +37,6 @@ import Overridable from "react-overridable";
 import { i18next } from "@translations/restoration_ui/i18next";
 import { useDepositApiClient } from "@js/oarepo_ui";
 import { SaveButton } from "../components";
-import {PublishButton} from '../components'
 
 const CurrentRecord = (props) => {
   const { record } = props;
@@ -94,8 +93,6 @@ export const DepositForm = () => {
   const handleRadio = (value) => {
     setSelectedRadio(value);
   };
-
- 
 
   return (
     <Container>
@@ -158,6 +155,7 @@ export const DepositForm = () => {
                       name="metadata.restorationObject.description"
                       aria-label="Popis"
                       fieldPath="metadata.restorationObject.description"
+                      value={record.metadata.restorationWork?.abstract?.[0]?.value}
                       label={
                         <FieldLabel
                           htmlFor="metadata.restorationObject.description"
@@ -221,6 +219,8 @@ export const DepositForm = () => {
                         fieldPath="metadata.restorationWork.restorationMethods"
                         multiple={true}
                         required
+                        placeholder={"Vyberte metodu restaurace"}
+                        value={record.metadata.restorationWork?.restorationMethods[0]?.id}
                         clearable
                         label={
                           <FieldLabel
@@ -230,8 +230,7 @@ export const DepositForm = () => {
                             label={"Metoda restaurace"}
                           />
                         }
-                        placeholder={"Vyberte metodu restaurace"}
-                        optionsListName="Metoda restaurace"
+                        
                       />
                     </div>
 
@@ -239,7 +238,10 @@ export const DepositForm = () => {
                       <VocabularySelectField
                         type={`FabricationTechnologies`}
                         fieldPath="metadata.fabricationTechnology"
+                        placeholder={"Vyberte technologie fabrikace"}
+                        value={record.metadata.restorationWork?.fabricationMethods?.id}
                         required
+                        multiple={false}
                         clearable
                         label={
                           <FieldLabel
@@ -247,8 +249,7 @@ export const DepositForm = () => {
                             label={"Technologie Fabrikace"}
                           />
                         }
-                        placeholder={"Vyberte technologie fabrikace"}
-                        optionsListName="Technologie Fabrikace"
+                        
                       />
                     </div>
 
@@ -257,15 +258,18 @@ export const DepositForm = () => {
                         type={`MaterialTypes`}
                         fieldPath="metadata.materialType"
                         required
+                        multiple={false}
                         clearable
+                        placeholder={"Vyberte typy materialu"}
+                        value={record.metadata.restorationWork?.materialType?.id}
                         label={
                           <FieldLabel
                             htmlFor={"metadata.materialType"}
                             label={"Typy Materialu"}
                           />
                         }
-                        placeholder={"Vyberte typy materialu"}
-                        optionsListName="Typy Materialu"
+                        
+                        
                       />
                     </div>
 
@@ -274,17 +278,17 @@ export const DepositForm = () => {
                         type={`MaterialTypes`}
                         fieldPath="metadata.secondaryMaterialTypes"
                         required
+                        multiple={true}
                         clearable
+                        placeholder={"Vyberte vedlejší typy materiálu"}
+                        value={record.metadata.restorationWork?.secondaryMaterialTypes?.[0]?.id}
                         label={
                           <FieldLabel
                             htmlFor={"metadata.secondaryMaterialTypes"}
                             label={"Vedlejší typy materiálu"}
                           />
                         }
-                        placeholder={
-                          "Vyberte vedlejší typy materiálu"
-                        }
-                        optionsListName="Vedlejší typy materiálu"
+                        
                       />
                     </div>
 
@@ -293,6 +297,9 @@ export const DepositForm = () => {
                         type={`ItemTypes`}
                         fieldPath="metadata.restorationObject.itemTypes"
                         required
+                        multiple={false}
+                        placeholder={"Vyberte typ predmetu"}
+                        value={record.metadata.restorationWork?.itemTypes?.id}
                         clearable
                         label={
                           <FieldLabel
@@ -300,8 +307,7 @@ export const DepositForm = () => {
                             label={"Typ predmetu"}
                           />
                         }
-                        placeholder={"Vyberte typ predmetu"}
-                        optionsListName="Typ predmetu"
+                        
                       />
                     </div>
                     <div className="vert-div predmety__form__div">
@@ -309,6 +315,7 @@ export const DepositForm = () => {
                         type={`Colors`}
                         fieldPath="metadata.color"
                         required
+                        multiple={false}
                         clearable
                         label={
                           <FieldLabel
@@ -327,93 +334,108 @@ export const DepositForm = () => {
                         fieldPath="metadata.restorationObject.dimensions"
                       >
                         {({ insert, remove, push }) => (
-                       <>
-                   {record?.metadata?.restorationObject?.dimensions.map((dimension, index) => (
-<>
-                        <div className="horiz-div predmety__form__div-small">
-                          <div className="vert-div predmety__form__div-small__div">
-                            <VocabularySelectField
-                              type={`Dimensions`}
-                              fieldPath="metadata.restorationObject.dimensions.dimension.id"
-                              required
-                              clearable
-                              label={
-                                <FieldLabel
-                                  htmlFor={
-                                    "metadata.restorationObject.dimensions.dimension.id"
-                                  }
-                                  label={"Parametr"}
-                                />
-                              }
-                              placeholder={"Parametr"}
-                            />
-                          </div>
+                          <>
+                            {record?.metadata?.restorationObject?.dimensions.map(
+                              (dimension, index) => (
+                                <>
+                                  <div className="horiz-div predmety__form__div-small">
+                                    <div className="vert-div predmety__form__div-small__div">
+                                      <VocabularySelectField
+                                        type={`Dimensions`}
+                                        fieldPath="metadata.restorationObject.dimensions.dimension.id"
+                                        required
+                                        clearable
+                                        label={
+                                          <FieldLabel
+                                            htmlFor={
+                                              "metadata.restorationObject.dimensions.dimension.id"
+                                            }
+                                            label={"Parametr"}
+                                          />
+                                        }
+                                        value={
+                                          record.metadata.restorationObject
+                                            .dimensions[index].dimension.id
+                                        }
+                                      />
+                                    </div>
 
-                          <div className="vert-div predmety__form__div-small__div">
-                            <TextField
-                              name="metadata.restorationObject.dimensions.value"
-                              aria-label="Value"
-                              fieldPath="metadata.restorationObject.dimensions.value"
-                              label={
-                                <FieldLabel
-                                  htmlFor="metadata.restorationObject.dimensions.value"
-                                  className="predmety__form__div__label"
-                                  label={"Value"}
-                                ></FieldLabel>
-                              }
-                            />
-                          </div>
+                                    <div className="vert-div predmety__form__div-small__div">
+                                      <TextField
+                                        name="metadata.restorationObject.dimensions.value"
+                                        aria-label="Value"
+                                        fieldPath="metadata.restorationObject.dimensions.value"
+                                        value={
+                                          record.metadata.restorationObject
+                                            ?.dimensions?.[index]?.value
+                                        }
+                                        label={
+                                          <FieldLabel
+                                            htmlFor="metadata.restorationObject.dimensions.value"
+                                            className="predmety__form__div__label"
+                                            label={"Value"}
+                                          ></FieldLabel>
+                                        }
+                                      />
+                                    </div>
 
-                          <div className="vert-div predmety__form__div-small__div predmety__form__div-unit">
-                            <SelectField
-                              name="metadata.restorationObject.dimensions.unit"
-                              aria-label="Unit"
-                              fieldPath="metadata.restorationObject.dimensions.unit"
-                              options={units}
-                              label={
-                                <FieldLabel
-                                  htmlFor="metadata.restorationObject.dimensions.unit"
-                                  className="predmety__form__div__label"
-                                  label={"Unit"}
-                                ></FieldLabel>
-                              }
-                            />
-                          </div>
-                         
-                        </div>
-                       
-                               <div className="vert-div">
-                                 <button
-                                   type="button"
-                                   className="predmety__form__div__button-small predmety__form__div__button-small-delete"
-                                   onClick={() => remove(index)}
-                                 >
-                                   x
-                                 </button>
+                                    <div className="vert-div predmety__form__div-small__div predmety__form__div-unit">
+                                      <SelectField
+                                        name="metadata.restorationObject.dimensions.unit"
+                                        aria-label="Unit"
+                                        fieldPath="metadata.restorationObject.dimensions.unit"
+                                        options={units}
+                                        value={
+                                          record.metadata.restorationObject
+                                            ?.dimensions?.[index]?.unit
+                                        }
+                                        label={
+                                          <FieldLabel
+                                            htmlFor="metadata.restorationObject.dimensions.unit"
+                                            className="predmety__form__div__label"
+                                            label={"Unit"}
+                                          ></FieldLabel>
+                                        }
+                                      />
+                                    </div>
+                                     <div className="vert-div">
+                                    <button
+                                      type="button"
+                                      className="predmety__form__div__button-small predmety__form__div__button-small-delete"
+                                      onClick={() => {record.metadata.restorationObject
+                                        .dimensions.splice(index, 1);
+                                      console.log(record.metadata.restorationObject
+                                        .dimensions)}}
+                                    >
+                                      x
+                                    </button>
+                                  </div>
+                                  </div>
 
-                         </div>
-                         </>
-                           ))} 
-                         
-                     
-                      <Button
-                            type="button"
-                            className="predmety__form__div__button-small"
-                            color="grey"
-                            onClick={()=>{
-                              const data= record?.metadata?.restorationObject?.dimensions;
-                              data.push({
-                                dimension: {  title:''},
-                                value: "",
-                                unit: "",
-                              }
-   )
-                              console.log(data)
-                            }}
-                          >
-                            Dodat
-                          </Button> 
-                   </>)} 
+                                 
+                                </>
+                              )
+                            )}
+
+                            <Button
+                              type="button"
+                              className="predmety__form__div__button-small"
+                              color="grey"
+                              onClick={() => {
+                                const data = record.metadata.restorationObject
+                                .dimensions;
+                                data.push({
+                                  dimension: { title: "" },
+                                  value: "",
+                                  unit: "",
+                                });
+                                console.log(data);
+                              }}
+                            >
+                              Dodat
+                            </Button>
+                          </>
+                        )}
                       </FieldArray>
                     </div>
 
@@ -423,19 +445,21 @@ export const DepositForm = () => {
                           <div className="vert-div predmety__form__div">
                             <VocabularySelectField
                               type={`StylePeriods`}
-                              fieldPath="metadata.restorationObject.StylePeriods"
-                              multiple={true}
-                              required
+                              fieldPath="metadata.restorationObject.stylePeriod"
+                              value={
+                                record.metadata.restorationObject?.stylePeriod
+                                  ?.period?.id
+                              }
                               clearable
                               label={
                                 <FieldLabel
                                   htmlFor={
-                                    "metadata.restorationObject.StylePeriods"
+                                    "metadata.restorationObject.stylePeriod"
                                   }
                                   label={"Perioda"}
                                 />
                               }
-                              placeholder={"Perioda"}
+                              // placeholder={"Perioda"}
                             />
                           </div>
 
@@ -477,6 +501,7 @@ export const DepositForm = () => {
                         name="metadata.restorationObject.archeologic"
                         aria-label="Archeologicky nález"
                         fieldPath="metadata.restorationObject.archeologic"
+                        value={record.metadata.restorationObject?.archeologic}
                         label={
                           <FieldLabel
                             htmlFor="metadata.restorationObject.archeologic"
@@ -488,16 +513,20 @@ export const DepositForm = () => {
                     </div>
 
                     <div>
-                      <FieldArray name="metadata.restorationObject.creationPeriod">
+                      <FieldArray name="metadata.restorationWork.restorationPeriod">
                         <div className="horiz-div predmety__form__div-small">
                           <div className="vert-div predmety__form__div">
                             <TextField
-                              name="metadata.restorationObject.creationPeriod.since"
+                              name="metadata.restorationWork.restorationPeriod.since"
                               aria-label="Od"
-                              fieldPath="metadata.restorationObject.creationPeriod.since"
+                              value={
+                                record.metadata.restorationWork
+                                  ?.restorationPeriod?.since
+                              }
+                              fieldPath="metadata.restorationWork.restorationPeriod.since"
                               label={
                                 <FieldLabel
-                                  htmlFor="metadata.restorationObject.creationPeriod.since"
+                                  htmlFor="metadata.restorationWork.restorationPeriod.since"
                                   className="predmety__form__div__label"
                                   label={"Perioda prace od"}
                                 ></FieldLabel>
@@ -507,12 +536,16 @@ export const DepositForm = () => {
 
                           <div className="vert-div predmety__form__div">
                             <TextField
-                              name="metadata.restorationObject.creationPeriod.until"
+                              name="metadata.restorationWork.restorationPeriod.until"
                               aria-label="Do"
-                              fieldPath="metadata.restorationObject.creationPeriod.until"
+                              fieldPath="metadata.restorationWork.restorationPeriod.until"
+                              value={
+                                record.metadata.restorationWork
+                                  ?.restorationPeriod?.until
+                              }
                               label={
                                 <FieldLabel
-                                  htmlFor="metadata.restorationObject.creationPeriod.until"
+                                  htmlFor="metadata.restorationWork.restorationPeriod.until"
                                   className="predmety__form__div__label"
                                   label={"Perioda prace do"}
                                 ></FieldLabel>
@@ -527,7 +560,11 @@ export const DepositForm = () => {
                       <VocabularySelectField
                         type={`Institutions`}
                         fieldPath="metadata.restorationObject.restorationRequestor"
-                        multiple={true}
+                        multiple={false}
+                        value={
+                          record.metadata.restorationObject?.restorationRequestor
+                            ?.id
+                        }
                         required
                         clearable
                         label={
@@ -538,14 +575,12 @@ export const DepositForm = () => {
                             label={"Žadatel restaurace"}
                           />
                         }
-                        placeholder={"Žadatel restaurace"}
                       />
                     </div>
                   </div>
                 </div>
               </div>
-              <SaveButton
-              />
+              <SaveButton />
             </Grid>
           </AccordionField>
         </Overridable>
