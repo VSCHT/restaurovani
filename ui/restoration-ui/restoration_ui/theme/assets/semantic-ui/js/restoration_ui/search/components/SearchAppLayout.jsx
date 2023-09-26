@@ -40,15 +40,35 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
     setDropdownVisible((prevState) => (prevState === title ? "" : title));
   };
 
-  const togglemenu=()=>{
-    document.getElementsByClassName('.column.vert-div.predmety__aside')[0].style.display ==='none !important' ?
-    document.getElementsByClassName('.column.vert-div.predmety__aside')[0].setAttribute('style', 'display: flex !important'):
-    document.getElementsByClassName('.column.vert-div.predmety__aside')[0].setAttribute('style', 'display: none !important');
-  }
+//   const togglemenu = () => {
+    
+//     const asideElement = document.getElementById('predmety__aside');
+//     console.log(asideElement)
+//     if (asideElement.style.display === 'none !important') {
+//       asideElement.style.removeProperty('display');
+//     } else {
+//       asideElement.style.display = 'none !important';
+//     }
+//   }
+
+  const togglemenu = () => {
+    const asideElement = document.getElementById('predmety__aside');
+    console.log(asideElement)
+    if (asideElement.classList.contains('hide-important')) {
+      asideElement.classList.remove('hide-important');
+    } else {
+      asideElement.classList.add('hide-important');
+    }
+  };
+//   const togglemenu=()=>{
+//     document.getElementsByClassName('.vert-div.predmety__aside')[0].style.display ==='none !important' ?
+//     document.getElementsByClassName('.vert-div.predmety__aside')[0].setAttribute('style', 'display: flex !important'):
+//     document.getElementsByClassName('.vert-div.predmety__aside')[0].setAttribute('style', 'display: none !important');
+//   }
   const { appName, buildUID } = useContext(SearchConfigurationContext);
 
   const searchAppConfig = useContext(SearchConfigurationContext);
-
+console.log(searchAppConfig)
 
   return (
     <Container className="predmety__body-bg">
@@ -83,7 +103,7 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
               />
             </Grid>
           </Grid>
-          <Grid.Column className="vert-div predmety__aside">
+          <Grid.Column className="vert-div predmety__aside" id='predmety__aside'>
             <Grid.Row className="vsht-logo div__vsht-logo predmety__div__vsht-logo">
               <Image
                 className="vsht-logo image__vsht-logo predmety__image__vsht-logo"
@@ -122,5 +142,5 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
         </Grid>
       </Container>
     </Container>
-  );
+  )
 };
