@@ -4,7 +4,7 @@ import { i18next } from "@translations/restoration_ui/i18next";
 import { useDepositApiClient } from "@js/oarepo_ui";
 
 export const SaveButton = ({ ...uiProps }) => {
-  const { isSubmitting, save } = useDepositApiClient();
+  const { isSubmitting, save, formik } = useDepositApiClient();
 
   console.log(useDepositApiClient);
 
@@ -15,8 +15,8 @@ export const SaveButton = ({ ...uiProps }) => {
       aria-label="tlacitko vytvoreni predmetu"
       disabled={isSubmitting}
       loading={isSubmitting}
-      onClick={() => save()}
-      content="VÝTVOŘIT PŘEDMĚT"
+      onClick={() => formik.validateForm()}
+      content="VYTVOŘIT PŘEDMĚT"
       type="submit"
     />
   );
