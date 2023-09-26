@@ -2082,7 +2082,7 @@ padding: 25px !important ;
   .details__container {
     background-color: white;
     height: auto;
-    width: 80vw;
+    width: 100vw;
     margin: 0 auto;
     justify-content: center;
     align-items: center;
