@@ -741,6 +741,7 @@ h4 {
     font-family: Noto_Sans_semibold;
     margin-bottom: 20px;
     border: none;
+    padding: 0px
   }
 
   /* docs */
