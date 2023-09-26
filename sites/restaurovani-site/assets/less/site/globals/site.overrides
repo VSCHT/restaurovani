@@ -97,7 +97,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 100vw;
       background-color: #9b9b93;
       display: flex;
       justify-content: space-between;
@@ -124,7 +124,7 @@
     }
   
     .btn.main-page__menu__btn:first-child {
-      margin-left: 10vw;
+      margin-left: 9vw;
     }
     .main-page__menu__btn img {
       margin-right: 7px;
@@ -143,11 +143,11 @@
     }
   
     /* main page logo */
-    .main-page__div__vsht-logo {
+    /* .main-page__div__vsht-logo {
       position: relative;
       top: 100px;
       left: 17vw;
-    }
+    }*/
     .vert-div.vsht-logo {
       padding-left: 200px;
     }
@@ -195,7 +195,15 @@
       width: 40vw;
       height: 100%;
       justify-content: space-between;
-      padding-right: 50px
+      padding-right: 50px;
+      gap: 80px;
+      position: relative;
+      top: -40px;
+    }
+    .main-page__title__img{
+      position: relative;
+      top: 100px;
+      margin-top: 10px
     }
     .main-page__title {
       position: relative;
@@ -208,9 +216,10 @@
       margin-right: 50px;
       align-items: flex-start
     }
-    .main-page__title img{
-      margin-top: 10px
+    .horiz-div.main-page__title p{
+      width: 30vw
     }
+   
     .main-page__text__copyright {
       color: #73746f;
       font-size: 11px;
@@ -219,13 +228,13 @@
       word-wrap: break-word;
     }
   
+
     /* page actions on the left side */
     .main-page__div__btn {
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      margin-left: 7vw;
+      gap: 3px;
     }
     .main-page__btn__addPredmety {
       color: white;
@@ -246,7 +255,7 @@
       height: 30px;
       width: 18vw ;
       border: solid 1px #9b9b93;
-      padding: 0px 15px;
+      padding: 20px 25px;
       font-family: Noto_Sans_regular;
     }
   
@@ -850,11 +859,11 @@
     }
   
     /* main page logo */
-    .main-page__div__vsht-logo {
+    /* .main-page__div__vsht-logo {
       position: relative;
       top: 100px;
       left: 17vw;
-    }
+    }*/
     .vert-div.vsht-logo {
       padding-left: 200px;
     }
@@ -868,6 +877,11 @@
       height: 65vh;
       margin: 0 auto
     }
+     .main-page__title__img{
+      position: relative;
+      top: 100px;
+    }
+
     /* right side of main content */
   
     .main-page__main-container__image {
@@ -901,6 +915,11 @@
       width: 40vw;
       height: 100%;
       justify-content: space-between;
+     
+      padding-right: 50px;
+      gap: 80px;
+      position: relative;
+      top: -40px;
     }
     .main-page__title {
       position: relative;
@@ -913,10 +932,10 @@
       align-items: flex-start;
       gap: 20px
     }
-    .main-page__title img{
+    /* .main-page__title img{
       margin-top: 5px;
       width: 60px
-    }
+    } */
     .main-page__text__copyright {
       color: #73746f;
       font-size:10px;
@@ -932,7 +951,6 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
-      margin-left: 7vw;
       margin-right: 40px
     }
     .main-page__btn__addPredmety {
@@ -954,7 +972,7 @@
       height: 30px;
       width: 18vw ;
       border: solid 1px #9b9b93;
-      padding: 0px 15px;
+      padding: 15px 15px;
       font-family: Noto_Sans_regular;
     }
   
@@ -1442,8 +1460,9 @@
     }
   
     .text__vsht-logo {
-      font-size: 19px;
+      font-size: 16px;
       font-family: Noto_Sans_bold;
+      color: #222
     }
     .image__vsht-logo,
     .text__vsht-logo {
@@ -1545,8 +1564,7 @@
     /* main page logo */
     .main-page__div__vsht-logo {
       position: relative;
-      top: 200px;
-      left: 90px;
+      left: -115px;
     }
   
     .vert-div.vsht-logo {
@@ -1576,9 +1594,13 @@
     /* left content of main content */
     .main-page__main-container__content {
       width: 80vw;
-      height: 1200px;
+      height: 900px;
       justify-content: space-between;
-      align-items: center
+      padding-right: 50px;
+      gap: 80px;
+      position: relative;
+      top: -180px;
+    
     }
   
     .main-page__title  {
@@ -1592,9 +1614,11 @@
       align-items: flex-start;
       gap: 20px
     }
-    .main-page__title img{
+    .main-page__title__img{
       margin-top: 30px;
-      width: 80px
+      width: 80px;
+      position: relative;
+      top: 20px
     }
     .main-page__text__copyright {
       color: #73746f;
@@ -1605,15 +1629,14 @@
       padding-right: 20px;
       text-align: center;
       font-family: Noto_Sans_regular;
+      margin: 0 auto;
     }
     /* actions of main content */
     .main-page__div__btn {
       height: 150px;
       justify-content: space-between;
       position: relative;
-      gap: 20px;
-      align-items: center;
-      margin: 0 auto
+      gap: 7px;
     }
   
     .main-page__btn__addPredmety {
@@ -1630,7 +1653,7 @@
     .main-page__input-search {
       border-radius: 40px;
       height: 65px;
-      width: 490px;
+      width: 520px;
       border: solid 1px #9b9b93;
       padding: 5px;
       padding-left: 15px;
