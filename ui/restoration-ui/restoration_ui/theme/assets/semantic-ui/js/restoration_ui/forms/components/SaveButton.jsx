@@ -15,7 +15,9 @@ export const SaveButton = ({ ...uiProps }) => {
       aria-label="tlacitko vytvoreni predmetu"
       disabled={isSubmitting}
       loading={isSubmitting}
-      onClick={() => formik.validateForm()}
+      onClick={() => {
+        formik.validateForm().then(()=>save());
+      }}
       content="VYTVOŘIT PŘEDMĚT"
       type="submit"
     />

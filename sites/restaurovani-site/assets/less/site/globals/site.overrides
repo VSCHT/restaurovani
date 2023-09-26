@@ -1943,7 +1943,7 @@ background-color:             #aaaaa2;
 
 .predmety__form__h {
 font-family: Noto_Sans_regular ;
-font-size: 25px                ;
+font-size: 23px                ;
 }
 .predmety__form__div__label {
 font-family: Noto_Sans_regular ;
@@ -2049,7 +2049,7 @@ padding-top: 100px           ;
 .details__container {
 background-color: white ;
 height: auto            ;
-width: 80vw             ;
+width: 100vw             ;
 margin: 0 auto          ;
 justify-content: center ;
 align-items: center     ;

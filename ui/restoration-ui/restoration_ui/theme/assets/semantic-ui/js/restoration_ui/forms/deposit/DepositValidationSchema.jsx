@@ -6,11 +6,34 @@ import { i18next } from "@translations/restoration_ui/i18next";
 const requiredMessage = "This field is required";
 const edtfRegEx = /^(\d{4})(-(\d{2})(-(\d{2}))?)?(\/\d{4}(-\d{2}(-\d{2})?)?)?$/;
 
-export const DepositValidationSchema = Yup.object().shape({
+export const DepositValidationSchemaDraft = Yup.object().shape({
   metadata: Yup.object().shape({
-    title: Yup.string().required(requiredMessage),
+    restorationObject: Yup.object().shape({
+    title: Yup.array().of(
+      Yup.object().shape({
+        lang: 'cs',
+        value: Yup.string().required(requiredMessage),
+      })),
     category: Yup.string().required(requiredMessage),
-    description: Yup.string().required(requiredMessage),
+
+   
+  }),
+  restorationWork: Yup.object().shape({ 
+    restorer: Yup.string().required(requiredMessage),
+  })
+})
+});
+
+export const DepositValidationSchemaEdit = Yup.object().shape({
+  metadata: Yup.object().shape({
+    restorationObject: Yup.object().shape({
+    category: Yup.string(),
+    description: Yup.array().of(
+      Yup.object().shape({
+        lang: 'cs',
+        value: Yup.string()
+      })
+    ),
     archeologic: Yup.boolean(),
     dimensions: Yup.array().of(
       Yup.object().shape({
@@ -23,24 +46,15 @@ export const DepositValidationSchema = Yup.object().shape({
     restorationRequestor: Yup.string().required(requiredMessage),
 
     creationPeriod: Yup.object().shape({
-      until: Yup.number().required(requiredMessage),
-      since: Yup.number().required(requiredMessage),
+      until: Yup.number(),
+      since: Yup.number(),
     }),
-    // colors: Yup.array().of({
-
-    // }).required(requiredMessage),
-    // itemTypes: Yup.array().of({
-
-    // }).required(requiredMessage),
-
-    stylePeriod: Yup.object().shape({
-      period: Yup.string().required(requiredMessage),
-      startYear: Yup.number().required(requiredMessage),
-      endYear: Yup.number().required(requiredMessage),
-    }),
-    materialType: Yup.string().required(requiredMessage),
-    // secondaryMaterialTypes: Yup.array().of(
-    //   // id: Yup.string().required(requiredMessage),
-    // )
+    keywords: Yup.string(),
+   
   }),
+  restorationWork: Yup.object().shape({ 
+    restorer: Yup.string().required(requiredMessage),
+  })
+
+})
 });
