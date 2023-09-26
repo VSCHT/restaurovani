@@ -83,74 +83,50 @@
     </button>
   </div>
 
-  <!-- details -->
-  <div class="horiz-div" aria-label="Detaily predmetu">
-    <span class="vr-huge-vert-mobil"></span>
-    <div class="horiz-div details__div__details">
-      <span class="vr-small"></span>
-      <div class="vert-div details__div__details-box">
-        <div class="details__div__details-box-smaller">
-          <p class="parag">Dotace</p>
-        </div>
-        <div class="details__div__details-box-smaller">
-          <p class="parag">{{ metadata.restorationObject.stylePeriod.startYear }} {% if metadata.restorationObject.stylePeriod.endYear %} - {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}{{ metadata.restorationObject.stylePeriod.period.title }}</p>
-        </div>
-      </div>
-      <span class="vr-small"></span>
-      <div class="vert-div details__div__details-box">
-        <div class="details__div__details-box-smaller">
-          <p class="parag">Rozmery</p>
-        </div>
-        <div class="details__div__details-box-smaller">
+
+
+<table>
+  <tbody class="horiz-div details__div__details">
+    <tr class="vert-div details__div__details-box">
+      <td class="details__div__details-box-smaller parag">Dotace</td>
+      <td class="details__div__details-box-smaller parag">
+      <p class="parag">{{ metadata.restorationObject.stylePeriod.startYear }} {% if metadata.restorationObject.stylePeriod.endYear %} - {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}{{ metadata.restorationObject.stylePeriod.period.title }}</p></td>
+    </tr>
+    <tr class="vert-div details__div__details-box">
+      <td class="details__div__details-box-smaller parag">Rozmery</td>
+      <td class="details__div__details-box-smaller parag">
         {% for value in metadata.restorationObject.dimensions %}
         <p class="parag">{{ value.dimension.title }} {{ value.value }}{{ value.unit }}</p>
-            
-            {% endfor %}
-          
-        </div>
-      </div>
-      <span class="vr-small"></span>
-      <div class="vert-div details__div__details-box">
-        <div class="details__div__details-box-smaller">
-          <p class="parag">Typ predmetu</p>
-        </div>
-        <div class="details__div__details-box-smaller">
-            {% for value in metadata.restorationObject.itemTypes %}
-        <p class="parag">{{ value.title }} </p>
-            
-            {% endfor %}
-        </div>
-      </div>
-      <span class="vr-small"></span>
-      <div class="vert-div details__div__details-box">
-        <div class="details__div__details-box-smaller">
-          <p class="parag">Material</p>
-        </div>
-        <div class="details__div__details-box-smaller">
-          <p class="parag">sodno-vapenate sklo</p>
-        </div>
-      </div>
-      <span class="vr-small"></span>
-      <div class="vert-div details__div__details-box">
-        <div class="details__div__details-box-smaller">
-          <p class="parag">Technologie</p>
-        </div>
-        <div class="details__div__details-box-smaller">
-          <p class="parag">foukane ryte sklo</p>
-        </div>
-      </div>
-      <span class="vr-small"></span>
-      <div class="vert-div details__div__details-box">
-        <div class="details__div__details-box-smaller">
-          <p class="parag">Barva</p>
-        </div>
-        <div class="details__div__details-box-smaller">
-          <p class="parag">bezbarve sklo</p>
-        </div>
-      </div>
-      <span class="vr-small"></span>
-    </div>
-  </div>
+        {% endfor %}
+      </td>
+    </tr>
+    <tr class="vert-div details__div__details-box">
+      <td class="details__div__details-box-smaller parag">Typ predmetu</td>
+      <td class="details__div__details-box-smaller parag">
+        {% for value in metadata.restorationObject.itemTypes %}
+        <p class="parag">{{ value.title }}</p>
+        {% endfor %}
+      </td >
+    </tr>
+    <tr class="vert-div details__div__details-box">
+      <td class="details__div__details-box-smaller parag">Material</td>
+      <td class="details__div__details-box-smaller parag">sodno-vapenate sklo</td>
+    </tr>
+    <tr class="vert-div details__div__details-box">
+      <td class="details__div__details-box-smaller parag">Technologie</td>
+      <td class="details__div__details-box-smaller parag">foukane ryte sklo</td>
+    </tr>
+    <tr class="vert-div details__div__details-box">
+      <td class="details__div__details-box-smaller parag">Barva</td>
+      <td class="details__div__details-box-smaller parag">bezbarve sklo</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
 
   <!-- desc -->
   <div class="details__div__desc" aria-label="Popis predmetu">
@@ -166,19 +142,19 @@
     <div class="vert-div details__div__info-left">
       <table summary="Info o predmetu">
         <tbody>
-          <tr>
+          <tr class="details__div__info-left__box">
             <td class="parag">Zadavatel</td>
             <td class="parag">
               {{ metadata.restorationObject.restorationRequestor.title }}
             </td>
           </tr>
-          <tr>
+          <tr class="details__div__info-left__box">
             <td class="parag">Restaurovala</td>
             <td class="parag">
               {{ metadata.restorationWork.restorer }}, {{ metadata.restorationWork.workType.title}}
             </td>
           </tr>
-          <tr>
+          <tr class="details__div__info-left__box">
             <td class="parag">Vedouci prace</td>
             
             <td class="parag">
@@ -190,7 +166,7 @@
             </td>
             
           </tr>
-          <tr>
+          <tr class="details__div__info-left__box">
             <td class="parag">Metody pruzkumu</td>
             <td class="parag">
             {% for value in metadata.restorationWork.examinationMethods %}
@@ -198,7 +174,7 @@
             {% endfor %}
             </td>
           </tr>
-          <tr>
+          <tr class="details__div__info-left__box">
             <td class="parag">Metody restaurovani</td>
             <td class="parag">
             {% for value in metadata.restorationWork.restorationMethods %}
@@ -228,7 +204,7 @@
   <div class="horiz-div details__div__docs">
     <p class=" parag">Dokumenty</p>
     <div class="horiz-div details__div__docs-files">
-      <div class="horiz-div">
+      <div class="horiz-div details__div__docs__item">
         <img
           class="details__div__docs-img"
           src="../../../../static/images/file-icon.png"
@@ -238,7 +214,7 @@
           <a href="">sp5_balikova_anticke sklo.pdf</a>
         </p>
       </div>
-      <div class="horiz-div">
+      <div class="horiz-div details__div__docs__item">
         <img
           class="details__div__docs-img"
           src="../../../../static/images/file-icon.png"

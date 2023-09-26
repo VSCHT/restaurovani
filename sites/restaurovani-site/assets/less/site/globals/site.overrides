@@ -697,9 +697,10 @@ h4 {
   .details__div__details {
     justify-content: space-between;
     height: 70px;
-    width: 70vw;
+    width: 61vw;
     margin: 60px 0px;
     align-items: flex-start;
+    flex-wrap: wrap;
   }
   .details__div__details-box-smaller:nth-child(odd) p {
     font-family: Noto_Sans_semibold;
@@ -712,9 +713,27 @@ h4 {
   .details__div__info-left {
     width: 35vw;
   }
+    .details__div__details-box{
+    padding: 0px 10px
+  } 
+.details__div__details-box:first-child {
+  border-left: 1px solid #000; 
+}
+
+.details__div__details-box td:first-child {
+  font: 17px Noto_Sans_semibold; 
+}
+
+.details__div__details-box:not(:first-child) {
+  border-left: 1px solid #000; 
+}
+
+.details__div__details-box:last-child {
+  border-right: 1px solid #000; 
+}
+
   .details__div__details-box-smaller {
-    width: 10vw;
-    height: 30px;
+    height: auto;
     text-align: center;
   }
   .details__div__desc p {
@@ -723,7 +742,7 @@ h4 {
   }
   .details__div__info-left table tr td:nth-child(odd) {
     font-family: Noto_Sans_semibold;
-    width: 15vw;
+    width: 11vw;
   }
   .details__div__info-left table tr td:nth-child(even) {
     width: 20vw;
@@ -732,14 +751,16 @@ h4 {
     height: 45px;
     vertical-align: top;
   }
+  
   .details__div__info-right {
     width: 30vw;
     border-left: 1px solid black;
-    padding-left: 40px
+    padding-left: 40px;
+    margin-left: 40px
   }
   .details__div__info-right.parag {
     font-family: Noto_Sans_semibold;
-    margin-bottom: 20px;
+    margin: 0px 0px 20px 0px;
     border: none;
     padding: 0px
   }
@@ -773,7 +794,7 @@ h4 {
   .parag {
     font-size: 17px;
     font-family: Noto_Sans_regular;
-    line-height: 30px;
+    line-height: 25px;
     word-wrap: break-word;
     letter-spacing: 0.1px;
   }
@@ -1410,27 +1431,44 @@ h4 {
 
   /* info */
   .details__div__details {
-    justify-content: space-between;
-    height: 70px;
     width: 70vw;
-    margin: 60px 0px;
+    margin: 20px 0px;
     align-items: flex-start;
+    flex-wrap: wrap;
   }
+  .details__div__details-box td:first-child {
+  font: 17px Noto_Sans_semibold; 
+}
   .details__div__details-box-smaller:nth-child(odd) p {
     font-family: Noto_Sans_semibold;
   }
+  .details__div__details-box{
+    padding: 0px 10px
+  } 
+.details__div__details-box:first-child {
+  border-left: 1px solid #000; 
+}
+
+.details__div__details-box:not(:first-child) {
+  border-left: 1px solid #000; 
+}
+
+.details__div__details-box:last-child {
+  border-right: 1px solid #000; 
+}
+
   .details__div__info {
     width: 59vw;
-    justify-content: space-between;
     align-items: flex-start;
   }
   .details__div__info-left {
-    width: 35vw;
+    width: 25vw;
   }
   .details__div__details-box-smaller {
     width: 10vw;
     height: 30px;
     text-align: center;
+    height: auto
   }
   .details__div__desc p {
     margin-top: 40px;
@@ -1444,18 +1482,24 @@ h4 {
     width: 20vw;
   }
   .details__div__info-left table td {
-    height: 45px;
+    height: auto;
     vertical-align: top;
   }
   .details__div__info-right {
-    width: 30vw;
+    width: 35vw;
     border-left: 1px solid black;
     padding-left: 30px
+  }
+  .details__div__info-left__box{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
   }
   .details__div__info-right.parag {
     font-family: Noto_Sans_semibold;
     margin-bottom: 20px;
     border: none;
+    padding: 0px
   }
 
   /* docs */
@@ -1492,6 +1536,7 @@ h4 {
     width: 1px;
     border-right: 1px solid black;
     height: 90px;
+    margin: 5px;
   }
   .vr-huge-horiz {
     width: 70vw;
@@ -2051,7 +2096,7 @@ h4 {
   .details__container {
     background-color: white;
     height: auto;
-    width: 80vw;
+    width: 100vw;
     margin: 0 auto;
     justify-content: center;
     align-items: center;
@@ -2064,7 +2109,7 @@ h4 {
   .details__div__header {
     background-color: #de4929;
     height: 80px;
-    width: 65vw;
+    width: 80vw;
     color: white;
     justify-content: space-between;
     padding-left: 30px;
@@ -2118,8 +2163,7 @@ h4 {
 
   /* info */
   .details__div__details {
-    justify-content: space-between;
-    height: 400px;
+    height: auto;
     width: 70vw;
     margin: 0 auto;
     flex-direction: column;
@@ -2127,61 +2171,77 @@ h4 {
   }
 
   .details__div__details-box {
-    width: 65vw;
-    height: 60px;
+    width: 83vw;
+    height: auto;
     gap: 60px;
     flex-direction: row;
   }
+  tr.vert-div.details__div__details-box {
+    border-left: 1px solid #111;
+    padding: 15px 10px;
+  }
   .details__div__details-box-smaller {
-    width:465px;
-    height: 50px;
+    width:660px;
+    height: auto;
   }
   .details__div__details-box-smaller:nth-child(even) {
     width: 900px;
-    height: 50px;
+    height: auto;
   }
   .details__div__info {
-    width: 65vw;
-    margin: 0 auto;
+    width: 80vw;
     flex-direction: column;
   }
   .details__div__info-left {
-    width: 65vw;
+    width: 80vw;
     order: 1;
-    margin-top: 75px;
+    margin: 0 auto;
     min-width: 300px
   }
 
   .details__div__info-left table tr td:nth-child(odd) {
     font-family: Noto_Sans_semibold;
-    width: 180px;
+    width: 80vw;
     position: relative;
   }
   .details__div__info-left table tr td {
-    height: 130px;
+    height: auto;
     line-height: 35px;
     vertical-align: top;
   }
   .details__div__info-right {
-    width: 65vw;
+    width: 80vw;
 min-width:300px;
-margin-top:100px
+margin:100px auto
   }
   .details__div__info-right.parag {
     font-family: Noto_Sans_semibold;
     margin-bottom: 30px;
   }
-
+ .details__div__details-box td:first-child {
+  font: 25px Noto_Sans_semibold; 
+}
+  .details__div__details-box-smaller:nth-child(odd) p {
+    font-family: Noto_Sans_semibold;
+  }
+  .details__div__details-box{
+    padding: 0px 10px
+  } 
   .details__div__info-right__text {
-    width: 65vw;
+    width: 80vw;
     height: auto;
     min-width: 300px;
    
   }
+  tr.details__div__info-left__box{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px
+  }
 
   .details__div__desc {
-    height: 300px;
-    width: 65vw;
+    height: auto;
+    width: 80vw;
  min-width: 300px
   }
   .details__div__desc p {
@@ -2190,7 +2250,6 @@ margin-top:100px
   /* docs */
   .details__div__docs {
     width: 70vw;
-    margin: 0 auto;
     justify-content: space-between;
     margin-top: 30px;
   }
@@ -2213,6 +2272,9 @@ margin-top:100px
     align-items: flex-start;
   }
 
+.details__div__docs__item{
+  align-items: flex-start;
+}
   /* additional */
   .parag {
     line-height: 28px;
