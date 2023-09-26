@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { i18next } from "@translations/restoration_ui/i18next";
 
 
-const requiredMessage = "This field is required";
+
 
 const requiredMessage = "This field is required";
 const edtfRegEx = /^(\d{4})(-(\d{2})(-(\d{2}))?)?(\/\d{4}(-\d{2}(-\d{2})?)?)?$/;
