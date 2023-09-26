@@ -62,12 +62,12 @@ class RestorationServiceConfig(
             "record": RecordLink("{+api}/{self.url_prefix}{id}"),
             "self": ConditionalLink(
                 cond=is_record,
-                if_=RecordLink("{+api}{self.url_prefix}{id}"),
-                else_=RecordLink("{+api}{self.url_prefix}{id}/draft"),
+                if_=RecordLink("{+api}/{self.url_prefix}{id}"),
+                else_=RecordLink("{+api}/{self.url_prefix}{id}/draft"),
             ),
             "self_html": ConditionalLink(
                 cond=is_record,
-                if_=RecordLink("{+ui}/restoration/{id}"),
+                if_=RecordLink("{+ui}/objekty/{id}"),
                 else_=RecordLink("{+ui}/uploads/{id}"),
             ),
             "versions": RecordLink("{+api}/{self.url_prefix}{id}/versions"),

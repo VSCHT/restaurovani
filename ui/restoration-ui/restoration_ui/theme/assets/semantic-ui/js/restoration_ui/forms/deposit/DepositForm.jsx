@@ -10,8 +10,23 @@ import {
   RadioField,
   BooleanField,
   GroupField,
+  BooleanField,
+  GroupField,
 } from "react-invenio-forms";
 
+import {
+  Container,
+  Header,
+  Message,
+  Radio,
+  Button,
+  Grid,
+  Label,
+} from "semantic-ui-react";
+import {
+  DepositValidationSchemaEdit,
+  DepositValidationSchemaDraft,
+} from "./DepositValidationSchema";
 import {
   Container,
   Header,
@@ -38,6 +53,8 @@ import { VocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import Overridable from "react-overridable";
 import { i18next } from "@translations/restoration_ui/i18next";
+import { useDepositApiClient } from "@js/oarepo_ui";
+import { SaveButton } from "../components";
 import { useDepositApiClient } from "@js/oarepo_ui";
 import { SaveButton } from "../components";
 
@@ -97,15 +114,24 @@ export const DepositForm = () => {
     setSelectedRadio(value);
   };
 
+  document.getElementsByClassName("mt-20")[0].style.display = "none";
+
+  const [selectedRadio, setSelectedRadio] = useState("");
+  const handleRadio = (value) => {
+    setSelectedRadio(value);
+  };
+
   return (
     <Container>
       <BaseForm
+        onSubmit={() => {}}
         onSubmit={() => {}}
         formik={{
           initialValues: record,
           validateOnChange: false,
           validateOnBlur: false,
           enableReinitialize: true,
+          validationSchema: DepositValidationSchemaEdit,
           validationSchema: DepositValidationSchemaEdit,
         }}
       >
@@ -169,6 +195,23 @@ export const DepositForm = () => {
                         }
                       />
                     </div>
+                    <div className="vert-div predmety__form__div">
+                      <TextField
+                        name="metadata.restorationObject.description"
+                        aria-label="Popis"
+                        fieldPath="metadata.restorationObject.description"
+                        value={
+                          record.metadata?.restorationWork?.abstract?.[0]?.value
+                        }
+                        label={
+                          <FieldLabel
+                            htmlFor="metadata.restorationObject.description"
+                            className="predmety__form__div__label"
+                            label={"Popis"}
+                          ></FieldLabel>
+                        }
+                      />
+                    </div>
 
                     <div className="vert-div predmety__form__div">
                       <Label
@@ -178,7 +221,51 @@ export const DepositForm = () => {
                         Kategorie
                       </Label>
                       <GroupField
+                    <div className="vert-div predmety__form__div">
+                      <Label
+                        for="metadata.restorationObject.category"
+                        className="predmety__form__div__label"
+                      >
+                        Kategorie
+                      </Label>
+                      <GroupField
                         fieldPath="metadata.restorationObject.category"
+                        className="horiz-div predmety__form__div__input-radio"
+                      >
+                        <div className="predmety__form__div__label horiz-div">
+                          <Radio
+                            label="Kovy"
+                            className="predmety__form__div__radio"
+                            checked={selectedRadio == "Kovy"}
+                            onChange={() => handleRadio("Kovy")}
+                          ></Radio>
+                        </div>
+                        <div className="predmety__form__div__label horiz-div">
+                          <Radio
+                            label="Textil"
+                            className="predmety__form__div__radio"
+                            checked={selectedRadio == "Textil"}
+                            onChange={() => handleRadio("Textil")}
+                          ></Radio>
+                        </div>
+                        <div className="predmety__form__div__label horiz-div">
+                          <Radio
+                            label="Keramika"
+                            className="predmety__form__div__radio"
+                            checked={selectedRadio == "Keramika"}
+                            onChange={() => handleRadio("Keramika")}
+                          ></Radio>
+                        </div>
+                        <div className="predmety__form__div__label horiz-div">
+                          <Radio
+                            label="Sklo"
+                            className="predmety__form__div__radio"
+                            checked={selectedRadio == "Sklo"}
+                            onChange={() => handleRadio("Sklo")}
+                          ></Radio>
+                        </div>
+                      </GroupField>
+                    </div>
                         className="horiz-div predmety__form__div__input-radio"
                       >
                         <div className="predmety__form__div__label horiz-div">
@@ -238,6 +325,28 @@ export const DepositForm = () => {
                           }
                         />
                       </div>
+                    <div className="vert-div predmety__form__div">
+                      <div className="vert-div predmety__form__div">
+                        <VocabularySelectField
+                          type={`RestorationMethods`}
+                          fieldPath="metadata.restorationWork.restorationMethods"
+                          multiple={true}
+                          placeholder={"Vyberte metodu restaurace"}
+                          value={
+                            record.metadata?.restorationWork
+                              ?.restorationMethods[0]?.id
+                          }
+                          clearable
+                          label={
+                            <FieldLabel
+                              htmlFor={
+                                "metadata.restorationWork.restorationMethods"
+                              }
+                              label={"Metoda restaurace"}
+                            />
+                          }
+                        />
+                      </div>
 
                       <div className="vert-div predmety__form__div">
                         <VocabularySelectField
@@ -258,7 +367,44 @@ export const DepositForm = () => {
                           }
                         />
                       </div>
+                      <div className="vert-div predmety__form__div">
+                        <VocabularySelectField
+                          type={`FabricationTechnologies`}
+                          fieldPath="metadata.fabricationTechnology"
+                          placeholder={"Vyberte technologie fabrikace"}
+                          value={
+                            record.metadata?.restorationWork?.fabricationMethods
+                              ?.id
+                          }
+                          multiple={false}
+                          clearable
+                          label={
+                            <FieldLabel
+                              htmlFor={"metadata.fabricationTechnology"}
+                              label={"Technologie Fabrikace"}
+                            />
+                          }
+                        />
+                      </div>
 
+                      <div className="vert-div predmety__form__div">
+                        <VocabularySelectField
+                          type={`MaterialTypes`}
+                          fieldPath="metadata.materialType"
+                          multiple={false}
+                          clearable
+                          placeholder={"Vyberte typy materialu"}
+                          value={
+                            record.metadata?.restorationWork?.materialType?.id
+                          }
+                          label={
+                            <FieldLabel
+                              htmlFor={"metadata.materialType"}
+                              label={"Typy Materialu"}
+                            />
+                          }
+                        />
+                      </div>
                       <div className="vert-div predmety__form__div">
                         <VocabularySelectField
                           type={`MaterialTypes`}
@@ -597,119 +743,48 @@ export const DepositForm = () => {
         ) : null}
       </BaseForm>
 
-      <BaseForm
-        onSubmit={() => {}}
-        formik={{
-          initialValues: record,
-          validateOnChange: false,
-          validateOnBlur: false,
-          enableReinitialize: true,
-          validationSchema: DepositValidationSchemaDraft,
-        }}
-      >
-        { record.metadata  == null? 
-        (
-          <Overridable id="Deposit.AccordionFieldBasicInformation.container">
-          <AccordionField
-            includesPaths={[
-              "metadata.restorationWork.restorer",
-              "metadata.restorationObject.title",
-              "metadata.restorationObject.category",
-            ]}
-            active
-            label={"Basic information"}
-          >
-            <div className="vert-div predmety__form">
-              <h3 className="predmety__form__h">Vytvoreni noveho predmetu</h3>
-              <div className="vert-div predmety__form-main">
-                <div className="vert-div predmety__form__div">
-                  <TextField
-                    name="metadata.restorationObject.title"
-                    aria-label="Nazev"
-                    fieldPath="metadata.restorationObject.title"
-                    required
-                    label={
-                      <FieldLabel
-                        htmlFor="metadata.restorationObject.title"
-                        className="predmety__form__div__label"
-                        label={"Nazev"}
-                      />
-                    }
-                  />
-                </div>
-                <div className="vert-div predmety__form__div">
-                  <TextField
-                    name="metadata.restorationWork.restorer"
-                    aria-label="Restauroval(a)"
-                    fieldPath="metadata.restorationWork.restorer"
-                    required
-                    label={
-                      <FieldLabel
-                        htmlFor="metadata.restorationWork.restorer"
-                        className="predmety__form__div__label"
-                        label={"Restauroval(a)"}
-                      />
-                    }
-                  />
-                </div>
-                <div className="vert-div predmety__form__div">
-                  <Label
-                    for="metadata.restorationObject.category"
-                    className="predmety__form__div__label"
-                    
-                  >
-                    Kategorie
-                  </Label>
-                  <GroupField
-                    fieldPath="metadata.restorationObject.category"
-                    className="horiz-div predmety__form__div__input-radio"
-                    required
-                  >
-                    <div className="predmety__form__div__label horiz-div">
-                      <Radio
-                        label="Kovy"
-                        className="predmety__form__div__radio"
-                        checked={selectedRadio == "Kovy"}
-                        onChange={() => handleRadio("Kovy")}
-                      ></Radio>
-                    </div>
-                    <div className="predmety__form__div__label horiz-div">
-                      <Radio
-                        label="Textil"
-                        className="predmety__form__div__radio"
-                        checked={selectedRadio == "Textil"}
-                        onChange={() => handleRadio("Textil")}
-                      ></Radio>
-                    </div>
-                    <div className="predmety__form__div__label horiz-div">
-                      <Radio
-                        label="Keramika"
-                        className="predmety__form__div__radio"
-                        checked={selectedRadio == "Keramika"}
-                        onChange={() => handleRadio("Keramika")}
-                      ></Radio>
-                    </div>
-                    <div className="predmety__form__div__label horiz-div">
-                      <Radio
-                        label="Sklo"
-                        className="predmety__form__div__radio"
-                        checked={selectedRadio == "Sklo"}
-                        onChange={() => handleRadio("Sklo")}
-                      ></Radio>
-                    </div>
-                  </GroupField>
-                </div>
-              </div>
-              <SaveButton />
-            </div>
-          </AccordionField>
-        </Overridable>
-        )
-        : null
-        }
-        
-      </BaseForm>
-    </Container>
-  );
+  // return (
+  //   <Container>
+
+  //     <Formik
+  //       initialValues={
+  //         {
+  //         category: "",
+  //         keyword: [],
+  //         description: "",
+  //         restorationMethods: [],
+  //         fabricationTechnology: "",
+  //         materialType: "",
+  //         secondaryMaterialTypes: [],
+  //         color: "",
+  //         dimensions: [{ dimension: {id:'', title: {}}, value: "", unit: "" }],
+  //         archeologic: false,
+  //         creationPeriod: { since: "", until: "" },
+  //         restorationRequestor: {id:'', title: {}},
+  //         stylePeriod: { period: {id:'', title: {}}, startYear: "", endYear: "" },
+  //         itemType: "",
+  //       }
+  //     }
+  //       onSubmit={(values, { setSubmitting }) => {
+  //         setTimeout(() => {
+  //           console.log(JSON.stringify(values))
+  //           // alert(JSON.stringify(values, null, 2));
+  //           setSubmitting(false);
+  //         }, 400);
+  //       }}
+  //     >
+
+  //       {({
+  //         values,
+  //         errors,
+  //         touched,
+  //         handleChange,
+  //         handleBlur,
+  //         handleSubmit,
+  //         isSubmitting,
+  //       }) => (
+  //         <>
+  //           <Form className="vert-div predmety__form" onSubmit={handleSubmit}>
+  //             <h3 className="predmety__form__h">Predmet</h3>
 
       }
