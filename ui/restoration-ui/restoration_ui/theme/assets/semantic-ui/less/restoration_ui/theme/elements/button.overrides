@@ -24,6 +24,20 @@ color:                                          #9d9898;
     left: -50px
     
 }
+.ui.button.form.main-page__btn__addPredmety{
+color: white                                 ;
+background-color:                            #de4929;
+border-radius: 32px                          ;
+height: 45px                                 ;
+width: 18vw                                  ;
+border: none                                 ;
+font-family: Noto_Sans_regular               ;
+}
+
+.ui.button.main-page__btn__addPredmety:hover {
+background-color:                              #e76c50;
+}
+
 .ui.button.predmety__aside__btn{
 border: none            !important         ;
 background-color:                #9b9b93;
@@ -77,6 +91,16 @@ cursor: pointer                           ;
 outline: none                             ;
 height: 40px                              ;
 align-items: center                       ;
+}
+
+.ui.button.form.main-page__btn__addPredmety{
+color: white                                 ;
+background-color:                            #de4929;
+border-radius: 32px                          ;
+height: 45px                                 ;
+width: 40vw                                  ;
+border: none                                 ;
+font-family: Noto_Sans_regular               ;
 }
 
 .ui.button.predmety__aside__dropdown-btn:hover {

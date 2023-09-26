@@ -1,3 +1,5 @@
+
+
 .ui.form .field > label{
     font-family: Noto_Sans_regular;
     font-size: 14px;
@@ -11,4 +13,8 @@
     border: solid #555 1px;
     border-radius: 40px;
     padding: 0px 15px;
+}
+
+.ui.form .fields{
+    margin: 0px !important
 }

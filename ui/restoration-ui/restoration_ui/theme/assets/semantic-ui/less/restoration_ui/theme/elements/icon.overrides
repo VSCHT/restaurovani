@@ -1,0 +1,8 @@
+.ui.icon.left.labeled.button{
+    background-color: #808080;
+    color: #fff
+}
+.ui.icon.button.close-btn{
+    background-color: #808080;
+    color: #fff
+}
