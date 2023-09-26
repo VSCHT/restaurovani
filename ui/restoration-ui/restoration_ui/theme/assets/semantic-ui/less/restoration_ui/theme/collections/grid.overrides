@@ -92,15 +92,15 @@ align-items: center      !important                                     ;
 z-index: 1000 ;
 }
 .ui.grid.predmety__aside__filter{
-gap: 20px                                                   ;
+gap: 20px                                               ;
 }
 ui.grid.predmety__title-search-fixed{
 position: fixed                                             ;
 left: 15vw                                                  ;
 top: 47px                                                   ;
 background-color:                                           #eaeae2;
-height: 170px                                               ;
-width: 51vw                                                 ;
+height: 150px                                               ;
+width: 50vw                                                 ;
 align-items: flex-end !important                            ;
 z-index: 1                                                  ;
 padding-bottom: 15px                                        ;
@@ -130,7 +130,7 @@ width: 205px !important ;
 }
 
 .grid.vert-div.predmety__card__main-info{
-gap: 6px    !important                              ;
+gap: 6px !important                       ;
 }
 
 .grid.horiz-div.predmety__card__extra-info{
@@ -201,10 +201,10 @@ background-color:                  #aaaaa2;
 background-color:                                                  #ffffff ;
 display: flex                                                      ;
 position: relative                                                 ;
-width: 100%;
-display: flex;
-flex-direction: row;
-align-items: center;
+width: 100%                                                        ;
+display: flex                                                      ;
+flex-direction: row                                                ;
+align-items: center                                                ;
 }
 .ui.grid.vert-div.predmety__form{
 display: flex                                                      ;
@@ -233,39 +233,28 @@ top: 220px !important                     ;
 
 }
 .ui.grid.predmety__cards{
-width: 90vw !important                                      ;
-margin: 0 auto !important                                   ;
-gap: 70px !important                                        ;
+width: 90vw !important            ;
+margin: 0 auto !important         ;
+gap: 70px !important              ;
 }
 ui.grid.vert-div.predmety__aside{
-display: flex                                               ;
-direction: column                                           ;
-position: fixed                                             ;
-top: 100px                                                  ;
-right: 10vw                                                 ;
-gap: 60px                                                   ;
-height: auto                                                ;
-width: 20vw !important                                      ;
-align-content: stretch                                      ;
+display: flex                     ;
+direction: column                 ;
+position: fixed                   ;
+top: 100px                        ;
+right: 10vw                       ;
+gap: 60px                         ;
+height: auto                      ;
+width: 20vw !important            ;
+align-content: stretch            ;
 }
 
-.grid.predmety__card{
-margin-top: 45px !important    ;
-background-color:              #ffffff !important;
-display: flex !important       ;
-position: relative !important  ;
-width: 100% !important         ;
-flex-direction: row !important ;
-left: 2vw !important;
-height: 250px !important;
-padding: 25px !important ;
 
-}
 
 .ui.grid.vsht-logo.div__vsht-logo.predmety__div__vsht-logo{
-display: flex            !important                                     ;
-flex-direction: row       !important                                    ;
-align-items: center       !important                                    ;
+display: flex !important                                    ;
+flex-direction: row !important                              ;
+align-items: center !important                              ;
 }
 .ui.grid.predmety__aside__filter{
 gap: 10px                                                   ;
@@ -275,8 +264,8 @@ position: fixed                                             ;
 left: 15vw                                                  ;
 top: 47px                                                   ;
 background-color:                                           #eaeae2;
-height: 150px                                               ;
-width: 50vw                                                 ;
+height: 170px                                               ;
+width: 51vw                                                 ;
 align-items: flex-end !important                            ;
 z-index: 1                                                  ;
 padding-bottom: 15px                                        ;
@@ -302,11 +291,11 @@ max-width: 100%                           ;
 max-height: 100%                          ;
 width: auto                               ;
 height: auto                              ;
-width: 200px !important ;
+width: 205px !important ;
 }
 
 .grid.vert-div.predmety__card__main-info{
-gap: 6px        !important                           ;
+gap: 6px !important                       ;
 }
 
 .grid.horiz-div.predmety__card__extra-info{
@@ -324,6 +313,7 @@ align-content: center;
 .grid.predmety__card__extra-info p {
 width: 150px                         ;
 color:                               #757670;
+
 }
 
 .ui.grid.vert-div.predmety__aside{
@@ -380,6 +370,217 @@ background-color:                  #aaaaa2;
 }
 
 
+
+@media only screen and (max-width: 992px) {
+.grid.horiz-div.predmety__card-content{
+background-color:                                                  #ffffff ;
+display: flex                                                      ;
+position: relative                                                 ;
+width: 100%;
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+.ui.grid.vert-div.predmety__form{
+display: flex                                                      ;
+flex-direction: column                                             ;
+align-items: center                                                ;
+gap: 30px                                                          ;
+}
+ui.grid.horiz-div{
+display: flex                                                      ;
+flex-direction: row                                                ;
+align-items: center                                                ;
+}
+ui.grid.vert-div{
+display: flex                                                      ;
+flex-direction: column                                             ;
+}
+ui.grid.predmety__title-search__searchbar{
+justify-content: space-between                                     ;
+width: 100%                                                        ;
+}
+
+ui.grid.vert-div.predmety_main-container{
+width: 50vw !important                    ;
+position: relative !important             ;
+top: 220px !important                     ;
+
+}
+.ui.grid.predmety__cards{
+width: 90vw !important                                      ;
+margin: 0 auto !important                                   ;
+gap: 70px !important                                        ;
+}
+ui.grid.vert-div.predmety__aside{
+display: none !important                                              ;
+direction: column                                           ;
+position: fixed                                             ;
+top: 100px                                                  ;
+right: 10vw                                                 ;
+gap: 60px                                                   ;
+height: auto                                                ;
+width: 20vw !important                                      ;
+align-content: stretch                                      ;
+}
+
+ui.column.vert-div.predmety__aside {
+    position: fixed !important;
+    top: 270px;
+    gap: 60px;
+    height: auto;
+    width: 100vw !important;
+    align-content: stretch;
+    background-color: #eaeae2;
+    padding: 30px 40px;
+    flex-wrap: wrap;
+    margin: 0 auto !important;
+    display: none !important;}
+    .grid.predmety__card{
+margin-top: 45px !important    ;
+background-color:              #ffffff !important;
+display: flex !important       ;
+position: relative !important  ;
+width: 100% !important         ;
+flex-direction: row !important ;
+left: 2vw !important;
+height: 250px !important;
+padding: 25px !important ;
+
+}
+
+.ui.grid.vsht-logo.div__vsht-logo.predmety__div__vsht-logo{
+display: flex            !important                                     ;
+flex-direction: row       !important                                    ;
+align-items: center       !important                                    ;
+}
+.ui.grid.predmety__aside__filter{
+gap: 10px                                                   ;
+display: flex;
+flex-direction: column;
+margin: 0 auto
+}
+ui.grid.predmety__title-search-fixed{
+position: fixed                                             ;
+
+top: 52px                                                   ;
+background-color:                                           #eaeae2;
+height: 260px                                               ;
+width: 100vw                                                 ;
+align-items: flex-end !important                            ;
+z-index: 1                                                  ;
+padding-bottom: 20px                                        ;
+}
+
+.grid.vert-div.predmety__card__info{
+margin-left: 40px                    ;
+width: 450px                           ;
+height: 100%                         ;
+justify-content: space-between       ;
+}
+
+.grid.predmety__card__img-container {
+display: flex                         ;
+align-items: center                   ;
+justify-content: center               ;
+overflow: hidden                      ;
+width: 200px
+}
+
+.grid.predmety__card__img-container img {
+max-width: 100%                           ;
+max-height: 100%                          ;
+width: 270px                               ;
+height: auto                              ;
+width: 200px !important ;
+}
+
+.grid.vert-div.predmety__card__main-info{
+gap: 6px        !important                           ;
+}
+.grid.vert-div.predmety__card__main-info .description.parag{
+font-size: 25px      !important                           ;
+}
+
+.grid.horiz-div.predmety__card__extra-info{
+justify-content: space-between              ;
+gap: 6px
+}
+
+.grid.predmety__card__extra-info p {
+width: 150px                         ;
+color:                               #757670;
+font-size: 25px
+}
+
+.ui.grid.vert-div.predmety__aside{
+
+}
+
+grid.predmety__aside__dropdown-btn{
+text-decoration: none               ;
+font-size: 15px                     ;
+font-family: Noto_Sans_regular      ;
+color:                              #222;
+display: flex                       ;
+justify-content: space-between      ;
+border: none                        ;
+background: none                    ;
+width: 100%                         ;
+text-align: left                    ;
+cursor: pointer                     ;
+outline: none                       ;
+height: 40px                        ;
+align-items: center                 ;
+}
+
+.grid.predmety__aside__dropdown-container{
+;
+background-color:                          #eaeae2;
+flex-direction: column                     ;
+color:                                     #555555;
+margin-left: 10px                          ;
+margin-top: 10px                           ;
+margin-bottom: 10px                        ;
+gap: 5px
+}
+
+.grid.predmety__aside__btn{
+border: none                       ;
+background-color:                  #9b9b93;
+color: white                       ;
+height: 40px                       ;
+display: flex                      ;
+width: 100%                        ;
+flex-direction: row                ;
+align-items: center                ;
+justify-content: space-between     ;
+border: none                       ;
+font-size: 16px                    ;
+cursor: pointer                    ;
+font-family: Noto_Sans_semibold    ;
+margin-top: 10px                   ;
+}
+.grid.predmety__aside__btn:hover {
+background-color:                  #aaaaa2;
+}
+_
+.grid.predmety__card{
+margin: 50px auto !important    ;
+background-color:              #ffffff !important;
+display: flex !important       ;
+position: relative !important  ;
+width: 80vw !important         ;
+flex-direction: row !important ;
+height: 300px !important;
+padding: 25px !important ;
+
+
+}
+.ui.grid.horiz-div.predmety__title-search{
+    margin: 0 auto !important;
+}
+}
 
 @media only screen and (max-width: 992px) {
 .grid.horiz-div.predmety__card-content{
@@ -579,4 +780,3 @@ padding: 25px !important ;
     margin: 0 auto !important;
 }
 }
-

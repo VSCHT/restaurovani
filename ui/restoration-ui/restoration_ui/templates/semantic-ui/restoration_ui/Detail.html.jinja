@@ -1,0 +1,12 @@
+{#def metadata, ui, layout, record #}
+{%- set title = metadata.title ~ " | " ~ _("Objekt Detail") %}
+{% extends "oarepo_ui/detail.html" %}
+
+{%- block head_links %}
+
+{{ super() }}
+{{ webpack['restoration_ui_components.js']}}
+{{ webpack['restoration_ui_components.css']}}
+
+{% endblock %}
+
