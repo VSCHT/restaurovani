@@ -10,19 +10,64 @@
 
 {% endblock %}
 
-<Field label={ _('metadata/restorationObject/title.value') }>
-{{metadata.restorationObject.title[0].value}} 
-</Field>
+
 {%- block page_body %}
 
 
 
+    
+
+    <script>
+        function changeStyles() {
+            let buttonElement = document.querySelector('.details__div__details-box-smaller-hidden ');
+            let btnMore= document.querySelector('.details__div__details-box-smaller__btn-more');
+            let btnLess=document.querySelector('.details__div__details-box-smaller__btn-less');
+
+            if (buttonElement) {
+               if (buttonElement.style.display =='initial' ){
+                    buttonElement.style.display ='none';
+                    btnMore.style.display ='initial';
+                    btnLess.style.display ='none';
+               } else{
+                    buttonElement.style.display ='initial';
+                    btnMore.style.display ='none';
+                    btnLess.style.display ='initial';
+               }
+            
+            }
+        }
+
+        function openImg(src){
+            let modal= document.querySelector('.details__div__modal');
+            if(modal){
+                
+                const img= document.createElement("img");
+                img.setAttribute("src", src);
+                modal.appendChild(img);
+                modal.style.display='flex';
+                modal.style.width='80vw';
+                modal.style.height='600px';
+                modal.style.position ='absolute';
+                modal.style.top ='200px';
+                modal.style.left ='35vw';
+            }
+        }
+    </script>
+
+    
+
 <div class="horiz-div details__div__header">
-    <p class="details__div__header-h">{{metadata.restorationObject.title[0].value}} </p>
+    <div class="horiz-div details__div__header-left">
+        <p class="details__div__header-h">{{metadata.restorationObject.title[0].value}} </p> 
+            <button  class="details__div__header__btn"><img src="../../../../static/images/edit-icon.png" class="details__div__header__btn-edit" alt="Edit icon"></button>
+        </div>
+    
+  
     <div class="horiz-div details__div__header-additional">
-      <p class="details__div__header_p parag">{{ metadata.restorationObject.stylePeriod.startYear }} {% if metadata.restorationObject.stylePeriod.endYear %} - {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}</p>
+        
+      <p class="details__div__header_p parag">{% if metadata.restorationObject.stylePeriod.startYear %}{{ metadata.restorationObject.stylePeriod.startYear }} {% endif %}{% if metadata.restorationObject.stylePeriod.endYear %} - {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}</p>
       <span class="details__div__vr"></span>
-      <p class="details__div__header_p parag">{{ metadata.restorationObject.stylePeriod.period.title }}</p>
+      <p class="details__div__header_p parag">{% if metadata.restorationObject.stylePeriod.period.title %}{{ metadata.restorationObject.stylePeriod.period.title }} {% endif %}</p>
     </div>
   </div>
   <!-- photos -->
@@ -43,30 +88,35 @@
           <img
             src="../../../../static/images/ItemLandingPage.jpg"
             alt="foto predmetu"
+            onclick="openImg(this.src)"
           />
         </div>
         <div class="predmety__card__img-container details">
           <img
             src="../../../../static/images/ItemLandingPage 2.jpg"
             alt="foto predmetu"
+            onclick="openImg(this.src)"
           />
         </div>
         <div class="predmety__card__img-container details">
           <img
             src="../../../../static/images/ItemLandingPage 2.jpg"
             alt="foto predmetu"
+            onclick="openImg(this.src)"
           />
         </div>
         <div class="predmety__card__img-container details">
           <img
             src="../../../../static/images/ItemLandingPage 2.jpg"
             alt="foto predmetu"
+            onclick="openImg(this.src)"
           />
         </div>
         <div class="predmety__card__img-container details">
           <img
             src="../../../../static/images/ItemLandingPage 3.jpg"
             alt="foto predmetu"
+            onclick="openImg(this.src)"
           />
         </div>
       </div>
@@ -85,26 +135,46 @@
 
 
 
+
 <table  class="horiz-div details__table">
   <tbody class="horiz-div details__div__details">
     <tr class="vert-div details__div__details-box">
       <td class="details__div__details-box-smaller parag">Dotace</td>
       <td class="details__div__details-box-smaller parag">
-      <p class="parag">{{ metadata.restorationObject.stylePeriod.startYear }} {% if metadata.restorationObject.stylePeriod.endYear %} - {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}{{ metadata.restorationObject.stylePeriod.period.title }}</p></td>
+      <p class="parag"> {% if metadata.restorationObject.stylePeriod.startYear  %} {{ metadata.restorationObject.stylePeriod.startYear }} {% endif %} {% if metadata.restorationObject.stylePeriod.endYear %} - {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}{{ metadata.restorationObject.stylePeriod.period.title }}</p></td>
     </tr>
     <tr class="vert-div details__div__details-box">
       <td class="details__div__details-box-smaller parag">Rozmery</td>
       <td class="details__div__details-box-smaller parag">
         {% for value in metadata.restorationObject.dimensions %}
-        <p class="parag">{{ value.dimension.title }} {{ value.value }}{{ value.unit }}</p>
+        {% if loop.index <= 2 %}
+        <p class="parag">{% if value.dimension.title %} {{ value.dimension.title }} {{ value.value }}{{ value.unit }} {% endif %}
+            
+        </p>
+            {% if loop.index >= 2 %} <button class="details__div__header__btn details__div__details-box-smaller__btn-more" onclick="changeStyles()"><img src="../../../../static/images/chevron-down.png"> </button> 
+            {% endif %}
+
+        
+
+        {% endif %}
+       
         {% endfor %}
+        <div class="vert-div details__div__details-box-smaller-hidden">
+            {% for value in metadata.restorationObject.dimensions %}
+        {% if loop.index >= 2 %} <p class=" parag"> {{ value.dimension.title }} {{ value.value }}{{ value.unit }} </p> {% endif %}
+        {% endfor %}
+        <button class="details__div__header__btn details__div__details-box-smaller__btn-less" onclick="changeStyles()"><img src="../../../../static/images/up-icon.png"> </button> 
+        </div> 
+
       </td>
     </tr>
     <tr class="vert-div details__div__details-box">
       <td class="details__div__details-box-smaller parag">Typ predmetu</td>
       <td class="details__div__details-box-smaller parag">
         {% for value in metadata.restorationObject.itemTypes %}
+        {% if loop.index <= 2 %}
         <p class="parag">{{ value.title }}</p>
+        {% endif %}
         {% endfor %}
       </td >
     </tr>
@@ -135,6 +205,7 @@
   </div>
   <span class="vr-huge-horiz"></span>
   <!-- info -->
+  <div class="vr-huge-horiz"></div>
   <div
     class="horiz-div details__div__info"
     aria-label="Info o predmetu"
@@ -200,6 +271,8 @@
     </div>
   </div>
   <span class="vr-huge-horiz"></span>
+
+  <div class="vr-huge-horiz"></div>
   <!-- docs -->
   <div class="horiz-div details__div__docs">
     <p class=" parag">Dokumenty</p>

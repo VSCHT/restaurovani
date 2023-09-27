@@ -73,6 +73,10 @@
         <div class="main-page__menu"> -->
 
 
+          <div class="details__div__modal">
+
+          </div>
+          
             {%- block topMenu %}
             <div class="main-page__menu" aria-label="Main Menu">
                 <button class="btn main-page__menu__btn">
@@ -113,9 +117,12 @@
             {%- endblock topMenu %}
         <!-- </div> -->
 
+
         
           
     {%- block body %}
+
+   
 
       {%- block bypasslinks %}
       <a id="skip-to-main" class="ui button primary ml-5 mt-5 skip-link" href="#main">{{_('Skip to main')}}</a>
