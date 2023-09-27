@@ -10,6 +10,7 @@ import {
   RadioField,
   BooleanField,
   GroupField,
+  ToggleField
 } from "react-invenio-forms";
 
 import {
@@ -109,7 +110,7 @@ export const DepositForm = () => {
           validationSchema: DepositValidationSchemaEdit,
         }}
       >
-        {record.metadata  === -1 ? (
+        {record.metadata  !== null ? (
           <Overridable id="Deposit.AccordionFieldBasicInformation.container">
             <AccordionField
               includesPaths={[
@@ -180,6 +181,7 @@ export const DepositForm = () => {
                       <GroupField
                         fieldPath="metadata.restorationObject.category"
                         className="horiz-div predmety__form__div__input-radio"
+                        required
                       >
                         <div className="predmety__form__div__label horiz-div">
                           <Radio
@@ -607,13 +609,13 @@ export const DepositForm = () => {
           validationSchema: DepositValidationSchemaDraft,
         }}
       >
-        { record.metadata  !== -1? 
+        { record.metadata  == null? 
         (
           <Overridable id="Deposit.AccordionFieldBasicInformation.container">
           <AccordionField
             includesPaths={[
               "metadata.restorationWork.restorer",
-              "metadata.restorationObject.title",
+              "metadata.restorationObject.title[0].value",
               "metadata.restorationObject.category",
             ]}
             active
@@ -624,13 +626,13 @@ export const DepositForm = () => {
               <div className="vert-div predmety__form-main">
                 <div className="vert-div predmety__form__div">
                   <TextField
-                    name="metadata.restorationObject.title"
+                    name="metadata.restorationObject.title[0].value"
                     aria-label="Nazev"
-                    fieldPath="metadata.restorationObject.title"
+                    fieldPath="metadata.restorationObject.title[0].value"
                     required
                     label={
                       <FieldLabel
-                        htmlFor="metadata.restorationObject.title"
+                        htmlFor="metadata.restorationObject.title[0].value"
                         className="predmety__form__div__label"
                         label={"Nazev"}
                       />
@@ -671,6 +673,8 @@ export const DepositForm = () => {
                         className="predmety__form__div__radio"
                         checked={selectedRadio == "Kovy"}
                         onChange={() => handleRadio("Kovy")}
+                        name="metadata.restorationObject.category"
+                        fieldPath="metadata.restorationObject.category"
                       ></Radio>
                     </div>
                     <div className="predmety__form__div__label horiz-div">
@@ -678,6 +682,8 @@ export const DepositForm = () => {
                         label="Textil"
                         className="predmety__form__div__radio"
                         checked={selectedRadio == "Textil"}
+                        fieldPath="metadata.restorationObject.category"
+                        name="metadata.restorationObject.category"
                         onChange={() => handleRadio("Textil")}
                       ></Radio>
                     </div>
@@ -686,6 +692,8 @@ export const DepositForm = () => {
                         label="Keramika"
                         className="predmety__form__div__radio"
                         checked={selectedRadio == "Keramika"}
+                        fieldPath="metadata.restorationObject.category"
+                        name="metadata.restorationObject.category"
                         onChange={() => handleRadio("Keramika")}
                       ></Radio>
                     </div>
@@ -694,6 +702,8 @@ export const DepositForm = () => {
                         label="Sklo"
                         className="predmety__form__div__radio"
                         checked={selectedRadio == "Sklo"}
+                        fieldPath="metadata.restorationObject.category"
+                        name="metadata.restorationObject.category"
                         onChange={() => handleRadio("Sklo")}
                       ></Radio>
                     </div>

@@ -11,9 +11,13 @@ export const DepositValidationSchemaDraft = Yup.object().shape({
     restorationObject: Yup.object().shape({
     title: Yup.array().of(
       Yup.object().shape({
-        lang: 'cs',
         value: Yup.string().required(requiredMessage),
       })),
+    // Yup.array().of(
+    //   Yup.object().shape({
+    //     lang: 'cs',
+    //     value: Yup.string().required(requiredMessage),
+    //   })),
     category: Yup.string().required(requiredMessage),
 
    

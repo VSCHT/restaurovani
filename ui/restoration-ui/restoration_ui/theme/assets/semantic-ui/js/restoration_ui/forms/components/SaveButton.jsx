@@ -16,7 +16,11 @@ export const SaveButton = ({ ...uiProps }) => {
       disabled={isSubmitting}
       loading={isSubmitting}
       onClick={() => {
-        formik.validateForm().then(()=>save());
+        const finished= formik.validateForm()
+        if(finished == null){
+          save()
+        }
+        console.log(finished)
       }}
       content="VYTVOŘIT PŘEDMĚT"
       type="submit"
