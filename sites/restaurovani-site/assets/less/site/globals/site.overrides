@@ -1943,7 +1943,7 @@ background-color:             #aaaaa2;
 
 .predmety__form__h {
 font-family: Noto_Sans_regular ;
-font-size: 23px                ;
+font-size: 20px                ;
 }
 .predmety__form__div__label {
 font-family: Noto_Sans_regular ;
@@ -1974,7 +1974,7 @@ padding: 0px 10px              ;
 }
 
 .predmety__form__div {
-width: calc(50vw - 30px)            ;
+width: 100%            ;
 gap: 20px                           ;
 }
 .predmety__form__div-unit{
@@ -1988,7 +1988,7 @@ gap: 25px                           ;
 justify-content: space-between      ;
 column-gap: 190px                   ;
 flex-wrap: wrap                     ;
-width: 80%                          ;
+width: 90%                          ;
 row-gap:20px
 }
 
@@ -2048,13 +2048,14 @@ padding-top: 100px           ;
 
 .details__container {
 background-color: white ;
+display: flex;
 height: auto            ;
 width: 100vw             ;
 margin: 0 auto          ;
 justify-content: center ;
 align-items: center     ;
 z-index: -1             ;
-padding: 60px           ;
+padding: 0px 5px 20px          ;
 }
 
 /* header */
