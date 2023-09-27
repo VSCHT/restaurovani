@@ -654,7 +654,7 @@ h4 {
   .details__div__header {
     background-color: #de4929;
     height: 40px;
-    width: 61vw;
+    width: 100%;
     color: white;
     justify-content: space-between;
     padding: 15px;
@@ -693,12 +693,15 @@ h4 {
     width: 13vw;
   }
 
+table.details__table{
+  width: 100%
+}
   /* info */
   .details__div__details {
     justify-content: space-between;
     height: 70px;
-    width: 61vw;
-    margin: 60px 0px;
+    width: 100%;
+    margin: 35px 0px 0px;
     align-items: flex-start;
     flex-wrap: wrap;
   }
@@ -714,7 +717,9 @@ h4 {
     width: 35vw;
   }
     .details__div__details-box{
-    padding: 0px 10px
+    padding: 0px 40px;
+    display: flex;
+    align-items: center;
   } 
 .details__div__details-box:first-child {
   border-left: 1px solid #000; 
