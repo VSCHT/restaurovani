@@ -3,7 +3,7 @@ import { Button, Modal,  Message, Icon } from "semantic-ui-react";
 import { i18next } from "@translations/restoration_ui/i18next";
 import {  useConfirmationModal, useDepositApiClient } from "@js/oarepo_ui";
 
-export const SaveButton = ({ ...uiProps }) => {
+export const SaveButton = ({ title, ...uiProps }) => {
   const { isSubmitting, save , formik} = useDepositApiClient();
   const { isModalOpen, handleCloseModal, handleOpenModal } =
   useConfirmationModal();
@@ -18,7 +18,7 @@ export const SaveButton = ({ ...uiProps }) => {
       disabled={isSubmitting}
       loading={isSubmitting}
       onClick={() => formik.validateForm().then(()=>save())}
-      content="VÝTVOŘIT PŘEDMĚT"
+      content={title}
       type="submit"
     />
      <Modal

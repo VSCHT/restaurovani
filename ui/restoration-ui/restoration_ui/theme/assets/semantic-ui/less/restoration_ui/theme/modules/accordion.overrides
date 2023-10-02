@@ -19,11 +19,11 @@
 .ui.accordion .title.btn.predmety__aside__dropdown-btn:hover{
     background-color: #E3E3D8;
 }
-.ui.accordion{
+/* .ui.accordion{
     position: relative;
     left: -1rem !important;
     width: 20vw !important;
-}
+} */
 }
 
 @media only screen and (min-width:1200px){
@@ -48,11 +48,11 @@
     background-color: #E3E3D8 !important;
     cursor: pointer !important;
 }
-.ui.accordion{
+/* .ui.accordion{
     position: relative;
     left: -1rem !important;
     width: 20vw !important;
-}
+}*/
 }
 
 
@@ -75,8 +75,8 @@
     z-index: 10 !important;
     width: 100% !important;
 }
-.ui.accordion .title:not(.ui) {
+/* .ui.accordion .title:not(.ui) {
     font-size: 25px !important;
-}
+}*/
 
 }
