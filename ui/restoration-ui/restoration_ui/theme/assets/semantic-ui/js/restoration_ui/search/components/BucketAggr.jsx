@@ -69,7 +69,7 @@ export const MyBucketAggregation = withState(({ title, containerCmp }) => {
 
           <Image
             src="/static/images/chevron-down.png"
-            className="predmety__aside__dropdown-icon"
+            className={`predmety__aside__dropdown-icon ${activeIndex === title ? 'rotate-icon' : ''}`}
             alt="dropdown icon"
           />
         </Accordion.Title>

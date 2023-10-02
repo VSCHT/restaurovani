@@ -43,14 +43,14 @@ align-items: center                         ;
 padding: 0px !important                     ;
 }
 .grid.predmety__card{
-margin-top: 45px !important                 ;
+margin-top: 22px !important                 ;
 background-color:                           #ffffff !important;
 display: flex !important                    ;
 position: relative !important               ;
 width: 100% !important                      ;
 flex-direction: row !important              ;
-height: 250px !important                    ;
-padding: 25px !important                    ;
+height: 230px !important                    ;
+padding: 5px !important                    ;
 margin-bottom: 30px !important              ;
 left: 0px !important                        ;
 }
@@ -71,6 +71,7 @@ flex-direction: column                      ;
 .ui.grid.predmety__title-search__searchbar{
 gap: 40px                                   ;
 align-items: center !important              ;
+width: 30%;
 }
 .row.horiz-div.predmety__title-search{
 display: flex !important                    ;
@@ -82,7 +83,7 @@ width: 100% !important                      ;
 .ui.grid.vert-div.predmety_main-container{
 width: 50vw !important                      ;
 margin-top: 180px !important                ;
-margin-left: 12vw !important                ;
+margin-left: 14vw !important                ;
 }
 
 .ui.grid.predmety__cards{
@@ -93,7 +94,7 @@ gap: 70px !important              ;
 display: flex !important          ;
 flex-direction: column !important ;
 top: 150px !important             ;
-right: -68vw !important           ;
+right: -6vw !important           ;
 gap: 75px !important              ;
 height: 100% !important           ;
 width: 20vw !important            ;
@@ -108,6 +109,7 @@ z-index: 1000                                           ;
 }
 .ui.grid.predmety__aside__filter{
 gap: 20px                                               ;
+width: 15vw;
 }
 .ui.grid.predmety__title-search-fixed{
 position: fixed                                         ;
@@ -135,7 +137,7 @@ display: flex                         ;
 align-items: center                   ;
 justify-content: center               ;
 overflow: hidden                      ;
-width: 245px !important               ;
+width: 240px !important               ;
 }
 
 .grid.predmety__card__img-container img {
@@ -143,7 +145,7 @@ max-width: 100%                           ;
 max-height: 100%                          ;
 width: auto                               ;
 height: auto                              ;
-width: 205px !important                   ;
+width: 225px !important                   ;
 }
 
 .grid.vert-div.predmety__card__main-info{
@@ -243,7 +245,7 @@ flex-direction: column                                             ;
 }
 .ui.grid.predmety__title-search__searchbar{
 justify-content: space-between                                     ;
-width: 50%                                                         ;
+width: 30%                                                         ;
 }
 
 .ui.grid.vert-div.predmety_main-container{
@@ -262,7 +264,7 @@ display: flex                              ;
 direction: column                          ;
 top: 130px                                 ;
 width: 20vw !important                     ;
-left: 71vw !important                      ;
+left: 7vw !important                      ;
 }
 
 .ui.grid.vsht-logo.div__vsht-logo.predmety__div__vsht-logo{
@@ -274,6 +276,7 @@ align-items: center !important                              ;
 gap: 10px                                                   ;
 position: relative                                          ;
 top: 85px                                                   ;
+width: 17vw;
 }
 .ui.grid.predmety__title-search-fixed{
 position: fixed                                             ;
@@ -573,7 +576,7 @@ margin: 0 auto !important               ;
 background-color:                          #ffffff !important;
 display: flex !important                   ;
 position: relative !important              ;
-width: 80vw !important                     ;
+width: 65vw !important                     ;
 flex-direction: row !important             ;
 height: 450px !important                   ;
 padding: 25px !important                   ;
@@ -660,6 +663,7 @@ display: flex                                               ;
 flex-direction: column                                      ;
 margin-left: 5vw !important                                 ;
 width: 60vw                                                 ;
+margin-top: 70px !important;
 }
 .ui.grid.predmety__title-search-fixed{
 position: fixed                                             ;

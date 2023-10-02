@@ -21,6 +21,7 @@ import {
   Button,
   Grid,
   Label,
+  Form,
 } from "semantic-ui-react";
 import {
   DepositValidationSchemaEdit,
@@ -36,7 +37,6 @@ import {
   Formik,
   useFormikContext,
   Field,
-  Form,
   FieldArray,
   ErrorMessage,
 } from "formik";
@@ -84,9 +84,10 @@ const units = [
 ];
 
 const categories = [
-  { value: "sklo", text: "sklo" },
-  { value: "keramika", text: "keramika" },
-  { value: "kovy", text: "kovy" },
+  { value: "sklo", label: "sklo" },
+  { value: "keramika", label: "keramika" },
+  { value: "kovy", label: "kovy" },
+  { value: "textil", label: "textil" },
 ];
 
 export const DepositForm = () => {
@@ -177,50 +178,29 @@ export const DepositForm = () => {
                     </div>
 
                     <div className="vert-div predmety__form__div">
+                      <Form>
                       <Label
                         for="metadata.restorationObject.category"
                         className="predmety__form__div__label"
                       >
                         Kategorie
                       </Label>
-                      <GroupField
-                        fieldPath="metadata.restorationObject.category"
-                        className="horiz-div predmety__form__div__input-radio"
-                      >
-                        <div className="predmety__form__div__label horiz-div">
-                          <Radio
-                            label="Kovy"
-                            className="predmety__form__div__radio"
-                            checked={selectedRadio == "Kovy"}
-                            onChange={() => handleRadio("Kovy")}
-                          ></Radio>
-                        </div>
-                        <div className="predmety__form__div__label horiz-div">
-                          <Radio
-                            label="Textil"
-                            className="predmety__form__div__radio"
-                            checked={selectedRadio == "Textil"}
-                            onChange={() => handleRadio("Textil")}
-                          ></Radio>
-                        </div>
-                        <div className="predmety__form__div__label horiz-div">
-                          <Radio
-                            label="Keramika"
-                            className="predmety__form__div__radio"
-                            checked={selectedRadio == "Keramika"}
-                            onChange={() => handleRadio("Keramika")}
-                          ></Radio>
-                        </div>
-                        <div className="predmety__form__div__label horiz-div">
-                          <Radio
-                            label="Sklo"
-                            className="predmety__form__div__radio"
-                            checked={selectedRadio == "Sklo"}
-                            onChange={() => handleRadio("Sklo")}
-                          ></Radio>
-                        </div>
-                      </GroupField>
+                        <Form.Group className="horiz-div predmety__form__div__input-radio">
+                          {categories.map((option) => (
+                            <div className="predmety__form__div__label horiz-div">
+                            <Form.Field key={option.value}>
+                              <Radio
+                                label={option.label}
+                                className="predmety__form__div__radio"
+                                checked={selectedRadio === option.value}
+                                onChange={() => handleRadio(option.value)}
+                              />
+                            </Form.Field></div>
+                          ))}
+                        </Form.Group>
+                      </Form>
                     </div>
+                    
 
                     <div className="vert-div predmety__form__div">
                       <div className="vert-div predmety__form__div">
@@ -230,8 +210,8 @@ export const DepositForm = () => {
                           multiple={true}
                           placeholder={"Vyberte metodu restaurace"}
                           value={
-                            record.metadata?.restorationWork
-                              ?.restorationMethods?.id
+                            record.metadata?.restorationWork?.restorationMethods?.[0]
+                              ?.id
                           }
                           clearable
                           label={
@@ -311,7 +291,7 @@ export const DepositForm = () => {
                           multiple={false}
                           placeholder={"Vyberte typ predmetu"}
                           value={
-                            record.metadata?.restorationWork?.itemTypes?.id
+                            record.metadata?.restorationObject?.itemTypes?.[0]?.id
                           }
                           clearable
                           label={
@@ -408,7 +388,6 @@ export const DepositForm = () => {
                           }}
                         </ArrayField>
                       </div>
-
 
                       <div>
                         <FieldArray name="stylePeriod">
@@ -536,7 +515,7 @@ export const DepositForm = () => {
                           multiple={false}
                           value={
                             record.metadata?.restorationObject
-                              ?.restorationRequestor?.id
+                              ?.restorationRequestor?.title.cs
                           }
                           clearable
                           label={
@@ -552,7 +531,7 @@ export const DepositForm = () => {
                     </div>
                   </div>
                 </div>
-                <SaveButton />
+                <SaveButton title={"ULOŽIT ZMĚNY"}/>
               </Grid>
             </AccordionField>
           </Overridable>
@@ -660,7 +639,7 @@ export const DepositForm = () => {
                     </GroupField>
                   </div>
                 </div>
-                <SaveButton />
+                <SaveButton title={"VYTVOŘIT PŘEDMĚT"}/>
               </div>
             </AccordionField>
           </Overridable>

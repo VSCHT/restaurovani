@@ -94,7 +94,7 @@ height: auto                ;
 }
 
 .image__vsht-logo {
-width: 40px         ;
+width: 46px         ;
 margin-right: 10px  ;
 }
 
@@ -406,9 +406,10 @@ background-color:                           #9b9b93;
   }
   .predmety__card__info {
     margin-left: 25px;
-    width: 65%;
+    width: 70%;
     height: 100%;
     justify-content: space-between;
+    padding: 15px 5px 10px 0px;
   }
 
   .predmety__card__extra-info {
@@ -896,7 +897,7 @@ z-index: 1                            ;
   }
 
 .image__vsht-logo {
-width: 35px         ;
+width: 41px         ;
 margin-right: 10px  ;
 }
 
@@ -1921,7 +1922,7 @@ margin-right: 10vw             ;
   .predmety__card__title {
     font-family: Noto_Sans_semibold;
     font-size: 25px;
-    width: 35vw;
+    width: auto;
     line-height:27px
   }
 
@@ -1979,7 +1980,7 @@ font-size: 20px             ;
 
   /* aside part */
   .vert-div.predmety__aside {
-    position: fixed !important;
+    position: absolute !important;
     gap: 60px;
     height: auto;
     width: 100vw !important;
@@ -1988,6 +1989,8 @@ font-size: 20px             ;
     padding: 30px 40px;
     flex-wrap: wrap;
     margin: 0 auto !important;
+    z-index: 100;
+    top: 0px;
   }
 
 .predmety__aside__filter {
@@ -2351,6 +2354,68 @@ align-items: flex-start     ;
     height: 470px;
   }
 }
+
+@media only screen and (max-width: 730px) {
+  .predmety__card__extra-info p{
+    display: none;
+    width: 0px;
+  }
+  .extra.horiz-div.predmety__card__extra-info{
+    width: 0px;
+  }
+ .predmety__card__extra-info {
+  width: 25vw;
+ }
+ .predmety__card__info {
+  width: auto;
+  margin: 0 auto;
+  height: 50%;
+  align-items: center;
+ }
+ .horiz-div.predmety__title-search{
+  width: 90vw;
+  gap: 50px;
+  margin: 0 auto;
+  flex-direction: column;
+ }
+ .predmety__card__main-info {
+gap: 20px                    ;
+align-items: center;
+}
+
+}
+
+
+@media only screen and (max-width: 730px) {
+  .predmety__card__extra-info p{
+    display: none;
+    width: 0px;
+  }
+  .extra.horiz-div.predmety__card__extra-info{
+    width: 0px;
+  }
+ .predmety__card__extra-info {
+  width: 25vw;
+ }
+ .predmety__card__info {
+  width: auto;
+  margin: 0 auto;
+  height: 50%;
+  align-items: center;
+ }
+ .horiz-div.predmety__title-search{
+  width: 90vw;
+  gap: 50px;
+  margin: 0 auto;
+  flex-direction: column;
+ }
+ .predmety__card__main-info {
+gap: 20px                    ;
+align-items: center;
+}
+
+}
+
 
 @media only screen and (max-width: 730px) {
   .predmety__card__extra-info p{

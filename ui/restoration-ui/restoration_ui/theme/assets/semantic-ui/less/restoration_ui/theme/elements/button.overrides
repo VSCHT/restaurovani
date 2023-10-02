@@ -46,7 +46,7 @@ background-color:                                        #9b9b93;
 color: white !important                                  ;
 height: 40px !important                                  ;
 display: flex !important                                 ;
-width: 20vw !important                                   ;
+width: 100% !important                                   ;
 flex-direction: row !important                           ;
 align-items: center !important                           ;
 justify-content: space-between !important                ;
@@ -251,16 +251,17 @@ height: 60px !important                ;
 width: 16vw !important                 ;
 border: none !important                ;
 margin: 10px !important                ;
-font-size: 20px !important             ;
+font-size: 15px !important             ;
 font-family: Noto_Sans_bold !important ;
 }
 
 .ui.button.btn.predmety__input-search__searchbar-burger img {
-width: 50px                                                   ;
-height: auto                                                  ;
-}
-.ui.button.btn.predmety__input-search__searchbar-burger {
-background: none !important
+    width: 50px;
+    height: auto;
+  }
+  .ui.button.btn.predmety__input-search__searchbar-burger {
+    background: none !important
+  }
 }
 .ui.button.predmety__title-search__searchbar {
 gap: 40px                                                     ;
@@ -276,7 +277,7 @@ height: auto                                                  ;
     top: 70px
 }
 .ui.button.predmety__input-search__searchbar-burger.btn-close img {
-width: 30px                                                   ;
+width: 23px                                                   ;
 height: auto                                                  ;
 }
 }

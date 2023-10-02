@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import Overridable from "react-overridable";
-
 import _get from "lodash/get";
 
 import {
@@ -51,8 +50,21 @@ export const ResultsListItemComponent = ({
   appName,
   ...rest
 }) => {
-  const searchAppConfig = useContext(SearchConfigurationContext);
+  const [wideScreen, setWideScreen] = React.useState(
+    window.innerWidth >= 1200
+  );
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 992);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
 
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []); 
+  const searchAppConfig = useContext(SearchConfigurationContext);
+console.log(searchAppConfig)
   const title = _get(
     result,
     "metadata.restorationObject.title",
@@ -62,6 +74,11 @@ export const ResultsListItemComponent = ({
   const restorer = _get(
     result,
     "metadata.restorationWork.restorer",
+    "<no data>"
+  );
+  const desc = _get(
+    result,
+    "metadata.restorationWork.abstract[0].value",
     "<no data>"
   );
 
@@ -90,6 +107,9 @@ export const ResultsListItemComponent = ({
                 selfLink={`${result.id}/edit`}
               />
               <Item.Description className="parag">{restorer}</Item.Description>
+              {/* {wideScreen && <Item.Description className="parag">{desc.substring(0,100)} ...</Item.Description>
+              } */}
+              
             </Grid.Column>
             <Item.Group className="horiz-div predmety__card__extra-info">
               <Item.Extra className="horiz-div predmety__card__extra-info">
