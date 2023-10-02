@@ -17,6 +17,7 @@ import {
   Checkbox,
   Label,
   Header,
+  Sidebar
 } from "semantic-ui-react";
 import { i18next } from "@translations/oarepo_ui/i18next";
 import {
@@ -25,11 +26,13 @@ import {
   SearchConfigurationContext,
 } from "@js/invenio_search_ui/components";
 import { ResultOptions } from "@js/invenio_search_ui/components/Results";
+import store from './store'
+import { Provider } from 'react-redux'
 
 const ResultOptionsWithState = withState(ResultOptions);
 
 export const SearchAppLayout = ({ hasButtonSidebar }) => {
-  const [sidebarVisible, setSidebarVisible] = React.useState(false);
+  const [sidebarVisible, setSidebarVisible] = React.useState(window.innerWidth >= 992);
   const [dropdownVisible, setDropdownVisible] = React.useState("");
 
   const showDropDown = (value) => {
@@ -40,17 +43,12 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
     setDropdownVisible((prevState) => (prevState === title ? "" : title));
   };
 
-//   const togglemenu = () => {
-    
-//     const asideElement = document.getElementById('predmety__aside');
-//     console.log(asideElement)
-//     if (asideElement.style.display === 'none !important') {
-//       asideElement.style.removeProperty('display');
-//     } else {
-//       asideElement.style.display = 'none !important';
-//     }
-//   }
-
+  const toggleSidebar = (e) => {
+    console.log('start')
+    e.preventDefault()
+    setSidebarVisible(!sidebarVisible);
+    console.log(sidebarVisible)
+  };
   const togglemenu = () => {
     const asideElement = document.getElementById('predmety__aside');
     console.log(asideElement)
@@ -60,20 +58,20 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
       asideElement.classList.add('hide-important');
     }
   };
-//   const togglemenu=()=>{
-//     document.getElementsByClassName('.vert-div.predmety__aside')[0].style.display ==='none !important' ?
-//     document.getElementsByClassName('.vert-div.predmety__aside')[0].setAttribute('style', 'display: flex !important'):
-//     document.getElementsByClassName('.vert-div.predmety__aside')[0].setAttribute('style', 'display: none !important');
-//   }
+
   const { appName, buildUID } = useContext(SearchConfigurationContext);
 
   const searchAppConfig = useContext(SearchConfigurationContext);
 console.log(searchAppConfig)
 
   return (
+    
     <Container className="predmety__body-bg">
       <Container className=" predmety__body-bg pages__predmety">
         <Grid className="horiz-div">
+          
+          <Grid className="vert-div predmety_main-container">
+
           <Container className="horiz-div predmety__title-search-fixed">
             <Grid.Row  className="horiz-div predmety__title-search">
             <Header className="predmety__title">Restaurovane predmety</Header>
@@ -83,7 +81,7 @@ console.log(searchAppConfig)
               <Button
                   className="btn predmety__input-search__searchbar-burger"
                   aria-label="Toggle Filter Menu"
-                  onClick={togglemenu}
+                  onClick={(e)=>toggleSidebar(e)}
                 >
                   <Image
                     rel="icon"
@@ -94,7 +92,8 @@ console.log(searchAppConfig)
             </Grid>
             </Grid.Row>
           </Container>
-          <Grid className="vert-div predmety_main-container">
+
+
             <Grid className="vert-div predmety__cards">
               <SearchAppResultsPane
                 layoutOptions={searchAppConfig.layoutOptions}
@@ -103,6 +102,19 @@ console.log(searchAppConfig)
               />
             </Grid>
           </Grid>
+
+
+          <Sidebar
+        as={Grid.Column}
+        animation="overlay"
+        icon="labeled"
+        
+        onHide={() => setSidebarVisible(false)}
+        visible={sidebarVisible}
+        width="wide"
+      >
+
+      
           <Grid.Column className="vert-div predmety__aside" id='predmety__aside'>
             <Grid.Row className="vsht-logo div__vsht-logo predmety__div__vsht-logo">
               <Image
@@ -116,7 +128,20 @@ console.log(searchAppConfig)
                 CHEMICKO-TECHNOLOGICKÁ
                 <br />V PRAZE
               </Label>
+              
             </Grid.Row>
+
+            <Button
+                  className="btn predmety__input-search__searchbar-burger btn-close"
+                  aria-label="Toggle Filter Menu"
+                  onClick={(e)=>toggleSidebar(e)}
+                >
+                  <Image
+                    rel="icon"
+                    src="/static/images/close-icon.png"
+                    alt="burger filter button"
+                  />
+                </Button>
             <Grid
               className="vert-div predmety__aside__filter"
               aria-label="Filter Options"
@@ -139,8 +164,10 @@ console.log(searchAppConfig)
                   />
             </Grid>
           </Grid.Column>
+          </Sidebar>
         </Grid>
       </Container>
     </Container>
+    
   )
 };

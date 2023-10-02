@@ -1,4 +1,4 @@
-@media only screen and (min-width:992px){
+@media only screen and (max-width:992px) and (min-width: 730px){
     .header.predmety__title{
     color: #1b1919;
     font-size: 45px !important;
@@ -8,7 +8,16 @@
     width: 470px;
 }
 }
-@media only screen and (max-width:992px){
+@media only screen and (max-width:730px){
+    .header.predmety__title{
+    color: #1b1919;
+    font-size: 35px !important;
+    font-family: Noto_Sans_regular;
+    word-wrap: break-word;
+    margin: 0px;
+}
+}
+@media only screen and (min-width:992px) {
    .header.predmety__title{
     color: #1b1919;
     font-size: 50px !important;

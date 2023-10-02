@@ -1,6 +1,6 @@
 
 
-
+@media only screen and(min-width: 992px){
 .ui.input.predmety__input-search input {
     border: 1px solid darkgray !important;
     background-color: #eaeae2 !important;
@@ -10,9 +10,14 @@
     font-family: Noto_Sans_bold !important;
     color: #a9a9a9 !important;
     height: 35px !important;
-    width: 220px !important;
+    width: 100% !important;
 }
 
+.ui.icon.input.predmety__input-search{
+    width: 100%;
+    padding: 0px !important;
+}
+}
 @media only screen and(max-width: 992px){
     .ui.input.predmety__input-search input {
     border: 1px solid darkgray !important;
@@ -24,5 +29,10 @@
     color: #a9a9a9 !important;
     height: 55px !important;
     width: 300px !important;
+}
+.ui.icon.input.predmety__input-search{
+    width: 80%;
+    padding: 0px !important;
+    margin: 0 auto;
 }
 }
