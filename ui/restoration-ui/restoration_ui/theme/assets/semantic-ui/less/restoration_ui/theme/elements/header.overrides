@@ -1,4 +1,4 @@
-@media only screen and (min-width:992px){
+@media only screen and (max-width:992px) and (min-width: 730px){
     .header.predmety__title{
     color: #1b1919;
     font-size: 45px !important;
@@ -8,13 +8,31 @@
     width: 470px;
 }
 }
-@media only screen and (max-width:992px){
+@media only screen and (max-width:730px){
+    .header.predmety__title{
+    color: #1b1919;
+    font-size: 35px !important;
+    font-family: Noto_Sans_regular;
+    word-wrap: break-word;
+    margin: 0px;
+}
+}
+@media only screen and (min-width:1200px) {
    .header.predmety__title{
     color: #1b1919;
     font-size: 50px !important;
-    font-family: Noto_Sans_regular;
+    font-family: Noto_Sans_light;
     word-wrap: break-word;
-    margin: 20px;
+    width: 500px;
+} 
+}
+
+@media only screen and (min-width:992px) and (max-width:1200px) {
+   .header.predmety__title{
+    color: #1b1919;
+    font-size: 42px !important;
+    font-family: Noto_Sans_light;
+    word-wrap: break-word;
     width: 500px;
 } 
 }

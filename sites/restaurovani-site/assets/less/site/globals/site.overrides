@@ -29,6 +29,8 @@ h2,
 h4 {
 margin: 0px                           ;
 }
+
+
 @media (min-width: 1200px) {
     body,
   html {
@@ -92,7 +94,7 @@ height: auto                ;
 }
 
 .image__vsht-logo {
-width: 40px         ;
+width: 46px         ;
 margin-right: 10px  ;
 }
 
@@ -299,7 +301,7 @@ font-family: Noto_Sans_regular       ;
 
   .predmety__body-bg {
     background-color: #eaeae2;
-    width: 100vw
+    width: 100vw !important
   }
 
 /* menu part */
@@ -369,9 +371,9 @@ background-color:                           #9b9b93;
 
   .predmety_main-container {
     width: 53vw;
-    position: relative;
-    top: 180px;
-    left: 15vw;
+    position: static;
+    margin-top: 180px !important;
+    margin-left: 15vw !important;
   }
   .predmety__card-content {
     background-color: #ffffff;
@@ -404,9 +406,10 @@ background-color:                           #9b9b93;
   }
   .predmety__card__info {
     margin-left: 25px;
-    width: 65%;
+    width: 70%;
     height: 100%;
     justify-content: space-between;
+    padding: 15px 5px 10px 0px;
   }
 
   .predmety__card__extra-info {
@@ -420,15 +423,15 @@ background-color:                           #9b9b93;
   }
 
   .predmety__card__btn {
-    color: white;
-    background-color: #de4929;
-    border-radius: 20px;
-    height: 35px;
-    width: 100px;
-    border: none;
-    margin: 10px;
-    font-size: 13px;
-    font-family: Noto_Sans_semibold;
+    color: white !important;
+    background-color: #de4929 !important;
+    border-radius: 20px !important;
+    height: 35px !important;
+    width: 100px !important;
+    border: none !important;
+    margin: 10px !important;
+    font-size: 13px !important;
+    font-family: Noto_Sans_semibold !important; 
   }
   .predmety__card__btn:hover {
     background-color: #e76c50;
@@ -448,16 +451,12 @@ padding: 25px !important ;
 
   /* title and searchbar  */
   .horiz-div.predmety__title-search-fixed {
-    position: fixed;
     display: flex !important;
-    left: 14vw;
-    top: 47px;
     background-color: #eaeae2;
-    height: 165px;
-    width: 50vw;
     align-items: flex-end;
     z-index: 1;
-    padding-bottom: 15px;
+    padding-left: 0px !important;
+padding-right: 0px !important;
   }
   .predmety__title {
     color: #1b1919;
@@ -505,9 +504,9 @@ margin: 0px ;
   .vert-div.predmety__aside {
     position: relative;
     top: 100px;
-    right: -20vw;
+    right: -5vw;
     gap: 75px;
-    height: auto;
+    height: 100%;
     width: 20vw !important;
     align-content: stretch;
     display: flex !important
@@ -547,21 +546,21 @@ padding-left: 15px                     ;
 }
 
   .predmety__aside__btn {
-    border: none;
-    background-color: #9b9b93;
-    color: white;
-    height: 40px;
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    font-family: Noto_Sans_semibold;
-    margin-top: 10px;
-    z-index: 10
+    border: none !important;
+    background-color: #9b9b93 !important;
+    color: white !important;
+    height: 40px ;
+    display: flex !important;
+    width: 100% !important;
+    flex-direction: row ;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border: none !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+    font-family: Noto_Sans_semibold !important;
+    margin-top: 10px !important;
+    z-index: 10 !important
   }
 
 .predmety__aside__btn:hover {
@@ -885,8 +884,6 @@ z-index: 1                            ;
     display: flex;
     flex-direction: row;
     align-items: center;
-    position: fixed;
-    z-index: 1000;
   }
   .text__vsht-logo {
     font-size: 10px;
@@ -900,7 +897,7 @@ z-index: 1                            ;
   }
 
 .image__vsht-logo {
-width: 35px         ;
+width: 41px         ;
 margin-right: 10px  ;
 }
 
@@ -1096,6 +1093,7 @@ font-family: Noto_Sans_regular       ;
 
 .predmety__body-bg {
 background-color:    #eaeae2;
+width: 100vw !important;
 }
 
 /* menu part */
@@ -1164,10 +1162,10 @@ background-color:                           #9b9b93;
 /* main part--cards */
 
   .predmety_main-container {
-    width: 50vw;
-    position: relative;
-    top: 185px;
-    left: 11vw;
+    width: 55vw;
+    position: static;
+    margin-top: 185px !important;
+    margin-left: 11vw !important;
   }
   .predmety__card {
     margin-top: 45px !important;
@@ -1182,7 +1180,7 @@ background-color:                           #9b9b93;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    width: 260px !important
+    width: 200px !important
   }
   .predmety__card__img-container img {
     max-width: 100%;
@@ -1198,7 +1196,7 @@ background-color:                           #9b9b93;
     font-size: 21px;
   }
   .predmety__card__info {
-    margin-left: 35px;
+    margin-left: 25px;
 
     width: 65%;
     height: 90%;
@@ -1206,18 +1204,16 @@ background-color:                           #9b9b93;
   }
    .predmety__cards {
     width: 70vw;
-    margin: 0 auto !important;
     gap: 70px;
   }
 .grid.predmety__card{
-margin-top: 45px !important    ;
+margin-bottom: 45px !important    ;
 background-color:              #ffffff !important;
 display: flex !important       ;
 position: relative !important  ;
 width: 100% !important         ;
 flex-direction: row !important ;
-left: 2vw !important;
-height: 250px !important;
+height: 180px !important;
 padding: 25px !important ;
 
 }
@@ -1239,25 +1235,22 @@ padding: 25px !important ;
   }
 
 .predmety__card__btn {
-color: white                    ;
-background-color:               #de4929;
-border-radius: 20px             ;
-height: 35px                    ;
-width: 100px                    ;
-border: none                    ;
-margin: 10px                    ;
-font-size: 13px                 ;
-font-family: Noto_Sans_semibold ;
+color: white              !important      ;
+background-color:               #de4929 !important ;
+border-radius: 20px           !important   ;
+height: 35px                 !important    ;
+width: 100px                 !important    ;
+border: none                 !important    ;
+margin: 10px                 !important    ;
+font-size: 13px              !important    ;
+font-family: Noto_Sans_semibold !important ;
 }
 .predmety__card__btn:hover {
-background-color:               #e76c50;
+background-color:               #e76c50 !important ;
 }
 
 /* title and searchbar */
 .horiz-div.predmety__title-search-fixed {
-position: fixed                             ;
-left: 15vw                                  ;
-top: 47px                                   ;
 background-color:                           #eaeae2;
 height: 150px                               ;
 width: 50vw                                 ;
@@ -1285,7 +1278,7 @@ margin: 0px ;
 
   .horiz-div.predmety__title-search {
     justify-content: space-between;
-    width: 48%;
+    width: 100%;
     align-self: flex-start;
   }
 
@@ -1294,13 +1287,12 @@ margin: 0px ;
   .vert-div.predmety__aside {
     position: relative !important;
     top: 100px;
-    right: -25vw !important;
-    gap: 60px;
-    height: auto;
+    right: -8vw !important;
+    height: 100%;
     width: 20vw;
     align-content: stretch;
     flex-wrap: wrap;
-    display: flex !important
+    display: flex !important;
   }
 
   .predmety__aside__filter {
@@ -1340,24 +1332,24 @@ padding-left: 15px                     ;
 }
 
 .predmety__aside__btn {
-border: none                    ;
-background-color:               #9b9b93;
-color: white                    ;
-height: 40px                    ;
-display: flex                   ;
-width: 100%                     ;
-flex-direction: row             ;
-align-items: center             ;
-justify-content: space-between  ;
-border: none                    ;
-font-size: 16px                 ;
-cursor: pointer                 ;
-font-family: Noto_Sans_semibold ;
-margin-top: 10px                ;
+border: none           !important          ;
+background-color:               #9b9b93 !important ;
+color: white                   !important  ;
+height: 40px                 !important    ;
+display: flex                 !important   ;
+width: 100%                  !important    ;
+flex-direction: row           !important   ;
+align-items: center           !important   ;
+justify-content: space-between  !important ;
+border: none                   !important  ;
+font-size: 16px                !important  ;
+cursor: pointer                !important  ;
+font-family: Noto_Sans_semibold !important ;
+margin-top: 10px               !important  ;
 }
 
 .predmety__aside__btn:hover {
-background-color:             #aaaaa2;
+background-color:             #aaaaa2 !important ;
 }
 
   /* form */
@@ -1621,6 +1613,7 @@ height: 400px                  ;
 display: flex               ;
 flex-direction: row         ;
 align-items: center         ;
+display:none;
 }
 
 .text__vsht-logo {
@@ -1691,7 +1684,7 @@ z-index: 1                            ;
 position: fixed                       ;
 top: 0                                ;
 left: 0                               ;
-width: 100%                           ;
+width: 100vw                           ;
 background-color:                     #9b9b93;
 display: flex                         ;
 justify-content: space-between        ;
@@ -1711,7 +1704,7 @@ font-family: Noto_Sans_bold           ;
 }
 
 .btn.main-page__menu__btn:first-child {
-margin-left: 10vw                       ;
+margin-left: 8vw                       ;
 }
 
 .main-page__menu__btn.burger img {
@@ -1875,7 +1868,6 @@ margin-right: 10vw             ;
 /* title and searchbar */
 
   .predmety__title-search__searchbar {
-    gap: 40px;
     align-items: center !important;
   }
   .predmety__input-search__searchbar-burger img {
@@ -1907,12 +1899,12 @@ margin-right: 10vw             ;
     margin: 0px;
   }
   /* main part--cards */
-  .predmety_main-container {
+  /* .predmety_main-container {
     width: 100vw;
     position: relative;
     top: 350px;
     margin: 0 auto !important;
-  }
+  } */
   .predmety__cards {
     width: 90vw;
     margin: 0 auto !important;
@@ -1930,7 +1922,7 @@ margin-right: 10vw             ;
   .predmety__card__title {
     font-family: Noto_Sans_semibold;
     font-size: 25px;
-    width: 35vw;
+    width: auto;
     line-height:27px
   }
 
@@ -1988,8 +1980,7 @@ font-size: 20px             ;
 
   /* aside part */
   .vert-div.predmety__aside {
-    position: fixed !important;
-    top: 289px;
+    position: absolute !important;
     gap: 60px;
     height: auto;
     width: 100vw !important;
@@ -1998,7 +1989,8 @@ font-size: 20px             ;
     padding: 30px 40px;
     flex-wrap: wrap;
     margin: 0 auto !important;
-    display: none !important;
+    z-index: 100;
+    top: 0px;
   }
 
 .predmety__aside__filter {
@@ -2362,3 +2354,34 @@ align-items: flex-start     ;
     height: 470px;
   }
 }
+
+@media only screen and (max-width: 730px) {
+  .predmety__card__extra-info p{
+    display: none;
+    width: 0px;
+  }
+  .extra.horiz-div.predmety__card__extra-info{
+    width: 0px;
+  }
+ .predmety__card__extra-info {
+  width: 25vw;
+ }
+ .predmety__card__info {
+  width: auto;
+  margin: 0 auto;
+  height: 50%;
+  align-items: center;
+ }
+ .horiz-div.predmety__title-search{
+  width: 90vw;
+  gap: 50px;
+  margin: 0 auto;
+  flex-direction: column;
+ }
+ .predmety__card__main-info {
+gap: 20px                    ;
+align-items: center;
+}
+
+}
+
