@@ -42,6 +42,7 @@
     outline: none;
     height: 40px;
     align-items: center;
+    margin-left: -1rem;
 }
 
 .ui.accordion .title:hover{

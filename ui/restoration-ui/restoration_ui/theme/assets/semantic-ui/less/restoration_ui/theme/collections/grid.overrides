@@ -50,7 +50,7 @@ position: relative !important               ;
 width: 100% !important                      ;
 flex-direction: row !important              ;
 height: 230px !important                    ;
-padding: 5px !important                    ;
+padding: 5px !important                     ;
 margin-bottom: 30px !important              ;
 left: 0px !important                        ;
 }
@@ -71,7 +71,7 @@ flex-direction: column                      ;
 .ui.grid.predmety__title-search__searchbar{
 gap: 40px                                   ;
 align-items: center !important              ;
-width: 30%;
+width: 30%                                  ;
 }
 .row.horiz-div.predmety__title-search{
 display: flex !important                    ;
@@ -94,7 +94,7 @@ gap: 70px !important              ;
 display: flex !important          ;
 flex-direction: column !important ;
 top: 150px !important             ;
-right: -6vw !important           ;
+right: -6vw !important            ;
 gap: 75px !important              ;
 height: 100% !important           ;
 width: 20vw !important            ;
@@ -109,7 +109,7 @@ z-index: 1000                                           ;
 }
 .ui.grid.predmety__aside__filter{
 gap: 20px                                               ;
-width: 15vw;
+width: 15vw                                             ;
 }
 .ui.grid.predmety__title-search-fixed{
 position: fixed                                         ;
@@ -264,7 +264,7 @@ display: flex                              ;
 direction: column                          ;
 top: 130px                                 ;
 width: 20vw !important                     ;
-left: 7vw !important                      ;
+left: 7vw !important                       ;
 }
 
 .ui.grid.vsht-logo.div__vsht-logo.predmety__div__vsht-logo{
@@ -276,7 +276,7 @@ align-items: center !important                              ;
 gap: 10px                                                   ;
 position: relative                                          ;
 top: 85px                                                   ;
-width: 17vw;
+width: 17vw                                                 ;
 }
 .ui.grid.predmety__title-search-fixed{
 position: fixed                                             ;
@@ -384,9 +384,9 @@ background-color:                  #aaaaa2;
 
 @media only screen and (max-width: 730px) {
 
-    .ui.relaxed.grid{
-        width: 100%;
-    }
+.ui.relaxed.grid{
+width: 100%                                 ;
+}
 .grid.horiz-div.predmety__card-content{
 background-color:                           #ffffff ;
 display: flex                               ;
@@ -412,12 +412,12 @@ flex-direction: column                      ;
 }
 .ui.grid.predmety__title-search__searchbar{
 justify-content: space-between              ;
-width: 80vw                                ;
+width: 80vw                                 ;
 }
 
 .ui.grid.vert-div.predmety_main-container{
 width: 100vw !important                    ;
-margin-top: 75px !important;
+margin-top: 75px !important                ;
 }
 .ui.grid.predmety__cards{
 width: 90vw !important                     ;
@@ -472,13 +472,15 @@ gap: 10px                                                   ;
 display: flex                                               ;
 flex-direction: column                                      ;
 margin-left: 5vw !important                                 ;
+width: 60vw;
+margin-top: 70px !important;
 }
 .ui.grid.predmety__title-search-fixed{
 position: fixed                                             ;
 top: 52px                                                   ;
 background-color:                                           #eaeae2;
 height: 260px                                               ;
-width: 80vw                                                ;
+width: 80vw                                                 ;
 align-items: flex-end !important                            ;
 z-index: 1                                                  ;
 padding-bottom: 20px                                        ;
@@ -496,7 +498,7 @@ display: flex                         ;
 align-items: center                   ;
 justify-content: center               ;
 overflow: hidden                      ;
-width: auto                         ;
+width: auto                           ;
 }
 
 .grid.predmety__card__img-container img {
@@ -504,7 +506,7 @@ max-width: 100%                           ;
 max-height: 100%                          ;
 width: 270px                              ;
 height: auto                              ;
-width: auto !important                   ;
+width: auto !important                    ;
 }
 
 .grid.vert-div.predmety__card__main-info{
@@ -572,7 +574,7 @@ background-color:                  #aaaaa2;
 }
 
 .grid.predmety__card{
-margin: 0 auto !important               ;
+margin: 0 auto !important                  ;
 background-color:                          #ffffff !important;
 display: flex !important                   ;
 position: relative !important              ;
@@ -621,20 +623,20 @@ width: 100vw !important                    ;
 margin-top: 100px !important               ;
 }
 .ui.grid.predmety__cards{
-width: 100vw !important           ;
-margin: 0 auto !important         ;
-gap: 70px !important              ;
+width: 100vw !important                    ;
+margin: 0 auto !important                  ;
+gap: 70px !important                       ;
 }
 ui.grid.vert-div.predmety__aside{
-display: none !important          ;
-direction: column                 ;
-position: fixed                   ;
-top: 100px                        ;
-right: 10vw                       ;
-gap: 60px                         ;
-height: auto                      ;
-width: 20vw !important            ;
-align-content: stretch            ;
+display: none !important                   ;
+direction: column                          ;
+position: fixed                            ;
+top: 100px                                 ;
+right: 10vw                                ;
+gap: 60px                                  ;
+height: auto                               ;
+width: 20vw !important                     ;
+align-content: stretch                     ;
 }
 
 .ui.column.vert-div.predmety__aside {
@@ -655,7 +657,7 @@ display: none !important              ;
 display: flex !important                                    ;
 flex-direction: row !important                              ;
 align-items: center !important                              ;
-display: none                                                ;
+display: none                                               ;
 }
 .ui.grid.predmety__aside__filter{
 gap: 20px                                                   ;
@@ -663,7 +665,7 @@ display: flex                                               ;
 flex-direction: column                                      ;
 margin-left: 5vw !important                                 ;
 width: 60vw                                                 ;
-margin-top: 70px !important;
+margin-top: 70px !important                                 ;
 }
 .ui.grid.predmety__title-search-fixed{
 position: fixed                                             ;
