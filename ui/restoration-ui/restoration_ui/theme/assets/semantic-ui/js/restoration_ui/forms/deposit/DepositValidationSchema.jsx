@@ -13,14 +13,18 @@ const edtfRegEx = /^(\d{4})(-(\d{2})(-(\d{2}))?)?(\/\d{4}(-\d{2}(-\d{2})?)?)?$/;
 
 
 export const DepositValidationSchemaDraft = Yup.object().shape({
- metadata: Yup.object().shape({
-   restorationObject: Yup.object().shape({
-   title: Yup.array().of(
-     Yup.object().shape({
-       lang: 'cs',
-       value: Yup.string().required(requiredMessage),
-     })),
-   category: Yup.string().required(requiredMessage),
+  metadata: Yup.object().shape({
+    restorationObject: Yup.object().shape({
+    title: Yup.array().of(
+      Yup.object().shape({
+        value: Yup.string().required(requiredMessage),
+      })),
+    // Yup.array().of(
+    //   Yup.object().shape({
+    //     lang: 'cs',
+    //     value: Yup.string().required(requiredMessage),
+    //   })),
+    category: Yup.string().required(requiredMessage),
 
 
  

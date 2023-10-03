@@ -2162,7 +2162,7 @@ background-color:             #aaaaa2;
 
 .predmety__form__h {
 font-family: Noto_Sans_regular ;
-font-size: 23px                ;
+font-size: 20px                ;
 }
 .predmety__form__div__label {
 font-family: Noto_Sans_regular ;
@@ -2183,36 +2183,31 @@ display: grid                 ;
 place-content: center         ;
 }
 
-  .predmety__form__div__input {
-    font-family: Noto_Sans_regular;
-    width: calc(100% - 20px);
-    height: 35px;
-    border: solid #555 1px;
-    border-radius: 40px;
-    padding: 0px 10px;
-  }
-  
+.predmety__form__div__input {
+font-family: Noto_Sans_regular ;
+width: calc(100% - 20px)       ;
+height: 35px                   ;
+border: solid                  #555 1px;
+border-radius: 40px            ;
+padding: 0px 10px              ;
+}
 
-  .predmety__form__div {
-    width: calc(50vw - 30px);
-    gap: 20px;
-  }
-  .predmety__form__div-unit{
-    width: calc(20vw - 30px);
-  }
-  .predmety__form {
-    align-items: center;
-    gap: 25px;
-    align-items: center !important;
-    align-content: center !important;
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  .predmety__form__div__input-radio {
+.predmety__form__div {
+width: 100%            ;
+gap: 20px                           ;
+}
+.predmety__form__div-unit{
+width: calc(20vw - 30px)            ;
+}
+.predmety__form {
+align-items: center                 ;
+gap: 25px                           ;
+}
+.predmety__form__div__input-radio {
 justify-content: space-between      ;
 column-gap: 75px                   ;
 flex-wrap: wrap                     ;
-width: 80%                          ;
+width: 90%                          ;
 row-gap:20px
 }
   .predmety__form__div__radio {
@@ -2276,16 +2271,17 @@ background-size: cover       ;
 padding-top: 100px           ;
 }
 
-  .details__container {
-    background-color: white;
-    height: auto;
-    width: 100vw;
-    margin: 0 auto;
-    justify-content: center;
-    align-items: center;
-    z-index: -1;
-    padding: 60px;
-  }
+.details__container {
+background-color: white ;
+display: flex;
+height: auto            ;
+width: 100vw             ;
+margin: 0 auto          ;
+justify-content: center ;
+align-items: center     ;
+z-index: -1             ;
+padding: 0px 5px 20px          ;
+}
 
 /* header */
 

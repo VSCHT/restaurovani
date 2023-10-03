@@ -10,6 +10,7 @@ import {
   RadioField,
   BooleanField,
   GroupField,
+  ToggleField,
   ArrayField,
 } from "react-invenio-forms";
 
@@ -116,7 +117,7 @@ export const DepositForm = () => {
           validationSchema: DepositValidationSchemaEdit,
         }}
       >
-        {record.metadata !== null ? (
+        {record.metadata  !== null ? (
           <Overridable id="Deposit.AccordionFieldBasicInformation.container">
             <AccordionField
               includesPaths={[
@@ -548,103 +549,117 @@ export const DepositForm = () => {
           validationSchema: DepositValidationSchemaDraft,
         }}
       >
-        {record.metadata == null ? (
+        { record.metadata  == null? 
+        (
           <Overridable id="Deposit.AccordionFieldBasicInformation.container">
-            <AccordionField
-              includesPaths={[
-                "metadata.restorationWork.restorer",
-                "metadata.restorationObject.title",
-                "metadata.restorationObject.category",
-              ]}
-              active
-              label={"Basic information"}
-            >
-              <div className="vert-div predmety__form">
-                <h3 className="predmety__form__h">Vytvoreni noveho predmetu</h3>
-                <div className="vert-div predmety__form-main">
-                  <div className="vert-div predmety__form__div">
-                    <TextField
-                      name="metadata.restorationObject.title"
-                      aria-label="Nazev"
-                      fieldPath="metadata.restorationObject.title"
-                      required
-                      label={
-                        <FieldLabel
-                          htmlFor="metadata.restorationObject.title"
-                          className="predmety__form__div__label"
-                          label={"Nazev"}
-                        />
-                      }
-                    />
-                  </div>
-                  <div className="vert-div predmety__form__div">
-                    <TextField
-                      name="metadata.restorationWork.restorer"
-                      aria-label="Restauroval(a)"
-                      fieldPath="metadata.restorationWork.restorer"
-                      required
-                      label={
-                        <FieldLabel
-                          htmlFor="metadata.restorationWork.restorer"
-                          className="predmety__form__div__label"
-                          label={"Restauroval(a)"}
-                        />
-                      }
-                    />
-                  </div>
-                  <div className="vert-div predmety__form__div">
-                    <Label
-                      for="metadata.restorationObject.category"
-                      className="predmety__form__div__label"
-                    >
-                      Kategorie
-                    </Label>
-                    <GroupField
-                      fieldPath="metadata.restorationObject.category"
-                      className="horiz-div predmety__form__div__input-radio"
-                      required
-                    >
-                      <div className="predmety__form__div__label horiz-div">
-                        <Radio
-                          label="Kovy"
-                          className="predmety__form__div__radio"
-                          checked={selectedRadio == "Kovy"}
-                          onChange={() => handleRadio("Kovy")}
-                        ></Radio>
-                      </div>
-                      <div className="predmety__form__div__label horiz-div">
-                        <Radio
-                          label="Textil"
-                          className="predmety__form__div__radio"
-                          checked={selectedRadio == "Textil"}
-                          onChange={() => handleRadio("Textil")}
-                        ></Radio>
-                      </div>
-                      <div className="predmety__form__div__label horiz-div">
-                        <Radio
-                          label="Keramika"
-                          className="predmety__form__div__radio"
-                          checked={selectedRadio == "Keramika"}
-                          onChange={() => handleRadio("Keramika")}
-                        ></Radio>
-                      </div>
-                      <div className="predmety__form__div__label horiz-div">
-                        <Radio
-                          label="Sklo"
-                          className="predmety__form__div__radio"
-                          checked={selectedRadio == "Sklo"}
-                          onChange={() => handleRadio("Sklo")}
-                        ></Radio>
-                      </div>
-                    </GroupField>
-                  </div>
+               <AccordionField
+            includesPaths={[
+              "metadata.restorationWork.restorer",
+              "metadata.restorationObject.title[0].value",
+              "metadata.restorationObject.category",
+            ]}
+            active
+            label={"Basic information"}
+          >
+            <div className="vert-div predmety__form">
+              <h3 className="predmety__form__h">Vytvoreni noveho predmetu</h3>
+              <div className="vert-div predmety__form-main">
+                <div className="vert-div predmety__form__div">
+                  <TextField
+                    name="metadata.restorationObject.title[0].value"
+                    aria-label="Nazev"
+                    fieldPath="metadata.restorationObject.title[0].value"
+                    required
+                    label={
+                      <FieldLabel
+                        htmlFor="metadata.restorationObject.title[0].value"
+                        className="predmety__form__div__label"
+                        label={"Nazev"}
+                      />
+                    }
+                  />
                 </div>
-                <SaveButton title={"VYTVOŘIT PŘEDMĚT"}/>
+                <div className="vert-div predmety__form__div">
+                  <TextField
+                    name="metadata.restorationWork.restorer"
+                    aria-label="Restauroval(a)"
+                    fieldPath="metadata.restorationWork.restorer"
+                    required
+                    label={
+                      <FieldLabel
+                        htmlFor="metadata.restorationWork.restorer"
+                        className="predmety__form__div__label"
+                        label={"Restauroval(a)"}
+                      />
+                    }
+                  />
+                </div>
+                <div className="vert-div predmety__form__div">
+                  <Label
+                    for="metadata.restorationObject.category"
+                    className="predmety__form__div__label"
+                    
+                  >
+                    Kategorie
+                  </Label>
+                  <GroupField
+                    fieldPath="metadata.restorationObject.category"
+                    className="horiz-div predmety__form__div__input-radio"
+                    required
+                  >
+                    <div className="predmety__form__div__label horiz-div">
+                      <Radio
+                        label="Kovy"
+                        className="predmety__form__div__radio"
+                        checked={selectedRadio == "Kovy"}
+                        onChange={() => handleRadio("Kovy")}
+                        name="metadata.restorationObject.category"
+                        fieldPath="metadata.restorationObject.category"
+                      ></Radio>
+                    </div>
+                    <div className="predmety__form__div__label horiz-div">
+                      <Radio
+                        label="Textil"
+                        className="predmety__form__div__radio"
+                        checked={selectedRadio == "Textil"}
+                        fieldPath="metadata.restorationObject.category"
+                        name="metadata.restorationObject.category"
+                        onChange={() => handleRadio("Textil")}
+                      ></Radio>
+                    </div>
+                    <div className="predmety__form__div__label horiz-div">
+                      <Radio
+                        label="Keramika"
+                        className="predmety__form__div__radio"
+                        checked={selectedRadio == "Keramika"}
+                        fieldPath="metadata.restorationObject.category"
+                        name="metadata.restorationObject.category"
+                        onChange={() => handleRadio("Keramika")}
+                      ></Radio>
+                    </div>
+                    <div className="predmety__form__div__label horiz-div">
+                      <Radio
+                        label="Sklo"
+                        className="predmety__form__div__radio"
+                        checked={selectedRadio == "Sklo"}
+                        fieldPath="metadata.restorationObject.category"
+                        name="metadata.restorationObject.category"
+                        onChange={() => handleRadio("Sklo")}
+                      ></Radio>
+                    </div>
+                  </GroupField>
+                </div>
               </div>
-            </AccordionField>
-          </Overridable>
-        ) : null}
+              <SaveButton />
+            </div>
+          </AccordionField>
+        </Overridable>
+        )
+        : null
+        }
+        
       </BaseForm>
     </Container>
   );
-};
+
+      }

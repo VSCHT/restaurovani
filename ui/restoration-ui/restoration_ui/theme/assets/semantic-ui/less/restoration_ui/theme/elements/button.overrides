@@ -206,7 +206,7 @@ border-radius: 32px                          ;
 height: 45px                                 ;
 width: 40vw                                  ;
 border: none                                 ;
-font-family: Noto_Sans_regular               ;
+font: 11px Noto_Sans_regular               ;
 }
 
 .ui.button.predmety__aside__dropdown-btn:hover {
