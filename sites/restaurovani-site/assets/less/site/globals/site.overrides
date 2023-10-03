@@ -2274,6 +2274,7 @@ padding-top: 100px           ;
 .details__container {
 background-color: white ;
 display: flex;
+flex-direction: column;
 height: auto            ;
 width: 100vw             ;
 margin: 0 auto          ;
