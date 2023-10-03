@@ -29,17 +29,15 @@ const ItemHeader = ({ title, searchUrl, selfLink }) => {
   );
 };
 
-const DetailsButton = ({ title, searchUrl, selfLink }) => {
-  const viewLink = new URL(selfLink, window.location.origin);
-
+const DetailsButton=({title, searchUrl, selfLink}) => {
+  const viewLink = new URL(
+    selfLink,
+    new URL(searchUrl, window.location.origin)
+  );
   return (
-    <Button
-      className="predmety__card__btn"
-      aria-label="Tlacitko tevrit detaily"
-    >
-      <a className="predmety__card__btn" href={viewLink}>
-        DETAIL
-      </a>
+    <Button className="predmety__card__btn"
+    aria-label="Tlacitko tevrit detaily">
+      <a className="predmety__card__btn" href={viewLink}>DETAIL</a>
     </Button>
   );
 };
