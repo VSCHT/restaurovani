@@ -472,8 +472,8 @@ gap: 10px                                                   ;
 display: flex                                               ;
 flex-direction: column                                      ;
 margin-left: 5vw !important                                 ;
-width: 60vw;
-margin-top: 70px !important;
+width: 60vw                                                 ;
+margin-top: 70px !important                                 ;
 }
 .ui.grid.predmety__title-search-fixed{
 position: fixed                                             ;
@@ -627,7 +627,7 @@ width: 100vw !important                    ;
 margin: 0 auto !important                  ;
 gap: 70px !important                       ;
 }
-ui.grid.vert-div.predmety__aside{
+.ui.grid.vert-div.predmety__aside{
 display: none !important                   ;
 direction: column                          ;
 position: fixed                            ;
