@@ -700,7 +700,6 @@ img.details__div__header__btn-edit{
 
   .details_div_images-container__btn-left,
   .details_div_images-container__btn-right {
-    visibility: hidden;
     position: absolute;
   }
 
@@ -768,7 +767,7 @@ table.details__table{
     display:none;
   }
   .details__div__desc p {
-    margin-top: 10px;
+    margin-top: 30px;
     margin-bottom: 20px;
   }
   td.details__div__details-box-smaller.parag{
@@ -788,10 +787,7 @@ table.details__table{
   }
   
   .details__div__info-right {
-    width: 30vw;
-    border-left: 1px solid black;
-    padding-left: 40px;
-    margin-left: 40px
+    width: 28vw;
   }
   .details__div__info-right.parag {
     font-family: Noto_Sans_semibold;
@@ -850,6 +846,7 @@ table.details__table{
     width: 1px;
     border-right: 1px solid black;
     height: auto;
+    margin: 0 2vw;
   }
 }
 
@@ -1543,7 +1540,6 @@ img.details__div__header__btn-edit{
   }
   .details__div__info-right {
     width: 35vw;
-    border-left: 1px solid black;
     padding-left: 30px
   }
   .details__div__info-left__box{
@@ -2284,7 +2280,7 @@ table.horiz-div.details__table{
   .details__div__info-right {
     width: 80vw;
 min-width:300px;
-margin:100px auto
+margin:30px auto
   }
   .details__div__info-right.parag {
     font-family: Noto_Sans_semibold;
@@ -2359,12 +2355,12 @@ margin:100px auto
     position: absolute;
   }
   .vr-huge-horiz {
-    width: 80vw;
+    width: 100%;
     border-top: 1px solid black;
     height: 1px;
     margin: 0 auto;
     margin-bottom: 30px;
-    margin-top: 30px;
+    margin-top: 65px;
   }
   .vr-huge-vert {
     position: absolute;
