@@ -30,8 +30,8 @@ class RestorationUiResourceConfig(RecordsUIResourceConfig):
         "create": {"layout": "restoration_ui/deposit.html"},
     }
     def search_app_config(self, identity, api_config, overrides={}, **kwargs):
-        return super().search_app_config(identity, api_config,
-                                     overrides=overrides, endpoint='/api/user/restoration/', **kwargs)
+        return super().search_app_config(identity, api_config,overrides=overrides, endpoint='/api/user/restoration/', **kwargs)
+    
     def search_active_facets(self, api_config, identity):
         return [
             k

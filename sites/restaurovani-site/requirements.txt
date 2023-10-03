@@ -1,4 +1,5 @@
-oarepo==11.0.46
+oarepo==11.0.48
+oarepo==11.0.48
 cachetools==5.3.1
 deepmerge==1.1.0
 et-xmlfile==1.1.0
@@ -6,9 +7,9 @@ frozendict==2.3.8
 jinja2-simple-tags==0.5.0
 jinjax==0.25
 langcodes==3.3.0
-oarepo-runtime==1.4.5
-oarepo-ui==5.0.55
-oarepo-vocabularies==2.0.29
+oarepo-runtime==1.4.7
+oarepo-ui==5.0.64
+oarepo-vocabularies==2.0.33
 openpyxl==3.1.2
 python-dotenv==1.0.0
 whitenoise==6.5.0

@@ -7,6 +7,11 @@ ui.image.vsht-logo.image__vsht-logo.predmety__image__vsht-logo{
      width: 70px !important;
 }
 
+
+.rotate-icon {
+  transform: rotate(180deg);
+}
+
 @media only screen and (min-width: 992px) and (max-width: 1200px){
     ui.image.vsht-logo.image__vsht-logo.predmety__image__vsht-logo{
     

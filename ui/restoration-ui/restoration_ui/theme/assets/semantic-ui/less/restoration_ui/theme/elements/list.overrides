@@ -1,0 +1,43 @@
+
+
+@media only screen and (min-width: 992px){
+.ui.list {
+    
+    background-color: #eaeae2 !important;
+    flex-direction: column !important;
+    color: #555555 !important;
+    padding-left: 10px !important;
+    padding: 5px !important
+}
+.ui.list .item{
+    
+    margin: 5px !important
+}
+
+.ui.list .item .checkbox{
+    
+    margin-right: 5px !important
+}
+}
+
+@media only screen and (max-width: 992px){
+    .ui.list {
+    
+    background-color: #eaeae2 !important;
+    flex-direction: column !important;
+    color: #555555 !important;
+    padding-left: 10px !important;
+    padding: 5px !important;
+    font-size: 17px
+}
+.ui.list .item{
+    
+    margin: 5px !important
+}
+
+.ui.list .item .checkbox{
+    
+    margin-right: 5px !important;
+    width: 15px
+}
+}
