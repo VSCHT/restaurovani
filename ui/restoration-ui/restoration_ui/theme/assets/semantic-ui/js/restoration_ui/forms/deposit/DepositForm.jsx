@@ -84,10 +84,10 @@ const units = [
 ];
 
 const categories = [
-  { value: "sklo", label: "sklo" },
-  { value: "keramika", label: "keramika" },
-  { value: "kovy", label: "kovy" },
-  { value: "textil", label: "textil" },
+  { value: "sklo", label: "Sklo" },
+  { value: "keramika", label: "Keramika" },
+  { value: "kovy", label: "Kovy" },
+  { value: "textil", label: "Textil" },
 ];
 
 export const DepositForm = () => {

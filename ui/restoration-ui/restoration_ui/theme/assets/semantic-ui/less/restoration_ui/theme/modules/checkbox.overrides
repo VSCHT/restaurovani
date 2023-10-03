@@ -1,40 +1,48 @@
-.ui.radio.checkbox.predmety__form__div__radio input{
-    appearance: none;
-  background-color: #fff  !important;
-  margin: 0  !important;
-  color: #333  !important;
-  width: 20px  !important;
-  height: 20px  !important;
-  border: 2px solid #333  !important;
-  border-radius: 50%  !important;
-  display: grid  !important;
-  place-content: center  !important;
+/* full cb */
+.ui.checkbox input[type="radio"] {
+cursor: pointer                    ;
+position: absolute                 ;
+top: 0px                           ;
+left: 0px                          ;
+opacity: 0 !important              ;
+outline: none                      ;
+z-index: 3                         ;
+color:                             #E0472B !important;
+width: 10vw !important             ;
 }
 
-.ui.radio.checkbox.predmety__form__div__radio input::before {
-  content: ""  !important;
-  width: 8px  !important;
-  height: 8px  !important;
-  border-radius: 50%  !important;
-  transform: scale(0)  !important;
-  background-color: #E0472B  !important;
+.ui.radio.checkbox input:focus:checked ~ .box:before,
+.ui.radio.checkbox input:focus:checked ~ label:before {
+background-color:                                       #E0472B !important;
 }
-.ui.radio.checkbox.predmety__form__div__radio input:checked::before {
-  transform: scale(1) !important;
+.ui.radio.checkbox input:focus:checked ~ .box:after,
+.ui.radio.checkbox input:focus:checked ~ label:after {
+background-color:                                       #E0472B !important;
 }
 
-.ui.radio.checkbox.predmety__form__div__radio::before {
-  
-  width: 8px  !important;
-  height: 8px  !important;
-  border-radius: 50%  !important;
-  transform: scale(0)  !important;
-  background-color: #E0472B  !important;
+.ui.radio.checkbox .box:before,
+.ui.radio.checkbox label:before {
+content: "";
+width: 8px                        ;
+height: 8px                       ;
+border-radius: 50%                ;
+transform: scale(0)               ;
+background-color:                 #e0472b;
 }
-.ui.checked.radio.checkbox.predmety__form__div__radio::before{
-    transform: scale(1) !important;
+.ui.radio.checkbox .box:after,
+.ui.radio.checkbox label:after {
+border: none                      ;
+content: '' !important            ;
+line-height: 20px                 ;
+
+border: 1px solid #E0472B ;
+width: 15px       ;
+height: 15px      ;
 }
 
-.ui.checkbox.radio.predmety__form__div__radio input[type="radio"] {
-    color: #E0472B
+.ui.checked.radio.checkbox.predmety__form__div__radio {
+border: 2px solid                                       #E0472B !important;
+}
+.ui.checkbox input:active ~ label, .ui.checkbox input:checked ~ label:after, .ui.checkbox input:focus ~ label{
+color:                                                  #E0472B !important;
 }

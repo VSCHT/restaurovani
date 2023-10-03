@@ -16,5 +16,6 @@
 }
 
 .ui.form .fields{
-    margin: 0px !important
+    margin: 0px !important;
+    width: auto ;
 }
