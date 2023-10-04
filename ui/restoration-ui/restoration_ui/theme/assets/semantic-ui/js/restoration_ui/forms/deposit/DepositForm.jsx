@@ -117,7 +117,7 @@ export const DepositForm = () => {
           validationSchema: DepositValidationSchemaEdit,
         }}
       >
-        {record.metadata  !== null ? (
+        {record.metadata !== null ? (
           <Overridable id="Deposit.AccordionFieldBasicInformation.container">
             <AccordionField
               includesPaths={[
@@ -180,28 +180,28 @@ export const DepositForm = () => {
 
                     <div className="vert-div predmety__form__div">
                       <Form>
-                      <Label
-                        for="metadata.restorationObject.category"
-                        className="predmety__form__div__label"
-                      >
-                        Kategorie
-                      </Label>
+                        <Label
+                          for="metadata.restorationObject.category"
+                          className="predmety__form__div__label"
+                        >
+                          Kategorie
+                        </Label>
                         <Form.Group className="horiz-div predmety__form__div__input-radio">
                           {categories.map((option) => (
                             <div className="predmety__form__div__label horiz-div">
-                            <Form.Field key={option.value}>
-                              <Radio
-                                label={option.label}
-                                className="predmety__form__div__radio"
-                                checked={selectedRadio === option.value}
-                                onChange={() => handleRadio(option.value)}
-                              />
-                            </Form.Field></div>
+                              <Form.Field key={option.value}>
+                                <Radio
+                                  label={option.label}
+                                  className="predmety__form__div__radio"
+                                  checked={selectedRadio === option.value}
+                                  onChange={() => handleRadio(option.value)}
+                                />
+                              </Form.Field>
+                            </div>
                           ))}
                         </Form.Group>
                       </Form>
                     </div>
-                    
 
                     <div className="vert-div predmety__form__div">
                       <div className="vert-div predmety__form__div">
@@ -211,8 +211,8 @@ export const DepositForm = () => {
                           multiple={true}
                           placeholder={"Vyberte metodu restaurace"}
                           value={
-                            record.metadata?.restorationWork?.restorationMethods?.[0]
-                              ?.id
+                            record.metadata?.restorationWork
+                              ?.restorationMethods?.[0]?.id
                           }
                           clearable
                           label={
@@ -292,7 +292,8 @@ export const DepositForm = () => {
                           multiple={false}
                           placeholder={"Vyberte typ predmetu"}
                           value={
-                            record.metadata?.restorationObject?.itemTypes?.[0]?.id
+                            record.metadata?.restorationObject?.itemTypes?.[0]
+                              ?.id
                           }
                           clearable
                           label={
@@ -532,7 +533,7 @@ export const DepositForm = () => {
                     </div>
                   </div>
                 </div>
-                <SaveButton title={"ULOŽIT ZMĚNY"}/>
+                <SaveButton title={"ULOŽIT ZMĚNY"} />
               </Grid>
             </AccordionField>
           </Overridable>
@@ -544,57 +545,56 @@ export const DepositForm = () => {
         formik={{
           initialValues: record,
           validateOnChange: false,
-          validateOnBlur: false,
+          validateOnBlur: true,
           enableReinitialize: true,
           validationSchema: DepositValidationSchemaDraft,
         }}
       >
-        { record.metadata  == null? 
-        (
+        {record.metadata == null ? (
           <Overridable id="Deposit.AccordionFieldBasicInformation.container">
-               <AccordionField
-            includesPaths={[
-              "metadata.restorationWork.restorer",
-              "metadata.restorationObject.title[0].value",
-              "metadata.restorationObject.category",
-            ]}
-            active
-            label={"Basic information"}
-          >
-            <div className="vert-div predmety__form">
-              <h3 className="predmety__form__h">Vytvoreni noveho predmetu</h3>
-              <div className="vert-div predmety__form-main">
-                <div className="vert-div predmety__form__div">
-                  <TextField
-                    name="metadata.restorationObject.title[0].value"
-                    aria-label="Nazev"
-                    fieldPath="metadata.restorationObject.title[0].value"
-                    required
-                    label={
-                      <FieldLabel
-                        htmlFor="metadata.restorationObject.title[0].value"
-                        className="predmety__form__div__label"
-                        label={"Nazev"}
-                      />
-                    }
-                  />
-                </div>
-                <div className="vert-div predmety__form__div">
-                  <TextField
-                    name="metadata.restorationWork.restorer"
-                    aria-label="Restauroval(a)"
-                    fieldPath="metadata.restorationWork.restorer"
-                    required
-                    label={
-                      <FieldLabel
-                        htmlFor="metadata.restorationWork.restorer"
-                        className="predmety__form__div__label"
-                        label={"Restauroval(a)"}
-                      />
-                    }
-                  />
-                </div>
-                <div className="vert-div predmety__form__div">
+            <AccordionField
+              includesPaths={[
+                "metadata.restorationWork.restorer",
+                "metadata.restorationObject.title[0].value",
+                "metadata.restorationObject.category",
+              ]}
+              active
+              label={"Basic information"}
+            >
+              <div className="vert-div predmety__form">
+                <h3 className="predmety__form__h">Vytvoreni noveho predmetu</h3>
+                <div className="vert-div predmety__form-main">
+                  <div className="vert-div predmety__form__div">
+                    <TextField
+                      name="metadata.restorationObject.title[0].value"
+                      aria-label="Nazev"
+                      fieldPath="metadata.restorationObject.title[0].value"
+                      required
+                      label={
+                        <FieldLabel
+                          htmlFor="metadata.restorationObject.title[0].value"
+                          className="predmety__form__div__label"
+                          label={"Nazev"}
+                        />
+                      }
+                    />
+                  </div>
+                  <div className="vert-div predmety__form__div">
+                    <TextField
+                      name="metadata.restorationWork.restorer"
+                      aria-label="Restauroval(a)"
+                      fieldPath="metadata.restorationWork.restorer"
+                      required
+                      label={
+                        <FieldLabel
+                          htmlFor="metadata.restorationWork.restorer"
+                          className="predmety__form__div__label"
+                          label={"Restauroval(a)"}
+                        />
+                      }
+                    />
+                  </div>
+                  {/* <div className="vert-div predmety__form__div">
                   <Label
                     for="metadata.restorationObject.category"
                     className="predmety__form__div__label"
@@ -648,18 +648,89 @@ export const DepositForm = () => {
                       ></Radio>
                     </div>
                   </GroupField>
+                </div> */}
+                  <div className="vert-div predmety__form__div">
+                    <Form>
+                      <Label
+                        for="metadata.restorationObject.category"
+                        className="predmety__form__div__label"
+                        required
+                      >
+                        Kategorie
+                      </Label>
+                      <Form.Group
+                        className="horiz-div predmety__form__div__input-radio"
+                        fieldPath="metadata.restorationObject.category"
+                        name="metadata.restorationObject.category"
+                      >
+                        {categories.map((option) => (
+                          <div className="predmety__form__div__label horiz-div">
+                            <Form.Field
+                              key={option.value}
+                              fieldPath="metadata.restorationObject.category"
+                              name="metadata.restorationObject.category"
+                            >
+                              <Radio
+                                label={option.label}
+                                className="predmety__form__div__radio"
+                                checked={selectedRadio === option.value}
+                                onChange={() => handleRadio(option.value)}
+                                fieldPath="metadata.restorationObject.category"
+                                name="metadata.restorationObject.category"
+                              />
+                            </Form.Field>
+                          </div>
+                        ))}
+                      </Form.Group>
+                    </Form>
+                  </div>
+
+                  <div className="vert-div predmety__form__div">
+                    <Form>
+                      <Label
+                        for="metadata.restorationObject.category"
+                        className="predmety__form__div__label"
+                        required
+                      >
+                        Kategorie
+                      </Label>
+                      <Field
+                        type="radio"
+                        name="metadata.restorationObject.category"
+                      >
+                        {({ field }) => (
+                          <>
+                            {categories.map((option) => (
+                              <div
+                                className="predmety__form__div__label horiz-div"
+                                key={option.value}
+                              >
+                                <input
+                                  type="radio"
+                                  id={option.value}
+                                  {...field}
+                                  value={option.value}
+                                  checked={field.value === option.value}
+                                  onChange={() => field.onChange(option.value)}
+                                  className="predmety__form__div__radio"
+                                />
+                                <label htmlFor={option.value}>
+                                  {option.label}
+                                </label>
+                              </div>
+                            ))}
+                          </>
+                        )}
+                      </Field>
+                    </Form>
+                  </div>
                 </div>
+                <SaveButton />
               </div>
-              <SaveButton />
-            </div>
-          </AccordionField>
-        </Overridable>
-        )
-        : null
-        }
-        
+            </AccordionField>
+          </Overridable>
+        ) : null}
       </BaseForm>
     </Container>
   );
-
-      }
+};

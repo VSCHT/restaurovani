@@ -82,7 +82,8 @@ border-radius: 32px                          ;
 height: 45px                                 ;
 width: 18vw                                  ;
 border: none                                 ;
-font-family: Noto_Sans_regular               ;
+font-family: Noto_Sans_semibold               ;
+font-size: 15px;
 }
 
 .ui.button.main-page__btn__addPredmety:hover {
@@ -140,16 +141,16 @@ font-family: Noto_Sans_semibold !important ;
 .ui.button.form.main-page__btn__addPredmety{
 color: white                                                        ;
 background-color:                                                   #de4929;
-border-radius: 32px                                                 ;
+border-radius: 50px                                                 ;
 height: 45px                                                        ;
-width: 40vw                                                         ;
+width: 33vw  !important                                                       ;
 border: none                                                        ;
 font-family: Noto_Sans_regular                                      ;
 color: white !important                                             ;
 background-color:                                                   #de4929 !important;
-border-radius: 20px !important                                      ;
-height: 35px !important                                             ;
-width: 100px !important                                             ;
+border-radius: 50px !important                                      ;
+height: 50px !important                                             ;
+
 border: none !important                                             ;
 margin-bottom: 10px !important                                      ;
 font-size: 13px !important                                          ;
@@ -179,6 +180,13 @@ top: 70px
 width: 20px                                                         ;
 height: auto                                                        ;
 }
+.ui.button.predmety__btn-reset{
+background: none                                 ;
+position: relative                               ;
+left: -60px                                      ;
+top: 0px                                         ;
+
+}
 }
 
 @media only screen and (max-width: 992px) and (min-width:730px){
@@ -204,9 +212,9 @@ color: white                                 ;
 background-color:                            #de4929;
 border-radius: 32px                          ;
 height: 45px                                 ;
-width: 40vw                                  ;
+width: 27vw                                  ;
 border: none                                 ;
-font: 11px Noto_Sans_regular               ;
+font: 14px Noto_Sans_semibold               ;
 }
 
 .ui.button.predmety__aside__dropdown-btn:hover {

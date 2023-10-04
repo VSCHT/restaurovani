@@ -55,7 +55,7 @@ width: 22vw !important                                      ;
 background-color:                                           #eaeae2 !important;
 color:                                                      #111;
 padding: 0px !important                                     ;
-line-height: 15px !important                                ;
+line-height: 14px !important                                ;
 }
 
 .label.predmety__form__div__label{

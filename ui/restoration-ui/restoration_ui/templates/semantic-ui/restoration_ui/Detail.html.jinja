@@ -1,495 +1,533 @@
 {#def metadata, ui, layout, record #} {%- set title =
-  metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
-    "oarepo_ui/detail.html" %} {%- block head_links %}
-    
-    {{ super() }}
-    {{ webpack["restoration_ui_components.js"] }}
-    {{ webpack["restoration_ui_components.css"] }}
-    
-    {% endblock %} {%- block page_body %}
-    
-    <style>
-      .image-modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.9);
-        justify-content: center;
-        align-items: center;
-      }
-    
-      .modal-content {
-        max-width: 80%;
-        max-height: 80%;
-        position: relative;
-      }
-    
-      .close-button {
+metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
+"oarepo_ui/detail.html" %} {%- block head_links %}
+
+{{ super() }}
+{{ webpack["restoration_ui_components.js"] }}
+{{ webpack["restoration_ui_components.css"] }}
+
+{% endblock %} {%- block page_body %}
+
+<style>
+  .image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    max-width: 80%;
+    max-height: 80%;
+    position: relative;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 24px;
+  }
+  .details__div__details-box-smaller-hidden {
+    display: none;
+  }
+  .details__images-container > nav {
+    transition: opacity 250ms ease 100ms;
+    opacity: 1;
+  }
+  .details__images-container:hover > nav {
+    opacity: 1;
+  }
+  @media only screen and (min-width: 992px) {
+    .horiz-div.details__images-container.details_div_images-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      margin: 30px 0px;
+    }
+  }
+  @media only screen and (max-width: 992px) {
+    .horiz-div.details__images-container.details_div_images-container {
+      position: relative;
+      width: 80%;
+      overflow: hidden;
+      margin: 30px 0px;
+    }
+  }
+</style>
+
+<div class="horiz-div details__div__header">
+  <div class="horiz-div details__div__header-left">
+    <p class="details__div__header-h">
+      {{ metadata.restorationObject.title[0].value }}
+    </p>
+    <button class="details__div__header__btn" onclick="redirectToEditPage()">
+      <img
+        src="../../../../static/images/edit-icon.png"
+        class="details__div__header__btn-edit"
+        alt="Edit icon"
+      />
+    </button>
+  </div>
+
+  {% if metadata.restorationObject.stylePeriod %}
+  <div class="horiz-div details__div__header-additional">
+    <p class="details__div__header_p parag">
+      {% if metadata.restorationObject.stylePeriod.startYear %}{{
+        metadata.restorationObject.stylePeriod.startYear
+      }}
+      {% endif %}{% if metadata.restorationObject.stylePeriod.endYear %} -
+      {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}
+    </p>
+    <span class="details__div__vr"></span>
+    <p class="details__div__header_p parag">
+      {% if metadata.restorationObject.stylePeriod.period.title %}{{
+        metadata.restorationObject.stylePeriod.period.title
+      }}
+      {% endif %}
+    </p>
+  </div>
+</div>
+{% endif %}
+<div id="image-modal" class="image-modal">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeModal()">&times;</span>
+    <img id="modal-image" src="" alt="Item Image" />
+  </div>
+</div>
+
+<!-- photos -->
+<div class="horiz-div details__images-container details_div_images-container">
+  <nav
+    class="details__images-container__nav"
+    style="
+      position: absolute;
+      z-index: 1;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      width: 100%;
+      height: 100%;
+    "
+  >
+    <button
+      class="btn details_div_images-container__btn-left"
+      style="
         position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-        color: #fff;
-        font-size: 24px;
-      }
-      .details__div__details-box-smaller-hidden {
-        display: none;
-      }
-      .details__images-container > nav {
-        transition: opacity 250ms ease 100ms;
-        opacity: 1;
-      }
-      .details__images-container:hover > nav {
-        opacity: 1;
-      }
-    </style>
-    
-    <div class="horiz-div details__div__header">
-      <div class="horiz-div details__div__header-left">
-        <p class="details__div__header-h">
-          {{ metadata.restorationObject.title[0].value }}
-        </p>
-        <button class="details__div__header__btn">
-          <img
-            src="../../../../static/images/edit-icon.png"
-            class="details__div__header__btn-edit"
-            alt="Edit icon"
-          />
-        </button>
-      </div>
-    
-      <div class="horiz-div details__div__header-additional">
-        <p class="details__div__header_p parag">
-          {% if metadata.restorationObject.stylePeriod.startYear %}{{
-            metadata.restorationObject.stylePeriod.startYear
-          }}
-          {% endif %}{% if metadata.restorationObject.stylePeriod.endYear %} -
-          {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}
-        </p>
-        <span class="details__div__vr"></span>
-        <p class="details__div__header_p parag">
-          {% if metadata.restorationObject.stylePeriod.period.title %}{{
-            metadata.restorationObject.stylePeriod.period.title
-          }}
-          {% endif %}
-        </p>
-      </div>
-    </div>
-    
-    <div id="image-modal" class="image-modal">
-      <div class="modal-content">
-        <span class="close-button" onclick="closeModal()">&times;</span>
-        <img id="modal-image" src="" alt="Item Image" />
-      </div>
-    </div>
-    
-    <!-- photos -->
-    <div
-      class="horiz-div details__images-container details_div_images-container"
-      style="position: relative; width: 100%; overflow: hidden; margin: 30px 0px"
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0px;
+      "
+      aria-label="Previous Photo"
+      onclick="moveLeft()"
     >
-      <nav
-        class="details__images-container__nav"
+      <img
+        class="details_div_images-container__btn-img"
+        alt="left button"
+        src="../../../../static/images/arrow-icon-left.png"
+      />
+    </button>
+
+    <button
+      class="btn details_div_images-container__btn-right"
+      aria-label="Next Photos"
+      style="
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0px;
+      "
+    >
+      <img
+        class="details_div_images-container__btn-img"
+        alt="right button"
+        src="../../../../static/images/arrow-icon-right.png"
+        onclick="moveRight()"
+      />
+    </button>
+  </nav>
+
+  <div
+    style="
+      position: relative;
+      width: auto;
+      margin-left: -50%;
+      margin-right: -50%;
+      left: 50%;
+      right: 50%;
+    "
+  >
+    <div
+      style="
+        display: flex;
+        height: 100%;
+        overflow: scroll hidden;
+        list-style: none;
+        scroll-snap-type: x mandatory;
+      "
+    >
+      <ul
         style="
-          position: absolute;
-          z-index: 1;
-          top: 0px;
-          left: 0px;
-          right: 0px;
           width: 100%;
           height: 100%;
+          display: flex;
+          white-space: nowrap;
+          list-style: none;
+          padding: 0px;
         "
       >
-        <button
-          class="btn details_div_images-container__btn-left"
-          style="
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            left: 0px;
-          "
-          aria-label="Previous Photo"
-          onclick="moveLeft()"
-        >
-          <img
-            class="details_div_images-container__btn-img"
-            alt="left button"
-            src="../../../../static/images/arrow-icon-left.png"
-          />
-        </button>
-    
-        <button
-          class="btn details_div_images-container__btn-right"
-          aria-label="Next Photos"
-          style="
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 0px;
-          "
-        >
-          <img
-            class="details_div_images-container__btn-img"
-            alt="right button"
-            src="../../../../static/images/arrow-icon-right.png"
-            onclick="moveRight()"
-          />
-        </button>
-      </nav>
-    
-      <div
-        style="
-          position: relative;
-          width: auto;
-          margin-left: -50%;
-          margin-right: -50%;
-          left: 50%;
-          right: 50%;
-        "
-      >
-        <div
-          style="
-            display: flex;
-            height: 100%;
-            overflow: scroll hidden;
-            list-style: none;
-            scroll-snap-type: x mandatory;
-          "
-        >
-          <ul
-            style="
-              width: 100%;
-              height: 100%;
-              display: flex;
-              white-space: nowrap;
-              list-style: none;
-              padding: 0px;
-            "
-          >
-            <li>
-              <div class="predmety__card__img-container details">
-                <img
-                  src="../../../../static/images/ItemLandingPage.jpg"
-                  alt="foto predmetu"
-                  onclick="openModal(this.src)"
-                />
-              </div>
-            </li>
-            <li>
-              <div class="predmety__card__img-container details">
-                <img
-                  src="../../../../static/images/ItemLandingPage 2.jpg"
-                  alt="foto predmetu"
-                  onclick="openModal(this.src)"
-                />
-              </div>
-            </li>
-            <li>
-              <div class="predmety__card__img-container details">
-                <img
-                  src="../../../../static/images/ItemLandingPage 2.jpg"
-                  alt="foto predmetu"
-                  onclick="openModal(this.src)"
-                />
-              </div>
-            </li>
-            <li>
-              <div class="predmety__card__img-container details">
-                <img
-                  src="../../../../static/images/ItemLandingPage 2.jpg"
-                  alt="foto predmetu"
-                  onclick="openModal(this.src)"
-                />
-              </div>
-            </li>
-            <li>
-              <div class="predmety__card__img-container details">
-                <img
-                  src="../../../../static/images/ItemLandingPage 3.jpg"
-                  alt="foto predmetu"
-                  onclick="openModal(this.src)"
-                />
-              </div>
-            </li>
-            <li>
-              <div class="predmety__card__img-container details">
-                <img
-                  src="../../../../static/images/ItemLandingPage 3.jpg"
-                  alt="foto predmetu"
-                  onclick="openModal(this.src)"
-                />
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
+        <li>
+          <div class="predmety__card__img-container details">
+            <img
+              src="../../../../static/images/ItemLandingPage.jpg"
+              alt="foto predmetu"
+              onclick="openModal(this.src)"
+            />
+          </div>
+        </li>
+        <li>
+          <div class="predmety__card__img-container details">
+            <img
+              src="../../../../static/images/ItemLandingPage 2.jpg"
+              alt="foto predmetu"
+              onclick="openModal(this.src)"
+            />
+          </div>
+        </li>
+        <li>
+          <div class="predmety__card__img-container details">
+            <img
+              src="../../../../static/images/ItemLandingPage 2.jpg"
+              alt="foto predmetu"
+              onclick="openModal(this.src)"
+            />
+          </div>
+        </li>
+        <li>
+          <div class="predmety__card__img-container details">
+            <img
+              src="../../../../static/images/ItemLandingPage 2.jpg"
+              alt="foto predmetu"
+              onclick="openModal(this.src)"
+            />
+          </div>
+        </li>
+        <li>
+          <div class="predmety__card__img-container details">
+            <img
+              src="../../../../static/images/ItemLandingPage 3.jpg"
+              alt="foto predmetu"
+              onclick="openModal(this.src)"
+            />
+          </div>
+        </li>
+        <li>
+          <div class="predmety__card__img-container details">
+            <img
+              src="../../../../static/images/ItemLandingPage 3.jpg"
+              alt="foto predmetu"
+              onclick="openModal(this.src)"
+            />
+          </div>
+        </li>
+      </ul>
     </div>
-    
-    <table class="horiz-div details__table">
-      <tbody class="horiz-div details__div__details">
-        <tr class="vert-div details__div__details-box">
-          <td class="details__div__details-box-smaller parag">Dotace</td>
-          <td class="details__div__details-box-smaller parag">
-            <p class="parag">
-              {% if metadata.restorationObject.stylePeriod.startYear %}
-              {{ metadata.restorationObject.stylePeriod.startYear }} {% endif %} {%
-              if metadata.restorationObject.stylePeriod.endYear %} -
-              {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}{{
-                metadata.restorationObject.stylePeriod.period.title
-              }}
-            </p>
+  </div>
+</div>
+
+<table class="horiz-div details__table">
+  <tbody class="horiz-div details__div__details">
+    {% if metadata.restorationObject.stylePeriod %}
+    <tr class="vert-div details__div__details-box">
+      <td class="details__div__details-box-smaller parag">Dotace</td>
+      <td class="details__div__details-box-smaller parag">
+        <p class="parag">
+          {% if metadata.restorationObject.stylePeriod.startYear %}
+          {{ metadata.restorationObject.stylePeriod.startYear }} {% endif %} {%
+          if metadata.restorationObject.stylePeriod.endYear %} -
+          {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}{{
+            metadata.restorationObject.stylePeriod.period.title
+          }}
+        </p>
+      </td>
+    </tr>
+    {% endif %}
+    {% if metadata.restorationObject.dimensions %}
+    <tr class="vert-div details__div__details-box">
+      <td class="details__div__details-box-smaller parag">Rozmery</td>
+      <td class="details__div__details-box-smaller parag">
+        {% for value in metadata.restorationObject.dimensions %} {% if
+        loop.index <= 1 %}
+        <p class="parag">
+          {% if value.dimension.title %} {{ value.dimension.title }}
+          {{ value.value }}{{ value.unit }} {% endif %}
+        </p>
+        {% if loop.index >= 1 %}
+        <button
+          class="details__div__header__btn details__div__details-box-smaller__btn-more"
+          onclick="changeStyles()"
+        >
+          <img src="../../../../static/images/chevron-down.png" />
+        </button>
+        {% endif %} {% endif %} {% endfor %}
+        <div class="vert-div details__div__details-box-smaller-hidden">
+          {% for value in metadata.restorationObject.dimensions %} {% if
+          loop.index >= 2 %}
+          <p class="parag">
+            {{ value.dimension.title }} {{ value.value }}{{ value.unit }}
+          </p>
+          {% endif %} {% endfor %}
+          <button
+            class="details__div__header__btn details__div__details-box-smaller__btn-less"
+            onclick="changeStyles()"
+          >
+            <img src="../../../../static/images/up-icon.png" />
+          </button>
+        </div>
+      </td>
+    </tr>
+    {% endif %}
+    {% if metadata.restorationObject.itemTypes %}
+    <tr class="vert-div details__div__details-box">
+      <td class="details__div__details-box-smaller parag">Typ predmetu</td>
+      <td class="details__div__details-box-smaller parag">
+        {% for value in metadata.restorationObject.itemTypes %} {% if loop.index
+        <= 2 %}
+        <p class="parag">{{ value.title }}</p>
+        {% endif %} {% endfor %}
+      </td>
+    </tr>
+    {% endif %}
+    {% if metadata.restorationObject.materialType %}
+    <tr class="vert-div details__div__details-box">
+      <td class="details__div__details-box-smaller parag">Material</td>
+      <td class="details__div__details-box-smaller parag">
+        sodno-vapenate sklo
+      </td>
+    </tr>
+    {% endif %}
+    <tr class="vert-div details__div__details-box">
+      <td class="details__div__details-box-smaller parag">Technologie</td>
+      <td class="details__div__details-box-smaller parag">foukane ryte sklo</td>
+    </tr>
+    <tr class="vert-div details__div__details-box">
+      <td class="details__div__details-box-smaller parag">Barva</td>
+      <td class="details__div__details-box-smaller parag">bezbarve sklo</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- desc -->
+{% if metadata.restorationObject.description %}
+<div class="details__div__desc" aria-label="Popis predmetu">
+  <p class="parag">{{ metadata.restorationObject.description[0].value }}</p>
+</div>
+{% endif %}
+<div class="vr-huge-horiz"></div>
+<!-- info -->
+
+<div class="horiz-div details__div__info" aria-label="Info o predmetu">
+  <div class="vert-div details__div__info-left">
+    <table summary="Info o predmetu">
+      <tbody>
+        {% if metadata.restorationObject.restorationRequestor %}
+        <tr class="details__div__info-left__box">
+          <td class="parag">Zadavatel</td>
+          <td class="parag">
+            {{ metadata.restorationObject.restorationRequestor.title }}
           </td>
         </tr>
-        <tr class="vert-div details__div__details-box">
-          <td class="details__div__details-box-smaller parag">Rozmery</td>
-          <td class="details__div__details-box-smaller parag">
-            {% for value in metadata.restorationObject.dimensions %} {% if
-            loop.index <= 1 %}
-            <p class="parag">
-              {% if value.dimension.title %} {{ value.dimension.title }}
-              {{ value.value }}{{ value.unit }} {% endif %}
-            </p>
-            {% if loop.index >= 1 %}
-            <button
-              class="details__div__header__btn details__div__details-box-smaller__btn-more"
-              onclick="changeStyles()"
-            >
-              <img src="../../../../static/images/chevron-down.png" />
-            </button>
-            {% endif %} {% endif %} {% endfor %}
-            <div class="vert-div details__div__details-box-smaller-hidden">
-              {% for value in metadata.restorationObject.dimensions %} {% if
-              loop.index >= 2 %}
-              <p class="parag">
-                {{ value.dimension.title }} {{ value.value }}{{ value.unit }}
-              </p>
-              {% endif %} {% endfor %}
-              <button
-                class="details__div__header__btn details__div__details-box-smaller__btn-less"
-                onclick="changeStyles()"
-              >
-                <img src="../../../../static/images/up-icon.png" />
-              </button>
-            </div>
+        {% endif %}
+        {% if metadata.restorationWork.restorer %}
+        <tr class="details__div__info-left__box">
+          <td class="parag">Restaurovala</td>
+          <td class="parag">
+            {{ metadata.restorationWork.restorer }},
+            {{ metadata.restorationWork.workType.title }}
           </td>
         </tr>
-        <tr class="vert-div details__div__details-box">
-          <td class="details__div__details-box-smaller parag">Typ predmetu</td>
-          <td class="details__div__details-box-smaller parag">
-            {% for value in metadata.restorationObject.itemTypes %} {% if loop.index
-            <= 2 %}
-            <p class="parag">{{ value.title }}</p>
-            {% endif %} {% endfor %}
+        {% endif %}
+        {% if metadata.restorationWork.supervisors %}
+        <tr class="details__div__info-left__box">
+          <td class="parag">Vedouci prace</td>
+
+          <td class="parag">
+            {% for value in metadata.restorationWork.supervisors %}
+            {{ value.fullName }}
+            {{ value.institution }}
+            {% endfor %}
           </td>
         </tr>
-        <tr class="vert-div details__div__details-box">
-          <td class="details__div__details-box-smaller parag">Material</td>
-          <td class="details__div__details-box-smaller parag">
-            sodno-vapenate sklo
+        {% endif %}
+        {% if metadata.restorationWork.examinationMethods %}
+        <tr class="details__div__info-left__box">
+          <td class="parag">Metody pruzkumu</td>
+          <td class="parag">
+            {% for value in metadata.restorationWork.examinationMethods %}
+            {{ value.title }}
+            {% endfor %}
           </td>
         </tr>
-        <tr class="vert-div details__div__details-box">
-          <td class="details__div__details-box-smaller parag">Technologie</td>
-          <td class="details__div__details-box-smaller parag">foukane ryte sklo</td>
+        {% endif %}
+        {% if metadata.restorationWork.restorationMethods %}
+        <tr class="details__div__info-left__box">
+          <td class="parag">Metody restaurovani</td>
+          <td class="parag">
+            {% for value in metadata.restorationWork.restorationMethods %}
+            {{ value.title }}
+            {% endfor %}
+          </td>
         </tr>
-        <tr class="vert-div details__div__details-box">
-          <td class="details__div__details-box-smaller parag">Barva</td>
-          <td class="details__div__details-box-smaller parag">bezbarve sklo</td>
-        </tr>
+        {% endif %}
       </tbody>
     </table>
-    
-    <!-- desc -->
-    <div class="details__div__desc" aria-label="Popis predmetu">
-      <p class="parag">{{ metadata.restorationObject.description[0].value }}</p>
+  </div>
+  <div class="vr-huge-vert"></div>
+  <div class="vert-div details__div__info-right">
+    <div>
+      <p class="details__div__info-right parag">Restauratorsky zasah/zamer</p>
     </div>
-    <span class="vr-huge-horiz"></span>
-    <!-- info -->
-    <div class="vr-huge-horiz"></div>
-    <div class="horiz-div details__div__info" aria-label="Info o predmetu">
-      <div class="vert-div details__div__info-left">
-        <table summary="Info o predmetu">
-          <tbody>
-            <tr class="details__div__info-left__box">
-              <td class="parag">Zadavatel</td>
-              <td class="parag">
-                {{ metadata.restorationObject.restorationRequestor.title }}
-              </td>
-            </tr>
-            <tr class="details__div__info-left__box">
-              <td class="parag">Restaurovala</td>
-              <td class="parag">
-                {{ metadata.restorationWork.restorer }},
-                {{ metadata.restorationWork.workType.title }}
-              </td>
-            </tr>
-            <tr class="details__div__info-left__box">
-              <td class="parag">Vedouci prace</td>
-    
-              <td class="parag">
-                {% for value in metadata.restorationWork.supervisors %}
-                {{ value.fullName }}
-                {{ value.institution }}
-                {% endfor %}
-              </td>
-            </tr>
-            <tr class="details__div__info-left__box">
-              <td class="parag">Metody pruzkumu</td>
-              <td class="parag">
-                {% for value in metadata.restorationWork.examinationMethods %}
-                {{ value.title }}
-                {% endfor %}
-              </td>
-            </tr>
-            <tr class="details__div__info-left__box">
-              <td class="parag">Metody restaurovani</td>
-              <td class="parag">
-                {% for value in metadata.restorationWork.restorationMethods %}
-                {{ value.title }}
-                {% endfor %}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <span class="vr-huge-vert"></span>
-      <div class="vert-div details__div__info-right">
-        <div>
-          <p class="details__div__info-right parag">Restauratorsky zasah/zamer</p>
-        </div>
-        <div class="details__div__info-right__text">
-          <p class="parag">
-            {{ metadata.restorationWork.abstract[0].value }}
-          </p>
-        </div>
-      </div>
+    {% if metadata.restorationWork.abstract %}
+    <div class="details__div__info-right__text">
+      <p class="parag">
+        {{ metadata.restorationWork.abstract[0].value }}
+      </p>
     </div>
-    <span class="vr-huge-horiz"></span>
-    
-    <div class="vr-huge-horiz"></div>
-    <!-- docs -->
-    <div class="horiz-div details__div__docs">
-      <p class="parag">Dokumenty</p>
-      <div class="horiz-div details__div__docs-files">
-        <div class="horiz-div details__div__docs__item">
-          <img
-            class="details__div__docs-img"
-            src="../../../../static/images/file-icon.png"
-            alt="file icon"
-          />
-          <p class="parag">
-            <a href="">sp5_balikova_anticke sklo.pdf</a>
-          </p>
-        </div>
-        <div class="horiz-div details__div__docs__item">
-          <img
-            class="details__div__docs-img"
-            src="../../../../static/images/file-icon.png"
-            alt="file icon"
-          />
-          <p class="parag">
-            <a href="">sp5_rohanova_anticke sklo.pdf</a>
-          </p>
-        </div>
-      </div>
+    {% endif %}
+  </div>
+</div>
+<div class="vr-huge-horiz"></div>
+
+<!-- docs -->
+<div class="horiz-div details__div__docs">
+  <p class="parag">Dokumenty</p>
+  <div class="horiz-div details__div__docs-files">
+    <div class="horiz-div details__div__docs__item">
+      <img
+        class="details__div__docs-img"
+        src="../../../../static/images/file-icon.png"
+        alt="file icon"
+      />
+      <p class="parag">
+        <a href="">sp5_balikova_anticke sklo.pdf</a>
+      </p>
     </div>
-    
-    <script>
-      function changeStyles() {
-        let buttonElement = document.querySelector(
-          ".details__div__details-box-smaller-hidden "
-        );
-        let btnMore = document.querySelector(
-          ".details__div__details-box-smaller__btn-more"
-        );
-        let btnLess = document.querySelector(
-          ".details__div__details-box-smaller__btn-less"
-        );
-    
-        if (buttonElement) {
-          if (buttonElement.style.display == "initial") {
-            buttonElement.style.display = "none";
-            btnMore.style.display = "initial";
-            btnLess.style.display = "none";
-          } else {
-            buttonElement.style.display = "initial";
-            btnMore.style.display = "none";
-            btnLess.style.display = "initial";
-          }
-        }
+    <div class="horiz-div details__div__docs__item">
+      <img
+        class="details__div__docs-img"
+        src="../../../../static/images/file-icon.png"
+        alt="file icon"
+      />
+      <p class="parag">
+        <a href="">sp5_rohanova_anticke sklo.pdf</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function changeStyles() {
+    let buttonElement = document.querySelector(
+      ".details__div__details-box-smaller-hidden "
+    );
+    let btnMore = document.querySelector(
+      ".details__div__details-box-smaller__btn-more"
+    );
+    let btnLess = document.querySelector(
+      ".details__div__details-box-smaller__btn-less"
+    );
+
+    if (buttonElement) {
+      if (buttonElement.style.display == "initial") {
+        buttonElement.style.display = "none";
+        btnMore.style.display = "initial";
+        btnLess.style.display = "none";
+      } else {
+        buttonElement.style.display = "initial";
+        btnMore.style.display = "none";
+        btnLess.style.display = "initial";
       }
+    }
+  }
+
+  const modal = document.getElementById("image-modal");
+  const modalImage = document.getElementById("modal-image");
+
+  function openModal(src) {
+    console.log("modal opened");
+    console.log(src);
+    modalImage.src = src;
+    modal.style.display = "flex";
+    console.log("modal opened");
+    console.log(src);
+  }
+
+  function closeModal() {
+    modal.style.display = "none";
+  }
+
+  function moveLeft() {
+    const container = document.querySelector(
+      ".details_div_images-container div"
+    );
+    container.style.transition = "margin-left 0.3s ease";
+    container.style.marginRight = "-50%";
+    const currentMarginLeft = parseFloat(container.style.marginLeft);
+    const newMarginLeft = currentMarginLeft + 10;
+    container.style.marginLeft = newMarginLeft + "%";
+  }
+
+  function moveRight() {
+    const container = document.querySelector(
+      ".details_div_images-container div"
+    );
+
+    container.style.marginRight = "-50%";
+    container.style.transition = "margin-left 0.3s ease";
+
+    const currentMarginLeft = parseFloat(container.style.marginLeft);
+    const newMarginLeft = currentMarginLeft - 10;
+    container.style.marginLeft = newMarginLeft + "%";
+  }
+
+  const trElements = document.querySelectorAll(".details__div__details-box");
+
+  let maxHeight = 0;
+
+  trElements.forEach((tr) => {
+    const trHeight = tr.clientHeight;
+    if (trHeight > maxHeight) {
+      maxHeight = trHeight;
+    }
+  });
+
+  trElements.forEach((tr) => {
+    tr.style.minHeight = `${maxHeight}px`;
+  });
+
+  const leftDivHeight = document.querySelector(
+    ".details__div__info-left"
+  ).offsetHeight;
+
+  const rightDivHeight = document.querySelector(
+    ".details__div__info-right"
+  ).offsetHeight;
+
+  const divMaxHeight = Math.max(leftDivHeight, rightDivHeight);
+
+  document.querySelector(".vr-huge-vert").style.height = `${divMaxHeight}px`;
+
+  function redirectToEditPage() {
     
-    
-      const modal = document.getElementById("image-modal");
-      const modalImage = document.getElementById("modal-image");
-      
-    
-      function openModal(src) {
-        console.log('modal opened')
-        console.log(src)
-        modalImage.src = src;
-        modal.style.display = "flex";
-        console.log('modal opened')
-        console.log(src)
-      }
-    
-      function closeModal() {
-        modal.style.display = "none";
-      }
-    
-      function moveLeft() {
-        const container = document.querySelector(
-          ".details_div_images-container div"
-        );
-        container.style.transition = "margin-left 0.3s ease";
-        container.style.marginRight = "-50%";
-        const currentMarginLeft = parseFloat(container.style.marginLeft);
-        const newMarginLeft = currentMarginLeft + 10;
-        container.style.marginLeft = newMarginLeft + "%";
-      }
-    
-      function moveRight() {
-        const container = document.querySelector(
-          ".details_div_images-container div"
-        );
-    
-        container.style.marginRight = "-50%";
-        container.style.transition = "margin-left 0.3s ease";
-    
-        const currentMarginLeft = parseFloat(container.style.marginLeft);
-        const newMarginLeft = currentMarginLeft - 10;
-        container.style.marginLeft = newMarginLeft + "%";
-      }
-    
-      const trElements = document.querySelectorAll(".details__div__details-box");
-    
-      let maxHeight = 0;
-    
-      trElements.forEach((tr) => {
-        const trHeight = tr.clientHeight;
-        if (trHeight > maxHeight) {
-          maxHeight = trHeight;
-        }
-      });
-    
-      trElements.forEach((tr) => {
-        tr.style.minHeight = `${maxHeight}px`;
-      });
-    
-      const leftDivHeight = document.querySelector(
-        ".details__div__info-left"
-      ).offsetHeight;
-    
-      const rightDivHeight = document.querySelector(
-        ".details__div__info-right"
-      ).offsetHeight;
-    
-      const divMaxHeight = Math.max(leftDivHeight, rightDivHeight);
-    
-      document.querySelector(".vr-huge-vert").style.height = `${divMaxHeight}px`;
-    </script>
-    
-    {%- endblock page_body %}
+    window.location.href = window.location.href+'/edit';
+}
+</script>
+
+{%- endblock page_body %}

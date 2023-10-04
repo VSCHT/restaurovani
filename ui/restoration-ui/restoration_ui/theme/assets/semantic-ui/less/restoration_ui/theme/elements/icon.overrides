@@ -3,6 +3,6 @@
     color: #fff
 }
 .ui.icon.button.close-btn{
-    background-color: #808080;
-    color: #fff
+    background: none;
+    color: #222
 }

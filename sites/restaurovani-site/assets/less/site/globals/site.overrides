@@ -94,7 +94,7 @@ height: auto                ;
 }
 
 .image__vsht-logo {
-width: 46px         ;
+width: 43px         ;
 margin-right: 10px  ;
 }
 
@@ -190,17 +190,20 @@ margin-right: 7px                       ;
     /* main content */
     .main-page__main-container {
       display: flex;
-      position: relative;
       top: 180px;
       width: 80vw;
-      height: 70vh;
-      margin: 0 auto
+      height: auto;
+      margin: 0 auto;
+      align-items: flex-end;
+      margin-top: -2vh;
     }
     /* right side of main content */
   
     .main-page__main-container__image {
       width: 40vw;
       height: 100%;
+      margin-top: 110px;
+      max-height: 70vh;
     }
   
     .main-page__div__main-image {
@@ -229,30 +232,35 @@ margin-right: 7px                       ;
     .main-page__main-container__content {
       width: 40vw;
       height: 100%;
+      max-height: 90vh;
       justify-content: space-between;
       padding-right: 50px;
-      gap: 80px;
+      gap: 110px;
       position: relative;
-      top: -40px;
+      bottom: 0px;
+      margin-top:55px;
+    }
+    .vert-div.main-page__main-container__titles{
+      gap: 55px;
     }
     .main-page__title__img{
       position: relative;
-      top: 100px;
-      margin-top: 10px
+      top: 180px;
     }
     .main-page__title {
       position: relative;
-      font-size: 55px;
+      font-size: 3.2vw;
       gap: 20px;
       font-family: Noto_Sans_light;
-      line-height: 60px;
+      line-height: 4vw;
       word-wrap: break-word;
       color: #74756e;
       margin-right: 50px;
       align-items: flex-start
     }
     .horiz-div.main-page__title p{
-      width: 30vw
+      width: 35vw;
+      color: #333;
     }
    
     .main-page__text__copyright {
@@ -633,7 +641,7 @@ gap: 10px                        ;
   }
   .predmety__form__div__input-radio {
 justify-content: space-between      ;
-column-gap: 190px                   ;
+column-gap: 10vw                  ;
 flex-wrap: wrap                     ;
 width: 90%                          ;
 row-gap:20px
@@ -661,10 +669,10 @@ row-gap:20px
     place-content: center;
   }
   .predmety__form__div__label {
-font-family: Noto_Sans_regular      ;
+font-family: Noto_Sans_regular   !important   ;
 font-size: 14px                     ;
-gap: 10px                           ;
-width: 90px;
+gap: 10px                     !important        ;
+width: 95px !important  ; 
 }
 
 .predmety__form-main {
@@ -713,11 +721,11 @@ padding: 70px           ;
 
   .details__div__header {
     background-color: #de4929;
-    height: 40px;
+    height: 60px;
     width: 100%;
     color: white;
     justify-content: space-between;
-    padding: 15px;
+    padding: 15px 30px;
     margin: 0 auto;
   }
   .details__div__header__btn{
@@ -757,7 +765,9 @@ width: 90vw                     ;
 justify-content: space-between  ;
 margin-top: 30px                ;
 }
-
+img.details_div_images-container__btn-img {
+  width: 50px;
+}
   .details_div_images-container__btn-left,
   .details_div_images-container__btn-right {
     position: absolute;
@@ -861,7 +871,8 @@ table.details__table{
   .details__div__docs {
     width: 650px;
     justify-content: space-between;
-    margin-top: 20px
+    margin-top: 20px;
+    align-items: flex-start;
   }
 
 .details__div__docs-files {
@@ -959,7 +970,7 @@ margin-right: 10px  ;
  /* main page */
   /* bg */
   .main-page__half--background {
-    width: 100%;
+    width: 100vw;
     height: 100%;
     position: absolute;
     left: 0;
@@ -972,7 +983,7 @@ margin-right: 10px  ;
     background-color: #eaeae2;
     top: 0px;
     left: 0px;
-    height: 70%;
+    height: 60%;
     width: 100vw;
 
     background-size: cover;
@@ -1035,34 +1046,38 @@ margin-right: 10px  ;
     }
   
     /* main page logo */
-    /* .main-page__div__vsht-logo {
-      position: relative;
-      top: 100px;
-      left: 17vw;
-    }*/
+     .main-page__div__vsht-logo p{
+      color: #333;
+    }
     .vert-div.vsht-logo {
       padding-left: 200px;
     }
   
+  .vert-div.main-page__main-container__titles{
+    gap: 50px;
+  }
     /* main content */
     .main-page__main-container {
       display: flex;
       position: relative;
-      top: 180px;
+      top: 190px;
       width: 80vw;
-      height: 65vh;
-      margin: 0 auto
+      height: auto;
+      margin: 0 auto;
+      align-items: flex-start;
+      margin-top:3vh;
     }
      .main-page__title__img{
       position: relative;
-      top: 100px;
+      top: 60px;
+      width: 70px;
     }
 
     /* right side of main content */
   
     .main-page__main-container__image {
       width: 40vw;
-      height: 100%;
+      height: 500px;
     }
   
     .main-page__div__main-image {
@@ -1093,13 +1108,13 @@ margin-right: 10px  ;
       justify-content: space-between;
      
       padding-right: 50px;
-      gap: 80px;
+      gap: 55px;
       position: relative;
-      top: -40px;
+      top: -50px;
     }
     .main-page__title {
       position: relative;
-      font-size: 35px;
+      font-size: 3.5vw;
       font-family: Noto_Sans_light;
       line-height: 40px;
       word-wrap: break-word;
@@ -1126,7 +1141,7 @@ margin-right: 10px  ;
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 12px;
       margin-right: 40px
     }
     .main-page__btn__addPredmety {
@@ -1444,7 +1459,7 @@ background-color:             #aaaaa2 !important ;
   }
  .predmety__form__div__input-radio {
 justify-content: space-between      ;
-column-gap: 75px                   ;
+column-gap: 10vw                  ;
 flex-wrap: wrap                     ;
 width: 80%                          ;
 row-gap:20px
@@ -1502,6 +1517,7 @@ transform: scale(1)                           ;
 background-image: url("../../../../static/images/bgDetails.png");
 
     height: auto;
+    min-height: 100vh;
 
 background-position: center  ;
 background-repeat: no-repeat ;
@@ -1550,7 +1566,7 @@ padding: 70px           ;
   }
    .details__div__header-left{
     gap: 10px;
-    align-items: flex-end
+    align-items: center;
   }
 
 img.details__div__header__btn-edit{
@@ -1567,7 +1583,9 @@ width: 90vw                     ;
 justify-content: space-between  ;
 margin-top: 30px                ;
 }
-
+img.details_div_images-container__btn-img {
+  width: 50px;
+}
 .details_div_images-container__btn-left,
 .details_div_images-container__btn-right {
 visibility: hidden                         ;
@@ -1660,7 +1678,7 @@ width: 13vw                                  ;
 /* docs */
 
   .details__div__docs {
-    width: 650px;
+    width: 80%;
     justify-content: space-between;
     margin-top: 20px
   }
@@ -1754,7 +1772,7 @@ margin-right: 20px  ;
   }
   .main-page__half--background.bg-top {
     background-color: #eaeae2;
-    width: 110%;
+    width: 100vw;
     top: 0px;
     left: 0px;
     height: 65%;
@@ -1764,7 +1782,7 @@ margin-right: 20px  ;
     }
     .main-page__half--background.bg-bottom {
       background-color: white;
-      width: 110%;
+      width: 100vw;
       height: 35%;
       top: 65%;
     }
@@ -1786,7 +1804,7 @@ margin-right: 20px  ;
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 100vw;
       background-color: #9b9b93;
       display: flex;
       justify-content: space-between;
@@ -1800,7 +1818,7 @@ margin-right: 20px  ;
       background: none;
       border: none;
       color: white;
-      font-size: 20px;
+      font-size: 3vw;
       cursor: pointer;
       font-family: Noto_Sans_bold;
     }
@@ -1833,7 +1851,7 @@ margin-right: 20px  ;
     .main-page__main-container {
       display: flex;
       position: relative;
-      top: 500px;
+      top: 200px;
       width: 80vw;
       height: 900px;
       margin: 0 auto
@@ -1851,36 +1869,34 @@ margin-right: 20px  ;
   
     /* left content of main content */
     .main-page__main-container__content {
-      width: 80vw;
-      height: 900px;
-      justify-content: space-between;
-      padding-right: 50px;
-      gap: 80px;
+      width: auto;
+      height: auto;
+      gap: 110px;
       position: relative;
-      top: -180px;
     
     }
   
     .main-page__title  {
       position: relative;
-      font-size: 75px;
+      font-size: 8vw;
       font-family: Noto_Sans_regular;
       line-height: 110px;
       word-wrap: break-word;
       color: #74756e;
-      width: 70vw;
+      width: auto;
       align-items: flex-start;
-      gap: 20px
+      gap: 20px;
+      height: 100%;
     }
     .main-page__title__img{
       margin-top: 30px;
-      width: 80px;
+      width: 15vw;
       position: relative;
       top: 20px
     }
     .main-page__text__copyright {
       color: #73746f;
-      font-size: 11px;
+      font-size: 2vw;
       font-weight: 600;
       line-height: 19px;
       word-wrap: break-word;
@@ -1891,7 +1907,7 @@ margin-right: 20px  ;
     }
     /* actions of main content */
     .main-page__div__btn {
-      height: 150px;
+      height: auto;
       justify-content: space-between;
       position: relative;
       gap: 7px;
@@ -1902,7 +1918,7 @@ margin-right: 20px  ;
       background-color: #de4929;
       border-radius: 40px;
       height: 70px;
-      width: 520px;
+      width: 60vw;
       border: solid 1px #de4929;
       font-size: 20px;
       font-family: Noto_Sans_semibold;
@@ -1911,7 +1927,7 @@ margin-right: 20px  ;
     .main-page__input-search {
       border-radius: 40px;
       height: 65px;
-      width: 520px;
+      width: 60vw;
       border: solid 1px #9b9b93;
       padding: 5px;
       padding-left: 15px;
@@ -2028,12 +2044,14 @@ margin-right: 10vw             ;
   }
 
   .predmety__card__title {
-    font-family: Noto_Sans_semibold;
-    font-size: 25px;
+    font-family: Noto_Sans_regular;
+    font-size: 4vw;
     width: auto;
     line-height:27px
   }
-
+.description.parag{
+  font-size: 2vw;
+}
 p {
 margin: 0px ;
 }
@@ -2082,8 +2100,8 @@ font-size: 20px             ;
   }
 
   .predmety__card__extra-info p {
-    width: 160px;
-    font-size: 16px;
+    width: 175px;
+    font-size: 2vw;
   }
 
   /* aside part */
@@ -2205,7 +2223,7 @@ gap: 25px                           ;
 }
 .predmety__form__div__input-radio {
 justify-content: space-between      ;
-column-gap: 75px                   ;
+column-gap: 85px                   ;
 flex-wrap: wrap                     ;
 width: 90%                          ;
 row-gap:20px
@@ -2226,6 +2244,7 @@ row-gap:20px
   .predmety__form-main {
     margin: 0px 0px 5px;
     gap: 20px;
+    max-width: 50vw;
   }
   .form.main-page__btn__addPredmety {
     width: 250px;
@@ -2289,11 +2308,11 @@ padding: 0px 5px 20px          ;
   .details__div__header {
     background-color: #de4929;
     height: 80px;
-    width: 100%;
+    width: 80%;
     color: white;
     justify-content: space-between;
-    padding-left: 30px;
-    margin: 0 auto;
+    padding-left: 40px;
+    margin: 60px auto 20px auto;
     border-radius: 40px;
   }
   .details__div__header__btn{
@@ -2315,7 +2334,7 @@ padding: 0px 5px 20px          ;
     word-wrap: break-word;
     letter-spacing: 1px;
     font-family: Noto_Sans_regular;
-    font-size: 30px;
+    font-size: 40px;
   }
   .details__div__header-left{
     gap: 10px;
@@ -2363,7 +2382,7 @@ height: 380px                                ;
   }
 
 table.horiz-div.details__table{
-  width: 100%
+  width: 80%
 }
   .details__div__details-box {
     width: 83vw;
@@ -2391,7 +2410,7 @@ table.horiz-div.details__table{
   .details__div__info-left {
     width: 80vw;
     order: 1;
-    margin: 0 auto;
+    margin: 90px auto 30px;
     min-width: 300px
   }
 
@@ -2415,7 +2434,7 @@ margin:30px auto
     margin-bottom: 30px;
   }
  .details__div__details-box td:first-child {
-  font: 25px Noto_Sans_semibold; 
+  font: 4vw Noto_Sans_semibold; 
 }
   .details__div__details-box-smaller:nth-child(odd) p {
     font-family: Noto_Sans_semibold;
@@ -2448,6 +2467,7 @@ margin:30px auto
     width: 70vw;
     justify-content: space-between;
     margin-top: 30px;
+    align-items: flex-start;
   }
 
 a {
@@ -2473,17 +2493,17 @@ align-items: flex-start     ;
 }
   /* additional */
   .parag {
-    line-height: 28px;
+    line-height: 4vw;
     word-wrap: break-word;
     font-family: Noto_Sans_regular;
-    font-size: 20px;
+    font-size: 4vw;
   }
   .vr-small {
     visibility: hidden;
     position: absolute;
   }
   .vr-huge-horiz {
-    width: 100%;
+    width: 80%;
     border-top: 1px solid black;
     height: 1px;
     margin: 0 auto;

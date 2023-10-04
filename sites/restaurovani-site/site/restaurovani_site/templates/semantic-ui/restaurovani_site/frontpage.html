@@ -9,7 +9,7 @@
           <div class="main-page__menu" aria-label="Main Menu">
             <button class="btn main-page__menu__btn">RESTAUROVÁNÍ VŠCHT</button>
             <div class="horiz-div main-page__menu__btn-group">
-              <button class="btn main-page__menu__btn">
+              <button class="btn main-page__menu__btn" onclick="redirectToNewPredmet()">
                 <img
                   rel="icon"
                   src="../../../../static/images/plus-square.png"
@@ -54,8 +54,8 @@
             <div class="vert-div main-page__main-container__content">
 
                   <!-- vsht logo -->
-        
-          <div class="vsht-logo div__vsht-logo main-page__div__vsht-logo">
+              <div class="vert-div main-page__main-container__titles">
+                <div class="vsht-logo div__vsht-logo main-page__div__vsht-logo">
             <img
               class="vsht-logo image__vsht-logo main-page__image__vsht-logo"
               src="../../../../static/images/logo_VSHT.png"
@@ -72,6 +72,8 @@
               <p>
                   DATABÁZE RESTAUROVANÝCH PŘEDMĚTŮ </br>VŠCHT Praha
                 </p>
+              </div>
+          
 
                  <!-- actions-buttons -->
               <div class="vert-div main-page__div__btn ">
@@ -88,10 +90,14 @@
                   
                 </div> 
                 
+                
+
+              
                 <div>
                   <button
                     class="main-page__btn__addPredmety parag"
                     aria-label="Tlacitko prejit na predmety"
+                    onclick="redirectToPredmety()"
                   >
                     PŘEDMĚTY
                   </button>
@@ -120,9 +126,6 @@
                   src="../../../../static/images/mainPageImg.png"
                   alt="decoration image"
                 />
-                <!-- <div class="main-page__div__main-image__div-arrows">
-                  <img class="main-page__div__main-image__arrows" src="../../../../static/images/down-double-arrows.png" alt="image decoration">
-                </div> -->
       </div>
     </div>
   </div>
@@ -132,5 +135,14 @@
     <div class="main-page__half--background bg-bottom" aria-hidden="true"></div>
   </div>
 </main>
-
+<script>
+  function redirectToPredmety() {
+      let url = "{{ url_for('restoration-ui.search') }}";
+      window.location.href = url;
+  }
+  function redirectToNewPredmet() {
+    let url = "{{ url_for('restoration-ui.create') }}";
+    window.location.href = url;
+}
+</script>
 {% endblock %} 
