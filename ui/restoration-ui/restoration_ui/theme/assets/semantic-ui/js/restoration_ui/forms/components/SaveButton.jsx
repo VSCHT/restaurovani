@@ -1,35 +1,36 @@
 import React from "react";
-import { Button, Modal,  Message, Icon } from "semantic-ui-react";
+import { Button, Modal, Message, Icon } from "semantic-ui-react";
 import { i18next } from "@translations/restoration_ui/i18next";
-import {  useConfirmationModal, useDepositApiClient } from "@js/oarepo_ui";
+import { useConfirmationModal, useDepositApiClient } from "@js/oarepo_ui";
 
 export const SaveButton = ({ title, ...uiProps }) => {
-  const { isSubmitting, save , formik} = useDepositApiClient();
+  const { isSubmitting, save, formik } = useDepositApiClient();
   const { isModalOpen, handleCloseModal, handleOpenModal } =
-  useConfirmationModal();
+    useConfirmationModal();
   console.log(useDepositApiClient);
 
+  console.log(formik)
   return (
     <>
-     <Button
-      name="save"
-      className="form main-page__btn__addPredmety"
-      aria-label="tlacitko vytvoreni predmetu"
-      disabled={isSubmitting}
-      loading={isSubmitting}
-      onClick={() => {
-        // save()
-        const finished= formik.validateForm()
-        if(finished == null){
-          console.log('move to success')
-          save()
-        }
-        console.log(finished)
-      }}
-      content="ULOŽIT"
-      type="submit"
-    />
-     <Modal
+      <Button
+        name="save"
+        className="form main-page__btn__addPredmety"
+        aria-label="tlacitko vytvoreni predmetu"
+        disabled={isSubmitting}
+        loading={isSubmitting}
+        onClick={() => {
+          // save()
+          const finished = formik.validateForm();
+          if (finished == null) {
+            console.log("move to success");
+            save();
+          }
+          console.log(finished);
+        }}
+        content="ULOŽIT"
+        type="submit"
+      />
+      <Modal
         open={isModalOpen}
         onClose={handleCloseModal}
         size="small"
@@ -37,15 +38,15 @@ export const SaveButton = ({ title, ...uiProps }) => {
         closeOnDimmerClick={false}
       >
         <Modal.Header>Chyba</Modal.Header>
-        
-          <Modal.Content>
-            <Message visible warning>
-              <p>
-                <Icon name="warning sign" /> Chyba udaju
-              </p>
-            </Message>
-          </Modal.Content>
-        
+
+        <Modal.Content>
+          <Message visible warning>
+            <p>
+              <Icon name="warning sign" /> Chyba udaju
+            </p>
+          </Message>
+        </Modal.Content>
+
         <Modal.Actions>
           <Button onClick={handleCloseModal} floated="left">
             {i18next.t("Cancel")}
@@ -66,6 +67,5 @@ export const SaveButton = ({ title, ...uiProps }) => {
         </Modal.Actions>
       </Modal>
     </>
-   
   );
 };

@@ -19,6 +19,8 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
     background: rgba(0, 0, 0, 0.9);
     justify-content: center;
     align-items: center;
+    min-width: 200px;
+    min-height: 200px;
   }
 
   .modal-content {
@@ -94,8 +96,9 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
       {% endif %}
     </p>
   </div>
+  {% endif %}
 </div>
-{% endif %}
+
 <div id="image-modal" class="image-modal">
   <div class="modal-content">
     <span class="close-button" onclick="closeModal()">&times;</span>
@@ -125,7 +128,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         transform: translateY(-50%);
         left: 0px;
       "
-      aria-label="Previous Photo"
+      aria-label="Predchozi foto"
       onclick="moveLeft()"
     >
       <img
@@ -137,7 +140,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 
     <button
       class="btn details_div_images-container__btn-right"
-      aria-label="Next Photos"
+      aria-label="Dalsi foto"
       style="
         position: absolute;
         top: 50%;
@@ -188,6 +191,16 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
             <img
               src="../../../../static/images/ItemLandingPage.jpg"
               alt="foto predmetu"
+              class="predmety__imgs__img"
+            />
+          </div>
+        </li>
+        <li>
+          <div class="predmety__card__img-container details">
+            <img
+              src="../../../../static/images/ItemLandingPage 2.jpg"
+              alt="foto predmetu"
+              class="predmety__imgs__img"
               onclick="openModal(this.src)"
             />
           </div>
@@ -197,6 +210,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
             <img
               src="../../../../static/images/ItemLandingPage 2.jpg"
               alt="foto predmetu"
+              class="predmety__imgs__img"
               onclick="openModal(this.src)"
             />
           </div>
@@ -206,15 +220,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
             <img
               src="../../../../static/images/ItemLandingPage 2.jpg"
               alt="foto predmetu"
-              onclick="openModal(this.src)"
-            />
-          </div>
-        </li>
-        <li>
-          <div class="predmety__card__img-container details">
-            <img
-              src="../../../../static/images/ItemLandingPage 2.jpg"
-              alt="foto predmetu"
+              class="predmety__imgs__img"
               onclick="openModal(this.src)"
             />
           </div>
@@ -224,6 +230,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
             <img
               src="../../../../static/images/ItemLandingPage 3.jpg"
               alt="foto predmetu"
+              class="predmety__imgs__img"
               onclick="openModal(this.src)"
             />
           </div>
@@ -233,7 +240,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
             <img
               src="../../../../static/images/ItemLandingPage 3.jpg"
               alt="foto predmetu"
-              onclick="openModal(this.src)"
+              class="predmety__imgs__img"
             />
           </div>
         </li>
@@ -246,7 +253,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   <tbody class="horiz-div details__div__details">
     {% if metadata.restorationObject.stylePeriod %}
     <tr class="vert-div details__div__details-box">
-      <td class="details__div__details-box-smaller parag">Dotace</td>
+      <td class="details__div__details-box-smaller parag">Datace</td>
       <td class="details__div__details-box-smaller parag">
         <p class="parag">
           {% if metadata.restorationObject.stylePeriod.startYear %}
@@ -258,10 +265,9 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         </p>
       </td>
     </tr>
-    {% endif %}
-    {% if metadata.restorationObject.dimensions %}
+    {% endif %} {% if metadata.restorationObject.dimensions %}
     <tr class="vert-div details__div__details-box">
-      <td class="details__div__details-box-smaller parag">Rozmery</td>
+      <td class="details__div__details-box-smaller parag">Rozměry předmětu</td>
       <td class="details__div__details-box-smaller parag">
         {% for value in metadata.restorationObject.dimensions %} {% if
         loop.index <= 1 %}
@@ -293,10 +299,9 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         </div>
       </td>
     </tr>
-    {% endif %}
-    {% if metadata.restorationObject.itemTypes %}
+    {% endif %} {% if metadata.restorationObject.itemTypes %}
     <tr class="vert-div details__div__details-box">
-      <td class="details__div__details-box-smaller parag">Typ predmetu</td>
+      <td class="details__div__details-box-smaller parag">Typ předmětu</td>
       <td class="details__div__details-box-smaller parag">
         {% for value in metadata.restorationObject.itemTypes %} {% if loop.index
         <= 2 %}
@@ -304,38 +309,35 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         {% endif %} {% endfor %}
       </td>
     </tr>
-    {% endif %}
-    {% if metadata.restorationObject.materialType %}
+    {% endif %} {% if metadata.restorationObject.materialType %}
     <tr class="vert-div details__div__details-box">
-      <td class="details__div__details-box-smaller parag">Material</td>
-      <td class="details__div__details-box-smaller parag">
-        sodno-vapenate sklo
-      </td>
+      <td class="details__div__details-box-smaller parag">Materiál</td>
+      <td class="details__div__details-box-smaller parag">!!</td>
     </tr>
     {% endif %}
     <tr class="vert-div details__div__details-box">
       <td class="details__div__details-box-smaller parag">Technologie</td>
-      <td class="details__div__details-box-smaller parag">foukane ryte sklo</td>
+      <td class="details__div__details-box-smaller parag">!!</td>
     </tr>
     <tr class="vert-div details__div__details-box">
       <td class="details__div__details-box-smaller parag">Barva</td>
-      <td class="details__div__details-box-smaller parag">bezbarve sklo</td>
+      <td class="details__div__details-box-smaller parag">!!</td>
     </tr>
   </tbody>
 </table>
 
 <!-- desc -->
 {% if metadata.restorationObject.description %}
-<div class="details__div__desc" aria-label="Popis predmetu">
+<div class="details__div__desc" aria-label="Popis předmětu">
   <p class="parag">{{ metadata.restorationObject.description[0].value }}</p>
 </div>
 {% endif %}
 <div class="vr-huge-horiz"></div>
 <!-- info -->
 
-<div class="horiz-div details__div__info" aria-label="Info o predmetu">
+<div class="horiz-div details__div__info" aria-label="Info o předmětu">
   <div class="vert-div details__div__info-left">
-    <table summary="Info o predmetu">
+    <table summary="Informace o předmětu">
       <tbody>
         {% if metadata.restorationObject.restorationRequestor %}
         <tr class="details__div__info-left__box">
@@ -344,8 +346,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
             {{ metadata.restorationObject.restorationRequestor.title }}
           </td>
         </tr>
-        {% endif %}
-        {% if metadata.restorationWork.restorer %}
+        {% endif %} {% if metadata.restorationWork.restorer %}
         <tr class="details__div__info-left__box">
           <td class="parag">Restaurovala</td>
           <td class="parag">
@@ -353,10 +354,9 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
             {{ metadata.restorationWork.workType.title }}
           </td>
         </tr>
-        {% endif %}
-        {% if metadata.restorationWork.supervisors %}
+        {% endif %} {% if metadata.restorationWork.supervisors %}
         <tr class="details__div__info-left__box">
-          <td class="parag">Vedouci prace</td>
+          <td class="parag">Vedoucí práce</td>
 
           <td class="parag">
             {% for value in metadata.restorationWork.supervisors %}
@@ -365,20 +365,18 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
             {% endfor %}
           </td>
         </tr>
-        {% endif %}
-        {% if metadata.restorationWork.examinationMethods %}
+        {% endif %} {% if metadata.restorationWork.examinationMethods %}
         <tr class="details__div__info-left__box">
-          <td class="parag">Metody pruzkumu</td>
+          <td class="parag">Metody průzkumu</td>
           <td class="parag">
             {% for value in metadata.restorationWork.examinationMethods %}
             {{ value.title }}
             {% endfor %}
           </td>
         </tr>
-        {% endif %}
-        {% if metadata.restorationWork.restorationMethods %}
+        {% endif %} {% if metadata.restorationWork.restorationMethods %}
         <tr class="details__div__info-left__box">
-          <td class="parag">Metody restaurovani</td>
+          <td class="parag">Metody restaurování</td>
           <td class="parag">
             {% for value in metadata.restorationWork.restorationMethods %}
             {{ value.title }}
@@ -392,7 +390,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   <div class="vr-huge-vert"></div>
   <div class="vert-div details__div__info-right">
     <div>
-      <p class="details__div__info-right parag">Restauratorsky zasah/zamer</p>
+      <p class="details__div__info-right parag">Restaurátorský zásah/zaměr</p>
     </div>
     {% if metadata.restorationWork.abstract %}
     <div class="details__div__info-right__text">
@@ -416,7 +414,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         alt="file icon"
       />
       <p class="parag">
-        <a href="">sp5_balikova_anticke sklo.pdf</a>
+        <a href="">sp5_balikova_anticke sklo.pdf (!!!)</a>
       </p>
     </div>
     <div class="horiz-div details__div__docs__item">
@@ -426,7 +424,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         alt="file icon"
       />
       <p class="parag">
-        <a href="">sp5_rohanova_anticke sklo.pdf</a>
+        <a href="">sp5_rohanova_anticke sklo.pdf (!!!)</a>
       </p>
     </div>
   </div>
@@ -455,22 +453,6 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         btnLess.style.display = "initial";
       }
     }
-  }
-
-  const modal = document.getElementById("image-modal");
-  const modalImage = document.getElementById("modal-image");
-
-  function openModal(src) {
-    console.log("modal opened");
-    console.log(src);
-    modalImage.src = src;
-    modal.style.display = "flex";
-    console.log("modal opened");
-    console.log(src);
-  }
-
-  function closeModal() {
-    modal.style.display = "none";
   }
 
   function moveLeft() {
@@ -525,9 +507,31 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   document.querySelector(".vr-huge-vert").style.height = `${divMaxHeight}px`;
 
   function redirectToEditPage() {
-    
-    window.location.href = window.location.href+'/edit';
-}
+    window.location.href = window.location.href + "/edit";
+  }
+
+  let modal = $("#image-modal");
+  let modalImg = modal.find("#modal-image");
+
+  function openModal(src) {}
+
+  function closeModal() {
+    modal.style.display = "none";
+  }
+  
+  let imgContainer = $(".predmety__card__img-container");
+  let img = $(".predmety__imgs__img");
+
+  imgContainer.click(function () {
+    modalImg.attr('src', img.attr('src'));
+    modalImg.src = src;
+    modal.style.display = "flex";
+    modal.show();
+  });
+
+  modalCloser.click(function () {
+    modal.hide();
+  });
 </script>
 
 {%- endblock page_body %}

@@ -1,6 +1,7 @@
 .ui.icon.left.labeled.button{
     background-color: #808080;
-    color: #fff
+    color: #fff;
+    margin-top: 10px;
 }
 .ui.icon.button.close-btn{
     background: none;

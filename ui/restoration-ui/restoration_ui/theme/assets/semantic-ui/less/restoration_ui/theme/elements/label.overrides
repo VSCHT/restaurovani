@@ -40,7 +40,7 @@ font-size: 14px !important                ;
 gap: 10px !important                      ;
 background:none !important                ;
 color:                                    #222 !important;
-padding-left: 0px !important
+padding: 0px 0px 10px 0px !important;
 }
 
 }
@@ -64,7 +64,7 @@ font-size: 14px !important                ;
 gap: 10px !important                      ;
 background:none !important                ;
 color:                                    #222 !important;
-padding-left: 0px !important
+padding: 0px 0px 10px 0px !important;
 }
 
 }

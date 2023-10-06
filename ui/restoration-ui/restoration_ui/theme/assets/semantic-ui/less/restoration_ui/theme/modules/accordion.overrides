@@ -1,6 +1,35 @@
 
 @media only screen and (min-width: 992px) and (max-width:1200px){
     .ui.accordion .title.btn.predmety__aside__dropdown-btn {
+    width: 20vw !important;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Noto_Sans_regular;
+    color: #222;
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    height: 40px;
+    align-items: center;
+    margin-left: -2rem;
+    padding: 0 1rem ;
+}
+.ui.accordion .title.btn.predmety__aside__dropdown-btn:hover{
+    background-color: #E3E3D8;
+}
+/* .ui.accordion{
+    position: relative;
+    left: -1rem !important;
+    width: 20vw !important;
+} */
+}
+
+@media only screen and (min-width:1200px){
+    .ui.accordion .title.btn.predmety__aside__dropdown-btn {
     width: 17vw !important;
     text-decoration: none;
     font-size: 16px;
@@ -15,34 +44,8 @@
     outline: none;
     height: 40px;
     align-items: center;
-}
-.ui.accordion .title.btn.predmety__aside__dropdown-btn:hover{
-    background-color: #E3E3D8;
-}
-/* .ui.accordion{
-    position: relative;
-    left: -1rem !important;
-    width: 20vw !important;
-} */
-}
-
-@media only screen and (min-width:1200px){
-    .ui.accordion .title.btn.predmety__aside__dropdown-btn {
-    width: 15vw !important;
-    text-decoration: none;
-    font-size: 16px;
-    font-family: Noto_Sans_regular;
-    color: #222;
-    display: flex;
-    justify-content: space-between;
-    border: none;
-    background: none;
-    text-align: left;
-    cursor: pointer;
-    outline: none;
-    height: 40px;
-    align-items: center;
-    margin-left: -1rem;
+    margin-left: -2rem;
+    padding: 0 1rem ;
 }
 
 .ui.accordion .title:hover{

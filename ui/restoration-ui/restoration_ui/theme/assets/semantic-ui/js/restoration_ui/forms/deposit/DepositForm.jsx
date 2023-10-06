@@ -41,7 +41,10 @@ import {
   FieldArray,
   ErrorMessage,
 } from "formik";
-import { VocabularySelectField } from "@js/oarepo_vocabularies";
+import {
+  VocabularySelectField,
+  LocalVocabularySelectField,
+} from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import Overridable from "react-overridable";
 import { i18next } from "@translations/restoration_ui/i18next";
@@ -141,7 +144,7 @@ export const DepositForm = () => {
             >
               <Grid className="vert-div predmety__form">
                 <div>
-                  <h3 className="predmety__form__h">Editace predmetu</h3>
+                  <h3 className="predmety__form__h">Editace předmětu</h3>
                 </div>
                 <div className="vert-div predmety__form-main">
                   <div className="vert-div predmety__form__div">
@@ -179,58 +182,29 @@ export const DepositForm = () => {
                     </div>
 
                     <div className="vert-div predmety__form__div">
-                      <Form>
-                        <Label
-                          for="metadata.restorationObject.category"
-                          className="predmety__form__div__label"
-                        >
-                          Kategorie
-                        </Label>
-                        <Form.Group className="horiz-div predmety__form__div__input-radio">
-                          {categories.map((option) => (
-                            <div className="predmety__form__div__label horiz-div">
-                              <Form.Field key={option.value}>
-                                <Radio
-                                  label={option.label}
-                                  className="predmety__form__div__radio"
-                                  checked={selectedRadio === option.value}
-                                  onChange={() => handleRadio(option.value)}
-                                />
-                              </Form.Field>
-                            </div>
-                          ))}
-                        </Form.Group>
-                      </Form>
-                    </div>
-
-                    <div className="vert-div predmety__form__div">
                       <div className="vert-div predmety__form__div">
-                        <VocabularySelectField
-                          type={`RestorationMethods`}
+                        <LocalVocabularySelectField
+                          optionsListName="RestorationMethods"
                           fieldPath="metadata.restorationWork.restorationMethods"
                           multiple={true}
-                          placeholder={"Vyberte metodu restaurace"}
-                          value={
-                            record.metadata?.restorationWork
-                              ?.restorationMethods?.[0]?.id
-                          }
+                          placeholder={"Vyberte metody restaurování"}
                           clearable
                           label={
                             <FieldLabel
                               htmlFor={
                                 "metadata.restorationWork.restorationMethods"
                               }
-                              label={"Metoda restaurace"}
+                              label={"Metody restaurování"}
                             />
                           }
                         />
                       </div>
 
                       <div className="vert-div predmety__form__div">
-                        <VocabularySelectField
-                          type={`FabricationTechnologies`}
+                        <LocalVocabularySelectField
+                          optionsListName="FabricationTechnologies"
                           fieldPath="metadata.fabricationTechnology"
-                          placeholder={"Vyberte technologie fabrikace"}
+                          placeholder={"Vyberte technologie výroby"}
                           value={
                             record.metadata?.restorationWork?.fabricationMethods
                               ?.id
@@ -240,38 +214,38 @@ export const DepositForm = () => {
                           label={
                             <FieldLabel
                               htmlFor={"metadata.fabricationTechnology"}
-                              label={"Technologie Fabrikace"}
+                              label={"Technologie výroby"}
                             />
                           }
                         />
                       </div>
 
                       <div className="vert-div predmety__form__div">
-                        <VocabularySelectField
-                          type={`MaterialTypes`}
+                        <LocalVocabularySelectField
+                          optionsListName="MaterialTypes"
                           fieldPath="metadata.materialType"
                           multiple={false}
                           clearable
-                          placeholder={"Vyberte typy materialu"}
+                          placeholder={"Vyberte typy materiálů"}
                           value={
                             record.metadata?.restorationWork?.materialType?.id
                           }
                           label={
                             <FieldLabel
                               htmlFor={"metadata.materialType"}
-                              label={"Typy Materialu"}
+                              label={"Typy materiálů"}
                             />
                           }
                         />
                       </div>
 
                       <div className="vert-div predmety__form__div">
-                        <VocabularySelectField
-                          type={`MaterialTypes`}
+                        <LocalVocabularySelectField
+                          optionsListName="MaterialTypes"
                           fieldPath="metadata.secondaryMaterialTypes"
                           multiple={true}
                           clearable
-                          placeholder={"Vyberte vedlejší typy materiálu"}
+                          placeholder={"Vyberte vedlejší typy materiálů"}
                           value={
                             record.metadata?.restorationWork
                               ?.secondaryMaterialTypes?.id
@@ -279,18 +253,18 @@ export const DepositForm = () => {
                           label={
                             <FieldLabel
                               htmlFor={"metadata.secondaryMaterialTypes"}
-                              label={"Vedlejší typy materiálu"}
+                              label={"Vedlejší typy materiálů"}
                             />
                           }
                         />
                       </div>
 
                       <div className="vert-div predmety__form__div">
-                        <VocabularySelectField
-                          type={`ItemTypes`}
+                        <LocalVocabularySelectField
+                          optionsListName="ItemTypes"
                           fieldPath="metadata.restorationObject.itemTypes"
                           multiple={false}
-                          placeholder={"Vyberte typ predmetu"}
+                          placeholder={"Vyberte typ předmětu"}
                           value={
                             record.metadata?.restorationObject?.itemTypes?.[0]
                               ?.id
@@ -299,14 +273,14 @@ export const DepositForm = () => {
                           label={
                             <FieldLabel
                               htmlFor={"metadata.restorationObject.itemTypes"}
-                              label={"Typ predmetu"}
+                              label={"Typ předmětu"}
                             />
                           }
                         />
                       </div>
                       <div className="vert-div predmety__form__div">
-                        <VocabularySelectField
-                          type={`Colors`}
+                        <LocalVocabularySelectField
+                          optionsListName="Colors"
                           fieldPath="metadata.color"
                           multiple={false}
                           clearable
@@ -322,9 +296,8 @@ export const DepositForm = () => {
 
                       <div className="vert-div predmety__form__div">
                         <ArrayField
-                          addButtonLabel={i18next.t("Pridat rozmer")}
+                          addButtonLabel={i18next.t("Přidat rozměr")}
                           fieldPath="metadata.restorationObject.dimensions"
-                          label={i18next.t("Pridat")}
                           defaultNewValue={{}}
                         >
                           {({ arrayHelpers, indexPath }) => {
@@ -338,17 +311,16 @@ export const DepositForm = () => {
                               >
                                 <div className="horiz-div predmety__form__div-small">
                                   <div className="vert-div predmety__form__div-small__div">
-                                    <VocabularySelectField
-                                      type={`Dimensions`}
-                                      fieldPath={`${fieldPathPrefix}.dimension.id`}
+                                    <LocalVocabularySelectField
+                                      optionsListName="Dimensions"
+                                      fieldPath={`${fieldPathPrefix}.dimension`}
                                       clearable
                                       label={
                                         <FieldLabel
-                                          htmlFor={`${fieldPathPrefix}.dimension.id`}
-                                          label={"Parametr"}
+                                          htmlFor={`${fieldPathPrefix}.dimension.title`}
+                                          label={"Rozměr"}
                                         />
                                       }
-                                      value={`${fieldPathPrefix}.dimension.title`}
                                     />
                                   </div>
 
@@ -357,12 +329,15 @@ export const DepositForm = () => {
                                       name={`${fieldPathPrefix}.value`}
                                       aria-label="Value"
                                       fieldPath={`${fieldPathPrefix}.value`}
-                                      value={`${fieldPathPrefix}.value`}
+                                      value={
+                                        record.metadata?.restorationObject
+                                          ?.dimensions?.[indexPath]?.value
+                                      }
                                       label={
                                         <FieldLabel
                                           htmlFor={`${fieldPathPrefix}.value`}
                                           className="predmety__form__div__label"
-                                          label={"Value"}
+                                          label={"Hodnota"}
                                         ></FieldLabel>
                                       }
                                     />
@@ -374,12 +349,15 @@ export const DepositForm = () => {
                                       aria-label="Unit"
                                       fieldPath={`${fieldPathPrefix}.unit`}
                                       options={units}
-                                      value={`${fieldPathPrefix}.unit`}
+                                      value={
+                                        record.metadata?.restorationObject
+                                          ?.dimensions?.[indexPath]?.unit
+                                      }
                                       label={
                                         <FieldLabel
                                           htmlFor={`${fieldPathPrefix}.unit`}
                                           className="predmety__form__div__label"
-                                          label={"Unit"}
+                                          label={"Jednotka"}
                                         ></FieldLabel>
                                       }
                                     />
@@ -393,14 +371,14 @@ export const DepositForm = () => {
 
                       <div>
                         <FieldArray name="stylePeriod">
-                          <div className="horiz-div predmety__form__div-small">
+                          <div className="horiz-div predmety__form__div">
                             <div className="vert-div predmety__form__div">
-                              <VocabularySelectField
-                                type={`StylePeriods`}
+                              <LocalVocabularySelectField
+                                optionsListName="StylePeriods"
                                 fieldPath="metadata.restorationObject.stylePeriod"
                                 value={
                                   record.metadata?.restorationObject
-                                    ?.stylePeriod?.period?.id
+                                    ?.stylePeriod?.period.title
                                 }
                                 clearable
                                 label={
@@ -408,39 +386,8 @@ export const DepositForm = () => {
                                     htmlFor={
                                       "metadata.restorationObject.stylePeriod"
                                     }
-                                    label={"Perioda"}
+                                    label={"Období"}
                                   />
-                                }
-                                // placeholder={"Perioda"}
-                              />
-                            </div>
-
-                            <div className="vert-div predmety__form__div">
-                              <TextField
-                                name="metadata.stylePeriod.startYear"
-                                aria-label="Počáteční rok"
-                                fieldPath="metadata.stylePeriod.startYear"
-                                label={
-                                  <FieldLabel
-                                    htmlFor="metadata.stylePeriod.startYear"
-                                    className="predmety__form__div__label"
-                                    label={"Počáteční rok"}
-                                  ></FieldLabel>
-                                }
-                              />
-                            </div>
-
-                            <div className="vert-div predmety__form__div">
-                              <TextField
-                                name="metadata.stylePeriod.endYear"
-                                aria-label="Končicí rok"
-                                fieldPath="metadata.stylePeriod.endYear"
-                                label={
-                                  <FieldLabel
-                                    htmlFor="metadata.stylePeriod.endYear"
-                                    className="predmety__form__div__label"
-                                    label={"Končicí rok"}
-                                  ></FieldLabel>
                                 }
                               />
                             </div>
@@ -451,7 +398,7 @@ export const DepositForm = () => {
                       <div className="vert-div predmety__form__div predmety__form__div">
                         <BooleanField
                           name="metadata.restorationObject.archeologic"
-                          aria-label="Archeologicky nález"
+                          aria-label="Archeologický nález"
                           fieldPath="metadata.restorationObject.archeologic"
                           value={
                             record.metadata?.restorationObject?.archeologic
@@ -460,7 +407,7 @@ export const DepositForm = () => {
                             <FieldLabel
                               htmlFor="metadata.restorationObject.archeologic"
                               className="predmety__form__div__label"
-                              label={"Archeologicky nález"}
+                              label={"Archeologický nález"}
                             ></FieldLabel>
                           }
                         />
@@ -482,7 +429,7 @@ export const DepositForm = () => {
                                   <FieldLabel
                                     htmlFor="metadata.restorationWork.restorationPeriod.since"
                                     className="predmety__form__div__label"
-                                    label={"Perioda prace od"}
+                                    label={"Období restaurování od"}
                                   ></FieldLabel>
                                 }
                               />
@@ -501,7 +448,7 @@ export const DepositForm = () => {
                                   <FieldLabel
                                     htmlFor="metadata.restorationWork.restorationPeriod.until"
                                     className="predmety__form__div__label"
-                                    label={"Perioda prace do"}
+                                    label={"Období restaurování do"}
                                   ></FieldLabel>
                                 }
                               />
@@ -511,21 +458,17 @@ export const DepositForm = () => {
                       </div>
 
                       <div className="vert-div predmety__form__div">
-                        <VocabularySelectField
-                          type={`Institutions`}
+                        <LocalVocabularySelectField
                           fieldPath="metadata.restorationObject.restorationRequestor"
                           multiple={false}
-                          value={
-                            record.metadata?.restorationObject
-                              ?.restorationRequestor?.title.cs
-                          }
+                          optionsListName="Requestors"
                           clearable
                           label={
                             <FieldLabel
                               htmlFor={
-                                "metadata.restorationObject.restorationRequestor"
+                                "metadata.restorationObject.restorationRequestor.title.cs"
                               }
-                              label={"Žadatel restaurace"}
+                              label={"Zadavatel"}
                             />
                           }
                         />
@@ -559,22 +502,22 @@ export const DepositForm = () => {
                 "metadata.restorationObject.category",
               ]}
               active
-              label={"Basic information"}
+              label={"Základní informace"}
             >
               <div className="vert-div predmety__form">
-                <h3 className="predmety__form__h">Vytvoreni noveho predmetu</h3>
+                <h3 className="predmety__form__h">Vytvoření nového předmětu</h3>
                 <div className="vert-div predmety__form-main">
                   <div className="vert-div predmety__form__div">
                     <TextField
                       name="metadata.restorationObject.title[0].value"
-                      aria-label="Nazev"
+                      aria-label="Název předmětu"
                       fieldPath="metadata.restorationObject.title[0].value"
                       required
                       label={
                         <FieldLabel
                           htmlFor="metadata.restorationObject.title[0].value"
                           className="predmety__form__div__label"
-                          label={"Nazev"}
+                          label={"Název předmětu"}
                         />
                       }
                     />
@@ -594,61 +537,7 @@ export const DepositForm = () => {
                       }
                     />
                   </div>
-                  {/* <div className="vert-div predmety__form__div">
-                  <Label
-                    for="metadata.restorationObject.category"
-                    className="predmety__form__div__label"
-                    
-                  >
-                    Kategorie
-                  </Label>
-                  <GroupField
-                    fieldPath="metadata.restorationObject.category"
-                    className="horiz-div predmety__form__div__input-radio"
-                    required
-                  >
-                    <div className="predmety__form__div__label horiz-div">
-                      <Radio
-                        label="Kovy"
-                        className="predmety__form__div__radio"
-                        checked={selectedRadio == "Kovy"}
-                        onChange={() => handleRadio("Kovy")}
-                        name="metadata.restorationObject.category"
-                        fieldPath="metadata.restorationObject.category"
-                      ></Radio>
-                    </div>
-                    <div className="predmety__form__div__label horiz-div">
-                      <Radio
-                        label="Textil"
-                        className="predmety__form__div__radio"
-                        checked={selectedRadio == "Textil"}
-                        fieldPath="metadata.restorationObject.category"
-                        name="metadata.restorationObject.category"
-                        onChange={() => handleRadio("Textil")}
-                      ></Radio>
-                    </div>
-                    <div className="predmety__form__div__label horiz-div">
-                      <Radio
-                        label="Keramika"
-                        className="predmety__form__div__radio"
-                        checked={selectedRadio == "Keramika"}
-                        fieldPath="metadata.restorationObject.category"
-                        name="metadata.restorationObject.category"
-                        onChange={() => handleRadio("Keramika")}
-                      ></Radio>
-                    </div>
-                    <div className="predmety__form__div__label horiz-div">
-                      <Radio
-                        label="Sklo"
-                        className="predmety__form__div__radio"
-                        checked={selectedRadio == "Sklo"}
-                        fieldPath="metadata.restorationObject.category"
-                        name="metadata.restorationObject.category"
-                        onChange={() => handleRadio("Sklo")}
-                      ></Radio>
-                    </div>
-                  </GroupField>
-                </div> */}
+
                   <div className="vert-div predmety__form__div">
                     <Form>
                       <Label
@@ -685,7 +574,7 @@ export const DepositForm = () => {
                     </Form>
                   </div>
 
-                  <div className="vert-div predmety__form__div">
+                  {/* <div className="vert-div predmety__form__div">
                     <Form>
                       <Label
                         for="metadata.restorationObject.category"
@@ -723,7 +612,7 @@ export const DepositForm = () => {
                         )}
                       </Field>
                     </Form>
-                  </div>
+                  </div> */}
                 </div>
                 <SaveButton />
               </div>
