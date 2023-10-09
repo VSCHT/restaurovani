@@ -32,6 +32,9 @@ text-align: left                                                                
 }
 @media only screen and (min-width: 1200px) {
 
+.grid.predmety__main-content__nores{
+    gap: 20px;
+}
 .grid.horiz-div.predmety__card-content{
 background-color:                           #ffffff ;
 display: flex                               ;
@@ -95,7 +98,7 @@ display: flex !important          ;
 flex-direction: column !important ;
 top: 150px !important             ;
 right: -6vw !important            ;
-gap: 75px !important              ;
+gap: 70px !important              ;
 height: 100% !important           ;
 width: 20vw !important            ;
 align-content: stretch !important ;
@@ -210,6 +213,9 @@ background-color:                                                  #aaaaa2;
 }
 }
 @media only screen and (min-width: 992px) and (max-width: 1200px){
+    .grid.predmety__main-content__nores{
+    gap: 20px;
+}
 .grid.horiz-div.predmety__card-content{
 background-color:                                                  #ffffff ;
 display: flex                                                      ;
@@ -226,8 +232,8 @@ display: flex !important                                           ;
 position: relative !important                                      ;
 width: 100% !important                                             ;
 flex-direction: row !important                                     ;
-height: 180px !important                                           ;
-padding: 10px !important                                           ;
+height: 195px !important                                           ;
+padding: 13px !important                                           ;
 }
 .ui.grid.vert-div.predmety__form{
 display: flex                                                      ;
@@ -249,7 +255,7 @@ width: 30%                                                         ;
 }
 
 .ui.grid.vert-div.predmety_main-container{
-width: 55vw                                ;
+width: 51vw                                ;
 position: static                           ;
 margin-top: 115px !important               ;
 margin-left: 11vw !important               ;
@@ -261,8 +267,7 @@ gap: 70px !important                       ;
 }
 .column.vert-div.predmety__aside{
 display: flex                              ;
-direction: column                          ;
-top: 130px                                 ;
+top: 142px                                 ;
 width: 20vw !important                     ;
 left: 7vw !important                       ;
 }
@@ -383,7 +388,9 @@ background-color:                  #aaaaa2;
 }
 
 @media only screen and (max-width: 730px) {
-
+.grid.predmety__main-content__nores{
+    gap: 30px;
+}
 .ui.relaxed.grid{
 width: 100%                                 ;
 }
@@ -590,6 +597,9 @@ margin: 0 auto !important                  ;
 }
 
 @media only screen and (max-width: 992px) and (min-width: 730px) {
+    .grid.predmety__main-content__nores{
+    gap: 30px;
+}
 .grid.horiz-div.predmety__card-content{
 background-color:                                                  #ffffff ;
 display: flex                                                      ;

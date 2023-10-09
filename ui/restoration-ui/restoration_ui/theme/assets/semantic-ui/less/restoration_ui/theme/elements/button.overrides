@@ -34,6 +34,15 @@ width: 18vw                                      ;
 border: none                                     ;
 font-family: Noto_Sans_regular                   ;
 }
+.predmety__main-content__nores__button{
+color: white         !important                              ;
+background-color:                                #de4929 !important  ;
+border-radius: 32px                            !important    ;
+height: 45px                              !important         ;
+width: 15vw                             !important           ;
+border: none                         !important              ;
+font-family: Noto_Sans_regular         !important            ;
+}
 
 .ui.button.main-page__btn__addPredmety:hover {
 background-color:                              #e76c50;
@@ -107,6 +116,15 @@ cursor: pointer                             ;
 outline: none                               ;
 height: 40px                                ;
 align-items: center                         ;
+}
+.predmety__main-content__nores__button{
+color: white         !important                              ;
+background-color:                                #de4929 !important  ;
+border-radius: 32px                            !important    ;
+height: 55px                              !important         ;
+width: 30vw                             !important           ;
+border: none                         !important              ;
+font-family: Noto_Sans_regular         !important            ;
 }
 
 .ui.button.predmety__aside__btn{
@@ -206,7 +224,15 @@ outline: none                                                    ;
 height: 40px                                                     ;
 align-items: center                                              ;
 }
-
+.predmety__main-content__nores__button{
+color: white         !important                              ;
+background-color:                                #de4929 !important  ;
+border-radius: 32px                            !important    ;
+height: 55px                              !important         ;
+width: 30vw                             !important           ;
+border: none                         !important              ;
+font-family: Noto_Sans_regular         !important            ;
+}
 .ui.button.form.main-page__btn__addPredmety{
 color: white                                 ;
 background-color:                            #de4929;

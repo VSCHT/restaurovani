@@ -49,7 +49,7 @@ import _get from "lodash/get";
 import Overridable from "react-overridable";
 import { i18next } from "@translations/restoration_ui/i18next";
 import { useDepositApiClient } from "@js/oarepo_ui";
-import { SaveButton } from "../components";
+import { SaveButton , KeyWordsInput} from "../components";
 
 const CurrentRecord = (props) => {
   const { record } = props;
@@ -140,28 +140,16 @@ export const DepositForm = () => {
                 "metadata.restorationObject.category",
               ]}
               active
-              label={"Basic information"}
+              label={"Zakladni informace"}
             >
               <Grid className="vert-div predmety__form">
                 <div>
                   <h3 className="predmety__form__h">Editace předmětu</h3>
                 </div>
                 <div className="vert-div predmety__form-main">
-                  <div className="vert-div predmety__form__div">
-                    <div className="vert-div predmety__form__div">
-                      <TextField
-                        name="metadata.keyword"
-                        aria-label="Klíčová slova"
-                        fieldPath="metadata.keyword"
-                        label={
-                          <FieldLabel
-                            htmlFor="metadata.keyword"
-                            className="predmety__form__div__label"
-                            label={"Klíčová slova"}
-                          />
-                        }
-                      />
-                    </div>
+                <div className="vert-div predmety__form__div-fields">
+                <KeyWordsInput fieldPath="metadata.restorationObject.keywords" />
+                    
 
                     <div className="vert-div predmety__form__div">
                       <TextField
@@ -181,7 +169,7 @@ export const DepositForm = () => {
                       />
                     </div>
 
-                    <div className="vert-div predmety__form__div">
+                    
                       <div className="vert-div predmety__form__div">
                         <LocalVocabularySelectField
                           optionsListName="RestorationMethods"
@@ -227,9 +215,6 @@ export const DepositForm = () => {
                           multiple={false}
                           clearable
                           placeholder={"Vyberte typy materiálů"}
-                          value={
-                            record.metadata?.restorationWork?.materialType?.id
-                          }
                           label={
                             <FieldLabel
                               htmlFor={"metadata.materialType"}
@@ -246,10 +231,6 @@ export const DepositForm = () => {
                           multiple={true}
                           clearable
                           placeholder={"Vyberte vedlejší typy materiálů"}
-                          value={
-                            record.metadata?.restorationWork
-                              ?.secondaryMaterialTypes?.id
-                          }
                           label={
                             <FieldLabel
                               htmlFor={"metadata.secondaryMaterialTypes"}
@@ -265,10 +246,6 @@ export const DepositForm = () => {
                           fieldPath="metadata.restorationObject.itemTypes"
                           multiple={false}
                           placeholder={"Vyberte typ předmětu"}
-                          value={
-                            record.metadata?.restorationObject?.itemTypes?.[0]
-                              ?.id
-                          }
                           clearable
                           label={
                             <FieldLabel
@@ -294,9 +271,9 @@ export const DepositForm = () => {
                         />
                       </div>
 
-                      <div className="vert-div predmety__form__div">
+                      <div className="vert-div predmety__form__div-dimensions">
                         <ArrayField
-                          addButtonLabel={i18next.t("Přidat rozměr")}
+                          addButtonLabel={"Přidat rozměr"}
                           fieldPath="metadata.restorationObject.dimensions"
                           defaultNewValue={{}}
                         >
@@ -376,10 +353,6 @@ export const DepositForm = () => {
                               <LocalVocabularySelectField
                                 optionsListName="StylePeriods"
                                 fieldPath="metadata.restorationObject.stylePeriod"
-                                value={
-                                  record.metadata?.restorationObject
-                                    ?.stylePeriod?.period.title
-                                }
                                 clearable
                                 label={
                                   <FieldLabel
@@ -395,7 +368,7 @@ export const DepositForm = () => {
                         </FieldArray>
                       </div>
 
-                      <div className="vert-div predmety__form__div predmety__form__div">
+                      <div className="vert-div predmety__form__div predmety__form__div-checkbox">
                         <BooleanField
                           name="metadata.restorationObject.archeologic"
                           aria-label="Archeologický nález"
@@ -416,7 +389,7 @@ export const DepositForm = () => {
                       <div>
                         <FieldArray name="metadata.restorationWork.restorationPeriod">
                           <div className="horiz-div predmety__form__div-small">
-                            <div className="vert-div predmety__form__div">
+                            <div className="vert-div predmety__form__div-medium">
                               <TextField
                                 name="metadata.restorationWork.restorationPeriod.since"
                                 aria-label="Od"
@@ -435,7 +408,7 @@ export const DepositForm = () => {
                               />
                             </div>
 
-                            <div className="vert-div predmety__form__div">
+                            <div className="vert-div predmety__form__div-medium">
                               <TextField
                                 name="metadata.restorationWork.restorationPeriod.until"
                                 aria-label="Do"
@@ -466,14 +439,14 @@ export const DepositForm = () => {
                           label={
                             <FieldLabel
                               htmlFor={
-                                "metadata.restorationObject.restorationRequestor.title.cs"
+                                "metadata.restorationObject.restorationRequestor"
                               }
                               label={"Zadavatel"}
                             />
                           }
                         />
                       </div>
-                    </div>
+                    
                   </div>
                 </div>
                 <SaveButton title={"ULOŽIT ZMĚNY"} />

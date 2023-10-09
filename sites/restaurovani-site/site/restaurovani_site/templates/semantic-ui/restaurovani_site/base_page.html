@@ -87,6 +87,7 @@
                   />RESTAUROVÁNÍ VŠCHT
                 </button>
                 <div class="menu__div__dropdown">
+                  {%- if config.ACCOUNTS and current_user.is_authenticated %}
                   <button class="btn predmety_page menu__btn">
                     <img
                       class="menu__profil-img"
@@ -102,6 +103,7 @@
                     <a href="#">Profil</a>
                     <a href="#">Nastaveni</a>
                   </div>
+                  {%- endif %}
                 </div>
                 <button
                   class="btn predmety__menu__btn profil"

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Grid, Header, Button, Icon, Segment } from "semantic-ui-react";
+import { Grid, Header, Button, Icon, Segment, Divider} from "semantic-ui-react";
 import { i18next } from "@translations/restoration_ui/i18next";
 
 export const EmptyResultsElement = ({
@@ -10,7 +10,8 @@ export const EmptyResultsElement = ({
   resetQuery,
 }) => {
   return (
-    <Grid>
+    <Grid className="predmety__main-content__nores">
+      <Divider className="predmety__main-content__nores__divider"/>
       <Grid.Row centered>
         <Grid.Column width={12} textAlign="center">
           <Header as="h2">
@@ -21,7 +22,7 @@ export const EmptyResultsElement = ({
       </Grid.Row>
       <Grid.Row centered>
         <Grid.Column width={8} textAlign="center">
-          <Button primary onClick={resetQuery}>
+          <Button className='predmety__main-content__nores__button' onClick={resetQuery}>
             <Icon name="search" />
             {i18next.t("Start over")}
           </Button>
