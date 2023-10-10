@@ -151,7 +151,7 @@ font-weight: 200                         ;
 font-family: Noto_Sans_regular           ;
 }
 
-.main-page__menu__btn {
+.main-page__menu__btn, .main-page__menu__btn a {
 margin-left: 10px              ;
 font-size: 17px                ;
 font-family: Noto_Sans_regular ;
@@ -277,7 +277,7 @@ display: flex                       ;
 flex-direction: column              ;
 gap: 3px                            ;
 }
-.main-page__btn__addPredmety {
+.main-page__btn__addPredmety, .main-page__btn__addPredmety a{
 color: white                        ;
 background-color:                   #de4929;
 border-radius: 32px                 ;
@@ -1044,7 +1044,7 @@ font-weight: 200                         ;
 font-family: Noto_Sans_regular           ;
 }
 
-.main-page__menu__btn {
+.main-page__menu__btn, .main-page__menu__btn a {
 margin-left: 10px              ;
 font-size: 15px                ;
 font-family: Noto_Sans_regular ;
@@ -1168,7 +1168,7 @@ flex-direction: column              ;
 gap: 12px                           ;
 margin-right: 40px
 }
-.main-page__btn__addPredmety {
+.main-page__btn__addPredmety, .main-page__btn__addPredmety a {
 color: white                        ;
 background-color:                   #de4929;
 border-radius: 32px                 ;
@@ -1965,7 +1965,7 @@ position: relative             ;
 gap: 7px                       ;
 }
 
-.main-page__btn__addPredmety {
+.main-page__btn__addPredmety, .main-page__btn__addPredmety a {
 color: white                    ;
 background-color:               #de4929;
 border-radius: 40px             ;

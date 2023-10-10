@@ -1,131 +1,124 @@
+{%- extends "invenio_theme/frontpage.html" %} {% block head_links %}
+<link href="./resources/main.css" rel="stylesheet" />
 
-{%- extends "invenio_theme/frontpage.html" %}
+{% endblock head_links %} {% block body %}
 
-{% block body %} 
- <main>
-      
-        <link href="./resources/main.css" rel="stylesheet" />
-       
-          <div class="main-page__menu" aria-label="Main Menu">
-            <button class="btn main-page__menu__btn">RESTAUROVÁNÍ VŠCHT</button>
-            <div class="horiz-div main-page__menu__btn-group">
-              <button class="btn main-page__menu__btn" onclick="redirectToNewPredmet()">
-                <img
-                  rel="icon"
-                  src="../../../../static/images/plus-square.png"
-                  alt="add new icon"
-                />Nový předmět
-              </button>
-              <button class="btn main-page__menu__btn">
-                <img
-                  rel="icon"
-                  src="../../../../static/images/settings-01.png"
-                  alt="settings icon"
-                />Administrace
-              </button>
-            </div>
-            <button
-              class="btn main-page__menu__btn burger"
-              aria-label="Toggle Menu"
-            >
-              <img
-                rel="icon"
-                src="../../../../static/images/menu-icon.png"
-                alt="burger menu button"
-              />
-            </button>
-          
+<main>
+  <div class="main-page__menu" aria-label="Main Menu">
+    <button class="btn main-page__menu__btn">RESTAUROVÁNÍ VŠCHT</button>
+    <div class="horiz-div main-page__menu__btn-group">
+      {%- if config.ACCOUNTS and current_user.is_authenticated %}
+      <button class="btn main-page__menu__btn">
+        <a
+          class="btn main-page__menu__btn"
+          href="{{ url_for('restoration-ui.create') }}"
+        >
+          <img
+            rel="icon"
+            src="{{ url_for('static', filename='images/plus-square.png') }}"
+            alt="add new icon"
+          />Nový předmět</a
+        >
+      </button>
+      <button class="btn main-page__menu__btn">
+        <img
+          rel="icon"
+          src="{{ url_for('static', filename='images/settings-01.png') }}"
+          alt="settings icon"
+        />Administrace
+      </button>
+      {%- else %}
+      <button class="btn main-page__menu__btn">
+        <a class="btn main-page__menu__btn" href="{{ url_for('login') }}"
+          >Log In</a
+        >
+      </button>
+      {%- endif %}
+    </div>
+    <button class="btn main-page__menu__btn burger" aria-label="Toggle Menu">
+      <img
+        rel="icon"
+        src="{{ url_for('static', filename='images/menu-icon.png') }}"
+        alt="burger menu button"
+      />
+    </button>
+  </div>
+
+  <div class="horiz-div main-page__main-container">
+    <div class="vert-div main-page__main-container__content">
+      <!-- page title -->
+
+      <div class="horiz-div main-page__title">
+        <div>
+          <img
+            src="{{ url_for('static', filename='images/bg-arrows.png') }}"
+            alt="decoration image"
+            class="main-page__title__img"
+          />
         </div>
-
-        
-        
-          <div class="horiz-div main-page__main-container">
-            
-            <div class="vert-div main-page__main-container__content">
-
-          
-
-
-              <!-- page title -->
-             
-              <div class=" horiz-div main-page__title"> <div>
-              <img src="../../../../static/images/bg-arrows.png" alt="decoration image" class=" main-page__title__img">
+        <div class="vert-div main-page__main-container__content">
+          <!-- vsht logo -->
+          <div class="vert-div main-page__main-container__titles">
+            <div class="vsht-logo div__vsht-logo main-page__div__vsht-logo">
+              <img
+                class="vsht-logo image__vsht-logo main-page__image__vsht-logo"
+                src="{{ url_for('static', filename='images/logo_VSHT.png') }}"
+                alt="vsht logo"
+              />
+              <p class="vsht-logo text__vsht-logo main-page__text__vsht-logo">
+                VYSOKÁ ŠKOLA<br />
+                CHEMICKO-TECHNOLOGICKÁ <br />
+                V PRAZE
+              </p>
             </div>
-            <div class="vert-div main-page__main-container__content">
 
-                  <!-- vsht logo -->
-              <div class="vert-div main-page__main-container__titles">
-                <div class="vsht-logo div__vsht-logo main-page__div__vsht-logo">
-            <img
-              class="vsht-logo image__vsht-logo main-page__image__vsht-logo"
-              src="../../../../static/images/logo_VSHT.png"
-              alt="vsht logo"
-            />
-            <p class="vsht-logo text__vsht-logo main-page__text__vsht-logo">
-              VYSOKÁ ŠKOLA<br />
-              CHEMICKO-TECHNOLOGICKÁ <br />
-              V PRAZE
-            </p>
+            <p>DATABÁZE RESTAUROVANÝCH PŘEDMĚTŮ <br />VŠCHT Praha</p>
           </div>
 
-
-              <p>
-                  DATABÁZE RESTAUROVANÝCH PŘEDMĚTŮ </br>VŠCHT Praha
-                </p>
-              </div>
-          
-
-                 <!-- actions-buttons -->
-              <div class="vert-div main-page__div__btn ">
-                <div>
-                 
-
-
-                 <form action="{{ url_for('restoration-ui.search') }}"  role="search">
-                        
-                            <input type="text" name="q" class="main-page__input-search parag" placeholder="{{ _('Vyhledat předmět ...') }}">
-                            
-                        </form>
-                        
-                  
-                </div> 
-                
-                
-
-              
-                <div>
-                  <button
-                    class="main-page__btn__addPredmety parag"
-                    aria-label="Tlacitko prejit na predmety"
-                    onclick="redirectToPredmety()"
-                  >
-                    PŘEDMĚTY
-                  </button>
-                </div>
-              </div>
-            </div>
-
-
-               
-              </div>
-
-              
-              <!-- copyright -->
-              <div>
-                <p class="main-page__text__copyright">
-                  © 2020 VŠCHT Praha, Ústav chemické technologie restaurování
-                  památek - databáze restaurovaných předmětů
-                </p>
-              </div>
-            </div>
-            <!-- main image -->
-            <div class="vert-div main-page__main-container__image">
-              <div class="main-page__div__main-image">
-                <img
-                  class="main-page__main-image"
-                  src="../../../../static/images/mainPageImg.png"
-                  alt="decoration image"
+          <!-- actions-buttons -->
+          <div class="vert-div main-page__div__btn">
+            <div>
+              <form
+                action="{{ url_for('restoration-ui.search') }}"
+                role="search"
+              >
+                <input
+                  type="text"
+                  name="q"
+                  class="main-page__input-search parag"
+                  placeholder="{{ _('Vyhledat předmět ...') }}"
                 />
+              </form>
+            </div>
+
+            <div>
+              <button
+                class="main-page__btn__addPredmety parag"
+                aria-label="Tlacitko prejit na predmety"
+              >
+                <a href="{{ url_for('restoration-ui.search') }}">PŘEDMĚTY</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- copyright -->
+      <div>
+        <p class="main-page__text__copyright">
+          © 2020 VŠCHT Praha, Ústav chemické technologie restaurování památek -
+          databáze restaurovaných předmětů
+        </p>
+      </div>
+    </div>
+    <!-- main image -->
+    <div class="vert-div main-page__main-container__image">
+      <div class="main-page__div__main-image">
+        <img
+          class="main-page__main-image"
+          src="{{ url_for('static', filename='images/mainPageImg.png') }}"
+          alt="decoration image"
+        />
       </div>
     </div>
   </div>
@@ -135,14 +128,4 @@
     <div class="main-page__half--background bg-bottom" aria-hidden="true"></div>
   </div>
 </main>
-<script>
-  function redirectToPredmety() {
-      let url = "{{ url_for('restoration-ui.search') }}";
-      window.location.href = url;
-  }
-  function redirectToNewPredmet() {
-    let url = "{{ url_for('restoration-ui.create') }}";
-    window.location.href = url;
-}
-</script>
-{% endblock %} 
+{% endblock %}

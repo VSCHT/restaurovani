@@ -82,7 +82,7 @@
                 <button class="btn main-page__menu__btn">
                   <img
                     class="details__div__docs-img"
-                    src="../../../../../static/images/arrow-left.png"
+                    src="{{ url_for('static', filename='images/arrow-left.png') }}"
                     alt="arrow back"
                   />RESTAUROVÁNÍ VŠCHT
                 </button>
@@ -92,11 +92,11 @@
                     <img
                       class="menu__profil-img"
                       alt="user icon"
-                      src="../../../../../static/images/user-icon.png"
+                      src="{{ url_for('static', filename='images/user-icon.png') }}"
                     />novakova@gmail.com<img
                       class="menu__profil-img"
                       alt="dropdown icon"
-                      src="../../../../../static/images/chevron-down-white.png"
+                      src="{{ url_for('static', filename='images/chevron-down-white.png') }}"
                     />
                   </button>
                   <div class="menu__dropdown__content">
@@ -111,7 +111,7 @@
                 >
                   <img
                     rel="icon"
-                    src="../../../../../static/images/user-icon.png"
+                    src="{{ url_for('static', filename='images/user-icon.png') }}"
                     alt="user icon button"
                   />
                 </button>
@@ -182,6 +182,6 @@
 
     {%- endblock body %}
  
-<!-- </div> -->
+
   </body>
 </html>
