@@ -13,7 +13,7 @@ line-height: 15px !important                                ;
 
 .label.predmety__form__div__label{
 font-family: Noto_Sans_regular !important ;
-font-size: 14px !important                ;
+font-size: 17px !important                ;
 gap: 10px !important                      ;
 background:none !important                ;
 color:                                    #222 !important;

@@ -1,3 +1,7 @@
+.ui.icon.button.close-btn{
+    padding-left: 0px;
+    padding-right: 0px;
+}
 @media only screen and (min-width: 992px){
 .ui.button.predmety__aside__dropdown-btn{
 text-decoration: none                      ;
@@ -117,6 +121,7 @@ outline: none                               ;
 height: 40px                                ;
 align-items: center                         ;
 }
+
 .predmety__main-content__nores__button{
 color: white         !important                              ;
 background-color:                                #de4929 !important  ;

@@ -95,6 +95,8 @@ const categories = [
 ];
 document.getElementsByClassName("mt-20")[0].style.display = "none";
 
+
+
 export const DepositForm = () => {
   const { record, formConfig } = useFormConfig();
   const metadata = _get(formConfig, "metadata", "no metadata");
@@ -102,10 +104,6 @@ export const DepositForm = () => {
   console.log(record);
   console.log(metadata);
 
-  const [selectedRadio, setSelectedRadio] = useState("");
-  const handleRadio = (value) => {
-    setSelectedRadio(value);
-  };
 
   return (
     <Container>
@@ -239,7 +237,7 @@ export const DepositForm = () => {
                       <LocalVocabularySelectField
                         optionsListName="ItemTypes"
                         fieldPath="metadata.restorationObject.itemTypes"
-                        multiple={false}
+                        multiple={true}
                         placeholder="Vyberte typ předmětu"
                         clearable
                         label={
@@ -391,7 +389,7 @@ export const DepositForm = () => {
                               label={
                                 <FieldLabel
                                   htmlFor="metadata.restorationWork.restorationPeriod.since"
-                                  className="predmety__form__div__label"
+                                  className="predmety__form__div__label-small"
                                   label="Období restaurování od"
                                 ></FieldLabel>
                               }
@@ -410,7 +408,7 @@ export const DepositForm = () => {
                               label={
                                 <FieldLabel
                                   htmlFor="metadata.restorationWork.restorationPeriod.until"
-                                  className="predmety__form__div__label"
+                                  className="predmety__form__div__label-small"
                                   label="Období restaurování do"
                                 ></FieldLabel>
                               }

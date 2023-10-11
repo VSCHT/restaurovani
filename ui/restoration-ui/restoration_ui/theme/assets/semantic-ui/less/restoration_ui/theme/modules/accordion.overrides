@@ -1,4 +1,8 @@
-
+.ui.inverted.accordion .title:not(.ui){
+    background-color: #9b9b93;
+    margin-top: 30px;
+    margin-bottom: 30px
+}
 @media only screen and (min-width: 992px) and (max-width:1200px){
     .ui.accordion .title.btn.predmety__aside__dropdown-btn {
     width: 20vw !important;

@@ -277,6 +277,15 @@ display: flex                       ;
 flex-direction: column              ;
 gap: 3px                            ;
 }
+.main-page__btn__btn-search{
+    border:none;
+    background:none;
+    position: relative;
+    left: -3vw;
+}
+.main-page__btn__btn-search img{
+    width: 30px
+}
 .main-page__btn__addPredmety, .main-page__btn__addPredmety a{
 color: white                        ;
 background-color:                   #de4929;
@@ -581,7 +590,7 @@ padding: 0px 15px                ;
 .predmety__form__div {
 width: 100%                      ;
 gap: 13px                        ;
-height: 61px                     ;
+height: auto                    ;
 }
 .predmety__form__div-checkbox {
 width: 100%                      ;
@@ -1117,6 +1126,15 @@ max-height: 100%                            ;
 width: auto                                 ;
 height: auto                                ;
 }
+.main-page__btn__btn-search{
+    border:none;
+    background:none;
+    position: relative;
+    left: -3.5vw;
+}
+.main-page__btn__btn-search img{
+    width: 22px
+}
 /* .main-page__div__main-image__div-arrows{
 width: 80px                                 ;
 height: auto                                ;
@@ -1165,7 +1183,7 @@ margin-right: 40px
 position: relative                  ;
 display: flex                       ;
 flex-direction: column              ;
-gap: 12px                           ;
+gap: 4px                           ;
 margin-right: 40px
 }
 .main-page__btn__addPredmety, .main-page__btn__addPredmety a {
@@ -1468,7 +1486,7 @@ padding: 0px 15px              ;
 .predmety__form__div {
 width: 100%                         ;
 gap: 10px                           ;
-height: 61px                        ;
+height:auto                        ;
 }
 .predmety__form__div-checkbox {
 width: 100%                         ;
@@ -1542,6 +1560,9 @@ font-size: 14px !important                    ;
 gap: 10px !important                          ;
 width: 12vw !important                        ;
 height: 60px                                  ;
+}
+.horiz-div.predmety__form__div-small{
+    gap: 10px
 }
 .predmety__form__div-medium{
 font-family: Noto_Sans_regular !important     ;
@@ -1886,6 +1907,15 @@ margin-left: 10vw                       ;
 width: 40px                        ;
 margin-right: 10vw                 ;
 }
+.main-page__btn__btn-search{
+    border:none;
+    background:none;
+    position: relative;
+    left: -10vw;
+}
+.main-page__btn__btn-search img{
+    width: 38px
+}
 
 .main-page__menu__btn-group {
 visibility: hidden            ;
@@ -1914,16 +1944,14 @@ margin: 0 auto
 /* right content of main content */
 
 .main-page__div__main-image, .main-page__main-container__image , .main-page__main-image img {
-
-position: absolute ;
-visibility: hidden ;
+display: none;
 }
 
 /* left content of main content */
 .main-page__main-container__content {
 width: auto                           ;
 height: auto                          ;
-gap: 110px                            ;
+gap: 140px                            ;
 position: relative                    ;
 
 }
@@ -1937,11 +1965,10 @@ word-wrap: break-word          ;
 color:                         #74756e;
 width: auto                    ;
 align-items: flex-start        ;
-gap: 20px                      ;
+gap: 12px                      ;
 height: 100%                   ;
 }
 .main-page__title__img{
-margin-top: 30px               ;
 width: 15vw                    ;
 position: relative             ;
 top: 20px
@@ -1962,7 +1989,7 @@ margin: 0 auto                 ;
 height: auto                   ;
 justify-content: space-between ;
 position: relative             ;
-gap: 7px                       ;
+gap: 15px                       ;
 }
 
 .main-page__btn__addPredmety, .main-page__btn__addPredmety a {
@@ -1972,8 +1999,8 @@ border-radius: 40px             ;
 height: 70px                    ;
 width: 60vw                     ;
 border: solid 1px               #de4929;
-font-size: 20px                 ;
-font-family: Noto_Sans_semibold ;
+font-size: 20px           !important      ;
+font-family: Noto_Sans_semibold !important ;
 }
 
 .main-page__input-search {
@@ -1982,7 +2009,7 @@ height: 65px                    ;
 width: 60vw                     ;
 border: solid 1px               #9b9b93;
 padding: 5px                    ;
-padding-left: 15px              ;
+padding-left: 30px              ;
 font-size: 20px                 ;
 font-family: Noto_Sans_semibold ;
 }
@@ -2255,7 +2282,7 @@ place-content: center                     ;
 font-family: Noto_Sans_regular !important ;
 font-size: 14px !important                ;
 gap: 10px !important                      ;
-width: 14vw !important                    ;
+width: 17.5vw !important                    ;
 height: 68px                              ;
 }
 .predmety__form__div-medium{
@@ -2277,7 +2304,7 @@ padding: 0px 10px                         ;
 .predmety__form__div {
 width: 100%                         ;
 gap: 20px                           ;
-height: 61px                        ;
+height: auto                        ;
 }
 .predmety__form__div-checkbox {
 width: 100%                         ;
@@ -2298,14 +2325,15 @@ width: calc(20vw - 30px)            ;
 }
 .predmety__form {
 align-items: center                 ;
-gap: 25px                           ;
+gap: 50px                           ;
 }
 .predmety__form__div__input-radio {
 justify-content: space-between      ;
-column-gap: 85px                    ;
+column-gap: 127px                    ;
 flex-wrap: wrap                     ;
-width: 90%                          ;
-row-gap:20px
+width: 97%      !important                    ;
+row-gap:20px;
+margin-top: 20px
 }
 .predmety__form__div__radio {
 appearance: none                    ;
@@ -2675,6 +2703,15 @@ font-family: Noto_Sans_bold                  ;
 display: none                                ;
 width: 0px                                   ;
 }
+.main-page__btn__btn-search{
+    border:none;
+    background:none;
+    position: relative;
+    left: -13vw;
+}
+.main-page__btn__btn-search img{
+    width: 33px
+}
 .extra.horiz-div.predmety__card__extra-info{
 width: 0px                                   ;
 }
@@ -2696,7 +2733,101 @@ flex-direction: column                       ;
 font-family: Noto_Sans_regular !important    ;
 font-size: 14px !important                   ;
 gap: 10px !important                         ;
-width: 12vw !important                       ;
-height: 60px                                 ;
+width: 24.5vw !important                       ;
+height: auto                                ;
+}
+.btn.main-page__menu__btn:first-child{
+    margin-left:0px;
+}
+.predmety__menu__btn.profil img{
+    margin: 0px 5px;
+    height: 22px;
+    width: auto;
+}
+.predmety__form-main {
+margin: 0px 0px 5px                           ;
+gap: 20px                                     ;
+max-width: 87vw                               ;
+}
+.predmety__form__div-medium{
+font-family: Noto_Sans_regular !important ;
+font-size: 14px !important                ;
+gap: 10px !important                      ;
+width: 50% !important                     ;
+height: auto                              ;
+}
+.predmety__form__div-small{
+gap: 5px                                      ;
+align-items: flex-start                         ;
+}
+.details__container {
+background-color: white ;
+display: flex           ;
+flex-direction: column  ;
+height: auto            ;
+width: 100vw            ;
+justify-content: center ;
+align-items: center     ;
+z-index: -1             ;
+padding: 0px 5px 20px   ;
+}
+.details__bg {
+background-image: url("../../../../static/images/bgDetails.png");
+
+height: auto      ;
+min-height: 100vh ;
+
+background-position: center  ;
+background-repeat: no-repeat ;
+background-size: cover       ;
+padding-top: 100px           ;
+width: 100vw;
+}
+.main-page__btn__addPredmety, .main-page__btn__addPredmety a {
+color: white                    ;
+background-color:               #de4929;
+border-radius: 40px             ;
+height: 50px                    ;
+width: 60vw                     ;
+border: solid 1px               #de4929;
+font-size: 17px                 ;
+font-family: Noto_Sans_regular ;
+}
+
+.main-page__input-search {
+border-radius: 40px             ;
+height: 50px                    ;
+width: 60vw                     ;
+border: solid 1px               #9b9b93;
+padding: 5px                    ;
+padding-left: 30px              ;
+font-size: 17px                 ;
+font-family: Noto_Sans_regular ;
+}
+.btn.main-page__menu__btn:first-child {
+margin-left: 7vw     !important                  ;
+font-size: 13px                 ;
+font-family: Noto_Sans_regular ;
+}
+
+.main-page__menu__btn.burger img {
+width: 30px                        ;
+margin-right: 7vw                 ;
+}
+.main-page__main-container {
+display: flex                       ;
+position: relative                  ;
+top: 75px                          ;
+width: 80vw                         ;
+height: 900px                       ;
+margin: 0 auto
+}
+.predmety__form__div__input-radio {
+justify-content: space-between      ;
+column-gap: 127px                    ;
+flex-wrap: wrap                     ;
+width: 85%      !important                    ;
+row-gap:20px;
+margin-top: 20px
 }
 }

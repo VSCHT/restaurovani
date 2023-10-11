@@ -19,13 +19,11 @@ export const SaveButton = ({ title, ...uiProps }) => {
         disabled={isSubmitting}
         loading={isSubmitting}
         onClick={() => {
-          // save()
-          const finished = formik.validateForm();
-          if (finished == null) {
+          console.log(formik.isValid);
+          if (formik.isValid== false) {
             console.log("move to success");
             save();
           }
-          console.log(finished);
         }}
         content="ULOŽIT"
         type="submit"
