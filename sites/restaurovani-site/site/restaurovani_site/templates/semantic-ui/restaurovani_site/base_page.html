@@ -93,7 +93,7 @@
                       class="menu__profil-img"
                       alt="user icon"
                       src="{{ url_for('static', filename='images/user-icon.png') }}"
-                    />novakova@gmail.com<img
+                    />{{current_user.email}}<img
                       class="menu__profil-img"
                       alt="dropdown icon"
                       src="{{ url_for('static', filename='images/chevron-down-white.png') }}"
@@ -185,3 +185,4 @@
 
   </body>
 </html>
+

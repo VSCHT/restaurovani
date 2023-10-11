@@ -1,12 +1,8 @@
 import { createSearchAppInit } from '@js/invenio_search_ui'
 import {
   ActiveFiltersElement,
-  BucketAggregationElement,
-  BucketAggregationValuesElement,
   CountElement,
   ErrorElement,
-  SearchAppFacets,
-  SearchApp,
   SearchAppResultOptions,
   SearchAppSearchbarContainer,
   SearchFiltersToggleElement,
@@ -14,7 +10,6 @@ import {
 } from '@js/oarepo_ui/search'
 import {
   EmptyResultsElement,
-  MultipleSearchBarElement,
   ResultsGridItemWithState,
   ResultsListItemWithState,
   SearchAppLayout,
@@ -29,27 +24,22 @@ const appName = 'Restoration_ui.Search'
 const SearchAppSearchbarContainerWithConfig = parametrize(SearchAppSearchbarContainer, { appName: appName })
 const ResultsListItemWithConfig = parametrize(ResultsListItemWithState, { appName: appName })
 const ResultsGridItemWithConfig = parametrize(ResultsGridItemWithState, { appName: appName })
-// const SearchAppLayoutWithConfig = parametrize(SearchAppLayoutWithState, { appName: appName })
 
 export const defaultComponents = {
   [`${appName}.ActiveFilters.element`]: ActiveFiltersElement,
-  // [`${appName}.BucketAggregation.element`]: BucketAggregationElement,
   [`${appName}.BucketAggregation.element`]: MyBucketAggregation,
-  // [`${appName}.BucketAggregationValues.element`]: BucketAggregationValuesElement,
   [`${appName}.BucketAggregationValues.element`]: MyBucketAggregationValues,
   [`${appName}.Count.element`]: CountElement,
   [`${appName}.EmptyResults.element`]: EmptyResultsElement,
   [`${appName}.Error.element`]: ErrorElement,
   [`${appName}.ResultsGrid.item`]: ResultsGridItemWithConfig,
   [`${appName}.ResultsList.item`]: ResultsListItemWithConfig,
-  // [`${appName}.SearchApp.facets`]: SearchAppFacets,
   [`${appName}.SearchApp.facets`]: MyFacets,
   [`${appName}.SearchApp.layout`]: SearchAppLayout,
   [`${appName}.SearchApp.searchbarContainer`]: SearchAppSearchbarContainerWithConfig,
   [`${appName}.SearchApp.sort`]: SearchAppSort,
   [`${appName}.SearchApp.resultOptions`]: SearchAppResultOptions,
   [`${appName}.SearchFilters.Toggle.element`]: SearchFiltersToggleElement,
-  // [`${appName}.SearchBar.element`]: MultipleSearchBarElement,
   [`${appName}.SearchBar.element`]: CustomSearchBar,
   
 }

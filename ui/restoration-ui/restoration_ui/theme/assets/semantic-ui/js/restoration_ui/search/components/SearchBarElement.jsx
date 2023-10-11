@@ -19,11 +19,3 @@ export const SearchBarCustom = ({ elementId, buildUID, appName }) => {
 
   );
 };
-
-// SearchBar.propTypes = {
-//   elementId: PropTypes.string,
-// };
-
-// SearchBar.defaultProps = {
-//   elementId: "header-search-bar",
-// };
