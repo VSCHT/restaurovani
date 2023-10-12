@@ -10,7 +10,9 @@ color:                                                      #111;
 padding: 0px !important                                     ;
 line-height: 15px !important                                ;
 }
-
+.ui.form .field > label:has(.predmety__form__div__label){
+    width: 15vw !important;
+}
 .label.predmety__form__div__label{
 font-family: Noto_Sans_regular !important ;
 font-size: 17px !important                ;

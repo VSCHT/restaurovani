@@ -1,14 +1,14 @@
 
 
 body .ui.selection.dropdown  {
-    border-radius: @selectionBorderRadius;
-    border: @selectionBorder;
+    border-radius: 40px;
+    border: 1px solid #555;
     width: 25vw;
 }
 
 .ui.selection.dropdown.active {
     border-radius: 20px;
-    border: @selectionBorder;
+    border: 1px solid #555;
 
 }
 .ui.active.visible.fluid.multiple.search.selection.dropdown{
@@ -28,14 +28,14 @@ body .ui.selection.dropdown input{
 }
 
 .ui.selection.active.dropdown .menu{
-    border: @selectionBorder;
+    border: 1px solid #555;
 
 }
 .ui.selection.active.dropdown:hover .menu {
     border: 1px solid #111111
 }
 .ui.selection.active.dropdown .menu.active{
-    border: @selectionBorder;
+    border: 1px solid #555;
 
 }
 

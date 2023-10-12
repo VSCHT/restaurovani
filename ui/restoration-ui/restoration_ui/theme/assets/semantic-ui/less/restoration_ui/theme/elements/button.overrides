@@ -154,7 +154,7 @@ color: white !important                    ;
 background-color:                          #de4929 !important;
 border-radius: 20px !important             ;
 height: 40px !important                    ;
-width: 80vw !important                     ;
+width: 30vw !important                     ;
 border: none !important                    ;
 margin: 10px !important                    ;
 font-size: 13px !important                 ;
@@ -180,11 +180,12 @@ font-size: 13px !important                                          ;
 font-family: Noto_Sans_semibold !important                          ;
 }
 .ui.button.btn.predmety__input-search__searchbar-burger img {
-width: 50px                                                         ;
+width: 35px                                                         ;
 height: auto                                                        ;
 }
 .ui.button.btn.predmety__input-search__searchbar-burger {
-background: none !important
+background: none !important;
+padding-left: 0px;
 }
 .ui.button.predmety__title-search__searchbar {
 gap: 40px                                                           ;
@@ -196,8 +197,8 @@ height: auto                                                        ;
 }
 .ui.button.predmety__input-search__searchbar-burger.btn-close{
 position: relative                                                  ;
-left: 90vw                                                          ;
-top: 70px
+left: 85vw                                                          ;
+top: 26px
 }
 .ui.button.predmety__input-search__searchbar-burger.btn-close img {
 width: 20px                                                         ;

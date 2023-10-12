@@ -79,6 +79,17 @@
           
             {%- block topMenu %}
             <div class="main-page__menu" aria-label="Main Menu">
+              <button
+                    class="btn predmety__input-search__searchbar-burger"
+                    alt="Toggle Filter Menu"
+                    onclick="toggleSidebar()"
+                  >
+                    <img
+                      rel="icon"
+                      src="{{ url_for('static', filename='images/menu-icon.png') }}"
+                      alt="burger filter button"
+                    />
+                  </button>
                 <button class="btn main-page__menu__btn">
                   <img
                     class="details__div__docs-img"
@@ -116,10 +127,46 @@
                   />
                 </button>
               </div>
+
+              <div class="overlay"></div>
+              <div class="predmety__sidebar">
+                <div class="vert-div predmety__sidebar__container">
+                  <button class="btn main-page__menu__btn-sb">
+                    <img
+                      class="details__div__docs-img"
+                      src="{{ url_for('static', filename='images/arrow-left.png') }}"
+                      alt="arrow back"
+                    />RESTAUROVÁNÍ VŠCHT
+                  </button>
+
+                  
+                    {%- if config.ACCOUNTS and current_user.is_authenticated %}
+                    <button class="btn predmety_page menu__btn-sb" onclick="showDropdown()">
+                      <img
+                        class="menu__profil-img"
+                        alt="user icon"
+                        src="{{ url_for('static', filename='images/user-icon.png') }}"
+                      />{{current_user.email}}<img
+                        class="menu__profil-img dropdown-icon"
+                        alt="dropdown icon"
+                        src="{{ url_for('static', filename='images/chevron-down-white.png') }}"
+                      />
+                    </button>
+                    <div class="dropdown-content ">
+                      <a href="#">Profil</a>
+                      <a href="#">Nastaveni</a>
+                    </div>
+                    {%- endif %}
+                  
+                
+                  </div>
+                  
+                
+              </div>
             {%- endblock topMenu %}
         <!-- </div> -->
 
-
+              
         
           
     {%- block body %}
@@ -183,6 +230,32 @@
     {%- endblock body %}
  
 
+    <script>
+      const sidebarEl= document.querySelector(".predmety__sidebar");
+      const overlay = document.querySelector(".overlay");
+      const userDropdown= document.querySelector(".predmety_page menu__btn-sbr");
+      const contentDropdown= document.querySelector(".dropdown-content");
+      const dropdownIcon = document.querySelector('.dropdown-icon');
+
+      function toggleSidebar(){
+        if (sidebarEl.style.left === "-300px" || sidebarEl.style.left === "") {
+          sidebarEl.style.left = "0";
+          overlay.classList.add("active");
+        } else {
+          sidebarEl.style.left = "-300px";
+          overlay.classList.remove("active");
+        }
+      }
+      function showDropdown(){
+        if (contentDropdown.style.display === "none" ) {
+          contentDropdown.style.display = "flex";
+          dropdownIcon.classList.add('rotated');
+        } else {
+          contentDropdown.style.display= "none";
+          dropdownIcon.classList.remove('rotated');
+        }
+      }
+    </script>
   </body>
 </html>
 

@@ -37,7 +37,7 @@
 
 .ui.list .item .checkbox{
     
-    margin-right: 5px !important;
+    margin-right: 35px !important;
     width: 15px
 }
 }

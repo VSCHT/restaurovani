@@ -27,11 +27,11 @@
     font-size: 16px !important;
     font-family: Noto_Sans_bold !important;
     color: #626262 !important;
-    height: 55px !important;
+    height: 45px !important;
     width: 300px !important;
 }
 .ui.icon.input.predmety__input-search{
-    width: 80%;
+    width: 50vw;
     padding: 0px !important;
     margin: 0 auto;
 }

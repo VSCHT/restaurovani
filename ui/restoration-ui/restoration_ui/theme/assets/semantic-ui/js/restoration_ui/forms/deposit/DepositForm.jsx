@@ -12,6 +12,7 @@ import {
   GroupField,
   ToggleField,
   ArrayField,
+  TextAreaField
 } from "react-invenio-forms";
 
 import {
@@ -148,7 +149,7 @@ export const DepositForm = () => {
                     <KeyWordsInput fieldPath="metadata.restorationObject.keywords" />
 
                     <div className="vert-div predmety__form__div">
-                      <TextField
+                      <TextAreaField
                         name="metadata.restorationObject.description"
                         aria-label="Popis"
                         fieldPath="metadata.restorationObject.description"

@@ -8,9 +8,10 @@ import {
   List,
   Divider,
   Label,
-  Icon
+  Icon,
+  Form
 } from "semantic-ui-react";
-import { TextField, FieldLabel } from "react-invenio-forms";
+import { TextField, FieldLabel, TextAreaField } from "react-invenio-forms";
 import { getIn } from "formik";
 import _reverse from "lodash/reverse";
 import _join from "lodash/join";
@@ -35,7 +36,27 @@ export const KeyWordsInput = ({ fieldPath }) => {
       setInputValue("");
     }
   };
+  console.log(getIn(values));
+  const _defaultValue = typeof getIn(values, fieldPath) == Array ? [] : "";
+  // const _defaultValue = multiple ? [] : "";
+  const value = getIn(values, fieldPath || _defaultValue);
+  console.log(getIn(values));
 
+  const vals=()=>{
+    return(
+      value.length > 0 && (
+        <>
+          <Grid>
+            {value.map((word, index) => (
+              <Label key={index}>
+                <Icon name="key" /> {word}
+              </Label>
+            ))}
+          </Grid>
+        </>
+      )
+    )
+  }
   return (
     <>
       <TextField
@@ -44,7 +65,7 @@ export const KeyWordsInput = ({ fieldPath }) => {
         fieldPath={fieldPath}
         fluid
         placeholder="Napište klíčová slova..."
-        value={inputValue}
+        value={<Label>Lala</Label>}
         // onChange={handleInputChange}
         onChange={(e, { data, formikProps }) => {
           handleInputChange(e);
@@ -60,15 +81,42 @@ export const KeyWordsInput = ({ fieldPath }) => {
           />
         }
       />
-
+       <Form.TextArea
+        fluid
+        placeholder="Napište klíčová slova..."
+        value={value}
+        onChange={handleInputChange}
+        onKeyPress={handleEnterPress}
+        label={
+          <FieldLabel
+            htmlFor={`metadata.restorationObject.keywords`}
+            className="predmety__form__div__label"
+            label={"Klíčová slova"}
+          />
+        }
+        labelPosition="left"
+      />
+      <TextAreaField
+        fluid
+        placeholder="Napište klíčová slova..."
+        onKeyPress={handleEnterPress}
+        label={
+          <FieldLabel
+            htmlFor={`metadata.restorationObject.keywords`}
+            className="predmety__form__div__label"
+            label={"Klíčová slova"}
+          />
+        }
+        labelPosition="left"
+      />
       {words.length > 0 && (
         <>
           <Grid>
-          {words.map((word, index)=>(
-                <Label key={index}>
+            {words.map((word, index) => (
+              <Label key={index}>
                 <Icon name="key" /> {word}
               </Label>
-              ))}
+            ))}
           </Grid>
         </>
       )}

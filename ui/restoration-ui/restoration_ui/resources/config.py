@@ -22,7 +22,7 @@ class RestorationUiResourceConfig(RecordsUIResourceConfig):
             "layout": "restoration_ui/Detail.html.jinja",
             "blocks": {
                 "record_main_content": "Main",
-                # "record_sidebar": "Sidebar"                
+                "record_sidebar": "Sidebar"                
             },
         },
         "search": {"layout": "restoration_ui/Search.html.jinja", "app_id": "Restoration_ui.Search"},

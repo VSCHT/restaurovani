@@ -33,7 +33,7 @@ text-align: left                                                                
 @media only screen and (min-width: 1200px) {
 
 .grid.predmety__main-content__nores{
-    gap: 20px;
+gap: 20px                                   ;
 }
 .grid.horiz-div.predmety__card-content{
 background-color:                           #ffffff ;
@@ -213,8 +213,8 @@ background-color:                                                  #aaaaa2;
 }
 }
 @media only screen and (min-width: 992px) and (max-width: 1200px){
-    .grid.predmety__main-content__nores{
-    gap: 20px;
+.grid.predmety__main-content__nores{
+gap: 20px                                                          ;
 }
 .grid.horiz-div.predmety__card-content{
 background-color:                                                  #ffffff ;
@@ -389,7 +389,7 @@ background-color:                  #aaaaa2;
 
 @media only screen and (max-width: 730px) {
 .grid.predmety__main-content__nores{
-    gap: 30px;
+gap: 30px                                   ;
 }
 .ui.relaxed.grid{
 width: 100%                                 ;
@@ -479,8 +479,7 @@ gap: 10px                                                   ;
 display: flex                                               ;
 flex-direction: column                                      ;
 margin-left: 5vw !important                                 ;
-width: 60vw                                                 ;
-margin-top: 70px !important                                 ;
+width: 75%                                                 ;
 }
 .ui.grid.predmety__title-search-fixed{
 position: fixed                                             ;
@@ -597,8 +596,8 @@ margin: 0 auto !important                  ;
 }
 
 @media only screen and (max-width: 992px) and (min-width: 730px) {
-    .grid.predmety__main-content__nores{
-    gap: 30px;
+.grid.predmety__main-content__nores{
+gap: 30px                                                          ;
 }
 .grid.horiz-div.predmety__card-content{
 background-color:                                                  #ffffff ;
@@ -650,7 +649,7 @@ align-content: stretch                     ;
 }
 
 .ui.column.vert-div.predmety__aside {
-position: fixed !important            ;
+position: relative !important         ;
 top: 270px                            ;
 gap: 60px                             ;
 height: auto                          ;
