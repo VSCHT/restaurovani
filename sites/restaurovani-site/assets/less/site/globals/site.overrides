@@ -159,9 +159,13 @@ h4 {
 
   .main-page__menu__btn,
   .main-page__menu__btn a {
-    margin-left: 10px;
+    margin-left: 10vw;
     font-size: 17px;
     font-family: Noto_Sans_regular;
+  }
+ 
+.main-page__menu__btn-second {
+    margin-left: 0px;
   }
 
   .btn.main-page__menu__btn:first-child {
@@ -282,17 +286,9 @@ left: 17vw                      ;
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 13px;
   }
-  .main-page__btn__btn-search {
-    border: none;
-    background: none;
-    position: relative;
-    left: -3vw;
-  }
-  .main-page__btn__btn-search img {
-    width: 30px;
-  }
+  
   .main-page__btn__addPredmety,
   .main-page__btn__addPredmety a {
     color: white;
@@ -315,6 +311,26 @@ left: 17vw                      ;
     padding: 20px 25px;
     font-family: Noto_Sans_regular;
   }
+ 
+  .main-page__btn__btn-search {
+    display: none;
+  }
+  
+  .main-page__input-search:not(:placeholder-shown) ~ .main-page__btn__btn-search {
+    display: inline-block;
+    border: none;
+    background: none;
+    position: relative;
+    height: 30px;
+    left: -50px;
+    top: -5px;
+  }
+
+  .main-page__btn__btn-search img {
+    width: 30px;
+  }
+
+ 
 
   .predmety__body-bg {
     background-color: #eaeae2;
@@ -681,7 +697,7 @@ left: 17vw                      ;
   }
   .predmety__form__div__input-radio {
     justify-content: space-between;
-    column-gap: 10vw;
+    column-gap: 7vw;
     flex-wrap: wrap;
     width: 90%;
     row-gap: 20px;
@@ -754,6 +770,8 @@ left: 17vw                      ;
     align-items: center;
     z-index: -1;
     padding: 70px;
+    display: flex;
+    align-items: center
   }
 
   /* header */
@@ -1067,6 +1085,10 @@ min-width: 992px                      ; */
     font-size: 15px;
     font-family: Noto_Sans_regular;
   }
+ 
+  .main-page__menu__btn-second {
+    margin-left: 0px;
+  }
 
   .btn.main-page__menu__btn:first-child {
     margin-left: 10vw;
@@ -1135,15 +1157,7 @@ margin-right: 10vw                               ;
     width: auto;
     height: auto;
   }
-  .main-page__btn__btn-search {
-    border: none;
-    background: none;
-    position: relative;
-    left: -3.5vw;
-  }
-  .main-page__btn__btn-search img {
-    width: 22px;
-  }
+
   /* .main-page__div__main-image__div-arrows{
 width: 80px                                 ;
 height: auto                                ;
@@ -1192,7 +1206,7 @@ width: 60px
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 10px;
     margin-right: 40px;
   }
   .main-page__btn__addPredmety,
@@ -1210,14 +1224,27 @@ width: 60px
     background-color: #e76c50;
   }
   .main-page__input-search {
+    
     border-radius: 32px;
-    height: 30px;
-    width: 18vw;
-    border: solid 1px #9b9b93;
-    padding: 15px 15px;
-    font-family: Noto_Sans_regular;
+   height: 30px;
+   width: 18vw;
+   border: solid 1px #9b9b93;
+   padding: 15px 15px;
+   font-family: Noto_Sans_regular;
   }
-
+  .main-page__input-search:not(:placeholder-shown) ~ .main-page__btn__btn-search{
+    display: inline-block;
+    border: none;
+    background: none;
+    position: relative;
+    left: -3.5vw;
+  }
+  .main-page__btn__btn-search {
+   display: none;
+  }
+  .main-page__btn__btn-search img {
+    width: 22px;
+  }
   /* predmety page */
 
   /* bg */
@@ -1915,15 +1942,18 @@ z-index: -1                            ;
     margin-right: 10vw;
   }
   .main-page__btn__btn-search {
+    display: none;
+  }
+  .main-page__btn__btn-search img {
+    width: 38px;
+  }
+  .main-page__input-search:not(:placeholder-shown) ~ .main-page__btn__btn-search{
+    display: inline-block;
     border: none;
     background: none;
     position: relative;
     left: -10vw;
   }
-  .main-page__btn__btn-search img {
-    width: 38px;
-  }
-
   .main-page__menu__btn-group {
     visibility: hidden;
     position: absolute;
@@ -2141,7 +2171,6 @@ margin: 0 auto !important      ;
     font-size: 25px;
     width: auto;
     line-height: 27px;
-    text-align: center
   }
   .description.parag {
     font-size: 15px;
@@ -2786,10 +2815,10 @@ margin: 0 auto !important      ;
     border: none;
     background: none;
     position: relative;
-    left: -13vw;
+    left: -12vw;
   }
   .main-page__btn__btn-search img {
-    width: 33px;
+    width: 28px;
   }
   .extra.horiz-div.predmety__card__extra-info {
     width: 0px;
@@ -2978,5 +3007,11 @@ margin: 0 auto !important      ;
   img.menu__profil-img {
     margin: 0px 5px
   }
-  
+  .predmety__card__title {
+    font-family: Noto_Sans_regular;
+    font-size: 25px;
+    width: auto;
+    line-height: 27px;
+    text-align: center
+  }
 }

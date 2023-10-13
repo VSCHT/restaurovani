@@ -7,7 +7,7 @@ margin-right: 0px !important;
 .ui.container.predmety__body-bg{
 background-color:                       #eaeae2;
 width: 100vw                            ;
-min-height: 100%                        ;
+min-height: 100vh                       ;
 background-size: cover                  ;
 margin-right: 0px                       ;
 margin-left:0px;
@@ -21,7 +21,7 @@ width: auto !important;
 display: flex !important                    ;
 flex-direction: column !important           ;
 background-color:                           #eaeae2;
-height: 165px                               ;
+height: 57px                               ;
 width: 51vw                                 ;
 align-items: flex-end !important            ;
 z-index: 1                                  ;

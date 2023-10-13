@@ -63,7 +63,7 @@
 }
 
 .ui.form .fields{
-    margin: 0px 0px 15px !important;
+    margin: 10px 0px 15px !important;
     width: auto ;
 }
 }
@@ -144,7 +144,7 @@
 }
 
 .ui.form .fields{
-    margin: 0px  0px 15px !important;
+    margin: 15px  0px 15px !important;
     width: auto ;
     display: flex;
 }

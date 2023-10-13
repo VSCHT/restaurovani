@@ -9,7 +9,7 @@ theme = WebpackThemeBundle(
             entry={
                 "restoration_ui_components": "./js/restoration_ui/custom-components.js",
                 "restoration_ui_search": "./js/restoration_ui/search/index.js",
-                "restoration_ui_deposit_form": "./js/restoration_ui/forms/deposit/index.js",
+                "restoration_ui_deposit_form": "./js/restoration_ui/forms/   deposit/index.js",
             },
             dependencies={
                 "react-searchkit": "^2.0.0",

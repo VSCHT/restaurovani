@@ -1,0 +1,10 @@
+{#def record, form_config, data, extra_context, ui_links #}
+
+
+{% extends "oarepo_ui/form.html" %}
+
+{%- block javascript %}
+    {{ super() }}
+    {{ webpack['restoration_ui_deposit_form.js'] }}
+{%- endblock %}
+

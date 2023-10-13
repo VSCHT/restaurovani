@@ -26,8 +26,8 @@ class RestorationUiResourceConfig(RecordsUIResourceConfig):
             },
         },
         "search": {"layout": "restoration_ui/Search.html.jinja", "app_id": "Restoration_ui.Search"},
-        "edit": {"layout": "restoration_ui/Deposit.html.jinja"},
-        "create": {"layout": "restoration_ui/Deposit.html.jinja"},
+        "edit": {"layout": "restoration_ui/EditObjectForm.html.jinja"},
+        "create": {"layout": "restoration_ui/CreateObjectForm.html.jinja"},
     }
     def search_app_config(self, identity, api_config, overrides={}, **kwargs):
         return super().search_app_config(identity, api_config,overrides=overrides, endpoint='/api/user/restoration/', **kwargs)

@@ -20,7 +20,7 @@
           />Nový předmět</a
         >
       </button>
-      <button class="btn main-page__menu__btn">
+      <button class="btn  main-page__menu__btn main-page__menu__btn-second">
         <img
           rel="icon"
           src="{{ url_for('static', filename='images/settings-01.png') }}"
@@ -30,7 +30,7 @@
       {%- else %}
       <button class="btn main-page__menu__btn">
         <a class="btn main-page__menu__btn" href="{{ url_for('security.login') }}"
-          >Log In</a
+          >Přihlásit se</a
         >
       </button>
       {%- endif %}

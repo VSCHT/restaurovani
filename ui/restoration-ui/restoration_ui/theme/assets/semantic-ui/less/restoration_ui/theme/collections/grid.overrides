@@ -98,7 +98,7 @@ display: flex !important          ;
 flex-direction: column !important ;
 top: 150px !important             ;
 right: -6vw !important            ;
-gap: 70px !important              ;
+gap: 60px !important              ;
 height: 100% !important           ;
 width: 20vw !important            ;
 align-content: stretch !important ;
@@ -419,7 +419,7 @@ flex-direction: column                      ;
 }
 .ui.grid.predmety__title-search__searchbar{
 justify-content: space-between              ;
-width: 80vw                                 ;
+width: 70vw                                 ;
 }
 
 .ui.grid.vert-div.predmety_main-container{

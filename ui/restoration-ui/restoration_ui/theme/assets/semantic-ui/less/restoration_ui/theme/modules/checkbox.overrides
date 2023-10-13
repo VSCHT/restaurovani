@@ -1,92 +1,43 @@
-/* full cb */
-.ui.checkbox input[type="radio"], .ui.radio.checkbox input[type="radio"]{
-cursor: pointer                    ;
-position: absolute                 ;
-top: 0px                           ;
-left: 0px                          ;
-opacity: 0 !important              ;
-outline: none                      ;
-z-index: 3                         ;
-color:                             #E0472B !important;
-width: 10vw !important             ;
+
+
+.ui.checkbox input:active ~ label,
+.ui.checkbox input:checked ~ label:before ,
+.ui.checkbox input:checked ~ label:after,
+.ui.checkbox input:checked:focus ~ label,
+.ui.checkbox input:focus ~ label {
+  color: #e0472b !important;
 }
 
-.ui.radio.checkbox input:focus:checked ~ .box:before,
-.ui.radio.checkbox input:focus:checked ~ label:before {
-background-color:                                       #E0472B !important;
-}
-.ui.radio.checkbox input:focus:checked ~ .box:after,
-.ui.radio.checkbox input:focus:checked ~ label:after {
-background-color:                                       #E0472B !important;
+.ui.radio.checkbox {
+  font-family: Noto_Sans_regular !important ;
+  font-size: 17px !important                ;
+  height: 20px;
 }
 
-.ui.radio.checkbox .box:before,
-.ui.radio.checkbox label:before, .ui.radio.checkbox:before {
-content: "";
-width: 8px                        ;
-height: 8px                       ;
-border-radius: 50%                ;
-transform: scale(0)               ;
-background-color:                 #e0472b;
-font-family: Noto_Sans_regular !important ;
-font-size: 17px !important                ;
-}
-.ui.radio.checkbox .box:after,
-.ui.radio.checkbox label:after, field-label-class invenio-field-label:after
-{
-border: none                      ;
-content: '' !important            ;
-line-height: 20px                 ;
-
-border: 1px solid #E0472B ;
-width: 15px       ;
-font-family: Noto_Sans_regular !important ;
-font-size: 17px !important                ;
-height: 15px      ;
+.ui.checkbox input:checked ~ label:before {
+  border-color: #e0472b !important;
+  width: 19px !important;
+  height: 19px !important;
 }
 
-.ui.checked.radio.checkbox.predmety__form__div__radio {
-border: 2px solid                                       #E0472B !important;
-}
-.ui.checkbox input:active ~ label, .ui.checkbox input:checked ~ label:after, .ui.checkbox input:focus ~ label{
-color:                                                  #E0472B !important;
+.ui.checkbox input:checked ~ label:after {
+  background-color: #e0472b !important;
+  box-shadow: none !important;
+  width: 19px !important;
+  height: 19px !important;
+  color: #e0472b !important;
 }
 
-.ui.checkbox .box:before, .ui.checkbox label:before{
-    width: 25px !important;
-    height: 25px !important;
-    border: 1px solid #222;
-    font-size: 20px;
+.ui.checkbox input ~ label:before {
+  width: 19px !important;
+  height: 19px !important;
+  border: 2px solid #222;
+}
+
+@media only screen and (min-width: 992px) {
+  .ui.radio.checkbox {
     font-family: Noto_Sans_regular !important ;
-font-size: 17px !important                ;
-
-}
-.ui.checkbox .box:after, .ui.checkbox label:after{
-    width: 25px !important;
-    height: 25px !important;
-    border: 1px solid #222;
-    font-size: 20px;
-    font-family: Noto_Sans_regular !important ;
-font-size: 17px !important                ;
-}
-
-
-@media only screen and (min-width: 992px){
-    .ui.checkbox .box:before, .ui.checkbox label:before{
-    width: 20px !important;
-    height: 20px !important;
-    border: 1px solid #222;
-    font-size: 17px;
-    font-family: Noto_Sans_regular !important ;
-font-size: 17px !important                ;
-
-}
-    .ui.checkbox .box:after, .ui.checkbox label:after{
-    width: 20px !important;
-    height: 20px !important;
-    border: 1px solid #222;
-    font-size: 17px;
-    font-family: Noto_Sans_regular !important ;
-font-size: 17px !important                ;
-}
+    font-size: 15px !important                ;
+    height: 20px;
+  }
 }
