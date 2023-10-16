@@ -81,7 +81,7 @@
               <form
                 action="{{ url_for('restoration-ui.search') }}"
                 role="search"
-                class="horiz-div main-page__input"
+                class="vert-div main-page__input"
               >
                 <input
                   type="text"
@@ -89,17 +89,15 @@
                   class="main-page__input-search parag"
                   placeholder="{{ _('Vyhledat předmět ...') }}"
                 />
-                <button type="submit" class="main-page__btn__btn-search"><img src="{{ url_for('static', filename='images/search-icon.png') }}"></button>
-              </form>
-            </div>
-
-           
-              <button
+                <button type="submit" 
                 class="main-page__btn__addPredmety parag"
                 aria-label="Tlacitko prejit na predmety"
               >
                 <a href="{{ url_for('restoration-ui.search') }}">PŘEDMĚTY</a>
               </button>
+              </form>
+              
+            </div>
            
           </div>
         </div>

@@ -75,7 +75,7 @@ export const MyBucketAggregation = withState(({ title, containerCmp }) => {
         </Accordion.Title>
         <Accordion.Content
           active={activeIndex === title}
-          class="predmety__aside__dropdown-container"
+          className="predmety__aside__dropdown-container"
         >
           {containerCmp}
         </Accordion.Content>

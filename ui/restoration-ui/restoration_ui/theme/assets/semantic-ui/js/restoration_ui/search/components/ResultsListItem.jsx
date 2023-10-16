@@ -111,7 +111,7 @@ console.log(searchAppConfig)
             </Grid.Column>
             <Item.Group className="horiz-div predmety__card__extra-info">
               <Item.Extra className="horiz-div predmety__card__extra-info">
-                <p class="parag">Vlozeno: {created.slice(0, 12)}</p>
+                <p className="parag">Vlozeno: {created.slice(0, 12)}</p>
               </Item.Extra>
               <DetailsButton
                 className="predmety__card__btn"

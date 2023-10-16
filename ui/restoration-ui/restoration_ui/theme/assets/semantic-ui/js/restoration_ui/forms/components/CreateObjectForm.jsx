@@ -111,105 +111,96 @@ export const CreateObjectForm = () => {
         formik={{
           initialValues: record,
           validateOnChange: false,
-          validateOnBlur: true,
+          validateOnBlur: false,
           enableReinitialize: true,
           validationSchema: DepositValidationSchemaDraft,
         }}
       >
         {record.metadata == null ? (
-          <Overridable id="Deposit.AccordionFieldBasicInformation.container">
-            <AccordionField
-              includesPaths={[
-                "metadata.restorationWork.restorer",
-                "metadata.restorationObject.title[0].value",
-                "metadata.restorationObject.category",
-              ]}
-              active
-              label="Základní informace"
-            >
-              <div className="vert-div predmety__form">
-                <h3 className="predmety__form__h">Vytvoření nového předmětu</h3>
-                <div className="vert-div predmety__form-main">
-                  <div className="vert-div predmety__form__div">
-                    <TextField
-                      name="metadata.restorationObject.title[0].value"
-                      aria-label="Název předmětu"
-                      fieldPath="metadata.restorationObject.title[0].value"
-                      required
-                      label={
-                        <FieldLabel
-                          htmlFor="metadata.restorationObject.title[0].value"
-                          className="predmety__form__div__label"
-                          label="Název předmětu"
-                        />
-                      }
+          <div className="vert-div predmety__form">
+            <h3 className="predmety__form__h">Vytvoření nového předmětu</h3>
+            <div className="vert-div predmety__form-main">
+              <div className="vert-div predmety__form__div">
+                <TextField
+                  name="metadata.restorationObject.title[0].value"
+                  aria-label="Název předmětu"
+                  fieldPath="metadata.restorationObject.title[0].value"
+                  required
+                  label={
+                    <FieldLabel
+                      htmlFor="metadata.restorationObject.title[0].value"
+                      className="predmety__form__div__label"
+                      label="Název předmětu"
                     />
-                  </div>
-                  <div className="vert-div predmety__form__div">
-                    <TextField
-                      name="metadata.restorationWork.restorer"
-                      aria-label="Restauroval(a)"
-                      fieldPath="metadata.restorationWork.restorer"
-                      required
-                      label={
-                        <FieldLabel
-                          htmlFor="metadata.restorationWork.restorer"
-                          className="predmety__form__div__label"
-                          label="Restauroval(a)"
-                        />
-                      }
-                    />
-                  </div>
-
-                  <div className="vert-div predmety__form__div">
-                    <Form>
-                      <Label
-                        for="metadata.restorationObject.category"
-                        className="predmety__form__div__label"
-                        required
-                      >
-                        Kategorie
-                      </Label>
-                      <Form.Group
-                        className="horiz-div predmety__form__div__input-radio"
-                        fieldPath="metadata.restorationObject.category"
-                        name="metadata.restorationObject.category"
-                      >
-                        {categories.map((option) => (
-                          <Form.Field key={option.value}>
-                            <div
-                              key={option.value}
-                              className="predmety__form__div__label horiz-div"
-                            >
-                              <RadioField
-                                label={option.label}
-                                // className="predmety__form__div__radio"
-                                fieldPath="metadata.restorationObject.category"
-                                name="metadata.restorationObject.category"
-                                checked={
-                                  checked == option.value
-                                  // _get(record, "metadata.restorationObject.category") === true
-                                }
-                                onChange={({ data, formikProps }) => {
-                                  setChecked(option.value);
-                                  formikProps.form.setFieldValue(
-                                    "metadata.restorationObject.category",
-                                    option.value
-                                  );
-                                }}
-                                optimized
-                              />
-                            </div>
-                          </Form.Field>
-                        ))}
-                      </Form.Group>
-                    </Form>
-                  </div>
-                </div>
-                <SaveButton />
+                  }
+                />
               </div>
-            </AccordionField>
-          </Overridable>
+              <div className="vert-div predmety__form__div">
+                <TextField
+                  name="metadata.restorationWork.restorer"
+                  aria-label="Restauroval(a)"
+                  fieldPath="metadata.restorationWork.restorer"
+                  required
+                  label={
+                    <FieldLabel
+                      htmlFor="metadata.restorationWork.restorer"
+                      className="predmety__form__div__label"
+                      label="Restauroval(a)"
+                    />
+                  }
+                />
+              </div>
+
+              <div className="vert-div predmety__form__div">
+                <Form>
+                  <Label
+                    for="metadata.restorationObject.category"
+                    className="predmety__form__div__label"
+                    required
+                  >
+                    Kategorie
+                  </Label>
+                  <Form.Group
+                    className="horiz-div predmety__form__div__input-radio"
+                    fieldPath="metadata.restorationObject.category"
+                    name="metadata.restorationObject.category"
+                  >
+                    {categories.map((option) => (
+                      <Form.Field key={option.value}>
+                        <div
+                          key={option.value}
+                          className="predmety__form__div__label horiz-div"
+                        >
+                          <RadioField
+                            label={option.label}
+                            // className="predmety__form__div__radio"
+                            fieldPath="metadata.restorationObject.category"
+                            name="metadata.restorationObject.category"
+                            checked={
+                              // checked == option.value
+
+                              _get(
+                                record,
+                                "metadata.restorationObject.category"
+                              ) == option.value
+                            }
+                            onChange={({ data, formikProps }) => {
+                              formikProps.form.setFieldValue(
+                                "metadata.restorationObject.category",
+                                option.value
+                              );
+                            }}
+                            optimized
+                          />
+                        </div>
+                      </Form.Field>
+                    ))}
+                  </Form.Group>
+                </Form>
+              </div>
+            </div>
+            <SaveButton />
+          </div>
         ) : null}
       </BaseForm>
     </Container>

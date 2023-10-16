@@ -102,7 +102,6 @@ export const EditObjectForm = () => {
   console.log(formConfig);
   console.log(record);
   console.log(metadata);
-  
 
   return (
     <Container>
@@ -117,328 +116,391 @@ export const EditObjectForm = () => {
         }}
       >
         {record.metadata !== null ? (
-          <Overridable id="Deposit.AccordionFieldBasicInformation.container">
-            <AccordionField
-              includesPaths={[
-                "metadata.restorationObject.materialType",
-                "metadata.restorationObject.restorationMethods",
-                "metadata.restorationObject.fabricationTechnology",
-                "metadata.restorationObject.secondaryMaterialTypes",
-                "metadata.restorationObject.itemTypes",
-                "metadata.restorationObject.color",
-                "metadata.restorationObject.dimensions",
-                "metadata.restorationObject.stylePeriod",
-                "metadata.restorationObject.restorationRequestor",
-                "metadata.restorationObject.description",
-                "metadata.restorationObject.title",
-                "metadata.restorationObject.archeologic",
-                "metadata.restorationObject.creationPeriod",
-                "metadata.restorationObject.category",
-              ]}
-              active
-              label="Zakladni informace"
-            >
-              <Grid className="vert-div predmety__form">
-                <div>
-                  <h3 className="predmety__form__h">Editace předmětu</h3>
-                </div>
-                <div className="vert-div predmety__form-main">
-                  <div className="vert-div predmety__form__div-fields">
-                    <KeyWordsInput fieldPath="metadata.restorationObject.keywords" />
+          <>
+            <Grid className="vert-div predmety__form">
+              <div>
+                <h3 className="predmety__form__h">Editace předmětu</h3>
+              </div>
 
-                    <div className="vert-div predmety__form__div">
-                      <TextAreaField
-                        name="metadata.restorationObject.description"
-                        aria-label="Popis"
-                        fieldPath="metadata.restorationObject.description"
-                        value={
-                          record.metadata?.restorationWork?.abstract?.[0]?.value
-                        }
-                        label={
-                          <FieldLabel
-                            htmlFor="metadata.restorationObject.description"
-                            className="predmety__form__div__label"
-                            label="Popis"
-                          ></FieldLabel>
-                        }
-                      />
-                    </div>
-
-                    <div className="vert-div predmety__form__div">
-                      <LocalVocabularySelectField
-                        optionsListName="RestorationMethods"
-                        fieldPath="metadata.restorationWork.restorationMethods"
-                        multiple={true}
-                        placeholder="Vyberte metody restaurování"
-                        clearable
-                        label={
-                          <FieldLabel
-                            htmlFor="metadata.restorationWork.restorationMethods"
-                            label="Metody restaurování"
-                          />
-                        }
-                      />
-                    </div>
-
-                    <div className="vert-div predmety__form__div">
-                      <LocalVocabularySelectField
-                        optionsListName="FabricationTechnologies"
-                        fieldPath="metadata.fabricationTechnology"
-                        placeholder="Vyberte technologie výroby"
-                        value={
-                          record.metadata?.restorationWork?.fabricationMethods
-                            ?.id
-                        }
-                        multiple={false}
-                        clearable
-                        label={
-                          <FieldLabel
-                            htmlFor="metadata.fabricationTechnology"
-                            label="Technologie výroby"
-                          />
-                        }
-                      />
-                    </div>
-
-                    <div className="vert-div predmety__form__div">
-                      <LocalVocabularySelectField
-                        optionsListName="MaterialTypes"
-                        fieldPath="metadata.materialType"
-                        multiple={false}
-                        clearable
-                        placeholder="Vyberte typy materiálů"
-                        label={
-                          <FieldLabel
-                            htmlFor="metadata.materialType"
-                            label="Typy materiálů"
-                          />
-                        }
-                      />
-                    </div>
-
-                    <div className="vert-div predmety__form__div">
-                      <LocalVocabularySelectField
-                        optionsListName="MaterialTypes"
-                        fieldPath="metadata.secondaryMaterialTypes"
-                        multiple={true}
-                        clearable
-                        placeholder="Vyberte vedlejší typy materiálů"
-                        label={
-                          <FieldLabel
-                            htmlFor="metadata.secondaryMaterialTypes"
-                            label="Vedlejší typy materiálů"
-                          />
-                        }
-                      />
-                    </div>
-
-                    <div className="vert-div predmety__form__div">
-                      <LocalVocabularySelectField
-                        optionsListName="ItemTypes"
-                        fieldPath="metadata.restorationObject.itemTypes"
-                        multiple={true}
-                        placeholder="Vyberte typ předmětu"
-                        clearable
-                        label={
-                          <FieldLabel
-                            htmlFor="metadata.restorationObject.itemTypes"
-                            label="Typ předmětu"
-                          />
-                        }
-                      />
-                    </div>
-                    <div className="vert-div predmety__form__div">
-                      <LocalVocabularySelectField
-                        optionsListName="Colors"
-                        fieldPath="metadata.color"
-                        multiple={false}
-                        clearable
-                        label={
-                          <FieldLabel htmlFor="metadata.color" label="Barva" />
-                        }
-                        placeholder="Vyberte barvu"
-                      />
-                    </div>
-
-                    <div className="vert-div predmety__form__div-dimensions">
-                      <ArrayField
-                        addButtonLabel="Přidat rozměr"
-                        fieldPath="metadata.restorationObject.dimensions"
-                        defaultNewValue={{}}
-                      >
-                        {({ arrayHelpers, indexPath }) => {
-                          const fieldPathPrefix = `${"metadata.restorationObject.dimensions"}[${indexPath}]`;
-                          return (
-                            <ArrayFieldItem
-                              name="metadata.restorationObject.dimensions"
-                              fieldPath="metadata.restorationObject.dimensions"
-                              indexPath={indexPath}
-                              arrayHelpers={arrayHelpers}
-                            >
-                              <div className="horiz-div predmety__form__div-small">
-                                <div className="vert-div predmety__form__div-small__div">
-                                  <LocalVocabularySelectField
-                                    optionsListName="Dimensions"
-                                    fieldPath={`${fieldPathPrefix}.dimension`}
-                                    clearable
-                                    label={
-                                      <FieldLabel
-                                        htmlFor={`${fieldPathPrefix}.dimension.title`}
-                                        label="Rozměr"
-                                      />
-                                    }
-                                  />
-                                </div>
-
-                                <div className="vert-div predmety__form__div-small__div">
-                                  <TextField
-                                    name={`${fieldPathPrefix}.value`}
-                                    aria-label="Value"
-                                    fieldPath={`${fieldPathPrefix}.value`}
-                                    value={
-                                      record.metadata?.restorationObject
-                                        ?.dimensions?.[indexPath]?.value
-                                    }
-                                    label={
-                                      <FieldLabel
-                                        htmlFor={`${fieldPathPrefix}.value`}
-                                        className="predmety__form__div__label"
-                                        label="Hodnota"
-                                      ></FieldLabel>
-                                    }
-                                  />
-                                </div>
-
-                                <div className="vert-div predmety__form__div-small__div predmety__form__div-unit">
-                                  <SelectField
-                                    name={`${fieldPathPrefix}.unit`}
-                                    aria-label="Unit"
-                                    fieldPath={`${fieldPathPrefix}.unit`}
-                                    options={units}
-                                    value={
-                                      record.metadata?.restorationObject
-                                        ?.dimensions?.[indexPath]?.unit
-                                    }
-                                    label={
-                                      <FieldLabel
-                                        htmlFor={`${fieldPathPrefix}.unit`}
-                                        className="predmety__form__div__label"
-                                        label="Jednotka"
-                                      ></FieldLabel>
-                                    }
-                                  />
-                                </div>
-                              </div>
-                            </ArrayFieldItem>
-                          );
-                        }}
-                      </ArrayField>
-                    </div>
-
-                    <div>
-                      <FieldArray name="stylePeriod">
-                        <div className="horiz-div predmety__form__div">
-                          <div className="vert-div predmety__form__div">
-                            <LocalVocabularySelectField
-                              optionsListName="StylePeriods"
-                              fieldPath="metadata.restorationObject.stylePeriod"
-                              clearable
-                              label={
-                                <FieldLabel
-                                  htmlFor={
-                                    "metadata.restorationObject.stylePeriod"
-                                  }
-                                  label="Období"
-                                />
-                              }
-                            />
-                          </div>
-                        </div>
-                      </FieldArray>
-                    </div>
-
-                    <div className="vert-div predmety__form__div predmety__form__div-checkbox">
-                      <BooleanField
-                        name="metadata.restorationObject.archeologic"
-                        aria-label="Archeologický nález"
-                        fieldPath="metadata.restorationObject.archeologic"
-                        value={record.metadata?.restorationObject?.archeologic}
-                        label={
-                          <FieldLabel
-                            htmlFor="metadata.restorationObject.archeologic"
-                            className="predmety__form__div__label"
-                            label="Archeologický nález"
-                          ></FieldLabel>
-                        }
-                      />
-                    </div>
-
-                    <div>
-                      <FieldArray name="metadata.restorationWork.restorationPeriod">
-                        <div className="horiz-div predmety__form__div-small">
-                          <div className="vert-div predmety__form__div-medium">
-                            <TextField
-                              name="metadata.restorationWork.restorationPeriod.since"
-                              aria-label="Od"
-                              value={
-                                record.metadata?.restorationWork
-                                  ?.restorationPeriod?.since
-                              }
-                              fieldPath="metadata.restorationWork.restorationPeriod.since"
-                              label={
-                                <FieldLabel
-                                  htmlFor="metadata.restorationWork.restorationPeriod.since"
-                                  className="predmety__form__div__label-small"
-                                  label="Období restaurování od"
-                                ></FieldLabel>
-                              }
-                            />
-                          </div>
-
-                          <div className="vert-div predmety__form__div-medium">
-                            <TextField
-                              name="metadata.restorationWork.restorationPeriod.until"
-                              aria-label="Do"
-                              fieldPath="metadata.restorationWork.restorationPeriod.until"
-                              value={
-                                record.metadata?.restorationWork
-                                  ?.restorationPeriod?.until
-                              }
-                              label={
-                                <FieldLabel
-                                  htmlFor="metadata.restorationWork.restorationPeriod.until"
-                                  className="predmety__form__div__label-small"
-                                  label="Období restaurování do"
-                                ></FieldLabel>
-                              }
-                            />
-                          </div>
-                        </div>
-                      </FieldArray>
-                    </div>
-
-                    <div className="vert-div predmety__form__div">
-                      <LocalVocabularySelectField
-                        fieldPath="metadata.restorationObject.restorationRequestor"
-                        multiple={false}
-                        optionsListName="Requestors"
-                        clearable
-                        label={
-                          <FieldLabel
-                            htmlFor={
-                              "metadata.restorationObject.restorationRequestor"
+              <div className="vert-div predmety__form-main">
+                <div className="vert-div predmety__form__div-fields">
+                  {" "}
+                  <Overridable id="Deposit.AccordionFieldBasicInformation.container">
+                    <AccordionField
+                      includesPaths={[
+                        "metadata.restorationObject.materialType",
+                        "metadata.restorationObject.restorationMethods",
+                        "metadata.restorationObject.fabricationTechnology",
+                        "metadata.restorationObject.secondaryMaterialTypes",
+                        "metadata.restorationObject.itemTypes",
+                        "metadata.restorationObject.color",
+                        "metadata.restorationObject.dimensions",
+                        "metadata.restorationObject.stylePeriod",
+                        "metadata.restorationObject.restorationRequestor",
+                        "metadata.restorationObject.description",
+                        "metadata.restorationObject.title",
+                        "metadata.restorationObject.archeologic",
+                        "metadata.restorationObject.creationPeriod",
+                        "metadata.restorationObject.category",
+                      ]}
+                      active
+                      label="Udaje"
+                    >
+                      <div className="vert-div predmety__form__div-fields">
+                        <KeyWordsInput fieldPath="metadata.restorationObject.keywords" />
+                        <div className="vert-div predmety__form__div">
+                          <TextAreaField
+                            name="metadata.restorationObject.description"
+                            aria-label="Popis"
+                            fieldPath="metadata.restorationObject.description"
+                            value={
+                              record.metadata?.restorationWork?.abstract?.[0]
+                                ?.value
                             }
-                            label="Zadavatel"
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.restorationObject.description"
+                                className="predmety__form__div__label"
+                                label="Popis"
+                              ></FieldLabel>
+                            }
                           />
-                        }
-                      />
-                    </div>
-                  </div>
+                        </div>
+                        <div className="vert-div predmety__form__div">
+                          <LocalVocabularySelectField
+                            optionsListName="MaterialTypes"
+                            fieldPath="metadata.materialType"
+                            multiple={false}
+                            clearable
+                            placeholder="Vyberte typy materiálů"
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.materialType"
+                                label="Typy materiálů"
+                              />
+                            }
+                          />
+                        </div>
+                        <div className="vert-div predmety__form__div">
+                          <LocalVocabularySelectField
+                            optionsListName="MaterialTypes"
+                            fieldPath="metadata.secondaryMaterialTypes"
+                            multiple={true}
+                            clearable
+                            placeholder="Vyberte vedlejší typy materiálů"
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.secondaryMaterialTypes"
+                                label="Vedlejší typy materiálů"
+                              />
+                            }
+                          />
+                        </div>
+                        <div className="vert-div predmety__form__div">
+                          <LocalVocabularySelectField
+                            optionsListName="ItemTypes"
+                            fieldPath="metadata.restorationObject.itemTypes"
+                            multiple={true}
+                            placeholder="Vyberte typ předmětu"
+                            clearable
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.restorationObject.itemTypes"
+                                label="Typ předmětu"
+                              />
+                            }
+                          />
+                        </div>
+                        <div>
+                          <FieldArray name="stylePeriod">
+                            <div className="horiz-div predmety__form__div">
+                              <div className="vert-div predmety__form__div">
+                                <LocalVocabularySelectField
+                                  optionsListName="StylePeriods"
+                                  fieldPath="metadata.restorationObject.stylePeriod"
+                                  clearable
+                                  label={
+                                    <FieldLabel
+                                      htmlFor={
+                                        "metadata.restorationObject.stylePeriod"
+                                      }
+                                      label="Období"
+                                    />
+                                  }
+                                />
+                              </div>
+                            </div>
+                          </FieldArray>
+                        </div>
+                        <div className="vert-div predmety__form__div predmety__form__div-checkbox">
+                          <BooleanField
+                            name="metadata.restorationObject.archeologic"
+                            aria-label="Archeologický nález"
+                            fieldPath="metadata.restorationObject.archeologic"
+                            value={
+                              record.metadata?.restorationObject?.archeologic
+                            }
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.restorationObject.archeologic"
+                                className="predmety__form__div__label"
+                                label="Archeologický nález"
+                              ></FieldLabel>
+                            }
+                          />
+                        </div>
+                      </div>
+                    </AccordionField>
+                  </Overridable>
                 </div>
-                <SaveButton title="ULOŽIT" />
-              </Grid>
-            </AccordionField>
-          </Overridable>
+              </div>
+
+              <div className="vert-div predmety__form-main">
+                <div className="vert-div predmety__form__div-fields">
+                  <Overridable id="Deposit.AccordionFieldBasicInformation.container">
+                    <AccordionField
+                      includesPaths={[
+                        "metadata.restorationObject.materialType",
+                        "metadata.restorationObject.restorationMethods",
+                        "metadata.restorationObject.fabricationTechnology",
+                        "metadata.restorationObject.secondaryMaterialTypes",
+                        "metadata.restorationObject.itemTypes",
+                        "metadata.restorationObject.color",
+                        "metadata.restorationObject.dimensions",
+                        "metadata.restorationObject.stylePeriod",
+                        "metadata.restorationObject.restorationRequestor",
+                        "metadata.restorationObject.description",
+                        "metadata.restorationObject.title",
+                        "metadata.restorationObject.archeologic",
+                        "metadata.restorationObject.creationPeriod",
+                        "metadata.restorationObject.category",
+                      ]}
+                      active
+                      label="Prace"
+                    >
+                      <div className="vert-div predmety__form__div-fields">
+                        <div className="vert-div predmety__form__div">
+                          <LocalVocabularySelectField
+                            optionsListName="RestorationMethods"
+                            fieldPath="metadata.restorationWork.restorationMethods"
+                            multiple={true}
+                            placeholder="Vyberte metody restaurování"
+                            clearable
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.restorationWork.restorationMethods"
+                                label="Metody restaurování"
+                              />
+                            }
+                          />
+                        </div>
+
+                        <div className="vert-div predmety__form__div">
+                          <LocalVocabularySelectField
+                            optionsListName="FabricationTechnologies"
+                            fieldPath="metadata.fabricationTechnology"
+                            placeholder="Vyberte technologie výroby"
+                            value={
+                              record.metadata?.restorationWork
+                                ?.fabricationMethods?.id
+                            }
+                            multiple={false}
+                            clearable
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.fabricationTechnology"
+                                label="Technologie výroby"
+                              />
+                            }
+                          />
+                        </div>
+                        <div>
+                          <FieldArray name="metadata.restorationWork.restorationPeriod">
+                            <div className="horiz-div predmety__form__div-small">
+                              <div className="vert-div predmety__form__div-medium">
+                                <TextField
+                                  name="metadata.restorationWork.restorationPeriod.since"
+                                  aria-label="Od"
+                                  value={
+                                    record.metadata?.restorationWork
+                                      ?.restorationPeriod?.since
+                                  }
+                                  fieldPath="metadata.restorationWork.restorationPeriod.since"
+                                  label={
+                                    <FieldLabel
+                                      htmlFor="metadata.restorationWork.restorationPeriod.since"
+                                      className="predmety__form__div__label-small"
+                                      label="Období restaurování od"
+                                    ></FieldLabel>
+                                  }
+                                />
+                              </div>
+
+                              <div className="vert-div predmety__form__div-medium">
+                                <TextField
+                                  name="metadata.restorationWork.restorationPeriod.until"
+                                  aria-label="Do"
+                                  fieldPath="metadata.restorationWork.restorationPeriod.until"
+                                  value={
+                                    record.metadata?.restorationWork
+                                      ?.restorationPeriod?.until
+                                  }
+                                  label={
+                                    <FieldLabel
+                                      htmlFor="metadata.restorationWork.restorationPeriod.until"
+                                      className="predmety__form__div__label-small"
+                                      label="Období restaurování do"
+                                    ></FieldLabel>
+                                  }
+                                />
+                              </div>
+                            </div>
+                          </FieldArray>
+                        </div>
+
+                        <div className="vert-div predmety__form__div">
+                          <LocalVocabularySelectField
+                            fieldPath="metadata.restorationObject.restorationRequestor"
+                            multiple={false}
+                            optionsListName="Requestors"
+                            clearable
+                            label={
+                              <FieldLabel
+                                htmlFor={
+                                  "metadata.restorationObject.restorationRequestor"
+                                }
+                                label="Zadavatel"
+                              />
+                            }
+                          />
+                        </div>
+                      </div>
+                    </AccordionField>
+                  </Overridable>
+                </div>
+              </div>
+
+              <div className="vert-div predmety__form-main">
+                <div className="vert-div predmety__form__div-fields">
+                  <Overridable id="Deposit.AccordionFieldBasicInformation.container">
+                    <AccordionField
+                      includesPaths={[
+                        "metadata.restorationObject.materialType",
+                        "metadata.restorationObject.restorationMethods",
+                        "metadata.restorationObject.fabricationTechnology",
+                        "metadata.restorationObject.secondaryMaterialTypes",
+                        "metadata.restorationObject.itemTypes",
+                        "metadata.restorationObject.color",
+                        "metadata.restorationObject.dimensions",
+                        "metadata.restorationObject.stylePeriod",
+                        "metadata.restorationObject.restorationRequestor",
+                        "metadata.restorationObject.description",
+                        "metadata.restorationObject.title",
+                        "metadata.restorationObject.archeologic",
+                        "metadata.restorationObject.creationPeriod",
+                        "metadata.restorationObject.category",
+                      ]}
+                      active
+                      label="Vzhled"
+                    >
+                      <div className="vert-div predmety__form__div-fields">
+                        <div className="vert-div predmety__form__div">
+                          <LocalVocabularySelectField
+                            optionsListName="Colors"
+                            fieldPath="metadata.color"
+                            multiple={false}
+                            clearable
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.color"
+                                label="Barva"
+                              />
+                            }
+                            placeholder="Vyberte barvu"
+                          />
+                        </div>
+                        <div className="vert-div predmety__form__div-dimensions">
+                          <ArrayField
+                            addButtonLabel="Přidat rozměr"
+                            fieldPath="metadata.restorationObject.dimensions"
+                            defaultNewValue={{}}
+                          >
+                            {({ arrayHelpers, indexPath }) => {
+                              const fieldPathPrefix = `${"metadata.restorationObject.dimensions"}[${indexPath}]`;
+                              return (
+                                <ArrayFieldItem
+                                  name="metadata.restorationObject.dimensions"
+                                  fieldPath="metadata.restorationObject.dimensions"
+                                  indexPath={indexPath}
+                                  arrayHelpers={arrayHelpers}
+                                >
+                                  <div className="horiz-div predmety__form__div-small">
+                                    <div className="vert-div predmety__form__div-small__div">
+                                      <LocalVocabularySelectField
+                                        optionsListName="Dimensions"
+                                        fieldPath={`${fieldPathPrefix}.dimension`}
+                                        clearable
+                                        label={
+                                          <FieldLabel
+                                            htmlFor={`${fieldPathPrefix}.dimension.title`}
+                                            label="Rozměr"
+                                          />
+                                        }
+                                      />
+                                    </div>
+
+                                    <div className="vert-div predmety__form__div-small__div">
+                                      <TextField
+                                        name={`${fieldPathPrefix}.value`}
+                                        aria-label="Value"
+                                        fieldPath={`${fieldPathPrefix}.value`}
+                                        value={
+                                          record.metadata?.restorationObject
+                                            ?.dimensions?.[indexPath]?.value
+                                        }
+                                        label={
+                                          <FieldLabel
+                                            htmlFor={`${fieldPathPrefix}.value`}
+                                            className="predmety__form__div__label"
+                                            label="Hodnota"
+                                          ></FieldLabel>
+                                        }
+                                      />
+                                    </div>
+
+                                    <div className="vert-div predmety__form__div-small__div predmety__form__div-unit">
+                                      <SelectField
+                                        name={`${fieldPathPrefix}.unit`}
+                                        aria-label="Unit"
+                                        fieldPath={`${fieldPathPrefix}.unit`}
+                                        options={units}
+                                        value={
+                                          record.metadata?.restorationObject
+                                            ?.dimensions?.[indexPath]?.unit
+                                        }
+                                        label={
+                                          <FieldLabel
+                                            htmlFor={`${fieldPathPrefix}.unit`}
+                                            className="predmety__form__div__label"
+                                            label="Jednotka"
+                                          ></FieldLabel>
+                                        }
+                                      />
+                                    </div>
+                                  </div>
+                                </ArrayFieldItem>
+                              );
+                            }}
+                          </ArrayField>
+                        </div>
+                      </div>
+                    </AccordionField>
+                  </Overridable>
+                </div>
+              </div>
+              <SaveButton title="ULOŽIT" />
+            </Grid>
+          </>
         ) : null}
       </BaseForm>
     </Container>

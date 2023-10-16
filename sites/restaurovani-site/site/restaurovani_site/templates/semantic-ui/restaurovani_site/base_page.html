@@ -95,11 +95,11 @@
                     class="details__div__docs-img"
                     src="{{ url_for('static', filename='images/arrow-left.png') }}"
                     alt="arrow back"
-                  />RESTAUROVÁNÍ VŠCHT
+                  /><a href="https://0.0.0.0:5000/">RESTAUROVÁNÍ VŠCHT</a>
                 </button>
                 <div class="menu__div__dropdown">
                   {%- if config.ACCOUNTS and current_user.is_authenticated %}
-                  <button class="btn predmety_page menu__btn">
+                  <button class="btn predmety_page menu__btn" >
                     <img
                       class="menu__profil-img"
                       alt="user icon"
@@ -136,7 +136,7 @@
                       class="details__div__docs-img"
                       src="{{ url_for('static', filename='images/arrow-left.png') }}"
                       alt="arrow back"
-                    />RESTAUROVÁNÍ VŠCHT
+                    /><a href="https://0.0.0.0:5000/">RESTAUROVÁNÍ VŠCHT</a>
                   </button>
 
                   
@@ -255,9 +255,7 @@
           dropdownIcon.classList.remove('rotated');
         }
       }
-      jQuery('.btn.main-page__menu__btn').click(()=> window.location.href='https://0.0.0.0:5000/')
-
-      jQuery('.main-page__menu__btn-sb-rest').click(()=> window.location.href='https://0.0.0.0:5000/')
+     
     </script>
   </body>
 </html>

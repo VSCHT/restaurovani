@@ -16,9 +16,10 @@ import { getIn } from "formik";
 import _reverse from "lodash/reverse";
 import _join from "lodash/join";
 import _pick from "lodash/pick";
-import { useFormikContext } from "formik";
+import { useFormikContext, Field } from "formik";
 import PropTypes from "prop-types";
 import { useFormConfig } from "@js/oarepo_ui";
+import {RemoteSelectField} from "react-invenio-forms"
 
 export const KeyWordsInput = ({ fieldPath }) => {
   const { values } = useFormikContext();
@@ -57,6 +58,9 @@ export const KeyWordsInput = ({ fieldPath }) => {
       )
     )
   }
+
+
+
   return (
     <>
       <TextField
@@ -65,7 +69,7 @@ export const KeyWordsInput = ({ fieldPath }) => {
         fieldPath={fieldPath}
         fluid
         placeholder="Napište klíčová slova..."
-        value={<Label>Lala</Label>}
+        value={value}
         // onChange={handleInputChange}
         onChange={(e, { data, formikProps }) => {
           handleInputChange(e);
@@ -81,7 +85,7 @@ export const KeyWordsInput = ({ fieldPath }) => {
           />
         }
       />
-       <Form.TextArea
+       {/* <Form.TextArea
         fluid
         placeholder="Napište klíčová slova..."
         value={value}
@@ -95,7 +99,7 @@ export const KeyWordsInput = ({ fieldPath }) => {
           />
         }
         labelPosition="left"
-      />
+      /> */}
       <TextAreaField
         fluid
         placeholder="Napište klíčová slova..."

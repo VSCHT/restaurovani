@@ -9,101 +9,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 {% endblock %} {%- block page_body %}
 
 <style>
-  .image-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.9);
-    justify-content: center;
-    align-items: center;
-    min-width: 200px;
-    min-height: 200px;
-    z-index: 100;
-  }
-
-  .modal-content {
-    position: relative;
-    max-width: auto;
-    max-height: 80%;
-    width: auto;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    top: 100px;
-  }
-  .modal-content img {
-    width: 40%;
-    height: auto;
-    object-fit: contain;
-  }
-  .details__img__list {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    white-space: nowrap;
-    list-style: none;
-    padding: 0px;
-  }
-
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 20vw;
-    cursor: pointer;
-    color: #fff;
-    font-size: 50px;
-  }
-  .details__img__div-inner {
-    display: flex;
-    height: 100%;
-    overflow: scroll hidden;
-    list-style: none;
-    scroll-snap-type: x mandatory;
-  }
-  .details__img__div-main {
-    position: relative;
-    width: auto;
-    margin-left: -50%;
-    margin-right: -50%;
-    left: 50%;
-    right: 50%;
-  }
-  .details__div__details-box-smaller-hidden {
-    display: none;
-  }
-  .details__images-container > nav {
-    transition: opacity 250ms ease 100ms;
-    opacity: 1;
-  }
-  .details__images-container:hover > nav {
-    opacity: 1;
-  }
-  .details_div_images-container__btn-right {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0px;
-  }
-  .details_div_images-container__btn-left {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0px;
-  }
-  .details__images-container__nav {
-    position: absolute;
-    z-index: 1;
-    right: 0px;
-    width: 100%;
-    height: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-  }
+  
   @media only screen and (min-width: 992px) {
     .horiz-div.details__images-container.details_div_images-container {
       position: relative;
@@ -446,6 +352,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 </div>
 
 <script>
+
   function changeStyles() {
     let buttonElement = document.querySelector(
       ".details__div__details-box-smaller-hidden "
@@ -468,21 +375,31 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         btnLess.style.display = "initial";
       }
     }
+    trElements.forEach((tr) => {
+      const trHeight = tr.clientHeight;
+      if (trHeight > maxHeight) {
+        maxHeight = trHeight;
+      }
+    });
+  
+    trElements.forEach((tr) => {
+      tr.style.minHeight = `${maxHeight}px`;
+    });
   }
 
   function moveLeft() {
     const container = document.querySelector(
-      ".details_div_images-container div"
+      ".details__img__div-main"
     );
     const containerRect = container.getBoundingClientRect();
-    console.log(containerRect);
+    console.log(containerRect)
     const isLeftBoundaryReached = containerRect.left >= 250;
 
     if (!isLeftBoundaryReached) {
       container.style.transition = "margin-left 0.3s ease";
       const currentMarginLeft = parseFloat(container.style.marginLeft);
-      const newMarginLeft = currentMarginLeft + 10;
-      container.style.marginLeft = newMarginLeft + "%";
+      const newMarginLeft = currentMarginLeft + 50;
+      container.style.marginLeft = newMarginLeft + "px";
       console.log(newMarginLeft);
     }
   }
@@ -490,26 +407,25 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   function moveRight() {
     const container = document.querySelector(".details__img__div-main");
     const containerRect = container.getBoundingClientRect();
-    const isRightBoundaryReached =
-      containerRect.right + 200 <= window.innerWidth;
-    let percentageString = container.style.marginLeft;
-    console.log(containerRect);
-    console.log(isRightBoundaryReached);
-    // if (!isRightBoundaryReached) {
+    console.log(containerRect)
+    const isRightBoundaryReached = containerRect.right<= window.innerWidth+10;
+    let percentageString = window.getComputedStyle(container).marginLeft;
+
+
+    if (!isRightBoundaryReached) {
     container.style.marginRight = "-50%";
-    console.log(percentageString);
     container.style.transition = "margin-left 0.3s ease";
-    const currentMarginLeft = parseFloat(percentageString.replace("%", ""));
-    console.log(currentMarginLeft);
-    const newMarginLeft = currentMarginLeft - 10;
-    container.style.marginLeft = newMarginLeft + "%";
-    console.log(newMarginLeft);
-    // }
+
+    const currentMarginLeft = parseFloat(percentageString);
+    const newMarginLeft = currentMarginLeft - 50;
+    container.style.marginLeft = newMarginLeft + "px";
+   }
   }
 
   const trElements = document.querySelectorAll(".details__div__details-box");
 
-  let maxHeight = 0;
+  
+     let maxHeight = 0;
 
   trElements.forEach((tr) => {
     const trHeight = tr.clientHeight;
@@ -521,6 +437,9 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   trElements.forEach((tr) => {
     tr.style.minHeight = `${maxHeight}px`;
   });
+  
+ 
+  
 
   const leftDivHeight = document.querySelector(
     ".details__div__info-left"
