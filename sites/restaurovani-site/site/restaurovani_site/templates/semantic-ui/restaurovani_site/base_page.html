@@ -130,8 +130,8 @@
 
               <div class="overlay"></div>
               <div class="predmety__sidebar">
-                <div class="vert-div">
-                  <button class="btn main-page__menu__btn-sb">
+                <div class="vert-div predmety__sidebar-btns">
+                  <button class="btn main-page__menu__btn-sb main-page__menu__btn-sb-rest ">
                     <img
                       class="details__div__docs-img"
                       src="{{ url_for('static', filename='images/arrow-left.png') }}"
@@ -141,7 +141,7 @@
 
                   
                     {%- if config.ACCOUNTS and current_user.is_authenticated %}
-                    <button class="btn predmety_page menu__btn-sb" onclick="showDropdown()">
+                    <button class="btn main-page__menu__btn-sb" onclick="showDropdown()">
                       <img
                         class="menu__profil-img"
                         alt="user icon"
@@ -238,11 +238,11 @@
       const dropdownIcon = document.querySelector('.dropdown-icon');
 
       function toggleSidebar(){
-        if (sidebarEl.style.left === "-300px" || sidebarEl.style.left === "") {
+        if (sidebarEl.style.left === "-100vw" || sidebarEl.style.left === "") {
           sidebarEl.style.left = "0";
           overlay.classList.add("active");
         } else {
-          sidebarEl.style.left = "-300px";
+          sidebarEl.style.left = "-100vw";
           overlay.classList.remove("active");
         }
       }
@@ -255,6 +255,9 @@
           dropdownIcon.classList.remove('rotated');
         }
       }
+      jQuery('.btn.main-page__menu__btn').click(()=> window.location.href='https://0.0.0.0:5000/')
+
+      jQuery('.main-page__menu__btn-sb-rest').click(()=> window.location.href='https://0.0.0.0:5000/')
     </script>
   </body>
 </html>

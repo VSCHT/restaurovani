@@ -27,18 +27,25 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   .modal-content {
     position: relative;
     max-width: auto;
-  max-height: 80%; 
-  width: auto;
-  height: auto;
-  display: flex;
-  justify-content: center;
-  top: 100px;
-  
+    max-height: 80%;
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    top: 100px;
   }
   .modal-content img {
-    width:40%;
+    width: 40%;
     height: auto;
-    object-fit: contain; 
+    object-fit: contain;
+  }
+  .details__img__list {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    white-space: nowrap;
+    list-style: none;
+    padding: 0px;
   }
 
   .close-button {
@@ -49,6 +56,21 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
     color: #fff;
     font-size: 50px;
   }
+  .details__img__div-inner {
+    display: flex;
+    height: 100%;
+    overflow: scroll hidden;
+    list-style: none;
+    scroll-snap-type: x mandatory;
+  }
+  .details__img__div-main {
+    position: relative;
+    width: auto;
+    margin-left: -50%;
+    margin-right: -50%;
+    left: 50%;
+    right: 50%;
+  }
   .details__div__details-box-smaller-hidden {
     display: none;
   }
@@ -58,6 +80,29 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   }
   .details__images-container:hover > nav {
     opacity: 1;
+  }
+  .details_div_images-container__btn-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0px;
+  }
+  .details_div_images-container__btn-left {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0px;
+  }
+  .details__images-container__nav {
+    position: absolute;
+    z-index: 1;
+    right: 0px;
+    width: 100%;
+    height: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
   }
   @media only screen and (min-width: 992px) {
     .horiz-div.details__images-container.details_div_images-container {
@@ -84,7 +129,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
     </p>
     <button class="details__div__header__btn" onclick="redirectToEditPage()">
       <img
-      src="{{ url_for('static', filename='images/edit-icon.png') }}"
+        src="{{ url_for('static', filename='images/edit-icon.png') }}"
         class="details__div__header__btn-edit"
         alt="Edit icon"
       />
@@ -120,28 +165,9 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 
 <!-- photos -->
 <div class="horiz-div details__images-container details_div_images-container">
-  <nav
-    class="details__images-container__nav"
-    style="
-      position: absolute;
-      z-index: 1;
-      right: 0px;
-      width: 100%;
-      height: 50px; 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-    "
-  >
+  <nav class="details__images-container__nav">
     <button
       class="btn details_div_images-container__btn-left"
-      style="
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: 0px;
-      "
       aria-label="Predchozi foto"
       onclick="moveLeft()"
     >
@@ -155,57 +181,23 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
     <button
       class="btn details_div_images-container__btn-right"
       aria-label="Dalsi foto"
-      style="
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 0px;
-      "
     >
       <img
         class="details_div_images-container__btn-img"
         alt="right button"
         src="{{ url_for('static', filename='images/arrow-icon-right.png') }}"
-
         onclick="moveRight()"
       />
     </button>
   </nav>
 
-  <div
-    style="
-      position: relative;
-      width: auto;
-      margin-left: -50%;
-      margin-right: -50%;
-      left: 50%;
-      right: 50%;
-    "
-  >
-    <div
-      style="
-        display: flex;
-        height: 100%;
-        overflow: scroll hidden;
-        list-style: none;
-        scroll-snap-type: x mandatory;
-      "
-    >
-      <ul
-        style="
-          width: 100%;
-          height: 100%;
-          display: flex;
-          white-space: nowrap;
-          list-style: none;
-          padding: 0px;
-        "
-      >
+  <div class="details__img__div-main">
+    <div class="details__img__div-inner">
+      <ul class="details__img__list">
         <li>
           <div class="predmety__card__img-container details">
             <img
-            src="{{ url_for('static', filename='images/ItemLandingPage.jpg') }}"
-
+              src="{{ url_for('static', filename='images/ItemLandingPage.jpg') }}"
               alt="foto predmetu"
               class="predmety__imgs__img"
             />
@@ -214,7 +206,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         <li>
           <div class="predmety__card__img-container details">
             <img
-            src="{{ url_for('static', filename='images/ItemLandingPage 2.jpg') }}"
+              src="{{ url_for('static', filename='images/ItemLandingPage 2.jpg') }}"
               alt="foto predmetu"
               class="predmety__imgs__img"
             />
@@ -223,8 +215,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         <li>
           <div class="predmety__card__img-container details">
             <img
-            src="{{ url_for('static', filename='images/ItemLandingPage 2.jpg') }}"
-
+              src="{{ url_for('static', filename='images/ItemLandingPage 2.jpg') }}"
               alt="foto predmetu"
               class="predmety__imgs__img"
             />
@@ -233,8 +224,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         <li>
           <div class="predmety__card__img-container details">
             <img
-            src="{{ url_for('static', filename='images/ItemLandingPage 2.jpg') }}"
-
+              src="{{ url_for('static', filename='images/ItemLandingPage 2.jpg') }}"
               alt="foto predmetu"
               class="predmety__imgs__img"
             />
@@ -243,7 +233,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         <li>
           <div class="predmety__card__img-container details">
             <img
-            src="{{ url_for('static', filename='images/ItemLandingPage 3.jpg') }}"
+              src="{{ url_for('static', filename='images/ItemLandingPage 3.jpg') }}"
               alt="foto predmetu"
               class="predmety__imgs__img"
             />
@@ -252,8 +242,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         <li>
           <div class="predmety__card__img-container details">
             <img
-            src="{{ url_for('static', filename='images/ItemLandingPage 3.jpg') }}"
-
+              src="{{ url_for('static', filename='images/ItemLandingPage 3.jpg') }}"
               alt="foto predmetu"
               class="predmety__imgs__img"
             />
@@ -295,7 +284,10 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
           class="details__div__header__btn details__div__details-box-smaller__btn-more"
           onclick="changeStyles()"
         >
-          <img src="{{ url_for('static', filename='images/chevron-down.png') }}" />
+          <img
+            alt="ukazat vic info"
+            src="{{ url_for('static', filename='images/chevron-down.png') }}"
+          />
         </button>
         {% endif %} {% endif %} {% endfor %}
         <div class="vert-div details__div__details-box-smaller-hidden">
@@ -309,7 +301,10 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
             class="details__div__header__btn details__div__details-box-smaller__btn-less"
             onclick="changeStyles()"
           >
-            <img src="{{ url_for('static', filename='images/up-icon.png') }}" />
+            <img
+              src="{{ url_for('static', filename='images/up-icon.png') }}"
+              alt="ukazat min info"
+            />
           </button>
         </div>
       </td>
@@ -361,12 +356,16 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
             {{ metadata.restorationObject.restorationRequestor.title }}
           </td>
         </tr>
-        {% endif %} {% if metadata.restorationWork.restorer %}
+        {% endif %} {% if metadata.restorationWork.restorer or
+        metadata.restorationWork.workType %}
         <tr class="details__div__info-left__box">
-          <td class="parag">Restaurovala</td>
+          <td class="parag">Restauroval(a)</td>
           <td class="parag">
-            {{ metadata.restorationWork.restorer }},
+            {% if metadata.restorationWork.restorer %}
+            {{ metadata.restorationWork.restorer }}
+            {% endif %} {% if metadata.restorationWork.workType %} ,
             {{ metadata.restorationWork.workType.title }}
+            {% endif %}
           </td>
         </tr>
         {% endif %} {% if metadata.restorationWork.supervisors %}
@@ -407,13 +406,14 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
     <div>
       <p class="details__div__info-right parag">Restaurátorský zásah/zaměr</p>
     </div>
-    {% if metadata.restorationWork.abstract %}
+
     <div class="details__div__info-right__text">
       <p class="parag">
+        {% if metadata.restorationWork.abstract %}
         {{ metadata.restorationWork.abstract[0].value }}
+        {% else %} Nejsou ůdaje {% endif %}
       </p>
     </div>
-    {% endif %}
   </div>
 </div>
 <div class="vr-huge-horiz"></div>
@@ -425,7 +425,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
     <div class="horiz-div details__div__docs__item">
       <img
         class="details__div__docs-img"
-        src="{{ url_for('static', filename='images/file-icon.png') }}" 
+        src="{{ url_for('static', filename='images/file-icon.png') }}"
         alt="file icon"
       />
       <p class="parag">
@@ -471,33 +471,40 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   }
 
   function moveLeft() {
-    const container = document.querySelector(".details_div_images-container div");
+    const container = document.querySelector(
+      ".details_div_images-container div"
+    );
     const containerRect = container.getBoundingClientRect();
-    console.log(containerRect)
-    const isLeftBoundaryReached = containerRect.left >= 200; 
-  
+    console.log(containerRect);
+    const isLeftBoundaryReached = containerRect.left >= 250;
+
     if (!isLeftBoundaryReached) {
       container.style.transition = "margin-left 0.3s ease";
       const currentMarginLeft = parseFloat(container.style.marginLeft);
       const newMarginLeft = currentMarginLeft + 10;
       container.style.marginLeft = newMarginLeft + "%";
+      console.log(newMarginLeft);
     }
   }
 
   function moveRight() {
-    const container = document.querySelector(
-      ".details_div_images-container div"
-    );
+    const container = document.querySelector(".details__img__div-main");
     const containerRect = container.getBoundingClientRect();
-    const isRightBoundaryReached = containerRect.right <= window.innerWidth;
-
-    if (!isRightBoundaryReached) {
-      container.style.marginRight = "-50%";
-      container.style.transition = "margin-left 0.3s ease";
-      const currentMarginLeft = parseFloat(container.style.marginLeft);
-      const newMarginLeft = currentMarginLeft - 10;
-      container.style.marginLeft = newMarginLeft + "%";
-    }
+    const isRightBoundaryReached =
+      containerRect.right + 200 <= window.innerWidth;
+    let percentageString = container.style.marginLeft;
+    console.log(containerRect);
+    console.log(isRightBoundaryReached);
+    // if (!isRightBoundaryReached) {
+    container.style.marginRight = "-50%";
+    console.log(percentageString);
+    container.style.transition = "margin-left 0.3s ease";
+    const currentMarginLeft = parseFloat(percentageString.replace("%", ""));
+    console.log(currentMarginLeft);
+    const newMarginLeft = currentMarginLeft - 10;
+    container.style.marginLeft = newMarginLeft + "%";
+    console.log(newMarginLeft);
+    // }
   }
 
   const trElements = document.querySelectorAll(".details__div__details-box");
@@ -535,20 +542,22 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   const modalImg = document.getElementById("modal-image");
 
   function closeModal() {
-    modal.style.display = "none"; 
+    modal.style.display = "none";
   }
   function openModal(src) {
-    modal.style.display = "block"; 
-    modalImg.src = src; 
+    modal.style.display = "block";
+    modalImg.src = src;
   }
 
-  let imgContainers = document.querySelectorAll(".predmety__card__img-container");
+  let imgContainers = document.querySelectorAll(
+    ".predmety__card__img-container"
+  );
 
-  imgContainers.forEach(imgContainer => {
-    console.log(imgContainer)
+  imgContainers.forEach((imgContainer) => {
+    console.log(imgContainer);
     const img = imgContainer.querySelector(".predmety__imgs__img");
-  
-    imgContainer.addEventListener("click", function() {
+
+    imgContainer.addEventListener("click", function () {
       const src = img.src;
       modalImg.src = src;
       modal.style.display = "block";
@@ -558,7 +567,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   let img = document.querySelectorAll(".predmety__imgs__img");
 
   imgContainer.click(function () {
-    console.log(img)
+    console.log(img);
     modalImg.attr("src", img.attr("src"));
     modalImg.src = src;
     modal.style.display = "flex";
