@@ -5,11 +5,11 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 {{ super() }}
 {{ webpack["restoration_ui_components.js"] }}
 {{ webpack["restoration_ui_components.css"] }}
+{{ webpack["restoration_ui_img_gallery.js"] }}
 
 {% endblock %} {%- block page_body %}
 
 <style>
-  
   @media only screen and (min-width: 992px) {
     .horiz-div.details__images-container.details_div_images-container {
       position: relative;
@@ -70,6 +70,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 </div>
 
 <!-- photos -->
+<div id="images-carousel"></div>
 <div class="horiz-div details__images-container details_div_images-container">
   <nav class="details__images-container__nav">
     <button
@@ -307,6 +308,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
       </tbody>
     </table>
   </div>
+  {% if metadata.restorationWork.abstract %}
   <div class="vr-huge-vert"></div>
   <div class="vert-div details__div__info-right">
     <div>
@@ -315,12 +317,11 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 
     <div class="details__div__info-right__text">
       <p class="parag">
-        {% if metadata.restorationWork.abstract %}
         {{ metadata.restorationWork.abstract[0].value }}
-        {% else %} Nejsou ůdaje {% endif %}
       </p>
     </div>
   </div>
+  {% endif %}
 </div>
 <div class="vr-huge-horiz"></div>
 
@@ -352,7 +353,6 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 </div>
 
 <script>
-
   function changeStyles() {
     let buttonElement = document.querySelector(
       ".details__div__details-box-smaller-hidden "
@@ -381,18 +381,16 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         maxHeight = trHeight;
       }
     });
-  
+
     trElements.forEach((tr) => {
       tr.style.minHeight = `${maxHeight}px`;
     });
   }
 
   function moveLeft() {
-    const container = document.querySelector(
-      ".details__img__div-main"
-    );
+    const container = document.querySelector(".details__img__div-main");
     const containerRect = container.getBoundingClientRect();
-    console.log(containerRect)
+    console.log(containerRect);
     const isLeftBoundaryReached = containerRect.left >= 250;
 
     if (!isLeftBoundaryReached) {
@@ -407,25 +405,24 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   function moveRight() {
     const container = document.querySelector(".details__img__div-main");
     const containerRect = container.getBoundingClientRect();
-    console.log(containerRect)
-    const isRightBoundaryReached = containerRect.right<= window.innerWidth+10;
+    console.log(containerRect);
+    const isRightBoundaryReached =
+      containerRect.right <= window.innerWidth + 10;
     let percentageString = window.getComputedStyle(container).marginLeft;
 
-
     if (!isRightBoundaryReached) {
-    container.style.marginRight = "-50%";
-    container.style.transition = "margin-left 0.3s ease";
+      container.style.marginRight = "-50%";
+      container.style.transition = "margin-left 0.3s ease";
 
-    const currentMarginLeft = parseFloat(percentageString);
-    const newMarginLeft = currentMarginLeft - 50;
-    container.style.marginLeft = newMarginLeft + "px";
-   }
+      const currentMarginLeft = parseFloat(percentageString);
+      const newMarginLeft = currentMarginLeft - 50;
+      container.style.marginLeft = newMarginLeft + "px";
+    }
   }
 
   const trElements = document.querySelectorAll(".details__div__details-box");
 
-  
-     let maxHeight = 0;
+  let maxHeight = 0;
 
   trElements.forEach((tr) => {
     const trHeight = tr.clientHeight;
@@ -437,9 +434,6 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   trElements.forEach((tr) => {
     tr.style.minHeight = `${maxHeight}px`;
   });
-  
- 
-  
 
   const leftDivHeight = document.querySelector(
     ".details__div__info-left"

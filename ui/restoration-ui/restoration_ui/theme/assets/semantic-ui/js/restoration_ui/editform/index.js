@@ -1,0 +1,1 @@
+export {EditObjectForm} from './EditObjectForm.jsx'

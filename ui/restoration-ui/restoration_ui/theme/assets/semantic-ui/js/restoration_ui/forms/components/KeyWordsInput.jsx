@@ -85,34 +85,8 @@ export const KeyWordsInput = ({ fieldPath }) => {
           />
         }
       />
-       {/* <Form.TextArea
-        fluid
-        placeholder="Napište klíčová slova..."
-        value={value}
-        onChange={handleInputChange}
-        onKeyPress={handleEnterPress}
-        label={
-          <FieldLabel
-            htmlFor={`metadata.restorationObject.keywords`}
-            className="predmety__form__div__label"
-            label={"Klíčová slova"}
-          />
-        }
-        labelPosition="left"
-      /> */}
-      <TextAreaField
-        fluid
-        placeholder="Napište klíčová slova..."
-        onKeyPress={handleEnterPress}
-        label={
-          <FieldLabel
-            htmlFor={`metadata.restorationObject.keywords`}
-            className="predmety__form__div__label"
-            label={"Klíčová slova"}
-          />
-        }
-        labelPosition="left"
-      />
+      
+    
       {words.length > 0 && (
         <>
           <Grid>

@@ -10,8 +10,10 @@
 <!DOCTYPE html>
 <html{% if html_css_classes %} class="{{ html_css_classes|join(' ') }}"{% endif %} lang="{{ current_i18n.locale.language|safe }}" dir="{{ current_i18n.locale.text_direction }}">
   <head>
-    {%- block head %}
 
+
+    {%- block head %}
+    
     {%- block head_meta %}
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,6 +34,7 @@
 
     {%- block head_links %}
       <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}"/>
+    
 
       {%- if keywords %}
         <link rel="canonical" href="{{ canonical_url }}"/>
@@ -129,7 +132,7 @@
               </div>
 
               <div class="overlay"></div>
-              <div class="predmety__sidebar">
+              <!-- <div class="predmety__sidebar">
                 <div class="vert-div predmety__sidebar-btns">
                   <button class="btn main-page__menu__btn-sb main-page__menu__btn-sb-rest ">
                     <img
@@ -157,12 +160,34 @@
                       <a href="#">Nastaveni</a>
                     </div>
                     {%- endif %}
-                  
-                
                   </div>
-                  
-                
+              </div>  -->
+              <div class="ui vertical menu">
+                <div class="item">
+                  <button class="ui button main-page__menu__btn-sb main-page__menu__btn-sb-rest">
+                    <img class="details__div__docs-img" src="{{ url_for('static', filename='images/arrow-left.png') }}" alt="arrow back" />
+                    <a href="https://0.0.0.0:5000/">RESTAUROVÁNÍ VŠCHT</a>
+                  </button>
+                </div>
+              
+                {%- if config.ACCOUNTS and current_user.is_authenticated %}
+                <div class="item">
+                  <div class="ui button main-page__menu__btn-sb" onclick="showDropdown()">
+                    <img class="menu__profil-img" alt="user icon" src="{{ url_for('static', filename='images/user-icon.png') }}" />
+                    {{current_user.email}}
+                    <img class="menu__profil-img dropdown-icon" alt="dropdown icon" src="{{ url_for('static', filename='images/chevron-down-white.png') }}" />
+
+                    
+                  </div>
+                  <div class=" menu dropdown-content">
+                      <div class="item"><a class="item" href="#">Account</a></div>
+                      <div class="item"><a class="item" href="#">Nastavení</a></div>
+                      <div class="item"><a class="item" href="#">Odhlašení</a></div>
+                  </div>
+                </div>
+                {%- endif %}
               </div>
+              
             {%- endblock topMenu %}
         <!-- </div> -->
 
@@ -231,10 +256,10 @@
  
 
     <script>
-      const sidebarEl= document.querySelector(".predmety__sidebar");
+      const sidebarEl= document.querySelector(".ui.vertical.menu");
       const overlay = document.querySelector(".overlay");
       const userDropdown= document.querySelector(".predmety_page menu__btn-sbr");
-      const contentDropdown= document.querySelector(".dropdown-content");
+      const contentDropdown= document.querySelector(".menu.dropdown-content");
       const dropdownIcon = document.querySelector('.dropdown-icon');
 
       function toggleSidebar(){
@@ -255,7 +280,8 @@
           dropdownIcon.classList.remove('rotated');
         }
       }
-     
+   
+
     </script>
   </body>
 </html>
