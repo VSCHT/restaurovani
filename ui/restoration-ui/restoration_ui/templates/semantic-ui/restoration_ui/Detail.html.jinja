@@ -9,25 +9,6 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 
 {% endblock %} {%- block page_body %}
 
-<style>
-  @media only screen and (min-width: 992px) {
-    .horiz-div.details__images-container.details_div_images-container {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      margin: 30px 0px;
-    }
-  }
-  @media only screen and (max-width: 992px) {
-    .horiz-div.details__images-container.details_div_images-container {
-      position: relative;
-      width: 80%;
-      overflow: hidden;
-      margin: 30px 0px;
-    }
-  }
-</style>
-
 <div class="horiz-div details__div__header">
   <div class="horiz-div details__div__header-left">
     <p class="details__div__header-h">
@@ -70,95 +51,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 </div>
 
 <!-- photos -->
-<div id="images-carousel"></div>
-<div class="horiz-div details__images-container details_div_images-container">
-  <nav class="details__images-container__nav">
-    <button
-      class="btn details_div_images-container__btn-left"
-      aria-label="Predchozi foto"
-      onclick="moveLeft()"
-    >
-      <img
-        class="details_div_images-container__btn-img"
-        alt="left button"
-        src="{{ url_for('static', filename='images/arrow-icon-left.png') }}"
-      />
-    </button>
-
-    <button
-      class="btn details_div_images-container__btn-right"
-      aria-label="Dalsi foto"
-    >
-      <img
-        class="details_div_images-container__btn-img"
-        alt="right button"
-        src="{{ url_for('static', filename='images/arrow-icon-right.png') }}"
-        onclick="moveRight()"
-      />
-    </button>
-  </nav>
-
-  <div class="details__img__div-main">
-    <div class="details__img__div-inner">
-      <ul class="details__img__list">
-        <li>
-          <div class="predmety__card__img-container details">
-            <img
-              src="{{ url_for('static', filename='images/ItemLandingPage.jpg') }}"
-              alt="foto predmetu"
-              class="predmety__imgs__img"
-            />
-          </div>
-        </li>
-        <li>
-          <div class="predmety__card__img-container details">
-            <img
-              src="{{ url_for('static', filename='images/ItemLandingPage 2.jpg') }}"
-              alt="foto predmetu"
-              class="predmety__imgs__img"
-            />
-          </div>
-        </li>
-        <li>
-          <div class="predmety__card__img-container details">
-            <img
-              src="{{ url_for('static', filename='images/ItemLandingPage 2.jpg') }}"
-              alt="foto predmetu"
-              class="predmety__imgs__img"
-            />
-          </div>
-        </li>
-        <li>
-          <div class="predmety__card__img-container details">
-            <img
-              src="{{ url_for('static', filename='images/ItemLandingPage 2.jpg') }}"
-              alt="foto predmetu"
-              class="predmety__imgs__img"
-            />
-          </div>
-        </li>
-        <li>
-          <div class="predmety__card__img-container details">
-            <img
-              src="{{ url_for('static', filename='images/ItemLandingPage 3.jpg') }}"
-              alt="foto predmetu"
-              class="predmety__imgs__img"
-            />
-          </div>
-        </li>
-        <li>
-          <div class="predmety__card__img-container details">
-            <img
-              src="{{ url_for('static', filename='images/ItemLandingPage 3.jpg') }}"
-              alt="foto predmetu"
-              class="predmety__imgs__img"
-            />
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+<div id="images-carousel" data-photos=""></div>
 
 <table class="horiz-div details__table">
   <tbody class="horiz-div details__div__details">
@@ -492,4 +385,10 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   });
 </script>
 
-{%- endblock page_body %}
+{%- endblock page_body %} {%- block javascript %}
+
+{{ super() }}
+
+{{ webpack["restoration_ui_img_gallery.js"] }}
+
+{% endblock %}

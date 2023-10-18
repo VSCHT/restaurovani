@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import _isEmpty from "lodash/isEmpty";
 import PropTypes from "prop-types";
 import {
@@ -7,49 +7,31 @@ import {
   TextField,
   FieldLabel,
   SelectField,
-  RadioField,
   BooleanField,
-  GroupField,
-  ToggleField,
   ArrayField,
   TextAreaField,
 } from "react-invenio-forms";
 
 import {
   Container,
-  Header,
   Message,
-  Radio,
-  Button,
   Grid,
-  Label,
-  Form,
 } from "semantic-ui-react";
 import {
   DepositValidationSchemaEdit,
-  DepositValidationSchemaDraft,
 } from "../deposit/DepositValidationSchema";
 import {
   useFormConfig,
-  useOnSubmit,
-  submitContextType,
   ArrayFieldItem,
 } from "@js/oarepo_ui";
 import {
-  Formik,
-  useFormikContext,
-  Field,
   FieldArray,
-  ErrorMessage,
 } from "formik";
 import {
-  VocabularySelectField,
   LocalVocabularySelectField,
 } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import Overridable from "react-overridable";
-import { i18next } from "@translations/restoration_ui/i18next";
-import { useDepositApiClient } from "@js/oarepo_ui";
 import { SaveButton, KeyWordsInput } from ".";
 
 const CurrentRecord = (props) => {
@@ -88,12 +70,7 @@ const units = [
   { value: "mm", text: "mm" },
 ];
 
-const categories = [
-  { value: "sklo", label: "Sklo" },
-  { value: "keramika", label: "Keramika" },
-  { value: "kovy", label: "Kovy" },
-  { value: "textil", label: "Textil" },
-];
+
 document.getElementsByClassName("mt-20")[0].style.display = "none";
 
 export const EditObjectForm = () => {
@@ -314,49 +291,48 @@ export const EditObjectForm = () => {
                             }
                           />
                         </div>
-                        <div>
-                          <FieldArray name="metadata.restorationWork.restorationPeriod">
-                            <div className="horiz-div predmety__form__div-small">
-                              <div className="vert-div predmety__form__div-medium">
-                                <TextField
-                                  name="metadata.restorationWork.restorationPeriod.since"
-                                  aria-label="Od"
-                                  value={
-                                    record.metadata?.restorationWork
-                                      ?.restorationPeriod?.since
-                                  }
-                                  fieldPath="metadata.restorationWork.restorationPeriod.since"
-                                  label={
-                                    <FieldLabel
-                                      htmlFor="metadata.restorationWork.restorationPeriod.since"
-                                      className="predmety__form__div__label-small"
-                                      label="Období restaurování od"
-                                    ></FieldLabel>
-                                  }
-                                />
-                              </div>
 
-                              <div className="vert-div predmety__form__div-medium">
-                                <TextField
-                                  name="metadata.restorationWork.restorationPeriod.until"
-                                  aria-label="Do"
-                                  fieldPath="metadata.restorationWork.restorationPeriod.until"
-                                  value={
-                                    record.metadata?.restorationWork
-                                      ?.restorationPeriod?.until
-                                  }
-                                  label={
-                                    <FieldLabel
-                                      htmlFor="metadata.restorationWork.restorationPeriod.until"
-                                      className="predmety__form__div__label-small"
-                                      label="Období restaurování do"
-                                    ></FieldLabel>
-                                  }
-                                />
-                              </div>
+                        <FieldArray name="metadata.restorationWork.restorationPeriod">
+                          <div className="horiz-div predmety__form__div-small">
+                            <div className="vert-div predmety__form__div-medium">
+                              <TextField
+                                name="metadata.restorationWork.restorationPeriod.since"
+                                aria-label="Od"
+                                value={
+                                  record.metadata?.restorationWork
+                                    ?.restorationPeriod?.since
+                                }
+                                fieldPath="metadata.restorationWork.restorationPeriod.since"
+                                label={
+                                  <FieldLabel
+                                    htmlFor="metadata.restorationWork.restorationPeriod.since"
+                                    className="predmety__form__div__label-small"
+                                    label="Období restaurování od"
+                                  ></FieldLabel>
+                                }
+                              />
                             </div>
-                          </FieldArray>
-                        </div>
+
+                            <div className="vert-div predmety__form__div-medium">
+                              <TextField
+                                name="metadata.restorationWork.restorationPeriod.until"
+                                aria-label="Do"
+                                fieldPath="metadata.restorationWork.restorationPeriod.until"
+                                value={
+                                  record.metadata?.restorationWork
+                                    ?.restorationPeriod?.until
+                                }
+                                label={
+                                  <FieldLabel
+                                    htmlFor="metadata.restorationWork.restorationPeriod.until"
+                                    className="predmety__form__div__label-small"
+                                    label="Období restaurování do"
+                                  ></FieldLabel>
+                                }
+                              />
+                            </div>
+                          </div>
+                        </FieldArray>
 
                         <div className="vert-div predmety__form__div">
                           <LocalVocabularySelectField
@@ -474,10 +450,6 @@ export const EditObjectForm = () => {
                                         aria-label="Unit"
                                         fieldPath={`${fieldPathPrefix}.unit`}
                                         options={units}
-                                        value={
-                                          record.metadata?.restorationObject
-                                            ?.dimensions?.[indexPath]?.unit
-                                        }
                                         label={
                                           <FieldLabel
                                             htmlFor={`${fieldPathPrefix}.unit`}

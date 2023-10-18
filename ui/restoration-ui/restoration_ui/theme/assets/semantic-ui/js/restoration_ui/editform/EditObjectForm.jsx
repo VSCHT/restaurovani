@@ -467,8 +467,20 @@ export const EditObjectForm = () => {
                                         }
                                       />
                                     </div>
-
-                                    <div className="vert-div predmety__form__div-small__div predmety__form__div-unit">
+                                    <div className="vert-div predmety__form__div-small__div">
+                                      <LocalVocabularySelectField
+                                        optionsListName="Dimensions"
+                                        fieldPath={`${fieldPathPrefix}.unit`}
+                                        clearable
+                                        label={
+                                          <FieldLabel
+                                            htmlFor={`${fieldPathPrefix}.unit`}
+                                            label="Jednotka"
+                                          />
+                                        }
+                                      />
+                                    </div>
+                                    {/* <div className="vert-div predmety__form__div-small__div predmety__form__div-unit">
                                       <SelectField
                                         name={`${fieldPathPrefix}.unit`}
                                         aria-label="Unit"
@@ -486,7 +498,7 @@ export const EditObjectForm = () => {
                                           ></FieldLabel>
                                         }
                                       />
-                                    </div>
+                                    </div> */}
                                   </div>
                                 </ArrayFieldItem>
                               );

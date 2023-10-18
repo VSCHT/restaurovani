@@ -2,14 +2,16 @@ import React from "react";
 import { Button, Modal, Message, Icon } from "semantic-ui-react";
 import { i18next } from "@translations/restoration_ui/i18next";
 import { useConfirmationModal, useDepositApiClient } from "@js/oarepo_ui";
+import _isEmpty from "lodash/isEmpty";
 
-export const SaveButton = ({ title="VYTVOŘIT", ...uiProps }) => {
-  const { isSubmitting, save, formik } = useDepositApiClient();
-  const { isModalOpen, handleCloseModal, handleOpenModal } =
+export const SaveButton = ({ title = "VYTVOŘIT" }) => {
+  const { values, isSubmitting, save, formik, setSubmitting } =
+    useDepositApiClient();
+  const { isModalOpen, handleCloseModal, handleOpenModal, setModalOpen } =
     useConfirmationModal();
   console.log(useDepositApiClient);
 
-  console.log(formik)
+  console.log(formik);
   return (
     <>
       <Button
@@ -18,15 +20,19 @@ export const SaveButton = ({ title="VYTVOŘIT", ...uiProps }) => {
         aria-label="tlacitko vytvoreni predmetu"
         disabled={isSubmitting}
         loading={isSubmitting}
-        onClick={() => {
-          formik.validateForm()
-          console.log(formik.validateForm())
-          console.log(formik.isValid);
-          if (formik.isValid== false) {
-            console.log("move to success");
-            save();
+        onClick={
+          async () => {
+            const err = await formik.validateForm();
+            if (!formik.isValid) {handleOpenModal(); return};
+            if (!_isEmpty(err)) {handleOpenModal(); return};
+            let isVal =
+              formik.isValid && Object.keys(formik.touched).length > 0;
+            if (isVal) {
+              console.log("move to success");
+              save();
+            }
           }
-        }}
+        }
         content={title}
         type="submit"
       />
@@ -36,34 +42,22 @@ export const SaveButton = ({ title="VYTVOŘIT", ...uiProps }) => {
         size="small"
         closeIcon
         closeOnDimmerClick={false}
+        className="form__modal-err"
       >
         <Modal.Header>Chyba</Modal.Header>
 
         <Modal.Content>
-          <Message visible warning>
+          
             <p>
-              <Icon name="warning sign" /> Chyba udaju
+              <Icon name="warning sign" /> Všechna vstupní pole musí být vyplněna
             </p>
-          </Message>
+          
         </Modal.Content>
 
         <Modal.Actions>
-          <Button onClick={handleCloseModal} floated="left">
-            {i18next.t("Cancel")}
+          <Button onClick={handleCloseModal} floated="left" className="form__btn-err">
+          Uzavřít
           </Button>
-          <Button
-            name="save"
-            disabled={isSubmitting}
-            loading={isSubmitting}
-            color="green"
-            onClick={() => {
-              save();
-              handleCloseModal();
-            }}
-            labelPosition="left"
-            content={i18next.t("Save")}
-            type="submit"
-          />
         </Modal.Actions>
       </Modal>
     </>

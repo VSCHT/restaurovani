@@ -17,6 +17,8 @@ theme = WebpackThemeBundle(
             dependencies={
                 "react-searchkit": "^2.0.0",
                  "react-slick": "^0.29.0",
+                 "slick-carousel": "^1.8.1",
+                 "react-media":"^1.10.0",
             },
             devDependencies={},
             aliases={

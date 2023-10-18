@@ -1,8 +1,6 @@
-
-
-@media only screen and(min-width: 992px){
-.ui.input.predmety__input-search input {
-    border: 1px solid #626262!important;
+@media only screen and(min-width: 992px) {
+  .ui.input.predmety__input-search input {
+    border: 1px solid #626262 !important;
     background-color: #eaeae2 !important;
     border-radius: 30px !important;
     padding-left: 20px !important;
@@ -11,15 +9,32 @@
     color: #626262 !important;
     height: 40px !important;
     width: 100% !important;
-}
+  }
 
-.ui.icon.input.predmety__input-search{
+  .ui.icon.input.predmety__input-search {
     width: 100%;
     padding: 0px !important;
+  }
+  .form__input .ui.fluid.input input {
+    font-family: Noto_Sans_regular !important  ;
+    width: 100% ;
+    height: 41px;
+    border: solid #555 1px;
+    border-radius: 40px;
+    padding: 5px 20px;
+  }
+  .form__input .ui.fluid.input input:focus{
+    background-color: white
+  }
+  .form__input .ui.fluid.input label {
+    font-family: Noto_Sans_regular !important  ;
+    font-size: 14px !important  ;
+    gap: 10px !important  ;
+    width: 16.5vw !important;
+  }
 }
-}
-@media only screen and(max-width: 992px){
-    .ui.input.predmety__input-search input {
+@media only screen and(max-width: 992px) {
+  .ui.input.predmety__input-search input {
     border: 1px solid #626262 !important;
     background-color: #eaeae2 !important;
     border-radius: 30px !important;
@@ -29,10 +44,28 @@
     color: #626262 !important;
     height: 45px !important;
     width: 300px !important;
-}
-.ui.icon.input.predmety__input-search{
+  }
+  .ui.icon.input.predmety__input-search {
     width: 50vw;
     padding: 0px !important;
     margin: 0 auto;
-}
+  }
+  .form__input .ui.fluid.input input {
+    font-size: 15px;
+    font-family: Noto_Sans_regular !important  ;
+    width: 100%;
+    height: 45px;
+    border: solid #555 1px;
+    border-radius: 40px;
+    padding: 0px 15px;
+  }
+  .form__input .ui.fluid.input label {
+    font-family: Noto_Sans_regular !important  ;
+    font-size: 17px !important  ;
+    gap: 10px !important  ;
+    width: 33.5vw !important;
+  }
+  .form__input .ui.fluid.input input:focus{
+    background-color: white
+  }
 }

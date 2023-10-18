@@ -122,13 +122,13 @@ export const CreateObjectForm = () => {
             <div className="vert-div predmety__form-main">
               <div className="vert-div predmety__form__div">
                 <TextField
-                  name="metadata.restorationObject.title[0].value"
+                  name="metadata.restorationObject.title"
                   aria-label="Název předmětu"
-                  fieldPath="metadata.restorationObject.title[0].value"
+                  fieldPath="metadata.restorationObject.title"
                   required
                   label={
                     <FieldLabel
-                      htmlFor="metadata.restorationObject.title[0].value"
+                      htmlFor="metadata.restorationObject.title"
                       className="predmety__form__div__label"
                       label="Název předmětu"
                     />

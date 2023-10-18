@@ -98,7 +98,7 @@
                     class="details__div__docs-img"
                     src="{{ url_for('static', filename='images/arrow-left.png') }}"
                     alt="arrow back"
-                  /><a href="https://0.0.0.0:5000/">RESTAUROVÁNÍ VŠCHT</a>
+                  /><a href="/">RESTAUROVÁNÍ VŠCHT</a>
                 </button>
                 <div class="menu__div__dropdown">
                   {%- if config.ACCOUNTS and current_user.is_authenticated %}
@@ -114,8 +114,9 @@
                     />
                   </button>
                   <div class="menu__dropdown__content">
-                    <a href="#">Profil</a>
-                    <a href="#">Nastaveni</a>
+                    <div class="item"><a class="item" href="#">Account</a></div>
+                      <div class="item"><a class="item" href="#">Nastavení</a></div>
+                      <div class="item"><a class="item" href="#">Odhlašení</a></div>
                   </div>
                   {%- endif %}
                 </div>
@@ -132,41 +133,12 @@
               </div>
 
               <div class="overlay"></div>
-              <!-- <div class="predmety__sidebar">
-                <div class="vert-div predmety__sidebar-btns">
-                  <button class="btn main-page__menu__btn-sb main-page__menu__btn-sb-rest ">
-                    <img
-                      class="details__div__docs-img"
-                      src="{{ url_for('static', filename='images/arrow-left.png') }}"
-                      alt="arrow back"
-                    /><a href="https://0.0.0.0:5000/">RESTAUROVÁNÍ VŠCHT</a>
-                  </button>
-
-                  
-                    {%- if config.ACCOUNTS and current_user.is_authenticated %}
-                    <button class="btn main-page__menu__btn-sb" onclick="showDropdown()">
-                      <img
-                        class="menu__profil-img"
-                        alt="user icon"
-                        src="{{ url_for('static', filename='images/user-icon.png') }}"
-                      />{{current_user.email}}<img
-                        class="menu__profil-img dropdown-icon"
-                        alt="dropdown icon"
-                        src="{{ url_for('static', filename='images/chevron-down-white.png') }}"
-                      />
-                    </button>
-                    <div class="dropdown-content ">
-                      <a href="#">Profil</a>
-                      <a href="#">Nastaveni</a>
-                    </div>
-                    {%- endif %}
-                  </div>
-              </div>  -->
+             
               <div class="ui vertical menu">
                 <div class="item">
                   <button class="ui button main-page__menu__btn-sb main-page__menu__btn-sb-rest">
                     <img class="details__div__docs-img" src="{{ url_for('static', filename='images/arrow-left.png') }}" alt="arrow back" />
-                    <a href="https://0.0.0.0:5000/">RESTAUROVÁNÍ VŠCHT</a>
+                    <a href="/">RESTAUROVÁNÍ VŠCHT</a>
                   </button>
                 </div>
               

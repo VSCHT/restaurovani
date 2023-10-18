@@ -1,34 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import _isEmpty from "lodash/isEmpty";
 import PropTypes from "prop-types";
-import {
-  AccordionField,
-  BaseForm,
-  TextField,
-  FieldLabel,
-  SelectField,
-  RadioField,
-  BooleanField,
-  GroupField,
-  ToggleField,
-  ArrayField,
-  TextAreaField,
-} from "react-invenio-forms";
+import { TextField, FieldLabel, RadioField } from "react-invenio-forms";
 
-import {
-  Container,
-  Header,
-  Message,
-  Radio,
-  Button,
-  Grid,
-  Label,
-  Form,
-} from "semantic-ui-react";
-import {
-  DepositValidationSchemaEdit,
-  DepositValidationSchemaDraft,
-} from "../deposit/DepositValidationSchema";
+import { Container, Message, Label, Form } from "semantic-ui-react";
+import { DepositValidationSchemaDraft } from "../deposit/DepositValidationSchema";
 import {
   useFormConfig,
   useOnSubmit,
@@ -42,51 +18,9 @@ import {
   FieldArray,
   ErrorMessage,
 } from "formik";
-import {
-  VocabularySelectField,
-  LocalVocabularySelectField,
-} from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
-import Overridable from "react-overridable";
-import { i18next } from "@translations/restoration_ui/i18next";
-import { useDepositApiClient } from "@js/oarepo_ui";
 import { SaveButton, KeyWordsInput } from ".";
 
-const CurrentRecord = (props) => {
-  const { record } = props;
-  return (
-    <Message>
-      <Message.Header>Current record state</Message.Header>
-      <pre>{JSON.stringify(record)}</pre>
-    </Message>
-  );
-};
-
-CurrentRecord.propTypes = {
-  record: PropTypes.object,
-};
-
-CurrentRecord.defaultProps = {
-  record: undefined,
-};
-
-const RecordPreviewer = ({ record }) => <CurrentRecord record={record} />;
-
-RecordPreviewer.propTypes = {
-  record: PropTypes.object,
-};
-
-RecordPreviewer.defaultProps = {
-  record: undefined,
-};
-
-const units = [
-  { value: "kg", text: "kg" },
-  { value: "mg", text: "mg" },
-  { value: "cm", text: "cm" },
-  { value: "metr", text: "metr" },
-  { value: "mm", text: "mm" },
-];
 
 const categories = [
   { value: "sklo", label: "Sklo" },
@@ -104,6 +38,7 @@ export const CreateObjectFormContent = ({ values }) => {
         <div className="vert-div predmety__form__div">
           <TextField
             name="metadata.restorationObject.title[0].value"
+            className="form__input"
             aria-label="Název předmětu"
             fieldPath="metadata.restorationObject.title[0].value"
             required
@@ -122,6 +57,7 @@ export const CreateObjectFormContent = ({ values }) => {
             aria-label="Restauroval(a)"
             fieldPath="metadata.restorationWork.restorer"
             required
+            className="form__input"
             label={
               <FieldLabel
                 htmlFor="metadata.restorationWork.restorer"
@@ -135,17 +71,13 @@ export const CreateObjectFormContent = ({ values }) => {
         <div className="vert-div predmety__form__div">
           <Form>
             <Label
-              for="metadata.restorationObject.category"
+              htmlFor="metadata.restorationObject.category"
               className="predmety__form__div__label"
               required
             >
               Kategorie
             </Label>
-            <Form.Group
-              className="horiz-div predmety__form__div__input-radio"
-              fieldPath="metadata.restorationObject.category"
-              name="metadata.restorationObject.category"
-            >
+            <Form.Group className="horiz-div predmety__form__div__input-radio">
               {categories.map((option) => (
                 <Form.Field key={option.value}>
                   <div
@@ -157,20 +89,16 @@ export const CreateObjectFormContent = ({ values }) => {
                       // className="predmety__form__div__radio"
                       fieldPath="metadata.restorationObject.category"
                       name="metadata.restorationObject.category"
+                      value={option.value}
                       checked={
-                        //  checked == option.value
-
                         _get(values, "metadata.restorationObject.category") ==
                         option.value
                       }
-                      onChange={({ data, formikProps }) => {
-                        // setChecked(option.value)
+                      onChange={({ formikProps }) => {
                         formikProps.form.setFieldValue(
                           "metadata.restorationObject.category",
                           option.value
                         );
-                        console.log(formikProps);
-                        console.log(metadata);
                       }}
                       optimized
                     />
@@ -192,33 +120,31 @@ export const CreateObjectForm = () => {
   console.log(formConfig);
   console.log(record);
   console.log(metadata);
-  const [checked, setChecked] = useState("");
+
 
   return (
     <Container>
-      <BaseForm
+      {/* <BaseForm
         onSubmit={() => {}}
         formik={{
           initialValues: record,
           validateOnChange: false,
-          validateOnBlur: true,
+          validateOnBlur: false,
           enableReinitialize: true,
           validationSchema: DepositValidationSchemaDraft,
         }}
-      >
-        {/* <Formik
-      initialValues={record}
-      onSubmit={()=>{}}
-      enableReinitialize
-      validationSchema={DepositValidationSchemaDraft}
-      validateOnChange={false}
-      validateOnBlur={false}
       > */}
-        <React.Fragment>
-          {({ values }) => <CreateObjectFormContent values={values} />}
-        </React.Fragment>
-        {/* </Formik> */}
-      </BaseForm>
+      <Formik
+        initialValues={record}
+        onSubmit={() => {}}
+        enableReinitialize
+        validationSchema={DepositValidationSchemaDraft}
+        validateOnChange={false}
+        validateOnBlur={false}
+      >
+        {({ values }) => <CreateObjectFormContent values={values} />}
+      </Formik>
+      {/* </BaseForm> */}
     </Container>
   );
 };
