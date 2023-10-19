@@ -55,6 +55,21 @@ class RestorationExt:
         )
 
     @cached_property
+    def published_service_records(self):
+        from restoration.services.records.published.config import (
+            RestorationPublishedServiceConfig as PublishedServiceConfig,
+        )
+        from restoration.services.records.published.service import (
+            RestorationPublishedService as PublishedService,
+        )
+
+        return PublishedService(
+            config=PublishedServiceConfig(
+                proxied_drafts_config=self.service_records.config,
+            ),
+        )
+
+    @cached_property
     def service_files(self):
         return config.RESTORATION_FILES_SERVICE_CLASS(
             config=config.RESTORATION_FILES_SERVICE_CONFIG(),
@@ -65,6 +80,21 @@ class RestorationExt:
         return config.RESTORATION_FILES_RESOURCE_CLASS(
             service=self.service_files,
             config=config.RESTORATION_FILES_RESOURCE_CONFIG(),
+        )
+
+    @cached_property
+    def published_service_files(self):
+        from restoration.services.files.published.config import (
+            RestorationFilePublishedServiceConfig as PublishedServiceConfig,
+        )
+        from restoration.services.files.published.service import (
+            RestorationFilePublishedService as PublishedService,
+        )
+
+        return PublishedService(
+            config=PublishedServiceConfig(
+                proxied_drafts_config=self.service_files.config,
+            ),
         )
 
     @cached_property

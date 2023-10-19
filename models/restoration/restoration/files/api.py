@@ -7,7 +7,6 @@ from restoration.files.models import (
     RestorationFileDraftMetadata,
     RestorationFileMetadata,
 )
-from restoration.files.multilingual_dumper import MultilingualSearchDumper
 
 
 class RestorationFileIdProvider(RecordIdProviderV2):
@@ -22,7 +21,6 @@ class RestorationFile(FileRecord):
     pid = PIDField(
         provider=RestorationFileIdProvider, context_cls=PIDFieldContext, create=True
     )
-    dumper_extensions = [MultilingualSearchDumper()]
     record_cls = None  # is defined inside the parent record
 
 

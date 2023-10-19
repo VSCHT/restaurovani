@@ -22,6 +22,10 @@ settings:
   supported-langs:
     cs: {}
     en: {}
+
+runtime-dependencies:
+  oarepo-published-service: 1.0.0
+
 profiles: [record, draft, files, draft_files]
 plugins:
   packages:
