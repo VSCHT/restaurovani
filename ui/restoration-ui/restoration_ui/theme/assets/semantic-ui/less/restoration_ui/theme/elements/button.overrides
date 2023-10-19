@@ -2,6 +2,10 @@
   padding-left: 0px;
   padding-right: 0px;
 }
+.button.form-edit__keywords__btn-cancel{
+  padding: 0px;
+  background: #e8e8e8;
+}
 .button.form__btn-err {
   width: 20%;
   color: white;

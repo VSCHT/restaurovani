@@ -1,32 +1,17 @@
 import React, { useState } from "react";
-import {
-  Input,
-  Button,
-  Item,
-  Segment,
-  Grid,
-  List,
-  Divider,
-  Label,
-  Icon,
-  Form
-} from "semantic-ui-react";
-import { TextField, FieldLabel, TextAreaField } from "react-invenio-forms";
+import { Button, Grid, Label, Icon, Form } from "semantic-ui-react";
+import { FieldLabel, MultiInput } from "react-invenio-forms";
 import { getIn } from "formik";
 import _reverse from "lodash/reverse";
 import _join from "lodash/join";
 import _pick from "lodash/pick";
-import { useFormikContext, Field } from "formik";
-import PropTypes from "prop-types";
-import { useFormConfig } from "@js/oarepo_ui";
-import {RemoteSelectField} from "react-invenio-forms"
+import { useFormikContext } from "formik";
 
 export const KeyWordsInput = ({ fieldPath }) => {
-  const { values } = useFormikContext();
+  const { values, setFieldValue } = useFormikContext();
 
-  const [inputValue, setInputValue] = useState("");
   const [words, setWords] = useState(getIn(values, fieldPath) || []);
-
+  const [inputValue, setInputValue] = useState("");
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -35,69 +20,60 @@ export const KeyWordsInput = ({ fieldPath }) => {
     if (e.key === "Enter" && inputValue.trim() !== "") {
       setWords([...words, inputValue.trim()]);
       setInputValue("");
+      setFieldValue(fieldPath, words);
     }
   };
-  console.log(getIn(values));
-  const _defaultValue = typeof getIn(values, fieldPath) == Array ? [] : "";
-  // const _defaultValue = multiple ? [] : "";
-  const value = getIn(values, fieldPath || _defaultValue);
-  console.log(getIn(values));
-
-  const vals=()=>{
-    return(
-      value.length > 0 && (
-        <>
-          <Grid>
-            {value.map((word, index) => (
-              <Label key={index}>
-                <Icon name="key" /> {word}
-              </Label>
-            ))}
-          </Grid>
-        </>
-      )
-    )
-  }
-
-
+  const deleteKeyword = (index) => {
+    words.splice(index, 1);
+    setWords([...words]);
+    setFieldValue(fieldPath, words);
+    console.log(words);
+  };
 
   return (
     <>
-      <TextField
+      <Form.Input
+        className="form__input"
         name="metadata.restorationObject.keywords"
         aria-label="Klíčová slova"
         fieldPath={fieldPath}
         fluid
         placeholder="Napište klíčová slova..."
-        value={value}
-        // onChange={handleInputChange}
-        onChange={(e, { data, formikProps }) => {
-          handleInputChange(e);
-          // formikProps.form.setFieldValue(fieldPath, data.value);
-          // console.log(formikProps.form)
-        }}
+        value={inputValue}
+        onChange={handleInputChange}
         onKeyPress={handleEnterPress}
         label={
           <FieldLabel
             htmlFor="metadata.restorationObject.keywords"
             className="predmety__form__div__label"
-            label={"Klíčová slova"}
+            label="Klíčová slova"
           />
         }
       />
-      
-    
       {words.length > 0 && (
         <>
-          <Grid>
+          <Grid className="form-edit__keywords__labels">
             {words.map((word, index) => (
               <Label key={index}>
-                <Icon name="key" /> {word}
+                <Icon name="key" /> {word}{" "}
+                <Button
+                  className="form-edit__keywords__btn-cancel"
+                  onClick={() => deleteKeyword(index)}
+                >
+                  <Icon right name="cancel" />
+                </Button>
               </Label>
             ))}
           </Grid>
         </>
       )}
+      <MultiInput
+        fieldPath={fieldPath}
+        label="Klíčová slova"
+        placeholder="Napište klíčová slova..."
+        required={false}
+        disabled={false}
+      />
     </>
   );
 };

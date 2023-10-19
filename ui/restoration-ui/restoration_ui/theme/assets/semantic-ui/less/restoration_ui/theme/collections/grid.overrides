@@ -1,3 +1,6 @@
+.grid.form-edit__keywords__labels{
+    row-gap: 5px;
+}
 .ui.grid{
 margin-right: 0px !important   ;
 padding-left: 0px !important   ;

@@ -98,10 +98,6 @@ document.getElementsByClassName("mt-20")[0].style.display = "none";
 
 export const CreateObjectForm = () => {
   const { record, formConfig } = useFormConfig();
-  const metadata = _get(formConfig, "metadata", "no metadata");
-  console.log(formConfig);
-  console.log(record);
-  console.log(metadata);
   const [checked, setChecked] = useState("");
 
   return (

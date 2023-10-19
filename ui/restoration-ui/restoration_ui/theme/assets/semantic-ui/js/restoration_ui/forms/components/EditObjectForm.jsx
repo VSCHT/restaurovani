@@ -12,24 +12,11 @@ import {
   TextAreaField,
 } from "react-invenio-forms";
 
-import {
-  Container,
-  Message,
-  Grid,
-} from "semantic-ui-react";
-import {
-  DepositValidationSchemaEdit,
-} from "../deposit/DepositValidationSchema";
-import {
-  useFormConfig,
-  ArrayFieldItem,
-} from "@js/oarepo_ui";
-import {
-  FieldArray,
-} from "formik";
-import {
-  LocalVocabularySelectField,
-} from "@js/oarepo_vocabularies";
+import { Container, Message, Grid, Form } from "semantic-ui-react";
+import { DepositValidationSchemaEdit } from "../deposit/DepositValidationSchema";
+import { useFormConfig, ArrayFieldItem } from "@js/oarepo_ui";
+import { FieldArray, Formik, useFormikContext } from "formik";
+import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import Overridable from "react-overridable";
 import { SaveButton, KeyWordsInput } from ".";
@@ -70,33 +57,28 @@ const units = [
   { value: "mm", text: "mm" },
 ];
 
-
 document.getElementsByClassName("mt-20")[0].style.display = "none";
 
-export const EditObjectForm = () => {
+export const EditObjectForm = ({ edit }) => {
   const { record, formConfig } = useFormConfig();
-  const metadata = _get(formConfig, "metadata", "no metadata");
-  console.log(formConfig);
-  console.log(record);
-  console.log(metadata);
-
   return (
     <Container>
-      <BaseForm
+      <Formik
+        initialValues={record}
         onSubmit={() => {}}
-        formik={{
-          initialValues: record,
-          validateOnChange: false,
-          validateOnBlur: false,
-          enableReinitialize: true,
-          validationSchema: DepositValidationSchemaEdit,
-        }}
+        enableReinitialize
+        validationSchema={DepositValidationSchemaEdit}
+        validateOnChange={false}
+        validateOnBlur={false}
       >
-        {record.metadata !== null ? (
+        {({ values }) => (
           <>
             <Grid className="vert-div predmety__form">
               <div>
-                <h3 className="predmety__form__h">Editace předmětu</h3>
+                <h3 className="predmety__form__h">
+                  Editace předmětu{" "}
+                  {values.metadata.restorationObject.title[0].value}
+                </h3>
               </div>
 
               <div className="vert-div predmety__form-main">
@@ -106,19 +88,12 @@ export const EditObjectForm = () => {
                     <AccordionField
                       includesPaths={[
                         "metadata.restorationObject.materialType",
-                        "metadata.restorationObject.restorationMethods",
-                        "metadata.restorationObject.fabricationTechnology",
                         "metadata.restorationObject.secondaryMaterialTypes",
                         "metadata.restorationObject.itemTypes",
-                        "metadata.restorationObject.color",
-                        "metadata.restorationObject.dimensions",
                         "metadata.restorationObject.stylePeriod",
-                        "metadata.restorationObject.restorationRequestor",
                         "metadata.restorationObject.description",
                         "metadata.restorationObject.title",
                         "metadata.restorationObject.archeologic",
-                        "metadata.restorationObject.creationPeriod",
-                        "metadata.restorationObject.category",
                       ]}
                       active
                       label="Udaje"
@@ -127,16 +102,12 @@ export const EditObjectForm = () => {
                         <KeyWordsInput fieldPath="metadata.restorationObject.keywords" />
                         <div className="vert-div predmety__form__div">
                           <TextAreaField
-                            name="metadata.restorationObject.description"
+                            name="metadata.restorationObject.description[0].value"
                             aria-label="Popis"
-                            fieldPath="metadata.restorationObject.description"
-                            value={
-                              record.metadata?.restorationWork?.abstract?.[0]
-                                ?.value
-                            }
+                            fieldPath="metadata.restorationObject.description[0].value"
                             label={
                               <FieldLabel
-                                htmlFor="metadata.restorationObject.description"
+                                htmlFor="metadata.restorationObject.description[0].value"
                                 className="predmety__form__div__label"
                                 label="Popis"
                               ></FieldLabel>
@@ -210,21 +181,20 @@ export const EditObjectForm = () => {
                           </FieldArray>
                         </div>
                         <div className="vert-div predmety__form__div predmety__form__div-checkbox">
-                          <BooleanField
-                            name="metadata.restorationObject.archeologic"
-                            aria-label="Archeologický nález"
-                            fieldPath="metadata.restorationObject.archeologic"
-                            value={
-                              record.metadata?.restorationObject?.archeologic
-                            }
-                            label={
-                              <FieldLabel
-                                htmlFor="metadata.restorationObject.archeologic"
-                                className="predmety__form__div__label"
-                                label="Archeologický nález"
-                              ></FieldLabel>
-                            }
-                          />
+                          <Form.Field>
+                            <BooleanField
+                              name="metadata.restorationObject.archeologic"
+                              aria-label="Archeologický nález"
+                              fieldPath="metadata.restorationObject.archeologic"
+                              label={
+                                <FieldLabel
+                                  htmlFor="metadata.restorationObject.archeologic"
+                                  className="predmety__form__div__label"
+                                  label="Archeologický nález"
+                                ></FieldLabel>
+                              }
+                            />
+                          </Form.Field>
                         </div>
                       </div>
                     </AccordionField>
@@ -237,20 +207,10 @@ export const EditObjectForm = () => {
                   <Overridable id="Deposit.AccordionFieldBasicInformation.container">
                     <AccordionField
                       includesPaths={[
-                        "metadata.restorationObject.materialType",
                         "metadata.restorationObject.restorationMethods",
                         "metadata.restorationObject.fabricationTechnology",
-                        "metadata.restorationObject.secondaryMaterialTypes",
-                        "metadata.restorationObject.itemTypes",
-                        "metadata.restorationObject.color",
-                        "metadata.restorationObject.dimensions",
-                        "metadata.restorationObject.stylePeriod",
                         "metadata.restorationObject.restorationRequestor",
-                        "metadata.restorationObject.description",
-                        "metadata.restorationObject.title",
-                        "metadata.restorationObject.archeologic",
                         "metadata.restorationObject.creationPeriod",
-                        "metadata.restorationObject.category",
                       ]}
                       active
                       label="Prace"
@@ -277,10 +237,6 @@ export const EditObjectForm = () => {
                             optionsListName="FabricationTechnologies"
                             fieldPath="metadata.fabricationTechnology"
                             placeholder="Vyberte technologie výroby"
-                            value={
-                              record.metadata?.restorationWork
-                                ?.fabricationMethods?.id
-                            }
                             multiple={false}
                             clearable
                             label={
@@ -298,10 +254,6 @@ export const EditObjectForm = () => {
                               <TextField
                                 name="metadata.restorationWork.restorationPeriod.since"
                                 aria-label="Od"
-                                value={
-                                  record.metadata?.restorationWork
-                                    ?.restorationPeriod?.since
-                                }
                                 fieldPath="metadata.restorationWork.restorationPeriod.since"
                                 label={
                                   <FieldLabel
@@ -318,10 +270,6 @@ export const EditObjectForm = () => {
                                 name="metadata.restorationWork.restorationPeriod.until"
                                 aria-label="Do"
                                 fieldPath="metadata.restorationWork.restorationPeriod.until"
-                                value={
-                                  record.metadata?.restorationWork
-                                    ?.restorationPeriod?.until
-                                }
                                 label={
                                   <FieldLabel
                                     htmlFor="metadata.restorationWork.restorationPeriod.until"
@@ -361,20 +309,8 @@ export const EditObjectForm = () => {
                   <Overridable id="Deposit.AccordionFieldBasicInformation.container">
                     <AccordionField
                       includesPaths={[
-                        "metadata.restorationObject.materialType",
-                        "metadata.restorationObject.restorationMethods",
-                        "metadata.restorationObject.fabricationTechnology",
-                        "metadata.restorationObject.secondaryMaterialTypes",
-                        "metadata.restorationObject.itemTypes",
                         "metadata.restorationObject.color",
                         "metadata.restorationObject.dimensions",
-                        "metadata.restorationObject.stylePeriod",
-                        "metadata.restorationObject.restorationRequestor",
-                        "metadata.restorationObject.description",
-                        "metadata.restorationObject.title",
-                        "metadata.restorationObject.archeologic",
-                        "metadata.restorationObject.creationPeriod",
-                        "metadata.restorationObject.category",
                       ]}
                       active
                       label="Vzhled"
@@ -430,10 +366,6 @@ export const EditObjectForm = () => {
                                         name={`${fieldPathPrefix}.value`}
                                         aria-label="Value"
                                         fieldPath={`${fieldPathPrefix}.value`}
-                                        value={
-                                          record.metadata?.restorationObject
-                                            ?.dimensions?.[indexPath]?.value
-                                        }
                                         label={
                                           <FieldLabel
                                             htmlFor={`${fieldPathPrefix}.value`}
@@ -470,11 +402,11 @@ export const EditObjectForm = () => {
                   </Overridable>
                 </div>
               </div>
-              <SaveButton title="ULOŽIT" />
+              <SaveButton title="ULOŽIT" edit={edit} />
             </Grid>
           </>
-        ) : null}
-      </BaseForm>
+        )}
+      </Formik>
     </Container>
   );
 };

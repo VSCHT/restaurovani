@@ -45,6 +45,8 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
           }),
         })
       ),
+      color:Yup.string(),
+      keywords: Yup.array(Yup.string()),
       restorationRequestor: Yup.object().shape({
         title: Yup.object().shape({
           cs: Yup.string(),

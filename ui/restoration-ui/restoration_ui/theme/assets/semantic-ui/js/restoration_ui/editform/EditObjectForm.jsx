@@ -98,10 +98,6 @@ document.getElementsByClassName("mt-20")[0].style.display = "none";
 
 export const EditObjectForm = () => {
   const { record, formConfig } = useFormConfig();
-  const metadata = _get(formConfig, "metadata", "no metadata");
-  console.log(formConfig);
-  console.log(record);
-  console.log(metadata);
 
   return (
     <Container>
@@ -320,6 +316,7 @@ export const EditObjectForm = () => {
                               <div className="vert-div predmety__form__div-medium">
                                 <TextField
                                   name="metadata.restorationWork.restorationPeriod.since"
+                                  className="form__input"
                                   aria-label="Od"
                                   value={
                                     record.metadata?.restorationWork
@@ -338,6 +335,7 @@ export const EditObjectForm = () => {
 
                               <div className="vert-div predmety__form__div-medium">
                                 <TextField
+                                className="form__input"
                                   name="metadata.restorationWork.restorationPeriod.until"
                                   aria-label="Do"
                                   fieldPath="metadata.restorationWork.restorationPeriod.until"

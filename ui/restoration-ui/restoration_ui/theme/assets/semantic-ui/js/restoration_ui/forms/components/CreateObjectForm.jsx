@@ -1,26 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import _isEmpty from "lodash/isEmpty";
-import PropTypes from "prop-types";
 import { TextField, FieldLabel, RadioField } from "react-invenio-forms";
 
-import { Container, Message, Label, Form } from "semantic-ui-react";
+import { Container, Label, Form } from "semantic-ui-react";
 import { DepositValidationSchemaDraft } from "../deposit/DepositValidationSchema";
-import {
-  useFormConfig,
-  useOnSubmit,
-  submitContextType,
-  ArrayFieldItem,
-} from "@js/oarepo_ui";
-import {
-  Formik,
-  useFormikContext,
-  Field,
-  FieldArray,
-  ErrorMessage,
-} from "formik";
+import { useFormConfig } from "@js/oarepo_ui";
+import { Formik } from "formik";
 import _get from "lodash/get";
-import { SaveButton, KeyWordsInput } from ".";
-
+import { SaveButton } from ".";
 
 const categories = [
   { value: "sklo", label: "Sklo" },
@@ -30,7 +17,7 @@ const categories = [
 ];
 document.getElementsByClassName("mt-20")[0].style.display = "none";
 
-export const CreateObjectFormContent = ({ values }) => {
+export const CreateObjectFormContent = ({ values, edit }) => {
   return (
     <div className="vert-div predmety__form">
       <h3 className="predmety__form__h">Vytvoření nového předmětu</h3>
@@ -109,18 +96,13 @@ export const CreateObjectFormContent = ({ values }) => {
           </Form>
         </div>
       </div>
-      <SaveButton />
+      <SaveButton edit={edit} />
     </div>
   );
 };
 
 export const CreateObjectForm = () => {
   const { record, formConfig } = useFormConfig();
-  const metadata = _get(formConfig, "metadata", "no metadata");
-  console.log(formConfig);
-  console.log(record);
-  console.log(metadata);
-
 
   return (
     <Container>

@@ -50,7 +50,7 @@ class RestorationServiceConfig(
     @property
     def links_item(self):
         return {
-            "draft": RecordLink("{+api}/{self.url_prefix}{id}/draft"),
+            "draft": RecordLink("{+api}/restoration/{id}/draft"),
             "files": ConditionalLink(
                 cond=is_record,
                 if_=RecordLink("{+api}/records/{id}/files"),
@@ -63,7 +63,7 @@ class RestorationServiceConfig(
             "self": ConditionalLink(
                 cond=is_record,
                 if_=RecordLink("{+api}/{self.url_prefix}{id}"),
-                else_=RecordLink("{+api}/{self.url_prefix}{id}/draft"),
+                else_=RecordLink("{+api}/restoration/{id}/draft"),
             ),
             "self_html": ConditionalLink(
                 cond=is_record,

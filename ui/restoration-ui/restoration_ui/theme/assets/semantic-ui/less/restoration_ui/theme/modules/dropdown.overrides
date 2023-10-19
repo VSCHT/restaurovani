@@ -3,7 +3,7 @@
 body .ui.selection.dropdown  {
     border-radius: 40px;
     border: 1px solid #555;
-    width: 25vw;
+    width: 100%;
 }
 
 .ui.selection.dropdown.active {
@@ -23,7 +23,7 @@ body .ui.selection.dropdown input{
     padding: 0px 15px;
 }
 .ui.multiple.search.dropdown > input.search{
-    padding: 0px 15px;
+    display: none;
     
 }
 
@@ -43,4 +43,8 @@ body .ui.selection.dropdown input{
     
     border: 1px solid #111111
 
+}
+
+.ui.multiple.dropdown {
+    padding: 5px 15px !important;
 }
