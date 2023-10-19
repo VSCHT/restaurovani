@@ -46,7 +46,7 @@ export const SaveButton = ({ title = "VYTVOŘIT"}) => {
         closeIcon
         closeOnDimmerClick={false}
         className="form__modal-err"
-      >
+      > 
         <Modal.Header>V pořadku</Modal.Header>
 
         <Modal.Content>
