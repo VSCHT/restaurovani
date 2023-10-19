@@ -16,4 +16,7 @@ class RestorationFileDraftMetadata(db.Model, RecordMetadataBase, FileRecordModel
     """Model for RestorationFileDraft metadata."""
 
     __tablename__ = "restoration_file_draft_metadata"
+
+    # Enables SQLAlchemy-Continuum versioning
+    __versioned__ = {}
     __record_model_cls__ = RestorationDraftMetadata

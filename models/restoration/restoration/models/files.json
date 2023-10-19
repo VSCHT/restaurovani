@@ -80,7 +80,9 @@
                 "SearchDumper"
             ],
             "extra-code": "",
-            "extensions": [],
+            "extensions": [
+                "MultilingualSearchDumper()"
+            ],
             "imports": [
                 {
                     "import": "invenio_records.dumpers.SearchDumper"
@@ -116,6 +118,7 @@
                 }
             ],
             "generate": true,
+            "base-html-url": "/restoration/",
             "config-key": "RESTORATION_FILES_RESOURCE_CONFIG",
             "module": "restoration.resources.files.config",
             "class": "restoration.resources.files.config.RestorationFileResourceConfig",
@@ -181,47 +184,6 @@
             "module": "restoration.proxies",
             "generate": true
         },
-        "translations": {
-            "module": "restoration.translations",
-            "alias": "restoration_file"
-        },
-        "ui": {
-            "module": "restoration.models",
-            "file": "restoration/models/ui.json",
-            "alias": "restoration_file",
-            "marshmallow": {
-                "generate": true,
-                "module": "restoration.services.files.ui_schema",
-                "class": "restoration.services.files.ui_schema.RestorationFileUISchema",
-                "extra-code": "",
-                "base-classes": [
-                    "InvenioUISchema"
-                ],
-                "imports": [
-                    {
-                        "import": "oarepo_runtime.ui.marshmallow.InvenioUISchema"
-                    }
-                ]
-            }
-        },
-        "files-field": {
-            "field-args": [
-                "store=False",
-                "create=False",
-                "delete=False"
-            ],
-            "generate": true,
-            "field-class": "FilesField",
-            "file-class": "RestorationFile",
-            "imports": [
-                {
-                    "import": "invenio_records_resources.records.systemfields.FilesField"
-                },
-                {
-                    "import": "restoration.files.api.RestorationFile"
-                }
-            ]
-        },
         "record-metadata": {
             "use-versioning": false,
             "generate": true,
@@ -246,21 +208,6 @@
             ],
             "table": "restoration_file_metadata",
             "alias": "restoration_file"
-        },
-        "multilingual-dumper": {
-            "generate": true,
-            "module": "restoration.files.multilingual_dumper",
-            "class": "restoration.files.multilingual_dumper.MultilingualSearchDumper",
-            "base-classes": [
-                "MultilingualDumper"
-            ],
-            "extra-code": "",
-            "extensions": [],
-            "imports": [
-                {
-                    "import": "oarepo_runtime.i18n.dumper.MultilingualDumper"
-                }
-            ]
         },
         "service-config": {
             "base-classes": [
@@ -333,6 +280,47 @@
                 }
             ]
         },
+        "translations": {
+            "module": "restoration.translations",
+            "alias": "restoration_file"
+        },
+        "ui": {
+            "module": "restoration.models",
+            "file": "restoration/models/ui.json",
+            "alias": "restoration_file",
+            "marshmallow": {
+                "generate": true,
+                "module": "restoration.services.files.ui_schema",
+                "class": "restoration.services.files.ui_schema.RestorationFileUISchema",
+                "extra-code": "",
+                "base-classes": [
+                    "InvenioUISchema"
+                ],
+                "imports": [
+                    {
+                        "import": "oarepo_runtime.ui.marshmallow.InvenioUISchema"
+                    }
+                ]
+            }
+        },
+        "files-field": {
+            "field-args": [
+                "store=False",
+                "create=False",
+                "delete=False"
+            ],
+            "generate": true,
+            "field-class": "FilesField",
+            "file-class": "RestorationFile",
+            "imports": [
+                {
+                    "import": "invenio_records_resources.records.systemfields.FilesField"
+                },
+                {
+                    "import": "restoration.files.api.RestorationFile"
+                }
+            ]
+        },
         "json-serializer": {
             "module": "restoration.resources.files.ui",
             "class": "restoration.resources.files.ui.RestorationFileUIJSONSerializer",
@@ -353,22 +341,6 @@
             "extra-code": "",
             "generate": true
         },
-        "draft-parent-record": {
-            "skip": true
-        },
-        "draft-parent-record-metadata": {
-            "skip": true
-        },
-        "draft-parent-record-state": {
-            "skip": true
-        },
-        "mapping": {
-            "generate": true,
-            "alias": "restoration_file",
-            "module": "restoration.files.mappings",
-            "index": "restoration_file-restoration_file-1.0.0",
-            "file": "restoration/files/mappings/os-v2/restoration_file/restoration_file-1.0.0.json"
-        },
         "permissions": {
             "class": "restoration.services.records.permissions.RestorationPermissionPolicy",
             "generate": false,
@@ -385,6 +357,75 @@
                     "import": "invenio_records_permissions.RecordPermissionPolicy"
                 }
             ]
+        },
+        "multilingual-dumper": {
+            "generate": true,
+            "module": "restoration.files.multilingual_dumper",
+            "class": "restoration.files.multilingual_dumper.MultilingualSearchDumper",
+            "base-classes": [
+                "MultilingualDumper"
+            ],
+            "extra-code": "",
+            "extensions": [],
+            "imports": [
+                {
+                    "import": "oarepo_runtime.i18n.dumper.MultilingualDumper"
+                }
+            ]
+        },
+        "mapping": {
+            "generate": true,
+            "alias": "restoration_file",
+            "module": "restoration.files.mappings",
+            "index": "restoration_file-restoration_file-1.0.0",
+            "file": "restoration/files/mappings/os-v2/restoration_file/restoration_file-1.0.0.json"
+        },
+        "published-service-config": {
+            "config-key": "RESTORATION_FILES_PUBLISHED_SERVICE_CONFIG",
+            "module": "restoration.services.files.published.config",
+            "class": "restoration.services.files.published.config.RestorationFilePublishedServiceConfig",
+            "extra-code": "",
+            "service-id": "published_restoration_file",
+            "base-classes": [
+                "PublishedServiceConfig",
+                "PermissionsPresetsConfigMixin"
+            ],
+            "imports": [
+                {
+                    "import": "oarepo_published_service.services.config.PublishedServiceConfig",
+                    "alias": "PublishedServiceConfig"
+                },
+                {
+                    "import": "oarepo_runtime.config.service.PermissionsPresetsConfigMixin"
+                }
+            ],
+            "generate": true
+        },
+        "published-service": {
+            "generate": true,
+            "config-key": "RESTORATION_FILES_PUBLISHED_SERVICE_CLASS",
+            "proxy": "current_published_service",
+            "module": "restoration.services.files.published.service",
+            "class": "restoration.services.files.published.service.RestorationFilePublishedService",
+            "extra-code": "",
+            "base-classes": [
+                "PublishedService"
+            ],
+            "imports": [
+                {
+                    "import": "oarepo_published_service.services.service.PublishedService",
+                    "alias": "PublishedService"
+                }
+            ]
+        },
+        "draft-parent-record": {
+            "skip": true
+        },
+        "draft-parent-record-metadata": {
+            "skip": true
+        },
+        "draft-parent-record-state": {
+            "skip": true
         },
         "sortable": [],
         "properties": {

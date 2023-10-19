@@ -30,7 +30,6 @@ class RestorationServiceConfig(
     schema = RestorationSchema
 
     search = RestorationSearchOptions
-    search_drafts = RestorationSearchOptions
 
     record_cls = RestorationRecord
 
@@ -39,37 +38,37 @@ class RestorationServiceConfig(
     components = [
         *PermissionsPresetsConfigMixin.components,
         *InvenioRecordDraftsServiceConfig.components,
-        DraftFilesComponent,
         FilesOptionsComponent,
+        DraftFilesComponent,
         DataComponent,
     ]
 
     model = "restoration"
     draft_cls = RestorationDraft
+    search_drafts = RestorationSearchOptions
 
     @property
     def links_item(self):
         return {
-            "draft": RecordLink("{+api}/{self.url_prefix}{id}/draft"),
+            "draft": RecordLink("{+api}/restoration/{id}/draft"),
             "files": ConditionalLink(
                 cond=is_record,
-                if_=RecordLink("{+api}/records/{id}/files"),
-                else_=RecordLink("{+api}/records/{id}/draft/files"),
+                if_=RecordLink("{+api}/restoration/{id}/files"),
+                else_=RecordLink("{+api}/restoration/{id}/draft/files"),
             ),
-            "latest": RecordLink("{+api}/{self.url_prefix}{id}/versions/latest"),
-            "latest_html": RecordLink("{+ui}/{self.url_prefix}{id}/latest"),
-            "publish": RecordLink("{+api}/{self.url_prefix}{id}/draft/actions/publish"),
-            "record": RecordLink("{+api}/{self.url_prefix}{id}"),
+            "latest": RecordLink("{+api}/restoration/{id}/versions/latest"),
+            "latest_html": RecordLink("{+ui}/restoration/{id}/latest"),
+            "publish": RecordLink("{+api}/restoration/{id}/draft/actions/publish"),
+            "record": RecordLink("{+api}/restoration/{id}"),
             "self": ConditionalLink(
                 cond=is_record,
-                if_=RecordLink("{+api}/{self.url_prefix}{id}"),
-                else_=RecordLink("{+api}/{self.url_prefix}{id}/draft"),
+                if_=RecordLink("{+api}/restoration/{id}"),
+                else_=RecordLink("{+api}/restoration/{id}/draft"),
             ),
             "self_html": ConditionalLink(
                 cond=is_record,
-                if_=RecordLink("{+ui}/objekty/{id}"),
-                else_=RecordLink("{+ui}/uploads/{id}"),
+                if_=RecordLink("{+ui}/restoration/{id}"),
+                else_=RecordLink("{+ui}/restoration/{id}/edit"),
             ),
-            "versions": RecordLink("{+api}/{self.url_prefix}{id}/versions"),
-            
+            "versions": RecordLink("{+api}/restoration/{id}/versions"),
         }
