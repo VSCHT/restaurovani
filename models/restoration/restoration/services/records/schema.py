@@ -160,7 +160,7 @@ class CreationPeriodSchema(ma.Schema):
 
 class DimensionSchema(ma.Schema):
     class Meta:
-        unknown = ma.RAISE
+        unknown = ma.INCLUDE
 
     _id = ma.fields.String(data_key="id", attribute="id")
 
@@ -171,7 +171,7 @@ class DimensionSchema(ma.Schema):
 
 class PartSchema(ma.Schema):
     class Meta:
-        unknown = ma.RAISE
+        unknown = ma.INCLUDE
 
     _id = ma.fields.String(data_key="id", attribute="id")
 

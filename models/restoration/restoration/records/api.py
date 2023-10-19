@@ -139,7 +139,7 @@ class RestorationDraft(InvenioDraft):
         delete=False,
     )
 
-    dumper_extensions = []
+    dumper_extensions = [MultilingualSearchDumper()]
     dumper = RestorationDraftDumper(extensions=dumper_extensions)
 
     relations = RelationsField(

@@ -6,6 +6,8 @@ from . import facets
 class RestorationSearchOptions(InvenioSearchOptions):
     """RestorationRecord search options."""
 
+    facet_groups = {}
+
     facets = {
         "_schema": facets._schema,
         "created": facets.created,
