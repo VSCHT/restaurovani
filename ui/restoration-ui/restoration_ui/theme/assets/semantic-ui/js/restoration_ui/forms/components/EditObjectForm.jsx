@@ -12,7 +12,7 @@ import {
   TextAreaField,
 } from "react-invenio-forms";
 
-import { Container, Message, Grid, Form } from "semantic-ui-react";
+import { Container, Message, Grid, Form, Button } from "semantic-ui-react";
 import { DepositValidationSchemaEdit } from "../deposit/DepositValidationSchema";
 import { useFormConfig, ArrayFieldItem } from "@js/oarepo_ui";
 import { FieldArray, Formik, useFormikContext } from "formik";
@@ -87,11 +87,9 @@ export const EditObjectForm = ({ edit }) => {
                   <Overridable id="Deposit.AccordionFieldBasicInformation.container">
                     <AccordionField
                       includesPaths={[
-                        "metadata.restorationObject.materialType",
-                        "metadata.restorationObject.secondaryMaterialTypes",
                         "metadata.restorationObject.itemTypes",
-                        "metadata.restorationObject.stylePeriod",
-                        "metadata.restorationObject.description",
+                        "metadata.restorationObject.stylePeriod.properties.period",
+                        "metadata.restorationObject.description[0].value",
                         "metadata.restorationObject.title",
                         "metadata.restorationObject.archeologic",
                       ]}
@@ -114,36 +112,7 @@ export const EditObjectForm = ({ edit }) => {
                             }
                           />
                         </div>
-                        <div className="vert-div predmety__form__div">
-                          <LocalVocabularySelectField
-                            optionsListName="MaterialTypes"
-                            fieldPath="metadata.materialType"
-                            multiple={false}
-                            clearable
-                            placeholder="Vyberte typy materiálů"
-                            label={
-                              <FieldLabel
-                                htmlFor="metadata.materialType"
-                                label="Typy materiálů"
-                              />
-                            }
-                          />
-                        </div>
-                        <div className="vert-div predmety__form__div">
-                          <LocalVocabularySelectField
-                            optionsListName="MaterialTypes"
-                            fieldPath="metadata.secondaryMaterialTypes"
-                            multiple={true}
-                            clearable
-                            placeholder="Vyberte vedlejší typy materiálů"
-                            label={
-                              <FieldLabel
-                                htmlFor="metadata.secondaryMaterialTypes"
-                                label="Vedlejší typy materiálů"
-                              />
-                            }
-                          />
-                        </div>
+
                         <div className="vert-div predmety__form__div">
                           <LocalVocabularySelectField
                             optionsListName="ItemTypes"
@@ -165,12 +134,12 @@ export const EditObjectForm = ({ edit }) => {
                               <div className="vert-div predmety__form__div">
                                 <LocalVocabularySelectField
                                   optionsListName="StylePeriods"
-                                  fieldPath="metadata.restorationObject.stylePeriod"
+                                  fieldPath="metadata.restorationObject.stylePeriod.properties.period"
                                   clearable
                                   label={
                                     <FieldLabel
                                       htmlFor={
-                                        "metadata.restorationObject.stylePeriod"
+                                        "metadata.restorationObject.stylePeriod.properties.period"
                                       }
                                       label="Období"
                                     />
@@ -208,7 +177,6 @@ export const EditObjectForm = ({ edit }) => {
                     <AccordionField
                       includesPaths={[
                         "metadata.restorationObject.restorationMethods",
-                        "metadata.restorationObject.fabricationTechnology",
                         "metadata.restorationObject.restorationRequestor",
                         "metadata.restorationObject.creationPeriod",
                       ]}
@@ -227,22 +195,6 @@ export const EditObjectForm = ({ edit }) => {
                               <FieldLabel
                                 htmlFor="metadata.restorationWork.restorationMethods"
                                 label="Metody restaurování"
-                              />
-                            }
-                          />
-                        </div>
-
-                        <div className="vert-div predmety__form__div">
-                          <LocalVocabularySelectField
-                            optionsListName="FabricationTechnologies"
-                            fieldPath="metadata.fabricationTechnology"
-                            placeholder="Vyberte technologie výroby"
-                            multiple={false}
-                            clearable
-                            label={
-                              <FieldLabel
-                                htmlFor="metadata.fabricationTechnology"
-                                label="Technologie výroby"
                               />
                             }
                           />
@@ -308,29 +260,11 @@ export const EditObjectForm = ({ edit }) => {
                 <div className="vert-div predmety__form__div-fields">
                   <Overridable id="Deposit.AccordionFieldBasicInformation.container">
                     <AccordionField
-                      includesPaths={[
-                        "metadata.restorationObject.color",
-                        "metadata.restorationObject.dimensions",
-                      ]}
+                      includesPaths={["metadata.restorationObject.dimensions"]}
                       active
                       label="Vzhled"
                     >
                       <div className="vert-div predmety__form__div-fields">
-                        <div className="vert-div predmety__form__div">
-                          <LocalVocabularySelectField
-                            optionsListName="Colors"
-                            fieldPath="metadata.color"
-                            multiple={false}
-                            clearable
-                            label={
-                              <FieldLabel
-                                htmlFor="metadata.color"
-                                label="Barva"
-                              />
-                            }
-                            placeholder="Vyberte barvu"
-                          />
-                        </div>
                         <div className="vert-div predmety__form__div-dimensions">
                           <ArrayField
                             addButtonLabel="Přidat rozměr"
@@ -398,6 +332,133 @@ export const EditObjectForm = ({ edit }) => {
                           </ArrayField>
                         </div>
                       </div>
+                    </AccordionField>
+                  </Overridable>
+                </div>
+              </div>
+              <div className="vert-div predmety__form-main">
+                <div className="vert-div predmety__form__div-fields">
+                  <Overridable id="Deposit.AccordionFieldBasicInformation.container">
+                    <AccordionField
+                      includesPaths={["metadata.restorationObject.parts"]}
+                      active
+                      label="Součásti"
+                    >
+                      <FieldArray name="metadata.restorationObject.parts">
+                        {(arrayHelpers) => (
+                          <>
+                            {values.metadata?.restorationObject?.parts?.map(
+                              (part, index) => (
+                                <div
+                                  className="vert-div predmety__form__div-fields"
+                                  key="index"
+                                >
+                                  <h4>Součást N{index+1}</h4>
+                                  <div className="vert-div predmety__form__div">
+                                    <TextField
+                                      name="metadata.restorationObject.title[0].value"
+                                      className="form__input"
+                                      aria-label="Název součásti"
+                                      fieldPath={`metadata.restorationObject.parts[${index}].name`}
+                                      required
+                                      label={
+                                        <FieldLabel
+                                          htmlFor={`metadata.restorationObject.parts[${index}].name`}
+                                          className="predmety__form__div__label"
+                                          label="Název součásti"
+                                        />
+                                      }
+                                    />
+                                  </div>
+                                  <div className="vert-div predmety__form__div predmety__form__div-checkbox">
+                                    <Form.Field>
+                                      <BooleanField
+                                        name={`metadata.restorationObject.parts[${index}].main`}
+                                        aria-label="Hlávní součást"
+                                        fieldPath={`metadata.restorationObject.parts[${index}].main`}
+                                        label={
+                                          <FieldLabel
+                                            htmlFor={`metadata.restorationObject.parts[${index}].main`}
+                                            className="predmety__form__div__label"
+                                            label="Hlávní součást"
+                                          ></FieldLabel>
+                                        }
+                                      />
+                                    </Form.Field>
+                                  </div>
+                                  <div className="vert-div predmety__form__div">
+                                    <LocalVocabularySelectField
+                                      optionsListName="Colors"
+                                      fieldPath={`metadata.restorationObject.parts[${index}].colors`}
+                                      multiple={true}
+                                      clearable
+                                      label={
+                                        <FieldLabel
+                                          htmlFor={`metadata.restorationObject.parts[${index}].colors`}
+                                          label="Barva"
+                                        />
+                                      }
+                                      placeholder="Vyberte barvu"
+                                    />
+                                  </div>
+                                  <div className="vert-div predmety__form__div">
+                                    <LocalVocabularySelectField
+                                      optionsListName="FabricationTechnologies"
+                                      fieldPath={`metadata.restorationObject.parts[${index}].fabricationTechnologies`}
+                                      placeholder="Vyberte technologie výroby"
+                                      multiple={true}
+                                      clearable
+                                      label={
+                                        <FieldLabel
+                                          htmlFor={`metadata.restorationObject.parts[${index}].fabricationTechnologies`}
+                                          label="Technologie výroby"
+                                        />
+                                      }
+                                    />
+                                  </div>
+                                 
+                                  <div className="vert-div predmety__form__div">
+                                    <LocalVocabularySelectField
+                                      optionsListName="MaterialTypes"
+                                      fieldPath={`metadata.restorationObject.parts[${index}].materialType`}
+                                      multiple={false}
+                                      clearable
+                                      placeholder="Vyberte typy materiálů"
+                                      label={
+                                        <FieldLabel
+                                          htmlFor={`metadata.restorationObject.parts[${index}].materialType`}
+                                          label="Typy materiálů"
+                                        />
+                                      }
+                                    />
+                                  </div>
+                                  <div className="vert-div predmety__form__div">
+                                    <LocalVocabularySelectField
+                                      optionsListName="MaterialTypes"
+                                      fieldPath={`metadata.restorationObject.parts[${index}].secondaryMaterialTypes`}
+                                      multiple={true}
+                                      clearable
+                                      placeholder="Vyberte vedlejší typy materiálů"
+                                      label={
+                                        <FieldLabel
+                                          htmlFor={`metadata.restorationObject.parts[${index}].secondaryMaterialTypes`}
+                                          label="Vedlejší typy materiálů"
+                                        />
+                                      }
+                                    />
+                                  </div>
+                                </div>
+                              )
+                            )}
+                            <Button
+                              type="button"
+                              onClick={() => arrayHelpers.push({})}
+                            >
+                              Dodat součást
+                            </Button>
+                          </>
+                        )}
+                      </FieldArray>
                     </AccordionField>
                   </Overridable>
                 </div>

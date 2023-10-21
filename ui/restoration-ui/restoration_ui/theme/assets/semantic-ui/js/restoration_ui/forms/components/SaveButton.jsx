@@ -23,16 +23,21 @@ export const SaveButton = ({ title = "VYTVOŘIT"}) => {
         disabled={isSubmitting}
         loading={isSubmitting}
         onClick={async () => {
+          
           const err = await formik.validateForm();
+          formik.setErrors({});
           if (!formik.isValid) {
             handleOpenModal();
+
             return;
           }
           if (!_isEmpty(err)) {
+            console.log(err)
             handleOpenModal();
             return;
           }
           console.log("move to success");
+          console.log(formik)
           save();
           setSuccessObject(true)
         }}
@@ -47,7 +52,7 @@ export const SaveButton = ({ title = "VYTVOŘIT"}) => {
         closeOnDimmerClick={false}
         className="form__modal-err"
       > 
-        <Modal.Header>V pořadku</Modal.Header>
+        <Modal.Header>Chyba</Modal.Header>
 
         <Modal.Content>
           <p>
@@ -73,7 +78,7 @@ export const SaveButton = ({ title = "VYTVOŘIT"}) => {
         closeOnDimmerClick={false}
         className="form__modal-err"
       >
-        <Modal.Header>Chyba</Modal.Header>
+        <Modal.Header>V pořadku</Modal.Header>
 
         <Modal.Content>
           <p>

@@ -36,8 +36,7 @@ main {
   transform: rotate(180deg);
 }
 #images-carousel {
-  max-width: 100%;
-  max-height: auto;
+  width: 100%;
   margin-top: 20px;
 }
 
@@ -547,6 +546,9 @@ main {
     font-size: 17px;
     font-family: Noto_Sans_regular;
   }
+  .main-page__menu__btn:hover {
+    color: #cbcbc5;
+  }
   .main-page__menu__btn a {
     font-size: 17px;
     font-family: Noto_Sans_regular;
@@ -676,14 +678,18 @@ main {
     position: relative;
     flex: 1;
   }
-  .main-page__btn__addPredmety,
-  .main-page__btn__addPredmety a {
+  .main-page__btn__addPredmety {
     color: white;
     background-color: #de4929;
     border-radius: 32px;
     height: 45px;
     width: 18vw;
     border: none;
+    font-family: Noto_Sans_regular;
+  }
+
+  .main-page__btn__addPredmety a {
+    color: white;
     font-family: Noto_Sans_regular;
   }
 
@@ -1275,6 +1281,7 @@ main {
     min-width: 113px;
     max-width: 250px;
   }
+
   .details__div__info-left table tr td:nth-child(odd) {
     font-family: Noto_Sans_semibold;
     width: 11vw;
@@ -1315,10 +1322,16 @@ main {
     font-family: Noto_Sans_semibold;
   }
 
+  .horiz-div.details__div__docs__item {
+    align-items: flex-start;
+  }
   .details__div__docs-img {
     width: 25px;
     height: auto;
     margin: 0px 10px;
+  }
+  .horiz-div.details__div__docs__item img {
+    margin: 5px 10px;
   }
   a {
     color: #222;
@@ -1458,6 +1471,9 @@ main {
     font-size: 15px;
     font-family: Noto_Sans_regular;
   }
+  .main-page__menu__btn:hover {
+    color: #cbcbc5;
+  }
   .main-page__menu__btn a {
     font-size: 15px;
     font-family: Noto_Sans_regular;
@@ -1582,8 +1598,7 @@ width: 60px
     gap: 10px;
     margin-right: 40px;
   }
-  .main-page__btn__addPredmety,
-  .main-page__btn__addPredmety a {
+  .main-page__btn__addPredmety {
     color: white;
     background-color: #de4929;
     border-radius: 32px;
@@ -1594,13 +1609,16 @@ width: 60px
   }
   .main-page__btn__addPredmety a {
     color: white;
+    font-family: Noto_Sans_regular;
+  }
+  .main-page__btn__addPredmety a {
+    color: white;
     height: 40px;
     width: 18vw;
     border: none;
     font-family: Noto_Sans_regular;
   }
-  .main-page__btn__addPredmet:hover,
-  .main-page__btn__addPredmety a:hover {
+  .main-page__btn__addPredmety:hover {
     background-color: #e76c50;
     cursor: pointer;
   }
@@ -2062,7 +2080,7 @@ width: 60px
   .details__div__header-h {
     word-wrap: break-word;
     letter-spacing: 0.5px;
-    font-size: 30px;
+    font-size: 25px;
     font-family: Noto_Sans_regular;
   }
   .details__div__header__btn {
@@ -2207,7 +2225,12 @@ border-right: 1px solid                 #000;
     height: auto;
     margin: 0px 10px;
   }
-
+  .horiz-div.details__div__docs__item {
+    align-items: flex-start;
+  }
+  .horiz-div.details__div__docs__item img {
+    margin: 5px 10px;
+  }
   /* additional */
   .parag {
     font-size: 15px;
@@ -2450,8 +2473,8 @@ z-index: -1                            ;
     height: 70px;
     width: 60vw;
     border: solid 1px #de4929;
-    font-size: 20px !important      ;
-    font-family: Noto_Sans_semibold !important ;
+    font-size: 23px !important      ;
+    font-family: Noto_Sans_regular !important ;
   }
 
   .main-page__input-search {
@@ -2461,8 +2484,8 @@ z-index: -1                            ;
     border: solid 1px #9b9b93;
     padding: 5px;
     padding-left: 30px;
-    font-size: 20px;
-    font-family: Noto_Sans_semibold;
+    font-size: 23px !important;
+    font-family: Noto_Sans_regular !important;
   }
 
   /* predmety page */
@@ -2897,7 +2920,7 @@ margin: 0 auto !important      ;
     word-wrap: break-word;
     letter-spacing: 1px;
     font-family: Noto_Sans_regular;
-    font-size: 40px;
+    font-size: 30px;
   }
   .details__div__header-left {
     gap: 10px;
@@ -3006,7 +3029,7 @@ margin: 0 auto !important      ;
     margin-bottom: 30px;
   }
   .details__div__details-box td:first-child {
-    font: 30px Noto_Sans_semibold;
+    font: 25px Noto_Sans_semibold;
   }
   .details__div__details-box-smaller:nth-child(odd) p {
     font-family: Noto_Sans_semibold;
@@ -3050,7 +3073,7 @@ margin: 0 auto !important      ;
   }
 
   .details__div__docs-img {
-    width: 40px;
+    width: 33px;
     height: auto;
     margin: 0px 10px;
   }
@@ -3065,10 +3088,10 @@ margin: 0 auto !important      ;
   }
   /* additional */
   .parag {
-    line-height: 33px;
+    line-height: 28px;
     word-wrap: break-word;
     font-family: Noto_Sans_regular;
-    font-size: 30px;
+    font-size: 25px;
   }
   .vr-small {
     visibility: hidden;
@@ -3115,7 +3138,7 @@ margin: 0 auto !important      ;
     gap: 15px;
   }
   .ui.button.main-page__menu__btn-sb {
-    font-size: 14px;
+    font-size: 17px;
     font-family: Noto_Sans_regular;
     color: white !important;
     width: max-content;
@@ -3143,7 +3166,7 @@ margin: 0 auto !important      ;
     background: none;
     min-width: 200px;
     flex-direction: column;
-    font-size: 17px;
+    font-size: 20px;
     margin-left: 50px;
     color: white;
     font-family: Noto_Sans_regular;
@@ -3349,8 +3372,8 @@ margin: 0 auto !important      ;
     height: 50px;
     width: 60vw;
     border: solid 1px #de4929;
-    font-size: 17px;
-    font-family: Noto_Sans_regular;
+    font-size: 15px !important;
+    font-family: Noto_Sans_regular !important;
   }
 
   .main-page__input-search {
@@ -3360,8 +3383,8 @@ margin: 0 auto !important      ;
     border: solid 1px #9b9b93;
     padding: 5px;
     padding-left: 30px;
-    font-size: 17px;
-    font-family: Noto_Sans_regular;
+    font-size: 15px !important;
+    font-family: Noto_Sans_regular !important;
   }
   .btn.main-page__menu__btn:first-child {
     display: none;
@@ -3497,7 +3520,7 @@ margin: 0 auto !important      ;
     flex-direction: column;
   }
   .parag {
-    line-height: 18px;
+    line-height: 22px;
     word-wrap: break-word;
     font-family: Noto_Sans_regular;
     font-size: 20px;
@@ -3535,5 +3558,11 @@ margin: 0 auto !important      ;
     max-height: auto;
     margin-top: 0px;
     margin-bottom: 10px;
+  }
+  .details__div__header-h {
+    word-wrap: break-word;
+    letter-spacing: 1px;
+    font-family: Noto_Sans_regular;
+    font-size: 27px;
   }
 }

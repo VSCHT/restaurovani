@@ -1,25 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Modal, Image, Button } from "semantic-ui-react";
 import Media from "react-media";
 
 export const ImgCarousel = () => {
-  function myFunction(x) {
-    if (x.matches) {
-      return 3;
-    } else {
-      return 5;
-    }
-  }
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
+  const [slidesToShow, setSlidesToShow] = useState(5);
 
-  let x = window.matchMedia("(max-width: 992px)");
+  useEffect(() => {
+    const imgs = document.querySelectorAll(".predmety__imgs__img");
+
+    imgs.forEach((img) => {
+      img.addEventListener("click", () => {
+        setSelectedImage(img.src);
+        setModalOpen(true);
+      });
+    });
+
+    return () => {
+      imgs.forEach((img) => {
+        img.removeEventListener("click", () => {
+          setSelectedImage(img.src);
+          setModalOpen(true);
+        });
+      });
+    };
+  }, []);
+
+  useEffect(() => {
+    function updateSlidesToShow() {
+      if (window.innerWidth <= 992) {
+        setSlidesToShow(3);
+      } else {
+        setSlidesToShow(5);
+      }
+    }
+
+    updateSlidesToShow();
+
+    window.addEventListener("resize", updateSlidesToShow);
+
+    return () => {
+      window.removeEventListener("resize", updateSlidesToShow);
+    };
+  }, []);
 
   const settings = {
     dots: true,
     infinite: true,
     speed: 100,
-    slidesToShow: myFunction(x),
+    slidesToShow: slidesToShow,
     slidesToScroll: 3,
   };
 
@@ -57,15 +90,33 @@ export const ImgCarousel = () => {
   ];
 
   return (
-    <Slider {...settings}>
-      {imgs.map((item) => (
-        <img
-          key={item.id}
-          src={item.src}
-          alt={item.alt}
-          className="predmety__imgs__img"
-        />
-      ))}
-    </Slider>
+    <>
+      <Slider {...settings}>
+        {imgs.map((item) => (
+          <img
+            key={item.id}
+            src={item.src}
+            alt={item.alt}
+            className="predmety__imgs__img"
+          />
+        ))}
+      </Slider>
+      <div>
+        <Modal
+          open={modalOpen}
+          onClose={() => setModalOpen(false)}
+          className="custom-modal"
+        >
+          <Modal.Content image className="modal-content">
+            <Image src={selectedImage} className="modal-image" />
+            <Button
+              icon="close"
+              onClick={() => setModalOpen(false)}
+              className="close-button"
+            />
+          </Modal.Content>
+        </Modal>
+      </div>
+    </>
   );
 };

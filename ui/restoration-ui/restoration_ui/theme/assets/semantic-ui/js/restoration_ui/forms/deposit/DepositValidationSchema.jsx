@@ -3,14 +3,13 @@
 import * as Yup from "yup";
 import { i18next } from "@translations/restoration_ui/i18next";
 
-const requiredMessage = "This field is required";
+const requiredMessage = "Pole je povinné";
 const edtfRegEx = /^(\d{4})(-(\d{2})(-(\d{2}))?)?(\/\d{4}(-\d{2}(-\d{2})?)?)?$/;
 
 export const DepositValidationSchemaDraft = Yup.object().shape({
   metadata: Yup.object().shape({
     restorationObject: Yup.object().shape({
-      title: 
-      Yup.array().of(
+      title: Yup.array().of(
         Yup.object().shape({
           value: Yup.string().required(requiredMessage),
         })
@@ -26,12 +25,15 @@ export const DepositValidationSchemaDraft = Yup.object().shape({
 export const DepositValidationSchemaEdit = Yup.object().shape({
   metadata: Yup.object().shape({
     restorationObject: Yup.object().shape({
-      category: Yup.string(),
-      description: Yup.array().of(
-        Yup.object().shape({
-          value: Yup.string(),
-        })
-      ),
+      description: Yup.array()
+        .of(
+          Yup.object()
+            .shape({
+              value: Yup.string().nullable(true),
+            })
+            .nullable(true)
+        )
+        .nullable(true),
       archeologic: Yup.boolean(),
       dimensions: Yup.array().of(
         Yup.object().shape({
@@ -45,7 +47,6 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
           }),
         })
       ),
-      color:Yup.string(),
       keywords: Yup.array(Yup.string()),
       restorationRequestor: Yup.object().shape({
         title: Yup.object().shape({
@@ -58,9 +59,6 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
         until: Yup.number(),
         since: Yup.number(),
       }),
-    }),
-    restorationWork: Yup.object().shape({
-      restorer: Yup.string(),
     }),
   }),
 });

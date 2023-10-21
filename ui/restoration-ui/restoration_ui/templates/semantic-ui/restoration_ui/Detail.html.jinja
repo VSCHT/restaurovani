@@ -5,7 +5,6 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 {{ super() }}
 {{ webpack["restoration_ui_components.js"] }}
 {{ webpack["restoration_ui_components.css"] }}
-{{ webpack["restoration_ui_img_gallery.js"] }}
 
 {% endblock %} {%- block page_body %}
 
@@ -41,13 +40,6 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
     </p>
   </div>
   {% endif %}
-</div>
-
-<div id="image-modal" class="image-modal">
-  <div class="modal-content">
-    <span class="close-button" onclick="closeModal()">&times;</span>
-    <img id="modal-image" src="" alt="Item Image" />
-  </div>
 </div>
 
 <!-- photos -->
@@ -262,54 +254,39 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
         buttonElement.style.display = "none";
         btnMore.style.display = "initial";
         btnLess.style.display = "none";
+
+        let trElements = document.querySelectorAll(
+          ".details__div__details-box"
+        );
+        let maxHeight = 0;
+
+        trElements.forEach((tr) => {
+          const trHeight = tr.clientHeight;
+          if (trHeight > maxHeight) {
+            maxHeight = trHeight;
+          }
+        });
+
+        trElements.forEach((tr) => {
+          tr.style.height = `${maxHeight}px`;
+        });
       } else {
         buttonElement.style.display = "initial";
         btnMore.style.display = "none";
         btnLess.style.display = "initial";
+
+        let maxHeight = 0;
+        trElements.forEach((tr) => {
+          const trHeight = tr.clientHeight;
+          if (trHeight > maxHeight) {
+            maxHeight = trHeight;
+          }
+        });
+
+        trElements.forEach((tr) => {
+          tr.style.height = `${maxHeight}px`;
+        });
       }
-    }
-    trElements.forEach((tr) => {
-      const trHeight = tr.clientHeight;
-      if (trHeight > maxHeight) {
-        maxHeight = trHeight;
-      }
-    });
-
-    trElements.forEach((tr) => {
-      tr.style.minHeight = `${maxHeight}px`;
-    });
-  }
-
-  function moveLeft() {
-    const container = document.querySelector(".details__img__div-main");
-    const containerRect = container.getBoundingClientRect();
-    console.log(containerRect);
-    const isLeftBoundaryReached = containerRect.left >= 250;
-
-    if (!isLeftBoundaryReached) {
-      container.style.transition = "margin-left 0.3s ease";
-      const currentMarginLeft = parseFloat(container.style.marginLeft);
-      const newMarginLeft = currentMarginLeft + 50;
-      container.style.marginLeft = newMarginLeft + "px";
-      console.log(newMarginLeft);
-    }
-  }
-
-  function moveRight() {
-    const container = document.querySelector(".details__img__div-main");
-    const containerRect = container.getBoundingClientRect();
-    console.log(containerRect);
-    const isRightBoundaryReached =
-      containerRect.right <= window.innerWidth + 10;
-    let percentageString = window.getComputedStyle(container).marginLeft;
-
-    if (!isRightBoundaryReached) {
-      container.style.marginRight = "-50%";
-      container.style.transition = "margin-left 0.3s ease";
-
-      const currentMarginLeft = parseFloat(percentageString);
-      const newMarginLeft = currentMarginLeft - 50;
-      container.style.marginLeft = newMarginLeft + "px";
     }
   }
 
@@ -343,46 +320,6 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
   function redirectToEditPage() {
     window.location.href = window.location.href + "/edit";
   }
-
-  const modal = document.getElementById("image-modal");
-  const modalImg = document.getElementById("modal-image");
-
-  function closeModal() {
-    modal.style.display = "none";
-  }
-  function openModal(src) {
-    modal.style.display = "block";
-    modalImg.src = src;
-  }
-
-  let imgContainers = document.querySelectorAll(
-    ".predmety__card__img-container"
-  );
-
-  imgContainers.forEach((imgContainer) => {
-    console.log(imgContainer);
-    const img = imgContainer.querySelector(".predmety__imgs__img");
-
-    imgContainer.addEventListener("click", function () {
-      const src = img.src;
-      modalImg.src = src;
-      modal.style.display = "block";
-    });
-  });
-
-  let img = document.querySelectorAll(".predmety__imgs__img");
-
-  imgContainer.click(function () {
-    console.log(img);
-    modalImg.attr("src", img.attr("src"));
-    modalImg.src = src;
-    modal.style.display = "flex";
-    modal.show();
-  });
-
-  modalCloser.click(function () {
-    modal.hide();
-  });
 </script>
 
 {%- endblock page_body %} {%- block javascript %}
@@ -390,5 +327,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 {{ super() }}
 
 {{ webpack["restoration_ui_img_gallery.js"] }}
+
+{{ webpack["restoration_ui_img_modal.js"] }}
 
 {% endblock %}
