@@ -7,9 +7,9 @@ jinja2-simple-tags==0.5.0
 jinjax==0.28
 langcodes==3.3.0
 oarepo-published-service==1.0.1
-oarepo-runtime==1.4.10
+oarepo-runtime==1.4.13
 oarepo-ui==5.0.76
-oarepo-vocabularies==2.0.51
+oarepo-vocabularies==2.0.55
 openpyxl==3.1.2
 python-dotenv==1.0.0
 whitenoise==6.6.0
