@@ -1,8 +1,4 @@
-.ui.inverted.accordion .title:not(.ui){
-    background-color: #9b9b93;
-    margin-top: 30px;
-    margin-bottom: 30px
-}
+
 @media only screen and (min-width: 992px) and (max-width:1200px){
     .ui.accordion .title.btn.predmety__aside__dropdown-btn {
     width: 20vw !important;
@@ -30,6 +26,13 @@
     left: -1rem !important;
     width: 20vw !important;
 } */
+.ui.inverted.accordion .title:not(.ui){
+    background-color: #9b9b93;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 15px !important;
+    font-family: Noto_Sans_regular;
+}
 }
 
 @media only screen and (min-width:1200px){
@@ -55,6 +58,13 @@
 .ui.accordion .title:hover{
     background-color: #E3E3D8 !important;
     cursor: pointer !important;
+}
+.ui.inverted.accordion .title:not(.ui){
+    background-color: #9b9b93;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 15px !important;
+    font-family: Noto_Sans_regular;
 }
 /* .ui.accordion{
     position: relative;
@@ -82,6 +92,13 @@
     align-items: center;
     z-index: 10 !important;
     width: 100% !important;
+}
+.ui.inverted.accordion .title:not(.ui){
+    background-color: #9b9b93;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 17px !important;
+    font-family: Noto_Sans_regular;
 }
 /* .ui.accordion .title:not(.ui) {
     font-size: 25px !important;

@@ -67,13 +67,13 @@ export const KeyWordsInput = ({ fieldPath }) => {
           </Grid>
         </>
       )}
-      <MultiInput
+      {/* <MultiInput
         fieldPath={fieldPath}
         label="Klíčová slova"
         placeholder="Napište klíčová slova..."
         required={false}
         disabled={false}
-      />
+      /> */}
     </>
   );
 };

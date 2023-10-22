@@ -45,24 +45,34 @@ const DetailsButton=({title, searchUrl, selfLink}) => {
 export const ResultsListItemComponent = ({
   currentQueryState,
   result,
-  appName,
-  ...rest
+  appName
 }) => {
+
   const [wideScreen, setWideScreen] = React.useState(
     window.innerWidth >= 1200
   );
-  const handleResize = () => {
-    setIsMobile(window.innerWidth < 992);
-  };
+
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    function updateDescVisibility() {
+      if (window.innerWidth <= 992) {
+        setWideScreen(false);
+      } else {
+        setWideScreen(true);
+      }
+    }
+
+    updateDescVisibility();
+
+    window.addEventListener("resize", updateDescVisibility);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", updateDescVisibility);
     };
-  }, []); 
+  }, []);
+
+
   const searchAppConfig = useContext(SearchConfigurationContext);
-console.log(searchAppConfig)
+
   const title = _get(
     result,
     "metadata.restorationObject.title",
@@ -105,8 +115,8 @@ console.log(searchAppConfig)
                 selfLink={`${result.id}/edit`}
               />
               <Item.Description className="parag">{restorer}</Item.Description>
-              {/* {wideScreen && <Item.Description className="parag">{desc.substring(0,100)} ...</Item.Description>
-              } */}
+              {wideScreen && <Item.Description className="parag">{desc.substring(0,70)}...</Item.Description>
+              }
               
             </Grid.Column>
             <Item.Group className="horiz-div predmety__card__extra-info">

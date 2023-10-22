@@ -50,7 +50,7 @@ export const ImgCarousel = () => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 100,
     slidesToShow: slidesToShow,
     slidesToScroll: 3,
@@ -93,7 +93,7 @@ export const ImgCarousel = () => {
     <>
       <Slider {...settings}>
         {imgs.map((item) => (
-          <img
+          <Image
             key={item.id}
             src={item.src}
             alt={item.alt}

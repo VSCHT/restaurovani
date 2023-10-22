@@ -11,6 +11,36 @@ body .ui.selection.dropdown  {
     border: 1px solid #555;
 
 }
+@media only screen and (min-width: 992px) {
+  .ui.active.visible.fluid.multiple.search.selection.dropdown .label{
+    background-color:  #808080 ;
+    color: #fff;
+    font-family: Noto_Sans_regular !important  ;
+    font-size: 15px !important  ;
+}
+.ui.fluid.multiple.search.selection.dropdown .label{
+    background-color: #808080 ;
+     color: #fff;
+     font-family: Noto_Sans_regular !important  ;
+    font-size: 15px !important  ;
+}
+  
+}
+@media only screen and (max-width: 992px) {
+    .ui.active.visible.fluid.multiple.search.selection.dropdown .label{
+      background-color:  #808080 ;
+      color: #fff;
+      font-family: Noto_Sans_regular !important  ;
+      font-size: 17px !important  ;
+  }
+  .ui.fluid.multiple.search.selection.dropdown .label{
+      background-color: #808080 ;
+       color: #fff;
+       font-family: Noto_Sans_regular !important  ;
+      font-size: 15px !important  ;
+  }
+    
+  }
 .ui.active.visible.fluid.multiple.search.selection.dropdown{
  padding: 0px 15px;
 

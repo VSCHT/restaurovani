@@ -10,6 +10,7 @@ import {
   BooleanField,
   ArrayField,
   TextAreaField,
+  MultiInput
 } from "react-invenio-forms";
 
 import { Container, Message, Grid, Form, Button } from "semantic-ui-react";
@@ -64,7 +65,7 @@ export const EditObjectForm = ({ edit }) => {
   return (
     <Container>
       <Formik
-        initialValues={record}
+        initialValues={record || []}
         onSubmit={() => {}}
         enableReinitialize
         validationSchema={DepositValidationSchemaEdit}
@@ -77,7 +78,7 @@ export const EditObjectForm = ({ edit }) => {
               <div>
                 <h3 className="predmety__form__h">
                   Editace předmětu{" "}
-                  {values.metadata.restorationObject.title[0].value}
+                   {values.metadata.restorationObject.title[0].value}
                 </h3>
               </div>
 
@@ -98,6 +99,15 @@ export const EditObjectForm = ({ edit }) => {
                     >
                       <div className="vert-div predmety__form__div-fields">
                         <KeyWordsInput fieldPath="metadata.restorationObject.keywords" />
+                        <div className="vert-div predmety__form__div">
+                        <MultiInput
+                          fieldPath="metadata.restorationObject.keywords"
+                          label="Klíčová slova"
+                          placeholder="Napište klíčová slova..."
+                          required={false}
+                          disabled={false}
+                        />
+                        </div>
                         <div className="vert-div predmety__form__div">
                           <TextAreaField
                             name="metadata.restorationObject.description[0].value"
@@ -124,6 +134,7 @@ export const EditObjectForm = ({ edit }) => {
                               <FieldLabel
                                 htmlFor="metadata.restorationObject.itemTypes"
                                 label="Typ předmětu"
+                                className="predmety__form__div__label"
                               />
                             }
                           />
@@ -142,6 +153,7 @@ export const EditObjectForm = ({ edit }) => {
                                         "metadata.restorationObject.stylePeriod.properties.period"
                                       }
                                       label="Období"
+                                      className="predmety__form__div__label"
                                     />
                                   }
                                 />
@@ -180,7 +192,6 @@ export const EditObjectForm = ({ edit }) => {
                         "metadata.restorationObject.restorationRequestor",
                         "metadata.restorationObject.creationPeriod",
                       ]}
-                      active
                       label="Prace"
                     >
                       <div className="vert-div predmety__form__div-fields">
@@ -195,6 +206,7 @@ export const EditObjectForm = ({ edit }) => {
                               <FieldLabel
                                 htmlFor="metadata.restorationWork.restorationMethods"
                                 label="Metody restaurování"
+                                className="predmety__form__div__label"
                               />
                             }
                           />
@@ -244,8 +256,10 @@ export const EditObjectForm = ({ edit }) => {
                               <FieldLabel
                                 htmlFor={
                                   "metadata.restorationObject.restorationRequestor"
+                                  
                                 }
                                 label="Zadavatel"
+                                className="predmety__form__div__label"
                               />
                             }
                           />
@@ -261,7 +275,6 @@ export const EditObjectForm = ({ edit }) => {
                   <Overridable id="Deposit.AccordionFieldBasicInformation.container">
                     <AccordionField
                       includesPaths={["metadata.restorationObject.dimensions"]}
-                      active
                       label="Vzhled"
                     >
                       <div className="vert-div predmety__form__div-fields">
@@ -290,6 +303,7 @@ export const EditObjectForm = ({ edit }) => {
                                           <FieldLabel
                                             htmlFor={`${fieldPathPrefix}.dimension.title`}
                                             label="Rozměr"
+                                            className="predmety__form__div__label"
                                           />
                                         }
                                       />
@@ -341,7 +355,6 @@ export const EditObjectForm = ({ edit }) => {
                   <Overridable id="Deposit.AccordionFieldBasicInformation.container">
                     <AccordionField
                       includesPaths={["metadata.restorationObject.parts"]}
-                      active
                       label="Součásti"
                     >
                       <FieldArray name="metadata.restorationObject.parts">
@@ -350,108 +363,115 @@ export const EditObjectForm = ({ edit }) => {
                             {values.metadata?.restorationObject?.parts?.map(
                               (part, index) => (
                                 <div
-                                  className="vert-div predmety__form__div-fields"
+                                  className="vert-div predmety__form__div-fields__parts"
                                   key="index"
                                 >
-                                  <h4>Součást N{index+1}</h4>
-                                  <div className="vert-div predmety__form__div">
-                                    <TextField
-                                      name="metadata.restorationObject.title[0].value"
-                                      className="form__input"
-                                      aria-label="Název součásti"
-                                      fieldPath={`metadata.restorationObject.parts[${index}].name`}
-                                      required
-                                      label={
-                                        <FieldLabel
-                                          htmlFor={`metadata.restorationObject.parts[${index}].name`}
-                                          className="predmety__form__div__label"
-                                          label="Název součásti"
-                                        />
-                                      }
-                                    />
-                                  </div>
-                                  <div className="vert-div predmety__form__div predmety__form__div-checkbox">
-                                    <Form.Field>
-                                      <BooleanField
-                                        name={`metadata.restorationObject.parts[${index}].main`}
-                                        aria-label="Hlávní součást"
-                                        fieldPath={`metadata.restorationObject.parts[${index}].main`}
+                                  <div className="vert-div predmety__form__div-fields">
+                                    <h3>Součást N{index + 1}</h3>
+                                    <div className="vert-div predmety__form__div">
+                                      <TextField
+                                        name="metadata.restorationObject.title[0].value"
+                                        className="form__input"
+                                        aria-label="Název součásti"
+                                        fieldPath={`metadata.restorationObject.parts[${index}].name`}
+                                        required
                                         label={
                                           <FieldLabel
-                                            htmlFor={`metadata.restorationObject.parts[${index}].main`}
+                                            htmlFor={`metadata.restorationObject.parts[${index}].name`}
                                             className="predmety__form__div__label"
-                                            label="Hlávní součást"
-                                          ></FieldLabel>
+                                            label="Název součásti"
+                                          />
                                         }
                                       />
-                                    </Form.Field>
-                                  </div>
-                                  <div className="vert-div predmety__form__div">
-                                    <LocalVocabularySelectField
-                                      optionsListName="Colors"
-                                      fieldPath={`metadata.restorationObject.parts[${index}].colors`}
-                                      multiple={true}
-                                      clearable
-                                      label={
-                                        <FieldLabel
-                                          htmlFor={`metadata.restorationObject.parts[${index}].colors`}
-                                          label="Barva"
+                                    </div>
+                                    <div className="vert-div predmety__form__div predmety__form__div-checkbox">
+                                      <Form.Field>
+                                        <BooleanField
+                                          name={`metadata.restorationObject.parts[${index}].main`}
+                                          aria-label="Hlávní součást"
+                                          fieldPath={`metadata.restorationObject.parts[${index}].main`}
+                                          label={
+                                            <FieldLabel
+                                              htmlFor={`metadata.restorationObject.parts[${index}].main`}
+                                              className="predmety__form__div__label"
+                                              label="Hlávní součást"
+                                            ></FieldLabel>
+                                          }
                                         />
-                                      }
-                                      placeholder="Vyberte barvu"
-                                    />
-                                  </div>
-                                  <div className="vert-div predmety__form__div">
-                                    <LocalVocabularySelectField
-                                      optionsListName="FabricationTechnologies"
-                                      fieldPath={`metadata.restorationObject.parts[${index}].fabricationTechnologies`}
-                                      placeholder="Vyberte technologie výroby"
-                                      multiple={true}
-                                      clearable
-                                      label={
-                                        <FieldLabel
-                                          htmlFor={`metadata.restorationObject.parts[${index}].fabricationTechnologies`}
-                                          label="Technologie výroby"
-                                        />
-                                      }
-                                    />
-                                  </div>
-                                 
-                                  <div className="vert-div predmety__form__div">
-                                    <LocalVocabularySelectField
-                                      optionsListName="MaterialTypes"
-                                      fieldPath={`metadata.restorationObject.parts[${index}].materialType`}
-                                      multiple={false}
-                                      clearable
-                                      placeholder="Vyberte typy materiálů"
-                                      label={
-                                        <FieldLabel
-                                          htmlFor={`metadata.restorationObject.parts[${index}].materialType`}
-                                          label="Typy materiálů"
-                                        />
-                                      }
-                                    />
-                                  </div>
-                                  <div className="vert-div predmety__form__div">
-                                    <LocalVocabularySelectField
-                                      optionsListName="MaterialTypes"
-                                      fieldPath={`metadata.restorationObject.parts[${index}].secondaryMaterialTypes`}
-                                      multiple={true}
-                                      clearable
-                                      placeholder="Vyberte vedlejší typy materiálů"
-                                      label={
-                                        <FieldLabel
-                                          htmlFor={`metadata.restorationObject.parts[${index}].secondaryMaterialTypes`}
-                                          label="Vedlejší typy materiálů"
-                                        />
-                                      }
-                                    />
+                                      </Form.Field>
+                                    </div>
+                                    <div className="vert-div predmety__form__div">
+                                      <LocalVocabularySelectField
+                                        optionsListName="Colors"
+                                        fieldPath={`metadata.restorationObject.parts[${index}].colors`}
+                                        multiple={true}
+                                        clearable
+                                        label={
+                                          <FieldLabel
+                                            htmlFor={`metadata.restorationObject.parts[${index}].colors`}
+                                            label="Barva"
+                                            className="predmety__form__div__label"
+                                          />
+                                        }
+                                        placeholder="Vyberte barvu"
+                                      />
+                                    </div>
+                                    <div className="vert-div predmety__form__div">
+                                      <LocalVocabularySelectField
+                                        optionsListName="FabricationTechnologies"
+                                        fieldPath={`metadata.restorationObject.parts[${index}].fabricationTechnologies`}
+                                        placeholder="Vyberte technologie výroby"
+                                        multiple={true}
+                                        clearable
+                                        label={
+                                          <FieldLabel
+                                            htmlFor={`metadata.restorationObject.parts[${index}].fabricationTechnologies`}
+                                            label="Technologie výroby"
+                                            className="predmety__form__div__label"
+                                          />
+                                        }
+                                      />
+                                    </div>
+
+                                    <div className="vert-div predmety__form__div">
+                                      <LocalVocabularySelectField
+                                        optionsListName="MaterialTypes"
+                                        fieldPath={`metadata.restorationObject.parts[${index}].materialType`}
+                                        multiple={false}
+                                        clearable
+                                        placeholder="Vyberte typy materiálů"
+                                        label={
+                                          <FieldLabel
+                                            htmlFor={`metadata.restorationObject.parts[${index}].materialType`}
+                                            label="Typy materiálů"
+                                            className="predmety__form__div__label"
+                                          />
+                                        }
+                                      />
+                                    </div>
+                                    <div className="vert-div predmety__form__div">
+                                      <LocalVocabularySelectField
+                                        optionsListName="MaterialTypes"
+                                        fieldPath={`metadata.restorationObject.parts[${index}].secondaryMaterialTypes`}
+                                        multiple={true}
+                                        clearable
+                                        placeholder="Vyberte vedlejší typy materiálů"
+                                        label={
+                                          <FieldLabel
+                                            htmlFor={`metadata.restorationObject.parts[${index}].secondaryMaterialTypes`}
+                                            label="Vedlejší typy materiálů"
+                                            className="predmety__form__div__label"
+                                          />
+                                        }
+                                      />
+                                    </div>
                                   </div>
                                 </div>
                               )
                             )}
                             <Button
                               type="button"
+                              className="predmety__form__edit__btn-newobj"
                               onClick={() => arrayHelpers.push({})}
                             >
                               Dodat součást

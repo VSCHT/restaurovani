@@ -1,78 +1,54 @@
-import React, { useContext, useEffect, useLocation, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useContext, useEffect, useState } from "react";
 import _isEmpty from "lodash/isEmpty";
-import Overridable from "react-overridable";
-import {
-  withState,
-  ActiveFilters,
-  BucketAggregation,
-  SearchBar,
-} from "react-searchkit";
-import { GridResponsiveSidebarColumn } from "react-invenio-forms";
+import { SearchBar } from "react-searchkit";
 import {
   Container,
   Grid,
   Button,
   Image,
-  Checkbox,
   Label,
   Header,
-  Sidebar,
   Modal,
 } from "semantic-ui-react";
-import { i18next } from "@translations/oarepo_ui/i18next";
 import {
   SearchAppFacets,
   SearchAppResultsPane,
   SearchConfigurationContext,
 } from "@js/invenio_search_ui/components";
-import { ResultOptions } from "@js/invenio_search_ui/components/Results";
-import store from "./store";
-import { Provider } from "react-redux";
 
-const ResultOptionsWithState = withState(ResultOptions);
-export const SearchAppLayout = ({ hasButtonSidebar }) => {
+export const SearchAppLayout = () => {
   const [sidebarVisible, setSidebarVisible] = React.useState(
     window.innerWidth >= 992
   );
-  const [dropdownVisible, setDropdownVisible] = React.useState("");
+
   const [modalOpen, setModalOpen] = useState(false);
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
   };
-  const showDropDown = (value) => {
-    setDropdownVisible(value);
-    console.log("visible" + dropdownVisible);
-  };
-  const toggleDropDown = (title) => {
-    setDropdownVisible((prevState) => (prevState === title ? "" : title));
-  };
+
   const toggleSidebar = (e) => {
-    console.log("start");
     e.preventDefault();
     setSidebarVisible(!sidebarVisible);
-    console.log(sidebarVisible);
   };
-  const togglemenu = () => {
-    const asideElement = document.getElementById("predmety__aside");
-    console.log(asideElement);
-    if (asideElement.classList.contains("hide-important")) {
-      asideElement.classList.remove("hide-important");
-    } else {
-      asideElement.classList.add("hide-important");
-    }
-  };
-  // const handleResize = () => {
-  //   setIsMobile(window.innerWidth < 992);
-  // };
-  // useEffect(() => {
-  //   window.addEventListener("resize", handleResize);
 
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
+  useEffect(() => {
+    function updateSidebarVisibility() {
+      if (window.innerWidth <= 992) {
+        setSidebarVisible(false);
+      } else {
+        setSidebarVisible(true);
+      }
+    }
+
+    updateSidebarVisibility();
+
+    window.addEventListener("resize", updateSidebarVisibility);
+
+    return () => {
+      window.removeEventListener("resize", updateSidebarVisibility);
+    };
+  }, []);
 
   const { appName, buildUID } = useContext(SearchConfigurationContext);
 
@@ -171,73 +147,69 @@ export const SearchAppLayout = ({ hasButtonSidebar }) => {
                 />
               </Grid>
             </Grid.Column>
-          ) }
-          
-          
-            <Modal
-              as={Grid.Column}
-              animation="overlay"
-              icon="labeled"
-              open={modalOpen}
-              onClose={toggleModal}
-              onHide={() => setSidebarVisible(false)}
-              width="wide"
+          )}
+
+          <Modal
+            as={Grid.Column}
+            animation="overlay"
+            icon="labeled"
+            open={modalOpen}
+            onClose={toggleModal}
+            onHide={() => setSidebarVisible(false)}
+            width="wide"
+          >
+            <Grid.Column
+              className="vert-div predmety__aside"
+              id="predmety__aside"
             >
-             
-                <Grid.Column
-                  className="vert-div predmety__aside"
-                  id="predmety__aside"
+              <Grid.Row className="vsht-logo div__vsht-logo predmety__div__vsht-logo">
+                <Image
+                  className="vsht-logo image__vsht-logo predmety__image__vsht-logo"
+                  src="/static/images/logo_VSHT.png"
+                  alt="vsht logo"
+                />
+                <Label className="vsht-logo text__vsht-logo predmety__text__vsht-logo">
+                  VYSOKÁ ŠKOLA
+                  <br />
+                  CHEMICKO-TECHNOLOGICKÁ
+                  <br />V PRAZE
+                </Label>
+              </Grid.Row>
+
+              <Button
+                className="btn predmety__input-search__searchbar-burger btn-close"
+                aria-label="Toggle Filter Menu"
+                onClick={toggleModal}
+              >
+                <Image
+                  rel="icon"
+                  src="/static/images/close-icon.png"
+                  alt="burger filter button"
+                />
+              </Button>
+              <Grid
+                className="vert-div predmety__aside__filter"
+                aria-label="Filter Options"
+              >
+                <Button
+                  className="predmety__aside__btn"
+                  aria-label="Tlacitko dodat novy predmet"
+                  onClick={createNewHandler}
                 >
-                  <Grid.Row className="vsht-logo div__vsht-logo predmety__div__vsht-logo">
-                    <Image
-                      className="vsht-logo image__vsht-logo predmety__image__vsht-logo"
-                      src="/static/images/logo_VSHT.png"
-                      alt="vsht logo"
-                    />
-                    <Label className="vsht-logo text__vsht-logo predmety__text__vsht-logo">
-                      VYSOKÁ ŠKOLA
-                      <br />
-                      CHEMICKO-TECHNOLOGICKÁ
-                      <br />V PRAZE
-                    </Label>
-                  </Grid.Row>
+                  Nový předmět
+                  <Image
+                    src="/static/images/plus-square.png"
+                    alt="add new icon"
+                  />
+                </Button>
 
-                  <Button
-                    className="btn predmety__input-search__searchbar-burger btn-close"
-                    aria-label="Toggle Filter Menu"
-                    onClick={toggleModal}
-                  >
-                    <Image
-                      rel="icon"
-                      src="/static/images/close-icon.png"
-                      alt="burger filter button"
-                    />
-                  </Button>
-                  <Grid
-                    className="vert-div predmety__aside__filter"
-                    aria-label="Filter Options"
-                  >
-                    <Button
-                      className="predmety__aside__btn"
-                      aria-label="Tlacitko dodat novy predmet"
-                      onClick={createNewHandler}
-                    >
-                      Nový předmět
-                      <Image
-                        src="/static/images/plus-square.png"
-                        alt="add new icon"
-                      />
-                    </Button>
-
-                    <SearchAppFacets
-                      aggs={searchAppConfig.aggs}
-                      appName={appName}
-                    />
-                  </Grid>
-                </Grid.Column>
-              
-            </Modal>
-          
+                <SearchAppFacets
+                  aggs={searchAppConfig.aggs}
+                  appName={appName}
+                />
+              </Grid>
+            </Grid.Column>
+          </Modal>
         </Grid>
       </Container>
     </Container>

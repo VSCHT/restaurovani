@@ -450,7 +450,7 @@ main {
     align-items: center;
     z-index: 10 !important      ;
     position: relative;
-    width: 300px;
+    width: 15vw;
   }
   .text__vsht-logo {
     font-size: 11px;
@@ -469,7 +469,7 @@ main {
     align-items: center;
   }
   .text__vsht-logo {
-    font-size: 11px;
+    font-size: 0.7vw;
     font-family: Noto_Sans_bold;
     width: 15vw;
   }
@@ -584,10 +584,10 @@ main {
     display: flex;
     top: 180px;
     width: 80vw;
-    height: 100vh;
+    height: 90vh;
     margin: 0 auto;
     align-items: center;
-    margin-top: -2vh;
+    margin-top: 7vh;
   }
   /* right side of main content */
 
@@ -597,20 +597,22 @@ main {
     margin-top: 110px;
     max-height: 70vh;
   }
-
+ 
   .main-page__div__main-image {
     flex-grow: 1;
     display: flex;
+    width: 40vw;
     align-items: center;
     justify-content: center;
     overflow: hidden;
   }
 
-  .main-page__main-image img {
+  .main-page__div__main-image img {
     max-width: 100%;
     max-height: 100%;
     width: auto;
-    height: auto;
+    height: 50vh;
+    min-height: 700px;
   }
   .main-page__div__main-image__div-arrows {
     width: 80px;
@@ -627,13 +629,13 @@ main {
     max-height: 90vh;
     justify-content: space-between;
     padding-right: 50px;
-    gap: 110px;
+    gap: 14vh;
     position: relative;
     bottom: 0px;
-    margin-top: 55px;
+    /* margin-top: 55px; */
   }
   .vert-div.main-page__main-container__titles {
-    gap: 55px;
+    gap:5vh;
   }
   .main-page__title__img {
     position: relative;
@@ -762,6 +764,9 @@ main {
     z-index: 1;
     font-family: Noto_Sans_regular;
   }
+  .menu__dropdown__content .item:focus {
+    background-color: #ddd;
+  }
 
   .menu__dropdown__content a {
     color: black;
@@ -781,9 +786,7 @@ main {
     margin-right: 10vw;
   }
 
-  .menu__dropdown__content a:hover {
-    background-color: #ddd;
-  }
+  
 
   .menu__div__dropdown:hover .menu__dropdown__content {
     display: block;
@@ -792,7 +795,9 @@ main {
   .menu__div__dropdown:hover .btn.menu__btn {
     background-color: #9b9b93;
   }
-
+  .menu.dropdown-content .item:hover {
+    background-color: #aaa;
+}
   /* main part--cards */
 
   .predmety_main-container {
@@ -1000,6 +1005,12 @@ main {
     border-radius: 40px;
     padding: 0px 15px;
   }
+  .predmety__form__div-fields__parts{
+    margin:  30px 0px;
+  }
+  .predmety__form__div-fields__parts:first-child{
+    margin:  10px 0px 30px 0px;
+  }
   .predmety__form__div {
     width: 100%;
     height: auto;
@@ -1122,7 +1133,6 @@ main {
   }
 
   .predmety__form-main {
-    margin: 0px 0px 5px;
     gap: 14px;
     width: 60%;
   }
@@ -1927,7 +1937,12 @@ width: 60px
     border-radius: 40px;
     padding: 0px 15px;
   }
-
+  .predmety__form__div-fields__parts{
+    margin:  30px 0px;
+  }
+  .predmety__form__div-fields__parts:first-child{
+    margin:  10px 0px 30px 0px;
+  }
   .predmety__form__div {
     width: 100%;
     gap: 10px;
@@ -1989,7 +2004,6 @@ width: 60px
   }
 
   .predmety__form-main {
-    margin: 0px 0px 5px;
     gap: 13px;
     width: 80%;
   }
@@ -2423,7 +2437,7 @@ z-index: -1                            ;
   .main-page__input {
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
     flex: 1;
     gap: 10px;
@@ -2453,7 +2467,7 @@ z-index: -1                            ;
     line-height: 19px;
     word-wrap: break-word;
     padding-right: 20px;
-    text-align: center;
+    text-align: flex-start;
     font-family: Noto_Sans_regular;
     margin: 0 auto;
   }
@@ -2553,7 +2567,7 @@ z-index: -1                            ;
     margin-left: 4vw;
   }
   .predmety__input-search__searchbar-burger img {
-    width: 40px;
+    width: 35px;
     height: auto;
   }
 
@@ -2736,13 +2750,20 @@ margin: 0 auto !important      ;
     font-family: Noto_Sans_regular;
     font-size: 23px;
     margin-top: 30px !important;
+    width: 60vw;
+    text-align:center;
   }
   .predmety__form__div__label {
     font-family: Noto_Sans_regular;
     font-size: 14px;
     gap: 10px;
   }
-
+  .predmety__form__div-fields__parts{
+    margin:  30px 0px;
+  }
+  .predmety__form__div-fields__parts:first-child{
+    margin:  10px 0px 30px 0px;
+  }
   .predmety__form__div__radio {
     appearance: none;
     background-color: #fff;
@@ -2781,7 +2802,7 @@ margin: 0 auto !important      ;
   .predmety__form__div {
     width: 100%;
     gap: 20px;
-    height: auto;
+    height: auto; 
   }
   .predmety__form__div-checkbox {
     width: 100%;
@@ -2826,7 +2847,6 @@ margin: 0 auto !important      ;
   }
 
   .predmety__form-main {
-    margin: 25px 0px 20px;
     gap: 20px;
     width: 60vw;
   }
@@ -2894,7 +2914,7 @@ margin: 0 auto !important      ;
 
   .details__div__header {
     background-color: #de4929;
-    height: 80px;
+    height:auto;
     width: 80%;
     color: white;
     justify-content: space-between;
@@ -2925,6 +2945,7 @@ margin: 0 auto !important      ;
   .details__div__header-left {
     gap: 10px;
     align-items: center;
+    margin: 10px 0px;
   }
 
   img.details__div__header__btn-edit {
@@ -2975,6 +2996,7 @@ margin: 0 auto !important      ;
 
   table.horiz-div.details__table {
     width: 80%;
+    margin-top: 30px;
   }
   .details__div__details-box {
     width: 83vw;
@@ -2992,7 +3014,7 @@ margin: 0 auto !important      ;
     height: auto;
   }
   .details__div__details-box-smaller:nth-child(even) {
-    width: 900px;
+   
     height: auto;
     border-left: 1px solid black;
     padding-left: 10px;
@@ -3398,7 +3420,7 @@ margin: 0 auto !important      ;
     display: flex;
     position: relative;
     top: 75px;
-    width: 80vw;
+    width: 90vw;
     height: 900px;
     margin: 0 auto;
   }
@@ -3534,18 +3556,20 @@ margin: 0 auto !important      ;
     flex-basis: 15%;
   }
   .details__div__details-box-smaller {
-    width: 530px;
+    width: 585px;
     height: auto;
   }
   .predmety__form-main {
-    margin: 20px 0px;
+    
     gap: 20px;
     width: 95vw;
   }
   .predmety__form__h {
     font-family: Noto_Sans_regular;
-    font-size: 20px;
+    font-size: 25px;
     margin-top: 30px !important;
+    width: 80vw;
+    text-align:center;
   }
   .horiz-div.details__images-container.details_div_images-container {
     position: relative;

@@ -4,7 +4,11 @@
 }
 .button.form-edit__keywords__btn-cancel{
   padding: 0px;
-  background: #e8e8e8;
+  background-color:  #808080 ;
+    color: #fff
+}
+.button.form-edit__keywords__btn-cancel > .icon:not(.button){
+  margin: 0px !important;
 }
 .button.form__btn-err {
   width: 20%;
@@ -14,6 +18,11 @@
   font-family: Noto_Sans_regular;
   border-radius: 32px;
   margin-bottom: 20px
+}
+.button.predmety__form__edit__btn-newobj{
+  background-color: #808080 !important;
+  color: white !important                                  ;
+  height: 40px !important                                  ;
 }
 @media only screen and (min-width: 992px) {
   .ui.button.predmety__aside__dropdown-btn {
@@ -268,10 +277,11 @@
     color: white;
     background-color: #de4929;
     border-radius: 32px;
+    padding: 0px;
     height: 53px;
     width: 27vw;
     border: none;
-    font: 14px Noto_Sans_semibold;
+    font: 20px Noto_Sans_semibold !important;
   }
 
   .ui.button.predmety__aside__dropdown-btn:hover {

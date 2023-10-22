@@ -127,7 +127,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
     </tr>
   </tbody>
 </table>
-
+<div class="details__tb-info"></div>
 <!-- desc -->
 {% if metadata.restorationObject.description %}
 <div class="details__div__desc" aria-label="Popis předmětu">
@@ -328,6 +328,5 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 
 {{ webpack["restoration_ui_img_gallery.js"] }}
 
-{{ webpack["restoration_ui_img_modal.js"] }}
 
 {% endblock %}

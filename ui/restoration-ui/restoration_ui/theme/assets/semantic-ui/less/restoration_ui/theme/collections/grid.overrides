@@ -112,6 +112,7 @@ display: flex !important                                ;
 flex-direction: row !important                          ;
 align-items: center !important                          ;
 z-index: 1000                                           ;
+width: 20vw;
 }
 .ui.grid.predmety__aside__filter{
 gap: 20px                                               ;
