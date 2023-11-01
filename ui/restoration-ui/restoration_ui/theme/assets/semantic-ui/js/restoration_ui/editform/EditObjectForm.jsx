@@ -44,14 +44,14 @@ console.log(values)
     setActiveIndex(x)
   }
 
- const initialValues = {
-  ...record,
-  metadata: {
-    restorationObject: {
-      parts: [{ main: true }]
-    }
-  }
-};
+//  const initialValues = {
+//   ...record,
+//   metadata: {
+//     restorationObject: {
+//       parts: [{ main: true }]
+//     }
+//   }
+// };
 
   console.log(record);
   return (
