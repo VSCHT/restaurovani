@@ -39,12 +39,19 @@ export const EditObjectForm = ({ edit }) => {
   const { record } = useFormConfig();
 
   const [activeIndex, setActiveIndex]= useState(0)
-  const handleActive = ( x) => {
-
+  const handleActive = ( x, values) => {
+console.log(values)
     setActiveIndex(x)
   }
 
-
+ const initialValues = {
+  ...record,
+  metadata: {
+    restorationObject: {
+      parts: [{ main: true }]
+    }
+  }
+};
 
   console.log(record);
   return (
@@ -58,12 +65,12 @@ export const EditObjectForm = ({ edit }) => {
         validateOnBlur={false}
       >
         {({ values }) => (
-          <>
+        
             <Grid className="vert-div predmety__form">
               <div>
                 <h3 className="predmety__form__h">
                   Editace předmětu &nbsp;
-                  {values.metadata.restorationObject.title[0].value}
+                  {values.metadata.restorationObject.title}
                 </h3>
               </div>
 
@@ -75,8 +82,8 @@ export const EditObjectForm = ({ edit }) => {
                       includesPaths={[
                         "metadata.restorationObject.itemTypes",
                         "metadata.restorationObject.dimensions",
-                        "metadata.restorationObject.description[0].value",
-                        "metadata.restorationObject.title[0].value",
+                        "metadata.restorationObject.description",
+                        "metadata.restorationObject.title",
                         "metadata.restorationObject.archeologic",
                         "metadata.restorationObject.keywords",
                         "metadata.restorationObject.stylePeriod.endYear",
@@ -87,22 +94,22 @@ export const EditObjectForm = ({ edit }) => {
                       label="Udaje"
                       active={activeIndex === 0}
                       defaultActiveIndex={0}
-                      onClick={()=>handleActive(0)}
+                      onClick={()=>handleActive(0, values)}
                     >
                       <div className="vert-div predmety__form__div-fields">
                         <div className="vert-div predmety__form__div">
                           <TextField
-                            name="metadata.restorationObject.title[0].value"
+                            name="metadata.restorationObject.title"
                             className="form__input"
                             aria-label="Název předmětu"
-                            fieldPath="metadata.restorationObject.title[0].value"
+                            fieldPath="metadata.restorationObject.title"
                             required
                             label={
                               <FieldLabel
-                                htmlFor="metadata.restorationObject.title[0].value"
+                                htmlFor="metadata.restorationObject.title"
                                 className="predmety__form__div__label"
                                 label="Název předmětu"
-                                required
+                               
                               />
                             }
                           />
@@ -120,12 +127,12 @@ export const EditObjectForm = ({ edit }) => {
                         </div>
                         <div className="vert-div predmety__form__div">
                           <TextAreaField
-                            name="metadata.restorationObject.description[0].value"
+                            name="metadata.restorationObject.description"
                             aria-label="Popis"
-                            fieldPath="metadata.restorationObject.description[0].value"
+                            fieldPath="metadata.restorationObject.description"
                             label={
                               <FieldLabel
-                                htmlFor="metadata.restorationObject.description[0].value"
+                                htmlFor="metadata.restorationObject.description"
                                 className="predmety__form__div__label"
                                 label="Popis"
                               ></FieldLabel>
@@ -274,6 +281,7 @@ export const EditObjectForm = ({ edit }) => {
                         <div className="vert-div predmety__form__div predmety__form__div-checkbox">
                           <Form.Field>
                             <BooleanField
+                            optimized='false'
                               name="metadata.restorationObject.archeologic"
                               aria-label="Archeologický nález"
                               fieldPath="metadata.restorationObject.archeologic"
@@ -395,7 +403,7 @@ export const EditObjectForm = ({ edit }) => {
                             {({ arrayHelpers, indexPath }) => {
                               const fieldPathPrefix = `${"metadata.restorationWork.supervisors"}[${indexPath}]`;
                               return (
-                                <>
+                                
                                   <ArrayFieldItem
                                     name="metadata.restorationWork.supervisors"
                                     fieldPath="metadata.restorationWork.supervisors"
@@ -476,12 +484,12 @@ export const EditObjectForm = ({ edit }) => {
                                     </div>
                                     {/* </div> */}
                                   </ArrayFieldItem>
-                                </>
+                                
                               );
                             }}
                           </ArrayField>
                         </div>
-                        <div className="vert-div predmety__form__div">
+                        {/* <div className="vert-div predmety__form__div">
                           <LocalVocabularySelectField
                             optionsListName="RestorationMethods"
                             fieldPath="metadata.restorationWork.restorationMethods"
@@ -496,7 +504,7 @@ export const EditObjectForm = ({ edit }) => {
                               />
                             }
                           />
-                        </div>
+                        </div> */}
 
                         <FieldArray name="metadata.restorationWork.restorationPeriod">
                           <div className="horiz-div predmety__form__div-small">
@@ -652,7 +660,6 @@ export const EditObjectForm = ({ edit }) => {
                                         name={`${fieldPathPrefix}.main`}
                                         aria-label="Hlávní součást"
                                         fieldPath={`${fieldPathPrefix}.main`}
-                                        checked={indexPath == 0 ? true : false}
                                         label={
                                           <FieldLabel
                                             htmlFor={`${fieldPathPrefix}.main`}
@@ -756,7 +763,7 @@ export const EditObjectForm = ({ edit }) => {
               </div>
               <SaveButton title="ULOŽIT" edit={edit} />
             </Grid>
-          </>
+         
         )}
       </Formik>
     </Container>

@@ -31,7 +31,7 @@ const DetailsButton=({title, searchUrl, selfLink}) => {
   return (
     <Button className="predmety__card__btn"
     aria-label="Tlacitko tevrit detaily">
-      <a className="predmety__card__btn" href={viewLink}>DETAIL</a>
+      <a  href={viewLink}>DETAIL</a>
     </Button>
   );
 };
@@ -71,7 +71,7 @@ export const ResultsListItemComponent = ({
     result,
     "metadata.restorationObject.title",
     "<no title>"
-  )[0].value;
+  )
 
   const restorer = _get(
     result,
