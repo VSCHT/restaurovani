@@ -1,0 +1,20 @@
+{#def search_app_config #} 
+{%- extends config.BASE_TEMPLATE %} 
+{%- set title =
+_("Search results") ~ " | " ~ _("restoration-ui") %} 
+
+{%- block javascript %}
+{{ super() }} 
+{{ webpack["restoration_ui_components.js"] }}
+{{ webpack["restoration_ui_components.css"] }}
+{{ webpack["restoration_ui_search.js"] }}
+{%- endblock javascript%} 
+
+{%- block page_body_content %} 
+{%- block bg %} 
+{%- block page_body %}
+
+ <div data-invenio-search-config= '{{ search_app_config | tojson }}' ></div>
+
+{%- endblock page_body %} {%- endblock bg %} 
+{%- endblock page_body_content %}

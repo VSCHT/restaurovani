@@ -1,0 +1,56 @@
+restorationObject:
+  type: object
+  properties:
+    title:
+      type: fulltext+keyword
+    keywords[]:
+      type: keyword
+    category:
+      type: keyword
+    description:
+      type: fulltext
+    parts[]:
+      type: nested
+      id: part
+      properties:
+        id:
+          type: keyword
+        name:
+          type: fulltext+keyword
+        main:
+          type: boolean
+        fabricationTechnologies[]:
+          type: vocabulary
+          vocabulary-type: FabricationTechnologies
+        materialType:
+          type: vocabulary
+          vocabulary-type: MaterialTypes
+        secondaryMaterialTypes[]:
+          type: vocabulary
+          vocabulary-type: MaterialTypes
+        colors[]:
+          type: vocabulary
+          vocabulary-type: Colors
+    itemTypes[]:
+      type: vocabulary
+      vocabulary-type: ItemTypes
+    dimensions[]:
+      properties:
+        dimension:
+          type: vocabulary
+          vocabulary-type: Dimensions
+        unit:
+          type: keyword
+        value:
+          type: float
+    archeologic:
+      type: boolean
+    creationPeriod:
+      properties:
+        since:
+          type: integer
+        until:
+          type: integer
+    restorationRequestor:
+      type: vocabulary
+      vocabulary-type: Requestors

@@ -1,0 +1,99 @@
+.ui.dropdown:not(.button) > .default.text, .ui.default.dropdown:not(.button) > .text {
+
+  align-self: center;
+}
+.active.title .angle.right.icon {
+  transform: rotate(90deg);
+  margin-left: 0.5rem
+}
+.ui.dropdown > .text {
+  display: inline-block;
+  transition: none;
+  height: max-content;
+  align-self: center;
+}
+.title .angle.right.icon {
+    margin-left: 0.5rem
+  }
+.ui.search.dropdown > .text {
+  cursor: text;
+  position: relative;
+  left: 1px;
+  z-index: 3;
+  padding: 5px;
+}
+.ui.dropdown:not(.button) > .default.text,
+.ui.default.dropdown:not(.button) > .text {
+  padding-top: 5px;
+}
+body .ui.selection.dropdown {
+  border-radius: 40px;
+  border: 1px solid #555;
+  width: 100%;
+  padding: 5px 20px !important;
+  min-height: 42px;
+  display: flex;
+}
+
+.ui.selection.dropdown.active {
+  border-radius: 20px;
+  border: 1px solid #555;
+}
+@media only screen and (min-width: 992px) {
+  .ui.active.visible.fluid.multiple.search.selection.dropdown .label {
+    background-color: #808080;
+    color: #fff;
+    font-family: Noto_Sans_regular !important  ;
+    font-size: 15px !important  ;
+  }
+  .ui.fluid.multiple.search.selection.dropdown .label {
+    background-color: #808080;
+    color: #fff;
+    font-family: Noto_Sans_regular !important  ;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .ui.active.visible.fluid.multiple.search.selection.dropdown .label {
+    background-color: #808080;
+    color: #fff;
+    font-family: Noto_Sans_regular !important  ;
+    font-size: 17px !important  ;
+  }
+  .ui.fluid.multiple.search.selection.dropdown .label {
+    background-color: #808080;
+    color: #fff;
+    font-family: Noto_Sans_regular !important  ;
+    font-size: 15px !important  ;
+  }
+}
+.ui.active.visible.fluid.multiple.search.selection.dropdown {
+  padding: 0px 15px;
+}
+.ui.selection.active.dropdown:hover {
+  border: 1px solid #111111;
+}
+
+body .ui.selection.dropdown input {
+  padding: 0px 20px;
+}
+.ui.multiple.search.dropdown > input.search {
+  display: none;
+}
+
+.ui.selection.active.dropdown .menu {
+  border: 1px solid #555;
+}
+.ui.selection.active.dropdown:hover .menu {
+  border: 1px solid #111111;
+}
+.ui.selection.active.dropdown .menu.active {
+  border: 1px solid #555;
+}
+
+.ui.selection.active.dropdown .menu:hover {
+  border: 1px solid #111111;
+}
+
+.ui.multiple.dropdown {
+  padding: 5px 20px !important;
+}

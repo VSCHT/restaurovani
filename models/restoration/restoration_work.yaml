@@ -1,0 +1,42 @@
+restorationWork:
+  properties:
+    abstract:
+      type: fulltext
+    restorer:
+      type: keyword
+    supervisors[]:
+      type: object
+      properties:
+        fullName:
+          type: keyword
+        comment:
+          type: keyword
+        institution:
+          type: keyword
+    parts[]:
+      type: nested
+      properties:
+        part:
+          type: relation
+          model: "#part"
+          keys: [ id ]
+        restorationMethods[]:
+          type: vocabulary
+          vocabulary-type: RestorationMethods
+    workType:
+      type: vocabulary
+      vocabulary-type: WorkTypes
+    examinationMethods[]:
+      type: vocabulary
+      vocabulary-type: ExaminationMethods
+    restorationMethods[]:
+      type: vocabulary
+      vocabulary-type: RestorationMethods
+    restorationPeriod:
+      properties:
+        since:
+          type: date
+        until:
+          type: date
+
+

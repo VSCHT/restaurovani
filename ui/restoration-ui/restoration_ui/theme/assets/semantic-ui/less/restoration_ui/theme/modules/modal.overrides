@@ -1,0 +1,42 @@
+@media only screen and (min-width: 992px){
+.ui.small.modal.form__modal-err {
+width: 50%
+}
+}
+@media only screen and (max-width: 992px){
+.ui.small.modal.form__modal-err {
+width: 90%
+}
+}
+
+.modal.custom-modal {
+position: fixed                ;
+top: 0                         ;
+left: 0                        ;
+height: 100%                   ;
+width: 100%                    ;
+display: flex                  ;
+justify-content: center        ;
+align-items: center            ;
+background: rgba(0, 0, 0, 0.7) ;
+}
+
+.modal .modal-content {
+max-width: 100%         ;
+max-height: 100%        ;
+margin: 0               ;
+}
+
+.modal .modal-content .img {
+width: auto                           ;
+height: auto                          ;
+max-width: 100%                       ;
+max-height: 100%                      ;
+}
+.modal .modal-content .close-button {
+position: absolute                    ;
+top: 10px                             ;
+right: 10px                           ;
+background: none                      ;
+font-size: 24px                       ;
+}

@@ -1,0 +1,2 @@
+RESTORATION_UI_RESOURCE = "restoration_ui.resources.resource:RestorationUiResource"
+RESTORATION_UI_RESOURCE_CONFIG = "restoration_ui.resources.config:RestorationUiResourceConfig"

@@ -1,0 +1,289 @@
+
+/* .thirteen.wide.field{
+    width: 100%
+  } */
+  .required.thirteen.wide.field {
+    width: 100% !important;
+}
+  .sixteen.wide.field {
+    width: 100%;
+}
+  .field-label-class.invenio-field-label i{
+    display: none;
+  }
+
+  .field-label-class.invenio-field-label{
+    display: flex
+  }
+.vert-div.predmety__form__div.predmety__form__div-checkbox
+  .field
+  .inline.fields {
+  display: flex;
+  gap: 15px;
+}
+.fields.invenio-group-field{
+    display: flex;
+    gap: 5px
+}
+.ui.form .field > label {
+  font-family: Noto_Sans_regular !important  ;
+  font-size: 14px !important  ;
+  gap: 10px !important  ;
+  width: 8.5vw !important;
+}
+.field-label-class.invenio-field-label {
+  font-family: Noto_Sans_regular !important  ;
+  font-size: 15px !important  ;
+  gap: 10px !important  ;
+  width: 8.5vw !important;
+}
+
+.ui.form .fields .field .ui.input input,
+.ui.form .field .ui.input input,
+.ui.form textarea,
+.ui.form textarea:active,
+.ui.form textarea:focus {
+  font-family: Noto_Sans_regular !important  ;
+  width: 100%;
+  height: 37px;
+  border: solid #555 1px;
+  border-radius: 40px;
+  padding: 0px 20px;
+}
+
+.ui.form .fields {
+  margin: 0px !important;
+  width: auto;
+}
+.ui.form .field {
+  margin: 0px !important;
+}
+
+@media only screen and (min-width: 1200px) {
+  .ui.form .field > label {
+    font-family: Noto_Sans_regular !important  ;
+    font-size: 14px !important  ;
+    gap: 10px !important  ;
+    width: 16.5vw !important;
+  }
+  .field textarea,
+.field textarea:focus,
+.field textarea:active {
+  font-family: Noto_Sans_regular !important  ;
+  width: 100% !important;
+  height: auto !important;
+  border: solid #555 1px !important;
+  border-radius: 40px !important;
+  padding: 5px 20px !important;
+  font-size: 1.1rem !important;
+}
+  .field-label-class.invenio-field-label {
+    font-family: Noto_Sans_regular !important  ;
+    font-size: 1.2rem !important  ;
+    gap: 10px !important  ;
+    width: 16.5vw !important;
+  }
+  .ui.form .field > .selection.dropdown {
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .ui.form .field > .selection.dropdown .ui.label {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+    background-color: #f6f6f6;
+  }
+  .ui.fluid.input input {
+    font-family: Noto_Sans_regular !important  ;
+    width: 50% !important;
+    min-height: 42px !important;
+    border: solid #555 1px !important;
+    border-radius: 40px !important;
+    padding: 5px 25px !important;
+    font-size:1.1rem;
+  }
+  .required.field {
+    /* gap: 10px; */
+    display: flex;
+    flex-direction: column;
+  }
+  .ui.form .field > .selection.dropdown .ui.label i.delete.icon {
+    color: #333;
+  }
+
+  .ui.form .fields .field .ui.input input,
+  .ui.form .field .ui.input input,
+  .ui.form textarea,
+  .ui.form textarea:active,
+  .ui.form textarea:focus {
+    font-family: Noto_Sans_regular !important  ;
+    width: 100%;
+    height: 41px;
+    border: solid #555 1px;
+    border-radius: 40px;
+    padding: 5px 20px;
+  }
+
+  .ui.form .fields {
+    margin: 10px 0px 15px !important;
+    width: auto;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 992px) {
+  .ui.form .field > label {
+    font-family: Noto_Sans_regular !important  ;
+    font-size: 14px !important  ;
+    gap: 10px !important  ;
+    width: 15vw !important;
+  }
+  .field textarea,
+.field textarea:focus,
+.field textarea:active {
+  font-family: Noto_Sans_regular !important  ;
+  width: 100% !important;
+  height: auto !important;
+  border: solid #555 1px !important;
+  border-radius: 40px !important;
+  padding: 5px 20px !important;
+  font-size: 14px !important;
+}
+  .ui.fluid.input input {
+    font-family: Noto_Sans_regular !important  ;
+    width: 50% !important;
+    height: 42px !important;
+    border: solid #555 1px !important;
+    border-radius: 40px !important;
+    padding: 5px 25px !important;
+    font-size:14px;
+  }
+  .field-label-class.invenio-field-label {
+    font-family: Noto_Sans_regular !important  ;
+    font-size: 15px !important  ;
+    gap: 10px !important  ;
+    width: 15vw !important;
+  }
+  .required.field {
+    /* gap: 10px; */
+    display: flex;
+    flex-direction: column;
+  }
+  .ui.form .fields .field .ui.input input,
+  .ui.form .field .ui.input input,
+  .ui.form textarea,
+  .ui.form textarea:active,
+  .ui.form textarea:focus {
+    font-family: Noto_Sans_regular !important  ;
+    width: 100%;
+    height: 37px;
+    border: solid #555 1px;
+    border-radius: 40px;
+    padding: 0px 15px;
+  }
+
+  .ui.form .fields {
+    margin: 0px 0px 15px !important;
+    width: auto;
+  }
+  .ui.form .field > .selection.dropdown {
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .ui.form .field > .selection.dropdown .ui.label {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+    background-color: #f6f6f6;
+  }
+  .ui.form .field > .selection.dropdown .ui.label i.delete.icon {
+    color: #333;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .ui.form .field > label {
+    font-family: Noto_Sans_regular !important  ;
+    font-size: 15px !important  ;
+    gap: 10px !important  ;
+    width: 50vw !important;
+  }
+  .field textarea,
+.field textarea:focus,
+.field textarea:active {
+  font-family: Noto_Sans_regular !important  ;
+  width: 100% !important;
+  height: auto !important;
+  border: solid #555 1px !important;
+  border-radius: 40px !important;
+  padding: 5px 20px !important;
+  font-size: 15px !important;
+}
+  .ui.fluid.input input {
+    font-family: Noto_Sans_regular !important  ;
+    width: 50% !important;
+    height: 37px !important;
+    border: solid #555 1px !important;
+    border-radius: 40px !important;
+    padding: 5px 25px !important;
+    font-size:15px;
+  }
+  .field-label-class.invenio-field-label {
+    font-family: Noto_Sans_regular !important  ;
+    font-size: 17px !important  ;
+    gap: 10px !important  ;
+    width: auto !important
+    /* 50vw !important; */
+  }
+  .ui.form .field > label.predmety__form__div__label-small {
+    font-family: Noto_Sans_regular !important  ;
+    font-size: 17px !important  ;
+    gap: 10px !important  ;
+    width: 33.5vw !important;
+  }
+  .required.field {
+    /* gap: 9px; */
+    display: flex;
+    flex-direction: column;
+  }
+  .ui.form .fields .field .ui.input input,
+  .ui.form .field .ui.input input,
+  .ui.form textarea,
+  .ui.form textarea:active,
+  .ui.form textarea:focus {
+    font-size: 15px;
+    font-family: Noto_Sans_regular !important  ;
+    width: 100%;
+    height: 45px;
+    border: solid #555 1px;
+    border-radius: 40px;
+    padding: 0px 15px;
+  }
+  .ui.form .field > .selection.dropdown {
+    height: auto;
+    min-height: 45px;
+  }
+
+  .ui.form .fields {
+    margin: 15px 0px 15px !important;
+    width: auto;
+    display: flex;
+  }
+  .ui.form .field > .selection.dropdown {
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .ui.form .field > .selection.dropdown .ui.label {
+    display: flex;
+    flex-direction: row;
+    background-color: #f6f6f6;
+  }
+  .ui.form .field > .selection.dropdown .ui.label i.delete.icon {
+    color: #333;
+  }
+}

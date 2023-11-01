@@ -1,0 +1,10 @@
+{% extends config.BASE_TEMPLATE %}
+{%- set title = metadata.title ~ " | " ~ _("restoration-ui") %}
+{%- block javascript %}
+{{ super() }}
+{{ webpack['restoration_ui_components.js']}}
+{{ webpack['restoration_ui_components.css']}}
+{%- endblock javascript %}
+
+
+
