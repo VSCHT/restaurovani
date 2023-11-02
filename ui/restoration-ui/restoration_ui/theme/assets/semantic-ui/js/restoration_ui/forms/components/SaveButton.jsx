@@ -14,7 +14,6 @@ export const SaveButton = ({ title = "VYTVOŘIT" }) => {
         className="form main-page__btn__addPredmety"
         aria-label="tlacitko vytvoreni predmetu"
         disabled={isSubmitting}
-        // disabled={edit ? isSubmitting : !formik.dirty}
         loading={isSubmitting}
         onClick={async () => {
           const err = await formik.validateForm();

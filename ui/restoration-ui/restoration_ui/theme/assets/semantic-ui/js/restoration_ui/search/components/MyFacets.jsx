@@ -5,12 +5,10 @@ import { withState } from "react-searchkit";
 
 export const MyFacets = withState(({ aggs}) => {
   return (
-    <div >
-      <div >
+      <div>
         {aggs.map((agg) => (
           <BucketAggregation key={agg.aggName} title={agg.title} agg={agg} />
         ))}
       </div>
-    </div>
   );
 })

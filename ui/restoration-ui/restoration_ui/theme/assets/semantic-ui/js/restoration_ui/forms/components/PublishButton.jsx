@@ -1,8 +1,6 @@
 import React from "react";
 import { Button, Modal, Message, Icon } from "semantic-ui-react";
-import { i18next } from "@translations/restoration_ui/i18next";
 import { useConfirmationModal, useDepositApiClient } from "@js/oarepo_ui";
-import PropTypes from "prop-types";
 
 export const PublishButton = ({ modalMessage, modalHeader }) => {
   const { isModalOpen, handleCloseModal, handleOpenModal } =

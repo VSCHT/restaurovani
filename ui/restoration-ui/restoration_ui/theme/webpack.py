@@ -12,6 +12,7 @@ theme = WebpackThemeBundle(
                 "restoration_ui_img_gallery":"./js/restoration_ui/gallery/index.js",
                 "restoration_ui_deposit_edit": "./js/restoration_ui/editform/index.js",
                 "restoration_ui_deposit_create": "./js/restoration_ui/createform/form/index.js",
+                "restoration_ui_search_aggs": "./js/restoration_ui/search/renderAggs.js"
             },
             dependencies={
                 "react-searchkit": "^2.0.0",

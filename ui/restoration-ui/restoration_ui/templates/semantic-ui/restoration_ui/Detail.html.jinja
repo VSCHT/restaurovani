@@ -13,13 +13,13 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
     <p class="details__div__header-h">
       {{ metadata.restorationObject.title}}
     </p>
-    <button class="details__div__header__btn" onclick="redirectToEditPage()">
+    <a class="details__div__header__btn" href="{{url_for('restoration-ui.edit', pid_value=record.id)}}">
       <img
         src="{{ url_for('static', filename='images/icon_pencil.png') }}"
         class="details__div__header__btn-edit"
         alt="Edit icon"
       />
-    </button>
+    </a>
   </div>
 
   {% if metadata.restorationObject.stylePeriod %}
@@ -463,19 +463,17 @@ accordionTitles.forEach((title, index) => {
 
   const leftDivHeight = document.querySelector(
     ".details__div__info-left"
-  ).offsetHeight;
+  )?.offsetHeight;
 
   const rightDivHeight = document.querySelector(
     ".details__div__info-right"
-  ).offsetHeight;
+  )?.offsetHeight;
 
   const divMaxHeight = Math.max(leftDivHeight, rightDivHeight);
 
   document.querySelector(".vr-huge-vert").style.height = `${divMaxHeight}px`;
 
-  function redirectToEditPage() {
-    window.location.href = window.location.href + "/edit";
-  }
+ 
 </script>
 
 {%- endblock page_body %} {%- block javascript %}

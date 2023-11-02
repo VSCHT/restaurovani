@@ -81,7 +81,6 @@ flex-direction: column                      ;
 .ui.grid.predmety__title-search__searchbar{
 gap: 40px                                   ;
 align-items: center !important              ;
-width: 30%                                  ;
 }
 .row.horiz-div.predmety__title-search{
 display: flex !important                    ;

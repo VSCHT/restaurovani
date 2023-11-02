@@ -57,144 +57,153 @@
 
     {%- endblock head_links %}
 
-    {%- block header %}{% endblock header %}
+    {%- block header %}
+    
+    
+    {%- block topMenu %}
+    <nav class="main-page__menu" aria-label="Main Menu">
+      <button
+            class="btn predmety__input-search__searchbar-burger"
+            alt="Toggle Filter Menu"
+          >
+            <img
+              rel="icon"
+              src="{{ url_for('static', filename='images/menu-icon.png') }}"
+              alt="burger filter button"
+            />
+          </button>
+        <div class="btn main-page__menu__btn"><a href="/">
+          <img
+            class="details__div__docs-img"
+            src="{{ url_for('static', filename='images/arrow-left.png') }}"
+            alt="arrow back"
+          />RESTAUROVÁNÍ VŠCHT</a>
+        </div>
+        
+      
+     
+       
+      {%- if config.ACCOUNTS and current_user.is_authenticated %}
+      <div class="ui dropdown">
+        <div class="text">
+              <button class="btn predmety_page menu__btn" >
+              <img
+                class="menu__profil-img"
+                alt="user icon"
+                src="{{ url_for('static', filename='images/user-icon.png') }}"
+              />{{ current_user.email }}<img
+                class="menu__profil-img"
+                alt="dropdown icon"
+                src="{{ url_for('static', filename='images/chevron-down-white.png') }}"
+              />
+            </button>
+        </div>
+       
+        <div class="menu">
+              <div class="item"><a class="item" href="{{url_for('invenio_userprofiles.profile')}}">Account</a></div>
+              <div class="item">
+                <a class="item" href="{{url_for('invenio_oauthclient_settings.index')}}">Nastavení</a >
+              </div>
+              <div class="item">
+                <a class="item" href="{{url_for('security.logout')}}">Odhlašení</a>
+              </div>
+         
+         </div>
+      </div>
+     
+      {%- else %}
+        <div class="btn main-page__menu__btn main-page__menu__btn-second">
+            <a
+              class="btn main-page__menu__btn"
+              href="{{ url_for('security.login') }}"
+              >Přihlásit se</a
+            >
+        </div>
+
+       {%- endif %}
+   </nav>
+
+      <div class="overlay"></div>
+     
+      <nav class="ui sidebar  vertical menu ">
+        <button class="sidebar__btn-close"> <img src="{{ url_for('static', filename='images/close-icon.png') }}"></button>
+        <div class="item">
+          <div class="ui button main-page__menu__btn-sb main-page__menu__btn-sb-rest"><a href="/">
+            <img class="details__div__docs-img" src="{{ url_for('static', filename='images/arrow-left.png') }}" alt="arrow back" />
+            RESTAUROVÁNÍ VŠCHT</a>
+          </div>
+        </div>
+       <div class="item">
+        {%- if config.ACCOUNTS and current_user.is_authenticated %}
+
+            
+        
+       
+          
+            <div class="item " onclick="showAccountLinks()">
+              <button class="ui button btn main-page__menu__btn-sb" >
+                <img class="menu__profil-img" alt="user icon" src="{{ url_for('static', filename='images/user-icon.png') }}" />
+                {{current_user.email}}
+                <img class="menu__profil-img dropdown-icon" alt="dropdown icon" src="{{ url_for('static', filename='images/chevron-down-white.png') }}" />
+              </button>
+            </div>
+
+
+          <div class="menu dropdown-content">
+            <div class="item"><a class="item" href="{{url_for('invenio_userprofiles.profile')}}">Account</a></div>
+            <div class="item">
+              <a class="item" href="{{url_for('invenio_oauthclient_settings.index')}}">Nastavení</a >
+            </div>
+            <div class="item">
+              <a class="item" href="{{url_for('security.logout')}}">Odhlašení</a>
+            </div>
+           </div>
+        
+
+
+           <div id="aggsdiv"></div>
+
+
+
+        {%- else %}
+       
+        <div class="ui button main-page__menu__btn-sb main-page__menu__btn-sb-rest">
+          <a
+             class="btn"
+             href="{{ url_for('security.login') }}"
+             >Přihlásit se</a
+           >
+         </div>
+        
+         {%- endif %}
+          </div>
+        </nav>
+      
+    {%- endblock topMenu %}
+
+
+    
+    {% endblock header %}
 
       {%- block css %}
       {{ webpack['theme.css'] }}
-      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-      <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
+      {{ webpack["restoration_ui_search_aggs.js"] }}
+      
       {%- endblock css %}
       
     {%- endblock head %}
   </head>
 
   <body{% if body_css_classes %} class="{{ body_css_classes|join(' ') }}"{% endif %}{% if g.ln %} lang="{{ g.ln.split('_', 1)[0]|safe }}"{% if rtl_direction %} {{ rtl_direction|safe }}{% endif %}{% endif %} itemscope itemtype="http://schema.org/WebPage" data-spy="scroll" data-target=".scrollspy-target">
-    <!-- <div class="pages__predmety">
-        <div class="main-page__menu"> -->
+   
 
 
           <div class="details__div__modal">
 
           </div>
           
-            {%- block topMenu %}
-            <div class="main-page__menu" aria-label="Main Menu">
-              <button
-                    class="btn predmety__input-search__searchbar-burger"
-                    alt="Toggle Filter Menu"
-                  >
-                    <img
-                      rel="icon"
-                      src="{{ url_for('static', filename='images/menu-icon.png') }}"
-                      alt="burger filter button"
-                    />
-                  </button>
-                <div class="btn main-page__menu__btn"><a href="/">
-                  <img
-                    class="details__div__docs-img"
-                    src="{{ url_for('static', filename='images/arrow-left.png') }}"
-                    alt="arrow back"
-                  />RESTAUROVÁNÍ VŠCHT</a>
-                </div>
-                
-              
-             
-               
-              {%- if config.ACCOUNTS and current_user.is_authenticated %}
-              <div class="ui dropdown">
-                <div class="text">
-                      <button class="btn predmety_page menu__btn" >
-                      <img
-                        class="menu__profil-img"
-                        alt="user icon"
-                        src="{{ url_for('static', filename='images/user-icon.png') }}"
-                      />{{ current_user.email }}<img
-                        class="menu__profil-img"
-                        alt="dropdown icon"
-                        src="{{ url_for('static', filename='images/chevron-down-white.png') }}"
-                      />
-                    </button>
-                </div>
-               
-                <div class="menu">
-                      <div class="item"><a class="item" href="{{url_for('invenio_userprofiles.profile')}}">Account</a></div>
-                      <div class="item">
-                        <a class="item" href="{{url_for('invenio_oauthclient_settings.index')}}">Nastavení</a >
-                      </div>
-                      <div class="item">
-                        <a class="item" href="{{url_for('security.logout')}}">Odhlašení</a>
-                      </div>
-                 
-                 </div>
-              </div>
-             
-              {%- else %}
-                <div class="btn main-page__menu__btn main-page__menu__btn-second">
-                    <a
-                      class="btn main-page__menu__btn"
-                      href="{{ url_for('security.login') }}"
-                      >Přihlásit se</a
-                    >
-                </div>
-
-               {%- endif %}
-           </div>
-
-              <div class="overlay"></div>
-             
-              <div class="ui sidebar  vertical menu ">
-                <button class="sidebar__btn-close"> <img src="{{ url_for('static', filename='images/close-icon.png') }}"></button>
-                <div class="item">
-                  <div class="ui button main-page__menu__btn-sb main-page__menu__btn-sb-rest"><a href="/">
-                    <img class="details__div__docs-img" src="{{ url_for('static', filename='images/arrow-left.png') }}" alt="arrow back" />
-                    RESTAUROVÁNÍ VŠCHT</a>
-                  </div>
-                </div>
-               <div class="item">
-                {%- if config.ACCOUNTS and current_user.is_authenticated %}
-
-                    
-                
-               
-                  
-                    <div class="item " onclick="showAccountLinks()">
-                      <button class="ui button btn main-page__menu__btn-sb" >
-                        <img class="menu__profil-img" alt="user icon" src="{{ url_for('static', filename='images/user-icon.png') }}" />
-                        {{current_user.email}}
-                        <img class="menu__profil-img dropdown-icon" alt="dropdown icon" src="{{ url_for('static', filename='images/chevron-down-white.png') }}" />
-                      </button>
-                    </div>
-
-
-                  <div class="menu dropdown-content">
-                    <div class="item"><a class="item" href="{{url_for('invenio_userprofiles.profile')}}">Account</a></div>
-                    <div class="item">
-                      <a class="item" href="{{url_for('invenio_oauthclient_settings.index')}}">Nastavení</a >
-                    </div>
-                    <div class="item">
-                      <a class="item" href="{{url_for('security.logout')}}">Odhlašení</a>
-                    </div>
-                   </div>
-                
-                {%- else %}
-               
-                <div class="ui button main-page__menu__btn-sb main-page__menu__btn-sb-rest">
-                  <a
-                     class="btn"
-                     href="{{ url_for('security.login') }}"
-                     >Přihlásit se</a
-                   >
-                 </div>
-                
-                 {%- endif %}
-                  </div>
-              </div>
-              
-            {%- endblock topMenu %}
-        <!-- </div> -->
+           
+      
 
               
         
@@ -208,9 +217,7 @@
       {%- endblock bypasslinks %}
 
       {%- block browserupgrade %}
-      <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-      <![endif]-->
+     
       {%- endblock browserupgrade %}
       {%- block body_inner %}
 

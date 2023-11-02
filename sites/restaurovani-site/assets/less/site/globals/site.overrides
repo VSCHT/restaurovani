@@ -32,6 +32,9 @@
   overflow-x: hidden;
   padding: 0em !important;
 }
+.pushable > .pusher {
+  position: static !important;
+}
 
 /* .details__parts {
   width: 100%;
@@ -608,7 +611,7 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
     align-items: center;
     z-index: 10 !important      ;
     position: relative;
-    width: 17vw;
+    width: 24vw;
   }
   .text__vsht-logo {
     font-size: 11px;
@@ -3980,15 +3983,15 @@ margin: 0 auto !important      ;
 }
 .main-page__text__copyright {
   font-size: 1.3rem;
-    line-height: 1.5rem;
+  line-height: 1.5rem;
 }
 .image__vsht-logo {
-  width: 150px;
-    margin-right: 16px;
+  width: 111px;
+  margin-right: 16px;
 }
 .main-page__title__img {
   position: relative;
-  top: 12vh;
+  top: 193px;
   width: 127px;
 }
 .parag {
@@ -4271,7 +4274,7 @@ height: 90%;*/
   width: 15vw;
 }
 .image__vsht-logo {
-  width: 53px;
+  width: 61px;
   margin-right: 10px;
 }
 .main-page__title__img {
@@ -4326,7 +4329,7 @@ height: 90%;*/
   height: 100%;
   justify-content: space-between;
   padding-right: 50px;
-  gap: 13vh;
+  gap: 9vh;
   position: relative;
   top: -50px;
 }
@@ -4398,7 +4401,7 @@ height: 90%;*/
   width: 15vw;
 }
 .image__vsht-logo {
-  width: 105px;
+  width: 75px;
   margin-right: 16px;
 }
 .btn.menu__btn {

@@ -27,12 +27,7 @@ export const CreateObjectFormContent = ({ edit, errors }) => {
       <h3 className="predmety__form__h">Vytvoření nového předmětu</h3>
       <div className="vert-div predmety__form-main">
         <div className="vert-div predmety__form__div">
-          {/* <MultilingualTextInput
-            fieldPath={`metadata.restorationObject.title`}
-            addButtonLabel="Dodat název"
-            textFieldLabel="Název"
-            required
-          /> */}
+         
           <TextField
             fieldPath="metadata.restorationObject.title"
             className="form__input"
