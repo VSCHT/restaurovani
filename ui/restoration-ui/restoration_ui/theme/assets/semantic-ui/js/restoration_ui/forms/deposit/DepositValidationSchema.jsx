@@ -70,8 +70,8 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
           institution: Yup.string(),
         })),
         restorationPeriod: Yup.object().shape({
-          until: Yup.number().typeError("Musí byt číslo"),
-          since: Yup.number().typeError("Musí byt číslo"),
+          until: Yup.date().typeError("Musí byt číslo"),
+          since: Yup.date().typeError("Musí byt číslo"),
         }),
     }),
 

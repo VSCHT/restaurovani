@@ -31,8 +31,10 @@ export const ImgCarousel = () => {
 
   useEffect(() => {
     function updateSlidesToShow() {
-      if (window.innerWidth <= 992) {
+      if (window.innerWidth <= 992 && window.innerWidth >= 530) {
         setSlidesToShow(3);
+      } else if (window.innerWidth <= 530 ){
+        setSlidesToShow(2);
       } else {
         setSlidesToShow(5);
       }
@@ -52,7 +54,7 @@ export const ImgCarousel = () => {
     infinite: false,
     speed: 100,
     slidesToShow: slidesToShow,
-    slidesToScroll: 3,
+    slidesToScroll: 2,
   };
 
   const imgs = [

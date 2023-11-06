@@ -129,7 +129,7 @@
         <button class="sidebar__btn-close"> <img src="{{ url_for('static', filename='images/close-icon.png') }}"></button>
         <div class="item">
           <div class="ui button main-page__menu__btn-sb main-page__menu__btn-sb-rest"><a href="/">
-            <img class="details__div__docs-img" src="{{ url_for('static', filename='images/arrow-left.png') }}" alt="arrow back" />
+            <img class="details__div__docs-img" src="{{ url_for('static', filename='images/arrow-back-black.png') }}" alt="arrow back" />
             RESTAUROVÁNÍ VŠCHT</a>
           </div>
         </div>
@@ -140,16 +140,16 @@
         
        
           
-            <div class="item " onclick="showAccountLinks()">
+            <div class="item" >
               <button class="ui button btn main-page__menu__btn-sb" >
-                <img class="menu__profil-img" alt="user icon" src="{{ url_for('static', filename='images/user-icon.png') }}" />
+                <img class="menu__profil-img" alt="user icon" src="{{ url_for('static', filename='images/user-icon-darker.png') }}" />
                 {{current_user.email}}
-                <img class="menu__profil-img dropdown-icon" alt="dropdown icon" src="{{ url_for('static', filename='images/chevron-down-white.png') }}" />
+               
               </button>
             </div>
 
 
-          <div class="menu dropdown-content">
+          <div class="menu div__account-links">
             <div class="item"><a class="item" href="{{url_for('invenio_userprofiles.profile')}}">Account</a></div>
             <div class="item">
               <a class="item" href="{{url_for('invenio_oauthclient_settings.index')}}">Nastavení</a >
@@ -160,8 +160,6 @@
            </div>
         
 
-
-           <div id="aggsdiv"></div>
 
 
 

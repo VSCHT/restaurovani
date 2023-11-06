@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import _isEmpty from "lodash/isEmpty";
+import _cloneDeep from "lodash/cloneDeep";
 import {
   AccordionField,
   TextField,
@@ -38,20 +39,90 @@ export const EditObjectForm = ({ edit }) => {
     setActiveIndex(x);
   };
 
+
+
+  let initVal1 = {
+    ...record,
+    metadata: {
+      ...record.metadata,
+      restorationObject: {
+        ...record.metadata.restorationObject,
+        parts: [{ main: true }],
+      },
+    },
+  };
+
+  let initVal = {
+    ...record,
+    metadata: {
+      ...record.metadata,
+      restorationObject:  {
+          title: "",
+          restorationRequestor: {
+            title: { cs: "" },
+          },
+          creationPeriod: { until: undefined, since: undefined },
+          category: "",
+          dimensions: [
+            {
+              unit: "",
+              dimension: { title: { cs: "" } },
+              value: undefined,
+            },
+          ],
+          itemTypes:[{
+            title: { cs: "" },
+          }],
+          keywords: [],
+          archeologic: false,
+          description: "",
+          parts:[{
+            id:'',
+            name:'',
+            main: true,
+            fabricationTechnologies:[{
+              title: { cs: "" },
+            }],
+            materialType:{
+              title: { cs: "" },
+            },
+            secondaryMaterialTypes:[{
+              title: { cs: "" },
+            }],
+            colors:[{
+              title: { cs: "" },
+            }],
+          }]
+        ,
+      },
+
+     
+      restorationWork: {
+        ...record.metadata.restorationWork,
+        abstract: "",
+        supervisors:[{fullName:'',comment:'', institution:''}],
+        examinationMethods: [{ title: { cs: "" } }],
+        restorationMethods: [{ title: { cs: "" } }],
+        parts:[{restorationPeriod: { until: "", since: "" },}],
+        restorer: "",
+        workType: { title: { cs: "" } },
+        restorationPeriod: {since: undefined, until: undefined},
+      },
+    },
+  };
+
+
+
+
+
+
+
+
   console.log(record);
   return (
     <Container>
       <Formik
-        initialValues={{
-          ...record,
-          metadata: {
-            ...record.metadata,
-            restorationObject: {
-              ...record.metadata.restorationObject,
-              parts: [{ main: true }],
-            },
-          },
-        }}
+        initialValues={initVal}
         onSubmit={() => {}}
         enableReinitialize
         validationSchema={DepositValidationSchemaEdit}
@@ -145,40 +216,40 @@ export const EditObjectForm = ({ edit }) => {
                         />
                       </div>
                       <div>
-                        <FieldArray name="metadata.restorationObject.stylePeriod">
-                          <div className="horiz-div predmety__form__div">
-                            <div className="vert-div predmety__form__div-medium">
-                              <TextField
-                                name="metadata.restorationObject.stylePeriod.startYear"
-                                aria-label="Počateční rok"
-                                fieldPath="metadata.restorationObject.stylePeriod.startYear"
-                                placeholder="Počateční rok"
-                                label={
-                                  <FieldLabel
-                                    htmlFor="metadata.restorationObject.stylePeriod.startYear"
-                                    className="predmety__form__div__label"
-                                    label="Počateční rok"
-                                  ></FieldLabel>
-                                }
-                              />
-                            </div>
-                            <div className="vert-div predmety__form__div-medium">
-                              <TextField
-                                name="metadata.restorationObject.stylePeriod.endYear"
-                                aria-label="Končící rok"
-                                fieldPath="metadata.restorationObject.stylePeriod.endYear"
-                                placeholder="Končící rok"
-                                label={
-                                  <FieldLabel
-                                    htmlFor="metadata.restorationObject.stylePeriod.endYear"
-                                    className="predmety__form__div__label"
-                                    label="Končící rok"
-                                  ></FieldLabel>
-                                }
-                              />
-                            </div>
+                        {/* <FieldArray name="metadata.restorationObject.stylePeriod"> */}
+                        <div className="horiz-div predmety__form__div">
+                          <div className="vert-div predmety__form__div-medium">
+                            <TextField
+                              name="metadata.restorationObject.stylePeriod.startYear"
+                              aria-label="Počateční rok"
+                              fieldPath="metadata.restorationObject.stylePeriod.startYear"
+                              placeholder="Počateční rok"
+                              label={
+                                <FieldLabel
+                                  htmlFor="metadata.restorationObject.stylePeriod.startYear"
+                                  className="predmety__form__div__label"
+                                  label="Počateční rok"
+                                ></FieldLabel>
+                              }
+                            />
                           </div>
-                        </FieldArray>
+                          <div className="vert-div predmety__form__div-medium">
+                            <TextField
+                              name="metadata.restorationObject.stylePeriod.endYear"
+                              aria-label="Končící rok"
+                              fieldPath="metadata.restorationObject.stylePeriod.endYear"
+                              placeholder="Končící rok"
+                              label={
+                                <FieldLabel
+                                  htmlFor="metadata.restorationObject.stylePeriod.endYear"
+                                  className="predmety__form__div__label"
+                                  label="Končící rok"
+                                ></FieldLabel>
+                              }
+                            />
+                          </div>
+                        </div>
+                        {/* </FieldArray> */}
                       </div>
                       <div className="vert-div predmety__form__div-dimensions">
                         <ArrayField
@@ -300,7 +371,7 @@ export const EditObjectForm = ({ edit }) => {
                       "metadata.restorationWork.workType",
                       "metadata.restorationWork.examinationMethods",
                       "metadata.restorationWork.restorer",
-                      "metadata.restorationWork.abstract[0].value",
+                      "metadata.restorationWork.abstract",
                       "metadata.restorationWork.literature[0].value",
                       "metadata.restorationWork.restorationPeriod",
                       "metadata.restorationWork.supervisors",
@@ -328,12 +399,12 @@ export const EditObjectForm = ({ edit }) => {
                       </div>
                       <div className="vert-div predmety__form__div">
                         <RichInputField
-                          name="metadata.restorationWork.abstract[0].value"
+                          name="metadata.restorationWork.abstract"
                           aria-label="Popis restaurování"
-                          fieldPath="metadata.restorationWork.abstract[0].value"
+                          fieldPath="metadata.restorationWork.abstract"
                           label={
                             <FieldLabel
-                              htmlFor="metadata.restorationWork.abstract[0].value"
+                              htmlFor="metadata.restorationWork.abstract"
                               className="predmety__form__div__label"
                               label="Popis restaurování"
                             ></FieldLabel>
@@ -430,41 +501,41 @@ export const EditObjectForm = ({ edit }) => {
                         </ArrayField>
                       </div>
 
-                      <FieldArray name="metadata.restorationWork.restorationPeriod">
-                        <div className="horiz-div predmety__form__div-small">
-                          <div className="vert-div predmety__form__div-medium">
-                            <TextField
-                              name="metadata.restorationWork.restorationPeriod.since"
-                              aria-label="Od"
-                              placeholder="Napište období"
-                              fieldPath="metadata.restorationWork.restorationPeriod.since"
-                              label={
-                                <FieldLabel
-                                  htmlFor="metadata.restorationWork.restorationPeriod.since"
-                                  className="predmety__form__div__label-small"
-                                  label="Období restaurování od"
-                                ></FieldLabel>
-                              }
-                            />
-                          </div>
-
-                          <div className="vert-div predmety__form__div-medium">
-                            <TextField
-                              name="metadata.restorationWork.restorationPeriod.until"
-                              aria-label="Do"
-                              fieldPath="metadata.restorationWork.restorationPeriod.until"
-                              placeholder="Napište období"
-                              label={
-                                <FieldLabel
-                                  htmlFor="metadata.restorationWork.restorationPeriod.until"
-                                  className="predmety__form__div__label-small"
-                                  label="Období restaurování do"
-                                ></FieldLabel>
-                              }
-                            />
-                          </div>
+                      {/* <FieldArray name="metadata.restorationWork.restorationPeriod"> */}
+                      <div className="horiz-div predmety__form__div-small">
+                        <div className="vert-div predmety__form__div-medium">
+                          <TextField
+                            name="metadata.restorationWork.restorationPeriod.since"
+                            aria-label="Od"
+                            placeholder="Napište období"
+                            fieldPath="metadata.restorationWork.restorationPeriod.since"
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.restorationWork.restorationPeriod.since"
+                                className="predmety__form__div__label-small"
+                                label="Období restaurování od"
+                              ></FieldLabel>
+                            }
+                          />
                         </div>
-                      </FieldArray>
+
+                        <div className="vert-div predmety__form__div-medium">
+                          <TextField
+                            name="metadata.restorationWork.restorationPeriod.until"
+                            aria-label="Do"
+                            fieldPath="metadata.restorationWork.restorationPeriod.until"
+                            placeholder="Napište období"
+                            label={
+                              <FieldLabel
+                                htmlFor="metadata.restorationWork.restorationPeriod.until"
+                                className="predmety__form__div__label-small"
+                                label="Období restaurování do"
+                              ></FieldLabel>
+                            }
+                          />
+                        </div>
+                      </div>
+                      {/* </FieldArray> */}
 
                       <div className="vert-div predmety__form__div">
                         <LocalVocabularySelectField
@@ -540,15 +611,15 @@ export const EditObjectForm = ({ edit }) => {
                                     ? indexPath + 1
                                     : values.metadata.restorationObject.parts[
                                         indexPath
-                                      ].name[0].value}
+                                      ].name}
                                 </h3>
                                 <div className="vert-div predmety__form__div">
                                   <TextField
-                                    fieldPath={`${fieldPathPrefix}.name.value`}
+                                    fieldPath={`${fieldPathPrefix}.name`}
                                     className="form__input"
                                     label={
                                       <FieldLabel
-                                        htmlFor={`${fieldPathPrefix}.name.value`}
+                                        htmlFor={`${fieldPathPrefix}.name`}
                                         className="predmety__form__div__label"
                                         label="Název"
                                       />
