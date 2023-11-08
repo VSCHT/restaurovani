@@ -16,7 +16,7 @@ import {
 import { Container, Grid, Form } from "semantic-ui-react";
 import { DepositValidationSchemaEdit } from "../forms/deposit/DepositValidationSchema";
 import { useFormConfig, ArrayFieldItem } from "@js/oarepo_ui";
-import { FieldArray, Formik } from "formik";
+import { Formik } from "formik";
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import Overridable from "react-overridable";
@@ -39,90 +39,111 @@ export const EditObjectForm = ({ edit }) => {
     setActiveIndex(x);
   };
 
-
-
   let initVal1 = {
     ...record,
     metadata: {
-      ...record.metadata,
+      
       restorationObject: {
-        ...record.metadata.restorationObject,
-        parts: [{ main: true }],
-      },
-    },
-  };
-
-  let initVal = {
-    ...record,
-    metadata: {
-      ...record.metadata,
-      restorationObject:  {
-          title: "",
-          restorationRequestor: {
+        
+        parts: [
+          ...(record?.metadata?.restorationObject?.parts?.some(
+            (part) => part.main === true
+          )
+            ? record.metadata.restorationObject.parts
+            : [
+                {
+                  id: "",
+                  name: "",
+                  main: true,
+                  fabricationTechnologies: [
+                    {
+                      title: { cs: "" },
+                    },
+                  ],
+                  materialType: {
+                    title: { cs: "" },
+                  },
+                  secondaryMaterialTypes: [
+                    {
+                      title: { cs: "" },
+                    },
+                  ],
+                  colors: [
+                    {
+                      title: { cs: "" },
+                    },
+                  ],
+                  main: true,
+                },
+              ]),
+          {
+            id: "",
+            name: "",
+            main: true,
+            fabricationTechnologies: [
+              {
+                title: { cs: "" },
+              },
+            ],
+            materialType: {
+              title: { cs: "" },
+            },
+            secondaryMaterialTypes: [
+              {
+                title: { cs: "" },
+              },
+            ],
+            colors: [
+              {
+                title: { cs: "" },
+              },
+            ],
+            main: false,
+          },
+        ],
+        restorationRequestor: {
+          title: { cs: "" },
+        },
+        creationPeriod: { until: undefined, since: undefined },
+        category: "",
+        dimensions: [
+          {
+            unit: "",
+            dimension: { title: { cs: "" } },
+            value: undefined,
+          },
+        ],
+        itemTypes: [
+          {
             title: { cs: "" },
           },
-          creationPeriod: { until: undefined, since: undefined },
-          category: "",
-          dimensions: [
-            {
-              unit: "",
-              dimension: { title: { cs: "" } },
-              value: undefined,
-            },
-          ],
-          itemTypes:[{
-            title: { cs: "" },
-          }],
-          keywords: [],
-          archeologic: false,
-          description: "",
-          parts:[{
-            id:'',
-            name:'',
-            main: true,
-            fabricationTechnologies:[{
-              title: { cs: "" },
-            }],
-            materialType:{
-              title: { cs: "" },
-            },
-            secondaryMaterialTypes:[{
-              title: { cs: "" },
-            }],
-            colors:[{
-              title: { cs: "" },
-            }],
-          }]
-        ,
+        ],
+        keywords: [],
+        archeologic: false,
+        description: "",
+        ...record.metadata.restorationObject,
       },
 
-     
       restorationWork: {
-        ...record.metadata.restorationWork,
+        
         abstract: "",
-        supervisors:[{fullName:'',comment:'', institution:''}],
+        supervisors: [{ fullName: "", comment: "", institution: "" }],
         examinationMethods: [{ title: { cs: "" } }],
         restorationMethods: [{ title: { cs: "" } }],
-        parts:[{restorationPeriod: { until: "", since: "" },}],
+        parts: [{ restorationPeriod: { until: "", since: "" } }],
         restorer: "",
         workType: { title: { cs: "" } },
-        restorationPeriod: {since: undefined, until: undefined},
+        restorationPeriod: { since: undefined, until: undefined },
+        ...record.metadata.restorationWork,
       },
+      ...record.metadata,
     },
   };
 
-
-
-
-
-
-
-
-  console.log(record);
   return (
     <Container>
       <Formik
-        initialValues={initVal}
+        initialValues={initVal1}
         onSubmit={() => {}}
         enableReinitialize
         validationSchema={DepositValidationSchemaEdit}
@@ -130,6 +151,8 @@ export const EditObjectForm = ({ edit }) => {
         validateOnBlur={false}
       >
         {({ values }) => (
+
+          
           <Grid className="vert-div predmety__form">
             <div>
               <h3 className="predmety__form__h">
@@ -137,6 +160,7 @@ export const EditObjectForm = ({ edit }) => {
                 {values.metadata.restorationObject.title}
               </h3>
             </div>
+            
 
             <div className="vert-div predmety__form-main">
               <div className="vert-div predmety__form__div-fields">
@@ -149,8 +173,8 @@ export const EditObjectForm = ({ edit }) => {
                       "metadata.restorationObject.title",
                       "metadata.restorationObject.archeologic",
                       "metadata.restorationObject.keywords",
-                      "metadata.restorationObject.stylePeriod.endYear",
-                      "metadata.restorationObject.stylePeriod.startYear",
+                      "metadata.restorationObject.creationPeriod.since",
+                      "metadata.restorationObject.creationPeriod.until",
                       "metadata.restorationObject.restorationRequestor",
                     ]}
                     label="Udaje"
@@ -205,6 +229,7 @@ export const EditObjectForm = ({ edit }) => {
                           optionsListName="ItemTypes"
                           fieldPath="metadata.restorationObject.itemTypes"
                           multiple={true}
+                          search
                           placeholder="Vyberte typ předmětu"
                           label={
                             <FieldLabel
@@ -220,13 +245,13 @@ export const EditObjectForm = ({ edit }) => {
                         <div className="horiz-div predmety__form__div">
                           <div className="vert-div predmety__form__div-medium">
                             <TextField
-                              name="metadata.restorationObject.stylePeriod.startYear"
+                              name="metadata.restorationObject.creationPeriod.since"
                               aria-label="Počateční rok"
-                              fieldPath="metadata.restorationObject.stylePeriod.startYear"
+                              fieldPath="metadata.restorationObject.creationPeriod.since"
                               placeholder="Počateční rok"
                               label={
                                 <FieldLabel
-                                  htmlFor="metadata.restorationObject.stylePeriod.startYear"
+                                  htmlFor="metadata.restorationObject.creationPeriod.since"
                                   className="predmety__form__div__label"
                                   label="Počateční rok"
                                 ></FieldLabel>
@@ -235,13 +260,13 @@ export const EditObjectForm = ({ edit }) => {
                           </div>
                           <div className="vert-div predmety__form__div-medium">
                             <TextField
-                              name="metadata.restorationObject.stylePeriod.endYear"
+                              name="metadata.restorationObject.creationPeriod.until"
                               aria-label="Končící rok"
-                              fieldPath="metadata.restorationObject.stylePeriod.endYear"
+                              fieldPath="metadata.restorationObject.creationPeriod.until"
                               placeholder="Končící rok"
                               label={
                                 <FieldLabel
-                                  htmlFor="metadata.restorationObject.stylePeriod.endYear"
+                                  htmlFor="metadata.restorationObject.creationPeriod.until"
                                   className="predmety__form__div__label"
                                   label="Končící rok"
                                 ></FieldLabel>

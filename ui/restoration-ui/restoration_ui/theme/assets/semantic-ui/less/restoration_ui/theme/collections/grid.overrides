@@ -433,7 +433,7 @@ flex-direction: column                      ;
 }
 .ui.grid.predmety__title-search__searchbar{
 justify-content: space-between              ;
-width: 70vw                                 ;
+width: auto                               ;
 }
 
 .ui.grid.vert-div.predmety_main-container{
@@ -643,7 +643,7 @@ flex-direction: column                                             ;
 }
 .ui.grid.predmety__title-search__searchbar{
 justify-content: space-between                                     ;
-width: 100%                                                        ;
+width: auto                                                       ;
 }
 
 .ui.grid.vert-div.predmety_main-container{

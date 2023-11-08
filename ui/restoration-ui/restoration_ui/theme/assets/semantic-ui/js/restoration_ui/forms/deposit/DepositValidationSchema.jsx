@@ -44,10 +44,7 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
           }),
         })
       ),
-      stylePeriod: Yup.object().shape({
-        startYear: Yup.number().typeError("Musí byt číslo"),
-        endYear: Yup.number().typeError("Musí byt číslo"),
-      }),
+     
       keywords: Yup.array(),
       restorationRequestor: Yup.object().shape({
         title: Yup.object().shape({

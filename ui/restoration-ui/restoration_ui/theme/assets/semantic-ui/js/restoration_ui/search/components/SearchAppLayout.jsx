@@ -7,6 +7,7 @@ import {
   Button,
   Image,
   Label,
+  Sidebar,
   Header,
   Modal,
 } from "semantic-ui-react";
@@ -156,7 +157,7 @@ export const SearchAppLayout = () => {
             icon="labeled"
             open={modalOpen}
             onClose={toggleModal}
-            onHide={() => setSidebarVisible(false)}
+            // onHide={() => setSidebarVisible(false)}
           >
             <Grid.Column
               className="vert-div predmety__aside"
@@ -191,18 +192,8 @@ export const SearchAppLayout = () => {
                 className="vert-div predmety__aside__filter"
                 aria-label="Filter Options"
               >
-                <Button
-                  className="predmety__aside__btn"
-                  aria-label="Tlacitko dodat novy predmet"
-                  onClick={createNewHandler}
-                >
-                  Nový předmět
-                  <Image
-                    src="/static/images/plus-square.png"
-                    alt="add new icon"
-                  />
-                </Button>
-
+                
+              <h2>Filtrování výsledků</h2>
                 <SearchAppFacets
                   aggs={searchAppConfig.aggs}
                   appName={appName}

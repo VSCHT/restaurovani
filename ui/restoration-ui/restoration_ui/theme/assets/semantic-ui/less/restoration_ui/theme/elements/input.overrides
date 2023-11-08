@@ -43,11 +43,12 @@
     background-color: #eaeae2 !important;
     border-radius: 30px !important;
     padding-left: 30px !important;
-    font-size: 16px !important;
-    font-family: Noto_Sans_bold !important;
+    font-size: 20px !important;
+    font-family: Noto_Sans_semibold !important;
     color: #626262 !important;
     height: 45px !important;
-    width: 220px !important;
+    width: 35vw !important;
+    max-width: 300px;
   }
   .ui.icon.input.predmety__input-search {
     width: 40vw;

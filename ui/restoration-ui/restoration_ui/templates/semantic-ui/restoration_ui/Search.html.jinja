@@ -132,32 +132,34 @@ _("Search results") ~ " | " ~ _("restoration-ui") %}
       </div>
     </div>
 
-    <div class="vert-div main-page__div__btn">
+    <div class="item">
+    <div class="vert-div main-page__div__btn-sb">
       <div class="horiz-div">
         <form
           action="{{ url_for('restoration-ui.search') }}"
           role="search"
-          class="vert-div main-page__input"
+          class="vert-div main-page__input-sb"
         >
           <input
             type="text"
             name="q"
-            class="main-page__input-search parag"
+            class="parag main-page__input-search-sb "
             placeholder="{{ _('Vyhledat předmět ...') }}"
           />
           <button
             type="submit"
-            class="main-page__btn__addPredmety parag"
+            class="parag main-page__btn__addPredmety-sb "
             aria-label="Tlacitko prejit na predmety"
-          >
-            PROCHÁZET PŘEDMĚTY
+          > 
+         
+            <img src="{{ url_for('static', filename='images/search-icon-black.png') }}" alt="search">
           </button>
         </form>
       </div>
     </div>
+</div>
 
-
-
+<div class="item">
     <a
       class="predmety__aside__btn"
       href="{{ url_for('restoration-ui.create') }}"
@@ -166,8 +168,8 @@ _("Search results") ~ " | " ~ _("restoration-ui") %}
       Nový předmět
       <img src="/static/images/plus-square.png" alt="add new icon" />
     </a>
-
-    <div>
+</div>
+    <!-- <div>
        
   <form
   action="{{ url_for('restoration-ui.search') }}"
@@ -201,7 +203,7 @@ _("Search results") ~ " | " ~ _("restoration-ui") %}
 
   {% endfor %}
 </form>
-    </div>
+    </div> -->
 
     {%- else %}
 

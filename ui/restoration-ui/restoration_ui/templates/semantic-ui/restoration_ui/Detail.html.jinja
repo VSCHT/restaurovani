@@ -171,7 +171,7 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 <div class="title parag">
 
     <i class="dropdown icon"></i>
-    Cast {{value.name[0].value or loop.index}}
+    Cast {{value.name or loop.index}}
   </div>
 
   <div class="content">
@@ -180,8 +180,8 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
     <div class="horiz-div details__parts__part-desc">
     <p class="parag"> Barvy: </p> 
       <div class="vert-div details__parts__desc">
-        {% for value in value.colors %} 
-            <p class="parag">{{value.title}}</p>
+        {% for val in value.colors %} 
+            <p class="parag">{{val.title}}</p>
         {% endfor %}
       </div>
     </div>
@@ -198,8 +198,8 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
     <div class="horiz-div details__parts__part-desc">
         <p class="parag"> Vedlejsi typy materialu: </p>
         <p class="parag"> 
-          {% for value in value.secondaryMaterialTypes %} 
-              <p class="parag">{{ value.title }}</p>
+          {% for val in value.secondaryMaterialTypes %} 
+              <p class="parag">{{ val.title }}</p>
         {% endfor %}</p>
       </div>
     {% endif %}
@@ -208,8 +208,8 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
     <div class="horiz-div details__parts__part-desc">
     <p class="parag"> Technologie:  </p>
       <div class="vert-div details__parts__desc">
-        {% for value in value.fabricationTechnologies %} 
-              <p class="parag">{{ value.title }}</p>
+        {% for val in value.fabricationTechnologies %} 
+              <p class="parag">{{ val.title }}</p>
         {% endfor %}
       </div>
     </div>

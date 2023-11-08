@@ -196,6 +196,7 @@
     color: white !important                    ;
     background-color: #de4929 !important;
     border-radius: 20px !important             ;
+    min-width: 100px !important;
     height: 40px !important                    ;
     width: 20vw !important                     ;
     align-self: center;
@@ -350,7 +351,7 @@
  
 
   .ui.button.btn.predmety__input-search__searchbar-burger img {
-    width: 50px;
+    width: 40px;
     height: auto;
   }
   .ui.button.btn.predmety__input-search__searchbar-burger {

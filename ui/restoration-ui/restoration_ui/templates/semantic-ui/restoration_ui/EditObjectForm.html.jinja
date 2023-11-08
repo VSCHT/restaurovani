@@ -13,8 +13,3 @@
 {%- include "restoration_ui/Sidebar.html.jinja" %}
 {%- endblock topMenu %}
 
-{%- block javascript %}
-    {{ super() }}
-    {{ webpack['restoration_ui_deposit_edit.js'] }}
-{{ webpack["restoration_ui_search_aggs.js"] }}
-{%- endblock %}

@@ -12,16 +12,45 @@ import { withState, buildUID } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
 
 const ItemHeader = ({ title, searchUrl, selfLink }) => {
+
+  const [smallScreen, setSmallScreen] = React.useState(
+    window.innerWidth <= 730
+  );
+
+  useEffect(() => {
+    function updateDescVisibility() {
+      if (window.innerWidth >= 730) {
+        setSmallScreen(false);
+      } else {
+        setSmallScreen(true);
+      }
+    }
+
+    updateDescVisibility();
+
+    window.addEventListener("resize", updateDescVisibility);
+
+    return () => {
+      window.removeEventListener("resize", updateDescVisibility);
+    };
+  }, []);
+
+
+
   const viewLink = new URL(
     selfLink,
     new URL(searchUrl, window.location.origin)
   );
+  let truncatedTitle = title.length > 10 && smallScreen ? title.substring(0, 10) + "..." : title;
   return (
     <Item.Header className="predmety__card__title">
-      <a href={viewLink}>{title}</a>
+      <a href={viewLink}>{truncatedTitle}</a>
     </Item.Header>
   );
 };
+
+
+
 
 const DetailsButton=({title, searchUrl, selfLink}) => {
   const viewLink = new URL(

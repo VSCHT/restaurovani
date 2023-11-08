@@ -789,9 +789,9 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
 
   .main-page__main-container__image {
     width: 40vw;
-    height: 70%;
-    margin-top: 164px;
-    max-height: 70vh;
+    height: 100%;
+    margin-top: 130px;
+    max-height: 80vh;
     min-width: 650px;
   }
 
@@ -807,11 +807,11 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
 
   .main-page__div__main-image img {
     max-width: 100%;
-    max-height: 90%;
+    max-height: 80%;
     width: auto;
     height: 40vw;
-    min-height: 80%;
-  }
+    min-height: 50%;
+}
   .main-page__div__main-image__div-arrows {
     width: 80px;
     height: auto;
@@ -876,6 +876,9 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
     gap: 10px;
     position: relative;
     flex: 1;
+  }
+  .title.parag{
+    font-size: 1.2rem !important
   }
   .main-page__btn__addPredmety {
     color: white;
@@ -1507,7 +1510,7 @@ width: 100vw;
     margin: 30px 0px;
   }
   .details__div__details-box .details__div__details-box-smaller.parag:first-child {
-    font: 1.4rem Noto_Sans_semibold !important;
+    font: 1.2rem Noto_Sans_semibold !important;
   }
 
   .details__div__details-box-smaller {
@@ -1556,6 +1559,7 @@ width: 100vw;
     margin-top: 20px;
     align-items: flex-start;
     align-self: flex-start;
+    margin-left: 1.5vw
   }
 
   .details__div__docs-files {
@@ -1813,7 +1817,7 @@ width: 100vw;
   }
   .main-page__title__img {
     position: relative;
-    top: 60px;
+    top: 7vh;
     width: 70px;
   }
 
@@ -2100,7 +2104,7 @@ width: 60px
   }
   .predmety__card__btn a{
     color: white !important;
-    height: 100%!important;
+    height: auto !important;
     width: 100%;
     border: none !important;
     font-size: 13px !important;
@@ -2109,7 +2113,7 @@ width: 60px
     justify-content: center;
     display: flex;
     justify-self: center;
-    padding-top: 10%;
+    margin: auto
   }
 
   .predmety__card__btn:hover {
@@ -2243,6 +2247,7 @@ width: 60px
     width: 100%;
     gap: 13px;
     height: 30px;
+    margin: 10px 0px;
   }
   .predmety__form__div-dimensions {
     width: 100%;
@@ -2613,7 +2618,23 @@ border-right: 1px solid                 #000;
     display: none;
   }
 
- 
+  .description.parag{
+    line-height: 23px;
+    word-wrap: break-word;
+    font-family: Noto_Sans_regular !important;
+    font-size: 20px !important;
+  }
+  .predmety__card__title {
+    font-family: Noto_Sans_semibold !important;
+    font-size: 25px !important;
+    width: auto;
+    line-height: 27px  !important;
+}
+.predmety__card__extra-info p {
+  width: 175px;
+  font-size: 20px !important;
+  font-family: Noto_Sans_regular  !important;
+}
   .ui.button.main-page__menu__btn-sb.main-page__menu__btn-sb-rest a {
     width: 100%;
     height: 100%;
@@ -2671,15 +2692,17 @@ z-index: -1                            ;
     width: 100vw;
     top: 0px;
     left: 0px;
+    /* min-height: 877px; */
     height: 65%;
     background-size: cover;
-
     background-position: center center;
-  }
+    min-height: 577px;
+    z-index: 0;
+}
   .main-page__half--background.bg-bottom {
     background-color: white;
     width: 100vw;
-    height: 35%;
+    /* height: 35%; */
     top: 65%;
   }
   body,
@@ -2791,6 +2814,15 @@ z-index: -1                            ;
     flex: 1;
     gap: 10px;
   }
+  .main-page__input-sb {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    flex: 1;
+    gap: 10px;
+    flex-direction: row !important;
+  }
 
   .main-page__title {
     position: relative;
@@ -2803,11 +2835,12 @@ z-index: -1                            ;
     align-items: flex-start;
     gap: 12px;
     height: 100%;
+    top: 200px
   }
   .main-page__title__img {
     width: 12vw;
     position: relative;
-    top: 32px;
+    top: 2vh;
   }
   .main-page__text__copyright {
     color: #73746f;
@@ -3027,7 +3060,7 @@ margin: 0 auto !important      ;
   }
   .predmety__card__btn a{
     color: white !important;
-    height: 100%!important;
+    height:auto !important;
     width: 100%;
     border: none !important;
     font-size: 20px !important;
@@ -3036,9 +3069,12 @@ margin: 0 auto !important      ;
     justify-content: center;
     display: flex;
     justify-self: center;
-    padding-top: 10%;
+    margin: auto !important
   }
 
+  .ui.input.predmety__input-search {
+    width: 80%;
+}
   .predmety__card__extra-info {
     justify-content: space-between;
     width: 100%;
@@ -3124,7 +3160,7 @@ margin: 0 auto !important      ;
     border: none;
     padding-left: 10px;
     padding-right: 10px;
-    font-size: 22px;
+    font-size: 20px;
     cursor: pointer;
     font-family: 'Noto_Sans_regular';
     margin: 20px auto;
@@ -3302,7 +3338,8 @@ margin: 0 auto !important      ;
 
   .details__div__details-box .details__div__details-box-smaller.parag:first-child{
     border-right: 1px solid black;
-    font-family: Noto_Sans_semibold !important
+    font-family: Noto_Sans_semibold !important;
+    padding-top: 15px
 }
 
   .ui.divided.grid:not([class*="vertically divided"]) > .row > .column {
@@ -3351,6 +3388,33 @@ margin: 0 auto !important      ;
     align-items: center;
     z-index: -1;
     padding: 0px 5px 20px;
+  }
+
+
+  .main-page__btn__addPredmety-sb,
+  .main-page__btn__addPredmety-sb a {
+    color: white;
+    background: none;
+    border-radius: 40px;
+    height: 40px;
+    max-width: 300px;
+    /* width: 100%; */
+    border: none;
+    font-size: 15px !important;
+    font-family: Noto_Sans_regular !important;
+    align-self:center
+  }
+  .main-page__input-search-sb {
+    border-radius: 40px;
+    height: 40px;
+    max-width: 300px;
+    width: 45vw;
+    border: solid 1px #9b9b93;
+    padding: 5px;
+    padding-left: 10px;
+    font-size: 15px !important;
+    font-family: Noto_Sans_regular !important;
+    align-self:center
   }
 
   /* header */
@@ -3458,8 +3522,7 @@ margin: 0 auto !important      ;
   .details__div__details-box-smaller:nth-child(even) {
     height: max-content;
     padding-left: 10px;
-    padding-bottom: 25px;
-    padding-top: 5px;
+    padding-top: 15px;
   }
   .details__div__info {
     width: 80vw;
@@ -3502,6 +3565,7 @@ margin: 0 auto !important      ;
   } */
   .details__div__details-box {
     padding: 0px 10px;
+    align-items: center;
   }
   .details__div__info-right__text {
     width: 80vw;
@@ -3683,6 +3747,22 @@ margin: 0 auto !important      ;
   .ui.accordion.vert-div.details__div__details-box-smaller {
     align-items: flex-start;
 }
+.details__info__accordion .title.parag {
+  font-size: 25px !important;
+}
+.main-page__title {
+  position: relative;
+  font-size: 8vw;
+  font-family: Noto_Sans_regular;
+  line-height: 110px;
+  word-wrap: break-word;
+  color: #74756e;
+  width: auto;
+  align-items: flex-start;
+  gap: 12px;
+  height: 100%;
+  top: 0px;
+}
 
   .predmety__card__extra-info p {
     display: none;
@@ -3863,7 +3943,7 @@ margin: 0 auto !important      ;
     font-size: 15px !important;
     font-family: Noto_Sans_regular !important;
   }
-
+  
   .main-page__input-search {
     border-radius: 40px;
     height: 50px;
@@ -3874,6 +3954,31 @@ margin: 0 auto !important      ;
     padding-left: 30px;
     font-size: 15px !important;
     font-family: Noto_Sans_regular !important;
+  }
+  .main-page__btn__addPredmety-sb,
+  .main-page__btn__addPredmety-sb a {
+    color: white;
+    background: none;
+    border-radius: 40px;
+    height: 40px;
+    max-width: 300px;
+    /* width: 100%; */
+    border: none;
+    font-size: 15px !important;
+    font-family: Noto_Sans_regular !important;
+    align-self:center
+  }
+  .main-page__input-search-sb {
+    border-radius: 40px;
+    height: 40px;
+    max-width: 300px;
+    width: 45vw;
+    border: solid 1px #9b9b93;
+    padding: 5px;
+    padding-left: 10px;
+    font-size: 15px !important;
+    font-family: Noto_Sans_regular !important;
+    align-self:center
   }
   .btn.main-page__menu__btn:first-child {
     display: none;
@@ -4017,8 +4122,20 @@ margin: 0 auto !important      ;
     line-height: 23px;
     word-wrap: break-word;
     font-family: Noto_Sans_regular;
+    font-size: 20px ;
+  }
+  .description.parag{
+    line-height: 23px;
+    word-wrap: break-word;
+    font-family: Noto_Sans_regular !important;
     font-size: 20px !important;
   }
+  .predmety__card__title {
+    font-family: Noto_Sans_regular !important;
+    font-size: 25px !important;
+    width: auto;
+    line-height: 27px  !important;
+}
   .details__div__details-box .details__div__details-box-smaller.parag:first-child {
     font: 18px Noto_Sans_semibold;
     padding-top: 15px;
@@ -4063,7 +4180,7 @@ margin: 0 auto !important      ;
     font-size: 27px;
   }
   .details__info__accordion .title.parag{
-    font-size: 20px !important
+    font-size: 25px !important
     }
 }
 
@@ -4200,11 +4317,11 @@ img.details__div__header__btn-edit {
   min-width: 1110px;
 }
 .main-page__div__main-image img {
-  max-width: 100%;
-  max-height: 100%;
+  /* max-width: 100%;
+  max-height: 100%; */
   min-width: 915px;
   width: auto;
-  height: 100%;
+  /* height: 100%; */
   /* align-self: flex-end; */
   object-fit: contain;
   /*  min-height: 90%; 
@@ -4550,7 +4667,7 @@ height: 90%;*/
   }
   .main-page__title__img {
     position: relative;
-    top: 4vh;
+    top: 10vh;
     width: 54px;
 }
 .image__vsht-logo {
@@ -4570,28 +4687,37 @@ height: 90%;*/
   display: flex;
   position: relative;
   align-self: center;
-  top: 120px;
-  width: 80vw;
+  top: 40px;
+  width: auto;
   height: auto;
   margin: 0 auto;
   align-items: center;
   margin-top: 3vh;
   margin-bottom: 5vh;
 }
+.main-page__main-container__image {
+  width: auto;
+  height: 100%;
+  margin-top: 85px;
+  max-height: 80vh;
+  min-width: auto;
+}
 .vert-div.main-page__main-container__titles {
   gap: 5vh;
 }
 img.main-page__main-image {
   max-width: fit-content;
-  max-height: 60vh;
+  max-height: 50vh;
+  min-height: 330px;
 }
 .main-page__div__main-image {
   flex-grow: 1;
   display: flex;
   justify-content: flex-start;
   overflow: hidden;
-  min-width: 450px;
-  /* align-items: flex-end; */
+  width: auto;
+  min-width: auto;
+  align-items: flex-end;
 }
 .main-page__btn__addPredmety {
   color: white;
@@ -4625,7 +4751,7 @@ img.main-page__main-image {
   }
   .main-page__title__img {
     position: relative;
-    top: 4vh;
+    top: 75px;
     width: 54px;
 }
 .image__vsht-logo {
@@ -4645,11 +4771,11 @@ img.main-page__main-image {
   display: flex;
   position: relative;
   align-self: center;
-  top: 120px;
+  top: 75px;
   width: auto;
   height: auto;
   margin: 0 auto;
-  align-items: center;
+  align-items: flex-end;
   margin-top: 3vh;
   margin-bottom: 5vh;
 }
@@ -4685,6 +4811,19 @@ img.main-page__main-image {
   position: relative;
   width: 11vw;
 }
+.parag {
+  font-size: 1.2rem;
+}
+.text__vsht-logo {
+  font-size: 10px;
+  font-family: Noto_Sans_bold;
+  width: 15vw;
+  line-height: 12px;
+}
+.main-page__text__copyright {
+  font-size: 0.9rem;
+  line-height: 1rem;
+}
 .vert-div.main-page__main-container__titles p{
   width: 20vw !important
 }
@@ -4718,7 +4857,7 @@ img.main-page__main-image {
 }
 .main-page__div__main-image img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 57vh;
   min-width: auto;
   width: auto;
   height: 100%;
@@ -4733,6 +4872,20 @@ img.main-page__main-image {
   align-items: center;
   justify-content: flex-start;
   overflow: hidden;
-  min-width: 1110px;
+  min-width: 300px;
 }
     }
+
+
+    @media only screen  and  (min-width: 2000px) and (max-height: 860px) {
+    .main-page__div__main-image img {
+      max-width: 100%;
+      max-height: 45vh;
+      min-width: auto;
+      width: auto;
+      height: 100%;
+      /* align-self: flex-end; */
+      object-fit: contain;
+      /* align-self: flex-end; */
+  }
+}

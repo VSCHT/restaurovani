@@ -20,7 +20,7 @@ export const CreateObjectFormContent = ({ edit, errors }) => {
   const { values, formik } = useDepositApiClient();
 
   console.log(formik);
-  console.log(errors)
+  console.log(errors);
   console.log(values);
 
   return (
@@ -28,7 +28,6 @@ export const CreateObjectFormContent = ({ edit, errors }) => {
       <h3 className="predmety__form__h">Vytvoření nového předmětu</h3>
       <div className="vert-div predmety__form-main">
         <div className="vert-div predmety__form__div">
-         
           <TextField
             fieldPath="metadata.restorationObject.title"
             className="form__input"
@@ -43,12 +42,11 @@ export const CreateObjectFormContent = ({ edit, errors }) => {
             }
             required
           />
-          { (errors?.metadata) && (<>
+          {/* { (errors?.metadata) && (<>
            <Label basic color='red' pointing>
               Please enter a value
           </Label>
-          </>)}
-          
+          </>)} */}
         </div>
 
         <div className="vert-div predmety__form__div">
@@ -127,10 +125,24 @@ export const CreateObjectForm = () => {
   const { record } = useFormConfig();
   console.log(record);
 
+  let initVal = {
+    ...record,
+    metadata: {
+      restorationObject: {
+        title: "",
+        category: "",
+      },
+
+      restorationWork: {
+        restorer: "",
+      },
+    },
+  };
+
   return (
     <Container>
       <Formik
-        initialValues={record}
+        initialValues={initVal}
         onSubmit={() => {}}
         enableReinitialize
         validationSchema={DepositValidationSchemaDraft}
