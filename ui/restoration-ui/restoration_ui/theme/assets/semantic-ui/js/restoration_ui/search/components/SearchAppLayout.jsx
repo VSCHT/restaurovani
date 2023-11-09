@@ -7,7 +7,6 @@ import {
   Button,
   Image,
   Label,
-  Sidebar,
   Header,
   Modal,
 } from "semantic-ui-react";
@@ -55,7 +54,6 @@ export const SearchAppLayout = () => {
   const { appName, buildUID } = useContext(SearchConfigurationContext);
 
   const searchAppConfig = useContext(SearchConfigurationContext);
-  console.log(searchAppConfig);
 
   const createNewHandler = () => {
     window.location.href = new URL(searchAppConfig.ui_links.create);
@@ -157,7 +155,6 @@ export const SearchAppLayout = () => {
             icon="labeled"
             open={modalOpen}
             onClose={toggleModal}
-            // onHide={() => setSidebarVisible(false)}
           >
             <Grid.Column
               className="vert-div predmety__aside"
@@ -192,8 +189,7 @@ export const SearchAppLayout = () => {
                 className="vert-div predmety__aside__filter"
                 aria-label="Filter Options"
               >
-                
-              <h2>Filtrování výsledků</h2>
+                <h2>Filtrování výsledků</h2>
                 <SearchAppFacets
                   aggs={searchAppConfig.aggs}
                   appName={appName}

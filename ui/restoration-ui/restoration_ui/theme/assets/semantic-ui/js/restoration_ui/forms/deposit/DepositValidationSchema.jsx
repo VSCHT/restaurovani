@@ -3,6 +3,8 @@
 import * as Yup from "yup";
 
 const requiredMessage = "Pole je povinné";
+const numMessage="Musí byt číslo";
+const dateMessage="Musí byt datum správného formatu";
 
 export const DepositValidationSchemaDraft = Yup.object().shape({
   metadata: Yup.object().shape({
@@ -35,12 +37,12 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
       dimensions: Yup.array().of(
         Yup.object().shape({
           unit: Yup.string(),
-          value: Yup.number().typeError("Musí byt číslo"),
+          value: Yup.number().typeError(numMessage),
           dimension: Yup.object().shape({
             title: Yup.object().shape({
               cs: Yup.string(),
             }),
-            id: Yup.string().typeError("Musí byt číslo"),
+            id: Yup.string(),
           }),
         })
       ),
@@ -54,8 +56,8 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
       }),
 
       creationPeriod: Yup.object().shape({
-        until: Yup.number().typeError("Musí byt číslo"),
-        since: Yup.number().typeError("Musí byt číslo"),
+        until: Yup.number().typeError(numMessage),
+        since: Yup.number().typeError(numMessage),
       }),
     }),
     restorationWork: Yup.object().shape({
@@ -67,8 +69,8 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
           institution: Yup.string(),
         })),
         restorationPeriod: Yup.object().shape({
-          until: Yup.date().typeError("Musí byt číslo"),
-          since: Yup.date().typeError("Musí byt číslo"),
+          until: Yup.date().typeError(dateMessage),
+          since: Yup.date().typeError(dateMessage),
         }),
     }),
 

@@ -17,11 +17,7 @@ const categories = [
 ];
 
 export const CreateObjectFormContent = ({ edit, errors }) => {
-  const { values, formik } = useDepositApiClient();
-
-  console.log(formik);
-  console.log(errors);
-  console.log(values);
+  const { values } = useDepositApiClient();
 
   return (
     <div className="vert-div predmety__form">
@@ -42,11 +38,6 @@ export const CreateObjectFormContent = ({ edit, errors }) => {
             }
             required
           />
-          {/* { (errors?.metadata) && (<>
-           <Label basic color='red' pointing>
-              Please enter a value
-          </Label>
-          </>)} */}
         </div>
 
         <div className="vert-div predmety__form__div">
@@ -123,7 +114,6 @@ export const CreateObjectFormContent = ({ edit, errors }) => {
 
 export const CreateObjectForm = () => {
   const { record } = useFormConfig();
-  console.log(record);
 
   let initVal = {
     ...record,

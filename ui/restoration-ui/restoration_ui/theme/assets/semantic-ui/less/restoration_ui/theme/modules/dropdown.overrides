@@ -97,3 +97,77 @@ body .ui.selection.dropdown input {
 .ui.multiple.dropdown {
   padding: 5px 20px !important;
 }
+@media only screen and (min-width: 3000px) {
+.ui.multiple.dropdown > .label {
+  user-select: none;
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+  font-size: 1em;
+  padding: 0.35714286em 0.78571429em;
+  margin: 0.14285714rem 0.28571429rem 0.14285714rem 0em;
+  box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.15) inset;
+}
+.ui.fluid.multiple.search.selection.dropdown .label {
+  background-color: #808080;
+  color: #fff;
+  font-family: Noto_Sans_regular !important;
+  font-size: 1.8rem;
+}
+.ui.active.visible.fluid.multiple.search.selection.dropdown .label {
+  background-color: #808080;
+  color: #fff;
+  font-family: Noto_Sans_regular !important;
+  font-size: 1.8rem !important;
+}
+.ui.selection.dropdown .menu > .item {
+  border-top: 1px solid #FAFAFA;
+  padding: 0.78571429rem 1.14285714rem !important;
+  white-space: normal;
+  word-wrap: normal;
+  font-size: 1.8rem;
+}
+body .ui.selection.dropdown {
+  border-radius: 40px;
+  border: 1px solid #555;
+  width: 100%;
+  min-height: 52.5px;
+  display: flex;
+}
+.ui.multiple.search.dropdown, .ui.multiple.search.dropdown > input.search {
+  cursor: text;
+  font-size: 1.8rem;
+}
+.ui.search.dropdown > .text {
+  cursor: text;
+  position: relative;
+  left: 1px;
+  z-index: 3;
+  padding: 5px;
+  font-size: 1.8rem;
+}
+.ui.dropdown > .text {
+  display: inline-block;
+  transition: none;
+  height: max-content;
+  align-self: center;
+  font-size: 1.8rem;
+}
+
+.ui.dropdown .menu .item {
+  position: relative;
+  cursor: pointer;
+  display: block;
+  border: none;
+  height: auto;
+  text-align: left;
+  border-top: none;
+  line-height: 1em;
+  color: rgba(0, 0, 0, 0.87);
+  padding: 0.78571429rem 1.14285714rem !important;
+  font-size: 1.5rem;
+  text-transform: none;
+  font-weight: normal;
+  box-shadow: none;
+}
+}

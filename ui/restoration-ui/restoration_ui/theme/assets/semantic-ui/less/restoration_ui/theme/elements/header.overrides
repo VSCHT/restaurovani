@@ -19,10 +19,10 @@
 }
 }
 @media only screen and (min-width:1200px) and (max-width:3000px){
-   .header.predmety__title{
+.header.predmety__title {
     color: #1b1919;
-    font-size: 46px !important;
-    font-family: Noto_Sans_light;
+    font-size: 50px !important;
+    font-family: 'Noto_Sans_regular';
     word-wrap: break-word;
     width: 500px;
 } 

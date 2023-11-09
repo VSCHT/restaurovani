@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -6,56 +8,8 @@ import { Modal, Image, Button } from "semantic-ui-react";
 
 export const ImgCarousel = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState("");
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(5);
-
-  useEffect(() => {
-    const imgs = document.querySelectorAll(".predmety__imgs__img");
-
-    imgs.forEach((img) => {
-      img.addEventListener("click", () => {
-        setSelectedImage(img.src);
-        setModalOpen(true);
-      });
-    });
-
-    return () => {
-      imgs.forEach((img) => {
-        img.removeEventListener("click", () => {
-          setSelectedImage(img.src);
-          setModalOpen(true);
-        });
-      });
-    };
-  }, []);
-
-  useEffect(() => {
-    function updateSlidesToShow() {
-      if (window.innerWidth <= 992 && window.innerWidth >= 530) {
-        setSlidesToShow(3);
-      } else if (window.innerWidth <= 530 ){
-        setSlidesToShow(2);
-      } else {
-        setSlidesToShow(5);
-      }
-    }
-
-    updateSlidesToShow();
-
-    window.addEventListener("resize", updateSlidesToShow);
-
-    return () => {
-      window.removeEventListener("resize", updateSlidesToShow);
-    };
-  }, []);
-
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 100,
-    slidesToShow: slidesToShow,
-    slidesToScroll: 2,
-  };
 
   const imgs = [
     {
@@ -90,31 +44,64 @@ export const ImgCarousel = () => {
     },
   ];
 
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 100,
+    slidesToShow: slidesToShow,
+    slidesToScroll: 2,
+  };
+
+  const handleNextImage = () => {
+    setSelectedImageIndex((prevIndex) => (prevIndex + 1) % imgs.length);
+  };
+
+  const handlePrevImage = () => {
+    setSelectedImageIndex((prevIndex) => (prevIndex - 1 + imgs.length) % imgs.length);
+  };
+
+  useEffect(() => {
+    function updateSlidesToShow() {
+      if (window.innerWidth <= 992 && window.innerWidth >= 530) {
+        setSlidesToShow(3);
+      } else if (window.innerWidth <= 530 ){
+        setSlidesToShow(2);
+      } else {
+        setSlidesToShow(5);
+      }
+    }
+    updateSlidesToShow();
+
+    window.addEventListener("resize", updateSlidesToShow);
+
+    return () => {
+      window.removeEventListener("resize", updateSlidesToShow);
+    };
+  }, []);
+
   return (
     <>
       <Slider {...settings}>
-        {imgs.map((item) => (
+        {imgs.map((item, index) => (
           <Image
             key={item.id}
             src={item.src}
             alt={item.alt}
             className="predmety__imgs__img"
+            onClick={() => {
+              setSelectedImageIndex(index);
+              setModalOpen(true);
+            }}
           />
         ))}
       </Slider>
       <div>
-        <Modal
-          open={modalOpen}
-          onClose={() => setModalOpen(false)}
-          className="custom-modal"
-        >
+        <Modal open={modalOpen} onClose={() => setModalOpen(false)} className="custom-modal">
           <Modal.Content image className="modal-content">
-            <Image src={selectedImage} className="modal-image" />
-            <Button
-              icon="close"
-              onClick={() => setModalOpen(false)}
-              className="close-button"
-            />
+            <Button icon="chevron left" onClick={handlePrevImage} className="carousel-button left" />
+            <Image src={imgs[selectedImageIndex].src} className="modal-image" />
+            <Button icon="chevron right" onClick={handleNextImage} className="carousel-button right" />
+            <Button icon="close" onClick={() => setModalOpen(false)} className="close-button" />
           </Modal.Content>
         </Modal>
       </div>

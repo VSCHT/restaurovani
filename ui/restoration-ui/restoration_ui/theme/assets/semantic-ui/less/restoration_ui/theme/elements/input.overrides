@@ -74,6 +74,11 @@
     background-color: white
   }
 }
+@media only screen and (min-width: 2000px) and (max-width: 3000px) {
+.ui.input.predmety__input-search {
+    width: 20vw;
+}
+}
 @media only screen and (min-width: 3000px) {
 .ui.input.predmety__input-search input {
   font-size: 2.5rem !important;
@@ -85,5 +90,19 @@
     font-family: Noto_Sans_bold !important;
     color: #626262 !important;
     width: 100% !important;
+}
+.ui.fluid.input input {
+    font-family: Noto_Sans_regular !important;
+    width: 50% !important;
+    min-height: 42px !important;
+    border: solid #555 1px !important;
+    border-radius: 40px !important;
+    padding: 5px 25px !important;
+    font-size: 1.6rem;
+}
+.required.field {
+    gap: 14px;
+    display: flex;
+    flex-direction: column;
 }
 }

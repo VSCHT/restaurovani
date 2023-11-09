@@ -34,6 +34,9 @@ height: 100% !important                                                         
 .ui[class*="right aligned"].grid > .column, .ui[class*="right aligned"].grid > .row > .column, .ui.grid > [class*="right aligned"].row > .column, .ui.grid > [class*="right aligned"].column.column, .ui.grid > .row > [class*="right aligned"].column.column{
 text-align: left                                                                                                                                                                                                                                               ;
 }
+
+
+
 @media only screen and (min-width: 1200px) {
 .ui.container.predmety__body-bg.pages__predmety .ui.grid.horiz-div{
     gap: 7vw !important
@@ -219,6 +222,16 @@ margin-top: 10px                                                   ;
 background-color:                                                  #aaaaa2;
 }
 }
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+.ui.grid.vert-div.predmety_main-container {
+    width: 54vw !important;
+    margin-top: 106px !important;
+    margin-left: 14vw !important;
+}
+}
+
+
+
 @media only screen and (min-width: 992px) and (max-width: 1200px){
 .grid.predmety__main-content__nores{
 gap: 20px                                                          ;
@@ -433,7 +446,7 @@ flex-direction: column                      ;
 }
 .ui.grid.predmety__title-search__searchbar{
 justify-content: space-between              ;
-width: auto                               ;
+width: 100%                               ;
 }
 
 .ui.grid.vert-div.predmety_main-container{
@@ -830,7 +843,10 @@ margin: 0 auto !important                  ;
 .ui.grid.predmety__cards {
   width: 100% !important;
   gap: 70px !important;
-  margin-top: 120px !important;
+}
+.ui[class*="right aligned"].grid > .column, .ui[class*="right aligned"].grid > .row > .column, .ui.grid > [class*="right aligned"].row > .column, .ui.grid > [class*="right aligned"].column.column, .ui.grid > .row > [class*="right aligned"].column.column {
+    text-align: left;
+    font-size: 25px;
 }
 .grid.predmety__card {
   margin-top: 22px !important;
@@ -874,3 +890,9 @@ margin: 0 auto !important                  ;
   align-content: stretch !important;
 }
 }
+
+@media only screen and (max-width: 800px) and (min-width: 550px){
+.ui.grid.predmety__title-search__searchbar{
+justify-content: space-between              ;
+width: auto                               ;
+}}

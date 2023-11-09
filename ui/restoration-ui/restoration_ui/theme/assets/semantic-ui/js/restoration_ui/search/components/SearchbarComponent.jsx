@@ -9,12 +9,7 @@ export const CustomSB = ({
   onKeyPress,
   queryString,
   resetQuery,
-  state,
 }) => {
-  console.log(resetQuery);
-  console.log(onKeyPress);
-  console.log(state);
-
   const handleReset = () => {
     resetQuery(onBtnSearchClick);
   };

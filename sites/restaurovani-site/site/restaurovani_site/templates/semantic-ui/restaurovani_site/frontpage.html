@@ -2,10 +2,6 @@
 head_links %} {% block body %}
 
 <main class="pusher">
-
-
-
-
   <div class="horiz-div main-page__main-container">
     <div class="vert-div main-page__main-container__content">
       <!-- page title -->
@@ -62,24 +58,15 @@ head_links %} {% block body %}
             </div>
           </div>
 
-
-         
-
           <!-- copyright -->
-      <div>
-        <p class="main-page__text__copyright">
-          © 2020 VŠCHT Praha, Ústav chemické technologie restaurování památek -
-          databáze restaurovaných předmětů
-        </p>
-      </div>
-
-
+          <div>
+            <p class="main-page__text__copyright">
+              © 2020 VŠCHT Praha, Ústav chemické technologie restaurování
+              památek - databáze restaurovaných předmětů
+            </p>
+          </div>
         </div>
-
-
       </div>
-
-      
     </div>
     <!-- main image -->
     <div class="vert-div main-page__main-container__image">
@@ -99,10 +86,5 @@ head_links %} {% block body %}
   </div>
 </main>
 
-{%- block javascript %}
-      
-
-{% include config.THEME_JAVASCRIPT_TEMPLATE %}
-{%- endblock javascript %}
-{% endblock %}
-
+{%- block javascript %} {% include config.THEME_JAVASCRIPT_TEMPLATE %} {%-
+endblock javascript %} {% endblock %}

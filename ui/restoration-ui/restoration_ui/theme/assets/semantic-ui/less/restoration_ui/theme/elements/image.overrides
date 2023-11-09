@@ -1,4 +1,4 @@
-.ui.image.vsht-logo.image__vsht-logo.predmety__image__vsht-logo {
+/* .ui.image.vsht-logo.image__vsht-logo.predmety__image__vsht-logo {
   margin-right: 10px;
   max-width: 100%;
   height: auto;
@@ -7,7 +7,7 @@
 
 .rotate-icon {
   transform: rotate(180deg);
-}
+} */
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   .ui.image.vsht-logo.image__vsht-logo.predmety__image__vsht-logo {
@@ -34,11 +34,11 @@ img.ui.image {
 }
 
 @media only screen and (min-width: 2000px) and (max-width: 3000px){
-.ui.image.vsht-logo.image__vsht-logo.predmety__image__vsht-logo {
-  margin-right: 10px;
-  max-width: 100%;
-  height: auto;
-  width: 55px !important;
-}
 
+.ui.image.vsht-logo.image__vsht-logo.predmety__image__vsht-logo {
+    margin-right: 10px;
+    max-width: 100%;
+    height: auto;
+    width: 66px !important;
+}
 }

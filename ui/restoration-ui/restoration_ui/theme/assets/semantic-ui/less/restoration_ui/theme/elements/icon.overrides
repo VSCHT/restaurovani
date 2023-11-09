@@ -10,3 +10,8 @@
 i.red.icon{
     height: auto ;
 }
+i.icon{
+  content: "\f007";
+  font-size: 1.5rem;
+  margin-right: 10px;
+}

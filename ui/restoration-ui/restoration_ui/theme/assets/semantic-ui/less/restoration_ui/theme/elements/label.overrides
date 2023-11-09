@@ -91,7 +91,18 @@
 
   }
 }
-
+@media only screen and (min-width: 2000px) and (max-width: 3000px){
+.label.vsht-logo.text__vsht-logo.predmety__text__vsht-logo {
+    max-width: 100% !important;
+    height: auto !important;
+    font-size: 17px !important;
+    font-family: Noto_Sans_bold !important;
+    width: 22vw !important;
+    background-color: #eaeae2 !important;
+    color: #111;
+    padding: 0px !important;
+    line-height: 20px !important;
+}}
 @media only screen and (min-width: 3000px) {
 .label.vsht-logo.text__vsht-logo.predmety__text__vsht-logo {
   max-width: 100% !important;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import _isEmpty from "lodash/isEmpty";
 import _cloneDeep from "lodash/cloneDeep";
 import {
@@ -33,78 +33,33 @@ const units = [
 export const EditObjectForm = ({ edit }) => {
   let { record } = useFormConfig();
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const handleActive = (x, values) => {
-    console.log(values);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const handleActive = (x) => {
     setActiveIndex(x);
   };
 
-  let initVal1 = {
+  let initVal = {
     ...record,
     metadata: {
-      
       restorationObject: {
-        
-        parts: [
-          ...(record?.metadata?.restorationObject?.parts?.some(
-            (part) => part.main === true
-          )
-            ? record.metadata.restorationObject.parts
-            : [
-                {
-                  id: "",
-                  name: "",
-                  main: true,
-                  fabricationTechnologies: [
-                    {
-                      title: { cs: "" },
-                    },
-                  ],
-                  materialType: {
-                    title: { cs: "" },
-                  },
-                  secondaryMaterialTypes: [
-                    {
-                      title: { cs: "" },
-                    },
-                  ],
-                  colors: [
-                    {
-                      title: { cs: "" },
-                    },
-                  ],
-                  main: true,
-                },
-              ]),
-          {
-            id: "",
-            name: "",
-            main: true,
-            fabricationTechnologies: [
+        parts: record?.metadata?.restorationObject?.parts?.some(
+          (part) => part.main === true
+        )
+          ? record.metadata.restorationObject.parts
+          : [
               {
-                title: { cs: "" },
+                id: "",
+                name: "",
+                main: true,
+                fabricationTechnologies: [{ title: { cs: "" } }],
+                materialType: { title: { cs: "" } },
+                secondaryMaterialTypes: [{ title: { cs: "" } }],
+                colors: [{ title: { cs: "" } }],
+                main: true,
               },
             ],
-            materialType: {
-              title: { cs: "" },
-            },
-            secondaryMaterialTypes: [
-              {
-                title: { cs: "" },
-              },
-            ],
-            colors: [
-              {
-                title: { cs: "" },
-              },
-            ],
-            main: false,
-          },
-        ],
-        restorationRequestor: {
-          title: { cs: "" },
-        },
-        creationPeriod: { until: undefined, since: undefined },
+        restorationRequestor: { title: { cs: "" } },
+        creationPeriod: { until: "", since: "" },
         category: "",
         dimensions: [
           {
@@ -121,11 +76,11 @@ export const EditObjectForm = ({ edit }) => {
         keywords: [],
         archeologic: false,
         description: "",
-        ...record.metadata.restorationObject,
+        ...(record?.metadata?.restorationObject
+          ? record.metadata.restorationObject
+          : {}),
       },
-
       restorationWork: {
-        
         abstract: "",
         supervisors: [{ fullName: "", comment: "", institution: "" }],
         examinationMethods: [{ title: { cs: "" } }],
@@ -134,16 +89,17 @@ export const EditObjectForm = ({ edit }) => {
         restorer: "",
         workType: { title: { cs: "" } },
         restorationPeriod: { since: undefined, until: undefined },
-        ...record.metadata.restorationWork,
+        ...(record?.metadata?.restorationWork
+          ? record.metadata.restorationWork
+          : {}),
       },
-      ...record.metadata,
     },
   };
 
   return (
     <Container>
       <Formik
-        initialValues={initVal1}
+        initialValues={initVal}
         onSubmit={() => {}}
         enableReinitialize
         validationSchema={DepositValidationSchemaEdit}
@@ -151,8 +107,6 @@ export const EditObjectForm = ({ edit }) => {
         validateOnBlur={false}
       >
         {({ values }) => (
-
-          
           <Grid className="vert-div predmety__form">
             <div>
               <h3 className="predmety__form__h">
@@ -160,7 +114,6 @@ export const EditObjectForm = ({ edit }) => {
                 {values.metadata.restorationObject.title}
               </h3>
             </div>
-            
 
             <div className="vert-div predmety__form-main">
               <div className="vert-div predmety__form__div-fields">
@@ -206,6 +159,7 @@ export const EditObjectForm = ({ edit }) => {
                           label="Klíčová slova"
                           placeholder="Napište klíčová slova..."
                           required={false}
+                          name="metadata.restorationObject.keywords"
                           disabled={false}
                         />
                       </div>
@@ -241,7 +195,6 @@ export const EditObjectForm = ({ edit }) => {
                         />
                       </div>
                       <div>
-                        {/* <FieldArray name="metadata.restorationObject.stylePeriod"> */}
                         <div className="horiz-div predmety__form__div">
                           <div className="vert-div predmety__form__div-medium">
                             <TextField
@@ -274,7 +227,6 @@ export const EditObjectForm = ({ edit }) => {
                             />
                           </div>
                         </div>
-                        {/* </FieldArray> */}
                       </div>
                       <div className="vert-div predmety__form__div-dimensions">
                         <ArrayField
@@ -466,26 +418,31 @@ export const EditObjectForm = ({ edit }) => {
                                 arrayHelpers={arrayHelpers}
                               >
                                 <div className="vert-div predmety__form__div-fields__parts">
-                                  <h4>Vedoucí N{indexPath + 1}</h4>
+                                  <h3 className="form__input__title-small">
+                                    Vedoucí &nbsp;
+                                    {values.metadata?.restorationWork
+                                      ?.supervisors?.[indexPath]?.fullName ==
+                                    null
+                                      ? indexPath + 1
+                                      : values.metadata.restorationWork
+                                          .supervisors[indexPath].fullName}
+                                  </h3>
 
                                   <div className="vert-div">
-                                    <div className="horiz-div predmety__form__div-small">
-                                      <div className="vert-div predmety__form__div-medium">
-                                        <TextField
-                                          name={`${fieldPathPrefix}.fullName`}
-                                          aria-label="Celé jméno"
-                                          fieldPath={`${fieldPathPrefix}.fullName`}
-                                          placeholder="Napište celé jméno"
-                                          label={
-                                            <FieldLabel
-                                              htmlFor={`${fieldPathPrefix}.fullName`}
-                                              className="predmety__form__div__label"
-                                              label="Celé jméno"
-                                            ></FieldLabel>
-                                          }
-                                        />
-                                      </div>
-                                    </div>
+                                    <TextField
+                                      name={`${fieldPathPrefix}.fullName`}
+                                      aria-label="Celé jméno"
+                                      fieldPath={`${fieldPathPrefix}.fullName`}
+                                      placeholder="Napište celé jméno"
+                                      label={
+                                        <FieldLabel
+                                          htmlFor={`${fieldPathPrefix}.fullName`}
+                                          className="predmety__form__div__label"
+                                          label="Celé jméno"
+                                        ></FieldLabel>
+                                      }
+                                    />
+
                                     <div className="horiz-div predmety__form__div-small">
                                       <div className="vert-div predmety__form__div-medium">
                                         <TextField
@@ -526,13 +483,12 @@ export const EditObjectForm = ({ edit }) => {
                         </ArrayField>
                       </div>
 
-                      {/* <FieldArray name="metadata.restorationWork.restorationPeriod"> */}
                       <div className="horiz-div predmety__form__div-small">
                         <div className="vert-div predmety__form__div-medium">
                           <TextField
                             name="metadata.restorationWork.restorationPeriod.since"
                             aria-label="Od"
-                            placeholder="Napište období"
+                            placeholder="rrrr-mm-dd"
                             fieldPath="metadata.restorationWork.restorationPeriod.since"
                             label={
                               <FieldLabel
@@ -549,7 +505,7 @@ export const EditObjectForm = ({ edit }) => {
                             name="metadata.restorationWork.restorationPeriod.until"
                             aria-label="Do"
                             fieldPath="metadata.restorationWork.restorationPeriod.until"
-                            placeholder="Napište období"
+                            placeholder="rrrr-mm-dd"
                             label={
                               <FieldLabel
                                 htmlFor="metadata.restorationWork.restorationPeriod.until"
@@ -560,7 +516,6 @@ export const EditObjectForm = ({ edit }) => {
                           />
                         </div>
                       </div>
-                      {/* </FieldArray> */}
 
                       <div className="vert-div predmety__form__div">
                         <LocalVocabularySelectField

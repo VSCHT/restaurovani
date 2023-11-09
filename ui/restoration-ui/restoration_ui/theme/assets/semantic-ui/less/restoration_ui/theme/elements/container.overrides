@@ -21,11 +21,11 @@ width: auto !important;
 display: flex !important                    ;
 flex-direction: column !important           ;
 background-color:                           #eaeae2;
-height: 57px                               ;
+height: auto                               ;
 width: 54vw                                 ;
 align-items: flex-end !important            ;
 z-index: 1                                  ;
-padding-bottom: 15px                        ;
+padding-bottom: 0px                        ;
 padding-left: 0px !important;
 padding-right: 0px !important;
 }}
