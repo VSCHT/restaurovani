@@ -40,6 +40,10 @@ body .ui.selection.dropdown {
   border: 1px solid #555;
 }
 @media only screen and (min-width: 992px) {
+  /* .ui.search.selection.dropdown > input.search {
+    margin: 0px;
+    padding: 5px 25px;
+} */
   .ui.active.visible.fluid.multiple.search.selection.dropdown .label {
     background-color: #808080;
     color: #fff;

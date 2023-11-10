@@ -124,7 +124,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
             </Grid.Column>
             <Item.Group className="horiz-div predmety__card__extra-info">
               <Item.Extra className="horiz-div predmety__card__extra-info">
-                <p className="parag">Vlozeno: {created.slice(0, 12)}</p>
+              <p className="parag">Vloženo: {created.split(',').slice(0, 2).join(',')}</p>
               </Item.Extra>
               <DetailsButton
                 className="predmety__card__btn"

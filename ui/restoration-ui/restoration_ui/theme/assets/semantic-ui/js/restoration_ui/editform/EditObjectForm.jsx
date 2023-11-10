@@ -22,107 +22,13 @@ export const EditObjectForm = ({ edit }) => {
     console.log(values);
   };
 
-  let initVal = {
-    ...record,
-    metadata: {
-      restorationObject: {
-        parts: record?.metadata?.restorationObject?.parts?.some(
-          (part) => part.main === true
-        )
-          ? record.metadata.restorationObject.parts
-          : [
-              {
-                id: "",
-                name: "",
-                main: true,
-                fabricationTechnologies: [{ title: { cs: "" } }],
-                materialType: { title: { cs: "" } },
-                secondaryMaterialTypes: [{ title: { cs: "" } }],
-                colors: [{ title: { cs: "" } }],
-                main: true,
-              },
-            ],
-        restorationRequestor: { title: { cs: "" } },
-        creationPeriod: { until: "", since: "" },
-        category: "",
-        dimensions: [
-          {
-            unit: "",
-            dimension: { title: { cs: "" } },
-            value: undefined,
-          },
-        ],
-        itemTypes: [
-          {
-            title: { cs: "" },
-          },
-        ],
-        keywords: [],
-        archeologic: false,
-        description: "",
-
-        ...(record?.metadata?.restorationObject
-          ? record.metadata.restorationObject
-          : {}),
-      },
-
-      restorationWork: {
-        abstract: "",
-        examinationMethods: [{ title: { cs: "" } }],
-        restorationMethods: [{ title: { cs: "" } }],
-        restorer: "",
-        workType: { title: { cs: "" } },
-
-        ...(record?.metadata?.restorationWork
-          ? record.metadata.restorationWork
-          : {}),
-
-        supervisors: [
-          {
-            fullName:
-              record?.metadata?.restorationWork?.supervisors?.fullName || "",
-            comment:
-              record?.metadata?.restorationWork?.supervisors?.comment || "",
-            institution:
-              record?.metadata?.restorationWork?.supervisors?.institution || "",
-          },
-        ],
-        restorationPeriod: {
-          since:
-            record?.metadata?.restorationWork?.restorationMethods?.since ||
-            undefined,
-          until:
-            record?.metadata?.restorationWork?.restorationMethods?.until ||
-            undefined,
-        },
-        parts: [
-          {
-            restorationPeriod: {
-              until:
-                record?.metadata?.restorationWork?.restorationPeriod?.until ||
-                "",
-              since:
-                record?.metadata?.restorationWork?.restorationPeriod?.since ||
-                "",
-            },
-          },
-        ],
-      },
-    },
-  };
-
-  let formValues = {
+  const formValues = {
     ...record,
     metadata: {
       restorationObject: {
         restorationRequestor: { title: { cs: "" } },
 
         category: "",
-        itemTypes: [
-          {
-            title: { cs: "" },
-          },
-        ],
         keywords: [],
         archeologic: false,
         description: "",
@@ -144,10 +50,14 @@ export const EditObjectForm = ({ edit }) => {
           ...(record?.metadata?.restorationObject?.dimensions?.map((d) => ({
             unit: d?.unit || "",
             dimension: d?.dimension || { title: { cs: "" } },
-            value: d?.value || undefined,
+            value: d?.value || "",
           })) || []),
         ],
-
+        itemTypes: [
+          ...(record?.metadata?.restorationObject?.itemTypes?.map((i) => ({
+            title: i || { cs: "" },
+          })) || []),
+        ],
         parts: record?.metadata?.restorationObject?.parts?.some(
           (part) => part.main === true
         )
@@ -168,8 +78,6 @@ export const EditObjectForm = ({ edit }) => {
 
       restorationWork: {
         abstract: "",
-        examinationMethods: [{ title: { cs: "" } }],
-        restorationMethods: [{ title: { cs: "" } }],
         restorer: "",
         workType: { title: { cs: "" } },
 
@@ -192,7 +100,7 @@ export const EditObjectForm = ({ edit }) => {
 
         parts: [
           ...(record?.metadata?.restorationWork?.parts?.map((part) => ({
-            retorationMethods: {
+            restorationMethods: {
               until: part?.restorationMethods?.until || "",
               since: part?.restorationMethods?.since || "",
             },
@@ -205,6 +113,21 @@ export const EditObjectForm = ({ edit }) => {
           until:
             record?.metadata?.restorationWork?.restorationPeriod?.until || "",
         },
+
+        examinationMethods: [
+          ...(record?.metadata?.restorationWork?.examinationMethods?.map(
+            (i) => ({
+              title: i || { cs: "" },
+            })
+          ) || []),
+        ],
+        restorationMethods: [
+          ...(record?.metadata?.restorationWork?.restorationMethods?.map(
+            (i) => ({
+              title: i || { cs: "" },
+            })
+          ) || []),
+        ],
       },
     },
   };

@@ -94,7 +94,6 @@ export const BasicInfo = ({ activeIndex, handleActive }) => {
             optionsListName="ItemTypes"
             fieldPath="metadata.restorationObject.itemTypes"
             multiple={true}
-            search
             placeholder="Vyberte typ předmětu"
             label={
               <FieldLabel

@@ -1074,7 +1074,7 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
     width: 100%;
   }
   .predmety__card__extra-info p {
-    width: 150px;
+    width: auto;
     color: #757670;
     width: 200px;
   }
@@ -2138,7 +2138,7 @@ width: 60px
     width: 100%;
   }
   .predmety__card__extra-info p {
-    width: 150px;
+    width: auto;
     opacity: 60;
   }
   .predmety__card-content {
@@ -3144,7 +3144,7 @@ margin: 0 auto !important      ;
   }
 
   .predmety__card__extra-info p {
-    width: 175px;
+    width: auto;
     font-size: 2vw;
   }
 
