@@ -293,11 +293,11 @@
     background-color: #de4929;
     border-radius: 32px;
     padding: 0px;
-    height: 53px;
-    width: 27vw;
+    height: 38px;
+    width: 19vw;
     border: none;
-    font: 20px Noto_Sans_semibold !important;
-  }
+    font: 14px Noto_Sans_semibold !important;
+}
 
   .ui.button.predmety__aside__dropdown-btn:hover {
     color: #9d9898;

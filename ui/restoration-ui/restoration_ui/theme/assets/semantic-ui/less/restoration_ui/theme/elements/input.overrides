@@ -106,3 +106,13 @@
     flex-direction: column;
 }
 }
+@media only screen and (max-width: 450px) {
+.ui.fluid.input input {
+    font-family: Noto_Sans_regular !important;
+    width: 50% !important;
+    height: 42px !important;
+    border: solid #555 1px !important;
+    border-radius: 40px !important;
+    padding: 5px 13px !important;
+    font-size: 15px;
+}}

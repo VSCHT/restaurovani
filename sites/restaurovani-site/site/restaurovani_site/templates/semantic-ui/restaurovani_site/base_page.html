@@ -61,6 +61,8 @@
     
     
     {%- block topMenu %}
+
+    <!-- upper menu -->
 <nav class="main-page__menu" aria-label="Main Menu">
   <button
     class="btn predmety__input-search__searchbar-burger"
@@ -130,6 +132,8 @@
 
 <div class="overlay"></div>
 
+
+<!-- sidebar for mobile -->
 <nav class="ui sidebar vertical menu">
   <button class="sidebar__btn-close">
     <img src="{{ url_for('static', filename='images/close-icon.png') }}" />
@@ -250,9 +254,7 @@
          
     {%- block body %}
 
-      {%- block bypasslinks %}
-      <a id="skip-to-main" class="ui button primary ml-5 mt-5 skip-link" href="#main">{{_('Skip to main')}}</a>
-      {%- endblock bypasslinks %}
+     
 
       {%- block browserupgrade %}
      
@@ -274,7 +276,7 @@
               <div class="details__container">
                 {%- block page_body %}
                 <div class="vert-div">
-                  {% include "invenio_theme/body.html" %}
+                  <!-- {% include "invenio_theme/body.html" %} -->
                 </div>
                 {%- endblock page_body %}
               </div>
