@@ -213,7 +213,7 @@ def convert_object(restoration_object, vocabulary):
 
     ret["archeologic"] = restoration_object.pop("archeologic")
     ret["restorationRequestor"] = vocabulary.convert(
-        "Institutions", restoration_object.pop("restorationRequestor", None)
+        "Requestors", restoration_object.pop("restorationRequestor", None)
     )
 
     restoration_object.pop("$schema")
