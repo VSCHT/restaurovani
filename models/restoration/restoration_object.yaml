@@ -53,4 +53,4 @@ restorationObject:
           type: integer
     restorationRequestor:
       type: vocabulary
-      vocabulary-type: Requestors
+      vocabulary-type: Institutions

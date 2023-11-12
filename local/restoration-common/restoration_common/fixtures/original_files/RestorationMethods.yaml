@@ -1,0 +1,335 @@
+id: kovy
+title:
+  cs: Kovy
+---
+hierarchy:
+  parent: kovy
+id: kovy-totozne-s-technologii-vyroby
+title:
+  cs: totožné s technologií výroby
+---
+hierarchy:
+  parent: kovy
+id: kovy-odstranovani-koroznich-produktu
+title:
+  cs: odstraňování korozních produktů
+---
+hierarchy:
+  parent: kovy-odstranovani-koroznich-produktu
+id: kovy-odstranovani-koroznich-produktu-odstranovani-koroznich-produktu-chemicky
+title:
+  cs: odstraňování korozních produktů chemicky
+---
+hierarchy:
+  parent: kovy-odstranovani-koroznich-produktu
+id: kovy-odstranovani-koroznich-produktu-odstranovani-koroznich-produktu-mechanicky
+title:
+  cs: odstraňování korozních produktů mechanicky
+---
+hierarchy:
+  parent: kovy
+id: kovy-tmeleni
+title:
+  cs: tmelení
+---
+hierarchy:
+  parent: kovy
+id: kovy-lepeni
+props:
+  tooltip: lepení
+title:
+  cs: spojování
+---
+hierarchy:
+  parent: kovy-lepeni
+id: kovy-lepeni-svarovani
+title:
+  cs: svařování
+---
+hierarchy:
+  parent: kovy-lepeni
+id: kovy-lepeni-pajeni
+title:
+  cs: pájení
+---
+hierarchy:
+  parent: kovy-lepeni-pajeni
+id: kovy-lepeni-pajeni-mekke-pajeni
+title:
+  cs: měkké pájení
+---
+hierarchy:
+  parent: kovy-lepeni-pajeni
+id: kovy-lepeni-pajeni-tvrde-pajeni
+title:
+  cs: tvrdé pájení
+---
+hierarchy:
+  parent: kovy-lepeni
+id: kovy-lepeni-kovy-spojovani-lepeni
+title:
+  cs: lepení
+---
+hierarchy:
+  parent: kovy-lepeni
+id: kovy-lepeni-mechanicke
+title:
+  cs: mechanické
+---
+hierarchy:
+  parent: kovy
+id: kovy-povrchova-uprava
+title:
+  cs: povrchová úprava
+---
+hierarchy:
+  parent: kovy-povrchova-uprava
+id: kovy-povrchova-uprava-konzervace
+title:
+  cs: konzervace
+---
+hierarchy:
+  parent: kovy-povrchova-uprava
+id: kovy-povrchova-uprava-nater
+title:
+  cs: nátěr
+---
+hierarchy:
+  parent: kovy-povrchova-uprava
+id: kovy-povrchova-uprava-patinovani
+title:
+  cs: patinování
+---
+hierarchy:
+  parent: kovy-povrchova-uprava
+id: kovy-povrchova-uprava-lesteni
+title:
+  cs: leštění
+---
+hierarchy:
+  parent: kovy-povrchova-uprava
+id: kovy-povrchova-uprava-stabilizace-koroznich-produktu
+title:
+  cs: stabilizace korozních produktů
+---
+hierarchy:
+  parent: kovy-povrchova-uprava
+id: kovy-povrchova-uprava-pokoveni
+title:
+  cs: pokovení
+---
+hierarchy:
+  parent: kovy-povrchova-uprava-pokoveni
+id: kovy-povrchova-uprava-pokoveni-zlaceni
+title:
+  cs: zlacení
+---
+hierarchy:
+  parent: kovy-povrchova-uprava-pokoveni
+id: kovy-povrchova-uprava-pokoveni-stribreni
+title:
+  cs: stříbření
+---
+hierarchy:
+  parent: kovy-povrchova-uprava
+id: kovy-povrchova-uprava-cisteni
+title:
+  cs: čištění
+---
+hierarchy:
+  parent: kovy-povrchova-uprava-cisteni
+id: kovy-povrchova-uprava-cisteni-cisteni-rozpoustedly
+title:
+  cs: čištění rozpouštědly
+---
+hierarchy:
+  parent: kovy-povrchova-uprava-cisteni
+id: kovy-povrchova-uprava-cisteni-cisteni-vodou
+title:
+  cs: čištění vodou
+---
+hierarchy:
+  parent: kovy-povrchova-uprava-cisteni
+id: kovy-povrchova-uprava-cisteni-cisteni-mechanicky
+title:
+  cs: čištění mechanicky
+---
+hierarchy:
+  parent: kovy
+id: kovy-doplnovani
+title:
+  cs: doplňování
+---
+hierarchy:
+  parent: kovy-doplnovani
+id: kovy-doplnovani-doplnovani-galvanoplasticky
+title:
+  cs: doplňování galvanoplasticky
+---
+hierarchy:
+  parent: kovy
+id: kovy-tepani
+title:
+  cs: tepání
+---
+hierarchy:
+  parent: kovy
+id: kovy-zihani-na-odstraneni-pnuti
+title:
+  cs: žíhání na odstranění pnutí
+---
+hierarchy:
+  parent: kovy
+id: kovy-desalinace
+title:
+  cs: desalinace
+---
+hierarchy:
+  parent: kovy
+id: kovy-vyrovnavani-deformaci
+title:
+  cs: vyrovnávání deformací
+---
+id: textil
+title:
+  cs: Textil
+---
+hierarchy:
+  parent: textil
+id: textil-sita-skeletaz
+title:
+  cs: šitá skeletáž
+---
+hierarchy:
+  parent: textil
+id: textil-sita-skeletaz-i-lepeni
+title:
+  cs: lepení, podlepování
+---
+hierarchy:
+  parent: textil
+id: textil-impregnace
+title:
+  cs: impregnace
+---
+hierarchy:
+  parent: textil
+id: textil-beleni
+title:
+  cs: bělení
+---
+hierarchy:
+  parent: textil
+id: textil-cisteni-a-adjustace
+title:
+  cs: čištění a adjustace
+---
+hierarchy:
+  parent: textil
+id: textil-jina-technologie-restaurovani-textilu
+title:
+  cs: jiná technologie restaurování textilu
+---
+id: test
+title:
+  cs: Sklo
+---
+hierarchy:
+  parent: test
+id: test-trest
+title:
+  cs: čištění
+---
+hierarchy:
+  parent: test
+id: test-doplnovani
+title:
+  cs: doplňování
+---
+hierarchy:
+  parent: test
+id: test-lepeni
+title:
+  cs: lepení
+---
+hierarchy:
+  parent: test
+id: test-domalovani
+title:
+  cs: domalování
+---
+hierarchy:
+  parent: test
+id: test-vyztuzovani
+title:
+  cs: vyztužování
+---
+hierarchy:
+  parent: test
+id: test-zhotoveni-kopie
+title:
+  cs: zhotovení kopie
+---
+hierarchy:
+  parent: test
+id: test-barevna-retus
+title:
+  cs: barevná retuš
+---
+hierarchy:
+  parent: test
+id: test-adjustace-na-novou-podlozku
+title:
+  cs: adjustace na novou podložku
+---
+id: keramika
+title:
+  cs: Keramika
+---
+hierarchy:
+  parent: keramika
+id: keramika-cisteni
+title:
+  cs: čištění
+---
+hierarchy:
+  parent: keramika
+id: keramika-doplnovani
+title:
+  cs: doplňování
+---
+hierarchy:
+  parent: keramika
+id: keramika-lepeni
+title:
+  cs: lepení
+---
+hierarchy:
+  parent: keramika
+id: keramika-domalovani
+title:
+  cs: domalování
+---
+hierarchy:
+  parent: keramika
+id: keramika-vyztuzovani
+title:
+  cs: vyztužování
+---
+hierarchy:
+  parent: keramika
+id: keramika-retus
+title:
+  cs: retuš
+---
+hierarchy:
+  parent: keramika-retus
+id: keramika-retus-mechanicka
+title:
+  cs: mechanická
+---
+hierarchy:
+  parent: keramika-retus
+id: keramika-retus-barevna
+title:
+  cs: barevná

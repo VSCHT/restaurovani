@@ -1350,7 +1350,7 @@
                             },
                             "restorationRequestor": {
                                 "type": "vocabulary",
-                                "vocabulary-type": "Requestors",
+                                "vocabulary-type": "Institutions",
                                 "imports": [
                                     {
                                         "import": "invenio_vocabularies.records.api.Vocabulary"
@@ -1375,10 +1375,10 @@
                                     "detail": "vocabulary_item",
                                     "edit": "vocabulary_item"
                                 },
-                                "pid-field": "Vocabulary.pid.with_type_ctx(\"Requestors\")",
+                                "pid-field": "Vocabulary.pid.with_type_ctx(\"Institutions\")",
                                 "facets": {
                                     "args": [
-                                        "vocabulary='Requestors'"
+                                        "vocabulary='Institutions'"
                                     ]
                                 },
                                 "properties": {
