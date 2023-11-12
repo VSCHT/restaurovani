@@ -73,7 +73,7 @@ class RestorationRecord(InvenioRecord):
         restorationRequestor=PIDRelation(
             "metadata.restorationObject.restorationRequestor",
             keys=["id", "title"],
-            pid_field=Vocabulary.pid.with_type_ctx("Institutions"),
+            pid_field=Vocabulary.pid.with_type_ctx("Requestors"),
         ),
         examinationMethods=PIDRelation(
             "metadata.restorationWork.examinationMethods",
@@ -164,7 +164,7 @@ class RestorationDraft(InvenioDraft):
         restorationRequestor=PIDRelation(
             "metadata.restorationObject.restorationRequestor",
             keys=["id", "title"],
-            pid_field=Vocabulary.pid.with_type_ctx("Institutions"),
+            pid_field=Vocabulary.pid.with_type_ctx("Requestors"),
         ),
         examinationMethods=PIDRelation(
             "metadata.restorationWork.examinationMethods",

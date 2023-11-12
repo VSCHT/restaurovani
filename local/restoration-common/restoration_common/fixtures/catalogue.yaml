@@ -30,14 +30,14 @@ FabricationTechnologies:
   vocabulary: FabricationTechnologies
   writer: vocabulary
 - source: files/FabricationTechnologies.yaml
-Institutions:
-- pid_type: v-inst
+Requestors:
+- pid_type: v-req
   title:
-    cs: Instituce
-    en: Institutions
-  vocabulary: Institutions
+    cs: Zadavatelé restaurování
+    en: Requestors
+  vocabulary: Requestors
   writer: vocabulary
-- source: files/Institutions.yaml
+- source: files/Requestors.yaml
 ItemTypes:
 - pid_type: v-item
   title:

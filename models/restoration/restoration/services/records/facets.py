@@ -126,7 +126,7 @@ metadata_restorationObject_parts_secondaryMaterialTypes = NestedLabeledFacet(
 metadata_restorationObject_restorationRequestor = VocabularyFacet(
     field="metadata.restorationObject.restorationRequestor",
     label=_("metadata/restorationObject/restorationRequestor.label"),
-    vocabulary="Institutions",
+    vocabulary="Requestors",
 )
 
 metadata_restorationObject_title = TermsFacet(
