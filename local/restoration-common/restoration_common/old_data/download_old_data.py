@@ -18,12 +18,15 @@ def download_records(url):
 
 class Vocabularies:
     def __init__(self):
+        self.replaced_vocabulary_terms = {}
         self.vocabularies = {}
+
         catalogue = self.get_catalogue(
             Path(__file__).parent.parent / "fixtures" / "catalogue.yaml"
         )
         for vocabulary_name, vocabulary_file in catalogue.items():
             self.load_vocabulary(vocabulary_name, vocabulary_file)
+        self.load_replaced_vocabulary_terms()
 
     def get_catalogue(self, f):
         with f.open("r") as fd:
@@ -60,6 +63,9 @@ class Vocabularies:
             "zidovske-muzeum-praha": "muzea-zidovske-muzeum-praha",
         }
         slug = slug_conversion.get(slug, slug)
+        if slug in self.replaced_vocabulary_terms:
+            slug = self.replaced_vocabulary_terms[slug]
+
         if slug in vocab:
             value.pop("ancestors", None)
             value.pop("id", None)
@@ -76,6 +82,15 @@ class Vocabularies:
         raise Exception(
             f"Vocabulary item {slug} not in {vocabulary_name}. Full value {value} "
         )
+
+    def load_replaced_vocabulary_terms(self):
+        with (
+            Path(__file__).parent.parent
+            / "fixtures"
+            / "files"
+            / "replaced_identifiers.yaml"
+        ).open() as f:
+            self.replaced_vocabulary_terms = yaml.safe_load(f)
 
 
 def trim(x):
@@ -122,6 +137,18 @@ def cs_language(x):
         raise RuntimeError(f"Error in cs_language({x})") from e
 
 
+def convert_vocabulary_entry(entries, vocabulary, vocabulary_type):
+    ret = []
+    for x in entries:
+        try:
+            ret.append(vocabulary.convert(vocabulary_type, x))
+        except:
+            print(
+                f"ItemType {x} not found in vocabulary {vocabulary_type}, ignoring it"
+            )
+    return ret
+
+
 def convert_object(restoration_object, vocabulary):
     ret = {}
     restoration_object = restoration_object["metadata"]
@@ -136,10 +163,11 @@ def convert_object(restoration_object, vocabulary):
             "id": uuid.uuid4().hex,
             "name": part.pop("name"),
             "main": part.pop("main"),
-            "fabricationTechnologies": [
-                vocabulary.convert("FabricationTechnologies", x)
-                for x in part.pop("fabricationTechnology", [])
-            ],
+            "fabricationTechnologies": convert_vocabulary_entry(
+                part.pop("fabricationTechnology", []),
+                vocabulary,
+                "FabricationTechnologies",
+            ),
             "materialType": vocabulary.convert(
                 "MaterialTypes", part.pop("materialType", None)
             ),
@@ -157,10 +185,11 @@ def convert_object(restoration_object, vocabulary):
         if part != {}:
             raise AssertionError(f"Expected empty part after conversion, got {part}")
         ret_parts.append(part)
-    ret["itemTypes"] = [
-        vocabulary.convert("ItemTypes", x)
-        for x in restoration_object.pop("itemType", [])
-    ]
+    # some of the itemtypes are undefined, so catching the exception here
+    ret["itemTypes"] = convert_vocabulary_entry(
+        restoration_object.pop("itemType", []), vocabulary, "ItemTypes"
+    )
+
     ret["dimensions"] = ret_dimensions = []
     for dim in restoration_object.pop("dimensions", []):
         ret_dimension = {
@@ -173,19 +202,16 @@ def convert_object(restoration_object, vocabulary):
                 f"Expected empty dimension after conversion, got {dim}"
             )
         ret_dimensions.append(ret_dimension)
-    style_period = restoration_object.pop("stylePeriod", None)
-    # if style_period:
-    #     ret["stylePeriod"] = {
-    #         "period": vocabulary.convert("StylePeriods", style_period),
-    #         "startYear": style_period.pop("startYear", None),
-    #         "endYear": style_period.pop("endYear", None),
-    #     }
-    #     if style_period != {}:
-    #         raise AssertionError(
-    #             f"Expected empty stylePeriod after conversion, got {style_period}"
-    #         )
-    ret["archeologic"] = restoration_object.pop("archeologic")
+
     ret["creationPeriod"] = restoration_object.pop("creationPeriod", None)
+
+    style_period = restoration_object.pop("stylePeriod", None)
+    if style_period and not ret["creationPeriod"]:
+        start_year = style_period.pop("startYear", None)
+        end_year = style_period.pop("endYear", None)
+        ret["creationPeriod"] = {"since": start_year, "until": end_year}
+
+    ret["archeologic"] = restoration_object.pop("archeologic")
     ret["restorationRequestor"] = vocabulary.convert(
         "Requestors", restoration_object.pop("restorationRequestor", None)
     )
@@ -250,10 +276,10 @@ def convert_work(object_id, restoration_work, vocabulary, methods_for_part, file
         vocabulary.convert("ExaminationMethods", x)
         for x in restoration_work.pop("examinationMethods", [])
     ]
-    ret["restorationMethods"] = [
-        vocabulary.convert("RestorationMethods", x)
-        for x in restoration_work.pop("restorationMethods", [])
-    ]
+    ret["restorationMethods"] = convert_vocabulary_entry(
+        restoration_work.pop("restorationMethods", []), vocabulary, "RestorationMethods"
+    )
+
     ret["restorationPeriod"] = restoration_work.pop("restorationPeriod", None)
     supervisors = ret["supervisors"] = []
     for sup in restoration_work.pop("supervisor", []):
@@ -295,26 +321,34 @@ def generate_files(idx, files, target_dir):
     target_dir = target_dir / f"{dn:03d}" / "data"
     target_dir.mkdir(parents=True, exist_ok=True)
     select = True
+    processed_keys = set()
     for f in files:
+        if f["key"] in processed_keys:
+            print(f"Duplicate key {f['key']} inside {idx}, data {f}")
+            continue
+        processed_keys.add(f["key"])
         url = f"https://restaurovani.vscht.cz/api/files/{f['bucket']}/{f['key']}"
         print(f"Getting file {url}")
-        response = requests.get(url)
         target_file = target_dir / f["key"]
-        with target_file.open("wb") as fd:
-            fd.write(response.content)
+        if not target_file.exists() or target_file.stat().st_size != f["size"]:
+            response = requests.get(url)
+            with target_file.open("wb") as fd:
+                fd.write(response.content)
 
         metadata.append(
             fix_json(
                 {
-                    "fileType": "photo"
-                    if f["mime_type"].startswith("image")
-                    else "document",
-                    "featured": f.get("featured", False) and select,
-                    "caption": f.get("caption", f["key"]),
-                    "checksum": f["checksum"],
                     "key": f["key"],
-                    "mimetype": f["mime_type"],
-                    "size": f["size"],
+                    "metadata": {
+                        "fileType": "photo"
+                        if f["mime_type"].startswith("image")
+                        else "document",
+                        "featured": f.get("featured", False) and select,
+                        "caption": f.get("caption", f["key"]),
+                        "checksum": f["checksum"],
+                        "mimetype": f["mime_type"],
+                        "size": f["size"],
+                    },
                 }
             )
         )
@@ -329,11 +363,14 @@ def main():
     objects = download_records(
         "https://restaurovani.vscht.cz/api/drafts/restorations/objects/?size=50"
     )
+    # keep the list always sorted
+    object_values = list(objects.values())
+    object_values.sort(key=lambda x: x["metadata"]["id"])
     converted_objects = []
-    for idx, obj in enumerate(objects.values()):
+    for idx, obj in enumerate(object_values):
         converted_object, files = convert_object(obj, vocabs)
         converted_objects.extend(converted_object)
-        # generate_files(idx, files, Path(__file__).parent / "data" / "files")
+        generate_files(idx, files, Path(__file__).parent / "data" / "files")
     with open(Path(__file__).parent / "data" / "data.yaml", "w") as f:
         yaml.safe_dump_all(converted_objects, f, allow_unicode=True)
 

@@ -1,107 +1,80 @@
-RestorationMethods:
-  - writer: vocabulary
-    vocabulary: RestorationMethods
-    pid_type: v-resm
-    title:
-      cs: Metody restaurování
-      en: Restoration methods
-  - source: files/RestorationMethods.yaml
-
-FabricationTechnologies:
-  - writer: vocabulary
-    vocabulary: FabricationTechnologies
-    pid_type: v-fabt
-    title:
-      cs: Technologie výroby
-      en: Fabrication Technologies
-  - source: files/FabricationTechnologies.yaml
-
-MaterialTypes:
-  - writer: vocabulary
-    vocabulary: MaterialTypes
-    pid_type: v-matt
-    title:
-      cs: Typy materiálů
-      en: Material Types
-  - source: files/MaterialTypes.yaml
-
 Colors:
-  - writer: vocabulary
-    vocabulary: Colors
-    pid_type: v-colo
-    title:
-      cs: Barvy a optické vlastnosti
-      en: Colors and Optical Properties
-  - source: files/Colors.yaml
-
-ItemTypes:
-  - writer: vocabulary
-    vocabulary: ItemTypes
-    pid_type: v-item
-    title:
-      cs: Typy položek
-      en: Item Types
-  - source: files/ItemTypes.yaml
-
+- pid_type: v-colo
+  title:
+    cs: Barvy a optické vlastnosti
+    en: Colors and Optical Properties
+  vocabulary: Colors
+  writer: vocabulary
+- source: files/Colors.yaml
 Dimensions:
-  - writer: vocabulary
-    vocabulary: Dimensions
-    pid_type: v-dim
-    title:
-      cs: Míry a váhy
-      en: Dimensions
-  - source: files/Dimensions.yaml
-
-StylePeriods:
-  - writer: vocabulary
-    vocabulary: StylePeriods
-    pid_type: v-stp
-    title:
-      cs: Období vzniku
-      en: Creation Periods
-  - source: files/StylePeriods.yaml
-
-Institutions:
-  - writer: vocabulary
-    vocabulary: Institutions
-    pid_type: v-inst
-    title:
-      cs: Instituce
-      en: Institutions
-  - source: files/Institutions.yaml
-
-Requestors:
-  - writer: vocabulary
-    vocabulary: Requestors
-    pid_type: v-reqs
-    title:
-      cs: Zadavatelé
-      en: Requestors
-  - source: files/Requestors.yaml
-
-WorkTypes:
-  - writer: vocabulary
-    vocabulary: WorkTypes
-    pid_type: v-wkt
-    title:
-      cs: Typy prací
-      en: Work Types
-  - source: files/WorkTypes.yaml
-
+- pid_type: v-dim
+  title:
+    cs: Míry a váhy
+    en: Dimensions
+  vocabulary: Dimensions
+  writer: vocabulary
+- source: files/Dimensions.yaml
 ExaminationMethods:
-  - writer: vocabulary
-    vocabulary: ExaminationMethods
-    pid_type: v-exm
-    title:
-      cs: Metody průzkumu
-      en: Examination Methods
-  - source: files/ExaminationMethods.yaml
-
+- pid_type: v-exm
+  title:
+    cs: Metody průzkumu
+    en: Examination Methods
+  vocabulary: ExaminationMethods
+  writer: vocabulary
+- source: files/ExaminationMethods.yaml
+FabricationTechnologies:
+- pid_type: v-fabt
+  title:
+    cs: Technologie výroby
+    en: Fabrication Technologies
+  vocabulary: FabricationTechnologies
+  writer: vocabulary
+- source: files/FabricationTechnologies.yaml
+Requestors:
+- pid_type: v-req
+  title:
+    cs: Zadavatelé restaurování
+    en: Requestors
+  vocabulary: Requestors
+  writer: vocabulary
+- source: files/Requestors.yaml
+ItemTypes:
+- pid_type: v-item
+  title:
+    cs: Typy položek
+    en: Item Types
+  vocabulary: ItemTypes
+  writer: vocabulary
+- source: files/ItemTypes.yaml
+MaterialTypes:
+- pid_type: v-matt
+  title:
+    cs: Typy materiálů
+    en: Material Types
+  vocabulary: MaterialTypes
+  writer: vocabulary
+- source: files/MaterialTypes.yaml
+RestorationMethods:
+- pid_type: v-resm
+  title:
+    cs: Metody restaurování
+    en: Restoration methods
+  vocabulary: RestorationMethods
+  writer: vocabulary
+- source: files/RestorationMethods.yaml
+WorkTypes:
+- pid_type: v-wkt
+  title:
+    cs: Typy prací
+    en: Work Types
+  vocabulary: WorkTypes
+  writer: vocabulary
+- source: files/WorkTypes.yaml
 languages:
-  - writer: vocabulary
-    vocabulary: languages
-    pid_type: v-lang
-    title:
-      cs: Jazyky
-      en: Languages
-  - source: ./files/Languages.yaml
+- pid_type: v-lang
+  title:
+    cs: Jazyky
+    en: Languages
+  vocabulary: languages
+  writer: vocabulary
+- source: ./files/Languages.yaml
