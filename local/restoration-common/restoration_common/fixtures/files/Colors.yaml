@@ -1,0 +1,105 @@
+id: sklo
+title:
+  cs: Sklo
+---
+hierarchy:
+  parent: sklo
+id: sklo-cire
+title:
+  cs: čiré sklo
+---
+hierarchy:
+  parent: sklo
+id: sklo-zakalene
+title:
+  cs: zakalené sklo
+---
+hierarchy:
+  parent: sklo-cire
+id: sklo-cire-bezbarve
+title:
+  cs: bezbarvé sklo
+---
+hierarchy:
+  parent: sklo-cire
+id: sklo-cire-modre-tmave-svetle
+title:
+  cs: modré (tmavě, světle) sklo
+---
+hierarchy:
+  parent: sklo-cire
+id: sklo-cire-tyrkysove
+title:
+  cs: tyrkysové sklo
+---
+hierarchy:
+  parent: sklo-cire
+id: sklo-cire-zelene-tmave-svetle
+title:
+  cs: zelené (tmavě, světle) sklo
+---
+hierarchy:
+  parent: sklo-cire
+id: sklo-cire-zlute
+title:
+  cs: žluté sklo
+---
+hierarchy:
+  parent: sklo-cire
+id: sklo-cire-rubinove-cervene
+title:
+  cs: rubínově červené sklo
+---
+hierarchy:
+  parent: sklo-cire
+id: sklo-cire-ambrove
+title:
+  cs: ambrové sklo
+---
+hierarchy:
+  parent: sklo-cire
+id: sklo-cire-fialove-ruzove
+title:
+  cs: fialové (růžové) sklo
+---
+hierarchy:
+  parent: sklo-cire
+id: sklo-cire-cerne
+title:
+  cs: černé sklo
+---
+hierarchy:
+  parent: sklo-cire
+id: sklo-cire-fluorescentni-zluto-zelene
+title:
+  cs: fluorescentní žluto-zelené sklo
+---
+hierarchy:
+  parent: sklo-cire
+id: sklo-cire-cervene
+title:
+  cs: červené
+---
+hierarchy:
+  parent: sklo-cire
+id: sklo-cire-ruzove
+title:
+  cs: růžové
+---
+hierarchy:
+  parent: sklo-zakalene
+id: sklo-zakalene-opalinove
+title:
+  cs: opalinové sklo
+---
+hierarchy:
+  parent: sklo-zakalene
+id: sklo-zakalene-opalove
+title:
+  cs: opálové sklo
+---
+hierarchy:
+  parent: sklo-zakalene
+id: sklo-zakalene-opakni
+title:
+  cs: opakní sklo

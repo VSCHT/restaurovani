@@ -84,4 +84,6 @@ pdm.lock
 
 # old data
 local/restoration-common/restoration_common/old_data/data
-local/restoration-common/restoration_common/fixtures/files
+/local/restoration-common/restoration_common/old_data/restaurovani-data.zip
+
+.DS_Store
