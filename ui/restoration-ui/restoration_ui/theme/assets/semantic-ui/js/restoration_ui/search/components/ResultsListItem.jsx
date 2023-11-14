@@ -90,7 +90,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
   );
   const desc = _get(
     result,
-    "metadata.restorationWork.abstract[0].value",
+    "metadata.restorationWork.abstract",
     "<no data>"
   );
 

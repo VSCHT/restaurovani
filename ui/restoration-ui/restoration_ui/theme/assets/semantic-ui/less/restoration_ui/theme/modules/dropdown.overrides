@@ -80,9 +80,6 @@ body .ui.selection.dropdown {
 body .ui.selection.dropdown input {
   padding: 0px 20px;
 }
-/* .ui.multiple.search.dropdown > input.search {
-  display: none;
-} */
 
 .ui.selection.active.dropdown .menu {
   border: 1px solid #555;
