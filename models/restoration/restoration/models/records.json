@@ -236,7 +236,7 @@
             },
             "resource": {
                 "base-classes": [
-                    "oarepo_ui.resources.components.FilesComponent"
+                    "oarepo_ui.resources.file_resource.S3RedirectFileResource"
                 ]
             },
             "module": {
@@ -252,6 +252,11 @@
             "type": "draft-file",
             "properties": {},
             "searchable": true,
+            "resource": {
+                "base-classes": [
+                    "oarepo_ui.resources.file_resource.S3RedirectFileResource"
+                ]
+            },
             "tests": {
                 "extra-fixtures": [],
                 "extra-code": "",
