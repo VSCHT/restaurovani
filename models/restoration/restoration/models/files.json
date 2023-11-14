@@ -19,7 +19,7 @@
         },
         "resource": {
             "base-classes": [
-                "uct_extras.theses.file_resource.S3RedirectFileResource"
+                "oarepo_ui.resources.components.FilesComponent"
             ],
             "imports": [],
             "generate": true,
