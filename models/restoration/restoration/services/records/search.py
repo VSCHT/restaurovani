@@ -9,9 +9,6 @@ class RestorationSearchOptions(InvenioSearchOptions):
     facet_groups = {}
 
     facets = {
-        "_schema": facets._schema,
-        "created": facets.created,
-        "_id": facets._id,
         "metadata_category": facets.metadata_category,
         "metadata_restorationObject_archeologic": (
             facets.metadata_restorationObject_archeologic
@@ -55,21 +52,14 @@ class RestorationSearchOptions(InvenioSearchOptions):
         "metadata_restorationObject_parts_materialType": (
             facets.metadata_restorationObject_parts_materialType
         ),
-        "metadata_restorationObject_parts_name": (
-            facets.metadata_restorationObject_parts_name
-        ),
         "metadata_restorationObject_parts_secondaryMaterialTypes": (
             facets.metadata_restorationObject_parts_secondaryMaterialTypes
         ),
         "metadata_restorationObject_restorationRequestor": (
             facets.metadata_restorationObject_restorationRequestor
         ),
-        "metadata_restorationObject_title": facets.metadata_restorationObject_title,
         "metadata_restorationWork_examinationMethods": (
             facets.metadata_restorationWork_examinationMethods
-        ),
-        "metadata_restorationWork_parts_part__version": (
-            facets.metadata_restorationWork_parts_part__version
         ),
         "metadata_restorationWork_parts_restorationMethods": (
             facets.metadata_restorationWork_parts_restorationMethods
@@ -95,6 +85,5 @@ class RestorationSearchOptions(InvenioSearchOptions):
         ),
         "metadata_restorationWork_workType": facets.metadata_restorationWork_workType,
         "metadata_submissionStatus": facets.metadata_submissionStatus,
-        "updated": facets.updated,
         **getattr(InvenioSearchOptions, "facets", {}),
     }

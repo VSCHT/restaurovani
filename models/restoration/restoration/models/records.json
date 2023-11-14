@@ -49,6 +49,7 @@
             "file": "restoration/records/mappings/os-v2/restoration/restoration-1.0.0.json"
         },
         "searchable": true,
+        "custom-fields": [],
         "permissions": {
             "presets": [
                 "everyone"
@@ -65,14 +66,13 @@
         "marshmallow": {
             "imports": [],
             "base-classes": [
-                "oarepo_runtime.marshmallow.BaseRecordSchema"
+                "oarepo_runtime.services.schema.marshmallow.BaseRecordSchema"
             ],
             "generate": true,
             "module": "restoration.services.records.schema",
             "class": "restoration.services.records.schema.RestorationSchema",
             "extra-code": ""
         },
-        "custom-fields": [],
         "pid": {
             "type": "rstr",
             "provider-base-classes": [
@@ -126,6 +126,16 @@
             "suffix-upper": "RESTORATION",
             "suffix-snake": "restoration"
         },
+        "draft": {
+            "type": "draft_record",
+            "properties": {},
+            "searchable": true,
+            "tests": {
+                "extra-fixtures": [],
+                "extra-code": "",
+                "module": "tests"
+            }
+        },
         "tests": {
             "extra-fixtures": [],
             "extra-code": "",
@@ -143,6 +153,9 @@
                 },
                 "featured": {
                     "type": "boolean"
+                },
+                "caption": {
+                    "type": "keyword"
                 },
                 "id": {
                     "type": "keyword",
@@ -221,19 +234,14 @@
                     "InvenioFileSchema"
                 ]
             },
+            "resource": {
+                "base-classes": [
+                    "uct_extras.theses.file_resource.S3RedirectFileResource"
+                ]
+            },
             "module": {
                 "qualified": "restoration"
             },
-            "tests": {
-                "extra-fixtures": [],
-                "extra-code": "",
-                "module": "tests"
-            }
-        },
-        "draft": {
-            "type": "draft_record",
-            "properties": {},
-            "searchable": true,
             "tests": {
                 "extra-fixtures": [],
                 "extra-code": "",
@@ -382,6 +390,19 @@
             "list_schema_cls": "flask_resources.BaseListSchema",
             "format_serializer_cls": "flask_resources.serializers.JSONSerializer"
         },
+        "files-field": {
+            "generate": true,
+            "field-class": "invenio_records_resources.records.systemfields.FilesField",
+            "file-class": "restoration.records.api.RestorationRecord",
+            "field-args": [
+                "store=False"
+            ],
+            "imports": []
+        },
+        "translations": {
+            "module": "restoration.translations",
+            "alias": "restoration"
+        },
         "record-metadata": {
             "generate": true,
             "module": "restoration.records.models",
@@ -416,7 +437,7 @@
         },
         "service-config": {
             "base-classes": [
-                "oarepo_runtime.config.service.PermissionsPresetsConfigMixin",
+                "oarepo_runtime.services.config.service.PermissionsPresetsConfigMixin",
                 "invenio_drafts_resources.services.RecordServiceConfig{InvenioRecordDraftsServiceConfig}"
             ],
             "generate": true,
@@ -426,28 +447,10 @@
             "extra-code": "",
             "service-id": "restoration",
             "components": [
-                "DataComponent",
-                "invenio_drafts_resources.services.records.components.DraftFilesComponent",
-                "invenio_records_resources.services.records.components.FilesOptionsComponent"
-            ],
-            "imports": [
-                {
-                    "import": "invenio_records_resources.services.records.components.DataComponent"
-                }
+                "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}",
+                "{{invenio_records_resources.services.records.components.FilesOptionsComponent}}",
+                "{{invenio_records_resources.services.records.components.DataComponent}}"
             ]
-        },
-        "translations": {
-            "module": "restoration.translations",
-            "alias": "restoration"
-        },
-        "files-field": {
-            "generate": true,
-            "field-class": "invenio_records_resources.records.systemfields.FilesField",
-            "file-class": "restoration.records.api.RestorationRecord",
-            "field-args": [
-                "store=False"
-            ],
-            "imports": []
         },
         "edtf-interval-dumper": {
             "generate": true,
@@ -504,7 +507,7 @@
             "service-id": "published_restoration",
             "base-classes": [
                 "oarepo_published_service.services.config.PublishedServiceConfig",
-                "oarepo_runtime.config.service.PermissionsPresetsConfigMixin"
+                "oarepo_runtime.services.config.service.PermissionsPresetsConfigMixin"
             ],
             "generate": true
         },
@@ -529,7 +532,8 @@
                     "write": false
                 },
                 "facets": {
-                    "searchable": true
+                    "searchable": true,
+                    "facet": false
                 },
                 "ui": {
                     "marshmallow": {
@@ -544,7 +548,8 @@
             "created": {
                 "type": "datetime",
                 "facets": {
-                    "searchable": true
+                    "searchable": true,
+                    "facet": false
                 },
                 "ui": {
                     "marshmallow": {
@@ -567,7 +572,8 @@
                     "write": false
                 },
                 "facets": {
-                    "searchable": true
+                    "searchable": true,
+                    "facet": false
                 },
                 "ui": {
                     "marshmallow": {
@@ -764,6 +770,9 @@
                                                             "field-name": "_version",
                                                             "field-class": "marshmallow.fields.String"
                                                         }
+                                                    },
+                                                    "facets": {
+                                                        "facet": false
                                                     }
                                                 }
                                             }
@@ -880,6 +889,9 @@
                                                     "field-name": "_version",
                                                     "field-class": "marshmallow.fields.String"
                                                 }
+                                            },
+                                            "facets": {
+                                                "facet": false
                                             }
                                         }
                                     }
@@ -1010,6 +1022,9 @@
                                                                 "field-name": "_version",
                                                                 "field-class": "marshmallow.fields.String"
                                                             }
+                                                        },
+                                                        "facets": {
+                                                            "facet": false
                                                         }
                                                     }
                                                 }
@@ -1118,6 +1133,9 @@
                                                                 "field-name": "_version",
                                                                 "field-class": "marshmallow.fields.String"
                                                             }
+                                                        },
+                                                        "facets": {
+                                                            "facet": false
                                                         }
                                                     }
                                                 }
@@ -1230,6 +1248,9 @@
                                                             "field-name": "_version",
                                                             "field-class": "marshmallow.fields.String"
                                                         }
+                                                    },
+                                                    "facets": {
+                                                        "facet": false
                                                     }
                                                 }
                                             }
@@ -1340,6 +1361,9 @@
                                                                 "field-name": "_version",
                                                                 "field-class": "marshmallow.fields.String"
                                                             }
+                                                        },
+                                                        "facets": {
+                                                            "facet": false
                                                         }
                                                     }
                                                 }
@@ -1449,6 +1473,9 @@
                                                 "field-name": "_version",
                                                 "field-class": "marshmallow.fields.String"
                                             }
+                                        },
+                                        "facets": {
+                                            "facet": false
                                         }
                                     }
                                 }
@@ -1577,6 +1604,9 @@
                                                     "field-name": "_version",
                                                     "field-class": "marshmallow.fields.String"
                                                 }
+                                            },
+                                            "facets": {
+                                                "facet": false
                                             }
                                         }
                                     }
@@ -1630,6 +1660,9 @@
                                                             "field-name": "_version",
                                                             "field-class": "marshmallow.fields.String"
                                                         }
+                                                    },
+                                                    "facets": {
+                                                        "facet": false
                                                     }
                                                 }
                                             }
@@ -1737,6 +1770,9 @@
                                                                 "field-name": "_version",
                                                                 "field-class": "marshmallow.fields.String"
                                                             }
+                                                        },
+                                                        "facets": {
+                                                            "facet": false
                                                         }
                                                     }
                                                 }
@@ -1848,6 +1884,9 @@
                                                     "field-name": "_version",
                                                     "field-class": "marshmallow.fields.String"
                                                 }
+                                            },
+                                            "facets": {
+                                                "facet": false
                                             }
                                         }
                                     }
@@ -2005,6 +2044,9 @@
                                                 "field-name": "_version",
                                                 "field-class": "marshmallow.fields.String"
                                             }
+                                        },
+                                        "facets": {
+                                            "facet": false
                                         }
                                     }
                                 }
@@ -2019,7 +2061,8 @@
             "updated": {
                 "type": "datetime",
                 "facets": {
-                    "searchable": true
+                    "searchable": true,
+                    "facet": false
                 },
                 "ui": {
                     "marshmallow": {

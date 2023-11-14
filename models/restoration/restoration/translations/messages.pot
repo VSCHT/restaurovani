@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2023-10-31T22:19:50.943117\n"
-"PO-Revision-Date: 2023-10-31T22:19:50.943118\n"
+"POT-Creation-Date: 2023-11-14T13:36:28.383393\n"
+"PO-Revision-Date: 2023-11-14T13:36:28.383394\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,6 +15,15 @@ msgid "$schema.label"
 msgstr ""
 
 msgid "$schema.hint"
+msgstr ""
+
+msgid "caption.help"
+msgstr ""
+
+msgid "caption.label"
+msgstr ""
+
+msgid "caption.hint"
 msgstr ""
 
 msgid "created.help"

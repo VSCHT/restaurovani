@@ -1,7 +1,8 @@
 from invenio_records_resources.resources.files.resource import FileResource
+from uct_extras.theses.file_resource import S3RedirectFileResource
 
 
-class RestorationFileResource(FileResource):
+class RestorationFileResource(S3RedirectFileResource):
     """RestorationFile resource."""
 
     # here you can for example redefine

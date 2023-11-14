@@ -5,8 +5,12 @@ from invenio_records.systemfields import ConstantField, ModelField
 from invenio_records_resources.records.systemfields import FilesField, IndexField
 from invenio_records_resources.records.systemfields.pid import PIDField, PIDFieldContext
 from invenio_vocabularies.records.api import Vocabulary
-from oarepo_runtime.drafts.systemfields.has_draftcheck import HasDraftCheckField
-from oarepo_runtime.relations import InternalRelation, PIDRelation, RelationsField
+from oarepo_runtime.records.relations import (
+    InternalRelation,
+    PIDRelation,
+    RelationsField,
+)
+from oarepo_runtime.records.systemfields.has_draftcheck import HasDraftCheckField
 
 from restoration.files.api import RestorationFile, RestorationFileDraft
 from restoration.records.dumpers.dumper import RestorationDraftDumper, RestorationDumper
