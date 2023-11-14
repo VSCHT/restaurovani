@@ -12,6 +12,7 @@ import { SaveButton } from "../forms/components/";
 import { BasicInfo } from "./components/BasicInfo";
 import { RestorationWork } from "./components/RestorationWork";
 import { PartsInfo } from "./components/PartsInfo";
+import {FileUploader} from './components/Uploader'
 
 export const EditObjectForm = ({ edit }) => {
   let { record } = useFormConfig();
@@ -22,6 +23,7 @@ export const EditObjectForm = ({ edit }) => {
     console.log(values);
   };
 
+  console.log(record)
   const formValues = {
     ...record,
     metadata: {
@@ -185,6 +187,7 @@ export const EditObjectForm = ({ edit }) => {
                 </Overridable>
               </div>
             </div>
+            <FileUploader/>
             <SaveButton title="ULOŽIT" edit={edit} />
           </Grid>
         )}

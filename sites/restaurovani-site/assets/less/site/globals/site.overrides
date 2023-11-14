@@ -30,6 +30,7 @@
   background: none !important;
   font-size: 2rem !important;
 }
+
 .pushable {
   height: 100vh !important;
   overflow-x: hidden;
@@ -624,6 +625,9 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
 }
 
 @media (min-width: 1300px) {
+  div#details__div__docs {
+    width: 100%;
+}
   body,
   html {
     margin: 0;
@@ -1585,6 +1589,7 @@ width: 100vw;
 
   .details__div__docs {
     width: 650px;
+    gap: 30px;
     justify-content: space-between;
     margin-top: 20px;
     align-items: flex-start;
@@ -1592,7 +1597,7 @@ width: 100vw;
   }
 
   .details__div__docs-files {
-    width: 500px;
+    width: auto;
     justify-content: space-between;
   }
   .details__div__docs p:first-child {
@@ -1654,6 +1659,9 @@ width: 100vw;
 
 
 @media only screen  and  (min-width: 1300px) and (max-height: 1220px) {
+  div#details__div__docs {
+    width: 100%;
+}
   .main-page__div__main-image img {
     max-width: 100%;
     max-height: 80%;
@@ -2607,7 +2615,7 @@ border-right: 1px solid                 #000;
   }
 
   .details__div__docs-files {
-    width: 500px;
+    width: auto;
     justify-content: space-between;
     gap: 20px;
   }
