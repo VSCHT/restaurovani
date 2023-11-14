@@ -19,7 +19,7 @@
         },
         "resource": {
             "base-classes": [
-                "oarepo_ui.resources.components.FilesComponent"
+                "oarepo_ui.resources.file_resource.S3RedirectFileResource"
             ],
             "imports": [],
             "generate": true,
