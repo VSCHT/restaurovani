@@ -17,6 +17,18 @@
             "class": "restoration.services.files.schema.RestorationFileSchema",
             "extra-code": ""
         },
+        "resource": {
+            "base-classes": [
+                "oarepo_ui.resources.components.FilesComponent"
+            ],
+            "imports": [],
+            "generate": true,
+            "config-key": "RESTORATION_FILES_RESOURCE_CLASS",
+            "module": "restoration.resources.files.resource",
+            "class": "restoration.resources.files.resource.RestorationFileResource",
+            "proxy": "current_resource",
+            "extra-code": ""
+        },
         "module": {
             "qualified": "restoration",
             "prefix": "RestorationFile",
@@ -148,18 +160,6 @@
             "class": "restoration.resources.files.config.RestorationFileResourceConfig",
             "extra-code": ""
         },
-        "resource": {
-            "base-classes": [
-                "invenio_records_resources.resources.files.resource.FileResource"
-            ],
-            "imports": [],
-            "generate": true,
-            "config-key": "RESTORATION_FILES_RESOURCE_CLASS",
-            "module": "restoration.resources.files.resource",
-            "class": "restoration.resources.files.resource.RestorationFileResource",
-            "proxy": "current_resource",
-            "extra-code": ""
-        },
         "ext-resource": {
             "generate": true,
             "skip": false
@@ -217,20 +217,12 @@
             "table": "restoration_file_metadata",
             "alias": "restoration_file"
         },
-        "translations": {
-            "module": "restoration.translations",
-            "alias": "restoration_file"
-        },
         "service-config": {
             "base-classes": [
-                "oarepo_runtime.config.service.PermissionsPresetsConfigMixin",
+                "oarepo_runtime.services.config.service.PermissionsPresetsConfigMixin",
                 "invenio_records_resources.services.FileServiceConfig"
             ],
-            "imports": [
-                {
-                    "import": "invenio_records_resources.services.records.components.DataComponent"
-                }
-            ],
+            "imports": [],
             "generate": true,
             "config-key": "RESTORATION_FILES_SERVICE_CONFIG",
             "module": "restoration.services.files.config",
@@ -238,7 +230,7 @@
             "extra-code": "",
             "service-id": "restoration_file",
             "components": [
-                "DataComponent"
+                "{{invenio_records_resources.services.records.components.DataComponent}}"
             ]
         },
         "service": {
@@ -269,6 +261,10 @@
             "imports": [],
             "extra-code": ""
         },
+        "translations": {
+            "module": "restoration.translations",
+            "alias": "restoration_file"
+        },
         "draft-parent-record": {
             "skip": true
         },
@@ -289,6 +285,19 @@
             "extensions": [],
             "imports": []
         },
+        "permissions": {
+            "class": "restoration.services.records.permissions.RestorationPermissionPolicy",
+            "generate": false,
+            "presets": [
+                "everyone"
+            ],
+            "extra-code": "",
+            "module": "restoration.services.files.permissions",
+            "base-classes": [
+                "invenio_records_permissions.RecordPermissionPolicy"
+            ],
+            "imports": []
+        },
         "mapping": {
             "generate": true,
             "alias": "restoration_file",
@@ -304,7 +313,7 @@
             "service-id": "published_restoration_file",
             "base-classes": [
                 "oarepo_published_service.services.config.PublishedServiceConfig",
-                "oarepo_runtime.config.service.PermissionsPresetsConfigMixin"
+                "oarepo_runtime.services.config.service.PermissionsPresetsConfigMixin"
             ],
             "generate": true
         },
@@ -317,19 +326,6 @@
             "extra-code": "",
             "base-classes": [
                 "oarepo_published_service.services.service.PublishedService"
-            ],
-            "imports": []
-        },
-        "permissions": {
-            "class": "restoration.services.records.permissions.RestorationPermissionPolicy",
-            "generate": false,
-            "presets": [
-                "everyone"
-            ],
-            "extra-code": "",
-            "module": "restoration.services.files.permissions",
-            "base-classes": [
-                "invenio_records_permissions.RecordPermissionPolicy"
             ],
             "imports": []
         },
@@ -350,6 +346,9 @@
                 "sample": {
                     "skip": true
                 }
+            },
+            "caption": {
+                "type": "keyword"
             },
             "created": {
                 "type": "date",

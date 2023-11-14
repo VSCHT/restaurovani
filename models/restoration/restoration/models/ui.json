@@ -16,6 +16,14 @@
             "hint": "$schema.hint",
             "facet": "_schema"
         },
+        "caption": {
+            "detail": "keyword",
+            "input": "keyword",
+            "help": "caption.help",
+            "label": "caption.label",
+            "hint": "caption.hint",
+            "facet": "caption"
+        },
         "created": {
             "detail": "date",
             "input": "date",
@@ -389,8 +397,7 @@
                                         "input": "fulltext+keyword",
                                         "help": "metadata/restorationObject/parts/name.help",
                                         "label": "metadata/restorationObject/parts/name.label",
-                                        "hint": "metadata/restorationObject/parts/name.hint",
-                                        "facet": "metadata_restorationObject_parts_name"
+                                        "hint": "metadata/restorationObject/parts/name.hint"
                                     },
                                     "secondaryMaterialTypes": {
                                         "detail": "array",
@@ -471,8 +478,7 @@
                             "input": "fulltext+keyword",
                             "help": "metadata/restorationObject/title.help",
                             "label": "metadata/restorationObject/title.label",
-                            "hint": "metadata/restorationObject/title.hint",
-                            "facet": "metadata_restorationObject_title"
+                            "hint": "metadata/restorationObject/title.hint"
                         }
                     }
                 },
@@ -562,8 +568,7 @@
                                                 "input": "keyword",
                                                 "help": "metadata/restorationWork/parts/part/@v.help",
                                                 "label": "metadata/restorationWork/parts/part/@v.label",
-                                                "hint": "metadata/restorationWork/parts/part/@v.hint",
-                                                "facet": "metadata_restorationWork_parts_part__version"
+                                                "hint": "metadata/restorationWork/parts/part/@v.hint"
                                             }
                                         }
                                     },

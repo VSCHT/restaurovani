@@ -1,7 +1,8 @@
 from invenio_records_resources.resources.files.resource import FileResource
+from oarepo_ui.resources.components import FilesComponent
 
 
-class RestorationFileResource(FileResource):
+class RestorationFileResource(FilesComponent):
     """RestorationFile resource."""
 
     # here you can for example redefine
