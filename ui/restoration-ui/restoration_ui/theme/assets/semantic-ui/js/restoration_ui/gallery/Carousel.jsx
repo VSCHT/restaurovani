@@ -1,48 +1,15 @@
-
-
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Modal, Image, Button } from "semantic-ui-react";
 
-export const ImgCarousel = () => {
+
+export const ImgCarousel = ({ imgs }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(5);
-
-  const imgs = [
-    {
-      id: "0",
-      alt: "foto predmetu",
-      src: "/static/images/ItemLandingPage.jpg",
-    },
-    {
-      id: "1",
-      alt: "foto predmetu",
-      src: "/static/images/ItemLandingPage 2.jpg",
-    },
-    {
-      id: "2",
-      alt: "foto predmetu",
-      src: "/static/images/ItemLandingPage 2.jpg",
-    },
-    {
-      id: "3",
-      alt: "foto predmetu",
-      src: "/static/images/ItemLandingPage 3.jpg",
-    },
-    {
-      id: "4",
-      alt: "foto predmetu",
-      src: "/static/images/ItemLandingPage 3.jpg",
-    },
-    {
-      id: "5",
-      alt: "foto predmetu",
-      src: "/static/images/ItemLandingPage 3.jpg",
-    },
-  ];
+  const [imageUrls, setImageUrls] = useState([]);
 
   const settings = {
     dots: true,
@@ -57,14 +24,16 @@ export const ImgCarousel = () => {
   };
 
   const handlePrevImage = () => {
-    setSelectedImageIndex((prevIndex) => (prevIndex - 1 + imgs.length) % imgs.length);
+    setSelectedImageIndex(
+      (prevIndex) => (prevIndex - 1 + imgs.length) % imgs.length
+    );
   };
 
   useEffect(() => {
     function updateSlidesToShow() {
       if (window.innerWidth <= 992 && window.innerWidth >= 530) {
         setSlidesToShow(3);
-      } else if (window.innerWidth <= 530 ){
+      } else if (window.innerWidth <= 530) {
         setSlidesToShow(2);
       } else {
         setSlidesToShow(5);
@@ -72,21 +41,40 @@ export const ImgCarousel = () => {
     }
     updateSlidesToShow();
 
-    window.addEventListener("resize", updateSlidesToShow);
+    window.addEventListener('resize', updateSlidesToShow);
 
     return () => {
-      window.removeEventListener("resize", updateSlidesToShow);
+      window.removeEventListener('resize', updateSlidesToShow);
     };
   }, []);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      const urls = await Promise.all(
+        imgs.map(async (item) => {
+          if (item.metadata.fileType=='photo') {
+            const response = await fetch(item.links.content);
+            const blob = await response.blob();
+            return URL.createObjectURL(blob);
+          }
+          return null;
+        })
+      );
+
+      setImageUrls(urls);
+    };
+
+    fetchImages();
+  }, [imgs]);
 
   return (
     <>
       <Slider {...settings}>
-        {imgs.map((item, index) => (
+        {imageUrls.map((imageUrl, index) => (
           <Image
-            key={item.id}
-            src={item.src}
-            alt={item.alt}
+            key={index}
+            src={imageUrl}
+            alt={imgs[index].metadata.caption}
             className="predmety__imgs__img"
             onClick={() => {
               setSelectedImageIndex(index);
@@ -95,16 +83,69 @@ export const ImgCarousel = () => {
           />
         ))}
       </Slider>
+
       <div>
-        <Modal open={modalOpen} onClose={() => setModalOpen(false)} className="custom-modal">
+        <Modal
+          open={modalOpen}
+          onClose={() => setModalOpen(false)}
+          className="custom-modal"
+        >
           <Modal.Content image className="modal-content">
-            <Button icon="chevron left" onClick={handlePrevImage} className="carousel-button left" />
-            <Image src={imgs[selectedImageIndex].src} className="modal-image" />
-            <Button icon="chevron right" onClick={handleNextImage} className="carousel-button right" />
-            <Button icon="close" onClick={() => setModalOpen(false)} className="close-button" />
+            <Button
+              icon="chevron left"
+              onClick={handlePrevImage}
+              className="carousel-button left"
+            />
+            <Image
+              src={imageUrls[selectedImageIndex]}
+              className="modal-image"
+            />
+            <Button
+              icon="chevron right"
+              onClick={handleNextImage}
+              className="carousel-button right"
+            />
+            <Button
+              icon="close"
+              onClick={() => setModalOpen(false)}
+              className="close-button"
+            />
           </Modal.Content>
         </Modal>
       </div>
     </>
   );
 };
+
+
+export const FilesSection = ({ files }) => {
+  return (
+    <div className="horiz-div details__div__docs">
+      <p className="parag">Dokumenty</p>
+      <div className="horiz-div details__div__docs-files">
+        {files.map((file, index) => {
+          const isFile = file.metadata.fileType.startsWith("document");
+          if (isFile) {
+            return (
+              <div
+                className="horiz-div details__div__docs__item"
+                key={file.key}
+              >
+                <img
+                  className="details__div__docs-img"
+                  src="/static/images/file-icon.png"
+                  alt="file icon"
+                />
+                <p className="parag">
+                  <a href={file.links.content}>{file.metadata.caption}</a>
+                </p>
+              </div>
+            );
+          }
+        })}
+      </div>
+    </div>
+  );
+};
+
+
