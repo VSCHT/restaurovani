@@ -43,7 +43,7 @@ export const PartsInfo = ({ activeIndex, handleActive, values }) => {
                   <h3>
                     Součást &nbsp;
                     {values.metadata?.restorationObject?.parts?.[indexPath]
-                      ?.name == null
+                      ?.name == 0
                       ? indexPath + 1
                       : values.metadata.restorationObject.parts[indexPath].name}
                   </h3>

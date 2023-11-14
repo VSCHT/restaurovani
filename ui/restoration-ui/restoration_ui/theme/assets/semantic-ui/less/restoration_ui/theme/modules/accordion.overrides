@@ -37,7 +37,7 @@
 
 @media only screen and (min-width:1200px){
     .ui.accordion .title.btn.predmety__aside__dropdown-btn {
-    width: 17vw !important;
+    width: 110% !important;
     text-decoration: none;
     font-size: 16px;
     font-family: Noto_Sans_regular;
@@ -51,8 +51,8 @@
     outline: none;
     height: 40px;
     align-items: center;
-    margin-left: -2rem;
-    padding: 0 1rem ;
+    margin-left: -5%;
+    /* padding: 0 1rem ; */
 }
 
 .ui.accordion .title:hover{
