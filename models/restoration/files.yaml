@@ -4,7 +4,7 @@ files:
   module:
     qualified: restoration
   resource:
-    base-classes: [ oarepo_ui.resources.components.FilesComponent ]
+    base-classes: [ oarepo_ui.resources.file_resource.S3RedirectFileResource ]
   properties:
     fileType:
       type: keyword
