@@ -187,7 +187,7 @@ export const EditObjectForm = ({ edit }) => {
                 </Overridable>
               </div>
             </div>
-            <FileUploader/>
+            {/* <FileUploader/> */}
             <SaveButton title="ULOŽIT" edit={edit} />
           </Grid>
         )}

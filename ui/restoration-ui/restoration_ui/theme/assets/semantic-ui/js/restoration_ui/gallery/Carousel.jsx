@@ -60,7 +60,6 @@ export const ImgCarousel = ({ imgs }) => {
           return null;
         })
       );
-
       setImageUrls(urls);
     };
 
@@ -74,7 +73,7 @@ export const ImgCarousel = ({ imgs }) => {
           <Image
             key={index}
             src={imageUrl}
-            alt={imgs[index].metadata.caption}
+            // alt={imgs[index].metadata.caption}
             className="predmety__imgs__img"
             onClick={() => {
               setSelectedImageIndex(index);

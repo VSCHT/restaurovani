@@ -7,12 +7,7 @@
     {{ webpack["restoration_ui_components.css"] }}
     
     {% endblock %} {%- block page_body %}
-    {% for entry in extra_context.get("files", {}).get("entries", []) %}
-        <div>
-            <a href="{{ entry.links.content }}">{{ entry.key }}</a><br>
-            {{ entry.metadata }}
-        </div>
-    {% endfor %}
+   
     
     
         <!-- header -->
