@@ -94,7 +94,7 @@ width: 100% !important                      ;
 }
 .ui.grid.vert-div.predmety_main-container{
 width: 54vw !important                      ;
-margin-top: 180px !important                ;
+margin-top: 170px !important                ;
 margin-left: 14vw !important                ;
 }
 
@@ -121,7 +121,6 @@ z-index: 1000                                           ;
 width: 20vw;
 }
 .ui.grid.predmety__aside__filter{
-gap: 20px                                               ;
 width: 15vw                                             ;
 }
 .ui.grid.predmety__title-search-fixed{
@@ -251,7 +250,7 @@ flex-direction: row                                                ;
 align-items: center                                                ;
 }
 .grid.predmety__card{
-margin-bottom: 45px !important                                     ;
+margin-bottom: 35px !important                                     ;
 background-color:                                                  #ffffff !important;
 display: flex !important                                           ;
 position: relative !important                                      ;

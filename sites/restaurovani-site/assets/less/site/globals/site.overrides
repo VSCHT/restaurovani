@@ -32,6 +32,26 @@
 }
 
 
+.predmety__form__attachments{
+   width: 27%;
+   height: 40px;
+   align-self: flex-start;
+}
+.predmety__form__attachments div:first-child{
+  height: 100%
+}
+
+.predmety__form__attachments__btn{
+  background-color: #808080;
+  color: white;
+  content: "+";
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  height: 100%;
+  letter-spacing: 0.3px;
+  font-family: Noto_Sans_semibold;
+}
 
 .slick-slide div {
   display: flex;
@@ -4254,7 +4274,7 @@ input.parag.main-page__input-search-sb  {
     flex-direction: column;
   }
   .parag {
-    line-height: 23px;
+    line-height: 28px;
     word-wrap: break-word;
     font-family: Noto_Sans_regular;
     font-size: 20px ;

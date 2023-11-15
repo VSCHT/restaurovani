@@ -6,6 +6,7 @@ import _get from "lodash/get";
 import { Grid, Item, Button } from "semantic-ui-react";
 import { withState, buildUID } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
+import {ImageWithFallback} from "./imgFallback"
 
 const ItemHeader = ({ title, searchUrl, selfLink }) => {
   const [smallScreen, setSmallScreen] = React.useState(
@@ -96,6 +97,8 @@ export const ResultsListItemComponent = ({ result, appName }) => {
 
   const created = _get(result, "created", "<no data>");
 
+
+
   return (
     <Overridable
       id={buildUID("RecordsResultsListItem.layout", "", appName)}
@@ -105,10 +108,9 @@ export const ResultsListItemComponent = ({ result, appName }) => {
       <Grid className="predmety__card" key={result.id}>
         <Item className="horiz-div predmety__card-content">
           <Grid className="predmety__card__img-container">
-            <Item.Image
-              src="/static/images/img_placeholder.png"
-              alt="foto predmetu"
-            />
+            
+            <ImageWithFallback src="/static/images/image-noimage.png" fallbackSrc="/static/images/image-404.png" alt="Foto predmetu"  result={result} classN=''/>
+           
           </Grid>
           <Item.Content className="vert-div predmety__card__info">
             <Grid.Column className="vert-div predmety__card__main-info">

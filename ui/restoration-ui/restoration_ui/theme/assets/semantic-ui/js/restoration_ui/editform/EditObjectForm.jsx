@@ -12,7 +12,9 @@ import { SaveButton } from "../forms/components/";
 import { BasicInfo } from "./components/BasicInfo";
 import { RestorationWork } from "./components/RestorationWork";
 import { PartsInfo } from "./components/PartsInfo";
-import {FileUploader} from './components/Uploader'
+import {ReactWrapper} from './components/Uploader';
+import FileManagementDialog from '@oarepo/file-manager'
+import { h, render } from "preact";
 
 export const EditObjectForm = ({ edit }) => {
   let { record } = useFormConfig();
@@ -187,7 +189,20 @@ export const EditObjectForm = ({ edit }) => {
                 </Overridable>
               </div>
             </div>
-            {/* <FileUploader/> */}
+            <div className= "predmety__form__attachments">
+              <ReactWrapper preactComponent={FileManagementDialog}  props={{ 
+          config: { record:record }, 
+          autoExtractImagesFromPDFs: true,
+          // TriggerComponent: ({ onClick, ...props }) => (
+          //   <button className="btn" onClick={onClick} {...props}>
+          //     Přílohy
+          //   </button>
+          // ),
+         
+
+        }} />
+            </div>
+            
             <SaveButton title="ULOŽIT" edit={edit} />
           </Grid>
         )}

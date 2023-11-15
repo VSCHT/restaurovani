@@ -102,15 +102,11 @@
     </div>
 
     <div class="menu">
-      <div class="item">
-        <a class="item" href="{{ url_for('invenio_userprofiles.profile') }}"
-          >Account</a
-        >
-      </div>
+     
       <div class="item">
         <a
           class="item"
-          href="{{ url_for('invenio_oauthclient_settings.index') }}"
+          href="{{ url_for('invenio_userprofiles.profile') }}"
           >Nastavení</a
         >
       </div>
@@ -166,13 +162,10 @@
 
     <div class="menu div__account-links">
       
-        <a class="item" href="{{ url_for('invenio_userprofiles.profile') }}"
-          >Account</a
-        >
-      
+       
         <a
           class="item"
-          href="{{ url_for('invenio_oauthclient_settings.index') }}"
+          href="{{ url_for('invenio_userprofiles.profile') }}"
           >Nastavení</a
         >
       
