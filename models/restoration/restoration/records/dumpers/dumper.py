@@ -1,4 +1,5 @@
 from oarepo_runtime.records.dumpers import SearchDumper
+from oarepo_runtime.records.systemfields import SystemFieldDumperExt
 
 from restoration.records.dumpers.edtf import (
     RestorationDraftEDTFIntervalDumperExt,
@@ -9,10 +10,10 @@ from restoration.records.dumpers.edtf import (
 class RestorationDumper(SearchDumper):
     """RestorationRecord opensearch dumper."""
 
-    extensions = [RestorationEDTFIntervalDumperExt()]
+    extensions = [RestorationEDTFIntervalDumperExt(), SystemFieldDumperExt()]
 
 
 class RestorationDraftDumper(SearchDumper):
     """RestorationDraft opensearch dumper."""
 
-    extensions = [RestorationDraftEDTFIntervalDumperExt()]
+    extensions = [RestorationDraftEDTFIntervalDumperExt(), SystemFieldDumperExt()]

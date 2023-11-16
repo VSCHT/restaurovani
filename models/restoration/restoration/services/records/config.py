@@ -15,6 +15,8 @@ from restoration.services.records.permissions import RestorationPermissionPolicy
 from restoration.services.records.schema import RestorationSchema
 from restoration.services.records.search import RestorationSearchOptions
 
+from oarepo_runtime.services.results import RecordList
+
 
 class RestorationServiceConfig(
     PermissionsPresetsConfigMixin, InvenioRecordDraftsServiceConfig
@@ -32,6 +34,8 @@ class RestorationServiceConfig(
     search = RestorationSearchOptions
 
     record_cls = RestorationRecord
+
+    result_list_cls = RecordList
 
     service_id = "restoration"
 
