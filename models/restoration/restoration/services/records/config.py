@@ -8,12 +8,14 @@ from invenio_records_resources.services.records.components import (
     DataComponent,
     FilesOptionsComponent,
 )
-from oarepo_runtime.config.service import PermissionsPresetsConfigMixin
+from oarepo_runtime.services.config.service import PermissionsPresetsConfigMixin
 
 from restoration.records.api import RestorationDraft, RestorationRecord
 from restoration.services.records.permissions import RestorationPermissionPolicy
 from restoration.services.records.schema import RestorationSchema
 from restoration.services.records.search import RestorationSearchOptions
+
+from oarepo_runtime.services.results import RecordList
 
 
 class RestorationServiceConfig(
@@ -33,14 +35,16 @@ class RestorationServiceConfig(
 
     record_cls = RestorationRecord
 
+    result_list_cls = RecordList
+
     service_id = "restoration"
 
     components = [
         *PermissionsPresetsConfigMixin.components,
         *InvenioRecordDraftsServiceConfig.components,
-        DataComponent,
         DraftFilesComponent,
         FilesOptionsComponent,
+        DataComponent,
     ]
 
     model = "restoration"

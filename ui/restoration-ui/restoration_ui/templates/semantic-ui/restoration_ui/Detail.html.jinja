@@ -1,4 +1,4 @@
-{#def metadata, ui, layout, record #} {%- set title =
+{#def metadata, ui, layout, record, extra_context #} {%- set title =
 metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 "oarepo_ui/detail.html" %} {%- block head_links %}
 
@@ -7,6 +7,13 @@ metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
 {{ webpack["restoration_ui_components.css"] }}
 
 {% endblock %} {%- block page_body %}
+
+{% for entry in extra_context.get("files", {}).get("entries", []) %}
+    <div>
+        <a href="{{ entry.links.content }}">{{ entry.key }}</a><br>
+        {{ entry.metadata }}
+    </div>
+{% endfor %}
 
 <div class="horiz-div details__div__header">
   <div class="horiz-div details__div__header-left">

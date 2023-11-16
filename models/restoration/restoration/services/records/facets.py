@@ -2,15 +2,9 @@
 
 from flask_babelex import lazy_gettext as _
 from invenio_records_resources.services.records.facets import TermsFacet
-from oarepo_runtime.facets.date import DateTimeFacet
-from oarepo_runtime.facets.nested_facet import NestedLabeledFacet
+from oarepo_runtime.services.facets.date import DateTimeFacet
+from oarepo_runtime.services.facets.nested_facet import NestedLabeledFacet
 from oarepo_vocabularies.services.facets import VocabularyFacet
-
-_schema = TermsFacet(field="$schema", label=_("$schema.label"))
-
-created = DateTimeFacet(field="created", label=_("created.label"))
-
-_id = TermsFacet(field="id", label=_("id.label"))
 
 metadata_category = TermsFacet(
     field="metadata.category", label=_("metadata/category.label")
@@ -106,14 +100,6 @@ metadata_restorationObject_parts_materialType = NestedLabeledFacet(
     ),
 )
 
-metadata_restorationObject_parts_name = NestedLabeledFacet(
-    path="metadata.restorationObject.parts",
-    nested_facet=TermsFacet(
-        field="metadata.restorationObject.parts.name.keyword",
-        label=_("metadata/restorationObject/parts/name.label"),
-    ),
-)
-
 metadata_restorationObject_parts_secondaryMaterialTypes = NestedLabeledFacet(
     path="metadata.restorationObject.parts",
     nested_facet=VocabularyFacet(
@@ -129,23 +115,10 @@ metadata_restorationObject_restorationRequestor = VocabularyFacet(
     vocabulary="Requestors",
 )
 
-metadata_restorationObject_title = TermsFacet(
-    field="metadata.restorationObject.title.keyword",
-    label=_("metadata/restorationObject/title.label"),
-)
-
 metadata_restorationWork_examinationMethods = VocabularyFacet(
     field="metadata.restorationWork.examinationMethods",
     label=_("metadata/restorationWork/examinationMethods.label"),
     vocabulary="ExaminationMethods",
-)
-
-metadata_restorationWork_parts_part__version = NestedLabeledFacet(
-    path="metadata.restorationWork.parts",
-    nested_facet=TermsFacet(
-        field="metadata.restorationWork.parts.part.@v",
-        label=_("metadata/restorationWork/parts/part/@v.label"),
-    ),
 )
 
 metadata_restorationWork_parts_restorationMethods = NestedLabeledFacet(
@@ -202,5 +175,3 @@ metadata_restorationWork_workType = VocabularyFacet(
 metadata_submissionStatus = TermsFacet(
     field="metadata.submissionStatus", label=_("metadata/submissionStatus.label")
 )
-
-updated = DateTimeFacet(field="updated", label=_("updated.label"))

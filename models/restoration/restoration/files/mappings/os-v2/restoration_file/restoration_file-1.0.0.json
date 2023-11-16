@@ -5,6 +5,10 @@
                 "type": "keyword",
                 "ignore_above": 1024
             },
+            "caption": {
+                "type": "keyword",
+                "ignore_above": 1024
+            },
             "created": {
                 "type": "date",
                 "format": "basic_date||strict_date"

@@ -5,7 +5,7 @@ from marshmallow import fields as ma_fields
 from marshmallow.fields import String
 from marshmallow.utils import get_value
 from marshmallow_utils.fields import SanitizedUnicode
-from oarepo_runtime.marshmallow import BaseRecordSchema
+from oarepo_runtime.services.schema.marshmallow import BaseRecordSchema
 from oarepo_runtime.services.schema.validation import validate_date
 
 

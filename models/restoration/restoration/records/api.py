@@ -5,8 +5,12 @@ from invenio_records.systemfields import ConstantField, ModelField
 from invenio_records_resources.records.systemfields import FilesField, IndexField
 from invenio_records_resources.records.systemfields.pid import PIDField, PIDFieldContext
 from invenio_vocabularies.records.api import Vocabulary
-from oarepo_runtime.drafts.systemfields.has_draftcheck import HasDraftCheckField
-from oarepo_runtime.relations import InternalRelation, PIDRelation, RelationsField
+from oarepo_runtime.records.relations import (
+    InternalRelation,
+    PIDRelation,
+    RelationsField,
+)
+from oarepo_runtime.records.systemfields.has_draftcheck import HasDraftCheckField
 
 from restoration.files.api import RestorationFile, RestorationFileDraft
 from restoration.records.dumpers.dumper import RestorationDraftDumper, RestorationDumper
@@ -16,6 +20,7 @@ from restoration.records.models import (
     RestorationParentMetadata,
     RestorationParentState,
 )
+from oarepo_runtime.records.systemfields.record_status import RecordStatusSystemField
 
 
 class RestorationParentRecord(ParentRecord):
@@ -38,6 +43,8 @@ class RestorationRecord(InvenioRecord):
     )
 
     dumper = RestorationDumper()
+
+    record_status = RecordStatusSystemField()
 
     relations = RelationsField(
         dimension=PIDRelation(
@@ -127,6 +134,8 @@ class RestorationDraft(InvenioDraft):
         create=True,
         delete=False,
     )
+
+    record_status = RecordStatusSystemField()
 
     dumper = RestorationDraftDumper()
 
