@@ -8,6 +8,8 @@ class RestorationFileUISchema(InvenioUISchema):
     class Meta:
         unknown = ma.RAISE
 
+    caption = ma_fields.String()
+
     featured = ma_fields.Boolean()
 
     fileType = ma_fields.String(validate=[OneOf(["photo", "document"])])

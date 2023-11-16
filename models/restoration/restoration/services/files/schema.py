@@ -11,6 +11,8 @@ class RestorationFileSchema(InvenioFileSchema):
     class Meta:
         unknown = ma.RAISE
 
+    caption = ma_fields.String()
+
     created = ma_fields.String(dump_only=True, validate=[validate_date("%Y-%m-%d")])
 
     featured = ma_fields.Boolean()
