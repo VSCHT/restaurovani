@@ -20,6 +20,7 @@ from restoration.records.models import (
     RestorationParentMetadata,
     RestorationParentState,
 )
+from oarepo_runtime.records.systemfields.record_status import RecordStatusSystemField
 
 
 class RestorationParentRecord(ParentRecord):
@@ -42,6 +43,8 @@ class RestorationRecord(InvenioRecord):
     )
 
     dumper = RestorationDumper()
+
+    record_status = RecordStatusSystemField()
 
     relations = RelationsField(
         dimension=PIDRelation(
@@ -131,6 +134,8 @@ class RestorationDraft(InvenioDraft):
         create=True,
         delete=False,
     )
+
+    record_status = RecordStatusSystemField()
 
     dumper = RestorationDraftDumper()
 
