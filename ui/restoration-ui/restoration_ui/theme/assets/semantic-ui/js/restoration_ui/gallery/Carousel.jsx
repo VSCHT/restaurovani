@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Modal, Image, Button } from "semantic-ui-react";
 
-
 export const ImgCarousel = ({ imgs }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -19,7 +18,6 @@ export const ImgCarousel = ({ imgs }) => {
     // slidesToShow: slidesToShow > imageUrls?.length ? imageUrls?.length : slidesToShow,
     slidesToScroll: slidesToShow > imageUrls?.length ? 2 : imageUrls?.length,
   };
-
 
   const handleNextImage = () => {
     setSelectedImageIndex((prevIndex) => (prevIndex + 1) % imgs.length);
@@ -43,49 +41,46 @@ export const ImgCarousel = ({ imgs }) => {
     }
     updateSlidesToShow();
 
-    window.addEventListener('resize', updateSlidesToShow);
+    window.addEventListener("resize", updateSlidesToShow);
 
     return () => {
-      window.removeEventListener('resize', updateSlidesToShow);
+      window.removeEventListener("resize", updateSlidesToShow);
     };
   }, []);
-
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
         const urls = await Promise.all(
           imgs?.map(async (item) => {
-            if (item.metadata.fileType === 'photo') {
+            if (item.metadata.fileType == "photo" || item.mimetype.startsWith("image")) {
               const response = await fetch(item.links.content);
               const blob = await response.blob();
               return URL.createObjectURL(blob);
             }
-            return null; 
+            return null;
           })
         );
-  
-       
+
         const filteredUrls = urls.filter((url) => url !== null);
-  
+
         setImageUrls(filteredUrls);
       } catch (error) {
         console.error("Error fetching images:", error);
       }
     };
-  
+
     fetchImages();
   }, [imgs]);
-  
+
   return (
     <>
       <Slider {...settings}>
-        {imageUrls?.map((imageUrl, index) => 
-        (
+        {imageUrls?.map((imageUrl, index) => (
           <Image
             key={index}
             src={imageUrl}
-            // alt={imgs[index].metadata.caption}
+            alt={imgs[index].metadata.caption}
             className="predmety__imgs__img"
             onClick={() => {
               setSelectedImageIndex(index);
@@ -107,10 +102,14 @@ export const ImgCarousel = ({ imgs }) => {
               onClick={handlePrevImage}
               className="carousel-button left"
             />
-            <Image
-              src={imageUrls[selectedImageIndex]}
-              className="modal-image"
-            />
+            <div class="vert-div">
+              <Image
+                src={imageUrls[selectedImageIndex]}
+                className="modal-image"
+              />
+              <p>{imgs[selectedImageIndex].metadata.caption}</p>
+            </div>
+
             <Button
               icon="chevron right"
               onClick={handleNextImage}
@@ -128,14 +127,14 @@ export const ImgCarousel = ({ imgs }) => {
   );
 };
 
-
 export const FilesSection = ({ files }) => {
+  
   return (
     <div className="horiz-div details__div__docs">
       <p className="parag">Dokumenty</p>
       <div className="horiz-div details__div__docs-files">
         {files?.map((file, index) => {
-          const isFile = file.metadata.fileType.startsWith("document");
+          const isFile = file?.metadata?.fileType== "document";
           if (isFile) {
             return (
               <div
@@ -158,5 +157,3 @@ export const FilesSection = ({ files }) => {
     </div>
   );
 };
-
-

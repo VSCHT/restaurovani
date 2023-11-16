@@ -25,9 +25,14 @@ export const CustomSB = ({
       value={queryString}
       icon={
         queryString !== "" && (
-          <Button onClick={handleReset} className="predmety__btn-reset">
-            <Icon name="delete" className="predmety__btn-reset" />
-          </Button>
+          <>
+            <Button onClick={handleReset} className="predmety__btn-reset">
+              <Icon name="delete" className="predmety__btn-reset" />
+            </Button>
+            <Button onClick={onBtnSearchClick} className="predmety__btn-reset mobile-component">
+              <Icon name="search" className="predmety__btn-reset" />
+            </Button>
+          </>
         )
       }
       onKeyPress={onKeyPress}

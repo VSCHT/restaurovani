@@ -37,9 +37,9 @@
    height: 35px;
    align-self: center;
 }
-.predmety__form__attachments div:first-child{
+/* .predmety__form__attachments div:first-child{
   height: 100%
-}
+} */
 
 .predmety__form__attachments__btn{
   background-color: #85857e;
@@ -48,7 +48,7 @@
   border-radius: 5px;
   border: none;
   width: 100%;
-  height: 100%;
+  height: 35px;
   letter-spacing: 0.3px;
   font-family: Noto_Sans_semibold;
 }
@@ -666,6 +666,10 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
 }
 
 @media (min-width: 1300px) {
+  .mobile-component{
+    display: none;
+  }
+  
   div#details__div__docs {
     width: 100%;
 }
@@ -1694,7 +1698,6 @@ width: 100vw;
     margin: 0 2vw;
   }
 
-
   
 }
 
@@ -1742,6 +1745,9 @@ width: 100vw;
   }
   img.main-page__main-image {
     width: 100%;
+}
+div#details__div__docs {
+  align-self: flex-start;
 }
 
   /* main {
@@ -2160,6 +2166,7 @@ width: 60px
   .predmety__card__title {
     font-family: Noto_Sans_semibold;
     font-size: 21px;
+    line-height: 25px;
   }
   .predmety__card__info {
     margin-left: 25px;
@@ -2616,7 +2623,7 @@ border-right: 1px solid                 #000;
   }
   .details__div__info-left table tr td:nth-child(odd) {
     font-family: Noto_Sans_semibold !important;
-    width: 90%;
+    width: auto;
   }
   .details__div__info-left table tr td:nth-child(even) {
     width: 90%;

@@ -250,7 +250,7 @@ flex-direction: row                                                ;
 align-items: center                                                ;
 }
 .grid.predmety__card{
-margin-bottom: 35px !important                                     ;
+margin-bottom: 25px !important                                     ;
 background-color:                                                  #ffffff !important;
 display: flex !important                                           ;
 position: relative !important                                      ;
@@ -332,6 +332,7 @@ align-items: center                   ;
 justify-content: center               ;
 overflow: hidden                      ;
 width: 190px !important               ;
+max-height: 160px;
 }
 
 .grid.predmety__card__img-container img {

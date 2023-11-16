@@ -253,6 +253,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
             props={{
               config: { record: record },
               autoExtractImagesFromPDFs: true,
+              locale:"cs_CS"
             }}
           />
         </div>
