@@ -8,7 +8,9 @@ width: 50%
 width: 90%
 }
 }
-
+.ui.modal .image.content {
+    flex-direction: row;
+}
 .modal.custom-modal {
 position: fixed                ;
 top: 0                         ;

@@ -34,15 +34,15 @@
 
 .predmety__form__attachments{
    width: 27%;
-   height: 40px;
-   align-self: flex-start;
+   height: 35px;
+   align-self: center;
 }
 .predmety__form__attachments div:first-child{
   height: 100%
 }
 
 .predmety__form__attachments__btn{
-  background-color: #808080;
+  background-color: #85857e;
   color: white;
   content: "+";
   border-radius: 5px;
@@ -130,8 +130,13 @@ p.transition.visible.parag {
   .form__input-supervisor{
   gap: 10px
 }
+.predmety__form__attachments{
+  width: 27%;
+  height: 35px;
+  align-self: center;
 }
 
+}
 
 .form__input__title-small{
   margin: 10px 0;
@@ -743,7 +748,7 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
   }
 
   .image__vsht-logo {
-    width: 43px;
+    width: 40px;
     margin-right: 10px;
   }
 
@@ -1223,9 +1228,9 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
     display: flex !important;
   }
 
-  .predmety__aside__filter {
+  /* .predmety__aside__filter {
     gap: 20px;
-  }
+  } */
 
   .predmety__aside__dropdown-btn {
     text-decoration: none;
@@ -2184,6 +2189,7 @@ width: 60px
   .predmety__card__extra-info p {
     width: auto;
     opacity: 60;
+    color: #75766e;
   }
   .predmety__card-content {
     background-color: #ffffff;
@@ -2703,6 +2709,10 @@ border-right: 1px solid                 #000;
 
 /* mobile version */
 @media (max-width: 992px) {
+
+  .slick-track{
+    transform: translate3d(0, 0, 0) !important;
+  }
   .ui.two.column.divided.grid.details__div__info {
     flex-direction: column;
 }
@@ -3190,6 +3200,7 @@ margin: 0 auto !important      ;
   .predmety__card__extra-info p {
     width: auto;
     font-size: 2vw;
+    color: #75766e;
   }
 
   /* aside part */
@@ -4326,7 +4337,7 @@ input.parag.main-page__input-search-sb  {
     max-width: 80vw;
     max-height: auto;
     margin-top: 0px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
   .details__div__header-h {
     word-wrap: break-word;
@@ -4663,7 +4674,7 @@ img.details__div__header__btn-edit {
   width: 15vw;
 }
 .image__vsht-logo {
-  width: 61px;
+  width: 45px;
   margin-right: 10px;
 }
 .main-page__title__img {
@@ -4983,7 +4994,7 @@ img.main-page__main-image {
     width: 54px;
 }
 .image__vsht-logo {
-  width: 29px;
+  width: 39px;
   margin-right: 8px;
 }
 .main-page__main-container__content {
@@ -5064,7 +5075,7 @@ img.main-page__main-image {
   height: 37px;
   width: 13vw;
   border: solid 1px #9b9b93;
-  padding: 20px 25px;
+  padding: 17px 25px;
   font-family: Noto_Sans_regular;
 }
 .main-page__btn__addPredmety {
@@ -5311,6 +5322,11 @@ ul#preferences-visibility , #preferences-email_visibility{
 }
 
 @media only screen and (max-width: 720px) and (min-width: 490px){
+  .predmety__form__attachments{
+    width: 40%;
+    height: 35px;
+    align-self: flex-start;
+ }
   .predmety__form__div-small__div {
     font-family: Noto_Sans_regular !important;
     font-size: 14px !important;
@@ -5322,6 +5338,11 @@ ul#preferences-visibility , #preferences-email_visibility{
 
 }
 @media only screen and (max-width: 450px) {
+  .predmety__form__attachments{
+    width: 40%;
+    height: 35px;
+    align-self: flex-start;
+ }
 .parag {
   line-height: 25px;
   word-wrap: break-word;
@@ -5370,6 +5391,15 @@ nav.ui.sidebar.vertical.menu.left.uncover.visible .item {
   margin: 15px 5px 15px 5px;
   height: 26px;
   width: auto;
+}
+.main-page__btn__addPredmety.parag, .main-page__input-search.parag{
+  font-size: 15px !important;
+  line-height: 20px;
+  height: 40px;
+  width: 55vw;
+}
+.main-page__input-search.parag{
+  padding-left: 20px;
 }
 }
 @media only screen and (max-width: 1340px) and (min-width: 1000px){

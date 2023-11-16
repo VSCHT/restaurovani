@@ -239,6 +239,7 @@
     background: none !important;
     padding-left: 0px;
   }
+   
   .ui.button.predmety__title-search__searchbar {
     gap: 40px;
     align-items: center !important                                      ;
@@ -459,3 +460,10 @@
   font-family: Noto_Sans_semibold !important ;
 }
 }
+ @media only screen and (max-width: 530px){
+       .ui.button.btn.predmety__input-search__searchbar-burger {
+    background: none !important;
+    padding-left: 0px;
+    margin-left: -70px;
+  }
+    }

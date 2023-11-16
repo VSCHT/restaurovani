@@ -18,6 +18,9 @@ import { ArrayFieldItem } from "@js/oarepo_ui";
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 
+import { ReactWrapper } from "./Uploader";
+import FileManagementDialog from "@oarepo/file-manager";
+
 export const BasicInfo = ({ activeIndex, handleActive }) => {
   const units = [
     { value: "kg", text: "kg" },
@@ -241,6 +244,18 @@ export const BasicInfo = ({ activeIndex, handleActive }) => {
             }
           />
         </div>
+
+        <div className="predmety__form__attachments">
+              <ReactWrapper
+                preactComponent={FileManagementDialog}
+                props={{
+                  config: { record: record },
+                  autoExtractImagesFromPDFs: true,
+                }}
+              />
+            </div>
+  
+        
       </div>
     </AccordionField>
   );

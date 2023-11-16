@@ -12,9 +12,6 @@ import { SaveButton } from "../forms/components/";
 import { BasicInfo } from "./components/BasicInfo";
 import { RestorationWork } from "./components/RestorationWork";
 import { PartsInfo } from "./components/PartsInfo";
-import {ReactWrapper} from './components/Uploader';
-import FileManagementDialog from '@oarepo/file-manager'
-import { h, render } from "preact";
 
 export const EditObjectForm = ({ edit }) => {
   let { record } = useFormConfig();
@@ -25,7 +22,7 @@ export const EditObjectForm = ({ edit }) => {
     console.log(values);
   };
 
-  console.log(record)
+  console.log(record);
   const formValues = {
     ...record,
     metadata: {
@@ -166,6 +163,8 @@ export const EditObjectForm = ({ edit }) => {
               </div>
             </div>
 
+
+
             <div className="vert-div predmety__form-main">
               <div className="vert-div predmety__form__div-fields">
                 <Overridable id="Deposit.AccordionFieldBasicInformation.container">
@@ -189,20 +188,8 @@ export const EditObjectForm = ({ edit }) => {
                 </Overridable>
               </div>
             </div>
-            <div className= "predmety__form__attachments">
-              <ReactWrapper preactComponent={FileManagementDialog}  props={{ 
-          config: { record:record }, 
-          autoExtractImagesFromPDFs: true,
-          // TriggerComponent: ({ onClick, ...props }) => (
-          //   <button className="btn" onClick={onClick} {...props}>
-          //     Přílohy
-          //   </button>
-          // ),
-         
+           
 
-        }} />
-            </div>
-            
             <SaveButton title="ULOŽIT" edit={edit} />
           </Grid>
         )}

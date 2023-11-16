@@ -16,8 +16,10 @@ export const ImgCarousel = ({ imgs }) => {
     infinite: false,
     speed: 100,
     slidesToShow: slidesToShow,
-    slidesToScroll: 2,
+    // slidesToShow: slidesToShow > imageUrls?.length ? imageUrls?.length : slidesToShow,
+    slidesToScroll: slidesToShow > imageUrls?.length ? 2 : imageUrls?.length,
   };
+
 
   const handleNextImage = () => {
     setSelectedImageIndex((prevIndex) => (prevIndex + 1) % imgs.length);
@@ -48,28 +50,38 @@ export const ImgCarousel = ({ imgs }) => {
     };
   }, []);
 
+
   useEffect(() => {
     const fetchImages = async () => {
-      const urls = await Promise.all(
-        imgs.map(async (item) => {
-          if (item.metadata.fileType=='photo') {
-            const response = await fetch(item.links.content);
-            const blob = await response.blob();
-            return URL.createObjectURL(blob);
-          }
-          return null;
-        })
-      );
-      setImageUrls(urls);
+      try {
+        const urls = await Promise.all(
+          imgs?.map(async (item) => {
+            if (item.metadata.fileType === 'photo') {
+              const response = await fetch(item.links.content);
+              const blob = await response.blob();
+              return URL.createObjectURL(blob);
+            }
+            return null; 
+          })
+        );
+  
+       
+        const filteredUrls = urls.filter((url) => url !== null);
+  
+        setImageUrls(filteredUrls);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
     };
-
+  
     fetchImages();
   }, [imgs]);
-
+  
   return (
     <>
       <Slider {...settings}>
-        {imageUrls.map((imageUrl, index) => (
+        {imageUrls?.map((imageUrl, index) => 
+        (
           <Image
             key={index}
             src={imageUrl}
@@ -122,7 +134,7 @@ export const FilesSection = ({ files }) => {
     <div className="horiz-div details__div__docs">
       <p className="parag">Dokumenty</p>
       <div className="horiz-div details__div__docs-files">
-        {files.map((file, index) => {
+        {files?.map((file, index) => {
           const isFile = file.metadata.fileType.startsWith("document");
           if (isFile) {
             return (
