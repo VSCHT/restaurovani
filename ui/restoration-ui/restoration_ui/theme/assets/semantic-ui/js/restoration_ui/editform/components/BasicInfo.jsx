@@ -21,7 +21,7 @@ import _get from "lodash/get";
 import { ReactWrapper } from "./Uploader";
 import FileManagementDialog from "@oarepo/file-manager";
 
-export const BasicInfo = ({ activeIndex, handleActive }) => {
+export const BasicInfo = ({ activeIndex, handleActive, record }) => {
   const units = [
     { value: "kg", text: "kg" },
     { value: "mg", text: "mg" },
@@ -30,6 +30,8 @@ export const BasicInfo = ({ activeIndex, handleActive }) => {
     { value: "metr", text: "metr" },
     { value: "mm", text: "mm" },
   ];
+
+  console.log({ record: record });
 
   return (
     <AccordionField
@@ -246,16 +248,14 @@ export const BasicInfo = ({ activeIndex, handleActive }) => {
         </div>
 
         <div className="predmety__form__attachments">
-              <ReactWrapper
-                preactComponent={FileManagementDialog}
-                props={{
-                  config: { record: record },
-                  autoExtractImagesFromPDFs: true,
-                }}
-              />
-            </div>
-  
-        
+          <ReactWrapper
+            preactComponent={FileManagementDialog}
+            props={{
+              config: { record: record },
+              autoExtractImagesFromPDFs: true,
+            }}
+          />
+        </div>
       </div>
     </AccordionField>
   );

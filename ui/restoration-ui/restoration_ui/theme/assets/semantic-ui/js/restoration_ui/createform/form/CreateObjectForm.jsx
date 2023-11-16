@@ -117,6 +117,7 @@ export const CreateObjectForm = () => {
 
   let initVal = {
     ...record,
+    files: {enabled: true},
     metadata: {
       restorationObject: {
         title: "",

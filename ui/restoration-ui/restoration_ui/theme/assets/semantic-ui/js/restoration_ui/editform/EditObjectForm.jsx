@@ -158,6 +158,7 @@ export const EditObjectForm = ({ edit }) => {
                   <BasicInfo
                     activeIndex={activeIndex}
                     handleActive={handleActive}
+                    record={formValues}
                   />
                 </Overridable>
               </div>
