@@ -15,7 +15,6 @@ export const ImgCarousel = ({ imgs }) => {
     infinite: false,
     speed: 100,
     slidesToShow: slidesToShow,
-    // slidesToShow: slidesToShow > imageUrls?.length ? imageUrls?.length : slidesToShow,
     slidesToScroll: slidesToShow > imageUrls?.length ? 2 : imageUrls?.length,
   };
 
@@ -53,7 +52,10 @@ export const ImgCarousel = ({ imgs }) => {
       try {
         const urls = await Promise.all(
           imgs?.map(async (item) => {
-            if (item.metadata.fileType == "photo" || item.mimetype.startsWith("image")) {
+            if (
+              item?.metadata?.fileType == "photo" ||
+              item?.mimetype?.startsWith("image")
+            ) {
               const response = await fetch(item.links.content);
               const blob = await response.blob();
               return URL.createObjectURL(blob);
@@ -127,20 +129,18 @@ export const ImgCarousel = ({ imgs }) => {
   );
 };
 
+
 export const FilesSection = ({ files }) => {
-  
-  return (
+  return files?.some(
+    (file) => file.metadata.fileType === 'document'
+  ) ? (
     <div className="horiz-div details__div__docs">
       <p className="parag">Dokumenty</p>
       <div className="horiz-div details__div__docs-files">
         {files?.map((file, index) => {
-          const isFile = file?.metadata?.fileType== "document";
-          if (isFile) {
+          if (file?.metadata?.fileType === 'document' || file?.mimetype?.startsWith('application')) {
             return (
-              <div
-                className="horiz-div details__div__docs__item"
-                key={file.key}
-              >
+              <div className="horiz-div details__div__docs__item" key={index}>
                 <img
                   className="details__div__docs-img"
                   src="/static/images/file-icon.png"
@@ -155,5 +155,5 @@ export const FilesSection = ({ files }) => {
         })}
       </div>
     </div>
-  );
+  ) : null;
 };

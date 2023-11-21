@@ -20,7 +20,7 @@ theme = WebpackThemeBundle(
                  "slick-carousel": "^1.8.1",
                  "react-media":"^1.10.0",
                  "jquery": "^3.7.1",
-                 "@oarepo/file-manager": "^1.0.5",
+                 "@oarepo/file-manager": "^1.0.6",
                  "preact": "^10.5.13"
             },
             devDependencies={},

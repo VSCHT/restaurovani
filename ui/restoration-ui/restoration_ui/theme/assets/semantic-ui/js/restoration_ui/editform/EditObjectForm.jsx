@@ -54,11 +54,14 @@ export const EditObjectForm = ({ edit }) => {
             value: d?.value || "",
           })) || []),
         ],
+
         itemTypes: [
           ...(record?.metadata?.restorationObject?.itemTypes?.map((i) => ({
-            title: i || { cs: "" },
+            ...i,
           })) || []),
+          { id: "", title: { cs: "" } },
         ],
+
         parts: record?.metadata?.restorationObject?.parts?.some(
           (part) => part.main === true
         )
@@ -101,12 +104,11 @@ export const EditObjectForm = ({ edit }) => {
 
         parts: [
           ...(record?.metadata?.restorationWork?.parts?.map((part) => ({
-            restorationMethods: {
-              until: part?.restorationMethods?.until || "",
-              since: part?.restorationMethods?.since || "",
-            },
+            ...part,
+            restorationMethods: part.restorationMethods || [{ title: { cs: "" } }],
           })) || []),
         ],
+        
 
         restorationPeriod: {
           since:
@@ -117,17 +119,16 @@ export const EditObjectForm = ({ edit }) => {
 
         examinationMethods: [
           ...(record?.metadata?.restorationWork?.examinationMethods?.map(
-            (i) => ({
-              title: i || { cs: "" },
-            })
+            (i) => ({ ...i })
           ) || []),
+          { id: "", title: { cs: "" } },
         ],
+
         restorationMethods: [
           ...(record?.metadata?.restorationWork?.restorationMethods?.map(
-            (i) => ({
-              title: i || { cs: "" },
-            })
+            (i) => ({ ...i })
           ) || []),
+          { id: "", title: { cs: "" } },
         ],
       },
     },
@@ -164,8 +165,6 @@ export const EditObjectForm = ({ edit }) => {
               </div>
             </div>
 
-
-
             <div className="vert-div predmety__form-main">
               <div className="vert-div predmety__form__div-fields">
                 <Overridable id="Deposit.AccordionFieldBasicInformation.container">
@@ -189,7 +188,6 @@ export const EditObjectForm = ({ edit }) => {
                 </Overridable>
               </div>
             </div>
-           
 
             <SaveButton title="ULOŽIT" edit={edit} />
           </Grid>

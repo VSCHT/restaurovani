@@ -33,9 +33,13 @@
 
 
 .predmety__form__attachments{
-   width: 27%;
+   width: 35%;
    height: 35px;
    align-self: center;
+}
+.predmety__form__div-attachments{
+  gap: 40px;
+  justify-content: space-around;
 }
 /* .predmety__form__attachments div:first-child{
   height: 100%
@@ -52,7 +56,10 @@
   letter-spacing: 0.3px;
   font-family: Noto_Sans_semibold;
 }
-
+.predmety__form__attachments__btn:hover{
+  background-color: #595959;
+  cursor: pointer ;
+}
 .slick-slide div {
   display: flex;
   align-items: center;
@@ -135,7 +142,10 @@ p.transition.visible.parag {
   height: 35px;
   align-self: center;
 }
-
+.horiz-div.predmety__form__div-attachments{
+  gap: 40px;
+  flex-direction: column;
+}
 }
 
 .form__input__title-small{
@@ -914,7 +924,7 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
   }
   .main-page__title__img {
     position: relative;
-    top: 11vh;
+    top: 115px;
   }
   .main-page__title {
     position: relative;
@@ -3819,7 +3829,7 @@ input.parag.main-page__input-search-sb  {
     height: 30px
   }
   .item .predmety__aside__btn, .vert-div.main-page__div__btn-sb  .horiz-div form input{
-    height: 50px
+    height: 60px
   }
   nav .ui.vertical.menu.fluid{
     position:static;
@@ -4854,7 +4864,7 @@ img.details__div__header__btn-edit {
   .main-page__title__img {
     position: relative;
     top: 13vh;
-    width: 93px;
+    width: 80px;
 }
 .text__vsht-logo {
   font-size: 1.1rem;
@@ -4997,8 +5007,8 @@ img.main-page__main-image {
   }
   .main-page__title__img {
     position: relative;
-    top: 75px;
-    width: 54px;
+    top: 86px;
+    width: 51px;
 }
 .image__vsht-logo {
   width: 39px;
@@ -5138,6 +5148,7 @@ img.main-page__main-image {
 
 
 @media only screen  and (min-width: 3000px){
+ 
   .parag {
     font-size: 2rem;
     font-family: Noto_Sans_regular;
@@ -5332,7 +5343,7 @@ ul#preferences-visibility , #preferences-email_visibility{
   .predmety__form__attachments{
     width: 40%;
     height: 35px;
-    align-self: flex-start;
+    align-self: center;
  }
   .predmety__form__div-small__div {
     font-family: Noto_Sans_regular !important;
@@ -5346,9 +5357,9 @@ ul#preferences-visibility , #preferences-email_visibility{
 }
 @media only screen and (max-width: 450px) {
   .predmety__form__attachments{
-    width: 40%;
+    width: 50%;
     height: 35px;
-    align-self: flex-start;
+    align-self: center;
  }
 .parag {
   line-height: 25px;

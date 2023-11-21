@@ -18,8 +18,9 @@ import { ArrayFieldItem } from "@js/oarepo_ui";
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 
-import { ReactWrapper } from "./Uploader";
+import { ReactWrapperPdf, ReactWrapperImg, ReactWrapperEdit } from "./Uploader";
 import FileManagementDialog from "@oarepo/file-manager";
+import { FileStat } from "./FileStat";
 
 export const BasicInfo = ({ activeIndex, handleActive, record }) => {
   const units = [
@@ -46,7 +47,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
         "metadata.restorationObject.creationPeriod.until",
         "metadata.restorationObject.restorationRequestor",
       ]}
-      label="Udaje"
+      label="Údaje"
       active={activeIndex === 0}
       defaultActiveIndex={0}
       onClick={() => handleActive(0)}
@@ -247,16 +248,45 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
           />
         </div>
 
-        <div className="predmety__form__attachments">
-          <ReactWrapper
-            preactComponent={FileManagementDialog}
-            props={{
-              config: { record: record },
-              autoExtractImagesFromPDFs: true,
-              locale:"cs_CS"
-            }}
-          />
+        <div className="vert-div predmety__form__div">
+          <h3>Přílohy</h3>
+          <FileStat apiUrl={record?.links?.files} record={record}/>
         </div>
+       {/* <div className="horiz-div predmety__form__div-attachments">
+          <div className="predmety__form__attachments">
+            <ReactWrapperPdf
+              preactComponent={FileManagementDialog}
+              props={{
+                config: { record: record },
+                autoExtractImagesFromPDFs: true,
+                locale: "cs_CS",
+                allowedFileTypes: ["application/pdf"]
+              }}
+            />
+          </div>
+          <div className="predmety__form__attachments">
+          <ReactWrapperImg
+              preactComponent={FileManagementDialog}
+              props={{
+                config: { record: record },
+                autoExtractImagesFromPDFs: true,
+                locale: "cs_CS",
+                allowedFileTypes: ["image/*"]
+              }}
+            />
+          </div>
+           <div className="predmety__form__attachments">
+            <ReactWrapperEdit
+              preactComponent={FileManagementDialog}
+              props={{
+                config: { record: record },
+                autoExtractImagesFromPDFs: true,
+                locale: "cs_CS",
+                modifyExistingFiles: true,
+              }}
+            />
+          </div> 
+        </div>*/}
       </div>
     </AccordionField>
   );

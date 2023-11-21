@@ -174,7 +174,7 @@
             <div class="title parag">
     
                 <i class="dropdown icon"></i>
-                Cast {{value.name or loop.index}}
+                Část {{value.name or loop.index}}
               </div>
     
               <div class="content">
@@ -201,14 +201,14 @@
     
                 {% if value.materialType %} 
                 <div class="horiz-div details__parts__part-desc">
-                    <p class="parag"> Material: </p>
+                    <p class="parag"> Materiál: </p>
                     <p class="parag">{{value.materialType.title}}</p>
                   </div>
                 {% endif %}
     
                 {% if value.secondaryMaterialTypes %} 
                 <div class="horiz-div details__parts__part-desc">
-                    <p class="parag"> Vedlejsi typy materialu: </p>
+                    <p class="parag"> Vedlější typy materiálů: </p>
                     <p class="parag"> 
                       {% for val in value.secondaryMaterialTypes %} 
                           <p class="parag">{{ val.title }}</p>

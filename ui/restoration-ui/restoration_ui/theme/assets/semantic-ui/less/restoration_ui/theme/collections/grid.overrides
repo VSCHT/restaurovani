@@ -149,7 +149,8 @@ display: flex                         ;
 align-items: center                   ;
 justify-content: center               ;
 overflow: hidden                      ;
-width: 240px !important               ;
+max-width: 240px !important               ;
+max-height: 200px;
 }
 
 .grid.predmety__card__img-container img {
@@ -158,6 +159,7 @@ max-height: 100%                          ;
 width: auto                               ;
 height: auto                              ;
 width: 225px !important                   ;
+flex-basis: fit-content;
 }
 
 .grid.vert-div.predmety__card__main-info{
@@ -341,6 +343,7 @@ max-height: 100%                          ;
 width: auto                               ;
 height: auto                              ;
 width: 205px !important                   ;
+flex-basis: fit-content;
 }
 
 .grid.vert-div.predmety__card__main-info{
@@ -726,11 +729,12 @@ justify-content: space-between       ;
 }
 
 .grid.predmety__card__img-container {
+  max-height: 250px;
 display: flex                         ;
 align-items: center                   ;
 justify-content: center               ;
 overflow: hidden                      ;
-width: 280px                          ;
+max-width: 280px                          ;
 }
 
 .grid.predmety__card__img-container img {

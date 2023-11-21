@@ -14,7 +14,7 @@ async function fetchAndRender() {
     const data = await response.json();
 
     ReactDOM.render(<ImgCarousel imgs={data.entries} />, imgGalleryComp);
-    ReactDOM.render(<FilesSection files={data.entries} />, filesDivComp);
+    ReactDOM.render(<FilesSection files={data.entries}/>, filesDivComp);
 
   } catch (error) {
     console.log("Error fetching data:", error);

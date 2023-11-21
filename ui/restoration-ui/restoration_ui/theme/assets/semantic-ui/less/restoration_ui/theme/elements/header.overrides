@@ -8,6 +8,7 @@
     width: auto;
 }
 }
+
 @media only screen and (max-width:730px){
     .header.predmety__title{
     color: #1b1919;

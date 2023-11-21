@@ -1,6 +1,34 @@
 .ui.button{
   margin: 0px
 }
+.ui.red.button {
+    background-color: #de4929;
+    color: #FFFFFF;
+    text-shadow: none;
+    background-image: none;
+}
+.ui.button.form__stat__btn{
+  background:none;
+  width: auto;
+  padding: 5px;
+}
+.ui.button.form__stat__btn .delete.icon{
+  color:rgb(113, 0, 0);
+  width: auto;
+}
+.ui.button.form__stat__btn .edit.icon{
+  color:rgb(1, 68, 1);
+  width: auto;
+}
+.ui.button.form__stat__btn .file.image.outline.icon.icon{
+  width: auto;
+}
+.ui.button.form__stat__btn .delete.icon:hover{
+  color:rgb(175, 18, 18)
+}
+.ui.button.form__stat__btn .edit.icon:hover{
+  color:rgb(10, 141, 10)
+}
 .ui.icon.button.close-btn {
   padding-left: 0px;
   padding-right: 0px;
@@ -464,8 +492,8 @@
   color: white !important                    ;
   background-color: #de4929 !important;
   border-radius: 20px !important             ;
-  height: 35px !important                    ;
-  width: 110px !important                    ;
+  height: 41px !important;
+  width: 127px !important;
   border: none !important                    ;
   margin: 10px !important                    ;
   font-size: 13px !important                 ;
