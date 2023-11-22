@@ -4317,10 +4317,11 @@ input.parag.main-page__input-search-sb  {
     font-size: 20px ;
   }
   .description.parag{
-    line-height: 23px;
+    line-height: 21px;
+    text-align: center;
     word-wrap: break-word;
     font-family: Noto_Sans_regular !important;
-    font-size: 20px !important;
+    font-size: 18px !important;
   }
   .predmety__card__title {
     font-family: Noto_Sans_regular !important;

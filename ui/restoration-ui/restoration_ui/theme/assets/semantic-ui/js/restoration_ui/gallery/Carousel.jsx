@@ -19,7 +19,8 @@ export const ImgCarousel = ({ imgs }) => {
     infinite: false,
     speed: 100,
     slidesToShow: slidesToShow,
-    slidesToScroll: Math.min(2, imagesCollection?.length),
+    slidesToScroll: 1,
+    // slidesToScroll: slidesToShow > imagesCollection?.length ? 2 : imagesCollection?.length,
   };
 
   // next image
