@@ -7,6 +7,9 @@ table.ui.table {
   font-family: Noto_Sans_regular;
 }
 
+.ui.table tbody tr td.form__attach__title:hover{
+    color: gray
+}
 @media only screen and (min-width: 992px) {
   table.ui.table {
     font-size: 1.2rem

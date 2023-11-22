@@ -30,8 +30,17 @@
   background: none !important;
   font-size: 2rem !important;
 }
-
-
+button.form__stat__btn{
+  background:none !important;
+  border: none !important;
+  width: auto;
+  border-radius: 10px;
+  padding: 5px;
+}
+button.form__stat__btn:hover{
+   background: radial-gradient(circle, rgba(75, 75, 75, 0.2), #ffffff 70%, transparent 80%) !important;
+  
+}
 .predmety__form__attachments{
    width: 35%;
    height: 35px;
@@ -597,7 +606,7 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
 
 
 .modal-content img {
-  width: 40%;
+  
   height: auto;
   object-fit: contain;
 }

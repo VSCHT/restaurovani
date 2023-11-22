@@ -17,12 +17,10 @@ export const EditObjectForm = ({ edit }) => {
   let { record } = useFormConfig();
 
   const [activeIndex, setActiveIndex] = React.useState(0);
-  const handleActive = (x, values) => {
+  const handleActive = (x) => {
     setActiveIndex(x);
-    console.log(values);
   };
 
-  console.log(record);
   const formValues = {
     ...record,
     metadata: {
@@ -105,10 +103,11 @@ export const EditObjectForm = ({ edit }) => {
         parts: [
           ...(record?.metadata?.restorationWork?.parts?.map((part) => ({
             ...part,
-            restorationMethods: part.restorationMethods || [{ title: { cs: "" } }],
+            restorationMethods: part.restorationMethods || [
+              { title: { cs: "" } },
+            ],
           })) || []),
         ],
-        
 
         restorationPeriod: {
           since:
@@ -144,7 +143,7 @@ export const EditObjectForm = ({ edit }) => {
         validateOnChange={false}
         validateOnBlur={false}
       >
-        {({ values }) => (
+        {({ values , errors}) => (
           <Grid className="vert-div predmety__form">
             <div>
               <h3 className="predmety__form__h">
@@ -184,6 +183,7 @@ export const EditObjectForm = ({ edit }) => {
                     activeIndex={activeIndex}
                     handleActive={handleActive}
                     values={values}
+                    errors={errors}
                   />
                 </Overridable>
               </div>

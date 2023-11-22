@@ -1,341 +1,52 @@
 import React, { useState, useEffect } from "react";
-import { Icon, Button, Table, Tab, Confirm } from "semantic-ui-react";
-import { ReactWrapperPdf, ReactWrapperImg } from "./Uploader";
+import {
+  Icon,
+  Button,
+  Table,
+  Tab,
+  Confirm,
+  Modal,
+  Image,
+} from "semantic-ui-react";
+import {
+  ReactWrapperPdf,
+  ReactWrapperImg,
+  EditWrapper,
+  ExtractWrapper,
+} from "./Uploader";
 import FileManagementDialog from "@oarepo/file-manager";
 
-// const uploaderImg = ({ record }) => {
-//   return (
-//     <ReactWrapperImg
-//       preactComponent={FileManagementDialog}
-//       props={{
-//         config: { record: record },
-//         autoExtractImagesFromPDFs: true,
-//         locale: "cs_CS",
-//         allowedFileTypes: ["image/*"],
-//       }}
-//     />
-//   );
-// };
 
-// const uploaderPdf = ({ record }) => {
-//   return (
-//     <ReactWrapperPdf
-//       preactComponent={FileManagementDialog}
-//       props={{
-//         config: { record: record },
-//         autoExtractImagesFromPDFs: true,
-//         locale: "cs_CS",
-//         allowedFileTypes: ["*/pdf"],
-//       }}
-//     />
-//   );
-// };
-export const FileStat1 = ({ apiUrl, record }) => {
-  const [data, setData] = useState(null);
-  const [deleteItem, setDeleteItem] = useState(null);
-  const [confirmOpen, setConfirmOpen] = useState(false);
-  const [bigScreen, setBigScreen] = useState(null);
-
-  useEffect(() => {
-    function updateSlidesToShow() {
-      if (window.innerWidth >= 992) {
-        setBigScreen(true);
-      } else {
-        setBigScreen(false);
-      }
-    }
-    updateSlidesToShow();
-
-    window.addEventListener("resize", updateSlidesToShow);
-
-    return () => {
-      window.removeEventListener("resize", updateSlidesToShow);
-    };
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const result = await response.json();
-        setData(result);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, [apiUrl]);
-
-  if (!data) {
-    return <p>Loading...</p>;
-  }
-
-  const openDeleteConfirm = (item) => {
-    setDeleteItem(item);
-    setConfirmOpen(true);
-  };
-
-  const handleDelete = () => {
-    setData((prevData) => ({
-      ...prevData,
-      entries: prevData.entries.filter((item) => item.key !== deleteItem.key),
-    }));
-    setConfirmOpen(false);
-  };
-
-  function formatBytes(bytes, decimals = 2) {
-    if (!+bytes) return "0 Bytes";
-
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = [
-      "Bytes",
-      "KiB",
-      "MiB",
-      "GiB",
-      "TiB",
-      "PiB",
-      "EiB",
-      "ZiB",
-      "YiB",
-    ];
-
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
-  }
-
-  const itemsPerPage = 5;
-  const totalPages = Math.ceil(data?.entries?.length / itemsPerPage);
-
-  const panesImg = Array.from({ length: totalPages }, (_, index) => {
-    const start = index * itemsPerPage;
-    const end = start + itemsPerPage;
-    const slicedData = data.entries.slice(start, end);
-
-    return {
-      menuItem: `${index + 1}`,
-      render: () => (
-        <>
-          <Tab.Pane>
-            <Table>
-              {bigScreen && (
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell>Název</Table.HeaderCell>
-                    <Table.HeaderCell>Velikost</Table.HeaderCell>
-                    <Table.HeaderCell>Typ</Table.HeaderCell>
-                    <Table.HeaderCell>Akce</Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-              )}
-              <Table.Body>
-                {slicedData.map((d) => (
-                  <Table.Row key={d.key}>
-                    <Table.Cell>{d.metadata.caption}</Table.Cell>
-                    <Table.Cell>{formatBytes(d.metadata.size)} </Table.Cell>
-                    <Table.Cell>{d.metadata.fileType}</Table.Cell>
-                    <Table.Cell>
-                      <span className="horiz-div">
-                        <Button
-                          className="form__stat__btn"
-                          onClick={() => openDeleteConfirm(d)}
-                        >
-                          <Icon name="delete" />
-                        </Button>
-                        <Button className="form__stat__btn" onClick={() => {}}>
-                          <Icon name="edit" />
-                        </Button>
-                        {d.metadata.fileType == "document" && (
-                          <Button
-                            className="form__stat__btn"
-                            onClick={() => {}}
-                          >
-                            <Icon name="file image outline" />
-                          </Button>
-                        )}
-                      </span>
-                    </Table.Cell>
-                  </Table.Row>
-                ))}
-              </Table.Body>
-            </Table>
-            <Confirm
-              open={confirmOpen}
-              content={"Chcete smazat?"}
-              cancelButton={"Zrušit"}
-              confirmButton={"Ano"}
-              onCancel={() => {
-                setConfirmOpen(false);
-                setDeleteItem(null);
-              }}
-              onConfirm={handleDelete}
-            />
-            <ReactWrapperImg
-              preactComponent={FileManagementDialog}
-              props={{
-                config: { record: record },
-                autoExtractImagesFromPDFs: true,
-                locale: "cs_CS",
-                allowedFileTypes: ["image/*"],
-              }}
-            />
-          </Tab.Pane>
-        </>
-      ),
-    };
-  });
-
-  const panesPdf = Array.from({ length: totalPages }, (_, index) => {
-    const start = index * itemsPerPage;
-    const end = start + itemsPerPage;
-    const slicedData = data.entries.slice(start, end);
-
-    return {
-      menuItem: `${index + 1}`,
-      render: () => (
-        <>
-          <Tab.Pane>
-            <Table>
-              {bigScreen && (
-                <Table.Header>
-                  <Table.Row>
-                    <Table.HeaderCell>Název</Table.HeaderCell>
-                    <Table.HeaderCell>Velikost</Table.HeaderCell>
-                    <Table.HeaderCell>Typ</Table.HeaderCell>
-                    <Table.HeaderCell>Akce</Table.HeaderCell>
-                  </Table.Row>
-                </Table.Header>
-              )}
-
-              <Table.Body>
-                {slicedData.map((d) => (
-                  <Table.Row key={d.key}>
-                    <Table.Cell>{d.metadata.caption}</Table.Cell>
-                    <Table.Cell>{formatBytes(d.metadata.size)} </Table.Cell>
-                    <Table.Cell>{d.metadata.fileType}</Table.Cell>
-                    <Table.Cell>
-                      <span className="horiz-div">
-                        <Button
-                          className="form__stat__btn"
-                          onClick={() => openDeleteConfirm(d)}
-                        >
-                          <Icon name="delete" />
-                        </Button>
-                        <Button className="form__stat__btn" onClick={() => {}}>
-                          <Icon name="edit" />
-                        </Button>
-                        {d.metadata.fileType == "document" && (
-                          <Button
-                            className="form__stat__btn"
-                            onClick={() => {}}
-                          >
-                            <Icon name="file image outline" />
-                          </Button>
-                        )}
-                      </span>
-                    </Table.Cell>
-                  </Table.Row>
-                ))}
-              </Table.Body>
-            </Table>
-            <Confirm
-              open={confirmOpen}
-              content={"Chcete smazat?"}
-              cancelButton={"Zrušit"}
-              confirmButton={"Ano"}
-              onCancel={() => {
-                setConfirmOpen(false);
-                setDeleteItem(null);
-              }}
-              onConfirm={handleDelete}
-            />
-            <ReactWrapperPdf
-              preactComponent={FileManagementDialog}
-              props={{
-                config: { record: record },
-                autoExtractImagesFromPDFs: true,
-                locale: "cs_CS",
-                allowedFileTypes: ["*/pdf"],
-              }}
-            />
-          </Tab.Pane>
-        </>
-      ),
-    };
-  });
-  return (
-    <>
-      {data?.entries?.some((file) => file.metadata.fileType === "document") ? (
-        <div className="vert-div predmety__form__div">
-          <Tab panes={panesPdf} />
-        </div>
-      ) : (
-        <div className="vert-div predmety__form__div">
-          <ReactWrapperPdf
-            preactComponent={FileManagementDialog}
-            props={{
-              config: { record: record },
-              autoExtractImagesFromPDFs: true,
-              locale: "cs_CS",
-              allowedFileTypes: ["image/*"],
-            }}
-          />
-        </div>
-      )}
-      {data?.entries?.some((file) => file.metadata.fileType === "photo") ? (
-        <div className="vert-div predmety__form__div">
-          <Tab panes={panesImg} />
-        </div>
-      ) : (
-        <div className="vert-div predmety__form__div">
-          {" "}
-          <ReactWrapperPdf
-            preactComponent={FileManagementDialog}
-            props={{
-              config: { record: record },
-              autoExtractImagesFromPDFs: true,
-              locale: "cs_CS",
-              allowedFileTypes: ["*/pdf"],
-            }}
-          />
-        </div>
-      )}
-    </>
-  );
-};
 
 export const FileStat = ({ apiUrl, record }) => {
   const [data, setData] = useState(null);
-  const [deleteItem, setDeleteItem] = useState(null);
-  const [confirmOpen, setConfirmOpen] = useState(false);
-  const [bigScreen, setBigScreen] = useState(null);
+  // const [bigScreen, setBigScreen] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
 
-  useEffect(() => {
-    function updateSlidesToShow() {
-      if (window.innerWidth >= 992) {
-        setBigScreen(true);
-      } else {
-        setBigScreen(false);
-      }
-    }
-    updateSlidesToShow();
+  // useEffect(() => {
+  //   function updateSlidesToShow() {
+  //     if (window.innerWidth <= 992 && window.innerWidth >= 350 ) {
+  //       setBigScreen(true);
+  //     } else {
+  //       setBigScreen(false);
+  //     }
+  //   }
+  //   updateSlidesToShow();
 
-    const handleResize = () => {
-      updateSlidesToShow();
-    };
+  //   const handleResize = () => {
+  //     updateSlidesToShow();
+  //   };
 
-    window.addEventListener("resize", handleResize);
+  //   window.addEventListener("resize", handleResize);
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
+
+  // fetching data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -346,7 +57,7 @@ export const FileStat = ({ apiUrl, record }) => {
         const result = await response.json();
         setData(result);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.log("Error fetching data:", error);
       }
     };
 
@@ -357,19 +68,8 @@ export const FileStat = ({ apiUrl, record }) => {
     return <p>Loading...</p>;
   }
 
-  const openDeleteConfirm = (item) => {
-    setDeleteItem(item);
-    setConfirmOpen(true);
-  };
 
-  const handleDelete = () => {
-    setData((prevData) => ({
-      ...prevData,
-      entries: prevData.entries.filter((item) => item.key !== deleteItem.key),
-    }));
-    setConfirmOpen(false);
-  };
-
+  // converting file size
   function formatBytes(bytes, decimals = 2) {
     if (!+bytes) return "0 Bytes";
 
@@ -392,43 +92,128 @@ export const FileStat = ({ apiUrl, record }) => {
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
   }
 
-  const renderTableHeader = () =>
-    bigScreen && (
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell>Název</Table.HeaderCell>
-          <Table.HeaderCell>Velikost</Table.HeaderCell>
-          <Table.HeaderCell>Typ</Table.HeaderCell>
-          <Table.HeaderCell>Akce</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-    );
 
+  // button for extracting images from pdf
+  const extractImg = (key, record) => {
+    return (
+      <ExtractWrapper
+        preactComponent={FileManagementDialog}
+        props={{
+          config: { record: record },
+          autoExtractImagesFromPDFs: true,
+          locale: "cs_CS",
+          startEvent: {
+            event: "upload-images-from-pdf",
+            data: { key: key },
+          },
+        }}
+      />
+    );
+  };
+
+  // delete button
+
+  const DeleteButton = ({ apiUrl}) => {
+    const [confirmOpen, setConfirmOpen] = useState(false);
+    const handleDelete = async () => {
+      try {
+        const response = await fetch(apiUrl, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+      } catch (error) {
+        console.log("Error deleting data:", error);
+      } finally {
+        setConfirmOpen(false);
+        location.reload();
+      }
+    };
+
+    return (
+      <>
+        <Button
+          className="form__stat__btn"
+          onClick={() => setConfirmOpen(true)}
+        >
+          <Icon name="delete" />
+        </Button>
+        <Confirm
+          open={confirmOpen}
+          content={"Chcete smazat?"}
+          cancelButton={"Zrušit"}
+          confirmButton={"Ano"}
+          onCancel={() => setConfirmOpen(false)}
+          onConfirm={handleDelete}
+        />
+      </>
+    );
+  };
+
+  // button for file edit
+  const editFile = (key, record) => {
+    return (
+      <EditWrapper
+        preactComponent={FileManagementDialog}
+        props={{
+          config: { record: record },
+          autoExtractImagesFromPDFs: true,
+          locale: "cs_CS",
+          startEvent: { event: "edit-file", data: { key: key } },
+        }}
+      />
+    );
+  };
+
+  // const renderTableHeader = () =>
+  //   bigScreen && (
+  //     <Table.Header>
+  //       <Table.Row>
+  //         <Table.HeaderCell>Název</Table.HeaderCell>
+  //         <Table.HeaderCell>Velikost</Table.HeaderCell>
+  //         <Table.HeaderCell>Typ</Table.HeaderCell>
+  //         <Table.HeaderCell>Akce</Table.HeaderCell>
+  //       </Table.Row>
+  //     </Table.Header>
+  //   );
+
+    // table's body
   const renderTableBody = (fileTypeFilter) => (
     <Table.Body>
-      {data.entries
-        .filter((d) => d.metadata.fileType === fileTypeFilter)
-        .map((d) => (
+      {data?.entries
+        ?.filter((d) => d.metadata.fileType === fileTypeFilter)
+        ?.map((d, index) => (
           <Table.Row key={d.key}>
-            <Table.Cell>{d.metadata.caption}</Table.Cell>
+
+            {d.metadata.fileType === "photo" && (
+              <Table.Cell
+                className="form__attach__title"
+                onClick={() => {
+                  setSelectedImage(index);
+                  setModalOpen(true);
+                }}
+              >
+                {d.metadata.caption}
+              </Table.Cell>
+            )}
+            {d.metadata.fileType === "document" && (
+              <Table.Cell>{d.metadata.caption}</Table.Cell>
+            )}
             <Table.Cell>{formatBytes(d.metadata.size)}</Table.Cell>
             <Table.Cell>{d.metadata.fileType}</Table.Cell>
             <Table.Cell>
               <span className="horiz-div">
-                <Button
-                  className="form__stat__btn"
-                  onClick={() => openDeleteConfirm(d)}
-                >
-                  <Icon name="delete" />
-                </Button>
-                <Button className="form__stat__btn" onClick={() => {}}>
-                  <Icon name="edit" />
-                </Button>
-                {d.metadata.fileType === "document" && (
-                  <Button className="form__stat__btn" onClick={() => {}}>
-                    <Icon name="file image outline" />
-                  </Button>
-                )}
+                <DeleteButton apiUrl={d.links.self} />
+
+                {editFile(d.key, record)}
+
+                {d.metadata.fileType === "document" &&
+                  extractImg(d.key, record)}
               </span>
             </Table.Cell>
           </Table.Row>
@@ -436,31 +221,27 @@ export const FileStat = ({ apiUrl, record }) => {
     </Table.Body>
   );
 
-  const renderTabs = (record) => (
+  // separate tabs for images and docs
+  const renderTabs = () => (
     <Tab
       panes={[
         {
-          menuItem: "Images",
+          menuItem: "Obrázky",
+
           render: () => (
             <Tab.Pane>
-              <Table>
-                {renderTableHeader()}
-                {renderTableBody("photo")}
-              </Table>
-              {renderConfirmDialog()}
+              <Table>{renderTableBody("photo")}</Table>
+
               {uploaderImg(record)}
             </Tab.Pane>
           ),
         },
         {
-          menuItem: "PDFs",
+          menuItem: "Dokumenty",
           render: () => (
             <Tab.Pane>
-              <Table>
-                {renderTableHeader()}
-                {renderTableBody("document")}
-              </Table>
-              {renderConfirmDialog()}
+              <Table>{renderTableBody("document")}</Table>
+
               {uploaderPdf(record)}
             </Tab.Pane>
           ),
@@ -469,20 +250,7 @@ export const FileStat = ({ apiUrl, record }) => {
     />
   );
 
-  const renderConfirmDialog = () => (
-    <Confirm
-      open={confirmOpen}
-      content={"Chcete smazat?"}
-      cancelButton={"Zrušit"}
-      confirmButton={"Ano"}
-      onCancel={() => {
-        setConfirmOpen(false);
-        setDeleteItem(null);
-      }}
-      onConfirm={handleDelete}
-    />
-  );
-
+  // button for img upload
   const uploaderImg = (record) => {
     return (
       <ReactWrapperImg
@@ -497,6 +265,7 @@ export const FileStat = ({ apiUrl, record }) => {
     );
   };
 
+  // button for docs upload
   const uploaderPdf = (record) => {
     return (
       <ReactWrapperPdf
@@ -518,11 +287,8 @@ export const FileStat = ({ apiUrl, record }) => {
           menuItem: "Obrazky",
           render: () => (
             <Tab.Pane>
-              <Table>
-                {renderTableHeader()}
-                {renderTableBody()}
-              </Table>
-              {renderConfirmDialog()}
+              <Table>{renderTableBody()}</Table>
+
               {uploaderImg(record)}
             </Tab.Pane>
           ),
@@ -531,16 +297,37 @@ export const FileStat = ({ apiUrl, record }) => {
           menuItem: "Dokumenty",
           render: () => (
             <Tab.Pane>
-              <Table>
-                {renderTableHeader()}
-                {renderTableBody()}
-              </Table>
-              {renderConfirmDialog()}
+              <Table>{renderTableBody()}</Table>
+
               {uploaderPdf(record)}
             </Tab.Pane>
           ),
         },
       ])}
+
+{/* modal for full screen image */}
+      <div>
+        <Modal
+          open={modalOpen}
+          onClose={() => setModalOpen(false)}
+          className="custom-modal"
+        >
+          <Modal.Content image className="modal-content">
+            <div className="vert-div">
+              <Image
+                src={data?.entries?.[selectedImage]?.links?.content}
+                className="modal-image"
+              />
+              <p>{data?.entries?.[selectedImage]?.metadata?.caption}</p>
+            </div>
+            <Button
+              icon="close"
+              onClick={() => setModalOpen(false)}
+              className="close-button"
+            />
+          </Modal.Content>
+        </Modal>
+      </div>
     </>
   );
 };

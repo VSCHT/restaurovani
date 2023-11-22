@@ -21,11 +21,8 @@ export const SaveButton = ({ title = "VYTVOŘIT" }) => {
             return;
           }
           if (!_isEmpty(err)) {
-            console.log(err);
             return;
           }
-
-          console.log(formik);
           save();
         }}
         content={title}

@@ -27,7 +27,6 @@ export const KeyWordsInput = ({ fieldPath }) => {
     words.splice(index, 1);
     setWords([...words]);
     setFieldValue(fieldPath, words);
-    console.log(words);
   };
 
   return (

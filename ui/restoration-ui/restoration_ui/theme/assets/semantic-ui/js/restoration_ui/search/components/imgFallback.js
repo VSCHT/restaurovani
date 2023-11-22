@@ -21,19 +21,24 @@ export function ImageWithFallback({ src, result, classN }) {
         return response.json();
       })
       .then(async (res) => {
-        const fImg = res?.entries?.filter(
-          (item) => item.metadata.featured == true
-        );
+     
+          const fImg = res?.entries?.filter(
+            (item) => item.metadata.featured == true
+          );
+          setImageUrlFeat(fImg);
+       
 
-        const rImg = res?.entries?.[0];
-        setImageUrlFeat(fImg);
-        setImageUrlRand(rImg);
+      
+          const rImg = res?.entries?.[0] ?? res?.entries?.[1] ;
+
+          setImageUrlRand(rImg);
+        
       })
 
       .catch(() => console.log("No photos"));
   }, [result]);
 
-
+  
   return imgUrlFeat?.[0] ? (
     <Image
       src={imgUrlFeat?.[0]?.links?.content}
@@ -44,7 +49,7 @@ export function ImageWithFallback({ src, result, classN }) {
     <Image
       src={imgUrlRand?.links?.content}
       onError={handleImageError}
-      alt={`Foto predmetu ${imgUrlRand?.metadata?.caption}`}
+      alt={`Foto predmetu ${imgUrlRand?.metadata?.caption} `}
       className={classN}
     />
   );

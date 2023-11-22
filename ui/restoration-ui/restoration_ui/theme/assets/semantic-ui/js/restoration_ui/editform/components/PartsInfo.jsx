@@ -9,13 +9,13 @@ import {
   ArrayField,
 } from "react-invenio-forms";
 
-import { Form } from "semantic-ui-react";
+import { Form, Label } from "semantic-ui-react";
 import { ArrayFieldItem } from "@js/oarepo_ui";
-
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 
-export const PartsInfo = ({ activeIndex, handleActive, values }) => {
+export const PartsInfo = ({ activeIndex, handleActive, values, errors }) => {
+  console.log(errors);
   return (
     <AccordionField
       includesPaths={["metadata.restorationObject.parts"]}
@@ -43,9 +43,10 @@ export const PartsInfo = ({ activeIndex, handleActive, values }) => {
                   <h3>
                     Součást &nbsp;
                     {values.metadata?.restorationObject?.parts?.[indexPath]
-                      ?.name == 0
+                      ?.name == ""
                       ? indexPath + 1
-                      : values.metadata.restorationObject.parts[indexPath].name}
+                      : values?.metadata?.restorationObject?.parts?.[indexPath]
+                          ?.name}
                   </h3>
                   <div className="vert-div predmety__form__div">
                     <TextField
@@ -76,6 +77,11 @@ export const PartsInfo = ({ activeIndex, handleActive, values }) => {
                           ></FieldLabel>
                         }
                       />
+                      {errors?.metadata?.restorationObject?.parts ? (
+                        <Label pointing="above" prompt>
+                          Jenom jedna součást může být hlavní
+                        </Label>
+                      ) : null}
                     </Form.Field>
                   </div>
                   <div className="vert-div predmety__form__div">

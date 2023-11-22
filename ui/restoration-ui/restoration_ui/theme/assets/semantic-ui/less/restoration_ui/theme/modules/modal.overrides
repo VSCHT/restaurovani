@@ -11,6 +11,9 @@ width: 90%
 .ui.modal .image.content {
     flex-direction: row;
 }
+.modal-content.image.content .vert-div {
+    min-width: 60%;
+}
 .modal.custom-modal {
 position: fixed                ;
 top: 0                         ;

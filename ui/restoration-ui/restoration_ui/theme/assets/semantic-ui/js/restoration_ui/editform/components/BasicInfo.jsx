@@ -17,9 +17,6 @@ import { ArrayFieldItem } from "@js/oarepo_ui";
 
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
-
-import { ReactWrapperPdf, ReactWrapperImg, ReactWrapperEdit } from "./Uploader";
-import FileManagementDialog from "@oarepo/file-manager";
 import { FileStat } from "./FileStat";
 
 export const BasicInfo = ({ activeIndex, handleActive, record }) => {
@@ -31,8 +28,6 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
     { value: "metr", text: "metr" },
     { value: "mm", text: "mm" },
   ];
-
-  console.log({ record: record });
 
   return (
     <AccordionField
@@ -249,44 +244,8 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
         </div>
 
         <div className="vert-div predmety__form__div">
-          <h3>Přílohy</h3>
-          <FileStat apiUrl={record?.links?.files} record={record}/>
+          <FileStat apiUrl={record?.links?.files} record={record} />
         </div>
-       {/* <div className="horiz-div predmety__form__div-attachments">
-          <div className="predmety__form__attachments">
-            <ReactWrapperPdf
-              preactComponent={FileManagementDialog}
-              props={{
-                config: { record: record },
-                autoExtractImagesFromPDFs: true,
-                locale: "cs_CS",
-                allowedFileTypes: ["application/pdf"]
-              }}
-            />
-          </div>
-          <div className="predmety__form__attachments">
-          <ReactWrapperImg
-              preactComponent={FileManagementDialog}
-              props={{
-                config: { record: record },
-                autoExtractImagesFromPDFs: true,
-                locale: "cs_CS",
-                allowedFileTypes: ["image/*"]
-              }}
-            />
-          </div>
-           <div className="predmety__form__attachments">
-            <ReactWrapperEdit
-              preactComponent={FileManagementDialog}
-              props={{
-                config: { record: record },
-                autoExtractImagesFromPDFs: true,
-                locale: "cs_CS",
-                modifyExistingFiles: true,
-              }}
-            />
-          </div> 
-        </div>*/}
       </div>
     </AccordionField>
   );

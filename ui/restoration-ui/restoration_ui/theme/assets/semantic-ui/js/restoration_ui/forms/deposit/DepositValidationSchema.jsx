@@ -3,15 +3,16 @@
 import * as Yup from "yup";
 
 const requiredMessage = "Pole je povinné";
-const numMessage="Musí byt číslo";
-const dateMessage="Musí byt datum správného formatu";
+const numMessage = "Musí byt číslo";
+const dateMessage = "Musí byt datum správného formatu";
 
 export const DepositValidationSchemaDraft = Yup.object().shape({
   metadata: Yup.object().shape({
     restorationObject: Yup.object().shape({
-      title:  Yup.string().required(requiredMessage)
-        ,
-      category: Yup.string().oneOf(["sklo", "keramika", "kovy", "textil"]).required(),
+      title: Yup.string().required(requiredMessage),
+      category: Yup.string()
+        .oneOf(["sklo", "keramika", "kovy", "textil"])
+        .required(),
     }),
     restorationWork: Yup.object().shape({
       restorer: Yup.string().required(requiredMessage),
@@ -22,8 +23,7 @@ export const DepositValidationSchemaDraft = Yup.object().shape({
 export const DepositValidationSchemaEdit = Yup.object().shape({
   metadata: Yup.object().shape({
     restorationObject: Yup.object().shape({
-      title:  Yup.string().required(requiredMessage)
-      ,
+      title: Yup.string().required(requiredMessage),
       description: Yup.array()
         .of(
           Yup.object()
@@ -46,7 +46,7 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
           }),
         })
       ),
-     
+
       keywords: Yup.array(),
       restorationRequestor: Yup.object().shape({
         title: Yup.object().shape({
@@ -59,6 +59,22 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
         until: Yup.number().typeError(numMessage),
         since: Yup.number().typeError(numMessage),
       }),
+
+      parts: Yup.array()
+        .of(
+          Yup.object().shape({
+            name: Yup.string().required(),
+            main: Yup.boolean().required(),
+          })
+        )
+        .test(
+          "hasMainPart",
+          "Jenom jedna součást může být hlavní",
+          function (value) {
+            const mainCount = value.filter((part) => part.main).length;
+            return mainCount === 1;
+          }
+        ),
     }),
     restorationWork: Yup.object().shape({
       restorer: Yup.string().required(requiredMessage),
@@ -67,12 +83,12 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
           fullName: Yup.string(),
           comment: Yup.string(),
           institution: Yup.string(),
-        })),
-        restorationPeriod: Yup.object().shape({
-          until: Yup.date().typeError(dateMessage),
-          since: Yup.date().typeError(dateMessage),
-        }),
+        })
+      ),
+      restorationPeriod: Yup.object().shape({
+        until: Yup.date().typeError(dateMessage),
+        since: Yup.date().typeError(dateMessage),
+      }),
     }),
-
   }),
 });

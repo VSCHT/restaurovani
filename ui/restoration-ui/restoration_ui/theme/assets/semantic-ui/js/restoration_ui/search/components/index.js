@@ -21,9 +21,7 @@ export const resetQuery = () => {
         ...config.initialQueryState,
       },
     });
-    console.log(window.location);
     var href = new URL(window.location.href);
-    console.log(href.searchParams);
     href.searchParams.set("q", "");
     window.location.href = href.toString();
   };

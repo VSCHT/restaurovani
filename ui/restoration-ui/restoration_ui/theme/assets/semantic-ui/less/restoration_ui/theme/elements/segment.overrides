@@ -1,3 +1,20 @@
 .ui.segment.pushable{
 position: absolute
 }
+
+
+.ui.attached.segment {
+    border: 1px solid #555555;
+}
+
+.ui.tabular.menu {
+    border-bottom: 1px solid #85857e !important;
+}
+
+.ui.tabular.menu .active.item {
+    border-color: #85857e !important;
+}
+
+.ui.segment[class*="bottom attached"] {
+    border-radius: 0em 0em 20px 20px;
+}

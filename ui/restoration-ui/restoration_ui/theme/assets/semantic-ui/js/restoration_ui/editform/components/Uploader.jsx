@@ -2,64 +2,88 @@ import React, { useEffect, useRef } from "react";
 import { h, render } from "preact";
 
 export const ReactWrapperPdf = ({ preactComponent, props }) => {
+  const preactCompRef = useRef();
 
-    const preactCompRef = useRef();
-  
-    useEffect(() => {
-   
-      render(
-        h(preactComponent, {
-          TriggerComponent:({onClick, ...props})=>   h("button", { className: 'predmety__form__attachments__btn', onClick: onClick }, "Dodat soubory"),
-          ...props 
-        }),
-        preactCompRef.current
+  useEffect(() => {
+    render(
+      h(preactComponent, {
+        TriggerComponent: ({ onClick, ...props }) =>
+          h(
+            "button",
+            { className: "predmety__form__attachments__btn", onClick: onClick },
+            "Dodat soubory"
+          ),
+        ...props,
+      }),
+      preactCompRef.current
+    );
+  });
+
+  return <div ref={preactCompRef} />;
+};
+
+export const ReactWrapperImg = ({ preactComponent, props }) => {
+  const preactCompRef = useRef();
+
+  useEffect(() => {
+    render(
+      h(preactComponent, {
+        TriggerComponent: ({ onClick, ...props }) =>
+          h(
+            "button",
+            { className: "predmety__form__attachments__btn", onClick: onClick },
+            "Dodat obrázky"
+          ),
+        ...props,
+      }),
+      preactCompRef.current
+    );
+  });
+
+  return <div ref={preactCompRef} />;
+};
+
+export const EditWrapper = ({ preactComponent, props }) => {
+  const preactCompRef = useRef();
+
+  useEffect(() => {
+    const triggerComponent = ({ onClick, ...triggerProps }) =>
+      h(
+        "button",
+        { className: "form__stat__btn", onClick: onClick, ...triggerProps },
+        [h("img", { src: "/static/images/edit-icon.png", alt: "Edit Button" })]
       );
 
-      
-    });
-  
-    return <div ref={preactCompRef} />;
-  };
+    render(
+      h(preactComponent, { TriggerComponent: triggerComponent, ...props }),
+      preactCompRef.current
+    );
+  }, [preactComponent, props]);
 
-  export const ReactWrapperImg = ({ preactComponent, props }) => {
+  return <div ref={preactCompRef} />;
+};
 
-    const preactCompRef = useRef();
-  
-    useEffect(() => {
-   
-      render(
-        h(preactComponent, {
-          TriggerComponent:({onClick, ...props})=>   h("button", { className: 'predmety__form__attachments__btn', onClick: onClick }, "Dodat obrázky"),
-          ...props 
-        }),
-        preactCompRef.current
+export const ExtractWrapper = ({ preactComponent, props }) => {
+  const preactCompRef = useRef();
+
+  useEffect(() => {
+    const triggerComponent = ({ onClick, ...triggerProps }) =>
+      h(
+        "button",
+        { className: "form__stat__btn", onClick: onClick, ...triggerProps },
+        [
+          h("img", {
+            src: "/static/images/image-icon.png",
+            alt: "Extract Button",
+          }),
+        ]
       );
 
-      
-    });
-  
-    return <div ref={preactCompRef} />;
-  };
-  
+    render(
+      h(preactComponent, { TriggerComponent: triggerComponent, ...props }),
+      preactCompRef.current
+    );
+  }, [preactComponent, props]);
 
-  export const ReactWrapperEdit = ({ preactComponent, props }) => {
-
-    const preactCompRef = useRef();
-  
-    useEffect(() => {
-   
-      render(
-        h(preactComponent, {
-          TriggerComponent:({onClick, ...props})=>   h("button", { className: 'predmety__form__attachments__btn', onClick: onClick }, "Editovat existujicí přílohy"),
-          ...props 
-        }),
-        preactCompRef.current
-      );
-
-      
-    });
-  
-    return <div ref={preactCompRef} />;
-  };
-  
-  
+  return <div ref={preactCompRef} />;
+};

@@ -8,9 +8,25 @@
     background-image: none;
 }
 .ui.button.form__stat__btn{
-  background:none;
+  background:none !important;
+  border: none !important;
   width: auto;
-  padding: 5px;
+  padding: 5px !important; 
+  border-radius: 10px;
+}
+
+.ui.button.form__stat__btn:hover{
+  background: radial-gradient(circle, rgba(75, 75, 75, 0.2), #ffffff 70%, transparent 80%) !important;
+}
+.ui.button.form__stat__btn:not(.icon) > .icon:not(.button.form__stat__btn):not(.dropdown) {
+    margin: 5px;
+}
+
+.actions .ui.primary.button{
+  background-color:rgb(1, 68, 1);
+}
+.actions .ui.primary.button:hover{
+  background-color:rgb(10, 141, 10)
 }
 .ui.button.form__stat__btn .delete.icon{
   color:rgb(113, 0, 0);
