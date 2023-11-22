@@ -14,14 +14,15 @@ export const ImgCarousel = ({ imgs }) => {
   const [imagesCollection, setImagesCollection] = useState([]);
 
 
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 100,
-    slidesToShow: slidesToShow,
-    slidesToScroll: 1,
-    // slidesToScroll: slidesToShow > imagesCollection?.length ? 2 : imagesCollection?.length,
-  };
+
+const settings = {
+  dots: true,
+  infinite: false,
+  speed: 100,
+  slidesToShow: slidesToShow,
+  slidesToScroll: 1,
+  swipeToSlide: true, 
+};
 
   // next image
   const handleNextImage = () => {
