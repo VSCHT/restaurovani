@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Image } from "semantic-ui-react";
 
-export function ImageWithFallback({ src, result, classN }) {
+export function ImageWithFallback({ src, result, fallbackSrc, classN }) {
+  
   const [imageSrc, setImageSrc] = useState([src]);
-
   const handleImageError = () => {
-    setImageSrc(imageSrc);
+    setImageSrc([fallbackSrc]);
   };
 
   const [imgUrlFeat, setImageUrlFeat] = useState([src]);
@@ -21,36 +21,32 @@ export function ImageWithFallback({ src, result, classN }) {
         return response.json();
       })
       .then(async (res) => {
-     
-          const fImg = res?.entries?.filter(
-            (item) => item.metadata.featured == true
-          );
-          setImageUrlFeat(fImg);
-       
+        const fImg = res?.entries?.filter(
+          (item) => item.metadata.featured == true
+        );
+        setImageUrlFeat(fImg);
 
-      
-          const rImg = res?.entries?.[0] ?? res?.entries?.[1] ;
+        const rImg = res?.entries?.[0] ?? res?.entries?.[1];
 
-          setImageUrlRand(rImg);
-        
+        setImageUrlRand(rImg);
       })
 
       .catch(() => console.log("No photos"));
   }, [result]);
 
-  
-  return imgUrlFeat?.[0] ? (
+
+
+  return imgUrlFeat  || imgUrlRand ? (
     <Image
-      src={imgUrlFeat?.[0]?.links?.content}
+      src={imgUrlFeat?.links?.content ?? imgUrlRand?.links?.content}
       onError={handleImageError}
-      alt={`Foto predmetu ${imgUrlFeat?.[0]?.metadata?.caption}`}
+      alt={`Foto predmetu ${imgUrlFeat?.[0]?.metadata?.caption === undefined || imgUrlRand?.[0]?.metadata?.caption === undefined? "" : imgUrlFeat?.[0]?.metadata?.caption || imgUrlFeat?.[0]?.metadata?.caption === undefined}`}
     />
   ) : (
     <Image
-      src={imgUrlRand?.links?.content}
+      src={imageSrc}
       onError={handleImageError}
-      alt={`Foto predmetu ${imgUrlRand?.metadata?.caption} `}
-      className={classN}
+      alt={`Foto predmetu`}
     />
   );
 }

@@ -17,7 +17,7 @@ async function fetchAndRender() {
     ReactDOM.render(<FilesSection files={data.entries}/>, filesDivComp);
 
   } catch (error) {
-    console.log("Error fetching data:", error);
+    console.log("Error fetching data");
   }
 }
 

@@ -8,8 +8,8 @@ jinjax==0.29
 langcodes==3.3.0
 oarepo-published-service==1.0.2
 oarepo-runtime==1.4.37
-oarepo-ui==5.0.83
-oarepo-vocabularies==2.0.67
+oarepo-ui==5.0.85
+oarepo-vocabularies==2.0.68
 openpyxl==3.1.2
 python-dotenv==1.0.0
 whitenoise==6.6.0

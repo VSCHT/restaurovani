@@ -14,7 +14,9 @@
   padding: 5px !important; 
   border-radius: 10px;
 }
-
+button.ui.icon.button.carousel-button.left, button.ui.icon.button.carousel-button.right{
+  width: 100%;
+}
 .ui.button.form__stat__btn:hover{
   background: radial-gradient(circle, rgba(75, 75, 75, 0.2), #ffffff 70%, transparent 80%) !important;
 }

@@ -41,12 +41,14 @@ export const ReactWrapperImg = ({ preactComponent, props }) => {
   });
 
   return <div ref={preactCompRef} />;
+  
 };
 
 export const EditWrapper = ({ preactComponent, props }) => {
   const preactCompRef = useRef();
 
   useEffect(() => {
+   
     const triggerComponent = ({ onClick, ...triggerProps }) =>
       h(
         "button",
@@ -60,8 +62,10 @@ export const EditWrapper = ({ preactComponent, props }) => {
     );
   }, [preactComponent, props]);
 
+
   return <div ref={preactCompRef} />;
 };
+
 
 export const ExtractWrapper = ({ preactComponent, props }) => {
   const preactCompRef = useRef();

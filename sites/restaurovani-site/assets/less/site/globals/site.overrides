@@ -156,6 +156,16 @@ p.transition.visible.parag {
   gap: 40px;
   flex-direction: column;
 }
+.ui.vertical.menu{
+  display: flex !important
+}
+.ui.vertical.menu .item{
+  align-self: center !important;
+  width: auto !important
+}
+nav .ui.vertical.menu.fluid{
+  display: block !important
+}
 }
 
 .form__input__title-small{
@@ -189,9 +199,7 @@ font-family: Noto_Sans_semibold !important;
   transform: rotate(180deg);
 }
 
-nav .ui.vertical.menu.fluid{
-  display: block !important
-}
+
 nav .ui.vertical.menu.fluid .brand.item.active{
   background-color: rgb(124 124 121);
 }
@@ -211,6 +219,7 @@ nav .ui.vertical.menu.fluid .header.item {
 #images-carousel {
   width: 100%;
   margin-top: 20px;
+  
 }
 .form__label__div-err {
   gap: 5px;
@@ -262,13 +271,7 @@ nav .ui.vertical.menu.fluid .header.item {
 html.cover-page{
   background-color: #eaeae2
 }
-.ui.vertical.menu{
-  display: flex !important
-}
-.ui.vertical.menu .item{
-  align-self: center !important;
-  width: auto !important
-}
+
 .ui.basic.very.padded.segment a img{
   width: 75px;
 }
@@ -412,7 +415,7 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
   position: absolute;
   bottom: -25px;
 
-  display: block;
+  display: none !important;
 
   width: 100%;
   padding: 0;
@@ -488,7 +491,7 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
 /* Slider */
 .slick-slider {
   position: relative;
-
+  
   display: block;
   box-sizing: border-box;
 
@@ -503,13 +506,15 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
   touch-action: pan-y;
   -webkit-tap-highlight-color: transparent;
 }
-
+/* .slick-slide div:has(div.ui.active.loader){
+  background: none !important;
+} */
 .slick-list {
   position: relative;
-
+  min-height: 100px !important;
   display: block;
   overflow: hidden;
-
+  max-height: 195px !important;
   margin: 0;
   padding: 0;
 }
@@ -531,13 +536,13 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
   -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   display: flex;
-  gap: 0.5%;
+  gap: 0.1%;
 }
 
 .slick-track {
   position: relative;
   top: 0;
-  left: 0;
+  left: -3%;
 
   display: block;
   margin-left: auto;
@@ -561,7 +566,7 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
   float: left;
 
   height: 100%;
-  min-height: 1px;
+  min-height: 50px;
 }
 [dir="rtl"] .slick-slide {
   float: right;
@@ -844,7 +849,7 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
     align-items: center;
     text-align: center;
   }
-  .main-page__menu__btn:hover {
+  .main-page__menu__btn a:hover {
     color: #cbcbc5;
   }
   .main-page__menu__btn a {
@@ -1759,6 +1764,10 @@ width: 100vw;
 
 
 @media only screen and (min-width: 992px) and (max-width: 1300px) {
+  .slick-list{
+    max-height: 123px !important;
+  }
+
   body,
   html {
     margin: 0;
@@ -1894,7 +1903,7 @@ div#details__div__docs {
     font-size: 15px;
     font-family: Noto_Sans_regular;
   }
-  .main-page__menu__btn:hover {
+  .main-page__menu__btn a:hover {
     color: #cbcbc5;
   }
   .main-page__menu__btn a {
@@ -2853,6 +2862,9 @@ z-index: -1                            ;
     margin: 0;
     padding: 0;
     height: auto;
+  }
+  .slick-list{
+    max-height: 170px !important;
   }
 
   .main-page__menu,
@@ -3920,6 +3932,10 @@ input.parag.main-page__input-search-sb  {
 }
 
 @media only screen and (max-width: 730px) {
+  .slick-slider .slick-track, .slick-slider .slick-list {
+    display: flex;
+    gap: 0.1%;
+}
   .ui.accordion.vert-div.details__div__details-box-smaller {
     align-items: flex-start;
 }
@@ -4701,7 +4717,7 @@ img.details__div__header__btn-edit {
   width: 15vw;
 }
 .image__vsht-logo {
-  width: 45px;
+  width: 131px;
   margin-right: 10px;
 }
 .main-page__title__img {

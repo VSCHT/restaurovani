@@ -109,7 +109,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
         <Item className="horiz-div predmety__card-content">
           <Grid className="predmety__card__img-container">
             
-            <ImageWithFallback src="/static/images/image-noimage.png" fallbackSrc="/static/images/image-404.png" alt="Foto predmetu"  result={result} classN=''/>
+            <ImageWithFallback src="/static/images/image-noimage.png" fallbackSrc="/static/images/image-404.png"   result={result} classN=''/>
            
           </Grid>
           <Item.Content className="vert-div predmety__card__info">

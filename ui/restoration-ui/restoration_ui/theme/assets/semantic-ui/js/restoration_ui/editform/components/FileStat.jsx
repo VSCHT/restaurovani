@@ -7,6 +7,7 @@ import {
   Confirm,
   Modal,
   Image,
+  Pagination,
 } from "semantic-ui-react";
 import {
   ReactWrapperPdf,
@@ -16,58 +17,33 @@ import {
 } from "./Uploader";
 import FileManagementDialog from "@oarepo/file-manager";
 
-
-
 export const FileStat = ({ apiUrl, record }) => {
   const [data, setData] = useState(null);
-  // const [bigScreen, setBigScreen] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [activePage, setActivePage] = useState(1);
 
-  // useEffect(() => {
-  //   function updateSlidesToShow() {
-  //     if (window.innerWidth <= 992 && window.innerWidth >= 350 ) {
-  //       setBigScreen(true);
-  //     } else {
-  //       setBigScreen(false);
-  //     }
-  //   }
-  //   updateSlidesToShow();
-
-  //   const handleResize = () => {
-  //     updateSlidesToShow();
-  //   };
-
-  //   window.addEventListener("resize", handleResize);
-
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
-
+  const fetchData = async () => {
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = await response.json();
+      setData(result);
+    } catch (error) {
+      console.log("Error fetching data");
+    }
+  };
 
   // fetching data
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const result = await response.json();
-        setData(result);
-      } catch (error) {
-        console.log("Error fetching data:", error);
-      }
-    };
-
     fetchData();
   }, [apiUrl]);
 
   if (!data) {
     return <p>Loading...</p>;
   }
-
 
   // converting file size
   function formatBytes(bytes, decimals = 2) {
@@ -92,7 +68,6 @@ export const FileStat = ({ apiUrl, record }) => {
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
   }
 
-
   // button for extracting images from pdf
   const extractImg = (key, record) => {
     return (
@@ -104,8 +79,16 @@ export const FileStat = ({ apiUrl, record }) => {
           locale: "cs_CS",
           startEvent: {
             event: "upload-images-from-pdf",
-            data: { key: key },
+            data: { file_key: key },
           },
+          allowedMetaFields: [
+            {
+              id: "caption",
+              defaultValue: "default_image_name",
+              isUserInput: true,
+            },
+            { id: "featured", defaultValue: false, isUserInput: true },
+          ],
         }}
       />
     );
@@ -113,7 +96,7 @@ export const FileStat = ({ apiUrl, record }) => {
 
   // delete button
 
-  const DeleteButton = ({ apiUrl}) => {
+  const DeleteButton = ({ apiUrl }) => {
     const [confirmOpen, setConfirmOpen] = useState(false);
     const handleDelete = async () => {
       try {
@@ -128,10 +111,10 @@ export const FileStat = ({ apiUrl, record }) => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
       } catch (error) {
-        console.log("Error deleting data:", error);
+        console.log("Error deleting data");
       } finally {
         setConfirmOpen(false);
-        location.reload();
+        fetchData()
       }
     };
 
@@ -158,38 +141,63 @@ export const FileStat = ({ apiUrl, record }) => {
   // button for file edit
   const editFile = (key, record) => {
     return (
-      <EditWrapper
-        preactComponent={FileManagementDialog}
-        props={{
-          config: { record: record },
-          autoExtractImagesFromPDFs: true,
-          locale: "cs_CS",
-          startEvent: { event: "edit-file", data: { key: key } },
-        }}
-      />
+      <>
+        <EditWrapper
+          fetchData={fetchData}
+          preactComponent={FileManagementDialog}
+          props={{
+            config: { record: record },
+            autoExtractImagesFromPDFs: true,
+            locale: "cs_CS",
+            startEvent: { event: "edit-file", data: { file_key: key } },
+            onSuccessfulUpload: () => fetchData(),
+            onFailedUpload: () => fetchData(),
+          }}
+        />
+      </>
     );
   };
 
-  // const renderTableHeader = () =>
-  //   bigScreen && (
-  //     <Table.Header>
-  //       <Table.Row>
-  //         <Table.HeaderCell>Název</Table.HeaderCell>
-  //         <Table.HeaderCell>Velikost</Table.HeaderCell>
-  //         <Table.HeaderCell>Typ</Table.HeaderCell>
-  //         <Table.HeaderCell>Akce</Table.HeaderCell>
-  //       </Table.Row>
-  //     </Table.Header>
-  //   );
+  // table's body
 
-    // table's body
-  const renderTableBody = (fileTypeFilter) => (
-    <Table.Body>
-      {data?.entries
-        ?.filter((d) => d.metadata.fileType === fileTypeFilter)
-        ?.map((d, index) => (
+  const itemsPerPage = 5;
+
+  const changePage = (e, { activePage }) => {
+    setActivePage(activePage);
+  };
+
+  const renderTableBody = (fileTypeFilter) => {
+    const fileName = (d) => {
+      if (d.metadata && d.metadata.caption) {
+        if (
+          d.metadata.caption === "default_image_name" ||
+          d.metadata.caption === "default_pdf_name" ||
+          Object.values(d.metadata.caption).length === 0
+        ) {
+          return d.key;
+        } else {
+          return d.metadata.caption;
+        }
+      } else {
+        return d.key;
+      }
+    };
+
+    const typeAmount = data?.entries?.filter(
+      (d) => d.metadata.fileType === fileTypeFilter
+    );
+    const slicedData = data?.entries
+      ?.filter((d) => d.metadata.fileType === fileTypeFilter)
+      .slice((activePage - 1) * itemsPerPage, activePage * itemsPerPage);
+
+    if (!typeAmount || typeAmount.length === 0) {
+      return null;
+    }
+
+    return (
+      <Table.Body>
+        {slicedData?.map((d, index) => (
           <Table.Row key={d.key}>
-
             {d.metadata.fileType === "photo" && (
               <Table.Cell
                 className="form__attach__title"
@@ -198,13 +206,13 @@ export const FileStat = ({ apiUrl, record }) => {
                   setModalOpen(true);
                 }}
               >
-                {d.metadata.caption}
+                {fileName(d)}{" "}
               </Table.Cell>
             )}
             {d.metadata.fileType === "document" && (
-              <Table.Cell>{d.metadata.caption}</Table.Cell>
+              <Table.Cell>{fileName(d)}</Table.Cell>
             )}
-            <Table.Cell>{formatBytes(d.metadata.size)}</Table.Cell>
+            <Table.Cell>{formatBytes(d.size)}</Table.Cell>
             <Table.Cell>{d.metadata.fileType}</Table.Cell>
             <Table.Cell>
               <span className="horiz-div">
@@ -218,8 +226,21 @@ export const FileStat = ({ apiUrl, record }) => {
             </Table.Cell>
           </Table.Row>
         ))}
-    </Table.Body>
-  );
+        <Table.Row>
+          <Table.Cell colSpan="5">
+            {data?.entries?.length > itemsPerPage && (
+              <Pagination
+                className="form__attach__pagination"
+                totalPages={Math.ceil(typeAmount?.length / itemsPerPage)}
+                activePage={activePage}
+                onPageChange={changePage}
+              />
+            )}
+          </Table.Cell>
+        </Table.Row>
+      </Table.Body>
+    );
+  };
 
   // separate tabs for images and docs
   const renderTabs = () => (
@@ -260,6 +281,16 @@ export const FileStat = ({ apiUrl, record }) => {
           autoExtractImagesFromPDFs: true,
           locale: "cs_CS",
           allowedFileTypes: ["image/*"],
+          allowedMetaFields: [
+            {
+              id: "caption",
+              defaultValue: "default_image_name",
+              isUserInput: true,
+            },
+            { id: "featured", defaultValue: false, isUserInput: true },
+          ],
+          onSuccessfulUpload: () => fetchData(),
+          onFailedUpload: () => fetchData(),
         }}
       />
     );
@@ -272,9 +303,19 @@ export const FileStat = ({ apiUrl, record }) => {
         preactComponent={FileManagementDialog}
         props={{
           config: { record: record },
-          autoExtractImagesFromPDFs: true,
           locale: "cs_CS",
-          allowedFileTypes: ["*/pdf"],
+          autoExtractImagesFromPDFs: false,
+          allowedFileTypes: ["application/pdf"],
+          allowedMetaFields: [
+            {
+              id: "caption",
+              defaultValue: "default_pdf_name",
+              isUserInput: true,
+            },
+            { id: "featured", defaultValue: false, isUserInput: true },
+          ],
+          onSuccessfulUpload: () => fetchData(),
+          onFailedUpload: () => fetchData(),
         }}
       />
     );
@@ -305,7 +346,7 @@ export const FileStat = ({ apiUrl, record }) => {
         },
       ])}
 
-{/* modal for full screen image */}
+      {/* modal for full screen image */}
       <div>
         <Modal
           open={modalOpen}

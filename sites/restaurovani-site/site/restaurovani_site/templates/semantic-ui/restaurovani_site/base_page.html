@@ -28,7 +28,7 @@
         {%- endblock head_meta %}
 
         {%- block head_title %}
-          {%- set title = title or _(config.THEME_SITENAME) or _('Invenio') %}
+          {%- set title = title or _(config.THEME_SITENAME) or _('Restaurovani') %}
           <title>{{title}}</title>
         {%- endblock head_title %}
 
@@ -92,8 +92,7 @@
           class="menu__profil-img"
           alt="user icon"
           src="{{ url_for('static', filename='images/user-icon.png') }}"
-        />{{ current_user.email
-        }}<img
+        />{{ current_user.email }}<img
           class="menu__profil-img"
           alt="dropdown icon"
           src="{{ url_for('static', filename='images/chevron-down-white.png') }}"
