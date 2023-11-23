@@ -41,6 +41,9 @@ button.form__stat__btn:hover{
    background: radial-gradient(circle, rgba(75, 75, 75, 0.2), #ffffff 70%, transparent 80%) !important;
   
 }
+.main-page__btn__addPredmety:hover {
+  background-color: #e76c50;
+}
 .predmety__form__attachments{
    width: 35%;
    height: 35px;
@@ -74,7 +77,6 @@ button.form__stat__btn:hover{
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: rgb(232, 232, 232);
 }
 
 .slick-slide img.ui.image {
