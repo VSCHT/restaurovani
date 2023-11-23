@@ -43,7 +43,11 @@ button.form__stat__btn:hover{
 }
 .main-page__btn__addPredmety:hover {
   background-color: #e76c50;
+  cursor: pointer ;
+  
 }
+
+
 .predmety__form__attachments{
    width: 35%;
    height: 35px;

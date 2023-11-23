@@ -60,7 +60,11 @@ export const PartsInfo = ({ activeIndex, handleActive, values, errors }) => {
                         />
                       }
                       required
-                    />
+                    />{errors?.metadata?.restorationObject?.name ? (
+                      <Label pointing="above" prompt>
+                        Pole je povinné
+                      </Label>
+                    ) : null}
                   </div>
                   <div className="vert-div predmety__form__div predmety__form__div-checkbox">
                     <Form.Field>

@@ -60,22 +60,48 @@ export const EditObjectForm = ({ edit }) => {
           { id: "", title: { cs: "" } },
         ],
 
-        parts: record?.metadata?.restorationObject?.parts?.some(
-          (part) => part.main === true
-        )
-          ? [...record.metadata.restorationObject.parts]
-          : [
-              {
-                id: "",
+        // parts: record?.metadata?.restorationObject?.parts?.some(
+        //   (part) => part.main === true
+        // )
+        //   ? [...record.metadata.restorationObject.parts]
+        //   : [
+        //       {
+        //         id: "",
+        //         name: "",
+        //         main: true,
+        //         fabricationTechnologies: [{ title: { cs: "" } }],
+        //         materialType: { title: { cs: "" } },
+        //         secondaryMaterialTypes: [{ title: { cs: "" } }],
+        //         colors: [{ title: { cs: "" } }],
+        //         main: true,
+        //       },
+        //     ],
+
+
+            parts: [
+              ...(record?.metadata?.restorationObject?.parts?.map((part) => ({
+                ...part,
+                id: part.id || '',
+                name: part.name || "",
+                main: part.main || true,
+                fabricationTechnologies: part.fabricationTechnologies || [{ title: { cs: "" } }],
+                materialType: part.materialType || [{ title: { cs: "" } }],
+                secondaryMaterialTypes: part.secondaryMaterialTypes || [{ title: { cs: "" } }], 
+                colors: part.colors || [{ title: { cs: "" } }]
+                 || 
+                
+                [{ id: "",
                 name: "",
                 main: true,
                 fabricationTechnologies: [{ title: { cs: "" } }],
                 materialType: { title: { cs: "" } },
                 secondaryMaterialTypes: [{ title: { cs: "" } }],
                 colors: [{ title: { cs: "" } }],
-                main: true,
-              },
+               }],
+              })) || []),
             ],
+
+           
       },
 
       restorationWork: {

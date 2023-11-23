@@ -14,6 +14,11 @@
   padding: 5px !important; 
   border-radius: 10px;
 }
+.ui.button.predmety__card__btn:hover {
+  background-color: #e76c50;
+  cursor: pointer ;
+  
+}
 button.ui.icon.button.carousel-button.left, button.ui.icon.button.carousel-button.right{
   width: 100%;
 }
