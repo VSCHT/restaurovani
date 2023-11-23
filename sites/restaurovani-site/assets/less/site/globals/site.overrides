@@ -4717,7 +4717,7 @@ img.details__div__header__btn-edit {
   width: 15vw;
 }
 .image__vsht-logo {
-  width: 131px;
+  width: 65px;
   margin-right: 10px;
 }
 .main-page__title__img {
