@@ -147,7 +147,7 @@ export const FileStat = ({ apiUrl, record }) => {
           preactComponent={FileManagementDialog}
           props={{
             config: { record: record },
-            autoExtractImagesFromPDFs: true,
+            autoExtractImagesFromPDFs: false,
             locale: "cs_CS",
             startEvent: { event: "edit-file", data: { file_key: key } },
             onSuccessfulUpload: () => fetchData(),
@@ -279,8 +279,8 @@ export const FileStat = ({ apiUrl, record }) => {
         props={{
           config: { record: record },
           autoExtractImagesFromPDFs: true,
-          locale: "cs_CS",
-          allowedFileTypes: ["image/*"],
+          locale: "cs_CZ",
+          allowedFileTypes: ["image/*", "application/pdf"],
           allowedMetaFields: [
             {
               id: "caption",
@@ -314,6 +314,7 @@ export const FileStat = ({ apiUrl, record }) => {
             },
             { id: "featured", defaultValue: false, isUserInput: true },
           ],
+          startEvent: { event: "upload-file-without-edit" },
           onSuccessfulUpload: () => fetchData(),
           onFailedUpload: () => fetchData(),
         }}
