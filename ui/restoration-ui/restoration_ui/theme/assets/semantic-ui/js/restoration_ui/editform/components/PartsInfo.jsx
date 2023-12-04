@@ -15,7 +15,7 @@ import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 
 export const PartsInfo = ({ activeIndex, handleActive, values, errors }) => {
- 
+ console.log(errors)
   return (
     <AccordionField
       includesPaths={["metadata.restorationObject.parts"]}
@@ -26,7 +26,10 @@ export const PartsInfo = ({ activeIndex, handleActive, values, errors }) => {
     >
       <ArrayField
         fieldPath="metadata.restorationObject.parts"
-        defaultNewValue={{}}
+        defaultNewValue={{
+          name: "",
+          main: false,
+        }}
         addButtonLabel="Dodat součást"
       >
         {({ arrayHelpers, indexPath }) => {

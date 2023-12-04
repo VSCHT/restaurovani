@@ -143,7 +143,10 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
           <ArrayField
             addButtonLabel="Přidat rozměr"
             fieldPath="metadata.restorationObject.dimensions"
-            defaultNewValue={{}}
+            defaultNewValue={{
+              unit: "",
+              value: "",
+            }}
           >
             {({ arrayHelpers, indexPath }) => {
               const fieldPathPrefix = `${"metadata.restorationObject.dimensions"}[${indexPath}]`;
