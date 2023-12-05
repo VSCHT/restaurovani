@@ -280,7 +280,7 @@ export const FileStat = ({ apiUrl, record }) => {
         props={{
           config: { record: record },
           autoExtractImagesFromPDFs: true,
-          locale: "cs_CS",
+          locale: "cs_CZ",
           allowedFileTypes: ["image/*", "application/pdf"],
           allowedMetaFields: [
             {
