@@ -3,54 +3,83 @@ restorationObject:
   properties:
     title:
       type: fulltext+keyword
+      label.cs: Název
     keywords[]:
       type: keyword
+      label.cs: Klíčové slovo
+      ^label.cs: Klíčová slova
     category:
       type: keyword
+      label.cs: Kategorie
     description:
       type: fulltext
+      label.cs: Popis předmětu
     parts[]:
       type: nested
       id: part
+      label.cs: Část předmětu
+      ^label.cs: Části předmětu
       properties:
         id:
           type: keyword
+          label.cs: ID
         name:
           type: fulltext+keyword
+          label.cs: Název části
         main:
           type: boolean
+          label.cs: Hlavní část
         fabricationTechnologies[]:
           type: vocabulary
           vocabulary-type: FabricationTechnologies
+          label.cs: Technologie výroby
+          ^label.cs: Technologie výroby
         materialType:
           type: vocabulary
           vocabulary-type: MaterialTypes
+          label.cs: Materiál
         secondaryMaterialTypes[]:
           type: vocabulary
           vocabulary-type: MaterialTypes
+          label.cs: Sekundární materiál
+          ^label.cs: Sekundární materiály
         colors[]:
           type: vocabulary
           vocabulary-type: Colors
+          label.cs: Barva
+          ^label.cs: Barvy
     itemTypes[]:
       type: vocabulary
       vocabulary-type: ItemTypes
+      label.cs: Typ předmětu
+      ^label.cs: Typy předmětu
     dimensions[]:
+      label.cs: Rozměr
+      ^label.cs: Rozměry
       properties:
         dimension:
           type: vocabulary
           vocabulary-type: Dimensions
+          label.cs: Rozměr
         unit:
           type: keyword
+          label.cs: Jednotka
         value:
           type: float
+          label.cs: Hodnota
     archeologic:
       type: boolean
+      label.cs: Archeologický nález
     creationPeriod:
+      label.cs: Období vzniku
       properties:
         since:
           type: integer
+          label.cs: Počátek období
         until:
           type: integer
+          label.cs: Konec období
     restorationRequestor:
       type: vocabulary
       vocabulary-type: Requestors
+      label.cs: Zadavatel restaurování
