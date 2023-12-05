@@ -1,9 +1,9 @@
-from invenio_records_resources.services import SearchOptions as InvenioSearchOptions
+from oarepo_runtime.services.search import SearchOptions
 
 from . import facets
 
 
-class RestorationSearchOptions(InvenioSearchOptions):
+class RestorationSearchOptions(SearchOptions):
     """RestorationRecord search options."""
 
     facet_groups = {
@@ -62,7 +62,7 @@ class RestorationSearchOptions(InvenioSearchOptions):
             "metadata_restorationWork_workType": (
                 facets.metadata_restorationWork_workType
             ),
-            **getattr(InvenioSearchOptions, "facet_groups", {}).get("default", {}),
+            **getattr(SearchOptions, "facet_groups", {}).get("default", {}),
         },
     }
 
@@ -143,5 +143,5 @@ class RestorationSearchOptions(InvenioSearchOptions):
         ),
         "metadata_restorationWork_workType": facets.metadata_restorationWork_workType,
         "metadata_submissionStatus": facets.metadata_submissionStatus,
-        **getattr(InvenioSearchOptions, "facets", {}),
+        **getattr(SearchOptions, "facets", {}),
     }

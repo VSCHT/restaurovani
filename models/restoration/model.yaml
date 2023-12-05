@@ -13,6 +13,11 @@ record:
   draft-files:
     resource:
       base-classes: [ oarepo_ui.resources.file_resource.S3RedirectFileResource ]
+
+  search-options:
+    base-classes:
+      - oarepo_runtime.services.search.SearchOptions
+
   permissions:
     presets:
     - everyone
