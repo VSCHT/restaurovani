@@ -2,6 +2,7 @@ import marshmallow as ma
 from marshmallow import Schema
 from marshmallow import fields as ma_fields
 from marshmallow.fields import String
+from oarepo_runtime.services.schema.marshmallow import DictOnlySchema
 from oarepo_runtime.services.schema.ui import InvenioUISchema, LocalizedDate
 from oarepo_vocabularies.services.ui_schema import VocabularyI18nStrUIField
 
@@ -26,7 +27,7 @@ class RestorationMetadataUISchema(Schema):
     submissionStatus = ma_fields.String()
 
 
-class RestorationObjectUISchema(Schema):
+class RestorationObjectUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -51,7 +52,7 @@ class RestorationObjectUISchema(Schema):
     title = ma_fields.String()
 
 
-class RestorationWorkUISchema(Schema):
+class RestorationWorkUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -72,7 +73,7 @@ class RestorationWorkUISchema(Schema):
     workType = ma_fields.Nested(lambda: DimensionUISchema())
 
 
-class DimensionsItemUISchema(Schema):
+class DimensionsItemUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -83,7 +84,7 @@ class DimensionsItemUISchema(Schema):
     value = ma_fields.Float()
 
 
-class PartsItemUISchema(Schema):
+class PartsItemUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -106,7 +107,7 @@ class PartsItemUISchema(Schema):
     )
 
 
-class RestorationWorkPartsItemUISchema(Schema):
+class RestorationWorkPartsItemUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -115,7 +116,7 @@ class RestorationWorkPartsItemUISchema(Schema):
     restorationMethods = ma_fields.List(ma_fields.Nested(lambda: DimensionUISchema()))
 
 
-class CreationPeriodUISchema(Schema):
+class CreationPeriodUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -124,7 +125,7 @@ class CreationPeriodUISchema(Schema):
     until = ma_fields.Integer()
 
 
-class DimensionUISchema(Schema):
+class DimensionUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.INCLUDE
 
@@ -135,7 +136,7 @@ class DimensionUISchema(Schema):
     title = VocabularyI18nStrUIField()
 
 
-class PartUISchema(Schema):
+class PartUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.INCLUDE
 
@@ -144,7 +145,7 @@ class PartUISchema(Schema):
     _version = String(data_key="@v", attribute="@v")
 
 
-class RestorationPeriodUISchema(Schema):
+class RestorationPeriodUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -153,7 +154,7 @@ class RestorationPeriodUISchema(Schema):
     until = LocalizedDate()
 
 
-class SupervisorsItemUISchema(Schema):
+class SupervisorsItemUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 

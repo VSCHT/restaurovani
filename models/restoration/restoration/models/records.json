@@ -126,6 +126,11 @@
             "suffix-upper": "RESTORATION",
             "suffix-snake": "restoration"
         },
+        "tests": {
+            "extra-fixtures": [],
+            "extra-code": "",
+            "module": "tests"
+        },
         "draft": {
             "type": "draft_record",
             "properties": {},
@@ -136,10 +141,20 @@
                 "module": "tests"
             }
         },
-        "tests": {
-            "extra-fixtures": [],
-            "extra-code": "",
-            "module": "tests"
+        "draft-files": {
+            "type": "draft-file",
+            "properties": {},
+            "searchable": true,
+            "resource": {
+                "base-classes": [
+                    "oarepo_ui.resources.file_resource.S3RedirectFileResource"
+                ]
+            },
+            "tests": {
+                "extra-fixtures": [],
+                "extra-code": "",
+                "module": "tests"
+            }
         },
         "files": {
             "type": "file",
@@ -241,21 +256,6 @@
             },
             "module": {
                 "qualified": "restoration"
-            },
-            "tests": {
-                "extra-fixtures": [],
-                "extra-code": "",
-                "module": "tests"
-            }
-        },
-        "draft-files": {
-            "type": "draft-file",
-            "properties": {},
-            "searchable": true,
-            "resource": {
-                "base-classes": [
-                    "oarepo_ui.resources.file_resource.S3RedirectFileResource"
-                ]
             },
             "tests": {
                 "extra-fixtures": [],
@@ -370,19 +370,6 @@
             "name": "restoration-1.0.0.json",
             "file": "restoration/records/jsonschemas/restoration-1.0.0.json"
         },
-        "record-dumper": {
-            "generate": true,
-            "module": "restoration.records.dumpers.dumper",
-            "class": "restoration.records.dumpers.dumper.RestorationDumper",
-            "base-classes": [
-                "oarepo_runtime.records.dumpers.SearchDumper"
-            ],
-            "extra-code": "",
-            "extensions": [
-                "{{restoration.records.dumpers.edtf.RestorationEDTFIntervalDumperExt}}()"
-            ],
-            "imports": []
-        },
         "json-serializer": {
             "module": "restoration.resources.records.ui",
             "class": "restoration.resources.records.ui.RestorationUIJSONSerializer",
@@ -452,10 +439,25 @@
             "extra-code": "",
             "service-id": "restoration",
             "components": [
-                "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}",
                 "{{invenio_records_resources.services.records.components.FilesOptionsComponent}}",
-                "{{invenio_records_resources.services.records.components.DataComponent}}"
-            ]
+                "{{invenio_records_resources.services.records.components.DataComponent}}",
+                "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}"
+            ],
+            "result-list-class": "oarepo_runtime.services.results.RecordList"
+        },
+        "record-dumper": {
+            "generate": true,
+            "module": "restoration.records.dumpers.dumper",
+            "class": "restoration.records.dumpers.dumper.RestorationDumper",
+            "base-classes": [
+                "oarepo_runtime.records.dumpers.SearchDumper"
+            ],
+            "extra-code": "",
+            "extensions": [
+                "{{oarepo_runtime.records.systemfields.mapping.SystemFieldDumperExt}}()",
+                "{{restoration.records.dumpers.edtf.RestorationEDTFIntervalDumperExt}}()"
+            ],
+            "imports": []
         },
         "edtf-interval-dumper": {
             "generate": true,
@@ -527,6 +529,14 @@
                 "oarepo_published_service.services.service.PublishedService"
             ],
             "imports": []
+        },
+        "parent-record-marshmallow": {
+            "module": "restoration.services.records.schema",
+            "class": "restoration.services.records.schema.GeneratedParentSchema",
+            "generate": true,
+            "base-classes": [
+                "invenio_drafts_resources.services.records.schema.ParentSchema{InvenioParentSchema}"
+            ]
         },
         "sortable": [],
         "properties": {
@@ -630,13 +640,16 @@
                         },
                         "properties": {
                             "archeologic": {
-                                "type": "boolean"
+                                "type": "boolean",
+                                "label.cs": "Archeologický nález"
                             },
                             "category": {
-                                "type": "keyword"
+                                "type": "keyword",
+                                "label.cs": "Kategorie"
                             },
                             "creationPeriod": {
                                 "type": "object",
+                                "label.cs": "Období vzniku",
                                 "marshmallow": {
                                     "generate": true,
                                     "class": "restoration.services.records.schema.CreationPeriodSchema"
@@ -649,20 +662,25 @@
                                 },
                                 "properties": {
                                     "since": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "label.cs": "Počátek období"
                                     },
                                     "until": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "label.cs": "Konec období"
                                     }
                                 }
                             },
                             "description": {
-                                "type": "fulltext"
+                                "type": "fulltext",
+                                "label.cs": "Popis předmětu"
                             },
                             "dimensions": {
                                 "type": "array",
+                                "label.cs": "Rozměry",
                                 "items": {
                                     "type": "object",
+                                    "label.cs": "Rozměr",
                                     "marshmallow": {
                                         "generate": true,
                                         "class": "restoration.services.records.schema.DimensionsItemSchema"
@@ -677,6 +695,7 @@
                                         "dimension": {
                                             "type": "vocabulary",
                                             "vocabulary-type": "Dimensions",
+                                            "label.cs": "Rozměr",
                                             "imports": [
                                                 {
                                                     "import": "invenio_vocabularies.records.api.Vocabulary"
@@ -783,19 +802,23 @@
                                             }
                                         },
                                         "unit": {
-                                            "type": "keyword"
+                                            "type": "keyword",
+                                            "label.cs": "Jednotka"
                                         },
                                         "value": {
-                                            "type": "float"
+                                            "type": "float",
+                                            "label.cs": "Hodnota"
                                         }
                                     }
                                 }
                             },
                             "itemTypes": {
                                 "type": "array",
+                                "label.cs": "Typy předmětu",
                                 "items": {
                                     "type": "vocabulary",
                                     "vocabulary-type": "ItemTypes",
+                                    "label.cs": "Typ předmětu",
                                     "imports": [
                                         {
                                             "import": "invenio_vocabularies.records.api.Vocabulary"
@@ -904,15 +927,19 @@
                             },
                             "keywords": {
                                 "type": "array",
+                                "label.cs": "Klíčová slova",
                                 "items": {
-                                    "type": "keyword"
+                                    "type": "keyword",
+                                    "label.cs": "Klíčové slovo"
                                 }
                             },
                             "parts": {
                                 "type": "array",
+                                "label.cs": "Části předmětu",
                                 "items": {
                                     "type": "nested",
                                     "id": "part",
+                                    "label.cs": "Část předmětu",
                                     "marshmallow": {
                                         "generate": true,
                                         "class": "restoration.services.records.schema.PartsItemSchema"
@@ -926,9 +953,11 @@
                                     "properties": {
                                         "colors": {
                                             "type": "array",
+                                            "label.cs": "Barvy",
                                             "items": {
                                                 "type": "vocabulary",
                                                 "vocabulary-type": "Colors",
+                                                "label.cs": "Barva",
                                                 "imports": [
                                                     {
                                                         "import": "invenio_vocabularies.records.api.Vocabulary"
@@ -1037,9 +1066,11 @@
                                         },
                                         "fabricationTechnologies": {
                                             "type": "array",
+                                            "label.cs": "Technologie výroby",
                                             "items": {
                                                 "type": "vocabulary",
                                                 "vocabulary-type": "FabricationTechnologies",
+                                                "label.cs": "Technologie výroby",
                                                 "imports": [
                                                     {
                                                         "import": "invenio_vocabularies.records.api.Vocabulary"
@@ -1147,14 +1178,17 @@
                                             }
                                         },
                                         "id": {
-                                            "type": "keyword"
+                                            "type": "keyword",
+                                            "label.cs": "ID"
                                         },
                                         "main": {
-                                            "type": "boolean"
+                                            "type": "boolean",
+                                            "label.cs": "Hlavní část"
                                         },
                                         "materialType": {
                                             "type": "vocabulary",
                                             "vocabulary-type": "MaterialTypes",
+                                            "label.cs": "Materiál",
                                             "imports": [
                                                 {
                                                     "import": "invenio_vocabularies.records.api.Vocabulary"
@@ -1261,13 +1295,16 @@
                                             }
                                         },
                                         "name": {
-                                            "type": "fulltext+keyword"
+                                            "type": "fulltext+keyword",
+                                            "label.cs": "Název části"
                                         },
                                         "secondaryMaterialTypes": {
                                             "type": "array",
+                                            "label.cs": "Sekundární materiály",
                                             "items": {
                                                 "type": "vocabulary",
                                                 "vocabulary-type": "MaterialTypes",
+                                                "label.cs": "Sekundární materiál",
                                                 "imports": [
                                                     {
                                                         "import": "invenio_vocabularies.records.api.Vocabulary"
@@ -1380,6 +1417,7 @@
                             "restorationRequestor": {
                                 "type": "vocabulary",
                                 "vocabulary-type": "Requestors",
+                                "label.cs": "Zadavatel restaurování",
                                 "imports": [
                                     {
                                         "import": "invenio_vocabularies.records.api.Vocabulary"
@@ -1486,12 +1524,14 @@
                                 }
                             },
                             "title": {
-                                "type": "fulltext+keyword"
+                                "type": "fulltext+keyword",
+                                "label.cs": "Název"
                             }
                         }
                     },
                     "restorationWork": {
                         "type": "object",
+                        "label.cs": "Restaurátorská práce",
                         "marshmallow": {
                             "generate": true,
                             "class": "restoration.services.records.schema.RestorationWorkSchema"
@@ -1504,13 +1544,16 @@
                         },
                         "properties": {
                             "abstract": {
-                                "type": "fulltext"
+                                "type": "fulltext",
+                                "label.cs": "Abstrakt"
                             },
                             "examinationMethods": {
                                 "type": "array",
+                                "label.cs": "Metody průzkumu",
                                 "items": {
                                     "type": "vocabulary",
                                     "vocabulary-type": "ExaminationMethods",
+                                    "label.cs": "Metoda průzkumu",
                                     "imports": [
                                         {
                                             "import": "invenio_vocabularies.records.api.Vocabulary"
@@ -1619,8 +1662,10 @@
                             },
                             "parts": {
                                 "type": "array",
+                                "label.cs": "Části předmětu",
                                 "items": {
                                     "type": "nested",
+                                    "label.cs": "Část předmětu",
                                     "marshmallow": {
                                         "generate": true,
                                         "class": "restoration.services.records.schema.RestorationWorkPartsItemSchema"
@@ -1638,6 +1683,7 @@
                                             "keys": [
                                                 "id"
                                             ],
+                                            "label.cs": "Část předmětu",
                                             "marshmallow": {
                                                 "unknown": "INCLUDE",
                                                 "generate": true,
@@ -1652,7 +1698,8 @@
                                             },
                                             "properties": {
                                                 "id": {
-                                                    "type": "keyword"
+                                                    "type": "keyword",
+                                                    "label.cs": "ID"
                                                 },
                                                 "@v": {
                                                     "type": "keyword",
@@ -1677,6 +1724,7 @@
                                             "items": {
                                                 "type": "vocabulary",
                                                 "vocabulary-type": "RestorationMethods",
+                                                "label.cs": "Metoda restaurování",
                                                 "imports": [
                                                     {
                                                         "import": "invenio_vocabularies.records.api.Vocabulary"
@@ -1788,9 +1836,11 @@
                             },
                             "restorationMethods": {
                                 "type": "array",
+                                "label.cs": "Metody restaurování",
                                 "items": {
                                     "type": "vocabulary",
                                     "vocabulary-type": "RestorationMethods",
+                                    "label.cs": "Metoda restaurování",
                                     "imports": [
                                         {
                                             "import": "invenio_vocabularies.records.api.Vocabulary"
@@ -1899,6 +1949,7 @@
                             },
                             "restorationPeriod": {
                                 "type": "object",
+                                "label.cs": "Období restaurování",
                                 "marshmallow": {
                                     "generate": true,
                                     "class": "restoration.services.records.schema.RestorationPeriodSchema"
@@ -1911,20 +1962,25 @@
                                 },
                                 "properties": {
                                     "since": {
-                                        "type": "date"
+                                        "type": "date",
+                                        "label.cs": "Počátek restaurování"
                                     },
                                     "until": {
-                                        "type": "date"
+                                        "type": "date",
+                                        "label.cs": "Konec restaurování"
                                     }
                                 }
                             },
                             "restorer": {
-                                "type": "keyword"
+                                "type": "keyword",
+                                "label.cs": "Restaurátor"
                             },
                             "supervisors": {
                                 "type": "array",
+                                "label.cs": "Vedoucí práce",
                                 "items": {
                                     "type": "object",
+                                    "label.cs": "Vedoucí práce",
                                     "marshmallow": {
                                         "generate": true,
                                         "class": "restoration.services.records.schema.SupervisorsItemSchema"
@@ -1937,13 +1993,16 @@
                                     },
                                     "properties": {
                                         "comment": {
-                                            "type": "keyword"
+                                            "type": "keyword",
+                                            "label.cs": "Poznámka"
                                         },
                                         "fullName": {
-                                            "type": "keyword"
+                                            "type": "keyword",
+                                            "label.cs": "Jméno a příjmení"
                                         },
                                         "institution": {
-                                            "type": "keyword"
+                                            "type": "keyword",
+                                            "label.cs": "Instituce"
                                         }
                                     }
                                 }
@@ -1951,6 +2010,7 @@
                             "workType": {
                                 "type": "vocabulary",
                                 "vocabulary-type": "WorkTypes",
+                                "label.cs": "Typ práce",
                                 "imports": [
                                     {
                                         "import": "invenio_vocabularies.records.api.Vocabulary"
