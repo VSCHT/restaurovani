@@ -1,42 +1,62 @@
 restorationWork:
+  label.cs: Restaurátorská práce
   properties:
     abstract:
       type: fulltext
+      label.cs: Abstrakt
     restorer:
       type: keyword
+      label.cs: Restaurátor
     supervisors[]:
       type: object
+      label.cs: Vedoucí práce
+      ^label.cs: Vedoucí práce
       properties:
         fullName:
           type: keyword
+          label.cs: Jméno a příjmení
         comment:
           type: keyword
+          label.cs: Poznámka
         institution:
           type: keyword
+          label.cs: Instituce
     parts[]:
       type: nested
+      label.cs: Část předmětu
+      ^label.cs: Části předmětu
       properties:
         part:
           type: relation
           model: "#part"
           keys: [ id ]
+          label.cs: Část předmětu
         restorationMethods[]:
           type: vocabulary
           vocabulary-type: RestorationMethods
+          label.cs: Metoda restaurování
     workType:
       type: vocabulary
       vocabulary-type: WorkTypes
+      label.cs: Typ práce
     examinationMethods[]:
       type: vocabulary
       vocabulary-type: ExaminationMethods
+      label.cs: Metoda průzkumu
+      ^label.cs: Metody průzkumu
     restorationMethods[]:
       type: vocabulary
       vocabulary-type: RestorationMethods
+      label.cs: Metoda restaurování
+      ^label.cs: Metody restaurování
     restorationPeriod:
+      label.cs: Období restaurování
       properties:
         since:
           type: date
+          label.cs: Počátek restaurování
         until:
           type: date
+          label.cs: Konec restaurování
 
 
