@@ -14,13 +14,13 @@ restorationWork:
       properties:
         fullName:
           type: keyword
-          label.cs: Jméno a příjmení
+          label.cs: Jméno a příjmení vedoucího
         comment:
           type: keyword
-          label.cs: Poznámka
+          label.cs: Poznámka k vedoucímu
         institution:
           type: keyword
-          label.cs: Instituce
+          label.cs: Instituce vedoucího práce
     parts[]:
       type: nested
       label.cs: Část předmětu
