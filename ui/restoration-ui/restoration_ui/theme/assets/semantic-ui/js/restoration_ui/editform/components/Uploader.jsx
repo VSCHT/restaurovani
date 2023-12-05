@@ -41,18 +41,21 @@ export const ReactWrapperImg = ({ preactComponent, props }) => {
   });
 
   return <div ref={preactCompRef} />;
-  
 };
 
 export const EditWrapper = ({ preactComponent, props }) => {
   const preactCompRef = useRef();
 
   useEffect(() => {
-   
     const triggerComponent = ({ onClick, ...triggerProps }) =>
       h(
         "button",
-        { className: "form__stat__btn", onClick: onClick, ...triggerProps },
+        {
+          className: "form__stat__btn",
+          title: "Editovat",
+          onClick: onClick,
+          ...triggerProps,
+        },
         [h("img", { src: "/static/images/edit-icon.png", alt: "Edit Button" })]
       );
 
@@ -62,10 +65,8 @@ export const EditWrapper = ({ preactComponent, props }) => {
     );
   }, [preactComponent, props]);
 
-
   return <div ref={preactCompRef} />;
 };
-
 
 export const ExtractWrapper = ({ preactComponent, props }) => {
   const preactCompRef = useRef();
@@ -74,7 +75,12 @@ export const ExtractWrapper = ({ preactComponent, props }) => {
     const triggerComponent = ({ onClick, ...triggerProps }) =>
       h(
         "button",
-        { className: "form__stat__btn", onClick: onClick, ...triggerProps },
+        {
+          className: "form__stat__btn",
+          title: "Extrahovat obrázky",
+          onClick: onClick,
+          ...triggerProps,
+        },
         [
           h("img", {
             src: "/static/images/image-icon.png",

@@ -22,7 +22,6 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
         "metadata.restorationWork.examinationMethods",
         "metadata.restorationWork.restorer",
         "metadata.restorationWork.abstract",
-        "metadata.restorationWork.literature[0].value",
         "metadata.restorationWork.restorationPeriod",
         "metadata.restorationWork.supervisors",
       ]}
@@ -61,20 +60,7 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
             }
           ></RichInputField>
         </div>
-        <div className="vert-div predmety__form__div">
-          <TextAreaField
-            name="metadata.restorationWork.literature[0].value"
-            aria-label="Použitá literatura"
-            fieldPath="metadata.restorationWork.literature[0].value"
-            label={
-              <FieldLabel
-                htmlFor="metadata.restorationWork.literature[0].value"
-                className="predmety__form__div__label"
-                label="Použitá literatura"
-              ></FieldLabel>
-            }
-          />
-        </div>
+        
         <div className="vert-div predmety__form__div">
           <ArrayField
             addButtonLabel="Přidat vedoucího"

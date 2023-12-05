@@ -28,7 +28,6 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
     { value: "metr", text: "metr" },
     { value: "mm", text: "mm" },
   ];
-
   return (
     <AccordionField
       includesPaths={[

@@ -686,10 +686,9 @@ align-content: stretch                     ;
 
 .ui.column.vert-div.predmety__aside {
 position: relative !important         ;
-top: 270px                            ;
+
 gap: 60px                             ;
 height: auto                          ;
-width: 100vw !important               ;
 align-content: stretch                ;
 background-color:                     #eaeae2;
 padding: 30px 40px                    ;

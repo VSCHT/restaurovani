@@ -20,6 +20,10 @@
   align-items: center;
 }
 
+.uppy-c-btn-primary{
+  background-color: rgb(42, 99, 50);
+}
+
 .vert-div {
   display: flex;
   flex-direction: column;
@@ -523,7 +527,7 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
 } */
 .slick-list {
   position: relative;
-  min-height: 100px !important;
+  min-height: min-content !important;
   display: block;
   overflow: hidden;
   max-height: 195px !important;
@@ -1166,7 +1170,7 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
   .predmety__card__extra-info p {
     width: auto;
     color: #757670;
-    width: 200px;
+    width: auto;
   }
 
   .predmety__card__btn {
@@ -1657,7 +1661,7 @@ width: 100vw;
     width: 20vw;
   }
   .details__div__info-left table td {
-    height: 45px;
+    height: auto;
     vertical-align: top;
   }
 
@@ -1779,7 +1783,7 @@ width: 100vw;
 
 @media only screen and (min-width: 992px) and (max-width: 1300px) {
   .slick-list{
-    max-height: 123px !important;
+    max-height: 155px !important;
   }
 
   body,
@@ -2485,6 +2489,7 @@ width: 60px
   }
   .horiz-div.predmety__form__div-small {
     gap: 10px;
+    width: 95%;
   }
   .predmety__form__div-medium {
     font-family: Noto_Sans_regular !important     ;
@@ -2548,7 +2553,7 @@ border-bottom: 1px solid white !important
   .details__div__header {
     background-color: #de4929;
     height: 40px;
-    width: 58vw;
+    width: 59vw;
     color: white;
     justify-content: space-between;
     padding: 27px 15px;
@@ -2877,7 +2882,7 @@ z-index: -1                            ;
   background-color: white;
   width: 100vw;
   height:100%; 
-  z-index: -1;
+  z-index: -2;
   /* top: 65%; */
 }
 
@@ -2891,7 +2896,7 @@ z-index: -1                            ;
     height: auto;
   }
   .slick-list{
-    max-height: 170px !important;
+    max-height: 280px !important;
   }
 
   .main-page__menu,
@@ -3396,7 +3401,7 @@ input.parag.main-page__input-search-sb  {
     font-family: Noto_Sans_regular !important ;
     font-size: 14px !important                ;
     gap: 10px !important                      ;
-    width: 20.5vw !important                    ;
+    width: 50% !important                    ;
     height: 68px;
   }
   .details__info__accordion .title.parag{
@@ -3495,6 +3500,7 @@ input.parag.main-page__input-search-sb  {
   .predmety__form__div-small {
     gap: 5px;
     align-items: flex-end;
+    width: 97%
   }
   .predmety__form__div__radio::before {
     content: "";
@@ -4065,7 +4071,7 @@ input.parag.main-page__input-search-sb  {
   .item .predmety__aside__btn{
     font-size: 20px !important
   }
-
+ 
   .ui.accordion.vert-div.details__div__details-box-smaller {
     align-items: flex-start;
 }
@@ -4118,7 +4124,7 @@ input.parag.main-page__input-search-sb  {
     font-family: Noto_Sans_regular !important    ;
     font-size: 14px !important                   ;
     gap: 10px !important                         ;
-    width: 22.5vw !important                       ;
+    width: 100%!important                       ;
     height: auto;
   }
   .btn.main-page__menu__btn:first-child {
@@ -4144,6 +4150,7 @@ input.parag.main-page__input-search-sb  {
   .predmety__form__div-small {
     gap: 5px;
     align-items: flex-start;
+    width: 97%;
   }
   .details__container {
     background-color: white;
@@ -5407,10 +5414,12 @@ ul#preferences-visibility , #preferences-email_visibility{
     font-family: Noto_Sans_regular !important;
     font-size: 14px !important;
     gap: 10px !important;
-    width: 25.5vw !important;
+    width: 50% !important;
     height: auto;
 }
-
+.slick-list {
+  max-height: 225px !important;
+}
 
 }
 @media only screen and (max-width: 450px) {
@@ -5477,13 +5486,17 @@ nav.ui.sidebar.vertical.menu.left.uncover.visible .item {
 .main-page__input-search.parag{
   padding-left: 20px;
 }
+.slick-list {
+  max-height: 200px !important;
+}
 }
 @media only screen and (max-width: 1340px) and (min-width: 1000px){
 .predmety__form__div-small__div {
   font-family: Noto_Sans_regular !important;
   font-size: 14px !important;
   gap: 10px !important;
-  width: 13vw !important;
+  width: 40% !important;
   height: 69px;
 }
 }
+

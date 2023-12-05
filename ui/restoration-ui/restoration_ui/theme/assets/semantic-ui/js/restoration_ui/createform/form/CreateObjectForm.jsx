@@ -16,8 +16,9 @@ const categories = [
   { value: "textil", label: "Textil", id: "3" },
 ];
 
-export const CreateObjectFormContent = ({ edit, errors }) => {
+export const CreateObjectFormContent = ({ errors }) => {
   const { values } = useDepositApiClient();
+  
 
   return (
     <div className="vert-div predmety__form">
@@ -107,7 +108,7 @@ export const CreateObjectFormContent = ({ edit, errors }) => {
           </Form>
         </div>
       </div>
-      <SaveButton edit={edit} />
+      <SaveButton />
     </div>
   );
 };
@@ -133,7 +134,7 @@ export const CreateObjectForm = () => {
   return (
     <Container>
       <Formik
-        initialValues={initVal}
+        initialValues={record}
         onSubmit={() => {}}
         enableReinitialize
         validationSchema={DepositValidationSchemaDraft}

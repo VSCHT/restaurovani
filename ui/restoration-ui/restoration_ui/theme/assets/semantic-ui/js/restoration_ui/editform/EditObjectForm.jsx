@@ -7,157 +7,22 @@ import { DepositValidationSchemaEdit } from "../forms/deposit/DepositValidationS
 import { useFormConfig } from "@js/oarepo_ui";
 import { Formik } from "formik";
 import _get from "lodash/get";
+import _has from "lodash/has";
 import Overridable from "react-overridable";
 import { SaveButton } from "../forms/components/";
 import { BasicInfo } from "./components/BasicInfo";
 import { RestorationWork } from "./components/RestorationWork";
 import { PartsInfo } from "./components/PartsInfo";
 
-export const EditObjectForm = ({ edit }) => {
+export const EditObjectForm = () => {
   let { record } = useFormConfig();
 
   const [activeIndex, setActiveIndex] = React.useState(0);
   const handleActive = (x) => {
     setActiveIndex(x);
   };
+  const edit = _has(record, "updated");
 
-  const formValues = {
-    ...record,
-    metadata: {
-      restorationObject: {
-        restorationRequestor: { title: { cs: "" } },
-
-        category: "",
-        keywords: [],
-        archeologic: false,
-        description: "",
-
-        //coping
-        ...(record?.metadata?.restorationObject
-          ? record.metadata.restorationObject
-          : {}),
-
-        // array keys
-        creationPeriod: {
-          since:
-            record?.metadata?.restorationObject?.creationPeriod?.since || "",
-          until:
-            record?.metadata?.restorationObject?.creationPeriod?.until || "",
-        },
-
-        dimensions: [
-          ...(record?.metadata?.restorationObject?.dimensions?.map((d) => ({
-            unit: d?.unit || "",
-            dimension: d?.dimension || { title: { cs: "" } },
-            value: d?.value || "",
-          })) || []),
-        ],
-
-        itemTypes: [
-          ...(record?.metadata?.restorationObject?.itemTypes?.map((i) => ({
-            ...i,
-          })) || []),
-          { id: "", title: { cs: "" } },
-        ],
-
-        // parts: record?.metadata?.restorationObject?.parts?.some(
-        //   (part) => part.main === true
-        // )
-        //   ? [...record.metadata.restorationObject.parts]
-        //   : [
-        //       {
-        //         id: "",
-        //         name: "",
-        //         main: true,
-        //         fabricationTechnologies: [{ title: { cs: "" } }],
-        //         materialType: { title: { cs: "" } },
-        //         secondaryMaterialTypes: [{ title: { cs: "" } }],
-        //         colors: [{ title: { cs: "" } }],
-        //         main: true,
-        //       },
-        //     ],
-
-
-            parts: [
-              ...(record?.metadata?.restorationObject?.parts?.map((part) => ({
-                ...part,
-                id: part.id || '',
-                name: part.name || "",
-                main: part.main || true,
-                fabricationTechnologies: part.fabricationTechnologies || [{ title: { cs: "" } }],
-                materialType: part.materialType || [{ title: { cs: "" } }],
-                secondaryMaterialTypes: part.secondaryMaterialTypes || [{ title: { cs: "" } }], 
-                colors: part.colors || [{ title: { cs: "" } }]
-                 || 
-                
-                [{ id: "",
-                name: "",
-                main: true,
-                fabricationTechnologies: [{ title: { cs: "" } }],
-                materialType: { title: { cs: "" } },
-                secondaryMaterialTypes: [{ title: { cs: "" } }],
-                colors: [{ title: { cs: "" } }],
-               }],
-              })) || []),
-            ],
-
-           
-      },
-
-      restorationWork: {
-        abstract: "",
-        restorer: "",
-        workType: { title: { cs: "" } },
-
-        // coping
-
-        ...(record?.metadata?.restorationWork
-          ? record.metadata.restorationWork
-          : {}),
-
-        // array keys
-        supervisors: [
-          ...(record?.metadata?.restorationWork?.supervisors?.map(
-            (supervisor) => ({
-              fullName: supervisor?.fullName || "",
-              comment: supervisor?.comment || "",
-              institution: supervisor?.institution || "",
-            })
-          ) || []),
-        ],
-
-        parts: [
-          ...(record?.metadata?.restorationWork?.parts?.map((part) => ({
-            ...part,
-            restorationMethods: part.restorationMethods || [
-              { title: { cs: "" } },
-            ],
-          })) || []),
-        ],
-
-        restorationPeriod: {
-          since:
-            record?.metadata?.restorationWork?.restorationPeriod?.since || "",
-          until:
-            record?.metadata?.restorationWork?.restorationPeriod?.until || "",
-        },
-
-        examinationMethods: [
-          ...(record?.metadata?.restorationWork?.examinationMethods?.map(
-            (i) => ({ ...i })
-          ) || []),
-          { id: "", title: { cs: "" } },
-        ],
-
-        restorationMethods: [
-          ...(record?.metadata?.restorationWork?.restorationMethods?.map(
-            (i) => ({ ...i })
-          ) || []),
-          { id: "", title: { cs: "" } },
-        ],
-      },
-    },
-  };
 
   return (
     <Container>

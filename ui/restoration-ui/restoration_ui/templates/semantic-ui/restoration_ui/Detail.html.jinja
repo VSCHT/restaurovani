@@ -278,10 +278,13 @@
                 <tr class="details__div__info-left__box">
                   <td class="parag">Vedoucí práce</td>
     
-                  <td class="parag">
+                  <td class=" vert-div parag">
                     {% for value in metadata.restorationWork.supervisors %}
-                    {{ value.fullName }}
-                    {{ value.institution }}
+                    <div class="horiz-div parag">
+                         {{ value.fullName }}
+                        {{ value.institution }}
+                    </div>
+                    
                     {% endfor %}
                   </td>
                 </tr>

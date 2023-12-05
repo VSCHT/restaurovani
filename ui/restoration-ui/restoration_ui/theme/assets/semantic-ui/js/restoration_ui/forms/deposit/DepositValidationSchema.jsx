@@ -63,7 +63,7 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
       parts: Yup.array()
         .of(
           Yup.object().shape({
-            name: Yup.string().required(),
+            name: Yup.string().required(requiredMessage),
             main: Yup.boolean().required(),
           })
         )
@@ -71,8 +71,8 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
           "hasMainPart",
           "Maximalně jedna součást může být hlavní",
           function (value) {
-            const mainCount = value.filter((part) => part.main).length;
-            return mainCount == 1 || mainCount == 0; 
+            const mainCount = value?.filter((part) => part.main).length;
+            return mainCount == 1 || mainCount == 0 || mainCount== undefined; 
           }
         )
     }),

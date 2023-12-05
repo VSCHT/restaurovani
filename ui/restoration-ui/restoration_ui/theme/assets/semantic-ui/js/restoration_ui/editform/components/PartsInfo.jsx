@@ -15,7 +15,9 @@ import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 
 export const PartsInfo = ({ activeIndex, handleActive, values, errors }) => {
- console.log(errors)
+ console.log(values)
+
+
   return (
     <AccordionField
       includesPaths={["metadata.restorationObject.parts"]}
@@ -28,7 +30,7 @@ export const PartsInfo = ({ activeIndex, handleActive, values, errors }) => {
         fieldPath="metadata.restorationObject.parts"
         defaultNewValue={{
           name: "",
-          main: false,
+          main: values?.metadata?.restorationObject?.parts== null? true : false,
         }}
         addButtonLabel="Dodat součást"
       >
@@ -63,11 +65,7 @@ export const PartsInfo = ({ activeIndex, handleActive, values, errors }) => {
                         />
                       }
                       required
-                    />{errors?.metadata?.restorationObject?.parts ? (
-                      <Label pointing="above" prompt>
-                        Pole je povinné
-                      </Label>
-                    ) : null}
+                    />
                   </div>
                   <div className="vert-div predmety__form__div predmety__form__div-checkbox">
                     <Form.Field>
@@ -76,6 +74,7 @@ export const PartsInfo = ({ activeIndex, handleActive, values, errors }) => {
                         aria-label="Hlávní součást"
                         fieldPath={`${fieldPathPrefix}.main`}
                         optimized="false"
+                        // checked={checkedF(indexPath)}
                         label={
                           <FieldLabel
                             htmlFor={`${fieldPathPrefix}.main`}
