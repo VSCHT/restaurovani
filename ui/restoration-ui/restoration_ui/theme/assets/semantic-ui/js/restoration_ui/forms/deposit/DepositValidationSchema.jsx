@@ -69,12 +69,12 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
         )
         .test(
           "hasMainPart",
-          "Jenom jedna součást může být hlavní",
+          "Maximalně jedna součást může být hlavní",
           function (value) {
             const mainCount = value.filter((part) => part.main).length;
-            return mainCount === 1;
+            return mainCount == 1 || mainCount == 0; 
           }
-        ),
+        )
     }),
     restorationWork: Yup.object().shape({
       restorer: Yup.string().required(requiredMessage),

@@ -162,7 +162,7 @@ export const EditObjectForm = ({ edit }) => {
   return (
     <Container>
       <Formik
-        initialValues={formValues}
+        initialValues={record}
         onSubmit={() => {}}
         enableReinitialize
         validationSchema={DepositValidationSchemaEdit}
@@ -184,7 +184,7 @@ export const EditObjectForm = ({ edit }) => {
                   <BasicInfo
                     activeIndex={activeIndex}
                     handleActive={handleActive}
-                    record={formValues}
+                    record={record}
                   />
                 </Overridable>
               </div>

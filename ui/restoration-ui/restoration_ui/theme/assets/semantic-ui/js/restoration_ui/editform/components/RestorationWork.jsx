@@ -79,7 +79,7 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
           <ArrayField
             addButtonLabel="Přidat vedoucího"
             fieldPath="metadata.restorationWork.supervisors"
-            defaultNewValue={{}}
+            defaultNewValue={{ fullName: "", comment: "", institution: "" }}
           >
             {({ arrayHelpers, indexPath }) => {
               const fieldPathPrefix = `${"metadata.restorationWork.supervisors"}[${indexPath}]`;

@@ -168,18 +168,18 @@ export const FileStat = ({ apiUrl, record }) => {
 
   const renderTableBody = (fileTypeFilter) => {
     const fileName = (d) => {
-      if (d.metadata && d.metadata.caption) {
+      if (d.metadata && d.metadata?.caption) {
         if (
           d.metadata.caption === "default_image_name" ||
           d.metadata.caption === "default_pdf_name" ||
           Object.values(d.metadata.caption).length === 0
         ) {
-          return d.key;
+          return  d.key.length > 15 ?  d.key.substring(0, 15) + "..." :  d.key;
         } else {
-          return d.metadata.caption;
+          return  d.metadata.caption.length > 15  ?  d.metadata.caption.substring(0, 15) + "..." :  d.metadata.caption;
         }
       } else {
-        return d.key;
+        return d.key.length > 15  ?  d.key.substring(0, 15) + "..." :  d.key;
       }
     };
 
@@ -206,6 +206,7 @@ export const FileStat = ({ apiUrl, record }) => {
                   setModalOpen(true);
                 }}
               >
+               
                 {fileName(d)}{" "}
               </Table.Cell>
             )}
