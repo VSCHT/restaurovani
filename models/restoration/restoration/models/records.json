@@ -1994,15 +1994,15 @@
                                     "properties": {
                                         "comment": {
                                             "type": "keyword",
-                                            "label.cs": "Poznámka"
+                                            "label.cs": "Poznámka k vedoucímu"
                                         },
                                         "fullName": {
                                             "type": "keyword",
-                                            "label.cs": "Jméno a příjmení"
+                                            "label.cs": "Jméno a příjmení vedoucího"
                                         },
                                         "institution": {
                                             "type": "keyword",
-                                            "label.cs": "Instituce"
+                                            "label.cs": "Instituce vedoucího práce"
                                         }
                                     }
                                 }
