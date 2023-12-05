@@ -641,10 +641,20 @@
                         "properties": {
                             "archeologic": {
                                 "type": "boolean",
+                                "facets": {
+                                    "facet-groups": [
+                                        "default"
+                                    ]
+                                },
                                 "label.cs": "Archeologický nález"
                             },
                             "category": {
                                 "type": "keyword",
+                                "facets": {
+                                    "facet-groups": [
+                                        "default"
+                                    ]
+                                },
                                 "label.cs": "Kategorie"
                             },
                             "creationPeriod": {
@@ -663,10 +673,20 @@
                                 "properties": {
                                     "since": {
                                         "type": "integer",
+                                        "facets": {
+                                            "facet-groups": [
+                                                "default"
+                                            ]
+                                        },
                                         "label.cs": "Počátek období"
                                     },
                                     "until": {
                                         "type": "integer",
+                                        "facets": {
+                                            "facet-groups": [
+                                                "default"
+                                            ]
+                                        },
                                         "label.cs": "Konec období"
                                     }
                                 }
@@ -818,6 +838,14 @@
                                 "items": {
                                     "type": "vocabulary",
                                     "vocabulary-type": "ItemTypes",
+                                    "facets": {
+                                        "facet-groups": [
+                                            "default"
+                                        ],
+                                        "args": [
+                                            "vocabulary='ItemTypes'"
+                                        ]
+                                    },
                                     "label.cs": "Typ předmětu",
                                     "imports": [
                                         {
@@ -844,11 +872,6 @@
                                         "edit": "vocabulary_item"
                                     },
                                     "pid-field": "Vocabulary.pid.with_type_ctx(\"ItemTypes\")",
-                                    "facets": {
-                                        "args": [
-                                            "vocabulary='ItemTypes'"
-                                        ]
-                                    },
                                     "properties": {
                                         "id": {
                                             "marshmallow": {
@@ -930,6 +953,11 @@
                                 "label.cs": "Klíčová slova",
                                 "items": {
                                     "type": "keyword",
+                                    "facets": {
+                                        "facet-groups": [
+                                            "default"
+                                        ]
+                                    },
                                     "label.cs": "Klíčové slovo"
                                 }
                             },
@@ -957,6 +985,14 @@
                                             "items": {
                                                 "type": "vocabulary",
                                                 "vocabulary-type": "Colors",
+                                                "facets": {
+                                                    "facet-groups": [
+                                                        "default"
+                                                    ],
+                                                    "args": [
+                                                        "vocabulary='Colors'"
+                                                    ]
+                                                },
                                                 "label.cs": "Barva",
                                                 "imports": [
                                                     {
@@ -983,11 +1019,6 @@
                                                     "edit": "vocabulary_item"
                                                 },
                                                 "pid-field": "Vocabulary.pid.with_type_ctx(\"Colors\")",
-                                                "facets": {
-                                                    "args": [
-                                                        "vocabulary='Colors'"
-                                                    ]
-                                                },
                                                 "properties": {
                                                     "id": {
                                                         "marshmallow": {
@@ -1070,6 +1101,14 @@
                                             "items": {
                                                 "type": "vocabulary",
                                                 "vocabulary-type": "FabricationTechnologies",
+                                                "facets": {
+                                                    "facet-groups": [
+                                                        "default"
+                                                    ],
+                                                    "args": [
+                                                        "vocabulary='FabricationTechnologies'"
+                                                    ]
+                                                },
                                                 "label.cs": "Technologie výroby",
                                                 "imports": [
                                                     {
@@ -1096,11 +1135,6 @@
                                                     "edit": "vocabulary_item"
                                                 },
                                                 "pid-field": "Vocabulary.pid.with_type_ctx(\"FabricationTechnologies\")",
-                                                "facets": {
-                                                    "args": [
-                                                        "vocabulary='FabricationTechnologies'"
-                                                    ]
-                                                },
                                                 "properties": {
                                                     "id": {
                                                         "marshmallow": {
@@ -1188,6 +1222,14 @@
                                         "materialType": {
                                             "type": "vocabulary",
                                             "vocabulary-type": "MaterialTypes",
+                                            "facets": {
+                                                "facet-groups": [
+                                                    "default"
+                                                ],
+                                                "args": [
+                                                    "vocabulary='MaterialTypes'"
+                                                ]
+                                            },
                                             "label.cs": "Materiál",
                                             "imports": [
                                                 {
@@ -1214,11 +1256,6 @@
                                                 "edit": "vocabulary_item"
                                             },
                                             "pid-field": "Vocabulary.pid.with_type_ctx(\"MaterialTypes\")",
-                                            "facets": {
-                                                "args": [
-                                                    "vocabulary='MaterialTypes'"
-                                                ]
-                                            },
                                             "properties": {
                                                 "id": {
                                                     "marshmallow": {
@@ -1304,6 +1341,14 @@
                                             "items": {
                                                 "type": "vocabulary",
                                                 "vocabulary-type": "MaterialTypes",
+                                                "facets": {
+                                                    "facet-groups": [
+                                                        "default"
+                                                    ],
+                                                    "args": [
+                                                        "vocabulary='MaterialTypes'"
+                                                    ]
+                                                },
                                                 "label.cs": "Sekundární materiál",
                                                 "imports": [
                                                     {
@@ -1330,11 +1375,6 @@
                                                     "edit": "vocabulary_item"
                                                 },
                                                 "pid-field": "Vocabulary.pid.with_type_ctx(\"MaterialTypes\")",
-                                                "facets": {
-                                                    "args": [
-                                                        "vocabulary='MaterialTypes'"
-                                                    ]
-                                                },
                                                 "properties": {
                                                     "id": {
                                                         "marshmallow": {
@@ -1417,6 +1457,14 @@
                             "restorationRequestor": {
                                 "type": "vocabulary",
                                 "vocabulary-type": "Requestors",
+                                "facets": {
+                                    "facet-groups": [
+                                        "default"
+                                    ],
+                                    "args": [
+                                        "vocabulary='Requestors'"
+                                    ]
+                                },
                                 "label.cs": "Zadavatel restaurování",
                                 "imports": [
                                     {
@@ -1443,11 +1491,6 @@
                                     "edit": "vocabulary_item"
                                 },
                                 "pid-field": "Vocabulary.pid.with_type_ctx(\"Requestors\")",
-                                "facets": {
-                                    "args": [
-                                        "vocabulary='Requestors'"
-                                    ]
-                                },
                                 "properties": {
                                     "id": {
                                         "marshmallow": {
@@ -1553,6 +1596,14 @@
                                 "items": {
                                     "type": "vocabulary",
                                     "vocabulary-type": "ExaminationMethods",
+                                    "facets": {
+                                        "facet-groups": [
+                                            "default"
+                                        ],
+                                        "args": [
+                                            "vocabulary='ExaminationMethods'"
+                                        ]
+                                    },
                                     "label.cs": "Metoda průzkumu",
                                     "imports": [
                                         {
@@ -1579,11 +1630,6 @@
                                         "edit": "vocabulary_item"
                                     },
                                     "pid-field": "Vocabulary.pid.with_type_ctx(\"ExaminationMethods\")",
-                                    "facets": {
-                                        "args": [
-                                            "vocabulary='ExaminationMethods'"
-                                        ]
-                                    },
                                     "properties": {
                                         "id": {
                                             "marshmallow": {
@@ -1724,6 +1770,14 @@
                                             "items": {
                                                 "type": "vocabulary",
                                                 "vocabulary-type": "RestorationMethods",
+                                                "facets": {
+                                                    "facet-groups": [
+                                                        "default"
+                                                    ],
+                                                    "args": [
+                                                        "vocabulary='RestorationMethods'"
+                                                    ]
+                                                },
                                                 "label.cs": "Metoda restaurování",
                                                 "imports": [
                                                     {
@@ -1750,11 +1804,6 @@
                                                     "edit": "vocabulary_item"
                                                 },
                                                 "pid-field": "Vocabulary.pid.with_type_ctx(\"RestorationMethods\")",
-                                                "facets": {
-                                                    "args": [
-                                                        "vocabulary='RestorationMethods'"
-                                                    ]
-                                                },
                                                 "properties": {
                                                     "id": {
                                                         "marshmallow": {
@@ -1840,6 +1889,14 @@
                                 "items": {
                                     "type": "vocabulary",
                                     "vocabulary-type": "RestorationMethods",
+                                    "facets": {
+                                        "facet-groups": [
+                                            "default"
+                                        ],
+                                        "args": [
+                                            "vocabulary='RestorationMethods'"
+                                        ]
+                                    },
                                     "label.cs": "Metoda restaurování",
                                     "imports": [
                                         {
@@ -1866,11 +1923,6 @@
                                         "edit": "vocabulary_item"
                                     },
                                     "pid-field": "Vocabulary.pid.with_type_ctx(\"RestorationMethods\")",
-                                    "facets": {
-                                        "args": [
-                                            "vocabulary='RestorationMethods'"
-                                        ]
-                                    },
                                     "properties": {
                                         "id": {
                                             "marshmallow": {
@@ -1973,6 +2025,11 @@
                             },
                             "restorer": {
                                 "type": "keyword",
+                                "facets": {
+                                    "facet-groups": [
+                                        "default"
+                                    ]
+                                },
                                 "label.cs": "Restaurátor"
                             },
                             "supervisors": {
@@ -1998,10 +2055,20 @@
                                         },
                                         "fullName": {
                                             "type": "keyword",
+                                            "facets": {
+                                                "facet-groups": [
+                                                    "default"
+                                                ]
+                                            },
                                             "label.cs": "Jméno a příjmení vedoucího"
                                         },
                                         "institution": {
                                             "type": "keyword",
+                                            "facets": {
+                                                "facet-groups": [
+                                                    "default"
+                                                ]
+                                            },
                                             "label.cs": "Instituce vedoucího práce"
                                         }
                                     }
@@ -2010,6 +2077,14 @@
                             "workType": {
                                 "type": "vocabulary",
                                 "vocabulary-type": "WorkTypes",
+                                "facets": {
+                                    "facet-groups": [
+                                        "default"
+                                    ],
+                                    "args": [
+                                        "vocabulary='WorkTypes'"
+                                    ]
+                                },
                                 "label.cs": "Typ práce",
                                 "imports": [
                                     {
@@ -2036,11 +2111,6 @@
                                     "edit": "vocabulary_item"
                                 },
                                 "pid-field": "Vocabulary.pid.with_type_ctx(\"WorkTypes\")",
-                                "facets": {
-                                    "args": [
-                                        "vocabulary='WorkTypes'"
-                                    ]
-                                },
                                 "properties": {
                                     "id": {
                                         "marshmallow": {
