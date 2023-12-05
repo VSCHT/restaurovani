@@ -63,7 +63,7 @@ export const PartsInfo = ({ activeIndex, handleActive, values, errors }) => {
                         />
                       }
                       required
-                    />{errors?.metadata?.restorationObject?.name ? (
+                    />{errors?.metadata?.restorationObject?.parts ? (
                       <Label pointing="above" prompt>
                         Pole je povinné
                       </Label>
@@ -86,7 +86,7 @@ export const PartsInfo = ({ activeIndex, handleActive, values, errors }) => {
                       />
                       {errors?.metadata?.restorationObject?.parts ? (
                         <Label pointing="above" prompt>
-                          Jenom jedna součást může být hlavní
+                          Jedna součást může být hlavní
                         </Label>
                       ) : null}
                     </Form.Field>
