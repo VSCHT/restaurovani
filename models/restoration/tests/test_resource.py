@@ -601,6 +601,13 @@ def test_read_links_record(
     assert_expected_links_record(pid_value, res.json["links"], base_urls)
 
 
+def test_draft_listing_links(app, client_with_credentials, base_urls, sample_draft):
+    res = client_with_credentials.get(f"/user{base_urls['base_url']}")
+    assert_expected_links(
+        sample_draft["id"], res.json["hits"]["hits"][0]["links"], base_urls
+    )
+
+
 @pytest.fixture()
 def input_data(input_data):
     input_data["files"] = {"enabled": False}
