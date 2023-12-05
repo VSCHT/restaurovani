@@ -1,12 +1,19 @@
 import marshmallow as ma
+from invenio_drafts_resources.services.records.schema import (
+    ParentSchema as InvenioParentSchema,
+)
 from invenio_vocabularies.services.schema import i18n_strings
 from marshmallow import Schema
 from marshmallow import fields as ma_fields
 from marshmallow.fields import String
 from marshmallow.utils import get_value
 from marshmallow_utils.fields import SanitizedUnicode
-from oarepo_runtime.services.schema.marshmallow import BaseRecordSchema
+from oarepo_runtime.services.schema.marshmallow import BaseRecordSchema, DictOnlySchema
 from oarepo_runtime.services.schema.validation import validate_date
+
+
+class GeneratedParentSchema(InvenioParentSchema):
+    """"""
 
 
 class RestorationSchema(BaseRecordSchema):
@@ -14,6 +21,7 @@ class RestorationSchema(BaseRecordSchema):
         unknown = ma.RAISE
 
     metadata = ma_fields.Nested(lambda: RestorationMetadataSchema())
+    parent = ma.fields.Nested(GeneratedParentSchema)
     files = ma.fields.Nested(
         lambda: FilesOptionsSchema(), load_default={"enabled": True}
     )
@@ -47,7 +55,7 @@ class RestorationMetadataSchema(Schema):
     submissionStatus = ma_fields.String()
 
 
-class RestorationObjectSchema(Schema):
+class RestorationObjectSchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -72,7 +80,7 @@ class RestorationObjectSchema(Schema):
     title = ma_fields.String()
 
 
-class RestorationWorkSchema(Schema):
+class RestorationWorkSchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -93,7 +101,7 @@ class RestorationWorkSchema(Schema):
     workType = ma_fields.Nested(lambda: DimensionSchema())
 
 
-class DimensionsItemSchema(Schema):
+class DimensionsItemSchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -104,7 +112,7 @@ class DimensionsItemSchema(Schema):
     value = ma_fields.Float()
 
 
-class PartsItemSchema(Schema):
+class PartsItemSchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -125,7 +133,7 @@ class PartsItemSchema(Schema):
     secondaryMaterialTypes = ma_fields.List(ma_fields.Nested(lambda: DimensionSchema()))
 
 
-class RestorationWorkPartsItemSchema(Schema):
+class RestorationWorkPartsItemSchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -134,7 +142,7 @@ class RestorationWorkPartsItemSchema(Schema):
     restorationMethods = ma_fields.List(ma_fields.Nested(lambda: DimensionSchema()))
 
 
-class CreationPeriodSchema(Schema):
+class CreationPeriodSchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -143,7 +151,7 @@ class CreationPeriodSchema(Schema):
     until = ma_fields.Integer()
 
 
-class DimensionSchema(Schema):
+class DimensionSchema(DictOnlySchema):
     class Meta:
         unknown = ma.INCLUDE
 
@@ -154,7 +162,7 @@ class DimensionSchema(Schema):
     title = i18n_strings
 
 
-class PartSchema(Schema):
+class PartSchema(DictOnlySchema):
     class Meta:
         unknown = ma.INCLUDE
 
@@ -163,7 +171,7 @@ class PartSchema(Schema):
     _version = String(data_key="@v", attribute="@v")
 
 
-class RestorationPeriodSchema(Schema):
+class RestorationPeriodSchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
@@ -172,7 +180,7 @@ class RestorationPeriodSchema(Schema):
     until = ma_fields.String(validate=[validate_date("%Y-%m-%d")])
 
 
-class SupervisorsItemSchema(Schema):
+class SupervisorsItemSchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 

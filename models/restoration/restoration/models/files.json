@@ -164,17 +164,6 @@
             "generate": true,
             "skip": false
         },
-        "files-field": {
-            "field-args": [
-                "store=False",
-                "create=False",
-                "delete=False"
-            ],
-            "generate": true,
-            "field-class": "invenio_records_resources.records.systemfields.FilesField",
-            "file-class": "restoration.files.api.RestorationFile",
-            "imports": []
-        },
         "ui": {
             "module": "restoration.models",
             "file": "restoration/models/ui.json",
@@ -231,7 +220,8 @@
             "service-id": "restoration_file",
             "components": [
                 "{{invenio_records_resources.services.records.components.DataComponent}}"
-            ]
+            ],
+            "result-list-class": "oarepo_runtime.services.results.RecordList"
         },
         "service": {
             "base-classes": [
@@ -261,18 +251,20 @@
             "imports": [],
             "extra-code": ""
         },
+        "files-field": {
+            "field-args": [
+                "store=False",
+                "create=False",
+                "delete=False"
+            ],
+            "generate": true,
+            "field-class": "invenio_records_resources.records.systemfields.FilesField",
+            "file-class": "restoration.files.api.RestorationFile",
+            "imports": []
+        },
         "translations": {
             "module": "restoration.translations",
             "alias": "restoration_file"
-        },
-        "draft-parent-record": {
-            "skip": true
-        },
-        "draft-parent-record-metadata": {
-            "skip": true
-        },
-        "draft-parent-record-state": {
-            "skip": true
         },
         "edtf-interval-dumper": {
             "generate": true,
@@ -297,6 +289,16 @@
                 "invenio_records_permissions.RecordPermissionPolicy"
             ],
             "imports": []
+        },
+        "draft-parent-record": {
+            "generate": false,
+            "skip": true
+        },
+        "draft-parent-record-metadata": {
+            "skip": true
+        },
+        "draft-parent-record-state": {
+            "skip": true
         },
         "mapping": {
             "generate": true,
@@ -328,6 +330,14 @@
                 "oarepo_published_service.services.service.PublishedService"
             ],
             "imports": []
+        },
+        "parent-record-marshmallow": {
+            "module": "restoration.services.files.schema",
+            "class": "restoration.services.files.schema.GeneratedParentSchema",
+            "generate": true,
+            "base-classes": [
+                "invenio_drafts_resources.services.records.schema.ParentSchema{InvenioParentSchema}"
+            ]
         },
         "sortable": [],
         "properties": {
