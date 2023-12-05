@@ -11,6 +11,7 @@ from oarepo_runtime.records.relations import (
     RelationsField,
 )
 from oarepo_runtime.records.systemfields.has_draftcheck import HasDraftCheckField
+from oarepo_runtime.records.systemfields.record_status import RecordStatusSystemField
 
 from restoration.files.api import RestorationFile, RestorationFileDraft
 from restoration.records.dumpers.dumper import RestorationDraftDumper, RestorationDumper
@@ -20,7 +21,6 @@ from restoration.records.models import (
     RestorationParentMetadata,
     RestorationParentState,
 )
-from oarepo_runtime.records.systemfields.record_status import RecordStatusSystemField
 
 
 class RestorationParentRecord(ParentRecord):
@@ -43,8 +43,6 @@ class RestorationRecord(InvenioRecord):
     )
 
     dumper = RestorationDumper()
-
-    record_status = RecordStatusSystemField()
 
     relations = RelationsField(
         dimension=PIDRelation(
@@ -112,6 +110,7 @@ class RestorationRecord(InvenioRecord):
     versions_model_cls = RestorationParentState
 
     parent_record_cls = RestorationParentRecord
+    record_status = RecordStatusSystemField()
 
     files = FilesField(
         file_cls=RestorationFile, store=False, create=False, delete=False
@@ -134,8 +133,6 @@ class RestorationDraft(InvenioDraft):
         create=True,
         delete=False,
     )
-
-    record_status = RecordStatusSystemField()
 
     dumper = RestorationDraftDumper()
 
@@ -205,6 +202,8 @@ class RestorationDraft(InvenioDraft):
     versions_model_cls = RestorationParentState
 
     parent_record_cls = RestorationParentRecord
+    record_status = RecordStatusSystemField()
+
     has_draft = HasDraftCheckField(config_key="HAS_DRAFT_CUSTOM_FIELD")
 
     files = FilesField(file_cls=RestorationFileDraft, store=False)

@@ -1,6 +1,7 @@
 from invenio_records_resources.services import FileLink, FileServiceConfig, RecordLink
 from invenio_records_resources.services.records.components import DataComponent
 from oarepo_runtime.services.config.service import PermissionsPresetsConfigMixin
+from oarepo_runtime.services.results import RecordList
 
 from restoration.records.api import RestorationDraft, RestorationRecord
 from restoration.services.files.permissions import RestorationFileDraftPermissionPolicy
@@ -10,6 +11,8 @@ from restoration.services.records.permissions import RestorationPermissionPolicy
 
 class RestorationFileServiceConfig(PermissionsPresetsConfigMixin, FileServiceConfig):
     """RestorationRecord service config."""
+
+    result_list_cls = RecordList
 
     PERMISSIONS_PRESETS = ["everyone"]
 
@@ -51,6 +54,8 @@ class RestorationFileDraftServiceConfig(
     PermissionsPresetsConfigMixin, FileServiceConfig
 ):
     """RestorationDraft service config."""
+
+    result_list_cls = RecordList
 
     PERMISSIONS_PRESETS = ["everyone"]
 
