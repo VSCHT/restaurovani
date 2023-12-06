@@ -1,8 +1,12 @@
 import uuid
+from collections import namedtuple
 from pathlib import Path
 
 import requests
 import yaml
+import tqdm
+
+MetadataWithFiles = namedtuple("MetadataWithFiles", ["metadata", "files"])
 
 
 def download_records(url):
@@ -234,29 +238,34 @@ def convert_object(restoration_object, vocabulary):
         for f in files:
             f["featured"] = f["key"] == thumbnail["key"]
 
-    restoration_works = [
-        convert_work(object_id, x, vocabulary, methods_for_part, files)
-        for x in restoration_object.pop("works", [])
-    ]
+    restoration_works_and_files = []
+    for x in restoration_object.pop("works", []):
+        work_files = [*files]
+        restoration_works_and_files.append(
+            (
+                convert_work(object_id, x, vocabulary, methods_for_part, work_files),
+                work_files,
+            )
+        )
 
     if restoration_object != {}:
         raise AssertionError(
             f"Expected empty restoration_object after conversion, got {restoration_object}"
         )
-    return (
-        fix_json(
-            [
+    return [
+        MetadataWithFiles(
+            fix_json(
                 {
                     "metadata": {
                         "restorationObject": ret,
                         "restorationWork": w,
                     }
                 }
-                for w in restoration_works
-            ]
-        ),
-        files,
-    )
+            ),
+            files,
+        )
+        for w, files in restoration_works_and_files
+    ]
 
 
 def convert_work(object_id, restoration_work, vocabulary, methods_for_part, files):
@@ -332,6 +341,10 @@ def generate_files(idx, files, target_dir):
         target_file = target_dir / f["key"]
         if not target_file.exists() or target_file.stat().st_size != f["size"]:
             response = requests.get(url)
+            if response.status_code != 200:
+                print(f"Error getting {url}: {response.status_code}")
+                continue
+
             with target_file.open("wb") as fd:
                 fd.write(response.content)
 
@@ -367,10 +380,13 @@ def main():
     object_values = list(objects.values())
     object_values.sort(key=lambda x: x["metadata"]["id"])
     converted_objects = []
-    for idx, obj in enumerate(object_values):
-        converted_object, files = convert_object(obj, vocabs)
-        converted_objects.extend(converted_object)
-        generate_files(idx, files, Path(__file__).parent / "data" / "files")
+    idx = 0
+    for obj in tqdm.tqdm(object_values):
+        converted_objects_and_files = convert_object(obj, vocabs)
+        for converted_object, files in converted_objects_and_files:
+            converted_objects.append(converted_object)
+            generate_files(idx, files, Path(__file__).parent / "data" / "files")
+            idx += 1
     with open(Path(__file__).parent / "data" / "data.yaml", "w") as f:
         yaml.safe_dump_all(converted_objects, f, allow_unicode=True)
 
