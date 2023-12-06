@@ -1,4 +1,4 @@
-import { List, Checkbox, Accordion, Image } from "semantic-ui-react";
+import { List, Checkbox, Accordion, Image , Label} from "semantic-ui-react";
 import { withState } from "react-searchkit";
 import React from "react";
 
@@ -13,7 +13,7 @@ export const MyBucketAggregationValues = withState(
             onClick={() => onFilterClicked(bucket.key)}
             checked={isSelected}
           />
-          {bucket.label} ( {bucket.doc_count} ){childAggCmps}
+          {bucket.label} <Label>{bucket.doc_count}</Label> {childAggCmps}
         </List.Item>
       </>
     );

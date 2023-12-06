@@ -12,12 +12,16 @@ theme = WebpackThemeBundle(
                 "restoration_ui_img_gallery":"./js/restoration_ui/gallery/index.js",
                 "restoration_ui_deposit_edit": "./js/restoration_ui/editform/index.js",
                 "restoration_ui_deposit_create": "./js/restoration_ui/createform/form/index.js",
+               
             },
             dependencies={
                 "react-searchkit": "^2.0.0",
                  "react-slick": "^0.29.0",
                  "slick-carousel": "^1.8.1",
                  "react-media":"^1.10.0",
+                 "jquery": "^3.7.1",
+                 "@oarepo/file-manager": "^1.0.8",
+                 "preact": "^10.5.13"
             },
             devDependencies={},
             aliases={

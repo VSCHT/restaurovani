@@ -3,48 +3,64 @@ import PropTypes from "prop-types";
 import Overridable from "react-overridable";
 import _get from "lodash/get";
 
-import {
-  Grid,
-  Item,
-  Button,
-} from "semantic-ui-react";
+import { Grid, Item, Button } from "semantic-ui-react";
 import { withState, buildUID } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
+import {ImageWithFallback} from "./imgFallback"
 
 const ItemHeader = ({ title, searchUrl, selfLink }) => {
+  const [smallScreen, setSmallScreen] = React.useState(
+    window.innerWidth <= 730
+  );
+
+  useEffect(() => {
+    function updateDescVisibility() {
+      if (window.innerWidth >= 730) {
+        setSmallScreen(false);
+      } else {
+        setSmallScreen(true);
+      }
+    }
+
+    updateDescVisibility();
+
+    window.addEventListener("resize", updateDescVisibility);
+
+    return () => {
+      window.removeEventListener("resize", updateDescVisibility);
+    };
+  }, []);
+
   const viewLink = new URL(
     selfLink,
     new URL(searchUrl, window.location.origin)
   );
+  let truncatedTitle =
+    title.length > 10 && smallScreen ? title.substring(0, 10) + "..." : title;
   return (
     <Item.Header className="predmety__card__title">
-      <a href={viewLink}>{title}</a>
+      <a href={viewLink}>{truncatedTitle}</a>
     </Item.Header>
   );
 };
 
-const DetailsButton=({title, searchUrl, selfLink}) => {
+const DetailsButton = ({ searchUrl, selfLink }) => {
   const viewLink = new URL(
     selfLink,
     new URL(searchUrl, window.location.origin)
   );
   return (
-    <Button className="predmety__card__btn"
-    aria-label="Tlacitko tevrit detaily">
-      <a className="predmety__card__btn" href={viewLink}>DETAIL</a>
+    <Button
+      className="predmety__card__btn"
+      aria-label="Tlacitko tevrit detaily"
+    >
+      <a href={viewLink}>DETAIL</a>
     </Button>
   );
 };
 
-export const ResultsListItemComponent = ({
-  
-  result,
-  appName
-}) => {
-
-  const [wideScreen, setWideScreen] = React.useState(
-    window.innerWidth >= 1200
-  );
+export const ResultsListItemComponent = ({ result, appName }) => {
+  const [wideScreen, setWideScreen] = React.useState(window.innerWidth >= 1200);
 
   useEffect(() => {
     function updateDescVisibility() {
@@ -64,14 +80,9 @@ export const ResultsListItemComponent = ({
     };
   }, []);
 
-
   const searchAppConfig = useContext(SearchConfigurationContext);
 
-  const title = _get(
-    result,
-    "metadata.restorationObject.title",
-    "<no title>"
-  )[0].value;
+  const title = _get(result, "metadata.restorationObject.title", "<no title>");
 
   const restorer = _get(
     result,
@@ -80,11 +91,13 @@ export const ResultsListItemComponent = ({
   );
   const desc = _get(
     result,
-    "metadata.restorationWork.abstract[0].value",
+    "metadata.restorationWork.abstract",
     "<no data>"
   );
 
   const created = _get(result, "created", "<no data>");
+
+
 
   return (
     <Overridable
@@ -95,10 +108,9 @@ export const ResultsListItemComponent = ({
       <Grid className="predmety__card" key={result.id}>
         <Item className="horiz-div predmety__card-content">
           <Grid className="predmety__card__img-container">
-            <Item.Image
-              src="/static/images/img_placeholder.png"
-              alt="foto predmetu"
-            />
+            
+            <ImageWithFallback src="/static/images/image-noimage.png" fallbackSrc="/static/images/image-404.png"   result={result} classN=''/>
+           
           </Grid>
           <Item.Content className="vert-div predmety__card__info">
             <Grid.Column className="vert-div predmety__card__main-info">
@@ -109,13 +121,12 @@ export const ResultsListItemComponent = ({
                 selfLink={`${result.id}`}
               />
               <Item.Description className="parag">{restorer}</Item.Description>
-             {/*  {wideScreen && <Item.Description className="parag">{desc.substring(0,70)}...</Item.Description>
+              {/*  {wideScreen && <Item.Description className="parag">{desc.substring(0,70)}...</Item.Description>
               } */}
-              
             </Grid.Column>
             <Item.Group className="horiz-div predmety__card__extra-info">
               <Item.Extra className="horiz-div predmety__card__extra-info">
-                <p className="parag">Vlozeno: {created.slice(0, 12)}</p>
+              <p className="parag">Vloženo: {created}</p>
               </Item.Extra>
               <DetailsButton
                 className="predmety__card__btn"

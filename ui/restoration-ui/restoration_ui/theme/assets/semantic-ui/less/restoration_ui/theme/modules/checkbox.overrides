@@ -43,3 +43,25 @@
     height: 20px;
   }
 }
+
+
+
+@media only screen and (min-width: 3000px) {
+
+.ui.checkbox input ~ label:before {
+  width: 30px !important;
+  height: 30px !important;
+  border: 2px solid #222;
+}
+.ui.checkbox input:checked ~ label:before, .ui.checkbox input:checked ~ label:after {
+  /* background-color: #e0472b !important; */
+  box-shadow: none !important;
+  width: 30px !important;
+  height: 30px !important;
+  color: #e0472b !important;
+  font-size: 30px;
+}
+.ui.list .item .checkbox {
+  margin-right: 20px !important;
+}
+}

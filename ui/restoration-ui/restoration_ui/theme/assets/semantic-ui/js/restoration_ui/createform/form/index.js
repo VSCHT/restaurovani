@@ -9,4 +9,4 @@ createFormAppInit(overriddenComponents);
 
 
 
-console.log(CreateObjectForm);
+

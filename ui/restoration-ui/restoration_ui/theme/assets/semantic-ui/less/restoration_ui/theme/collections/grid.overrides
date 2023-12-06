@@ -34,6 +34,9 @@ height: 100% !important                                                         
 .ui[class*="right aligned"].grid > .column, .ui[class*="right aligned"].grid > .row > .column, .ui.grid > [class*="right aligned"].row > .column, .ui.grid > [class*="right aligned"].column.column, .ui.grid > .row > [class*="right aligned"].column.column{
 text-align: left                                                                                                                                                                                                                                               ;
 }
+
+
+
 @media only screen and (min-width: 1200px) {
 .ui.container.predmety__body-bg.pages__predmety .ui.grid.horiz-div{
     gap: 7vw !important
@@ -81,7 +84,6 @@ flex-direction: column                      ;
 .ui.grid.predmety__title-search__searchbar{
 gap: 40px                                   ;
 align-items: center !important              ;
-width: 30%                                  ;
 }
 .row.horiz-div.predmety__title-search{
 display: flex !important                    ;
@@ -92,7 +94,7 @@ width: 100% !important                      ;
 }
 .ui.grid.vert-div.predmety_main-container{
 width: 54vw !important                      ;
-margin-top: 180px !important                ;
+margin-top: 185px !important                ;
 margin-left: 14vw !important                ;
 }
 
@@ -119,7 +121,6 @@ z-index: 1000                                           ;
 width: 20vw;
 }
 .ui.grid.predmety__aside__filter{
-gap: 20px                                               ;
 width: 15vw                                             ;
 }
 .ui.grid.predmety__title-search-fixed{
@@ -148,7 +149,8 @@ display: flex                         ;
 align-items: center                   ;
 justify-content: center               ;
 overflow: hidden                      ;
-width: 240px !important               ;
+max-width: 240px !important               ;
+max-height: 200px;
 }
 
 .grid.predmety__card__img-container img {
@@ -157,6 +159,7 @@ max-height: 100%                          ;
 width: auto                               ;
 height: auto                              ;
 width: 225px !important                   ;
+flex-basis: fit-content;
 }
 
 .grid.vert-div.predmety__card__main-info{
@@ -220,6 +223,16 @@ margin-top: 10px                                                   ;
 background-color:                                                  #aaaaa2;
 }
 }
+@media only screen and (min-width: 1200px) and (max-width: 1360px) {
+.ui.grid.vert-div.predmety_main-container {
+    width: 54vw !important;
+    margin-top: 120px !important;
+    margin-left: 14vw !important;
+}
+}
+
+
+
 @media only screen and (min-width: 992px) and (max-width: 1200px){
 .grid.predmety__main-content__nores{
 gap: 20px                                                          ;
@@ -239,7 +252,7 @@ flex-direction: row                                                ;
 align-items: center                                                ;
 }
 .grid.predmety__card{
-margin-bottom: 45px !important                                     ;
+margin-bottom: 25px !important                                     ;
 background-color:                                                  #ffffff !important;
 display: flex !important                                           ;
 position: relative !important                                      ;
@@ -321,6 +334,7 @@ align-items: center                   ;
 justify-content: center               ;
 overflow: hidden                      ;
 width: 190px !important               ;
+max-height: 160px;
 }
 
 .grid.predmety__card__img-container img {
@@ -329,6 +343,7 @@ max-height: 100%                          ;
 width: auto                               ;
 height: auto                              ;
 width: 205px !important                   ;
+flex-basis: fit-content;
 }
 
 .grid.vert-div.predmety__card__main-info{
@@ -434,7 +449,7 @@ flex-direction: column                      ;
 }
 .ui.grid.predmety__title-search__searchbar{
 justify-content: space-between              ;
-width: 70vw                                 ;
+width: 80%                               ;
 }
 
 .ui.grid.vert-div.predmety_main-container{
@@ -521,6 +536,7 @@ align-items: center                   ;
 justify-content: center               ;
 overflow: hidden                      ;
 width: auto                           ;
+min-height: 150px;
 }
 
 .grid.predmety__card__img-container img {
@@ -632,7 +648,7 @@ align-items: center                                                ;
 display: flex                                                      ;
 flex-direction: column                                             ;
 align-items: center                                                ;
-gap: 15px                                                          ;
+gap: 0px                                                          ;
 }
 .ui.grid.horiz-div{
 display: flex                                                      ;
@@ -644,7 +660,7 @@ flex-direction: column                                             ;
 }
 .ui.grid.predmety__title-search__searchbar{
 justify-content: space-between                                     ;
-width: 100%                                                        ;
+width: auto                                                       ;
 }
 
 .ui.grid.vert-div.predmety_main-container{
@@ -670,10 +686,9 @@ align-content: stretch                     ;
 
 .ui.column.vert-div.predmety__aside {
 position: relative !important         ;
-top: 270px                            ;
+
 gap: 60px                             ;
 height: auto                          ;
-width: 100vw !important               ;
 align-content: stretch                ;
 background-color:                     #eaeae2;
 padding: 30px 40px                    ;
@@ -714,11 +729,12 @@ justify-content: space-between       ;
 }
 
 .grid.predmety__card__img-container {
+  max-height: 250px;
 display: flex                         ;
 align-items: center                   ;
 justify-content: center               ;
 overflow: hidden                      ;
-width: 280px                          ;
+max-width: 280px                          ;
 }
 
 .grid.predmety__card__img-container img {
@@ -831,7 +847,10 @@ margin: 0 auto !important                  ;
 .ui.grid.predmety__cards {
   width: 100% !important;
   gap: 70px !important;
-  margin-top: 120px !important;
+}
+.ui[class*="right aligned"].grid > .column, .ui[class*="right aligned"].grid > .row > .column, .ui.grid > [class*="right aligned"].row > .column, .ui.grid > [class*="right aligned"].column.column, .ui.grid > .row > [class*="right aligned"].column.column {
+    text-align: left;
+    font-size: 25px;
 }
 .grid.predmety__card {
   margin-top: 22px !important;
@@ -875,3 +894,9 @@ margin: 0 auto !important                  ;
   align-content: stretch !important;
 }
 }
+
+@media only screen and (max-width: 800px) and (min-width: 550px){
+.ui.grid.predmety__title-search__searchbar{
+justify-content: space-between              ;
+width: auto                               ;
+}}

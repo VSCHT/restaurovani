@@ -1,494 +1,364 @@
 {#def metadata, ui, layout, record, extra_context #} {%- set title =
-metadata.restorationObject.title[0].value ~ " | " ~ _("Detail") %} {% extends
-"oarepo_ui/detail.html" %} {%- block head_links %}
-
-{{ super() }}
-{{ webpack["restoration_ui_components.js"] }}
-{{ webpack["restoration_ui_components.css"] }}
-
-{% endblock %} {%- block page_body %}
-
-{% for entry in extra_context.get("files", {}).get("entries", []) %}
-    <div>
-        <a href="{{ entry.links.content }}">{{ entry.key }}</a><br>
-        {{ entry.metadata }}
-    </div>
-{% endfor %}
-
-<div class="horiz-div details__div__header">
-  <div class="horiz-div details__div__header-left">
-    <p class="details__div__header-h">
-      {{ metadata.restorationObject.title[0].value }}
-    </p>
-    <button class="details__div__header__btn" onclick="redirectToEditPage()">
-      <img
-        src="{{ url_for('static', filename='images/icon_pencil.png') }}"
-        class="details__div__header__btn-edit"
-        alt="Edit icon"
-      />
-    </button>
-  </div>
-
-  {% if metadata.restorationObject.stylePeriod %}
-  <div class="horiz-div details__div__header-additional">
-    <p class="details__div__header_p parag">
-      {% if metadata.restorationObject.stylePeriod.startYear %}{{
-        metadata.restorationObject.stylePeriod.startYear
-      }}
-      {% endif %}{% if metadata.restorationObject.stylePeriod.endYear %} -
-      {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}
-    </p>
-    <span class="details__div__vr"></span>
-    <p class="details__div__header_p parag">
-      {% if metadata.restorationObject.stylePeriod.period.title %}{{
-        metadata.restorationObject.stylePeriod.period.title
-      }}
-      {% endif %}
-    </p>
-  </div>
-  {% endif %}
-</div>
-
-<!-- photos -->
-<div id="images-carousel" data-photos=""></div>
-
-<div class="ui  six column divided grid details__table">
-  <div class="row details__div__details">
+  metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
+    "oarepo_ui/detail.html" %} {%- block head_links %}
+    
+    {{ super() }}
+    {{ webpack["restoration_ui_components.js"] }}
+    {{ webpack["restoration_ui_components.css"] }}
+    
+    {% endblock %} {%- block page_body %}
    
-    {% if metadata.restorationObject.stylePeriod %}
-    <div class="column details__div__details-box">
-      <div class="vert-div details__div__details-box">
-        <p class="details__div__details-box-smaller parag">Datace</p>
-        <p class="details__div__details-box-smaller parag">
-          
-            {% if metadata.restorationObject.stylePeriod.startYear %}
-            {{ metadata.restorationObject.stylePeriod.startYear }} {% endif %}
-            {% if metadata.restorationObject.stylePeriod.endYear %} -
-            {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}{{
-              metadata.restorationObject.stylePeriod.period.title
-            }}
-          
-        </p></div>
-    </div>
-    {% endif %} 
     
     
+<!-- header -->
+              <div class="horiz-div details__div__header">
+                <div class="horiz-div details__div__header-left">
+                  <p class="details__div__header-h">
+                    {{ metadata.restorationObject.title}}
+                  </p>
+                  <a class="details__div__header__btn" href="{{url_for('restoration-ui.edit', pid_value=record.id)}}">
+                    <img
+                      src="{{ url_for('static', filename='images/icon_pencil.png') }}"
+                      class="details__div__header__btn-edit"
+                      alt="Edit icon"
+                    />
+                  </a>
+                </div>
+<!-- right side of title -->
+                {% if metadata.restorationObject.stylePeriod %}
+                <div class="horiz-div details__div__header-additional">
+                  <p class="details__div__header_p parag">
+                    {% if metadata.restorationObject.stylePeriod.startYear %}{{
+                      metadata.restorationObject.stylePeriod.startYear
+                    }}
+                    {% endif %}{% if metadata.restorationObject.stylePeriod.endYear %} -
+                    {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}
+                  </p>
+                  <span class="details__div__vr"></span>
+                  <p class="details__div__header_p parag">
+                    {% if metadata.restorationObject.stylePeriod.period.title %}{{
+                      metadata.restorationObject.stylePeriod.period.title
+                    }}
+                    {% endif %}
+                  </p>
+                </div>
+                {% endif %}
+              </div>
     
-    {% if metadata.restorationObject.dimensions %}
-    <div class="column details__div__details-box">
-      <div class="vert-div details__div__details-box">
-        <p class="details__div__details-box-smaller parag">
-          Rozměry předmětu
-        </p>
-      <div class="vert-div details__div__details-box-smaller">
-        <p class=" parag">
-          
-        {% for value in metadata.restorationObject.dimensions %} {% if
-          loop.index <= 1 %}
-          
-            {% if value.dimension.title %} {{ value.dimension.title }}
-            {{ value.value }}{{ value.unit }} {% endif %}
-       </p>
-          {% if loop.index >= 1 %}
-          <button
-            class="details__div__header__btn details__div__details-box-smaller__btn-more"
-            onclick="changeStyles()"
-          >
-            <img
-              alt="ukazat vic info"
-              src="{{ url_for('static', filename='images/chevron-down.png') }}"
-            />
-          </button>
-          {% endif %} {% endif %} 
-        {% endfor %}
-
+        <!-- photos -->
+        <div id="images-carousel" data-photos='{{ record.links.files | tojson }}'></div>
+    
+        <!-- info o predmetu -->
+        <div class="ui  six column divided grid details__table">
+          <div class="row details__div__details">
         
-          <p class="vert-div details__div__details-box-smaller-hidden parag">
-            {% for value in metadata.restorationObject.dimensions %} {% if
-            loop.index >= 2 %}
-              {{ value.dimension.title }} {{ value.value }}{{ value.unit }}
-           
-            {% endif %} {% endfor %}
-          </p>
-            <button
-              class="details__div__header__btn details__div__details-box-smaller__btn-less"
-              onclick="changeStyles()"
-            >
-              <img
-                src="{{ url_for('static', filename='images/up-icon.png') }}"
-                alt="ukazat min info"
-              />
-            </button>
-          
-          
-      
-        </div>
-      </div>
-    </div>
-    {% endif %} 
-    
-    
-    
-    {% if metadata.restorationObject.itemTypes %}
-    <div class="column details__div__details-box">
-      <div class="vert-div details__div__details-box">
-          <p class="details__div__details-box-smaller parag">Typ předmětu</p>
-          <p class="details__div__details-box-smaller parag">
-            {% for value in metadata.restorationObject.itemTypes %} {% if
-            loop.index <= 2 %}
-            {{ value.title }}
-            {% endif %} {% endfor %}
-          </p></div>
-    </div>
-    {% endif %} 
-    
-    
-    
-    {% if metadata.restorationObject.parts and  metadata.restorationObject.parts[0].materialType and metadata.restorationObject.parts|length == 1 %}
-    
-        <div class="column details__div__details-box">
-          <div class="vert-div details__div__details-box">
-          <p class="details__div__details-box-smaller parag">Materiál</p>
-          <p class="details__div__details-box-smaller parag">
-              {{ metadata.restorationObject.parts[0].materialType.title }}
-          </p>
-          </div>
-        </div>
-    {% endif %}
-
-
-    {% if metadata.restorationObject.parts and metadata.restorationObject.parts[0].fabricationTechnologies and metadata.restorationObject.parts|length ==1 %}
-    <div class="column details__div__details-box">
-        <div class="vert-div details__div__details-box">
-          <p class="details__div__details-box-smaller parag">Technologie</p>
-          <p class="details__div__details-box-smaller parag">
-            {% for value in metadata.restorationObject.parts[0].fabricationTechnologies %} 
-              {{ value.title }}
-              {% endfor %}
-          </p>
-        </div>
-    </div>
-    {% endif %}
-
-    {% if metadata.restorationObject.parts and metadata.restorationObject.parts[0].colors and metadata.restorationObject.parts|length ==1 %}
-    <div class="column details__div__details-box">
-        <div class="vert-div details__div__details-box">
-          <p class="details__div__details-box-smaller parag">Barva</p>
-          <p class="details__div__details-box-smaller parag">
-            {% for value in metadata.restorationObject.parts[0].colors %} 
-              {{ value.title }}
-              {% endfor %}
-        </div>
-    </div>
-    {% endif %}
-  
-  </div>
-  
-</div>
-
-
-
-
-
-{% if  metadata.restorationObject.parts and metadata.restorationObject.parts|length >1 %}
-<div class="ui  accordion field details__info__accordion">
-{% for value in metadata.restorationObject.parts %} 
-
-<div class="title parag">
-
-    <i class="dropdown icon"></i>
-    Cast {{value.name[0].value or loop.index}}
-  </div>
-
-  <div class="content">
-  
-    {% if value.colors %}
-    <div class="horiz-div details__parts__part-desc">
-    <p class="parag"> Barvy: </p> 
-      <div class="vert-div details__parts__desc">
-        {% for value in value.colors %} 
-            <p class="parag">{{value.title}}</p>
-        {% endfor %}
-      </div>
-    </div>
-    {% endif %}
-
-    {% if value.materialType %} 
-    <div class="horiz-div details__parts__part-desc">
-        <p class="parag"> Material: </p>
-        <p class="parag">{{value.materialType.title}}</p>
-      </div>
-    {% endif %}
-
-    {% if value.secondaryMaterialTypes %} 
-    <div class="horiz-div details__parts__part-desc">
-        <p class="parag"> Vedlejsi typy materialu: </p>
-        <p class="parag"> 
-          {% for value in value.secondaryMaterialTypes %} 
-              <p class="parag">{{ value.title }}</p>
-        {% endfor %}</p>
-      </div>
-    {% endif %}
-
-    {% if value.fabricationTechnologies %}
-    <div class="horiz-div details__parts__part-desc">
-    <p class="parag"> Technologie:  </p>
-      <div class="vert-div details__parts__desc">
-        {% for value in value.fabricationTechnologies %} 
-              <p class="parag">{{ value.title }}</p>
-        {% endfor %}
-      </div>
-    </div>
-    {% endif %}
-
-  </div>
-
-{% endfor %}
-</div>
-{% endif %}
-
-
-
-<div class="details__tb-info"></div>
-<!-- desc -->
-{% if metadata.restorationObject.description %}
-<div class="details__div__desc" aria-label="Popis předmětu">
-  <p class="parag">{{ metadata.restorationObject.description[0].value }}</p>
-</div>
-{% endif %}
-<div class="vr-huge-horiz"></div>
-<!-- info -->
-
-<div class="horiz-div details__div__info" aria-label="Info o předmětu">
-  <div class="vert-div details__div__info-left">
-    <table summary="Informace o předmětu">
-      <tbody>
-        {% if metadata.restorationObject.restorationRequestor %}
-        <tr class="details__div__info-left__box">
-          <td class="parag">Zadavatel</td>
-          <td class="parag">
-            {{ metadata.restorationObject.restorationRequestor.title }}
-          </td>
-        </tr>
-        {% endif %} {% if metadata.restorationWork.restorer or
-        metadata.restorationWork.workType %}
-        <tr class="details__div__info-left__box">
-          <td class="parag">Restauroval(a)</td>
-          <td class="parag">
-            {% if metadata.restorationWork.restorer %}
-            {{ metadata.restorationWork.restorer }}
-            {% endif %} {% if metadata.restorationWork.workType %} ,
-            {{ metadata.restorationWork.workType.title }}
+      <!-- styleperiod -->
+            {% if metadata.restorationObject.stylePeriod %}
+            <div class="column details__div__details-box">
+              <div class="vert-div details__div__details-box">
+                <p class="details__div__details-box-smaller parag">Datace</p>
+                <p class="details__div__details-box-smaller parag">
+                  
+                    {% if metadata.restorationObject.stylePeriod.startYear %}
+                    {{ metadata.restorationObject.stylePeriod.startYear }} {% endif %}
+                    {% if metadata.restorationObject.stylePeriod.endYear %} -
+                    {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}{{
+                      metadata.restorationObject.stylePeriod.period.title
+                    }}
+                  
+                </p></div>
+            </div>
+            {% endif %} 
+            
+    <!-- dimensions -->
+            {% if metadata.restorationObject.dimensions %}
+              <div class="column details__div__details-box">
+                <div class="vert-div details__div__details-box">
+                  <p class="details__div__details-box-smaller parag">
+                    Rozměry předmětu
+                  </p>
+                  <div class="ui accordion vert-div details__div__details-box-smaller">
+                    <div class="title active parag">
+                      {% for value in metadata.restorationObject.dimensions %}
+                        {% if loop.index == 1 %}
+                          {% if value.dimension.title %} {{ value.dimension.title }}
+                            {{ value.value }}{{ value.unit }} {% endif %}
+                        {% endif %}
+                        {% if loop.index == 2 %} <i class="dropdown icon"></i>{% endif %}
+                      {% endfor %}
+                    </div>
+                    <div class="content">
+                      <p class="transition visible parag" style="display:flex !important;">
+                        {% for value in metadata.restorationObject.dimensions %}
+                          {% if loop.index >= 2 %}
+                            <p class="details__div__details-box-smaller parag">
+                              {{ value.dimension.title }} {{ value.value }}{{ value.unit }}
+                            </p>
+                          {% endif %}
+                        {% endfor %}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             {% endif %}
-          </td>
-        </tr>
-        {% endif %} {% if metadata.restorationWork.supervisors %}
-        <tr class="details__div__info-left__box">
-          <td class="parag">Vedoucí práce</td>
-
-          <td class="parag">
-            {% for value in metadata.restorationWork.supervisors %}
-            {{ value.fullName }}
-            {{ value.institution }}
+    
+    
+              
+            
+       <!--itemtypes  -->
+            {% if metadata.restorationObject.itemTypes %}
+            <div class="column details__div__details-box">
+              <div class="vert-div details__div__details-box">
+                  <p class="details__div__details-box-smaller parag">Typ předmětu</p>
+                  <p class="details__div__details-box-smaller parag">
+                    {% for value in metadata.restorationObject.itemTypes %} {% if
+                    loop.index <= 2 %}
+                    {{ value.title }}
+                    {% endif %} {% endfor %}
+                  </p></div>
+            </div>
+            {% endif %} 
+            
+            
+         <!--  soucasti predmetu pokud jenom jedna soucast-->
+            {% if metadata.restorationObject.parts and  metadata.restorationObject.parts[0].materialType and metadata.restorationObject.parts|length == 1 %}
+            
+                <div class="column details__div__details-box">
+                  <div class="vert-div details__div__details-box">
+                  <p class="details__div__details-box-smaller parag">Materiál</p>
+                  <p class="details__div__details-box-smaller parag">
+                      {{ metadata.restorationObject.parts[0].materialType.title }}
+                  </p>
+                  </div>
+                </div>
+            {% endif %}
+    
+    
+            {% if metadata.restorationObject.parts and metadata.restorationObject.parts[0].fabricationTechnologies and metadata.restorationObject.parts|length ==1 %}
+            <div class="column details__div__details-box">
+                <div class="vert-div details__div__details-box">
+                  <p class="details__div__details-box-smaller parag">Technologie</p>
+                  <p class="details__div__details-box-smaller parag">
+                    {% for value in metadata.restorationObject.parts[0].fabricationTechnologies %} 
+                      {{ value.title }}
+                      {% endfor %}
+                  </p>
+                </div>
+            </div>
+            {% endif %}
+    
+            {% if metadata.restorationObject.parts and metadata.restorationObject.parts[0].colors and metadata.restorationObject.parts|length ==1 %}
+            <div class="column details__div__details-box">
+                <div class="vert-div details__div__details-box">
+                  <p class="details__div__details-box-smaller parag">Barva</p>
+                  <p class="details__div__details-box-smaller parag">
+                    {% for value in metadata.restorationObject.parts[0].colors %} 
+                      {{ value.title }}
+                      {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+          
+          </div>
+          
+        </div>
+    
+    
+        <!-- soucasti predmetu -->
+            {% if  metadata.restorationObject.parts and metadata.restorationObject.parts|length >1 %}
+            <div class="ui  accordion field details__info__accordion">
+            {% for value in metadata.restorationObject.parts %} 
+    
+            <div class="title parag">
+    
+                <i class="dropdown icon"></i>
+                Část {{value.name or loop.index}}
+              </div>
+    
+              <div class="content">
+              
+                
+                <div class="horiz-div details__parts__part-desc">
+                <p class="parag"> Hlávní: </p> 
+                  <div class="vert-div details__parts__desc">
+                        <p class="parag">{% if value.main  %} ano {% else %} ne {% endif %}</p>
+                  </div>
+                </div>
+                
+    
+                {% if value.colors %}
+                <div class="horiz-div details__parts__part-desc">
+                <p class="parag"> Barvy: </p> 
+                  <div class="vert-div details__parts__desc">
+                    {% for val in value.colors %} 
+                        <p class="parag">{{val.title}}</p>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% endif %}
+    
+                {% if value.materialType %} 
+                <div class="horiz-div details__parts__part-desc">
+                    <p class="parag"> Materiál: </p>
+                    <p class="parag">{{value.materialType.title}}</p>
+                  </div>
+                {% endif %}
+    
+                {% if value.secondaryMaterialTypes %} 
+                <div class="horiz-div details__parts__part-desc">
+                    <p class="parag"> Vedlější typy materiálů: </p>
+                    <p class="parag"> 
+                      {% for val in value.secondaryMaterialTypes %} 
+                          <p class="parag">{{ val.title }}</p>
+                    {% endfor %}</p>
+                  </div>
+                {% endif %}
+    
+                {% if value.fabricationTechnologies %}
+                <div class="horiz-div details__parts__part-desc">
+                <p class="parag"> Technologie:  </p>
+                  <div class="vert-div details__parts__desc">
+                    {% for val in value.fabricationTechnologies %} 
+                          <p class="parag">{{ val.title }}</p>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% endif %}
+    
+              </div>
+    
             {% endfor %}
-          </td>
-        </tr>
-        {% endif %} {% if metadata.restorationWork.examinationMethods %}
-        <tr class="details__div__info-left__box">
-          <td class="parag">Metody průzkumu</td>
-          <td class="parag">
-            {% for value in metadata.restorationWork.examinationMethods %}
-            {{ value.title }}
-            {% endfor %}
-          </td>
-        </tr>
-        {% endif %} {% if metadata.restorationWork.restorationMethods %}
-        <tr class="details__div__info-left__box">
-          <td class="parag">Metody restaurování</td>
-          <td class="parag">
-            {% for value in metadata.restorationWork.restorationMethods %}
-            {{ value.title }}
-            {% endfor %}
-          </td>
-        </tr>
+            </div>
+            {% endif %}
+    
+    
+    
+          <!-- desc -->
+          {% if metadata.restorationObject.description %}
+          <div class="details__div__desc" aria-label="Popis předmětu">
+            <p class="parag">{{ metadata.restorationObject.description[0].value }}</p>
+          </div>
+          {% endif %}
+    
+    
+          <div class="vr-huge-horiz"></div>
+    
+    
+        <!-- info table-->
+        {% if metadata.restorationWork.abstract %}
+            <div class="ui  two column divided grid details__div__info" aria-label="Info o předmětu">
+        {% else %}
+            <div class="ui  one column  grid details__div__info" aria-label="Info o předmětu">
         {% endif %}
-      </tbody>
-    </table>
-  </div>
-  {% if metadata.restorationWork.abstract %}
-  <div class="vr-huge-vert"></div>
-  <div class="vert-div details__div__info-right">
-    <div>
-      <p class="details__div__info-right parag">Restaurátorský zásah/zaměr</p>
-    </div>
-
-    <div class="details__div__info-right__text">
-      <p class="parag">
-        {{ metadata.restorationWork.abstract[0].value }}
-      </p>
-    </div>
-  </div>
-  {% endif %}
-</div>
-<div class="vr-huge-horiz"></div>
-
-<!-- docs -->
-<div class="horiz-div details__div__docs">
-  <p class="parag">Dokumenty</p>
-  <div class="horiz-div details__div__docs-files">
-    <div class="horiz-div details__div__docs__item">
-      <img
-        class="details__div__docs-img"
-        src="{{ url_for('static', filename='images/file-icon.png') }}"
-        alt="file icon"
-      />
-      <p class="parag">
-        <a href="">sp5_balikova_anticke sklo.pdf (!!!)</a>
-      </p>
-    </div>
-    <div class="horiz-div details__div__docs__item">
-      <img
-        class="details__div__docs-img"
-        src="{{ url_for('static', filename='images/file-icon.png') }}"
-        alt="file icon"
-      />
-      <p class="parag">
-        <a href="">sp5_rohanova_anticke sklo.pdf (!!!)</a>
-      </p>
-    </div>
-  </div>
-</div>
-
-<script> 
-  let initialHeight
-  let openedHeight
-  function changeStyles() {
-    let buttonElement = document.querySelector(
-      ".details__div__details-box-smaller-hidden "
-    );
-    let btnMore = document.querySelector(
-      ".details__div__details-box-smaller__btn-more"
-    );
-    let btnLess = document.querySelector(
-      ".details__div__details-box-smaller__btn-less"
-    );
-
-   
-
-    if (buttonElement) {
-      if (buttonElement.style.display == "initial") {
-       // get elements
-        buttonElement.style.display = "none";
-        btnMore.style.display = "initial";
-        btnLess.style.display = "none";
-
-        let trElements = document.querySelectorAll(
-          ".details__div__details-box"
-        );
-        let maxHeight = 0;
-        console.log(initialHeight)
-
-        //reset height to initial and recount the max height
-        trElements.forEach((tr) => {
-          tr.setAttribute("style",`height:${initialHeight}`)
-          const trHeight = tr.clientHeight;
-          if (trHeight > maxHeight) {
-            maxHeight = trHeight;
-          }
+            <div class="column details__div__info-left">
+    
+            <table summary="Informace o předmětu">
+              <tbody>
+                {% if metadata.restorationObject.restorationRequestor %}
+                <tr class="details__div__info-left__box">
+                  <td class="parag">Zadavatel</td>
+                  <td class="parag">
+                    {{ metadata.restorationObject.restorationRequestor.title }}
+                  </td>
+                </tr>
+                {% endif %} {% if metadata.restorationWork.restorer or
+                metadata.restorationWork.workType %}
+                <tr class="details__div__info-left__box">
+                  <td class="parag">Restauroval(a)</td>
+                  <td class="parag">
+                    {% if metadata.restorationWork.restorer %}
+                    {{ metadata.restorationWork.restorer }}
+                    {% endif %} {% if metadata.restorationWork.workType %} ,
+                    {{ metadata.restorationWork.workType.title }}
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endif %} {% if metadata.restorationWork.supervisors %}
+                <tr class="details__div__info-left__box">
+                  <td class="parag">Vedoucí práce</td>
+    
+                  <td class=" vert-div parag">
+                    {% for value in metadata.restorationWork.supervisors %}
+                    <div class="horiz-div parag">
+                         {{ value.fullName }}
+                        {{ value.institution }}
+                    </div>
+                    
+                    {% endfor %}
+                  </td>
+                </tr>
+                {% endif %} {% if metadata.restorationWork.examinationMethods %}
+                <tr class="details__div__info-left__box">
+                  <td class="parag">Metody průzkumu</td>
+                  <td class="parag">
+                    {% for value in metadata.restorationWork.examinationMethods %}
+                    {{ value.title }}
+                    {% endfor %}
+                  </td>
+                </tr>
+                {% endif %} {% if metadata.restorationWork.restorationMethods %}
+                <tr class="details__div__info-left__box">
+                  <td class="parag">Metody restaurování</td>
+                  <td class="parag">
+                    {% for value in metadata.restorationWork.restorationMethods %}
+                    {{ value.title }}
+                    {% endfor %}
+                  </td>
+                </tr>
+                {% endif %}
+              </tbody>
+            </table>
+            </div>
+            {% if metadata.restorationWork.abstract %}
+            <div class="column details__div__info-right">
+              <div>
+                <p class="details__div__info-right parag">Restaurátorský zásah/zaměr</p>
+              </div>
+    
+              <div class="details__div__info-right__text">
+                <p class="parag">
+                  {{ metadata.restorationWork.abstract }}
+                </p>
+              </div>
+            </div>
+            {% endif %}
+            </div>
+    
+    
+    
+        <div class="vr-huge-horiz"></div>
+    
+        <!-- docs -->
+        <div id="details__div__docs"></div>
+    
+    <script> 
+     
+    
+    const accordionTitles = document.querySelectorAll('.title.parag');
+    const accordionContents = document.querySelectorAll('.content');
+    
+    
+    accordionTitles.forEach((title, index) => {
+        title.addEventListener('click', () => {
+            
+            title.classList.toggle('active');
+            if (accordionContents[index].style.display === 'block') {
+                accordionContents[index].style.display = 'none';
+            } else {
+                accordionContents[index].style.display = 'block';
+            }
         });
-        //set height of each el as max height
-        trElements.forEach((tr) => {
-          tr.style.height = `${maxHeight}px`;
-        });
-      } else {
-        //get elements
-        buttonElement.style.display = "initial";
-        btnMore.style.display = "none";
-        btnLess.style.display = "initial";
-
-
-        let maxHeight = 0;
-
-        //recount the max height of each element
-        trElements.forEach((tr) => {
-          //check if it was already opened and opened height was set
-          if (openedHeight == null){
-            const trHeight = tr.clientHeight;
-            if (trHeight > maxHeight) {
-              maxHeight = trHeight;
-              openedHeight=trHeight;
-          }
-          } else {
-            tr.setAttribute("style",`height:${openedHeight}`)
-            maxHeight= openedHeight
-          }
-        });
-
-        //set height for each element
-        trElements.forEach((tr) => {
-          tr.style.height = `${maxHeight}px`;
-        });
-      }
-    }
-  }
-
-  const trElements = document.querySelectorAll(".details__div__details-box");
-
-  let maxHeight = 0;
-
-  trElements.forEach((tr) => {
-    const trHeight = tr.clientHeight;
-    if (trHeight > maxHeight) {
-      maxHeight = trHeight;
-    }
-  });
-
-  trElements.forEach((tr) => {
-    tr.style.minHeight = `${maxHeight}px`;
-    initialHeight=`${maxHeight}px`
-    console.log(initialHeight)
-  });
- 
-
-const accordionTitles = document.querySelectorAll('.title.parag');
-const accordionContents = document.querySelectorAll('.content');
-
-
-accordionTitles.forEach((title, index) => {
-    title.addEventListener('click', () => {
-        
-        title.classList.toggle('active');
-        if (accordionContents[index].style.display === 'block') {
-            accordionContents[index].style.display = 'none';
-        } else {
-            accordionContents[index].style.display = 'block';
-        }
     });
-});
-
-
-
-  const leftDivHeight = document.querySelector(
-    ".details__div__info-left"
-  ).offsetHeight;
-
-  const rightDivHeight = document.querySelector(
-    ".details__div__info-right"
-  ).offsetHeight;
-
-  const divMaxHeight = Math.max(leftDivHeight, rightDivHeight);
-
-  document.querySelector(".vr-huge-vert").style.height = `${divMaxHeight}px`;
-
-  function redirectToEditPage() {
-    window.location.href = window.location.href + "/edit";
-  }
-</script>
-
-{%- endblock page_body %} {%- block javascript %}
-
-{{ super() }}
-
-{{ webpack["restoration_ui_img_gallery.js"] }}
-
-{% endblock %}
+    
+    </script>
+    
+    {%- endblock page_body %} {%- block javascript %}
+    
+    {{ super() }}
+    
+    {{ webpack["restoration_ui_img_gallery.js"] }}
+    
+    {% endblock %}
+    
+    

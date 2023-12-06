@@ -1,14 +1,12 @@
 import PropTypes from "prop-types";
 import { withState } from "react-searchkit";
 
-
 export const ResultsGridItem = ({ result }) => {
   return (
     <Card fluid href={`/docs/${result.links.self}`}>
       <Card.Content>
         <Card.Header>{result.metadata.record.title}</Card.Header>
-        <Card.Description>
-        </Card.Description>
+        <Card.Description></Card.Description>
       </Card.Content>
     </Card>
   );
