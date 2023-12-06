@@ -20,7 +20,7 @@ record:
 
   permissions:
     presets:
-    - everyone
+    - authenticated
   pid:
     type: rstr
 settings:
