@@ -24,7 +24,7 @@ class RestorationServiceConfig(
 
     result_list_cls = RecordList
 
-    PERMISSIONS_PRESETS = ["everyone"]
+    PERMISSIONS_PRESETS = ["authenticated"]
 
     url_prefix = "/restoration/"
 

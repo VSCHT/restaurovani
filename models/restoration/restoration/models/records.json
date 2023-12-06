@@ -52,7 +52,7 @@
         "custom-fields": [],
         "permissions": {
             "presets": [
-                "everyone"
+                "authenticated"
             ],
             "generate": true,
             "extra-code": "",
@@ -110,6 +110,17 @@
             "module": "restoration.models",
             "file": "restoration/models/ui.json",
             "alias": "restoration"
+        },
+        "search-options": {
+            "base-classes": [
+                "oarepo_runtime.services.search.SearchOptions"
+            ],
+            "generate": true,
+            "module": "restoration.services.records.search",
+            "extra-code": "",
+            "class": "restoration.services.records.search.RestorationSearchOptions",
+            "imports": [],
+            "sort-options-field": "sort_options"
         },
         "module": {
             "qualified": "restoration",
@@ -271,17 +282,6 @@
             "skip": false
         },
         "model-name": "Restoration",
-        "search-options": {
-            "generate": true,
-            "module": "restoration.services.records.search",
-            "extra-code": "",
-            "class": "restoration.services.records.search.RestorationSearchOptions",
-            "base-classes": [
-                "invenio_records_resources.services.SearchOptions{InvenioSearchOptions}"
-            ],
-            "imports": [],
-            "sort-options-field": "sort_options"
-        },
         "config": {
             "generate": true,
             "module": "restoration.config",
