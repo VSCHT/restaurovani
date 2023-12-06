@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Grid, Label, Icon, Form } from "semantic-ui-react";
-import { FieldLabel, MultiInput } from "react-invenio-forms";
+import { FieldLabel } from "react-invenio-forms";
 import { getIn } from "formik";
 import _reverse from "lodash/reverse";
 import _join from "lodash/join";
@@ -27,7 +27,6 @@ export const KeyWordsInput = ({ fieldPath }) => {
     words.splice(index, 1);
     setWords([...words]);
     setFieldValue(fieldPath, words);
-    console.log(words);
   };
 
   return (
@@ -67,13 +66,6 @@ export const KeyWordsInput = ({ fieldPath }) => {
           </Grid>
         </>
       )}
-      {/* <MultiInput
-        fieldPath={fieldPath}
-        label="Klíčová slova"
-        placeholder="Napište klíčová slova..."
-        required={false}
-        disabled={false}
-      /> */}
     </>
   );
 };

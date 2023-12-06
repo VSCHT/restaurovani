@@ -16,23 +16,15 @@ const categories = [
   { value: "textil", label: "Textil", id: "3" },
 ];
 
-export const CreateObjectFormContent = ({ edit, errors }) => {
-  const { values, formik } = useDepositApiClient();
-
-  console.log(formik);
-  console.log(values);
+export const CreateObjectFormContent = ({ errors }) => {
+  const { values } = useDepositApiClient();
+  
 
   return (
     <div className="vert-div predmety__form">
       <h3 className="predmety__form__h">Vytvoření nového předmětu</h3>
       <div className="vert-div predmety__form-main">
         <div className="vert-div predmety__form__div">
-          {/* <MultilingualTextInput
-            fieldPath={`metadata.restorationObject.title`}
-            addButtonLabel="Dodat název"
-            textFieldLabel="Název"
-            required
-          /> */}
           <TextField
             fieldPath="metadata.restorationObject.title"
             className="form__input"
@@ -116,14 +108,28 @@ export const CreateObjectFormContent = ({ edit, errors }) => {
           </Form>
         </div>
       </div>
-      <SaveButton edit={edit} />
+      <SaveButton />
     </div>
   );
 };
 
 export const CreateObjectForm = () => {
   const { record } = useFormConfig();
-  console.log(record);
+
+  let initVal = {
+    ...record,
+    files: {enabled: true},
+    metadata: {
+      restorationObject: {
+        title: "",
+        category: "",
+      },
+
+      restorationWork: {
+        restorer: "",
+      },
+    },
+  };
 
   return (
     <Container>

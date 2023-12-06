@@ -1,3 +1,61 @@
+.ui.button{
+  margin: 0px
+}
+.ui.red.button {
+    background-color: #de4929;
+    color: #FFFFFF;
+    text-shadow: none;
+    background-image: none;
+}
+.ui.button.form__stat__btn{
+  background:none !important;
+  border: none !important;
+  width: auto;
+  padding: 5px !important; 
+  border-radius: 10px;
+}
+.ui.button.predmety__card__btn:hover {
+  background-color: #e76c50;
+  cursor: pointer ;
+  
+}
+
+.ui.grid.vert-div.predmety__aside__filter h2{
+margin-top: 15px
+}
+button.ui.icon.button.carousel-button.left, button.ui.icon.button.carousel-button.right{
+  width: 100%;
+}
+.ui.button.form__stat__btn:hover{
+  background: radial-gradient(circle, rgba(75, 75, 75, 0.2), #ffffff 70%, transparent 80%) !important;
+}
+.ui.button.form__stat__btn:not(.icon) > .icon:not(.button.form__stat__btn):not(.dropdown) {
+    margin: 5px;
+}
+
+.actions .ui.primary.button{
+  background-color:rgb(1, 68, 1);
+}
+.actions .ui.primary.button:hover{
+  background-color:rgb(10, 141, 10)
+}
+.ui.button.form__stat__btn .delete.icon{
+  color:rgb(113, 0, 0);
+  width: auto;
+}
+.ui.button.form__stat__btn .edit.icon{
+  color:rgb(1, 68, 1);
+  width: auto;
+}
+.ui.button.form__stat__btn .file.image.outline.icon.icon{
+  width: auto;
+}
+.ui.button.form__stat__btn .delete.icon:hover{
+  color:rgb(175, 18, 18)
+}
+.ui.button.form__stat__btn .edit.icon:hover{
+  color:rgb(10, 141, 10)
+}
 .ui.icon.button.close-btn {
   padding-left: 0px;
   padding-right: 0px;
@@ -137,11 +195,14 @@
     width: 18vw;
     border: none;
     font-family: Noto_Sans_semibold;
-    font-size: 15px;
+    font-size: 15px !important;
   }
 
   .ui.button.main-page__btn__addPredmety:hover {
     background-color: #e76c50;
+  }
+  .ui.button.mobile-component{
+    display: none;
   }
 }
 
@@ -196,8 +257,10 @@
     color: white !important                    ;
     background-color: #de4929 !important;
     border-radius: 20px !important             ;
+    min-width: 100px !important;
     height: 40px !important                    ;
-    width: 100% !important                     ;
+    width: 20vw !important                     ;
+    align-self: center;
     border: none !important                    ;
     margin: 10px !important                    ;
     font-size: 13px !important                 ;
@@ -234,6 +297,7 @@
     background: none !important;
     padding-left: 0px;
   }
+   
   .ui.button.predmety__title-search__searchbar {
     gap: 40px;
     align-items: center !important                                      ;
@@ -244,8 +308,6 @@
   }
   .ui.button.predmety__input-search__searchbar-burger.btn-close {
     position: relative;
-    left: 85vw;
-    top: 26px;
   }
   .ui.button.predmety__input-search__searchbar-burger.btn-close img {
     width: 20px;
@@ -254,11 +316,13 @@
   .ui.button.predmety__btn-reset {
     background: none;
     position: relative;
-    left: -60px;
+    left: -75px;
     top: 0px;
+    padding: 0.78571429em 4px 0.78571429em;
   }
  
 }
+
 
 @media only screen and (max-width: 992px) and (min-width: 730px) {
   .ui.button.predmety__aside__dropdown-btn {
@@ -291,11 +355,11 @@
     background-color: #de4929;
     border-radius: 32px;
     padding: 0px;
-    height: 53px;
-    width: 27vw;
+    height: 38px;
+    width: 19vw;
     border: none;
-    font: 20px Noto_Sans_semibold !important;
-  }
+    font: 14px Noto_Sans_semibold !important;
+}
 
   .ui.button.predmety__aside__dropdown-btn:hover {
     color: #9d9898;
@@ -303,8 +367,9 @@
   .ui.button.predmety__btn-reset {
     background: none;
     position: relative;
-    left: -60px;
+    left: -75px;
     top: 0px;
+    padding: 0.78571429em 4px 0.78571429em
   }
   .ui.button.predmety__aside__btn {
     border: none !important                    ;
@@ -336,16 +401,20 @@
     color: white !important                ;
     background-color: #de4929 !important;
     border-radius: 40px !important         ;
-    height: 60px !important                ;
-    width: 16vw !important                 ;
+    height: 45px !important                ;
+    width: 20vw !important;
+    align-self: center;
     border: none !important                ;
     margin: 10px !important                ;
     font-size: 15px !important             ;
     font-family: Noto_Sans_bold !important ;
+     display: flex;
+    padding: 0px !important;
   }
+ 
 
   .ui.button.btn.predmety__input-search__searchbar-burger img {
-    width: 50px;
+    width: 40px;
     height: auto;
   }
   .ui.button.btn.predmety__input-search__searchbar-burger {
@@ -362,26 +431,62 @@
   }
   .ui.button.predmety__input-search__searchbar-burger.btn-close {
     position: relative;
-    left: 90vw;
-    top: 70px;
   }
   .ui.button.predmety__input-search__searchbar-burger.btn-close img {
     width: 23px;
     height: auto;
   }
 }
+@media only screen and (min-width: 2000px) and (max-width: 3000px) {
+.ui.button.predmety__aside__btn {
+    border: none !important;
+    background-color: #9b9b93 !important;
+    color: white !important;
+    height: 40px !important;
+    display: flex !important;
+    width: 100% !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    font-size: 20px !important;
+    cursor: pointer !important;
+    font-family: Noto_Sans_semibold !important;
+    margin: 10px 0px 20px 0px !important;
+    padding-right: 5px;
+    border-radius: 0px !important;
+}
+.ui.button.mobile-component{
+    display: none;
+  }
+}
 @media only screen and (min-width: 3000px) {
-
+.ui.buttons .button, .ui.buttons .or, .ui.button {
+    font-size: 1.8rem;
+}
+.ui.icon.buttons .button, .ui.icon.button {
+    padding: 10px;
+}
+.ui.button.form.main-page__btn__addPredmety {
+    color: white;
+    background-color: #de4929;
+    border-radius: 32px;
+    height: 64px;
+    width: 8vw;
+    border: none;
+    font-family: Noto_Sans_semibold;
+    font-size: 2rem !important;
+}
 .ui.button.predmety__card__btn {
   color: white !important;
   background-color: #de4929 !important;
   border-radius: 36px !important;
   border-top-left-radius: 36px !important;
-  width: 149px !important;
+  width: 172px !important;
   border: none !important;
   margin: 10px !important;
   font-size: 13px !important;
   font-family: Noto_Sans_semibold !important;
+  height: 50px !important
 }
 .ui.button.predmety__aside__btn {
   border: none !important;
@@ -400,6 +505,9 @@
   padding-right: 5px;
   border-radius: 0px !important;
 }
+.ui.button.mobile-component{
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 3000px) and (min-width: 2000px) {
@@ -407,11 +515,21 @@
   color: white !important                    ;
   background-color: #de4929 !important;
   border-radius: 20px !important             ;
-  height: 35px !important                    ;
-  width: 110px !important                    ;
+  height: 41px !important;
+  width: 127px !important;
   border: none !important                    ;
   margin: 10px !important                    ;
   font-size: 13px !important                 ;
   font-family: Noto_Sans_semibold !important ;
 }
+.ui.button.mobile-component{
+    display: none;
+  }
 }
+ @media only screen and (max-width: 530px){
+       .ui.button.btn.predmety__input-search__searchbar-burger {
+    background: none !important;
+    padding-left: 0px;
+  
+  }
+    }

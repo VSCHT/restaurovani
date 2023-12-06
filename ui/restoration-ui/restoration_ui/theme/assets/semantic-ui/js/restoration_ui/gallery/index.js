@@ -1,13 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ImgCarousel } from "./Carousel.jsx";
+import { ImgCarousel, FilesSection } from "./Carousel.jsx";
 
 const imgGalleryComp = document.getElementById("images-carousel");
-console.log(imgGalleryComp)
-ReactDOM.render(
-  <ImgCarousel />,
+const filesDivComp = document.getElementById("details__div__docs");
 
-  imgGalleryComp
-);
+async function fetchAndRender() {
+  try {
+    const apiUrl = imgGalleryComp.dataset.photos.replace(/"/g, "");
 
-export { ImgCarousel } from "./Carousel.jsx";
+    const response = await fetch(apiUrl);
+
+    const data = await response.json();
+
+    ReactDOM.render(<ImgCarousel imgs={data.entries} />, imgGalleryComp);
+    ReactDOM.render(<FilesSection files={data.entries}/>, filesDivComp);
+
+  } catch (error) {
+    console.log("Error fetching data");
+  }
+}
+
+fetchAndRender();
+
+

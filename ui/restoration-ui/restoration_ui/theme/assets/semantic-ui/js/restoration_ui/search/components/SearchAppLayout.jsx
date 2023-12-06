@@ -54,7 +54,6 @@ export const SearchAppLayout = () => {
   const { appName, buildUID } = useContext(SearchConfigurationContext);
 
   const searchAppConfig = useContext(SearchConfigurationContext);
-  console.log(searchAppConfig);
 
   const createNewHandler = () => {
     window.location.href = new URL(searchAppConfig.ui_links.create);
@@ -156,26 +155,24 @@ export const SearchAppLayout = () => {
             icon="labeled"
             open={modalOpen}
             onClose={toggleModal}
-            onHide={() => setSidebarVisible(false)}
           >
-            <Grid.Column
-              className="vert-div predmety__aside"
+            <Grid
+              className="predmety__aside"
               id="predmety__aside"
             >
-              <Grid.Row className="vsht-logo div__vsht-logo predmety__div__vsht-logo">
-                <Image
-                  className="vsht-logo image__vsht-logo predmety__image__vsht-logo"
-                  src="/static/images/logo_VSHT.png"
-                  alt="vsht logo"
-                />
-                <Label className="vsht-logo text__vsht-logo predmety__text__vsht-logo">
-                  VYSOKÁ ŠKOLA
-                  <br />
-                  CHEMICKO-TECHNOLOGICKÁ
-                  <br />V PRAZE
-                </Label>
-              </Grid.Row>
+            
 
+            
+              <Grid
+                className="vert-div predmety__aside__filter"
+                aria-label="Filter Options"
+              >
+                <h2>Filtrování výsledků</h2>
+                <SearchAppFacets
+                  aggs={searchAppConfig.aggs}
+                  appName={appName}
+                />
+              </Grid>
               <Button
                 className="btn predmety__input-search__searchbar-burger btn-close"
                 aria-label="Toggle Filter Menu"
@@ -187,28 +184,7 @@ export const SearchAppLayout = () => {
                   alt="burger filter button"
                 />
               </Button>
-              <Grid
-                className="vert-div predmety__aside__filter"
-                aria-label="Filter Options"
-              >
-                <Button
-                  className="predmety__aside__btn"
-                  aria-label="Tlacitko dodat novy predmet"
-                  onClick={createNewHandler}
-                >
-                  Nový předmět
-                  <Image
-                    src="/static/images/plus-square.png"
-                    alt="add new icon"
-                  />
-                </Button>
-
-                <SearchAppFacets
-                  aggs={searchAppConfig.aggs}
-                  appName={appName}
-                />
-              </Grid>
-            </Grid.Column>
+            </Grid>
           </Modal>
         </Grid>
       </Container>

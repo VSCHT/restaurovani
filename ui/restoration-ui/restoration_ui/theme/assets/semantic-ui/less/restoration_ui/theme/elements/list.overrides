@@ -37,8 +37,18 @@
 
 .ui.list .item .checkbox{
     
-    margin-right: 35px !important;
+    margin-right: 20px !important;
     width: 15px
+}
+}
+
+@media only screen and (min-width: 2000px) and (max-width: 3000px){
+.ui.list .item {
+    margin: 5px !important;
+    font-size: 18px;
+}
+.ui.list .item .checkbox {
+    margin-right: 12px !important;
 }
 }
 @media only screen and (min-width: 3000px){
