@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Image } from "semantic-ui-react";
+import { Image, Dimmer, Loader } from "semantic-ui-react";
 
 export function ImageWithFallback({ src, result, fallbackSrc }) {
   const [imageSrc, setImageSrc] = useState([src]);
+  const [loading, setLoading] = useState(true);
+
   const handleImageError = () => {
     setImageSrc([fallbackSrc]);
   };
@@ -11,6 +13,8 @@ export function ImageWithFallback({ src, result, fallbackSrc }) {
   const [imgUrlRand, setImageUrlRand] = useState([src]);
 
   useEffect(() => {
+    setLoading(true);
+
     fetch(result?.links?.files)
       .then((response) => {
         if (!response.ok) {
@@ -31,24 +35,36 @@ export function ImageWithFallback({ src, result, fallbackSrc }) {
         const rImg = imageEntries?.[0] ?? imageEntries?.[1];
 
         setImageUrlRand(rImg);
+        setLoading(false);
       })
 
-      .catch(() => console.log("No photos"));
+      .catch(() => {
+        setLoading(false);
+        console.log("No photos");
+      });
   }, [result]);
 
-  return imgUrlFeat || imgUrlRand ? (
-    <Image
-      src={imgUrlFeat?.links?.content ?? imgUrlRand?.links?.content ?? src}
-      onError={handleImageError}
-      alt={`Foto predmetu ${
-        imgUrlFeat?.[0]?.metadata?.caption === undefined ||
-        imgUrlRand?.[0]?.metadata?.caption === undefined
-          ? ""
-          : imgUrlFeat?.[0]?.metadata?.caption ||
-            imgUrlFeat?.[0]?.metadata?.caption === undefined
-      }`}
-    />
-  ) : (
-    <Image src={imageSrc} onError={handleImageError} alt={`Foto predmetu`} />
+  return (
+    <>
+      {loading && (
+        <Dimmer active>
+          <Loader></Loader>
+        </Dimmer>
+      )}
+
+      {!loading && (
+        <Image
+          src={imgUrlFeat?.links?.content ?? imgUrlRand?.links?.content ?? src}
+          onError={handleImageError}
+          alt={`Foto predmetu ${
+            imgUrlFeat?.[0]?.metadata?.caption === undefined ||
+            imgUrlRand?.[0]?.metadata?.caption === undefined
+              ? ""
+              : imgUrlFeat?.[0]?.metadata?.caption ||
+                imgUrlFeat?.[0]?.metadata?.caption === undefined
+          }`}
+        />
+      )}
+    </>
   );
 }
