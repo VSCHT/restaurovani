@@ -1,0 +1,26 @@
+.ui.active.dimmer{
+    background-color: #969696!important;
+}
+
+@media only screen and (max-width: 530px){
+    .ui.active.dimmer{
+        height: 150px !important;
+    }
+}
+@media only screen and (min-width: 530px) and (max-width: 992px) {
+    .ui.active.dimmer{
+        height: 245px !important;
+        width: 295px !important
+    }
+}
+@media only screen and (min-width: 992px) and (max-width:1200px){
+    .ui.active.dimmer{
+        width: 190px !important
+    }
+}
+
+@media only screen  and (min-width:1200px){
+    .ui.active.dimmer{
+        width: 200px !important
+    }
+}
