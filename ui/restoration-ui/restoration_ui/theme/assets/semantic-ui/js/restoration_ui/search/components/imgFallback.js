@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Image } from "semantic-ui-react";
 
-export function ImageWithFallback({ src, result, fallbackSrc}) {
+export function ImageWithFallback({ src, result, fallbackSrc }) {
   const [imageSrc, setImageSrc] = useState([src]);
   const handleImageError = () => {
     setImageSrc([fallbackSrc]);
@@ -20,12 +20,15 @@ export function ImageWithFallback({ src, result, fallbackSrc}) {
         return response.json();
       })
       .then(async (res) => {
-        const fImg = res?.entries?.filter(
+        const imageEntries = res?.entries?.filter(
+          (item) => item.metadata.fileType === "photo"
+        );
+
+        const fImg = imageEntries.filter(
           (item) => item.metadata.featured == true
         );
         setImageUrlFeat(fImg);
-
-        const rImg = res?.entries?.[0] ?? res?.entries?.[1];
+        const rImg = imageEntries?.[0] ?? imageEntries?.[1];
 
         setImageUrlRand(rImg);
       })
