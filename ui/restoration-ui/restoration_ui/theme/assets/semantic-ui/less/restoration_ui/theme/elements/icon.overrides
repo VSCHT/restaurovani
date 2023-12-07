@@ -37,3 +37,7 @@ i.icon{
 }
 }
 
+
+.delete.icon.predmety__btn-reset{
+  font-size: 1.3rem
+}
