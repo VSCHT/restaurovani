@@ -2,6 +2,11 @@
     background-color: #af371d;
     color: white;
 }
+.ui.label:last-child {
+    margin: auto 10px;
+}
+
+
 @media only screen and(max-width:992px) {
   .label.vsht-logo.text__vsht-logo.predmety__text__vsht-logo {
     max-width: 100% !important                                  ;
