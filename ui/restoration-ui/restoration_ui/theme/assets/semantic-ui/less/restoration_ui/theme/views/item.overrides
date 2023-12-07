@@ -8,7 +8,10 @@ flex-direction: row !important ;
 
 padding: 25px !important ;
 }
-
+.content.active.predmety__aside__dropdown-container .ui.list .item {
+    padding-bottom: 0em;
+    align-items: center !important;
+} 
 .item.horiz-div.predmety__card-content{
 background-color:                      #ffffff  !important ;
 display: flex                        !important   ;
