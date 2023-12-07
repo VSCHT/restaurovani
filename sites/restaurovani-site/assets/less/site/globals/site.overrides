@@ -324,7 +324,7 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
   font-size: 20px;
   line-height: 1;
 
-  opacity: 0.75;
+  opacity: 1;
   color: white;
 
   -webkit-font-smoothing: antialiased;
@@ -1678,9 +1678,10 @@ width: 100vw;
   /* docs */
 
   .details__div__docs {
-    width: 650px;
+    /* width: 650px; */
+    width: auto;
     gap: 30px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     margin-top: 20px;
     align-items: flex-start;
     align-self: flex-start;

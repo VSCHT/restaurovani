@@ -45,11 +45,12 @@
     height: auto !important                                           ;
     font-size: 11px !important                                        ;
     font-family: Noto_Sans_bold !important                            ;
-    width: 15vw !important                                            ;
+    width: 20vw !important                                            ;
     background-color: #eaeae2 !important;
     color: #111;
     padding: 0px !important                                           ;
     line-height: 14px !important                                      ;
+    margin: 0
   }
   .ui.grid.form-edit__keywords__labels .ui.label {
     background-color: #808080;
@@ -79,6 +80,7 @@
     color: #111;
     padding: 0px !important                                     ;
     line-height: 14px !important                                ;
+    margin: 0
   }
   .ui.grid.form-edit__keywords__labels .ui.label {
     background-color: #808080;
