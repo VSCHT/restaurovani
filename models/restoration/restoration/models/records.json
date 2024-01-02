@@ -137,11 +137,6 @@
             "suffix-upper": "RESTORATION",
             "suffix-snake": "restoration"
         },
-        "tests": {
-            "extra-fixtures": [],
-            "extra-code": "",
-            "module": "tests"
-        },
         "draft": {
             "type": "draft_record",
             "properties": {},
@@ -166,6 +161,11 @@
                 "extra-code": "",
                 "module": "tests"
             }
+        },
+        "tests": {
+            "extra-fixtures": [],
+            "extra-code": "",
+            "module": "tests"
         },
         "files": {
             "type": "file",
@@ -439,7 +439,7 @@
             "extra-code": "",
             "service-id": "restoration",
             "components": [
-                "{{invenio_records_resources.services.records.components.FilesOptionsComponent}}",
+                "{{oarepo_runtime.services.files.FilesComponent}}",
                 "{{invenio_records_resources.services.records.components.DataComponent}}",
                 "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}"
             ],

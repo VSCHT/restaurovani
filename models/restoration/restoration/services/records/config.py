@@ -4,11 +4,9 @@ from invenio_drafts_resources.services import (
 from invenio_drafts_resources.services.records.components import DraftFilesComponent
 from invenio_drafts_resources.services.records.config import is_record
 from invenio_records_resources.services import ConditionalLink, RecordLink
-from invenio_records_resources.services.records.components import (
-    DataComponent,
-    FilesOptionsComponent,
-)
+from invenio_records_resources.services.records.components import DataComponent
 from oarepo_runtime.services.config.service import PermissionsPresetsConfigMixin
+from oarepo_runtime.services.files import FilesComponent
 from oarepo_runtime.services.results import RecordList
 
 from restoration.records.api import RestorationDraft, RestorationRecord
@@ -41,7 +39,7 @@ class RestorationServiceConfig(
     components = [
         *PermissionsPresetsConfigMixin.components,
         *InvenioRecordDraftsServiceConfig.components,
-        FilesOptionsComponent,
+        FilesComponent,
         DataComponent,
         DraftFilesComponent,
     ]
