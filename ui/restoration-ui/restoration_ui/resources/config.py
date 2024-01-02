@@ -13,17 +13,13 @@ class RestorationUiResourceConfig(RecordsUIResourceConfig):
 
     components = [BabelComponent, RestorationVocabularyOptionsComponent, FilesComponent]
 
+    search_app_id = "Restoration_ui.Search"
+
     templates = {
-        "detail": {
-            "layout": "restoration_ui/Detail.html.jinja",
-            "blocks": {"record_main_content": "Main", "record_sidebar": "Sidebar"},
-        },
-        "search": {
-            "layout": "restoration_ui/Search.html.jinja",
-            "app_id": "Restoration_ui.Search",
-        },
-        "edit": {"layout": "restoration_ui/EditObjectForm.html.jinja"},
-        "create": {"layout": "restoration_ui/CreateObjectForm.html.jinja"},
+        "detail": "restoration_ui.Detail",
+        "search": "restoration_ui.Search",
+        "edit": "restoration_ui.EditObjectForm",
+        "create": "restoration_ui.CreateObjectForm",
     }
 
     def search_app_config(self, identity, api_config, overrides={}, **kwargs):
