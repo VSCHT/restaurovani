@@ -1,6 +1,0 @@
-.ui.pagination.form__attach__pagination.menu {
-    margin: 0 auto !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
