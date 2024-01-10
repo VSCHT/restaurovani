@@ -1,0 +1,9 @@
+fileType:
+  type: keyword
+  enum:
+    - photo
+    - document
+featured:
+  type: boolean
+caption:
+  type: keyword
