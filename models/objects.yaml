@@ -1,0 +1,67 @@
+plugins:
+  builder:
+    disable:
+    - script_sample_data
+  packages:
+  - oarepo-model-builder-requests
+  - oarepo-model-builder-cf
+  - oarepo-model-builder-files
+  - oarepo-model-builder-ui
+  - oarepo-model-builder-vocabularies
+  - oarepo-model-builder-drafts
+  - oarepo-model-builder-drafts-files
+  - oarepo-model-builder-relations
+profiles:
+- record
+- draft
+- files
+- draft_files
+record:
+  draft: {}
+
+  draft-files:
+    resource:
+      base-classes: [ oarepo_ui.resources.file_resource.S3RedirectFileResource ]
+
+  search-options:
+    base-classes:
+      - oarepo_runtime.services.search.SearchOptions
+
+  files:
+    resource:
+      base-classes: [ oarepo_ui.resources.file_resource.S3RedirectFileResource ]
+    properties:
+      use:
+      - ./objects-files.yaml
+    use:
+    - invenio_files
+  module:
+    qualified: objects
+  permissions:
+    presets:
+    - authenticated
+  pid:
+    type: rstr
+  properties:
+    metadata:
+      properties: 
+        use: ["objects-restoration-object.yaml", "objects-restoration-work.yaml"]
+        category:
+          type: keyword
+        submissionStatus:
+          type: keyword
+
+  resource-config:
+    base-html-url: /objects/
+  use:
+  - invenio
+  - ./objects-requests.yaml
+  - ./objects-custom-fields.yaml
+  - ./objects-mapping-settings.yaml
+
+runtime-dependencies:
+  oarepo-published-service: 1.0.0
+
+settings:
+  i18n-languages:
+  - cs

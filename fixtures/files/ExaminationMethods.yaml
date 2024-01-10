@@ -1,0 +1,244 @@
+id: zit
+title:
+  cs: Základní identifikační techniky
+---
+id: tama
+title:
+  cs: Termická a mechanická analýza
+---
+id: mikr
+title:
+  cs: Mikroskopie
+---
+id: zobrnmik
+title:
+  cs: Zobrazovací metody mimo mikroskopii
+---
+id: metody-pruzkumu-nespecifikovany
+title:
+  cs: Metody průzkumu nespecifikovány
+---
+id: difra
+title:
+  cs: Difrakční metody
+---
+id: spektro
+title:
+  cs: Spektroskopické metody
+---
+hierarchy:
+  parent: zit
+id: zit-drk
+title:
+  cs: Důkazové reakce kationtů
+---
+hierarchy:
+  parent: zit
+id: zit-dukazove-reakce-aniontu
+title:
+  cs: Důkazové reakce aniontů
+---
+hierarchy:
+  parent: zit
+id: zit-dukazove-reakce-identifikace-prirodnich-polymeru
+title:
+  cs: Důkazové reakce přírodních polymerů
+---
+hierarchy:
+  parent: zit
+id: zit-stanoveni-ryzosti-na-prubirskem-kameni
+title:
+  cs: Stanovení ryzosti na prubířském kameni
+---
+hierarchy:
+  parent: zit
+id: zit-mikrobiologicky-pruzkum
+title:
+  cs: Mikrobiologický průzkum
+---
+hierarchy:
+  parent: zit
+id: zit-mereni-ph-vodny-vyluh-dotykova-elektroda
+title:
+  cs: Měření pH (vodný výluh/dotyková elektroda)
+---
+hierarchy:
+  parent: zit
+id: zit-stanoveni-indexu-lomu
+title:
+  cs: Stanovení indexu lomu
+---
+hierarchy:
+  parent: zit
+id: zit-teplota-smrsteni-usne
+title:
+  cs: Teplota smrštění usně
+---
+hierarchy:
+  parent: zit
+id: zit-kriteria-hutnosti
+title:
+  cs: Kriteria hutnosti
+---
+hierarchy:
+  parent: zit
+id: zit-skladovaci-vlhkost
+title:
+  cs: Skladovací vlhkost
+---
+hierarchy:
+  parent: tama
+id: tama-dsc
+props:
+  tooltip: Diferenční skenovací kalorimetrie / Diferenční termická analýza
+  url: https://www.sci.muni.cz/chemsekce/tgir/termanal.pdf
+title:
+  cs: DSC/DTA
+---
+hierarchy:
+  parent: tama
+id: tama-stanoveni-mikrotvrdosti
+title:
+  cs: Stanovení mikrotvrdosti
+---
+hierarchy:
+  parent: tama
+id: tama-dilatometrie
+title:
+  cs: Dilatometrie
+---
+hierarchy:
+  parent: mikr
+id: mikr-meta
+title:
+  cs: Světelná mikroskopie / Metalografie
+---
+hierarchy:
+  parent: mikr
+id: mikr-svetelna-mikroskopie-stratigrafie-vrstev
+title:
+  cs: Světelná mikroskopie / Stratigrafie vrstev
+---
+hierarchy:
+  parent: mikr
+id: mikr-svetelna-mikroskopie-identifikace-vlaken
+title:
+  cs: Světelná mikroskopie / Identifikace vláken
+---
+hierarchy:
+  parent: mikr
+id: mikr-svetelna-mikroskopie-rozbor-vazeb
+title:
+  cs: Světelná mikroskopie / Rozbor vazeb
+---
+hierarchy:
+  parent: mikr
+id: mikr-sem
+props:
+  tooltip: Skenovací elektronový mikroskop. Studium povrchu v režimu SE (sekundárních
+    elektronů) nebo BSE (zpětně odražených elektronů)
+title:
+  cs: SEM
+---
+hierarchy:
+  parent: mikr
+id: mikr-svetelny-mikroskop-studium-puvodniho-povrchu
+title:
+  cs: Světelný mikroskop/ Studium původního povrchu
+---
+hierarchy:
+  parent: mikr
+id: mikr-svetelna-polarizacni-mikroskopie-keramicke-vybrusy-nabrusy
+title:
+  cs: Světelná polarizační mikroskopie/ keramické výbrusy/nábrusy
+---
+hierarchy:
+  parent: zobrnmik
+id: zobrnmik-rentgen
+title:
+  cs: Rentgenografie
+---
+hierarchy:
+  parent: zobrnmik
+id: zobrnmik-ct
+props:
+  tooltip: Výpočetní tomografie
+title:
+  cs: CT
+---
+hierarchy:
+  parent: difra
+id: difra-xrd
+props:
+  tooltip: X-ray diffraction (Rentgenová strukturní analýza)
+  url: https://cs.wikipedia.org/wiki/Rentgenov%C3%A1_krystalografie
+title:
+  cs: XRD
+---
+hierarchy:
+  parent: spektro
+id: spektro-xrf
+props:
+  tooltip: Rentgenová fluorescence
+  url: https://cs.wikipedia.org/wiki/Rentgenov%C3%A1_fluorescence
+title:
+  cs: XRF
+---
+hierarchy:
+  parent: spektro
+id: spektro-ftir
+props:
+  tooltip: 'Fourier transform infrared (spectroscopy) Infračervená spektroskopie s
+    Fourierovou transformací '
+  url: https://cs.wikipedia.org/wiki/Infra%C4%8Derven%C3%A1_spektroskopie_s_Fourierovou_transformac%C3%AD
+title:
+  cs: FTIR
+---
+hierarchy:
+  parent: spektro
+id: spektro-uv-vis
+props:
+  tooltip: Ultrafialovo-viditelná spektroskopie
+  url: https://cs.wikipedia.org/wiki/Ultrafialovo-viditeln%C3%A1_spektroskopie
+title:
+  cs: UV-Vis
+---
+hierarchy:
+  parent: spektro
+id: spektro-aes
+props:
+  tooltip: Atomová emisní spektroskopie = OES (sem patří všechny ICP-AES a GD-OES
+    = GDS)
+  url: https://web.vscht.cz/~koplikr/Atomov%c3%a1%20%20spektrometrie.pdf
+title:
+  cs: AES
+---
+hierarchy:
+  parent: spektro
+id: spektro-xps
+props:
+  tooltip: Spektroskopie fotoelektronů buzených rentgenovým zářením (X-ray photoelectron
+    spectroscopy nebo electron spectroscopy for chemical analysis (ESCA) (včetně Augerovy
+    spektroskopie)
+  url: https://en.wikipedia.org/wiki/X-ray_photoelectron_spectroscopy
+title:
+  cs: XPS
+---
+hierarchy:
+  parent: spektro
+id: spektro-sem-eds
+props:
+  tooltip: Energiově disperzní spektroskopie (EDX, EDXS or XEDS, EDXA, EDXMA) na skenovacím
+    elektronovém mikroskopu
+  url: https://en.wikipedia.org/wiki/Energy-dispersive_X-ray_spectroscopy
+title:
+  cs: SEM/EDS
+---
+hierarchy:
+  parent: spektro
+id: spektro-raman
+props:
+  tooltip: Ramanova spektroskopie
+  url: https://cs.wikipedia.org/wiki/Ramanova_spektroskopie
+title:
+  cs: Raman

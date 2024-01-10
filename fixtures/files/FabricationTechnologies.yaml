@@ -1,0 +1,581 @@
+id: kovy
+title:
+  cs: Kovy
+---
+id: textil
+title:
+  cs: Textil
+---
+id: sklo
+title:
+  cs: Sklo
+---
+id: keramika
+title:
+  cs: Keramika
+---
+hierarchy:
+  parent: kovy
+id: kovy-tvareni-za-tepla-kovani
+title:
+  cs: tváření za tepla
+---
+hierarchy:
+  parent: kovy
+id: kovy-tvareni-za-studena-tepani
+title:
+  cs: tváření za studena
+---
+hierarchy:
+  parent: kovy
+id: kovy-galvanoplastika
+title:
+  cs: galvanoplastika
+---
+hierarchy:
+  parent: kovy
+id: kovy-obrabeni
+title:
+  cs: obrábění
+---
+hierarchy:
+  parent: kovy
+id: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu
+title:
+  cs: Povrchové úpravy a výzdobné techniky kovů
+---
+hierarchy:
+  parent: kovy
+id: kovy-odlevani
+title:
+  cs: odlévání
+---
+hierarchy:
+  parent: kovy
+id: kovy-spojovani
+title:
+  cs: spojování
+---
+hierarchy:
+  parent: kovy
+id: kovy-sperkarske-techniky
+title:
+  cs: šperkařské techniky
+---
+hierarchy:
+  parent: textil
+id: textil-tkani
+title:
+  cs: tkaní
+---
+hierarchy:
+  parent: textil
+id: textil-pleteni
+title:
+  cs: pletení
+---
+hierarchy:
+  parent: textil
+id: textil-vysivka
+title:
+  cs: výšivka
+---
+hierarchy:
+  parent: textil
+id: textil-krajka
+title:
+  cs: krajka
+---
+hierarchy:
+  parent: textil
+id: textil-hackovani
+title:
+  cs: háčkování
+---
+hierarchy:
+  parent: textil
+id: textil-plsteni
+title:
+  cs: plstění
+---
+hierarchy:
+  parent: textil
+id: textil-calounicke-techniky
+title:
+  cs: čalounické techniky
+---
+hierarchy:
+  parent: textil
+id: textil-tisk
+title:
+  cs: tisk
+---
+hierarchy:
+  parent: sklo
+id: sklo-technologie-vyroby-skla
+title:
+  cs: Technologie výroby skla
+---
+hierarchy:
+  parent: sklo
+id: sklo-dekorativni-techniky-skla
+title:
+  cs: Dekorativní techniky skla
+---
+hierarchy:
+  parent: keramika
+id: keramika-technologie-vyroby-keramiky
+title:
+  cs: Technologie výroby keramiky
+---
+hierarchy:
+  parent: keramika
+id: keramika-dekorativni-techniky-keramiky
+title:
+  cs: Dekorativní techniky keramiky
+---
+hierarchy:
+  parent: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu
+id: kovy-pokoveni
+title:
+  cs: Pokovení
+---
+hierarchy:
+  parent: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu
+id: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu-cizelovani
+title:
+  cs: cizelování, tepání
+---
+hierarchy:
+  parent: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu
+id: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu-ryti
+title:
+  cs: rytí
+---
+hierarchy:
+  parent: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu
+id: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu-smaltovani
+title:
+  cs: smaltování
+---
+hierarchy:
+  parent: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu
+id: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu-tausirovani
+title:
+  cs: taušírování, niello
+---
+hierarchy:
+  parent: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu
+id: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu-leptani
+title:
+  cs: leptání
+---
+hierarchy:
+  parent: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu
+id: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu-granulace-filigran
+title:
+  cs: granulace / filigrán
+---
+hierarchy:
+  parent: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu
+id: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu-patinovani
+title:
+  cs: patinování, chemické barvení
+---
+hierarchy:
+  parent: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu
+id: kovy-povrchove-upravy-a-vyzdobne-techniky-kovu-polychromie
+title:
+  cs: polychromie
+---
+hierarchy:
+  parent: kovy-spojovani
+id: kovy-spojovani-svarovani
+title:
+  cs: svařování
+---
+hierarchy:
+  parent: kovy-spojovani
+id: kovy-spojovani-pajeni
+title:
+  cs: pájení
+---
+hierarchy:
+  parent: kovy-spojovani
+id: kovy-spojovani-lepeni
+title:
+  cs: lepení
+---
+hierarchy:
+  parent: kovy-spojovani
+id: kovy-spojovani-nytovani
+title:
+  cs: mechanické spoje
+---
+hierarchy:
+  parent: sklo-technologie-vyroby-skla
+id: sklo-technologie-vyroby-skla-foukane
+props:
+  tooltip: z volné ruky i do formy
+title:
+  cs: foukané sklo
+---
+hierarchy:
+  parent: sklo-technologie-vyroby-skla
+id: sklo-technologie-vyroby-skla-lisovane
+title:
+  cs: lisované sklo
+---
+hierarchy:
+  parent: sklo-technologie-vyroby-skla
+id: sklo-technologie-vyroby-skla-mackane-do-formy
+title:
+  cs: sklo mačkané do formy
+---
+hierarchy:
+  parent: sklo-technologie-vyroby-skla
+id: sklo-technologie-vyroby-skla-hutne-tvarovane-benatske-hutne-tvarovane-sklo
+props:
+  tooltip: včetně specifických dekorativních technik jako millefiori, filigrana atd.
+title:
+  cs: hutně tvarované/benátské hutně tvarované sklo
+---
+hierarchy:
+  parent: sklo-technologie-vyroby-skla
+id: sklo-technologie-vyroby-skla-vrstvene-prejimane
+title:
+  cs: sklo vrstvené/přejímané
+---
+hierarchy:
+  parent: sklo-technologie-vyroby-skla
+id: sklo-technologie-vyroby-skla-lehane
+title:
+  cs: sklo lehané
+---
+hierarchy:
+  parent: sklo-technologie-vyroby-skla
+id: sklo-technologie-vyroby-skla-vyroba-plocheho-skla
+title:
+  cs: výroba plochého skla
+---
+hierarchy:
+  parent: sklo-technologie-vyroby-skla
+id: sklo-technologie-vyroby-skla-vyrobni-techniky-mozaikoveho-skla
+title:
+  cs: výrobní techniky mozaikového skla
+---
+hierarchy:
+  parent: sklo-dekorativni-techniky-skla
+id: sklo-dekorativni-techniky-skla-ryte
+title:
+  cs: ryté sklo
+---
+hierarchy:
+  parent: sklo-dekorativni-techniky-skla
+id: sklo-dekorativni-techniky-skla-brousene
+title:
+  cs: broušené sklo
+---
+hierarchy:
+  parent: sklo-dekorativni-techniky-skla
+id: sklo-dekorativni-techniky-skla-leptane
+title:
+  cs: leptané sklo
+---
+hierarchy:
+  parent: sklo-dekorativni-techniky-skla
+id: sklo-dekorativni-techniky-skla-malba
+props:
+  tooltip: zahrnuje malbu za studena, malbu vypalovanou, emaily, švarclot, malbu zlatem
+title:
+  cs: malba na skle
+---
+hierarchy:
+  parent: sklo-dekorativni-techniky-skla
+id: sklo-dekorativni-techniky-skla-lazura
+title:
+  cs: skleněná lazura
+---
+hierarchy:
+  parent: sklo-dekorativni-techniky-skla
+id: sklo-dekorativni-techniky-skla-pokovovani-irizovani
+props:
+  tooltip: Pt-Ph, Ag, Sn, Ti atd.
+title:
+  cs: pokovování/irizování skla
+---
+hierarchy:
+  parent: sklo-dekorativni-techniky-skla
+id: sklo-dekorativni-techniky-skla-ledove-sklo
+title:
+  cs: ledové sklo
+---
+hierarchy:
+  parent: sklo-dekorativni-techniky-skla
+id: sklo-dekorativni-techniky-skla-podmalba
+title:
+  cs: podmalba skla
+---
+hierarchy:
+  parent: sklo-dekorativni-techniky-skla
+id: sklo-dekorativni-techniky-skla-hutni-techniky-dekorovani
+props:
+  tooltip: 'nálepy, ovíjení skleněnými nitěmi, štípané ozdoby apod. '
+title:
+  cs: hutní techniky dekorování skla
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky
+id: keramika-technologie-vyroby-keramiky-teplota-vypalu
+title:
+  cs: teplota výpalu keramiky
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky
+id: keramika-technologie-vyroby-keramiky-zpusob-vytvareni
+title:
+  cs: způsob vytváření keramiky
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky
+id: keramika-technologie-vyroby-keramiky-glazura
+title:
+  cs: glazura
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky
+id: keramika-dekorativni-techniky-keramiky-plasticky-dekor
+title:
+  cs: plastický dekor keramiky
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky
+id: keramika-dekorativni-techniky-keramiky-engoba
+title:
+  cs: engoba
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky
+id: keramika-dekorativni-techniky-keramiky-malba-pod-glazurou
+title:
+  cs: malba pod glazurou
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky
+id: keramika-dekorativni-techniky-keramiky-malba-na-glazure
+title:
+  cs: malba na glazuře
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky
+id: keramika-dekorativni-techniky-keramiky-listr
+title:
+  cs: listr
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky
+id: keramika-dekorativni-techniky-keramiky-sgrafito
+title:
+  cs: obtisk
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky
+id: keramika-dekorativni-techniky-keramiky-razitkovani
+title:
+  cs: razítkování
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky
+id: keramika-dekorativni-techniky-keramiky-trasakovani
+title:
+  cs: trasakování
+---
+hierarchy:
+  parent: kovy-pokoveni
+id: kovy-pokoveni-au
+title:
+  cs: zlacení
+---
+hierarchy:
+  parent: kovy-pokoveni
+id: kovy-pokoveni-ag
+title:
+  cs: stříbření
+---
+hierarchy:
+  parent: kovy-pokoveni
+id: kovy-pokoveni-sn
+title:
+  cs: cínování/zinkování/niklování
+---
+hierarchy:
+  parent: kovy-pokoveni
+id: kovy-pokoveni-cu
+title:
+  cs: mědění/mosazení
+---
+hierarchy:
+  parent: sklo-technologie-vyroby-skla-vyroba-plocheho-skla
+id: sklo-technologie-vyroby-skla-vyroba-plocheho-skla-lite-valcovane-sklo
+props:
+  tooltip: 'zahrnuje výrobu litím, kontinuálním litím a válcováním '
+title:
+  cs: lité/válcované sklo
+---
+hierarchy:
+  parent: sklo-technologie-vyroby-skla-vyroba-plocheho-skla
+id: sklo-technologie-vyroby-skla-vyroba-plocheho-skla-tazene
+title:
+  cs: tažené sklo
+---
+hierarchy:
+  parent: sklo-technologie-vyroby-skla-vyroba-plocheho-skla
+id: sklo-technologie-vyroby-skla-vyroba-plocheho-skla-plavene-float
+title:
+  cs: plavené/float sklo
+---
+hierarchy:
+  parent: sklo-technologie-vyroby-skla-vyroba-plocheho-skla
+id: sklo-technologie-vyroby-skla-vyroba-plocheho-skla-rucni-vyroba-valcovane-sklo
+props:
+  tooltip: výroba pomocí válců či rotujících baněk
+title:
+  cs: ruční výroba skla
+---
+hierarchy:
+  parent: sklo-dekorativni-techniky-skla-malba
+id: sklo-dekorativni-techniky-skla-malba-za-studena
+title:
+  cs: malba na skle za studena
+---
+hierarchy:
+  parent: sklo-dekorativni-techniky-skla-malba
+id: sklo-dekorativni-techniky-skla-malba-tepelne-zpracovana
+title:
+  cs: malba na skle tepelně zpracovaná
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-teplota-vypalu
+id: keramika-technologie-vyroby-keramiky-teplota-vypalu-nizkopalena-keramika
+title:
+  cs: nízkopálená keramika
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-teplota-vypalu
+id: keramika-technologie-vyroby-keramiky-teplota-vypalu-vysokopalena-keramika
+title:
+  cs: vysokopálená keramika
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-teplota-vypalu
+id: keramika-technologie-vyroby-keramiky-teplota-vypalu-strednepalena-keramika
+title:
+  cs: středněpálená keramika
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-zpusob-vytvareni
+id: keramika-technologie-vyroby-keramiky-zpusob-vytvareni-modelovani-v-ruce
+title:
+  cs: modelování  v ruce
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-zpusob-vytvareni
+id: keramika-technologie-vyroby-keramiky-zpusob-vytvareni-toceni-na-kruhu-vytaceni-obtaceni
+title:
+  cs: točení/vytáčení/obtáčení na kruhu
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-zpusob-vytvareni
+id: keramika-technologie-vyroby-keramiky-zpusob-vytvareni-liti-do-formy
+title:
+  cs: lití do formy
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-zpusob-vytvareni
+id: keramika-technologie-vyroby-keramiky-zpusob-vytvareni-dusani-lisovani
+title:
+  cs: dusání/lisování
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-glazura
+id: keramika-technologie-vyroby-keramiky-glazura-olovnata
+title:
+  cs: olovnatá glazura
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-glazura
+id: keramika-technologie-vyroby-keramiky-glazura-neolovnata
+title:
+  cs: bezolovnatá glazura
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-glazura
+id: keramika-technologie-vyroby-keramiky-glazura-solna
+title:
+  cs: solná glazura
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-glazura
+id: keramika-technologie-vyroby-keramiky-glazura-olovnato-cinicita
+title:
+  cs: olovnato-cíničitá glazura
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-glazura
+id: keramika-technologie-vyroby-keramiky-glazura-barevna-glazura
+title:
+  cs: barevná glazura
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-glazura
+id: keramika-technologie-vyroby-keramiky-glazura-transparentni
+title:
+  cs: transparentní glazura
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-glazura
+id: keramika-technologie-vyroby-keramiky-glazura-matna
+title:
+  cs: matná glazura
+---
+hierarchy:
+  parent: keramika-technologie-vyroby-keramiky-glazura
+id: keramika-technologie-vyroby-keramiky-glazura-krystalicka
+title:
+  cs: krystalická glazura
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky-plasticky-dekor
+id: keramika-dekorativni-techniky-keramiky-plasticky-dekor-nalepovani
+title:
+  cs: nalepování keramiky
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky-plasticky-dekor
+id: keramika-dekorativni-techniky-keramiky-plasticky-dekor-razitkovani-kolkovani
+title:
+  cs: razítkování/kolkování keramiky
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky-plasticky-dekor
+id: keramika-dekorativni-techniky-keramiky-plasticky-dekor-ryty-dekor
+title:
+  cs: rytý dekor keramiky
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky-plasticky-dekor
+id: keramika-dekorativni-techniky-keramiky-plasticky-dekor-prorezavani
+title:
+  cs: prořezávání keramiky
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky-plasticky-dekor
+id: keramika-dekorativni-techniky-keramiky-plasticky-dekor-pate-sur-pate
+title:
+  cs: pâte-sur-pâte
+---
+hierarchy:
+  parent: keramika-dekorativni-techniky-keramiky-plasticky-dekor
+id: keramika-dekorativni-techniky-keramiky-plasticky-dekor-litofanie
+title:
+  cs: litofanie

@@ -1,0 +1,209 @@
+id: kovy
+title:
+  cs: Kovy
+---
+id: textil
+title:
+  cs: Textil
+---
+id: test
+title:
+  cs: Sklo
+---
+id: keramika
+title:
+  cs: Keramika
+---
+hierarchy:
+  parent: kovy
+id: kovy-odstranovani-koroznich-produktu
+title:
+  cs: odstraňování korozních produktů
+---
+hierarchy:
+  parent: kovy
+id: kovy-lepeni
+props:
+  tooltip: lepení
+title:
+  cs: spojování
+---
+hierarchy:
+  parent: kovy
+id: kovy-povrchova-uprava
+title:
+  cs: povrchová úprava
+---
+hierarchy:
+  parent: kovy
+id: kovy-povrchova-uprava-cisteni
+title:
+  cs: odstraňování nečistot
+---
+hierarchy:
+  parent: kovy
+id: kovy-doplnovani
+title:
+  cs: doplňování
+---
+hierarchy:
+  parent: kovy
+id: kovy-zihani-na-odstraneni-pnuti
+title:
+  cs: žíhání na odstranění pnutí
+---
+hierarchy:
+  parent: kovy
+id: kovy-desalinace
+title:
+  cs: desalinace
+---
+hierarchy:
+  parent: kovy
+id: kovy-vyrovnavani-deformaci
+title:
+  cs: vyrovnávání deformací
+---
+hierarchy:
+  parent: textil
+id: textil-sita-skeletaz
+title:
+  cs: šitá skeletáž
+---
+hierarchy:
+  parent: textil
+id: textil-sita-skeletaz-i-lepeni
+title:
+  cs: lepení, podlepování
+---
+hierarchy:
+  parent: textil
+id: textil-beleni
+title:
+  cs: bělení
+---
+hierarchy:
+  parent: test
+id: test-trest
+title:
+  cs: čištění
+---
+hierarchy:
+  parent: test
+id: test-doplnovani
+title:
+  cs: doplňování
+---
+hierarchy:
+  parent: test
+id: test-lepeni
+title:
+  cs: lepení
+---
+hierarchy:
+  parent: test
+id: test-domalovani
+title:
+  cs: domalování
+---
+hierarchy:
+  parent: test
+id: test-vyztuzovani
+title:
+  cs: vyztužování
+---
+hierarchy:
+  parent: test
+id: test-zhotoveni-kopie
+title:
+  cs: zhotovení kopie
+---
+hierarchy:
+  parent: test
+id: test-barevna-retus
+title:
+  cs: barevná retuš
+---
+hierarchy:
+  parent: test
+id: test-adjustace-na-novou-podlozku
+title:
+  cs: adjustace na novou podložku
+---
+hierarchy:
+  parent: keramika
+id: keramika-cisteni
+title:
+  cs: čištění
+---
+hierarchy:
+  parent: keramika
+id: keramika-doplnovani
+title:
+  cs: doplňování
+---
+hierarchy:
+  parent: keramika
+id: keramika-lepeni
+title:
+  cs: lepení
+---
+hierarchy:
+  parent: keramika
+id: keramika-domalovani
+title:
+  cs: domalování
+---
+hierarchy:
+  parent: keramika
+id: keramika-vyztuzovani
+title:
+  cs: vyztužování
+---
+hierarchy:
+  parent: keramika
+id: keramika-retus
+title:
+  cs: retuš
+---
+hierarchy:
+  parent: kovy-povrchova-uprava
+id: kovy-povrchova-uprava-konzervace
+title:
+  cs: konzervace
+---
+hierarchy:
+  parent: kovy-povrchova-uprava
+id: kovy-povrchova-uprava-nater
+title:
+  cs: barevný nátěr
+---
+hierarchy:
+  parent: kovy-povrchova-uprava
+id: kovy-povrchova-uprava-patinovani
+title:
+  cs: patinování/pasivování/chemické barvení
+---
+hierarchy:
+  parent: kovy-povrchova-uprava
+id: kovy-povrchova-uprava-stabilizace-koroznich-produktu
+title:
+  cs: stabilizace korozních produktů
+---
+hierarchy:
+  parent: kovy-povrchova-uprava
+id: kovy-povrchova-uprava-pokoveni
+title:
+  cs: pokovení
+---
+hierarchy:
+  parent: keramika-retus
+id: keramika-retus-mechanicka
+title:
+  cs: mechanická
+---
+hierarchy:
+  parent: keramika-retus
+id: keramika-retus-barevna
+title:
+  cs: barevná
