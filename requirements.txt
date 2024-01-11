@@ -11,7 +11,7 @@ langcodes==3.3.0
 oarepo-published-service==1.0.2
 oarepo-requests==1.0.4
 oarepo-runtime==1.5.1
-oarepo-ui==5.0.96
+oarepo-ui==5.0.97
 oarepo-vocabularies==2.0.72
 openpyxl==3.1.2
 python-dotenv==1.0.0
