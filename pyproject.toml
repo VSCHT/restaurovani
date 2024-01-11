@@ -19,8 +19,8 @@ requires-python = ">=3.9,<3.11"
 
 [project.entry-points."invenio_assets.webpack"]
 branding = "ui.branding.webpack:theme"
-common = "common.assets.webpack:theme"
-objects = "ui.objects.theme.webpack:theme"
+i18n = "i18n.webpack:theme"
+objects = "ui.objects.webpack:theme"
 
 [project.entry-points."invenio_base.blueprints"]
 branding = "ui.branding:create_blueprint"
@@ -60,9 +60,7 @@ objects = "objects.models:records.json"
 objects_file = "objects.models:files.json"
 
 [project.entry-points."invenio_i18n.translations"]
-translations = "common"
-objects = "objects"
-objects_file = "objects"
+translations = "i18n"
 
 [project.entry-points."oarepo.ui"]
 objects = "objects.models:ui.json"
