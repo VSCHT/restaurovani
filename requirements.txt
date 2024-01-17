@@ -10,9 +10,9 @@ json5==0.9.14
 langcodes==3.3.0
 oarepo-published-service==1.0.2
 oarepo-requests==1.0.4
-oarepo-runtime==1.5.1
-oarepo-ui==5.0.97
-oarepo-vocabularies==2.0.72
+oarepo-runtime==1.5.3
+oarepo-ui==5.0.100
+oarepo-vocabularies==2.0.73
 openpyxl==3.1.2
 python-dotenv==1.0.0
 whitenoise==6.6.0
