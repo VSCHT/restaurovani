@@ -1,13 +1,14 @@
 models:
 - api_prefix: objects
   base_model: empty
-  features: [custom_fields, communities, requests, tests, drafts, relations, vocabularies,
-    files]
+  features: [relations, communities, files, requests, vocabularies, tests, custom_fields,
+    drafts]
   model_description: Restoration objects
   model_name: objects
   model_package: objects
   pid_type: rstr
 repository:
+  model_package: models
   oarepo_version: 12
   repository_human_name: "Datab\xE1ze restaurovan\xFDch p\u0159edm\u011Bt\u016F"
   repository_package: restoration

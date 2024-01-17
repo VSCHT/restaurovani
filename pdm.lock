@@ -3219,7 +3219,7 @@ files = [
 
 [[package]]
 name = "oarepo-runtime"
-version = "1.5.1"
+version = "1.5.3"
 summary = "A set of runtime extensions of Invenio repository"
 groups = ["default"]
 dependencies = [
@@ -3234,13 +3234,13 @@ dependencies = [
     "pyyaml",
 ]
 files = [
-    {file = "oarepo-runtime-1.5.1.tar.gz", hash = "sha256:61a4924ba526c88221d5c5143fb4d0339e77a30036a54b2e5ca8653f4da105cf"},
-    {file = "oarepo_runtime-1.5.1-py3-none-any.whl", hash = "sha256:6e38575019bb055749ce03871a6cc0312fe7d3def12f50fef4f8b5f7beb08084"},
+    {file = "oarepo-runtime-1.5.3.tar.gz", hash = "sha256:6ec821a0d2f0504aba0fd8d68bd516795b82d8de45fc83724cc61a8cdce46a7c"},
+    {file = "oarepo_runtime-1.5.3-py3-none-any.whl", hash = "sha256:42933e21eed9ec0d344e2b6e776504555c849cc2a9a9506a1ecf3c8959b3c5de"},
 ]
 
 [[package]]
 name = "oarepo-ui"
-version = "5.0.97"
+version = "5.0.100"
 requires_python = ">=3.6"
 summary = "UI module for invenio 3.5+"
 groups = ["default"]
@@ -3252,13 +3252,13 @@ dependencies = [
     "oarepo-runtime",
 ]
 files = [
-    {file = "oarepo-ui-5.0.97.tar.gz", hash = "sha256:b91d5f59b3e2a7b62548281bccecf457ad1b671dd03ef0a1a28cd83cb0420e4f"},
-    {file = "oarepo_ui-5.0.97-py2.py3-none-any.whl", hash = "sha256:755adbb39b7ac00cdc56fca83e762156ed1beefab9166d4698898c5291030965"},
+    {file = "oarepo-ui-5.0.100.tar.gz", hash = "sha256:e7da5ad90eee81602bda7418b8384914669989e88e9e0aa6dc55470b58827b6e"},
+    {file = "oarepo_ui-5.0.100-py2.py3-none-any.whl", hash = "sha256:21ce541090aa6905c8a2091dddbfba29475517231b71b6e8844c00d8e24b1ff6"},
 ]
 
 [[package]]
 name = "oarepo-vocabularies"
-version = "2.0.72"
+version = "2.0.73"
 summary = "Support for custom fields and hierarchy on Invenio vocabularies"
 groups = ["default"]
 dependencies = [
@@ -3269,8 +3269,8 @@ dependencies = [
     "openpyxl",
 ]
 files = [
-    {file = "oarepo-vocabularies-2.0.72.tar.gz", hash = "sha256:e45459c21e42e08d4b297af40e2cd6f7160552919c17630b02124164da68188d"},
-    {file = "oarepo_vocabularies-2.0.72-py3-none-any.whl", hash = "sha256:26b291cc0f0b01f39a7dec0202aaece35831aafe3c540c3fa9c8fb8054106086"},
+    {file = "oarepo-vocabularies-2.0.73.tar.gz", hash = "sha256:be3a14e4ec22c246ac72014228edb1b25de2f92c67b105fa01c9e4ee0dd0d9bd"},
+    {file = "oarepo_vocabularies-2.0.73-py3-none-any.whl", hash = "sha256:a35b08a8a06829b3ad1d4db2cbe7c7934bb1b0e5983989b1f2b2bba66b66c626"},
 ]
 
 [[package]]
@@ -4106,14 +4106,20 @@ dependencies = [
     "greenlet!=0.4.17; (platform_machine == \"win32\" or platform_machine == \"WIN32\" or platform_machine == \"AMD64\" or platform_machine == \"amd64\" or platform_machine == \"x86_64\" or platform_machine == \"ppc64le\" or platform_machine == \"aarch64\") and python_version >= \"3\"",
 ]
 files = [
+    {file = "SQLAlchemy-1.4.50-cp310-cp310-macosx_11_0_x86_64.whl", hash = "sha256:54138aa80d2dedd364f4e8220eef284c364d3270aaef621570aa2bd99902e2e8"},
     {file = "SQLAlchemy-1.4.50-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d00665725063692c42badfd521d0c4392e83c6c826795d38eb88fb108e5660e5"},
     {file = "SQLAlchemy-1.4.50-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:85292ff52ddf85a39367057c3d7968a12ee1fb84565331a36a8fead346f08796"},
     {file = "SQLAlchemy-1.4.50-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:d0fed0f791d78e7767c2db28d34068649dfeea027b83ed18c45a423f741425cb"},
     {file = "SQLAlchemy-1.4.50-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:db4db3c08ffbb18582f856545f058a7a5e4ab6f17f75795ca90b3c38ee0a8ba4"},
+    {file = "SQLAlchemy-1.4.50-cp310-cp310-win32.whl", hash = "sha256:6c78e3fb4a58e900ec433b6b5f4efe1a0bf81bbb366ae7761c6e0051dd310ee3"},
+    {file = "SQLAlchemy-1.4.50-cp310-cp310-win_amd64.whl", hash = "sha256:d55f7a33e8631e15af1b9e67c9387c894fedf6deb1a19f94be8731263c51d515"},
+    {file = "SQLAlchemy-1.4.50-cp39-cp39-macosx_11_0_x86_64.whl", hash = "sha256:4be4da121d297ce81e1ba745a0a0521c6cf8704634d7b520e350dce5964c71ac"},
     {file = "SQLAlchemy-1.4.50-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:3f6997da81114daef9203d30aabfa6b218a577fc2bd797c795c9c88c9eb78d49"},
     {file = "SQLAlchemy-1.4.50-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:bdb77e1789e7596b77fd48d99ec1d2108c3349abd20227eea0d48d3f8cf398d9"},
     {file = "SQLAlchemy-1.4.50-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:128a948bd40780667114b0297e2cc6d657b71effa942e0a368d8cc24293febb3"},
     {file = "SQLAlchemy-1.4.50-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f2d526aeea1bd6a442abc7c9b4b00386fd70253b80d54a0930c0a216230a35be"},
+    {file = "SQLAlchemy-1.4.50-cp39-cp39-win32.whl", hash = "sha256:a7c9b9dca64036008962dd6b0d9fdab2dfdbf96c82f74dbd5d86006d8d24a30f"},
+    {file = "SQLAlchemy-1.4.50-cp39-cp39-win_amd64.whl", hash = "sha256:df200762efbd672f7621b253721644642ff04a6ff957236e0e2fe56d9ca34d2c"},
     {file = "SQLAlchemy-1.4.50.tar.gz", hash = "sha256:3b97ddf509fc21e10b09403b5219b06c5b558b27fc2453150274fa4e70707dbf"},
 ]
 
@@ -4157,14 +4163,20 @@ dependencies = [
     "greenlet!=0.4.17; python_version >= \"3\"",
 ]
 files = [
+    {file = "SQLAlchemy-1.4.50-cp310-cp310-macosx_11_0_x86_64.whl", hash = "sha256:54138aa80d2dedd364f4e8220eef284c364d3270aaef621570aa2bd99902e2e8"},
     {file = "SQLAlchemy-1.4.50-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d00665725063692c42badfd521d0c4392e83c6c826795d38eb88fb108e5660e5"},
     {file = "SQLAlchemy-1.4.50-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:85292ff52ddf85a39367057c3d7968a12ee1fb84565331a36a8fead346f08796"},
     {file = "SQLAlchemy-1.4.50-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:d0fed0f791d78e7767c2db28d34068649dfeea027b83ed18c45a423f741425cb"},
     {file = "SQLAlchemy-1.4.50-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:db4db3c08ffbb18582f856545f058a7a5e4ab6f17f75795ca90b3c38ee0a8ba4"},
+    {file = "SQLAlchemy-1.4.50-cp310-cp310-win32.whl", hash = "sha256:6c78e3fb4a58e900ec433b6b5f4efe1a0bf81bbb366ae7761c6e0051dd310ee3"},
+    {file = "SQLAlchemy-1.4.50-cp310-cp310-win_amd64.whl", hash = "sha256:d55f7a33e8631e15af1b9e67c9387c894fedf6deb1a19f94be8731263c51d515"},
+    {file = "SQLAlchemy-1.4.50-cp39-cp39-macosx_11_0_x86_64.whl", hash = "sha256:4be4da121d297ce81e1ba745a0a0521c6cf8704634d7b520e350dce5964c71ac"},
     {file = "SQLAlchemy-1.4.50-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:3f6997da81114daef9203d30aabfa6b218a577fc2bd797c795c9c88c9eb78d49"},
     {file = "SQLAlchemy-1.4.50-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:bdb77e1789e7596b77fd48d99ec1d2108c3349abd20227eea0d48d3f8cf398d9"},
     {file = "SQLAlchemy-1.4.50-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl", hash = "sha256:128a948bd40780667114b0297e2cc6d657b71effa942e0a368d8cc24293febb3"},
     {file = "SQLAlchemy-1.4.50-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f2d526aeea1bd6a442abc7c9b4b00386fd70253b80d54a0930c0a216230a35be"},
+    {file = "SQLAlchemy-1.4.50-cp39-cp39-win32.whl", hash = "sha256:a7c9b9dca64036008962dd6b0d9fdab2dfdbf96c82f74dbd5d86006d8d24a30f"},
+    {file = "SQLAlchemy-1.4.50-cp39-cp39-win_amd64.whl", hash = "sha256:df200762efbd672f7621b253721644642ff04a6ff957236e0e2fe56d9ca34d2c"},
     {file = "SQLAlchemy-1.4.50.tar.gz", hash = "sha256:3b97ddf509fc21e10b09403b5219b06c5b558b27fc2453150274fa4e70707dbf"},
 ]
 

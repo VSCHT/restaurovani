@@ -21,10 +21,12 @@ requires-python = ">=3.9,<3.11"
 branding = "ui.branding.webpack:theme"
 i18n = "i18n.webpack:theme"
 objects = "ui.objects.webpack:theme"
+components = "ui.components.webpack:theme"
 
 [project.entry-points."invenio_base.blueprints"]
 branding = "ui.branding:create_blueprint"
 titlepage = "ui.titlepage:create_blueprint"
+components = "ui.components:create_blueprint"
 ui_objects = "ui.objects:create_blueprint"
 objects = "objects.views.records.app:create_app_blueprint"
 objects_file = "objects.views.files.app:create_app_blueprint"

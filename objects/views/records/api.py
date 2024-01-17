@@ -26,7 +26,6 @@ def init_create_api_blueprint(state):
 
     # register service
     sregistry = app.extensions["invenio-records-resources"].registry
-    print(f">>>>>>>>> api blueprint registering service with id {ext.service_records.config.service_id} <<<<<<<<<<")
     sregistry.register(
         ext.service_records, service_id=ext.service_records.config.service_id
     )
