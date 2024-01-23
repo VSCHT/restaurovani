@@ -1,4 +1,4 @@
-.ui.segment.pushable{
+/* .ui.segment.pushable{
 position: absolute
 }
 
@@ -17,4 +17,37 @@ position: absolute
 
 .ui.segment[class*="bottom attached"] {
     border-radius: 0em 0em 20px 20px;
+} */
+
+.ui.vertical.segment {
+  background-color: white;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  z-index: 0;
+}
+
+.main-page_content .ui.vertical.segment {
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 40px;
+  z-index: 1;
+  background: none;
+  max-width: 80vw;
+}
+
+.ui.segment.bg-bottom {
+  background-color: @bgColor;
+  height: 58vh;
+  width: 100vw;
+  position: absolute;
+  z-index: 0;
+}
+
+@media only screen and (max-width: 992px) {
+  .ui.vertical.segment.main-page__container {
+    gap: 70px;
+  }
 }

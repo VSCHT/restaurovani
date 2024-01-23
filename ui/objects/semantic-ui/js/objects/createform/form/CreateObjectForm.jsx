@@ -2,7 +2,7 @@ import React from "react";
 import _isEmpty from "lodash/isEmpty";
 import { TextField, FieldLabel, RadioField } from "react-invenio-forms";
 
-import { Container, Label, Form } from "semantic-ui-react";
+import { Container, Label, Form, Grid } from "semantic-ui-react";
 import { DepositValidationSchemaDraft } from "../../forms/deposit/DepositValidationSchema";
 import { useFormConfig, useDepositApiClient } from "@js/oarepo_ui";
 import { Formik, ErrorMessage } from "formik";
@@ -21,7 +21,8 @@ export const CreateObjectFormContent = ({ errors }) => {
   
 
   return (
-    <div className="vert-div predmety__form">
+    <Grid>
+    <Grid.Column className="predmety__form">
       <h3 className="predmety__form__h">Vytvoření nového předmětu</h3>
       <div className="vert-div predmety__form-main">
         <div className="vert-div predmety__form__div">
@@ -109,7 +110,8 @@ export const CreateObjectFormContent = ({ errors }) => {
         </div>
       </div>
       <SaveButton />
-    </div>
+    </Grid.Column>
+    </Grid>
   );
 };
 

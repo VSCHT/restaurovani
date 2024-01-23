@@ -27,7 +27,7 @@ export const EmptyResultsElement = ({
       <Grid.Row centered>
         <Grid.Column width={8} textAlign="center">
           <Button
-            className="predmety__main-content__nores__button"
+            className="primary predmety__main-content__nores__button"
             onClick={resetQuery}
           >
             <Icon name="search" />

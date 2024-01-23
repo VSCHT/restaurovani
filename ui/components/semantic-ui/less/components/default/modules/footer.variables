@@ -1,0 +1,10 @@
+
+/* https://github.com/Semantic-Org/example-github/blob/master/semantic/src/themes/default/globals/site.variables */
+/* @footerBackground: @inputBackground; */
+            
+@backgroundColor: #545454;
+@tinyHeight: 5px;
+@fullscreenWidth: 100vw;
+@frontIndex: 1;
+@absPosition: absolute;
+@zeroValue: 0;

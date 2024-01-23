@@ -1,0 +1,11 @@
+@navbarBackground: #9B9B93;
+@navbarTextColor: @white;
+@smallWidthdep:10vw;
+@smallerWidthdep:5vw;
+
+
+/* semantic */
+
+@background: #9B9B93;
+@itemVerticalPadding : 10px !important;
+@itemHorizontalPadding: 10vw !important;

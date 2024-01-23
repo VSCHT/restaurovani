@@ -1,0 +1,22 @@
+
+
+@type: "module";
+
+@element: "footer";
+
+@import (multiple) "../../theme.config";
+
+
+.ui.footer {
+    background-color: @backgroundColor;
+    height: @tinyHeight;
+    width: @fullscreenWidth;
+    z-index: @frontIndex;
+    position: @absPosition;
+    bottom: @zeroValue;
+}
+
+/*
+  This will load the overrides, enabling the user of your component to override your css if required
+ */
+.loadUIOverrides();
