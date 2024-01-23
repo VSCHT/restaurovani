@@ -1,0 +1,21 @@
+
+@halfSize: 55%;
+@zeroVal:0px;
+@moreSize: 60%;
+@lessSize:40%;
+@secondarySize:35px;
+@primarySize:45px;
+@absenceVal:none;
+
+
+
+/* semantic */
+@background: none;
+@textColor: #fff;
+@fontFamily: source-sans-pro;
+@horizontalMargin:0;
+@verticalMargin:0;
+@hoverBackgroundColor: #aa4929;
+@secondaryColor: #A8A8A0;
+@primaryColor: #de4929;
+@secondaryColorHover: #aaaaa2;

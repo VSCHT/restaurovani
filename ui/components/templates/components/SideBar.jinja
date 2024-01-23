@@ -1,48 +1,5 @@
 {# def #}
 
-<nav class="ui navbar horiz-div" aria-label="Main Menu">
-  <!-- upper menu -->
-
-  <div class="ui menu top fixed">
-    <div class="item toggle-burger">
-      <button class="ui button toggle-burger" alt="Toggle Filter Menu">
-        <img
-          rel="icon"
-          src="{{ url_for('static', filename='images/menu-icon.png') }}"
-          alt="ui image burger filter button"
-        />
-      </button>
-    </div>
-
-    <a class="item btn main-page__menu__btn" href="/">
-      <img
-        class="ui image left-arrow"
-        src="{{ url_for('static', filename='images/arrow-left.png') }}"
-        alt="arrow back"
-      />RESTAUROVÁNÍ VŠCHT
-    </a>
-
-    <div class="right menu">
-      {%- if config.ACCOUNTS and current_user.is_authenticated %}
-
-      <a class="item">
-        <!-- <AccountDropDown /> -->
-      </a>
-      {%- else %}
-
-      <a
-        class="item btn main-page__menu__btn"
-        href="{{ url_for('security.login') }}"
-        >Přihlásit se</a
-      >
-
-      {%- endif %}
-    </div>
-  </div>
-</nav>
-
-<div class="overlay"></div>
-
 <!-- sidebar for mobile -->
 <nav class="ui sidebar vertical menu">
   <button class="sidebar__btn-close">
@@ -126,3 +83,5 @@
     {%- endif %}
   </div>
 </nav>
+
+

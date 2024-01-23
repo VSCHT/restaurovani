@@ -59,135 +59,127 @@ export const SearchAppLayout = () => {
     window.location.href = new URL(searchAppConfig.ui_links.create);
   };
   return (
-    <Container className="predmety__body-bg">
-      <Container className=" predmety__body-bg pages__predmety">
-        <Grid className="horiz-div">
-          <Grid className="vert-div predmety_main-container">
-            <Container className="horiz-div predmety__title-search-fixed">
-              <Grid.Row className="horiz-div predmety__title-search">
-                <Header className="predmety__title">
-                  Restaurované předměty
-                </Header>
+    <Grid>
+      <Grid columns={2} className="predmety_main-container">
+        {/* first column-  main content */}
+        <Grid.Column width={11}>
 
-                <Grid className="horiz-div predmety__title-search__searchbar">
-                  <SearchBar />
-                  <Button
-                    className="btn predmety__input-search__searchbar-burger"
-                    aria-label="Toggle Filter Menu"
-                    onClick={toggleModal}
-                  >
-                    <Image
-                      rel="icon"
-                      src="/static/images/filter-icon.png"
-                      alt="filter button"
-                    />
-                  </Button>
-                </Grid>
-              </Grid.Row>
-            </Container>
+          {/* header and searchbar */}
+          <Container>
+            <Grid columns={2}>
 
-            <Grid className="vert-div predmety__cards">
-              <SearchAppResultsPane
-                layoutOptions={searchAppConfig.layoutOptions}
-                appName={appName}
-                buildUID={buildUID}
-              />
-            </Grid>
-          </Grid>
-
-          {sidebarVisible && (
-            <Grid.Column
-              className="vert-div predmety__aside"
-              id="predmety__aside"
-            >
-              <Grid.Row className="vsht-logo div__vsht-logo predmety__div__vsht-logo">
-                <Image
-                  className="vsht-logo image__vsht-logo predmety__image__vsht-logo"
-                  src="/static/images/logo_VSHT.png"
-                  alt="vsht logo"
-                />
-                <Label className="vsht-logo text__vsht-logo predmety__text__vsht-logo">
-                  VYSOKÁ ŠKOLA
-                  <br />
-                  CHEMICKO-TECHNOLOGICKÁ
-                  <br />V PRAZE
-                </Label>
-              </Grid.Row>
-
-              <Button
-                className="btn predmety__input-search__searchbar-burger btn-close"
-                aria-label="Toggle Filter Menu"
-                onClick={(e) => toggleSidebar(e)}
-              >
-                <Image
-                  rel="icon"
-                  src="/static/images/close-icon.png"
-                  alt="burger filter button"
-                />
-              </Button>
-              <Grid
-                className="vert-div predmety__aside__filter"
-                aria-label="Filter Options"
-              >
-                <Button
-                  className="predmety__aside__btn"
-                  aria-label="Tlacitko dodat novy predmet"
-                  onClick={createNewHandler}
-                >
-                  Nový předmět
-                  <Image
-                    src="/static/images/plus-square.png"
-                    alt="add new icon"
-                  />
-                </Button>
-
-                <SearchAppFacets
-                  aggs={searchAppConfig.aggs}
-                  appName={appName}
-                />
-              </Grid>
+              <Grid.Column width={11}>
+              <Header as="h1">
+                Restaurované předměty
+              </Header>
             </Grid.Column>
-          )}
 
-          <Modal
-            as={Grid.Column}
-            animation="overlay"
-            icon="labeled"
-            open={modalOpen}
-            onClose={toggleModal}
+            <Grid.Column width={4}>
+              <Grid.Row className="grid-searchbar">
+                <SearchBar />
+                {/* <Button
+                  transparent
+                  className=""
+                  aria-label="Toggle Filter Menu"
+                  onClick={toggleModal}
+                >
+                  <Image
+                    rel="icon"
+                    src="/static/images/filter-icon.png"
+                    alt="filter button"
+                  />
+                </Button> */}
+              </Grid.Row>
+              </Grid.Column>
+
+            </Grid>
+          </Container>
+
+
+          {/* search results */}
+          <Grid.Column className="predmety__cards">
+            <SearchAppResultsPane
+              layoutOptions={searchAppConfig.layoutOptions}
+              appName={appName}
+              buildUID={buildUID}
+            />
+          </Grid.Column>
+        </Grid.Column>
+
+        {/* second column - facets */}
+        {sidebarVisible && (
+          <Grid.Column
+            width={5}
+            className="predmety__aside"
+            id="predmety__aside"
           >
-            <Grid
-              className="predmety__aside"
-              id="predmety__aside"
-            >
-            
+            <Image
+              className="vsht-logo image__vsht-logo main-page__image__vsht-logo"
+              src="/static/images/logoVSCHT_zakl.png"
+              alt="vsht logo"
+            />
 
-            
-              <Grid
-                className="vert-div predmety__aside__filter"
-                aria-label="Filter Options"
-              >
-                <h2>Filtrování výsledků</h2>
-                <SearchAppFacets
-                  aggs={searchAppConfig.aggs}
-                  appName={appName}
-                />
-              </Grid>
+            {/* <Button
+              className="btn predmety__input-search__searchbar-burger btn-close"
+              aria-label="Toggle Filter Menu"
+              onClick={(e) => toggleSidebar(e)}
+            >
+              <Image
+                rel="icon"
+                src="/static/images/close-icon.png"
+                alt="burger filter button"
+              />
+            </Button> */}
+            <Grid.Column
+              className="predmety__aside__filter"
+              aria-label="Filter Options"
+            >
               <Button
-                className="btn predmety__input-search__searchbar-burger btn-close"
-                aria-label="Toggle Filter Menu"
-                onClick={toggleModal}
+                secondary
+                aria-label="Tlacitko dodat novy predmet"
+                onClick={createNewHandler}
               >
+                Nový předmět
                 <Image
-                  rel="icon"
-                  src="/static/images/close-icon.png"
-                  alt="burger filter button"
+                  src="/static/images/plus-square.png"
+                  alt="add new icon"
                 />
               </Button>
-            </Grid>
-          </Modal>
-        </Grid>
-      </Container>
-    </Container>
+
+              <SearchAppFacets aggs={searchAppConfig.aggs} appName={appName} />
+            </Grid.Column>
+          </Grid.Column>
+        )}
+
+        <Modal
+          as={Grid.Column}
+          animation="overlay"
+          icon="labeled"
+          open={modalOpen}
+          onClose={toggleModal}
+        >
+          <Grid className="predmety__aside" id="predmety__aside">
+            <Grid.Column
+              className="vert-div predmety__aside__filter"
+              aria-label="Filter Options"
+            >
+              <h2>Filtrování výsledků</h2>
+              <SearchAppFacets aggs={searchAppConfig.aggs} appName={appName} />
+            </Grid.Column>
+            <Button
+              className="btn predmety__input-search__searchbar-burger btn-close"
+              aria-label="Toggle Filter Menu"
+              onClick={toggleModal}
+            >
+              <Image
+                rel="icon"
+                src="/static/images/close-icon.png"
+                alt="burger filter button"
+              />
+            </Button>
+          </Grid>
+        </Modal>
+      </Grid>
+    </Grid>
   );
 };

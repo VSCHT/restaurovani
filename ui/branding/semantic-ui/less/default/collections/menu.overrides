@@ -1,6 +1,17 @@
 .ui.pagination.form__attach__pagination.menu {
-    margin: 0 auto !important;
-    border: none !important;
-    box-shadow: none !important;
+  margin: 0 auto !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
+.ui.menu.top.fixed {
+  color: @navbarTextColor;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 992px) {
+  .ui.menu.top.fixed {
+    padding-left: @smallerWidthdep;
+    padding-right: @smallerWidthdep;
+  }
+}

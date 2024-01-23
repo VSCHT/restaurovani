@@ -1,4 +1,4 @@
-.item.predmety__card{
+/* .item.predmety__card{
 margin-top: 30px !important    ;
 background-color:              #ffffff !important;
 display: flex !important       ;
@@ -46,4 +46,24 @@ height: 100%;
 margin: 0 auto;
 gap: 20px;
 }
+} */
+
+.item.toggle-burger {
+  display: none !important;
+}
+.item {
+  color: white !important;
+  font-family: source-sans-pro;
+  font-size: 1.3rem;
+  padding: 10px !important;
+}
+
+@media only screen and (max-width: 992px) {
+  .ui.menu.top.fixed .item:nth-child(2),
+  .ui.menu.top.fixed .right.menu {
+    display: none;
+  }
+  .item.toggle-burger {
+    display: flex !important;
+  }
 }
