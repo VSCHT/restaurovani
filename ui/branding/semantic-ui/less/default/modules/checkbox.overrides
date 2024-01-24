@@ -1,7 +1,5 @@
-@checkboxBorder: 1px solid #e0472b ;
-@checkboxFocusBorderColor: #e0472b ;
-@checkboxActiveBorderColor:#e0472b ;
-
-
-@checkboxFocusCheckColor:#e0472b ;
-@checkboxActiveCheckColor:#e0472b;
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+.ui.checkbox .box:before, .ui.checkbox label:before {
+  width: 15px !important;
+  height: 15px !important;
+}}

@@ -54,7 +54,7 @@ export function ImageWithFallback({ src, result, fallbackSrc }) {
 
       {!loading && (
         <ItemImage
-        size='medium' 
+        size='tiny' 
           src={imgUrlFeat?.links?.content ?? imgUrlRand?.links?.content ?? src}
           onError={handleImageError}
           alt={`Foto predmetu ${

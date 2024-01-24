@@ -16,8 +16,7 @@ head_links %} {% block body %}
         <!-- page title -->
         <div class="ui vertical left aligned segment">
           <div class="ui grid">
-            <Brandlogo />
-            <!-- velky l -->
+            <BrandLogo />
           </div>
           <div class="ui two column grid">
             <div class="column">
@@ -44,12 +43,6 @@ head_links %} {% block body %}
                           class="ui input"
                           placeholder="{{ _('Vyhledat předmět ...') }}"
                         />
-                        <button
-                          class="ui transparent small button"
-                          onclick="let input = this.previousElementSibling; input.value = ''; input.focus();"
-                        >
-                          x
-                        </button>
                       </div>
                         <button class="ui primary button ">
                           PROCHÁZET PŘEDMĚTY
