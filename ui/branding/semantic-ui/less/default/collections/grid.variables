@@ -1,9 +1,11 @@
 /* own */
 @smallSpacing: 0.5rem;
-@zeroVal: 0px;
+
 
 
 
 /* semantic */
 @gutterWidth :0;
 @oneWide: 50%;
+@twelveWide:60%;
+@fiveWide : 20%;

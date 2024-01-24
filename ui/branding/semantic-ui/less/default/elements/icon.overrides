@@ -1,4 +1,4 @@
-.ui.icon.left.labeled.button{
+/* .ui.icon.left.labeled.button{
     background-color: #808080;
     color: #fff;
     margin-top: 10px;
@@ -40,4 +40,5 @@ i.icon{
 
 .delete.icon.predmety__btn-reset{
   font-size: 1.3rem
-}
+} */
+

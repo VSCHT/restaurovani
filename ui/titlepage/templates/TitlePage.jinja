@@ -84,7 +84,16 @@ head_links %} {% block body %}
   </div>
 </main>
 
-{%- block javascript %} {% include config.THEME_JAVASCRIPT_TEMPLATE %} {%-
-endblock javascript %}
+{%- block javascript %} {% include config.THEME_JAVASCRIPT_TEMPLATE %}
+
+
+
+    
+    {{ super() }}
+    
+    {{ webpack["components.js"] }}
+
+    
+    {%- endblock javascript %}
 
 {% endblock %}

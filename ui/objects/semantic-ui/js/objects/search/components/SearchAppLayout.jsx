@@ -62,14 +62,14 @@ export const SearchAppLayout = () => {
     <Grid>
       <Grid columns={2} className="predmety_main-container">
         {/* first column-  main content */}
-        <Grid.Column width={11}>
+        <Grid.Column width={12}>
 
           {/* header and searchbar */}
           <Container>
             <Grid columns={2}>
 
               <Grid.Column width={11}>
-              <Header as="h1">
+              <Header as="h2">
                 Restaurované předměty
               </Header>
             </Grid.Column>

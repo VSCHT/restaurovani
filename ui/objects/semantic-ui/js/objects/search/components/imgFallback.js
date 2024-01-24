@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, Dimmer, Loader } from "semantic-ui-react";
+import { Image, Dimmer, Loader,ItemImage } from "semantic-ui-react";
 
 export function ImageWithFallback({ src, result, fallbackSrc }) {
   const [imageSrc, setImageSrc] = useState([src]);
@@ -53,7 +53,8 @@ export function ImageWithFallback({ src, result, fallbackSrc }) {
       )}
 
       {!loading && (
-        <Image
+        <ItemImage
+        size='medium' 
           src={imgUrlFeat?.links?.content ?? imgUrlRand?.links?.content ?? src}
           onError={handleImageError}
           alt={`Foto predmetu ${

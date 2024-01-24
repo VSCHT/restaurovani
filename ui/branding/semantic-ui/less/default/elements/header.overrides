@@ -1,13 +1,16 @@
 h1.ui.header {
-  font-size: 3.5rem;
+  font-weight: @h1fontWeight;
 }
-/* h2.ui.header {
-  font-size: 3.5rem;
-} */
 
-@media only screen and (min-width: 1500px) {
+@media only screen and (max-width: 1500px) and (min-width: 1200px) {
   h1.ui.header {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
+  }
+  h2.ui.header {
+    font-size: 3rem;
+  }
+  .header a {
+    font-size: 1.8rem !important;
   }
 }
 
@@ -15,16 +18,34 @@ h1.ui.header {
   h1.ui.header {
     font-size: 3rem;
   }
+  h2.ui.header {
+    font-size: 2.5rem;
+  }
+  .header a {
+    font-size: 1.5rem !important;
+  }
 }
 
 @media only screen and (max-width: 992px) and (min-width: 580px) {
   h1.ui.header {
     font-size: 4rem;
   }
+  h2.ui.header {
+    font-size: 3rem;
+  }
+  .header a {
+    font-size: 1.8rem !important;
+  }
 }
 
 @media only screen and (max-width: 580px) {
   h1.ui.header {
     font-size: 3rem;
+  }
+  h2.ui.header {
+    font-size: 2.5rem;
+  }
+  .header a {
+    font-size: 1.5rem;
   }
 }

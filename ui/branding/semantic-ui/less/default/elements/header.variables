@@ -1,2 +1,11 @@
+/* own */
 @fontFamily: source-sans-pro !important;
-@fontWeight:300;
+
+@h1fontWeight:300 ;
+
+/* semantic */
+@h1: 4.5rem;
+@h2:4rem;
+@h3: 2rem;
+@fontWeight:400;
+@headerMargin:0px;

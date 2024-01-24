@@ -1,4 +1,11 @@
-import { List, Checkbox, Accordion, Image , Label} from "semantic-ui-react";
+import {
+  List,
+  Checkbox,
+  Accordion,
+  Image,
+  Label,
+  Icon,
+} from "semantic-ui-react";
 import { withState } from "react-searchkit";
 import React from "react";
 
@@ -8,12 +15,12 @@ export const MyBucketAggregationValues = withState(
       <>
         <List.Item key={bucket.key}>
           <Checkbox
-            style={{ float: "left" }}
             value={bucket.key}
             onClick={() => onFilterClicked(bucket.key)}
             checked={isSelected}
           />
-          {bucket.label} <Label>{bucket.doc_count}</Label> {childAggCmps}
+          <Label>{bucket.label}</Label> <Label>{bucket.doc_count}</Label>{" "}
+          {childAggCmps}
         </List.Item>
       </>
     );
@@ -31,7 +38,6 @@ export const MyBucketAggregation = withState(({ title, containerCmp }) => {
     <>
       <Accordion>
         <Accordion.Title
-          className="btn predmety__aside__dropdown-btn parag"
           active={activeIndex === title}
           index={title}
           onClick={() => handleClick(title)}
@@ -51,18 +57,16 @@ export const MyBucketAggregation = withState(({ title, containerCmp }) => {
                 : title)
           }
 
-          <Image
+          <Icon name="chevron down" />
+          {/* <Image
             src="/static/images/chevron-down.png"
             className={`predmety__aside__dropdown-icon ${
               activeIndex === title ? "rotate-icon" : ""
             }`}
             alt="dropdown icon"
-          />
+          /> */}
         </Accordion.Title>
-        <Accordion.Content
-          active={activeIndex === title}
-          className="predmety__aside__dropdown-container"
-        >
+        <Accordion.Content active={activeIndex === title}>
           {containerCmp}
         </Accordion.Content>
       </Accordion>

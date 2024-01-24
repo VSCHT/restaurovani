@@ -1,61 +1,31 @@
-/* .item.predmety__card{
-margin-top: 30px !important    ;
-background-color:              #ffffff !important;
-display: flex !important       ;
-position: relative !important  ;
-width: 100% !important         ;
-flex-direction: row !important ;
-
-padding: 25px !important ;
-}
-.content.active.predmety__aside__dropdown-container .ui.list .item {
-    padding-bottom: 0em;
-    align-items: center !important;
-} 
-.item.horiz-div.predmety__card-content{
-background-color:                      #ffffff  !important ;
-display: flex                        !important   ;
-position: relative            !important          ;
-width: 100%                !important             ;
-display: flex             !important              ;
-flex-direction: row       !important              ;
-align-items: center      !important               ;
-}
-
-.item.horiz-div.predmety__card-content{
-background-color:                      #ffffff  !important ;
-display: flex                        !important   ;
-position: relative            !important          ;
-width: 100%                !important             ;
-display: flex             !important              ;
-flex-direction: row       !important              ;
-align-items: center      !important               ;
-}
-
-
-@media only screen and (max-width:730px){
-.item.horiz-div.predmety__card-content{
-background-color:                      #ffffff  !important ;
-display: flex                        !important   ;
-position: relative            !important          ;
-width: 100%                !important             ;
-display: flex             !important              ;
-flex-direction: column       !important              ;
-align-items: center      !important               ;
-height: 100%;
-margin: 0 auto;
-gap: 20px;
-}
-} */
-
 .item.toggle-burger {
   display: none !important;
 }
 .item {
-  color: white !important;
   font-family: source-sans-pro;
   font-size: 1.3rem;
-  padding: 10px !important;
+  
+}
+
+.item:not([role*="listitem"]) {
+  color: white !important;
+  padding: 1.5rem !important;
+}
+
+.header a {
+  font-size: 2rem;
+}
+.ui.items > .item > .image + .content {
+  display: grid;
+  grid-template-rows: 35px auto 0px auto 0px;
+}
+.ui.items > .item > .image > img {
+  width: 80% !important;
+}
+.extra {
+  height: max-content !important;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 @media only screen and (max-width: 992px) {
@@ -66,4 +36,14 @@ gap: 20px;
   .item.toggle-burger {
     display: flex !important;
   }
+}
+
+@media only screen and (max-width: 1500px) and (min-width: 992px){
+.ui.items > .item > .image > img {
+    width: 60% !important;
+}
+.ui.items > .item > .content > .description {
+    margin-top: 0.1em;
+    font-size: 1.5rem;
+}
 }
