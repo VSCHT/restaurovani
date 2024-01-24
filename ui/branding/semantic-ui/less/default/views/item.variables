@@ -16,3 +16,4 @@
 @extraDisplay:flex;
 @descriptionFontSize:1.6rem;
 @descriptionColor: #222;
+@extraWidth:100%;

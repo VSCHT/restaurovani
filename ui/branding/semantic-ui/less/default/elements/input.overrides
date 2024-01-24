@@ -19,16 +19,16 @@
 
 @media only screen and (min-width: 1200px) {
   .ui.input {
-    width: @halfSize !important;
+    width: 45% !important;
     height: @primarySize;
   }
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
-  .ui.input {
-    width: @halfSize !important;
+  .ui.input , .grid-searchbar .ui.input input {
+    width: 45% !important;
     height: @secondarySize !important;
-    font-size: 15px;
+    font-size: 14px;
   }
 }
 

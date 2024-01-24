@@ -1,8 +1,23 @@
-main{
-    height: 100%;
-    font-family: source-sans-pro;
-    font-weight: 400;
-    background-color: #EAEAE2;
+main {
+  height: 100%;
+  font-family: source-sans-pro;
+  font-weight: 400;
+  background-color: #eaeae2;
 
-    margin-top: 50px;  
+  margin-top: 50px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  main {
+    margin-top: 35px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  main {
+    margin-top: 39px;
+  }
+}
+
+main {
+  background-image: url("~@less/images/bgDetails.png");
 }

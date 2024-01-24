@@ -4,3 +4,4 @@
 @checkboxSize:20px;
 @labelFocusColor: #e0472b;
 @checkboxActiveBorderColor: #e0472b;
+@radioFocusBulletColor: #e0472b;

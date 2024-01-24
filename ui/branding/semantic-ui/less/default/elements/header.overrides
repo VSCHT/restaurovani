@@ -22,7 +22,7 @@ h1.ui.header {
     font-size: 2.5rem;
   }
   .header a {
-    font-size: 1.5rem !important;
+    font-size: 1.4rem !important;
   }
 }
 
@@ -48,4 +48,8 @@ h1.ui.header {
   .header a {
     font-size: 1.5rem;
   }
+}
+
+h1.mt-20 {
+  display: none;
 }

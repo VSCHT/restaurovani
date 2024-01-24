@@ -114,7 +114,7 @@ export const SearchAppLayout = () => {
             id="predmety__aside"
           >
             <Image
-              className="vsht-logo image__vsht-logo main-page__image__vsht-logo"
+              className="vsht-logo"
               src="/static/images/logoVSCHT_zakl.png"
               alt="vsht logo"
             />

@@ -7,3 +7,11 @@
   font-size: 1.1rem;
 }
 }
+
+@media only screen and (min-width: 992px) and (max-width: 1200px){
+  .ui.label {
+    font-size: 1.1rem;
+}
+.extra .ui.label {
+  font-size: 1rem;
+}}

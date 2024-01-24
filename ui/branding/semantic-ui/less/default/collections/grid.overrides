@@ -6,12 +6,12 @@
   justify-content: space-between;
 }
 
-.ui.two.column.grid.predmety_main-container{
+.ui.two.column.grid.predmety_main-container {
   gap: 160px;
   display: flex;
   width: 100% !important;
   margin-top: 125px;
-  justify-content:flex-end !important;
+  justify-content: flex-end !important;
   position: static !important;
 }
 
@@ -21,6 +21,16 @@
 
 .column.predmety__aside__filter {
   margin-top: 80px;
+}
+.column:has(.mt-20){
+  background-color: white;
+ 
+}
+.column.predmety__form{
+   display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
 }
 
 @media only screen and (max-width: 992px) {
@@ -39,13 +49,29 @@
 
 /* search page */
 
+@media only screen and (min-width: 1200px) and (max-width: 1500px) {
+  .ui.two.column.grid.predmety_main-container {
+    margin-top: 55px;
+    gap: 135px;
+  }
+  .column.predmety__aside__filter {
+    margin-top: 73px;
+  }
+}
 
-@media only screen and (min-width: 1200px) and (max-width: 1500px){
-.ui.two.column.grid.predmety_main-container {
-  margin-top: 55px;
-  gap: 135px;
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .ui.two.column.grid.predmety_main-container {
+    gap: 110px;
+    margin-top: 40px;
+  }
+  .ui.items > .item > .image + .content {
+    grid-template-rows: 5px auto 0px auto 0px !important;
 }
 .column.predmety__aside__filter {
-  margin-top: 73px;
+  margin-top: 72px;
+}
+.ui.items > .item > .content > .description {
+
+  font-size: 1.2rem !important;
 }
 }

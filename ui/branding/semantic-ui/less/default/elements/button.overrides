@@ -52,6 +52,21 @@
     height: @secondarySize;
     padding: 10px;
   }
+  .ui.primary.button {
+    font-size: 14px;
+    width: 45% !important;
+  }
+  .ui.secondary.button {
+    height: 37px !important;
+    font-size: 1.1rem;
+    padding: 0 10px;
+  }
+
+  .extra .ui.primary.button {
+    width: 25% !important;
+    height: 30px !important;
+    font-size: 12px !important;
+  }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1500px) {
@@ -65,8 +80,8 @@
     padding: 0 15px;
   }
   .ui.primary.button {
-    /* width: 35% !important; */
-    /* height: 37px !important; */
+    width: 45% !important;
+    height: 47px !important;
     font-size: 15px;
   }
   .ui.buttons {
