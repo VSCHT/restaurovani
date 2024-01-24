@@ -9,7 +9,10 @@
 .ui.image.decoration.arrows {
   margin-top: 75px;
   width: 82px;
+  position: sticky;
+  z-index: 10;
 }
+
 .ui.image.left-arrow {
   width: 30px;
 }
@@ -19,7 +22,7 @@
     display: none;
   }
   .ui.image.vsht-logo.image__vsht-logo.main-page__image__vsht-logo {
-    width: 240px;
+    width: 225px;
   }
   .ui.image.decoration.arrows {
     margin-top: 80px;
@@ -45,7 +48,7 @@
     margin-top: 91px;
   }
   .ui.image.vsht-logo.image__vsht-logo.main-page__image__vsht-logo {
-    width: 290px;
+    width: 255px;
   }
 }
 

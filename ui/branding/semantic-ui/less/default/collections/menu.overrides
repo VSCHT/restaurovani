@@ -1,17 +1,29 @@
-.ui.pagination.form__attach__pagination.menu {
+/* .ui.pagination.form__attach__pagination.menu {
   margin: 0 auto !important;
   border: none !important;
   box-shadow: none !important;
-}
+} */
 
 .ui.menu.top.fixed {
   color: @navbarTextColor;
   font-weight: bold;
 }
 
+.ui.pagination.menu .item {
+  padding: 10px 30px !important;
+}
 @media only screen and (max-width: 992px) {
   .ui.menu.top.fixed {
     padding-left: @smallerWidthdep;
     padding-right: @smallerWidthdep;
   }
 }
+
+
+@media only screen and (min-width: 1200px) and (max-width: 1500px) {
+   
+    .ui.pagination.menu .item {
+      padding: 5px 25px !important;
+      font-size: 1.2rem !important
+  }
+  }

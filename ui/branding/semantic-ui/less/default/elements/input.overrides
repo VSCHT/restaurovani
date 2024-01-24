@@ -4,19 +4,22 @@
   background-color: @whiteColor;
   border-radius: 30px !important;
   padding-left: 20px !important;
-  width: @halfSize;
+  width: 100% !important;
   height: @primarySize;
   font-size: 17px;
 }
-
+.grid-searchbar .ui.input input {
+  background: none;
+}
 .grid-searchbar .ui.input {
-  width: 100%;
+  width: 100% !important;
   padding-left: 0px !important;
+  background: none;
 }
 
 @media only screen and (min-width: 1200px) {
   .ui.input {
-    width: @halfSize;
+    width: @halfSize !important;
     height: @primarySize;
   }
 }

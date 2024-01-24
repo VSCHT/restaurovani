@@ -3,10 +3,18 @@ import PropTypes from "prop-types";
 import Overridable from "react-overridable";
 import _get from "lodash/get";
 
-import { Grid, Item, Button } from "semantic-ui-react";
+import {
+  Grid,
+  Item,
+  Button,
+  ItemContent,
+  ItemDescription,
+  ItemExtra,
+  Label,
+} from "semantic-ui-react";
 import { withState, buildUID } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
-import {ImageWithFallback} from "./imgFallback"
+import { ImageWithFallback } from "./imgFallback";
 
 const ItemHeader = ({ title, searchUrl, selfLink }) => {
   const [smallScreen, setSmallScreen] = React.useState(
@@ -38,7 +46,7 @@ const ItemHeader = ({ title, searchUrl, selfLink }) => {
   let truncatedTitle =
     title.length > 10 && smallScreen ? title.substring(0, 10) + "..." : title;
   return (
-    <Item.Header className="predmety__card__title">
+    <Item.Header>
       <a href={viewLink}>{truncatedTitle}</a>
     </Item.Header>
   );
@@ -50,10 +58,7 @@ const DetailsButton = ({ searchUrl, selfLink }) => {
     new URL(searchUrl, window.location.origin)
   );
   return (
-    <Button
-      className="predmety__card__btn"
-      aria-label="Tlacitko tevrit detaily"
-    >
+    <Button primary floated="right" aria-label="Tlacitko vytvorit detaily">
       <a href={viewLink}>DETAIL</a>
     </Button>
   );
@@ -89,15 +94,9 @@ export const ResultsListItemComponent = ({ result, appName }) => {
     "metadata.restorationWork.restorer",
     "<no data>"
   );
-  const desc = _get(
-    result,
-    "metadata.restorationWork.abstract",
-    "<no data>"
-  );
+  const desc = _get(result, "metadata.restorationWork.abstract", "<no data>");
 
   const created = _get(result, "created", "<no data>");
-
-
 
   return (
     <Overridable
@@ -105,38 +104,31 @@ export const ResultsListItemComponent = ({ result, appName }) => {
       result={result}
       title={title}
     >
-      <Grid className="predmety__card" key={result.id}>
-        <Item className="horiz-div predmety__card-content">
-          <Grid className="predmety__card__img-container">
-            
-            <ImageWithFallback src="/static/images/image-noimage.png" fallbackSrc="/static/images/image-404.png"   result={result} classN=''/>
-           
-          </Grid>
-          <Item.Content className="vert-div predmety__card__info">
-            <Grid.Column className="vert-div predmety__card__main-info">
-              <ItemHeader
-                className="predmety__card__title"
-                title={title}
-                searchUrl={searchAppConfig.ui_endpoint}
-                selfLink={`${result.id}`}
-              />
-              <Item.Description className="parag">{restorer}</Item.Description>
-              {/*  {wideScreen && <Item.Description className="parag">{desc.substring(0,70)}...</Item.Description>
-              } */}
-            </Grid.Column>
-            <Item.Group className="horiz-div predmety__card__extra-info">
-              <Item.Extra className="horiz-div predmety__card__extra-info">
-              <p className="parag">Vloženo: {created}</p>
-              </Item.Extra>
-              <DetailsButton
-                className="predmety__card__btn"
-                searchUrl={searchAppConfig.ui_endpoint}
-                selfLink={`${result.id}`}
-              />
-            </Item.Group>
-          </Item.Content>
-        </Item>
-      </Grid>
+      <Item className="predmety__card" key={result.id}>
+        <ImageWithFallback
+          src="/static/images/image-noimage.png"
+          fallbackSrc="/static/images/image-404.png"
+          result={result}
+          classN=""
+        />
+
+        <ItemContent>
+          <ItemHeader
+            className="predmety__card__title"
+            title={title}
+            searchUrl={searchAppConfig.ui_endpoint}
+            selfLink={`${result.id}`}
+          />
+          <ItemDescription>{restorer}</ItemDescription>
+          <ItemExtra>
+            <Label>Vloženo: {created.slice(0,6)}</Label>
+            <DetailsButton
+              searchUrl={searchAppConfig.ui_endpoint}
+              selfLink={`${result.id}`}
+            />
+          </ItemExtra>
+        </ItemContent>
+      </Item>
     </Overridable>
   );
 };

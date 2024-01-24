@@ -25,14 +25,14 @@ export const CustomSB = ({
       value={queryString}
       icon={
         queryString !== "" && (
-          <>
-            <Button onClick={handleReset} className="predmety__btn-reset">
-              <Icon name="delete" className="predmety__btn-reset" />
+          <Button.Group>
+            <Button onClick={handleReset}>
+              <Icon color="black" name="delete" />
             </Button>
-            <Button onClick={onBtnSearchClick} className="predmety__btn-reset mobile-component">
-              <Icon name="search" className="predmety__btn-reset" />
+            <Button onClick={onBtnSearchClick}>
+              <Icon color="black" name="search"/>
             </Button>
-          </>
+          </Button.Group>
         )
       }
       onKeyPress={onKeyPress}

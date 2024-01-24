@@ -18,7 +18,7 @@ export const EmptyResultsElement = ({
       <Divider className="predmety__main-content__nores__divider" />
       <Grid.Row centered>
         <Grid.Column width={12} textAlign="center">
-          <Header as="h2">
+          <Header as="h3">
             We couldn't find any matches for{" "}
             {(queryString && `'${queryString}'`) || "your search"}
           </Header>
