@@ -1,12 +1,23 @@
-.ui.vertical.segment {
-  /* background-color: white; */
-  height: 100%;
-  display: flex;
-  /* justify-content: center; */
-  flex-wrap: wrap;
-  align-content: center;
-  z-index: 10;
-  width: 100%
+
+.ui.segment {
+  &.vertical {
+    height: 100%;
+    z-index: 10;
+  }
+
+  &.centered {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+  }
+  &.bg-bottom {
+    background-color: @bgColor;
+    height: 58vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 0;
+  }
 }
 
 .main-page_content .ui.vertical.segment {
@@ -18,16 +29,10 @@
   max-width: 80vw;
 }
 
-.ui.segment.bg-bottom {
-  background-color: @bgColor;
-  height: 58vh;
-  width: 100vw;
-  position: absolute;
-  z-index: 0;
-}
+
 
 @media only screen and (max-width: 992px) {
-  .ui.vertical.segment{
+  .ui.vertical.segment {
     gap: 95px;
   }
 }

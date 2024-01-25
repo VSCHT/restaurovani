@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50% !important;
+  width: 55% !important;
   height: 45px !important;
   padding: 5px !important;
 
@@ -25,26 +25,26 @@
     justify-content: space-between;
     padding: 0 20px;
   }
+  &.small {
+    width: auto !important;
+    &.transparent{
+      margin-left: -28px;
+      z-index: 1;
+      position: relative;
+    }
+  }
+  &.toggle-burger {
+    padding: 0px !important;
+  }
 }
+
 .ui.buttons {
   position: relative;
   left: -90px;
 }
-.ui.button.toggle-burger {
-  padding: 0px !important;
-}
 
 .extra .ui.button {
   width: 20% !important;
-}
-.ui.small.button {
-  width: auto !important;
-}
-
-.ui.small.transparent.button {
-  margin-left: -28px;
-  z-index: 1;
-  position: relative;
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
@@ -52,17 +52,16 @@
     width: 60%;
     height: 35px;
     padding: 10px;
+    &.primary {
+      font-size: 14px;
+      width: 65% !important;
+    }
+    &.secondary {
+      height: 37px !important;
+      font-size: 1.1rem;
+      padding: 0 10px;
+    }
   }
-  .ui.primary.button {
-    font-size: 14px;
-    width: 45% !important;
-  }
-  .ui.secondary.button {
-    height: 37px !important;
-    font-size: 1.1rem;
-    padding: 0 10px;
-  }
-
   .extra .ui.primary.button {
     width: 25% !important;
     height: 30px !important;
@@ -72,7 +71,7 @@
 
 @media only screen and (min-width: 1200px) and (max-width: 1500px) {
   .ui.button {
-    width: 55% !important;
+    width: 65% !important;
     font-size: 0.9rem;
 
     &.secondary {

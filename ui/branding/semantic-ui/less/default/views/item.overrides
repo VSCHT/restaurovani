@@ -1,20 +1,24 @@
-.item.toggle-burger {
-  display: none !important;
-}
+
 .item {
   font-family: source-sans-pro;
   font-size: 1.3rem;
-  
+
+  &.toggle-burger {
+    display: none !important;
+  }
+  &:not([role*="listitem"]) {
+    color: white !important;
+    padding: 1.5rem !important;
+  }
 }
 
-.item:not([role*="listitem"]) {
+/* .item:not([role*="listitem"]) {
   color: white !important;
   padding: 1.5rem !important;
-}
+} */
 
-.header a {
-  font-size: 2rem;
-}
+
+
 .ui.items > .item > .image + .content {
   display: grid;
   grid-template-rows: 35px auto 0px auto 0px;
@@ -38,27 +42,32 @@
   }
 }
 
-@media only screen and (max-width: 1500px) and (min-width: 1200px){
-.ui.items > .item > .image > img {
+@media only screen and (max-width: 1500px) and (min-width: 1200px) {
+  .ui.items > .item > .image > img {
     width: 60% !important;
-}
-.ui.items > .item > .content > .description {
+  }
+  .ui.items > .item > .content > .description {
     margin-top: 0.5em;
     font-size: 1.5rem;
+  }
 }
-}
-@media only screen and (max-width: 1200px) and (min-width: 992px){
-    .item {
-        font-size: 1rem;
-    }
-.ui.divided.items > .item:first-child {
+@media only screen and (max-width: 1200px) and (min-width: 992px) {
+  .item {
+    font-size: 1rem;
+  }
+  .ui.divided.items > .item:first-child {
     padding: 1rem !important;
-}
-.ui.items > .item > .image + .content {
-    padding: 5px !important
-}
-.ui.items > .item > .content > .description {
+  }
+  .ui.items > .item > .image + .content {
+    padding: 5px !important;
+  }
+  .ui.items > .item > .content > .description {
     margin-top: 1.1em;
-}
-
+  }
+  /* .ui.items > .item > .image + .content {
+    grid-template-rows: 5px auto 0px auto 0px !important;
+  }
+  .ui.items > .item > .content > .description {
+    font-size: 1.2rem !important;
+  } */
 }

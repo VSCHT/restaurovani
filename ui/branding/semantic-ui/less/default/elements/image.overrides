@@ -1,62 +1,76 @@
 .ui.image {
   position: static;
-}
 
-.ui.image.vsht-logo {
-  width: 225px;
-}
-
-.ui.image.decoration.arrows {
-  width: 82px;
-  position: sticky;
-  z-index: 10;
-}
-
-.ui.image.left-arrow {
-  width: 30px;
+  &.vsht-logo {
+    width: 225px;
+  }
+  &.decoration.arrows {
+    width: 82px;
+    position: sticky;
+    z-index: 10;
+    margin-top: 122px;
+  }
+  &.left-arrow {
+    width: 30px;
+  }
 }
 
 @media only screen and (max-width: 992px) and (min-width: 580px) {
-  .ui.hero.image {
-    display: none;
-  }
-  .ui.image.vsht-logo {
-    width: 225px;
-  }
-  .ui.image.decoration.arrows {
-    width: 90px;
+  .ui.image {
+    &.hero {
+      display: none;
+    }
+    &.vsht-logo {
+      width: 225px;
+    }
+    &.decoration.arrows {
+      width: 90px;
+    }
   }
 }
+
 @media only screen and (max-width: 580px) {
-  .ui.hero.image {
-    display: none;
-  }
-  .ui.image.vsht-logo {
-    width: 195px;
-  }
-  .ui.image.decoration.arrows {
-    width: 65px;
+  .ui.image {
+    &.hero {
+      display: none;
+    }
+    &.vsht-logo {
+      width: 195px;
+    }
+    &.decoration.arrows {
+      width: 65px;
+    }
   }
 }
 
 @media only screen and (min-width: 1500px) {
-  .ui.image.decoration.arrows {
-    width: 102px;
-  }
-  .ui.image.vsht-logo {
-    width: 255px;
+  .ui.image {
+    &.decoration.arrows {
+      width: 102px;
+      margin-top: 112px;
+    }
+    &.vsht-logo {
+      width: 255px;
+      margin-bottom: 50px;
+    }
   }
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
-  .ui.image.decoration.arrows {
-    width: 65px;
+  .ui.image {
+    &.decoration.arrows {
+      width: 65px;
+      margin-top: 100px;
+    }
+    &.vsht-logo {
+      width: 185px;
+    }
+    &.left-arrow {
+      width: 18px;
+    }
+    &.hero{
+      width: 500px;
   }
-  .ui.image.vsht-logo {
-    width: 185px;
-  }
-  .ui.image.left-arrow {
-    width: 18px;
   }
 }
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
