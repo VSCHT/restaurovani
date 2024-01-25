@@ -1,6 +1,11 @@
+/* own */
+
+
+
+/* semantic */
 @backgroundColor: none;
 @color: #222;
 @fontWeight: 400;
 @medium: 1.4rem;
-@verticalPadding:0;
- @horizontalPadding:0;
+@verticalPadding: 0;
+@horizontalPadding: 0;

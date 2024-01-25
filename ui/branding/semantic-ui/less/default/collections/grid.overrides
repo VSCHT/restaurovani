@@ -1,36 +1,35 @@
-.column:has(img.ui.image.decoration.arrows) {
+/* .column:has(img.ui.image.decoration.arrows) {
   width: max-content !important;
-}
+} */
 
 .ui.container .ui.two.column.grid {
   justify-content: space-between;
 }
 
-.ui.two.column.grid.predmety_main-container {
-  gap: 160px;
-  display: flex;
-  width: 100% !important;
-  margin-top: 125px;
-  justify-content: flex-end !important;
+.ui.two.column.grid{
+  /* width: 100% !important; */
+  /* margin-top: 125px; */
   position: static !important;
 }
 
-.ui.two.column.grid.main-page_content {
-  gap: 20px;
+.ui.gapped.grid{
+  gap: @gapWidth;
+  width: min-content
 }
+
+
 
 .column.predmety__aside__filter {
   margin-top: 80px;
 }
-.column:has(.mt-20){
+.column:has(.mt-20) {
   background-color: white;
- 
 }
-.column.predmety__form{
-   display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    width: max-content;
+.column.predmety__form {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  width: max-content !important;
 }
 
 @media only screen and (max-width: 992px) {
@@ -45,12 +44,14 @@
   .ui.two.column.grid.main-page_content {
     gap: 15px;
   }
+  /* .ui.two.column.grid.predmety_main-container {
+    justify-content: center !important;
+} */
 }
 
-/* search page */
 
 @media only screen and (min-width: 1200px) and (max-width: 1500px) {
-  .ui.two.column.grid.predmety_main-container {
+  .ui.two.column.grid {
     margin-top: 55px;
     gap: 135px;
   }
@@ -60,18 +61,17 @@
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-  .ui.two.column.grid.predmety_main-container {
+  .ui.two.column.grid {
     gap: 110px;
     margin-top: 40px;
   }
   .ui.items > .item > .image + .content {
     grid-template-rows: 5px auto 0px auto 0px !important;
-}
-.column.predmety__aside__filter {
-  margin-top: 72px;
-}
-.ui.items > .item > .content > .description {
-
-  font-size: 1.2rem !important;
-}
+  }
+  .column.predmety__aside__filter {
+    margin-top: 70px;
+  }
+  .ui.items > .item > .content > .description {
+    font-size: 1.2rem !important;
+  }
 }

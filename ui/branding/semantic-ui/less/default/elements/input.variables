@@ -1,12 +1,12 @@
+/* own */
+
 @secondaryColor:#626262;
-@whiteColor: @white;
-@halfSize:55%;
-@moreSize: 60%;
-@lessSize:40%;
-@secondarySize:35px;
 @primarySize:45px;
-@primaryBorder: 1px solid #626262;
+@secondarySize:35px;
 
 
 /* semantic */
 
+
+@border:  1px solid #626262;
+@background: @white;

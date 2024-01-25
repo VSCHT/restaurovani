@@ -3,10 +3,7 @@
 .ui.container{
     width: 80vw;
 }
-.ui.main.container{
 
-    /* height:100% */
-}
 
 .twelve.wide.column .container{
     margin-top: 50px !important

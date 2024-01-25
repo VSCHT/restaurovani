@@ -9,3 +9,5 @@
 @background: #9B9B93;
 @itemVerticalPadding : 10px !important;
 @itemHorizontalPadding: 10vw !important;
+@itemTextColor: @white;
+@fontWeight:500;

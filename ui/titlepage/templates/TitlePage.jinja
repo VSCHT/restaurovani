@@ -4,57 +4,67 @@ head_links %} {% block body %}
 <main class="pusher main-page">
   <div class="ui vertical center aligned segment">
     <div class="ui container">
-      <div class="ui two column grid main-page_content">
+     
         <div class="column">
           <img
             src="{{ url_for('static', filename='images/bg-arrows.png') }}"
             alt="decoration image"
             class="ui image decoration arrows"
           />
+     
+
+      <!-- page title -->
+      <div class="ui vertical left aligned segment">
+        <div class="ui column">
+          <BrandLogo />
         </div>
 
-        <!-- page title -->
-        <div class="ui vertical left aligned segment">
-          <div class="ui grid">
-            <BrandLogo />
-          </div>
-          <div class="ui two column grid">
-            <div class="column">
-              <div
-                class="ui vertical left aligned segment main-page__container"
-              >
-                <h1 class="ui header">
-                  DATABÁZE <br />
-                  RESTAUROVANÝCH <br />
-                  PŘEDMĚTŮ <br />VŠCHT Praha
-                </h1>
 
-                <!-- actions-buttons -->
-                <div class="ui one column grid">
-                  <form
-                    action="{{ url_for('objects.search') }}"
-                    role="search"
-                    class="ui two row grid"
-                  >
-                    <div class="row">
-                        <input
-                          type="text"
-                          name="q"
-                          class="ui input"
-                          placeholder="{{ _('Vyhledat předmět ...') }}"
-                        />
-                      </div>
-                        <button class="ui primary button ">
-                          PROCHÁZET PŘEDMĚTY
-                        </button>
-                  </form>
-                </div>
+        <div class="ui two column centered grid">
 
-                <div class="ui grid">
-                  <Copyright />
-                </div>
+              <!-- <div class="ui two column gapped grid">
+                   <div class="column">
+                              <img
+                                src="{{ url_for('static', filename='images/bg-arrows.png') }}"
+                                alt="decoration image"
+                                class="ui image decoration arrows"
+                              />
+                    </div> -->
+                     <div class="column">
+                              <div class="ui one column gapped grid">
+                                <h1 class="ui header">
+                                  DATABÁZE <br />
+                                  RESTAUROVANÝCH <br />
+                                  PŘEDMĚTŮ <br />VŠCHT Praha
+                                </h1>
+
+                                          <!-- actions-buttons -->
+                                          <div class="ui one column grid">
+                                            <form
+                                              action="{{ url_for('objects.search') }}"
+                                              role="search"
+                                              class="ui two row grid"
+                                            >
+                                              <div class="row">
+                                                <input
+                                                  type="text"
+                                                  name="q"
+                                                  class="ui input"
+                                                  placeholder="{{ _('Vyhledat předmět ...') }}"
+                                                />
+                                              </div>
+                                              <button class="ui primary button">
+                                                PROCHÁZET PŘEDMĚTY
+                                              </button>
+                                            </form>
+                                          </div>
+
+                                <div class="ui grid">
+                                  <Copyright />
+                                </div>
+                              </div>
+                        </div>
               </div>
-            </div>
 
             <div class="column img-container">
               <img
@@ -63,30 +73,23 @@ head_links %} {% block body %}
                 alt="decoration image"
               />
             </div>
-          </div>
         </div>
-      </div>
-    </div>
 
-    <div
-      class="ui attached segment bg-bottom"
-      aria-hidden="true"
-    ></div>
+
+      </div> 
+       
+    </div>
 
     <Footer />
   </div>
 </main>
 
+
+  <div class="ui attached segment bg-bottom" aria-hidden="true"></div>
 {%- block javascript %} {% include config.THEME_JAVASCRIPT_TEMPLATE %}
 
+{{ super() }}
 
+{{ webpack["components.js"] }}
 
-    
-    {{ super() }}
-    
-    {{ webpack["components.js"] }}
-
-    
-    {%- endblock javascript %}
-
-{% endblock %}
+{%- endblock javascript %} {% endblock %}

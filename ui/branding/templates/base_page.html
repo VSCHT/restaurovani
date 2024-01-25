@@ -34,9 +34,6 @@
 
         {%- block head_links %}
           <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}"/>
-          <script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
-          <script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
-          <script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>
 
           {%- if keywords %}
             <link rel="canonical" href="{{ canonical_url }}"/>
@@ -59,17 +56,15 @@
 
         {%- endblock head_links %}
 
+
+
     {%- block header %}
-    
     
     {%- block topMenu %}
 
-<Navbar/>
-<!-- wait -->
-{%- endblock topMenu %}
-    
-
-
+      <Navbar/>
+      <!-- wait -->
+    {%- endblock topMenu %}
     
     {% endblock header %}
 
@@ -99,26 +94,22 @@
       {%- block body_inner %}
 
         <main id="main" class="pusher">
-        <!-- <div class="invenio-page-body"> -->
+     
           {%- block page_body_content %}
 
 
           {%- block bg %}
         
-            <!-- <div class="details__bg">
-              <div class="details__container"> -->
+       
                 {%- block page_body %}
-                <!-- <div class="vert-div"> -->
-                  <!-- {% include "invenio_theme/body.html" %} -->
-                <!-- </div> -->
+                
                 {%- endblock page_body %}
-              <!-- </div>
-              </div> -->
+           
           {%- endblock bg %}
 
 
           {%- endblock page_body_content %}
-        <!-- </div> -->
+  
         </main>
 
         {%- block page_footer %}

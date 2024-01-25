@@ -2,10 +2,12 @@
 @smallSpacing: 0.5rem;
 
 
-
+@gapWidth: 20px;
 
 /* semantic */
 @gutterWidth :0;
 @oneWide: 50%;
 @twelveWide:60%;
 @fiveWide : 20%;
+@twoColumn: max-content;
+

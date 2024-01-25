@@ -1,17 +1,18 @@
-.extra .ui.label{
-  color: #7E7F79
-}
-
-@media only screen and (min-width: 1200px) and (max-width: 1500px){
 .extra .ui.label {
-  font-size: 1.1rem;
-}
+  color: #7e7f79;
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1200px){
+@media only screen and (min-width: 1200px) and (max-width: 1500px) {
+  .extra .ui.label {
+    font-size: 1.1rem;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
   .ui.label {
     font-size: 1.1rem;
+  }
+  .extra .ui.label {
+    font-size: 1rem;
+  }
 }
-.extra .ui.label {
-  font-size: 1rem;
-}}
