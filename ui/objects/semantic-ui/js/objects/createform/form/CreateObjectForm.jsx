@@ -2,7 +2,7 @@ import React from "react";
 import _isEmpty from "lodash/isEmpty";
 import { TextField, FieldLabel, RadioField } from "react-invenio-forms";
 
-import { Container, Label, Form, Grid } from "semantic-ui-react";
+import { Container, Label, Form, Grid, Header } from "semantic-ui-react";
 import { DepositValidationSchemaDraft } from "../../forms/deposit/DepositValidationSchema";
 import { useFormConfig, useDepositApiClient } from "@js/oarepo_ui";
 import { Formik, ErrorMessage } from "formik";
@@ -23,17 +23,15 @@ export const CreateObjectFormContent = ({ errors }) => {
   return (
     <Grid>
     <Grid.Column className="predmety__form">
-      <h3 className="predmety__form__h">Vytvoření nového předmětu</h3>
-      <div className="vert-div predmety__form-main">
+      <Header as='h3'>Vytvoření nového předmětu</Header>
+      <Grid.Column >
         <div className="vert-div predmety__form__div">
           <TextField
             fieldPath="metadata.restorationObject.title"
-            className="form__input"
             label={
               <div className="horiz-div form__label__div-err">
                 <FieldLabel
                   htmlFor="metadata.restorationObject.title"
-                  className="predmety__form__div__label"
                   label="Název"
                 />
               </div>
@@ -54,7 +52,6 @@ export const CreateObjectFormContent = ({ errors }) => {
               <div className="horiz-div form__label__div-err">
                 <FieldLabel
                   htmlFor="metadata.restorationWork.restorer"
-                  className="predmety__form__div__label"
                   label="Restauroval(a)"
                 />
               </div>
@@ -67,17 +64,15 @@ export const CreateObjectFormContent = ({ errors }) => {
             <div className="horiz-div form__label__div-err">
               <FieldLabel
                 htmlFor="metadata.restorationObject.category"
-                className="predmety__form__div__label"
                 required
                 label="Kategorie"
               ></FieldLabel>
             </div>
-            <Form.Group className="horiz-div predmety__form__div__input-radio">
+            <Form.Group>
               {categories.map((option) => (
                 <Form.Field key={option.value}>
                   <div
                     key={option.id}
-                    className="predmety__form__div__label horiz-div"
                   >
                     <RadioField
                       label={option.label}
@@ -108,7 +103,7 @@ export const CreateObjectFormContent = ({ errors }) => {
             <ErrorMessage name="metadata.restorationObject.category" />
           </Form>
         </div>
-      </div>
+        </Grid.Column>
       <SaveButton />
     </Grid.Column>
     </Grid>

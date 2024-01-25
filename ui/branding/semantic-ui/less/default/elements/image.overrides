@@ -7,7 +7,6 @@
 }
 
 .ui.image.decoration.arrows {
-  margin-top: 75px;
   width: 82px;
   position: sticky;
   z-index: 10;
@@ -21,11 +20,10 @@
   .ui.hero.image {
     display: none;
   }
-  .ui.image.vsht-logo{
+  .ui.image.vsht-logo {
     width: 225px;
   }
   .ui.image.decoration.arrows {
-    margin-top: 80px;
     width: 90px;
   }
 }
@@ -34,10 +32,9 @@
     display: none;
   }
   .ui.image.vsht-logo {
-    width: 210px;
+    width: 195px;
   }
   .ui.image.decoration.arrows {
-    margin-top: 75px;
     width: 65px;
   }
 }
@@ -45,9 +42,8 @@
 @media only screen and (min-width: 1500px) {
   .ui.image.decoration.arrows {
     width: 102px;
-    margin-top: 91px;
   }
-  .ui.image.vsht-logo{
+  .ui.image.vsht-logo {
     width: 255px;
   }
 }
@@ -55,18 +51,16 @@
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
   .ui.image.decoration.arrows {
     width: 65px;
-    margin-top: 70px;
   }
   .ui.image.vsht-logo {
     width: 185px;
   }
   .ui.image.left-arrow {
     width: 18px;
-}
+  }
 }
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
-.ui.tiny.image {
-  width: 190px !important;
+  .ui.tiny.image {
+    width: 190px !important;
+  }
 }
-}
-

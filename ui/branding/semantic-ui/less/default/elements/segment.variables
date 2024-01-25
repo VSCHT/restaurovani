@@ -1,5 +1,6 @@
+/* own */
 @bgColor: #EAEAE2;
-@zeroVal: 0;
+
 
 
 /* semantic */

@@ -114,7 +114,6 @@ export const ResultsListItemComponent = ({ result, appName }) => {
 
         <ItemContent>
           <ItemHeader
-            className="predmety__card__title"
             title={title}
             searchUrl={searchAppConfig.ui_endpoint}
             selfLink={`${result.id}`}

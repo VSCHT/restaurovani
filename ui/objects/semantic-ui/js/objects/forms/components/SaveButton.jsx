@@ -9,7 +9,6 @@ export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
   return (
     <Button
       name="save"
-      className="form main-page__btn__addPredmety"
       aria-label="tlacitko vytvoreni predmetu"
       disabled={isSubmitting}
       loading={isSubmitting}
