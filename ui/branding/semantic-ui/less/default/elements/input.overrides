@@ -1,3 +1,6 @@
+
+
+
 .ui.input,
 .grid-searchbar .ui.input input {
   border-radius: 30px !important;
@@ -15,16 +18,22 @@
   padding-left: 0px !important;
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1500px) {
   .ui.input{
     width: 55% !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1500px){
+  .ui.input{
+    width: 65% !important;
   }
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
   .ui.input,
   .grid-searchbar .ui.input input {
-    width: 45% !important;
+    width: 65% !important;
     height: @secondarySize !important;
     font-size: 14px;
   }
