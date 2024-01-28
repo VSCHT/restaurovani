@@ -1,8 +1,8 @@
 /* own */
 
 @secondaryColor:#626262;
-@primarySize:45px;
-@secondarySize:35px;
+@primarySize:2rem;
+@secondarySize:2rem;
 
 
 /* semantic */

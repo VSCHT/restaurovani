@@ -59,8 +59,8 @@ export const SearchAppLayout = () => {
     window.location.href = new URL(searchAppConfig.ui_links.create);
   };
   return (
-    <Grid>
-      <Grid columns={2} className="predmety_main-container">
+    <Container className="search-container">
+      <Grid columns={2} className="gapped">
         {/* first column-  main content */}
         <Grid.Column width={12}>
 
@@ -180,6 +180,6 @@ export const SearchAppLayout = () => {
           </Grid>
         </Modal>
       </Grid>
-    </Grid>
+      </Container>
   );
 };

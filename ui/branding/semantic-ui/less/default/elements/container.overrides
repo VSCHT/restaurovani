@@ -1,10 +1,12 @@
+.ui.container {
+  align-self: center;
+  width: 80vw;
 
-
-.ui.container{
-    width: 80vw;
+  &.search-container {
+    margin-top: 70px;
+  }
 }
 
-
-.twelve.wide.column .container{
-    margin-top: 50px !important
+.twelve.wide.column .container {
+  margin-top: 50px;
 }

@@ -1,88 +1,74 @@
+@gap-large: 15px;
+@gap-medium: 10px;
+@gap-small: 15px;
+
 .ui.grid {
   &.gapped {
-    width: min-content;
-    gap: 40px;
+    gap: @gap-large;
     flex-direction: row;
     flex-wrap: nowrap;
+    height: inherit;
 
-    &.two.column {
-      gap: 63px;
-    }
-    &.one.column {
-      height: 100%;
-      /* justify-content: space-between; */
-      margin-top: 20px;
-      flex-wrap: wrap;
+    &.column {
+      &.one {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        flex-flow: column;
+        width: auto;
+      }
+      &.two {
+        gap: 63px;
+        align-self: center;
+        justify-content: space-between;
+      }
     }
   }
-
-  &.two.column {
-    position: static !important;
-
-    justify-content: space-between;
-  }
-  /* &.one.column.gapped {
-    height: 100%;
-    justify-content: space-between;
-    margin-top: 20px;
-  } */
 }
 
 .column {
-  &:has(img) {
-    width: max-content !important;
-  }
   &.predmety__aside__filter {
     margin-top: 80px;
   }
   &.predmety__form {
-    display: flex !important;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    width: max-content !important;
+    width: max-content;
   }
   &:has(.mt-20) {
     background-color: white;
   }
+  &.img-container {
+    width: 0px;
+  }
 }
-
-/* .ui.container .ui.two.column.grid {
-  justify-content: space-between;
-} */
 
 @media only screen and (max-width: 992px) {
   .ui[class*="two column"].grid > .column:not(.row) {
     width: 100%;
   }
-
-  .column.img-container {
-    width: 0px;
-  }
-
-  .ui.two.column.grid.main-page_content {
-    gap: 15px;
-  }
-  .ui.grid{
-    &.gapped{
-      width: 90vw
+  .ui.grid {
+    &.gapped {
+      width: 90vw;
+    }
+    &.column {
+      &.two {
+        gap: @gap-small;
+      }
     }
   }
-  /* .ui.two.column.grid.predmety_main-container {
-    justify-content: center !important;
-} */
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1500px) {
   .ui.grid {
     &.gapped {
-      gap: 25px;
-      &.two.column {
-        gap: 45px;
-        margin-top: 55px;
+      &.column {
+        &.two {
+          gap: 45px;
+          margin-top: 55px;
+        }
       }
-    }
-    &.one.column {
-      /* gap: 55px; */
     }
   }
 
@@ -94,24 +80,28 @@
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   .ui.grid {
     &.gapped {
-      gap: 25px;
-      &.two.column {
-        gap: 50px;
+      gap: @gap-medium;
+      height: inherit;
+
+      &.column {
+        &.two {
+          gap: 50px;
+        }
       }
-    }
-    &.two.column {
-      margin-top: 40px;
     }
   }
 
   .column.predmety__aside__filter {
     margin-top: 70px;
   }
+}
 
-  /* .ui.items > .item > .image + .content {
+
+
+
+ /* .ui.items > .item > .image + .content {
     grid-template-rows: 5px auto 0px auto 0px !important;
   }
   .ui.items > .item > .content > .description {
     font-size: 1.2rem !important;
   } */
-}
