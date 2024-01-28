@@ -2,91 +2,65 @@
 head_links %} {% block body %}
 
 <main class="pusher main-page">
-  
-  <div class="ui vertical centered segment">
-    <div class="ui gapped grid">
-     
-        <div class="column">
+  <div class="ui segment hero vertical left aligned">
+    <div class="ui container">
+      <BrandLogo />
+
+      <div class="ui two column gapped grid">
+        
+        <div class="ui gapped grid">
           <img
             src="{{ url_for('static', filename='images/bg-arrows.png') }}"
             alt="decoration image"
             class="ui image decoration arrows"
           />
-        </div>
 
-      <!-- page title -->
-      <div class="ui vertical left aligned segment">
-        <div class="ui column">
-          <BrandLogo />
-        </div>
+          <div class="ui one column gapped grid">
+            <h1 class="ui header">
+              DATABÁZE <br />
+              RESTAUROVANÝCH <br />
+              PŘEDMĚTŮ <br />VŠCHT Praha
+            </h1>
 
-
-        <div class="ui two column gapped  centered grid">
-
-              <!-- <div class="ui two column gapped grid">
-                   <div class="column">
-                              <img
-                                src="{{ url_for('static', filename='images/bg-arrows.png') }}"
-                                alt="decoration image"
-                                class="ui image decoration arrows"
-                              />
-                    </div> -->
-                     <div class="column">
-                              <div class="ui one column gapped grid">
-                                <h1 class="ui header">
-                                  DATABÁZE <br />
-                                  RESTAUROVANÝCH <br />
-                                  PŘEDMĚTŮ <br />VŠCHT Praha
-                                </h1>
-
-                                          <!-- actions-buttons -->
-                                          <div class="ui one column grid">
-                                            <form
-                                              action="{{ url_for('objects.search') }}"
-                                              role="search"
-                                              class="ui two row grid"
-                                            >
-                                              <div class="row">
-                                                <input
-                                                  type="text"
-                                                  name="q"
-                                                  class="ui input"
-                                                  placeholder="{{ _('Vyhledat předmět ...') }}"
-                                                />
-                                              </div>
-                                              <button class="ui primary button">
-                                                PROCHÁZET PŘEDMĚTY
-                                              </button>
-                                            </form>
-                                          </div>
-
-                                <div class="ui grid">
-                                  <Copyright />
-                                </div>
-                              </div>
-                        </div>
-              <!-- </div> -->
-
-            <div class="column img-container">
-              <img
-                class="ui hero image"
-                src="{{ url_for('static', filename='images/mainPageImg.png') }}"
-                alt="decoration image"
-              />
+            <div class="ui one column grid">
+              <form
+                action="{{ url_for('objects.search') }}"
+                role="search"
+                class="ui two row grid"
+              >
+                <div class="row">
+                  <input
+                    type="text"
+                    name="q"
+                    class="ui input"
+                    placeholder="{{ _('Vyhledat předmět ...') }}"
+                  />
+                </div>
+                <button class="ui primary button">PROCHÁZET PŘEDMĚTY</button>
+              </form>
             </div>
+            <div class="ui grid">
+              <Copyright />
+            </div>
+          </div>
+
         </div>
 
-
-      </div> 
-       
+        <div class="column img-container">
+          <img
+            class="ui hero image"
+            src="{{ url_for('static', filename='images/mainPageImg.png') }}"
+            alt="decoration image"
+          />
+        </div>
+      </div>
     </div>
 
     <Footer />
   </div>
+  <div class="ui segment bg-bottom" aria-hidden="true"></div>
 </main>
 
-
-  <div class="ui attached segment bg-bottom" aria-hidden="true"></div>
 {%- block javascript %} {% include config.THEME_JAVASCRIPT_TEMPLATE %}
 
 {{ super() }}

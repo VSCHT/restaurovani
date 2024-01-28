@@ -1,80 +1,89 @@
+@vsht-logo-width: 13rem;
+@arrow-height: 6rem;
+
 .ui.image {
   position: static;
 
   &.vsht-logo {
-    width: 225px;
+    width: @vsht-logo-width;
+    margin-bottom: 3rem;
+    margin-left: 6rem;
+
+    @media only screen and (max-width: 992px) and (min-width: 580px) {
+      width: 11rem;
+      margin-bottom: 4rem;
+      margin-left: 6rem;
+    }
+
+    @media only screen and (max-width: 580px) {
+      width: 8rem;
+      margin-left: 4.3rem;
+    }
+
+    @media only screen and (min-width: 1500px) {
+      width: @vsht-logo-width;
+      margin-bottom: 5rem;
+
+      @media only screen and (max-width: 1500px) and (min-width: 1200px) {
+        width: 12rem;
+        margin-left: 6rem;
+      }
+    }
+
+    @media only screen and (max-width: 1200px) and (min-width: 992px) {
+      width: 9rem;
+      margin-left: 4rem;
+    }
   }
+
+ 
+
   &.decoration.arrows {
-    width: 82px;
-    position: sticky;
-    z-index: 10;
-    margin-top: 122px;
+
+    @media only screen and (max-width: 992px) and (min-width: 580px) {
+      height: @arrow-height;
+    }
+
+    @media only screen and (max-width: 580px) {
+      height: 4rem;
+    }
+
+    @media only screen and (min-width: 1500px) {
+      width: auto;
+      height: 7rem;
+    }
+
+    @media only screen and (max-width: 1200px) and (min-width: 992px) {
+      height: 4rem;
+    }
   }
+
   &.left-arrow {
-    width: 30px;
-  }
-}
+    width: 1.5rem;
 
-@media only screen and (max-width: 992px) and (min-width: 580px) {
-  .ui.image {
-    &.hero {
+    @media only screen and (max-width: 1200px) and (min-width: 992px) {
+      width: 1.3rem;
+    }
+    @media only screen and (max-width: 992px) {
+      height: 1rem;
+    }
+  }
+
+  &.hero {
+    width: 500px;
+
+    @media only screen and (max-width: 992px) {
       display: none;
     }
-    &.vsht-logo {
-      width: 225px;
-    }
-    &.decoration.arrows {
-      width: 90px;
+  }
+
+  &.tiny {
+    @media only screen and (max-width: 1200px) and (min-width: 992px) {
+      width: 190px;
     }
   }
 }
 
-@media only screen and (max-width: 580px) {
-  .ui.image {
-    &.hero {
-      display: none;
-    }
-    &.vsht-logo {
-      width: 195px;
-    }
-    &.decoration.arrows {
-      width: 65px;
-    }
-  }
-}
-
-@media only screen and (min-width: 1500px) {
-  .ui.image {
-    &.decoration.arrows {
-      width: 102px;
-      margin-top: 112px;
-    }
-    &.vsht-logo {
-      width: 255px;
-      margin-bottom: 50px;
-    }
-  }
-}
-
-@media only screen and (max-width: 1200px) and (min-width: 992px) {
-  .ui.image {
-    &.decoration.arrows {
-      width: 65px;
-      margin-top: 100px;
-    }
-    &.vsht-logo {
-      width: 185px;
-    }
-    &.left-arrow {
-      width: 18px;
-    }
-    &.hero{
-      width: 500px;
-  }
-  }
-}
-@media only screen and (max-width: 1200px) and (min-width: 992px) {
-  .ui.tiny.image {
-    width: 190px !important;
-  }
+.search-container .ui.image.vsht-logo{
+  margin-left: 0
 }

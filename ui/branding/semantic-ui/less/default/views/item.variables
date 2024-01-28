@@ -14,6 +14,6 @@
 @descriptionFontSize: 1.5rem;
 @contentImageDistance: 0px;
 @extraDisplay:flex;
-@descriptionFontSize:1.6rem;
+@descriptionFontSize:1rem;
 @descriptionColor: #222;
 @extraWidth:100%;

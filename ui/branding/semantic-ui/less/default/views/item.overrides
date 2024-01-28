@@ -1,14 +1,13 @@
-
 .item {
   font-family: source-sans-pro;
-  font-size: 1.3rem;
+  font-size: 1rem;
 
   &.toggle-burger {
     display: none !important;
   }
   &:not([role*="listitem"]) {
-    color: white !important;
-    padding: 1.5rem !important;
+    color: white;
+    padding: 1.5rem;
   }
 }
 
@@ -17,17 +16,15 @@
   padding: 1.5rem !important;
 } */
 
-
-
 .ui.items > .item > .image + .content {
   display: grid;
   grid-template-rows: 35px auto 0px auto 0px;
 }
 .ui.items > .item > .image > img {
-  width: 80% !important;
+  width: 80%;
 }
 .extra {
-  height: max-content !important;
+  height: max-content;
   align-items: flex-end;
   justify-content: space-between;
 }
@@ -35,16 +32,17 @@
 @media only screen and (max-width: 992px) {
   .ui.menu.top.fixed .item:nth-child(2),
   .ui.menu.top.fixed .right.menu {
-    display: none;
+   padding: 0 5vw;
+   font-size:0.7rem
   }
   .item.toggle-burger {
-    display: flex !important;
+    display: flex;
   }
 }
 
 @media only screen and (max-width: 1500px) and (min-width: 1200px) {
   .ui.items > .item > .image > img {
-    width: 60% !important;
+    width: 60%;
   }
   .ui.items > .item > .content > .description {
     margin-top: 0.5em;
@@ -53,21 +51,22 @@
 }
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
   .item {
-    font-size: 1rem;
+    font-size: 0.7rem;
   }
   .ui.divided.items > .item:first-child {
-    padding: 1rem !important;
+    padding: 1rem;
   }
   .ui.items > .item > .image + .content {
-    padding: 5px !important;
+    padding: 5px;
   }
-  .ui.items > .item > .content > .description {
-    margin-top: 1.1em;
-  }
-  /* .ui.items > .item > .image + .content {
+ 
+}
+
+
+
+ /* .ui.items > .item > .image + .content {
     grid-template-rows: 5px auto 0px auto 0px !important;
   }
   .ui.items > .item > .content > .description {
     font-size: 1.2rem !important;
   } */
-}

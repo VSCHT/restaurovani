@@ -1,38 +1,32 @@
+@segment-gap-mobile: 95px;
 
 .ui.segment {
+  display: flex;
+
   &.vertical {
     height: 100%;
-    z-index: 10;
   }
 
   &.centered {
-    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
   }
+
   &.bg-bottom {
-    background-color: @bgColor;
-    height: 58vh;
+    height: 38vh;
     width: 100vw;
     position: absolute;
-    z-index: 0;
+    bottom: 0;
+    z-index: -1;
   }
-}
-
-.main-page_content .ui.vertical.segment {
-  justify-content: space-between;
-  flex-direction: column;
-  gap: 40px;
-  z-index: 1;
-  background: none;
-  max-width: 80vw;
 }
 
 
 
 @media only screen and (max-width: 992px) {
   .ui.vertical.segment {
-    gap: 95px;
+    gap: @segment-gap-mobile;
   }
 }
+

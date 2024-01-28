@@ -1,5 +1,5 @@
 .ui.accordion .title {
-  display: flex !important;
+  display: flex;
   justify-content: space-between;
 }
 .ui.accordion {
@@ -20,6 +20,6 @@
 
 .ui.accordion .title:not(.ui) {
     padding: 0.3em 0em;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
 }
 }

@@ -1,24 +1,46 @@
 
 .ui.pagination.menu .item {
-  padding: 10px 30px !important;
+  padding: 10px 30px ;
 }
 @media only screen and (max-width: 992px) {
   .ui.menu.top.fixed {
-    padding-left: @smallerWidthdep;
-    padding-right: @smallerWidthdep;
+    padding-left: 10vw;
+    padding-right: 10vw;
   }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1500px) {
   .ui.pagination.menu .item {
-    padding: 5px 25px !important;
-    font-size: 1.2rem !important;
+    padding: 5px 25px ;
+    font-size: 1.2rem ;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   .ui.pagination.menu .item {
-    padding: 5px 20px !important;
-    font-size: 1rem !important;
+    padding: 5px 20px ;
+    font-size: 1rem ;
   }
 }
+ /* @media only screen and (max-width: 992px) {
+    .ui.menu.top.fixed {
+      padding-left: 10vw;
+      padding-right: 10vw;
+    }
+  }
+.ui.pagination.menu .item {
+    padding: 10px 30px;
+  
+    @media only screen and (min-width: 1200px) and (max-width: 1500px) {
+      padding: 5px 25px;
+      font-size: 1.2rem;
+    }
+  
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+      padding: 5px 20px;
+      font-size: 1rem;
+    }
+  }
+   */
+ 
+  
