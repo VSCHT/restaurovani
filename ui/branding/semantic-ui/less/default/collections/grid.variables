@@ -2,7 +2,8 @@
 @smallSpacing: 0.5rem;
 
 
-@gapWidth: 20px;
+@gapWidth: 15px;
+@gap-medium: 10px;
 
 /* semantic */
 @gutterWidth :0;

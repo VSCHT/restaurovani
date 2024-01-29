@@ -65,6 +65,27 @@
       font-size: 0.8rem;
     }
   }
+  
+  .extra & {
+    width: 20%;
+  
+    @media only screen and (max-width: 1200px) and (min-width: 992px) {
+      width: 25%;
+      height: 30px;
+      font-size: 12px;
+    }
+  
+    @media only screen and (max-width: 992px) and (min-width: 580px) {
+      &.primary {
+        width: 60%;
+      }
+  
+      .extra &.primary {
+        width: 40%;
+      }
+    }
+  }
+  
 }
 
 .ui.buttons {
@@ -76,22 +97,3 @@
   }
 }
 
-.extra .ui.button {
-  width: 20%;
-
-  @media only screen and (max-width: 1200px) and (min-width: 992px) {
-    width: 25%;
-    height: 30px;
-    font-size: 12px;
-  }
-
-  @media only screen and (max-width: 992px) and (min-width: 580px) {
-    &.primary {
-      width: 60%;
-    }
-
-    .extra &.primary {
-      width: 40%;
-    }
-  }
-}

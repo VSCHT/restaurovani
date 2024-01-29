@@ -1,10 +1,9 @@
-@gap-large: 15px;
-@gap-medium: 10px;
-@gap-small: 15px;
+
+
 
 .ui.grid {
   &.gapped {
-    gap: @gap-large;
+    gap: @gapWidth;
     flex-direction: row;
     flex-wrap: nowrap;
     height: inherit;
@@ -54,7 +53,7 @@
     }
     &.column {
       &.two {
-        gap: @gap-small;
+        gap: @gapWidth;
       }
     }
   }
@@ -97,11 +96,3 @@
 }
 
 
-
-
- /* .ui.items > .item > .image + .content {
-    grid-template-rows: 5px auto 0px auto 0px !important;
-  }
-  .ui.items > .item > .content > .description {
-    font-size: 1.2rem !important;
-  } */
