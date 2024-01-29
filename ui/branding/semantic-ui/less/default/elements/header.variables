@@ -5,7 +5,7 @@
 
 /* semantic */
 @h1: 3.5rem;
-@h2:3rem;
-@h3: 2rem;
+@h2: 3rem;
+@h3: 1.5rem;
 @fontWeight:400;
 @headerMargin:0px;

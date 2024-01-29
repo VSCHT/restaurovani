@@ -4,7 +4,8 @@
 
 .ui.input {
   &,
-  .grid-searchbar & input {
+  .grid-searchbar & input,
+  & input {
     border-radius: 30px;
     padding-left: 20px;
     width: 100%;
@@ -16,7 +17,7 @@
   .grid-searchbar & input {
     background: none;
   }
-  .grid-searchbar & {
+  &:has(input) {
     width: 100%;
     padding-left: 0px;
   }
@@ -33,9 +34,10 @@
   }
 
   @media only screen and (max-width: 580px) {
-    height: 2.5rem;
-    font-size: @input-font-size-medium;
+    &,
+    & input {
+      height: 2.5rem;
+      font-size: @input-font-size-medium;
+    }
   }
 }
-
-

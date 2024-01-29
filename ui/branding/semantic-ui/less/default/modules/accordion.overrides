@@ -1,15 +1,17 @@
-
-
 .ui.accordion {
   margin-top: 10px;
   & .title {
     display: flex;
     justify-content: space-between;
+
+    & .icon {
+      color: white;
+    }
   }
   & i {
     color: #7e7f79;
   }
-  @media only screen and (min-width: 1200px) and (max-width: 1500px) {
+  /* @media only screen and (min-width: 1200px) and (max-width: 1500px) {
    & .title:not(.ui) {
       padding: 0.2em 0em;
       font-size: 1.3rem;
@@ -20,5 +22,6 @@
       padding: 0.3em 0em;
       font-size: 0.9rem;
     }
-  }
+  } */
 }
+
