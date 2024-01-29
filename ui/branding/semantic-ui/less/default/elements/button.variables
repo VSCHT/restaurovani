@@ -10,7 +10,7 @@
 
 
 /* semantic */
-@background: none;
+@background: gray;
 @textColor: #fff;
 @fontFamily: source-sans-pro;
 @horizontalMargin:0;

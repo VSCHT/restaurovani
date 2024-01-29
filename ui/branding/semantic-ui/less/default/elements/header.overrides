@@ -49,7 +49,7 @@ h1.ui.header {
     min-height:10rem
   }
   h2.ui.header {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
   }
   .header a {
     font-size: 1rem;

@@ -5,7 +5,6 @@
 /* semantic */
 @display:flex;
 @imageMaxHeight: 300px;
-@contentLinkColor: #222;
 @background: #fff;
 @padding: 1.5rem ;
 @dividedFirstLastPadding : 1.5rem;
@@ -17,3 +16,5 @@
 @descriptionFontSize:1rem;
 @descriptionColor: #222;
 @extraWidth:100%;
+
+@imageMargin: 0 2rem;

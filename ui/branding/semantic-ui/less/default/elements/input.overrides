@@ -3,9 +3,9 @@
 @input-font-size-medium: 0.8rem;
 
 .ui.input {
-  &,
-  .grid-searchbar & input,
-  & input {
+  
+  &, .grid-searchbar & input,
+   & input {
     border-radius: 30px;
     padding-left: 20px;
     width: 100%;
@@ -14,9 +14,7 @@
     border: 1px solid #626262;
     width: @input-width-large;
   }
-  .grid-searchbar & input {
-    background: none;
-  }
+
   &:has(input) {
     width: 100%;
     padding-left: 0px;
@@ -24,7 +22,7 @@
 
   @media only screen and (max-width: 1200px) and (min-width: 992px) {
     &,
-    .grid-searchbar & input {
+    .grid-searchbar & input, & input {
       font-size: @input-font-size-medium;
     }
   }
@@ -40,4 +38,11 @@
       font-size: @input-font-size-medium;
     }
   }
+
+   & input{
+    border: none;
+    background: none;
+  }
+  
+  
 }

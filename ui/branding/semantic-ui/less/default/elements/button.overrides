@@ -11,9 +11,7 @@
   height: 2.5rem;
   padding: 5px;
 
-  a {
-    color: #fff;
-  }
+  
 
   &.primary {
     font-size: 0.9rem;
@@ -22,13 +20,17 @@
     #form-app &{
       width: 25%;
     }
+    
+    a {
+      color: white
+    }
   }
 
   &.secondary {
     border-radius: 2px;
     width: 100%;
     height: @secondary-button-height;
-    font-size: @secondary-button-font-size;
+    font-size: 1rem;
     font-weight: 500;
     justify-content: space-between;
     padding: 0 20px;

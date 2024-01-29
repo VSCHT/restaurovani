@@ -17,11 +17,20 @@
       &.two {
         gap: 63px;
         align-self: center;
+
+        &:has(.twelve.wide.column) {
+          justify-content: center;
+        }
       }
       &.three {
         gap: 10px;
         align-self: center;
       }
+    }
+  }
+  &.column {
+    &.two {
+      justify-content: space-between;
     }
   }
 }
@@ -62,6 +71,16 @@
       }
     }
   }
+
+  .column {
+    &.eleven {
+      text-align: center;
+    }
+  }
+
+  .row.grid-searchbar {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1500px) {
@@ -95,6 +114,6 @@
   }
 
   .column.predmety__aside__filter {
-    margin-top: 70px;
+    margin-top: 76px;
   }
 }
