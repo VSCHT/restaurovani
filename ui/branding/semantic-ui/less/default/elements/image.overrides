@@ -32,29 +32,25 @@
 
     @media only screen and (max-width: 1200px) and (min-width: 992px) {
       width: 9rem;
-      margin-left: 4rem;
+      margin-left: 4.5rem;
     }
   }
 
  
 
   &.decoration.arrows {
-
-    @media only screen and (max-width: 992px) and (min-width: 580px) {
-      height: @arrow-height;
-    }
+    height: @arrow-height;
 
     @media only screen and (max-width: 580px) {
       height: 4rem;
     }
 
     @media only screen and (min-width: 1500px) {
-      width: auto;
       height: 7rem;
     }
 
     @media only screen and (max-width: 1200px) and (min-width: 992px) {
-      height: 4rem;
+      height: 5rem;
     }
   }
 

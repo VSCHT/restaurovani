@@ -1,25 +1,24 @@
-.ui.accordion .title {
-  display: flex;
-  justify-content: space-between;
-}
+
+
 .ui.accordion {
   margin-top: 10px;
-}
-
-.ui.accordion i {
-  color: #7e7f79;
-}
-
-@media only screen and (min-width: 1200px) and (max-width: 1500px) {
-  .ui.accordion .title:not(.ui) {
-    padding: 0.2em 0em;
-    font-size: 1.3rem;
+  & .title {
+    display: flex;
+    justify-content: space-between;
   }
-}
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
-
-.ui.accordion .title:not(.ui) {
-    padding: 0.3em 0em;
-    font-size: 0.9rem;
-}
+  & i {
+    color: #7e7f79;
+  }
+  @media only screen and (min-width: 1200px) and (max-width: 1500px) {
+   & .title:not(.ui) {
+      padding: 0.2em 0em;
+      font-size: 1.3rem;
+    }
+  }
+  @media only screen and (min-width: 992px) and (max-width: 1200px) {
+    & .title:not(.ui) {
+      padding: 0.3em 0em;
+      font-size: 0.9rem;
+    }
+  }
 }
