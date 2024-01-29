@@ -10,5 +10,5 @@
 @oneWide: 50%;
 @twelveWide:60%;
 @fiveWide : 20%;
-@twoColumn: max-content;
-
+@twoColumn:50%;
+@threeColumn: 25%;

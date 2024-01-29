@@ -18,6 +18,10 @@
   &.primary {
     font-size: 0.9rem;
     width: @primary-button-width;
+
+    #form-app &{
+      width: 25%;
+    }
   }
 
   &.secondary {
@@ -43,6 +47,14 @@
     padding: 0px;
   }
 
+  &.left.labeled{
+    background-color: grey;
+    
+    & .icon{
+      color: white
+    }
+  }
+
   @media only screen and (max-width: 1200px) and (min-width: 992px) {
     width: 60%;
     height: 35px;
@@ -63,9 +75,13 @@
   @media only screen and (max-width: 580px) {
     &.primary {
       font-size: 0.8rem;
+
+      #form-app &{
+        width: 45%;
+      }
     }
   }
-  
+
   .extra & {
     width: 20%;
   

@@ -10,3 +10,5 @@
 
 @border:  1px solid #626262;
 @background: @white;
+@pointingBorderColor: @red;
+@focusBorderColor: #626262;

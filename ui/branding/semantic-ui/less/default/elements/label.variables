@@ -6,6 +6,6 @@
 @backgroundColor: none;
 @color: #222;
 @fontWeight: 400;
-@medium: 1.4rem;
-@verticalPadding: 0;
-@horizontalPadding: 0;
+@medium: 0.8rem;
+/* @verticalPadding: 0;
+@horizontalPadding: 0; */

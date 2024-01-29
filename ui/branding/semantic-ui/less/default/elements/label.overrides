@@ -2,6 +2,10 @@
   color: #7e7f79;
 }
 
+.ui.pointing.label{
+  border: 1px solid red
+}
+
 @media only screen and (min-width: 1200px) and (max-width: 1500px) {
   .extra .ui.label {
     font-size: 1.1rem;
