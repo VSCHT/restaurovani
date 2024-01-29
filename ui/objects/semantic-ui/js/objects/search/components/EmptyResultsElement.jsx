@@ -14,8 +14,8 @@ export const EmptyResultsElement = ({
   resetQuery,
 }) => {
   return (
-    <Grid className="predmety__main-content__nores">
-      <Divider className="predmety__main-content__nores__divider" />
+    <Grid>
+      <Divider/>
       <Grid.Row centered>
         <Grid.Column width={12} textAlign="center">
           <Header as="h3">
@@ -27,7 +27,7 @@ export const EmptyResultsElement = ({
       <Grid.Row centered>
         <Grid.Column width={8} textAlign="center">
           <Button
-            className="primary predmety__main-content__nores__button"
+            primary
             onClick={resetQuery}
           >
             <Icon name="search" />

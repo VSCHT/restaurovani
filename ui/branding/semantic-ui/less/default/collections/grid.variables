@@ -1,14 +1,16 @@
 /* own */
 @smallSpacing: 0.5rem;
-
-
 @gapWidth: 15px;
 @gap-medium: 10px;
+
+
 
 /* semantic */
 @gutterWidth :0;
 @oneWide: 50%;
-@twelveWide:60%;
+@twelveWide: 70%;
+@elevenWide: auto;
+@fourWide : 30%;
 @fiveWide : 20%;
-@twoColumn:50%;
+@twoColumn: 50%;
 @threeColumn: 25%;

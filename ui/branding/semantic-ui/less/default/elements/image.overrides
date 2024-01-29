@@ -23,6 +23,7 @@
     @media only screen and (min-width: 1500px) {
       width: @vsht-logo-width;
       margin-bottom: 5rem;
+      margin-left: 6.5rem;
 
       @media only screen and (max-width: 1500px) and (min-width: 1200px) {
         width: 12rem;
@@ -73,11 +74,11 @@
     }
   }
 
-  &.tiny {
-    @media only screen and (max-width: 1200px) and (min-width: 992px) {
-      width: 190px;
-    }
-  }
+  // &.tiny {
+  //   @media only screen and (max-width: 1200px) and (min-width: 992px) {
+  //     width: 190px;
+  //   }
+  // }
 }
 
 .search-container .ui.image.vsht-logo{

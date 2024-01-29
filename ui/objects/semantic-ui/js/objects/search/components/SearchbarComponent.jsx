@@ -16,7 +16,6 @@ export const CustomSB = ({
 
   return (
     <Input
-      className="predmety__input-search"
       {...uiProps}
       placeholder={placeholder || "Hledat..."}
       onChange={(_, { value }) => {
@@ -26,10 +25,10 @@ export const CustomSB = ({
       icon={
         queryString !== "" && (
           <Button.Group>
-            <Button onClick={handleReset}>
+            <Button onClick={handleReset} className="small transparent">
               <Icon color="black" name="delete" />
             </Button>
-            <Button onClick={onBtnSearchClick}>
+            <Button onClick={onBtnSearchClick} className="small transparent">
               <Icon color="black" name="search"/>
             </Button>
           </Button.Group>
