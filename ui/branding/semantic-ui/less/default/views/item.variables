@@ -7,18 +7,23 @@
 /*--------------
     SEMANTIC
 ---------------*/
+
+/* common */
 @display: flex;
-@imageMaxHeight: 300px;
 @background: #fff;
 @padding: 1.5rem ;
+
+/* menu item */
 @dividedFirstLastPadding : 1.5rem;
 @dividedFirstLastPadding : 1.5rem;
-@contentDisplay: flex;
-@descriptionFontSize: 1.5rem;
-@contentImageDistance: 0px;
-@extraDisplay:flex;
+
+/* card content */
+@imageMargin: 0 0 0 2rem;
 @descriptionFontSize:1rem;
 @descriptionColor: #222;
 @extraWidth:100%;
-
-@imageMargin: 0 2rem;
+@extraDisplay:flex;
+@contentImageDistance: 0px;
+@imageMaxHeight: 300px;
+@contentDisplay: flex;
+@descriptionFontSize: 1.5rem;

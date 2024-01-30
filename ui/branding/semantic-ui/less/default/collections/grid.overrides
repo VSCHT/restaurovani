@@ -19,8 +19,12 @@
         max-width: 600px;
       }
       &.two {
-        gap: 63px;
+        @gap: 63px;
         align-self: center;
+
+        &.double{
+          gap: @gap*2 + 0px;
+        }
 
         &:has(.twelve.wide.column) {
           justify-content: center;

@@ -12,9 +12,11 @@
     height: 2rem;
     font-size: 0.9rem;
     border: 1px solid #626262;
-    width: @input-width-large;
+    // width: @input-width-large;
   }
-
+  .grid-searchbar & input {
+    height: 2.3rem;
+  }
   @media only screen and (max-width: 1200px) and (min-width: 992px) {
     &,
     .grid-searchbar & input,

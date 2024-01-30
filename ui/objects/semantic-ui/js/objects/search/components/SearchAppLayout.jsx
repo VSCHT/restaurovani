@@ -60,7 +60,7 @@ export const SearchAppLayout = () => {
   };
   return (
     <Container className="search-container">
-      <Grid columns={2} className="gapped">
+      <Grid columns={2} className="double gapped">
         {/* first column-  main content */}
         <Grid.Column width={12}>
 

@@ -12,12 +12,18 @@
     SEMANTIC
 ---------------*/
 
-@gutterWidth :0;
+
+/* width */
 
 @oneWide: 50%;
 @twelveWide: 70%;
 @elevenWide: auto;
 @fourWide : 30%;
 @fiveWide : 20%;
+
+@gutterWidth :0;
+
+
+/* columns */
 @twoColumn: 50%;
 @threeColumn: 25%;
