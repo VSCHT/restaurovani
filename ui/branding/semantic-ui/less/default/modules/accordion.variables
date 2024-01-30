@@ -1,12 +1,16 @@
 
 
 
-/* semantic */
+/*--------------
+    SEMANTIC
+---------------*/
+
+/* general */
 @titleFontSize: 1rem;
 @titleColor: #222;
 @titleFont:source-sans-pro;
 
-
+/* styled */
 @styledTitleHoverBackground: #73B3C38;
 @styledActiveTitleBackground: #757670;
 

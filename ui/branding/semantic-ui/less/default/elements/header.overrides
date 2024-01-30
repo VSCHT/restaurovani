@@ -7,7 +7,7 @@ h4.ui.header {
 
 
 .header a {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 @media only screen and (max-width: 1500px) and (min-width: 1200px) {
@@ -18,7 +18,7 @@ h4.ui.header {
     font-size: 2.5rem;
   }
   .header a {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -43,7 +43,7 @@ h4.ui.header {
     font-size: 3rem;
   }
   .header a {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
 }
 
