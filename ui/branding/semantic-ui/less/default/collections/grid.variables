@@ -1,12 +1,19 @@
-/* own */
+/*--------------
+   OWN
+---------------*/
 @smallSpacing: 0.5rem;
 @gapWidth: 15px;
 @gap-medium: 10px;
 
 
 
-/* semantic */
+
+/*--------------
+    SEMANTIC
+---------------*/
+
 @gutterWidth :0;
+
 @oneWide: 50%;
 @twelveWide: 70%;
 @elevenWide: auto;

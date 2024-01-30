@@ -1,8 +1,14 @@
-/* own */
+/*--------------
+    OWN
+---------------*/
 
 
 
 
-/* semantic */
+/*--------------
+    SEMANTIC
+---------------*/
 @margin:0px;
 @padding: 0px;
+
+@attachedBorder: 1px solid #626262;

@@ -1,8 +1,12 @@
-/* own */
+/*--------------
+    OWN
+---------------*/
 
 
 
-/* semantic */
+/*--------------
+    SEMANTIC
+---------------*/
 @backgroundColor: none;
 @color: #222;
 @fontWeight: 400;

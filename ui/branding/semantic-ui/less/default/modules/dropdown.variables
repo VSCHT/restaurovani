@@ -1,5 +1,12 @@
  
+
+
+
+ /*--------------
+    SEMANTIC
+---------------*/
 @selectionBorder: 1px solid #555;
 @selectionBorderRadius: 40px;
+@selectionActiveHoverBorderColor:#555;
 
 @selectionIconMargin: auto;
