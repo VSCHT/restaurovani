@@ -12,21 +12,19 @@
   .ui.items > & > .image > img {
     width: 80%;
   }
-}
-
-.content .header a {
-  color: black;
+ 
 }
 
 .content {
   flex-direction: column;
   justify-content: space-between;
-}
 
-.extra {
-  height: max-content;
-  align-items: flex-end;
-  justify-content: space-between;
+  & .header a {
+    color: black;
+  }
+  & .extra {
+    align-items: flex-end;
+  }
 }
 
 @media only screen and (max-width: 992px) {
@@ -39,6 +37,10 @@
     display: flex;
   }
   .content {
+    .ui.items > .item > & > .description {
+      font-size: 1.3rem;
+    }
+
     .extra {
       .ui.button {
         width: 40%;
@@ -50,12 +52,14 @@
 @media only screen and (max-width: 776px) {
   .content {
     text-align: center;
+
     .extra {
       justify-content: center;
 
       .ui.label {
         display: none;
       }
+
       .ui.button {
         width: 40%;
       }
@@ -79,15 +83,33 @@
     // }
   }
 }
+
+@media only screen and (min-width: 1500px) {
+  .item {
+    .ui.items > & > .content > .description {
+      margin-top: 0.5em;
+      font-size: 1.2rem;
+    }
+  }
+}
+
 @media only screen and (max-width: 1200px) and (min-width: 992px) {
   .item {
     font-size: 1rem;
+
+    .ui.items > & > .content > .description {
+      font-size: 1rem;
+    }
 
     .ui.divided.items > &:first-child {
       padding: 1rem;
     }
     .ui.items > & > .image + .content {
       padding: 5px;
+    }
+
+    .ui.items > & > .image {
+      margin: 0;
     }
   }
 }

@@ -4,6 +4,7 @@ import {
   Accordion,
   Image,
   Label,
+  Grid,
   Icon,
 } from "semantic-ui-react";
 import { withState } from "react-searchkit";
@@ -14,6 +15,7 @@ export const MyBucketAggregationValues = withState(
     return (
       <>
         <List.Item key={bucket.key}>
+          <Grid className="gapped">
           <Checkbox
             value={bucket.key}
             onClick={() => onFilterClicked(bucket.key)}
@@ -21,6 +23,7 @@ export const MyBucketAggregationValues = withState(
           />
           <Label>{bucket.label}</Label> <Label>{bucket.doc_count}</Label>{" "}
           {childAggCmps}
+          </Grid>
         </List.Item>
       </>
     );

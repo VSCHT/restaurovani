@@ -1,58 +1,63 @@
 
 
-@media only screen and (min-width: 992px){
-.ui.list {
+// @media only screen and (min-width: 992px){
+// .ui.list {
     
-    background-color: #eaeae2 !important;
-    flex-direction: column !important;
-    color: #555555 !important;
-    padding-left: 10px !important;
-    padding: 5px !important
-}
-.ui.list .item{
+//     background-color: #eaeae2 !important;
+//     flex-direction: column !important;
+//     color: #555555 !important;
+//     padding-left: 10px !important;
+//     padding: 5px !important
+// }
+// .ui.list .item{
     
-    margin: 5px !important
-}
+//     margin: 5px !important
+// }
 
-.ui.list .item .checkbox{
+// .ui.list .item .checkbox{
     
-    margin-right: 5px !important
-}
-}
+//     margin-right: 5px !important
+// }
+// }
 
-@media only screen and (max-width: 992px){
-    .ui.list {
+// @media only screen and (max-width: 992px){
+//     .ui.list {
     
-    background-color: #eaeae2 !important;
-    flex-direction: column !important;
-    color: #555555 !important;
-    padding-left: 10px !important;
-    padding: 5px !important;
-    font-size: 17px
-}
-.ui.list .item{
+//     background-color: #eaeae2 !important;
+//     flex-direction: column !important;
+//     color: #555555 !important;
+//     padding-left: 10px !important;
+//     padding: 5px !important;
+//     font-size: 17px
+// }
+// .ui.list .item{
     
-    margin: 5px !important
-}
+//     margin: 5px !important
+// }
 
-.ui.list .item .checkbox{
+// .ui.list .item .checkbox{
     
-    margin-right: 20px !important;
-    width: 15px
-}
-}
+//     margin-right: 20px !important;
+//     width: 15px
+// }
+// }
 
-@media only screen and (min-width: 2000px) and (max-width: 3000px){
+// @media only screen and (min-width: 2000px) and (max-width: 3000px){
+// .ui.list .item {
+//     margin: 5px !important;
+//     font-size: 18px;
+// }
+// .ui.list .item .checkbox {
+//     margin-right: 12px !important;
+// }
+// }
+// @media only screen and (min-width: 3000px){
+// .ui.list {
+//     font-size: 2em;
+// }
+// }
+
+
 .ui.list .item {
-    margin: 5px !important;
-    font-size: 18px;
-}
-.ui.list .item .checkbox {
-    margin-right: 12px !important;
-}
-}
-@media only screen and (min-width: 3000px){
-.ui.list {
-    font-size: 2em;
-}
+    margin: 1rem;
 }

@@ -22,3 +22,4 @@
 @radioFocusBulletColor: #e0472b;
 @checkboxActiveFocusCheckColor: #e0472b;
 @checkboxActiveCheckColor: #e0472b;
+@labelPressedColor: #e0472b;

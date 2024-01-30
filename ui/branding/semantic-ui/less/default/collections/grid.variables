@@ -20,7 +20,7 @@
 @elevenWide: auto;
 @fourWide : 30%;
 @fiveWide : 20%;
-
+@eightWide:30%;
 @gutterWidth :0;
 
 

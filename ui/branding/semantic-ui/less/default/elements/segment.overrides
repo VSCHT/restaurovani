@@ -1,6 +1,6 @@
 @segment-gap-mobile: 95px;
 
-.ui.segment {
+.ui.segment:not(.secondary) {
   display: flex;
 
   &.vertical {
