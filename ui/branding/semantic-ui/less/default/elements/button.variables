@@ -19,11 +19,11 @@
 @fontFamily: source-sans-pro;
 @horizontalMargin:0;
 @verticalMargin:0;
-@hoverBackgroundColor: #aa4929;
+@hoverBackgroundColor:rgb(96, 94, 94);
 @secondaryColor: #A8A8A0;
 @primaryColor: #de4929;
-@secondaryColorHover: #aaaaa2;
+@secondaryColorHover: #717164;
 @olive: #9B9B93;
-@oliveHover: #87877a;
+@oliveHover: #585848;
 @verticalPadding:0.9rem;
  @horizontalPadding:0.7rem;

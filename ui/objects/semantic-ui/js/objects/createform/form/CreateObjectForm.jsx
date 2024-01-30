@@ -23,6 +23,7 @@ export const CreateObjectFormContent = ({ errors }) => {
     <Grid columns={1} className="gapped predmety__form">
       <Header as="h3">Vytvoření nového předmětu</Header>
       <Grid columns={1}>
+        
         <Grid.Column>
           <TextField
             fieldPath="metadata.restorationObject.title"

@@ -8,14 +8,15 @@
   & input {
     border-radius: 30px;
     padding-left: 20px;
-    width: 100%;
     height: 2rem;
     font-size: 0.9rem;
     border: 1px solid #626262;
-    // width: @input-width-large;
+    width: @input-width-large;
   }
-  .grid-searchbar & input {
+  .grid-searchbar & input,    .grid-searchbar & input:focus{
     height: 2.3rem;
+    width: 100%;
+    background: none;
   }
   @media only screen and (max-width: 1200px) and (min-width: 992px) {
     &,

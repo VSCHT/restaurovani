@@ -17,20 +17,33 @@
     padding-top: 0;
   }
 
-  &.inverted:not(.accordion > .active) > .title:not(.active), .title:not(.active) .icon{
+  &:not(.styled) .title ~ .content:not(.ui):last-child {
+    padding-bottom: 1em;
+  }
+  .ui.container.search-container &:has(.content.active) {
+    background-color: #dbdbce;
+
+  }
+  &:not(.styled):hover{
+    background-color: #dbdbce;
+  }
+
+//   &.styled:hover{
+//     background-color: rgb(55, 54, 54)
+//   }
+
+
+  &.inverted:not(.accordion > .active) > .title:not(.active),
+  .title:not(.active) .icon {
     color: #757670;
   }
 
   @media only screen and (min-width: 1200px) and (max-width: 1500px) {
-    /* & .title:not(.ui) {
-      padding: 0.2em 0em;
-    } */
   }
   @media only screen and (min-width: 992px) and (max-width: 1200px) {
-    /* & .title:not(.ui) {
-      padding: 0.3em 0em;
-      font-size: 0.9rem;
-    } */
+    &.styled {
+      width: 70%;
+    }
   }
 
   @media only screen and (max-width: 992px) {
