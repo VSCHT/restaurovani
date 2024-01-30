@@ -1,11 +1,15 @@
-/* own */
+/*--------------
+    OWN
+---------------*/
 
 @secondaryColor:#626262;
 @primarySize:2rem;
 @secondarySize:2rem;
 
 
-/* semantic */
+/*--------------
+    SEMANTIC
+---------------*/
 
 
 @border:  1px solid #626262;

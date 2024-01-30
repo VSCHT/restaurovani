@@ -1,5 +1,5 @@
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
+/* @media only screen and (min-width: 992px) and (max-width: 1200px) {
 .ui.checkbox .box:before, .ui.checkbox label:before {
   width: 15px;
   height: 15px;
-}}
+}} */

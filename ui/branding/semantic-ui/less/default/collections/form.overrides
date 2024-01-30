@@ -1,29 +1,40 @@
 .field {
-  
-    width: auto;
+  text-align: left;
 
-  & label{
-    font-size: 1rem;
-  }
-
-  & textarea,  &  .tox{
+  & textarea,
+  & .tox {
     border-radius: 30px;
-    width: 100%;
-    height: 3rem;
+    min-height: 3rem;
     font-size: 0.9rem;
     border: 1px solid #626262;
     width: 100%;
-  }
-}
 
-.inline.fields {
-  display: flex;
-  gap: 10px;
-  & label{
+    &:focus {
+      border: 1px solid #626262;
+    }
+  }
+  & textarea {
+    padding: 10px 20px;
+  }
+
+  & label {
     font-size: 1rem;
   }
 }
 
-.fields.invenio-group-field {
-  display: flex;
+.fields {
+  .inline& {
+    display: flex;
+    gap: 10px;
+
+    & label {
+      font-size: 1rem;
+    }
+  }
+  &.invenio-group-field {
+    display: flex;
+  }
+  .ui.form & {
+    justify-content: space-between;
+}
 }

@@ -1,7 +1,13 @@
 
 
+/*--------------
+    OWN
+---------------*/
 
-/* semantic */
+
+/*--------------
+   SEMANTIC
+---------------*/
 
 @background: #9B9B93;
 @itemVerticalPadding : 0.5rem;
@@ -9,3 +15,7 @@
 @itemTextColor: @white;
 @fontWeight:500;
 @paginationActiveTextColor: white;
+
+
+@tabularActiveWeight:normal;
+@tabularBorderColor: #626262;

@@ -1,6 +1,10 @@
 h1.ui.header {
   font-weight: @h1fontWeight;
 }
+h4.ui.header {
+  font-weight: 600;
+}
+
 
 .header a {
   font-size: 2rem;

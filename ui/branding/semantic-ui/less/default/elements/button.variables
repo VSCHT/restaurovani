@@ -1,4 +1,6 @@
-
+/*--------------
+    OWN
+---------------*/
 @halfSize: 55%;
 @zeroVal:0px;
 @moreSize: 60%;
@@ -9,7 +11,9 @@
 
 
 
-/* semantic */
+/*--------------
+    SEMANTIC
+---------------*/
 @background: gray;
 @textColor: #fff;
 @fontFamily: source-sans-pro;

@@ -14,6 +14,10 @@
         flex-flow: column;
         width: auto;
       }
+      #form-app &.one {
+        width: 60%;
+        max-width: 600px;
+      }
       &.two {
         gap: 63px;
         align-self: center;
@@ -29,6 +33,11 @@
     }
   }
   &.column {
+    &.one {
+      &.separated {
+        margin-top: 40px;
+      }
+    }
     &.two {
       justify-content: space-between;
     }
@@ -64,6 +73,9 @@
   .ui.grid {
     &.gapped {
       width: 90vw;
+      #form-app &.one {
+        width: 95%;
+      }
     }
     &.column {
       &.two {

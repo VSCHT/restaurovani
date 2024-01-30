@@ -5,12 +5,30 @@
   &.search-container {
     margin-top: 70px;
   }
+  &.main {
+    margin-top: 100px;
+  }
+  .main-page & {
+    width: 80vw;
+  }
+
+  @media only screen and (min-width: 992px) and (max-width: 1200px){
+    main:not(.main-page) & {
+      width: 80vw;
+    
+    }
+  }
+
+  @media only screen and (max-width: 992px) {
+    main:not(.main-page) & {
+      width: 100vw;
+    
+    }
+  }
 }
 
 .twelve.wide.column .container {
   margin-top: 50px;
 }
 
-.ui.main.container{
-    margin-top:100px
-}
+

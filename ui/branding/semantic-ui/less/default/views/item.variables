@@ -1,9 +1,13 @@
-/* own */
+/*--------------
+    OWN
+---------------*/
 
 
 
-/* semantic */
-@display:flex;
+/*--------------
+    SEMANTIC
+---------------*/
+@display: flex;
 @imageMaxHeight: 300px;
 @background: #fff;
 @padding: 1.5rem ;
