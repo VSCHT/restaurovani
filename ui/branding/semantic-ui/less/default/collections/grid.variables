@@ -1,9 +1,8 @@
 /*--------------
    OWN
 ---------------*/
-@smallSpacing: 0.5rem;
-@gapWidth: 15px;
-@gap-medium: 10px;
+
+
 
 
 
@@ -26,4 +25,4 @@
 
 /* columns */
 @twoColumn: 50%;
-@threeColumn: 25%;
+@threeColumn: 30%;

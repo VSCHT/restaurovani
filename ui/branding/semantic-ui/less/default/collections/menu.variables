@@ -9,16 +9,16 @@
    SEMANTIC
 ---------------*/
 
-@background: #9B9B93;
+@background: @darkBrown;
 @itemVerticalPadding : 0.5rem;
 @itemHorizontalPadding: 10vw ;
 @itemTextColor: @white;
 @fontWeight:500;
 @buttonSize:0.7rem;
-@paginationActiveTextColor: white;
+@paginationActiveTextColor: @whiteColor;
 
 
 @tabularActiveWeight:normal;
-@tabularBorderColor: #626262;
+@tabularBorderColor: @inputBorderColor;
 @buttonVerticalPadding: 0;
  @buttonVerticalPadding:0;

@@ -8,7 +8,7 @@ head_links %} {% block body %}
 
       <div class="ui two column gapped grid">
         
-        <div class="ui gapped grid">
+        <div class="ui gapped">
           <img
             src="{{ url_for('static', filename='images/bg-arrows.png') }}"
             alt="decoration image"
@@ -26,9 +26,9 @@ head_links %} {% block body %}
               <form
                 action="{{ url_for('objects.search') }}"
                 role="search"
-                class="ui two row grid"
+                class="ui one column grid"
               >
-                <div class="row">
+                <div class="column">
                   <input
                     type="text"
                     name="q"

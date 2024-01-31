@@ -109,9 +109,8 @@ export const ResultsListItemComponent = ({ result, appName }) => {
           src="/static/images/image-noimage.png"
           fallbackSrc="/static/images/image-404.png"
           result={result}
-          classN=""
         />
-
+{/* url */}
         <ItemContent>
           <ItemHeader
             title={title}

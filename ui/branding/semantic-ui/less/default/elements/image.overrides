@@ -1,5 +1,3 @@
-@vsht-logo-width: 13rem;
-@arrow-height: 6rem;
 
 .ui.image {
   position: static;
@@ -10,9 +8,7 @@
     margin-left: 6rem;
 
     @media only screen and (max-width: 992px) and (min-width: 580px) {
-      width: 11rem;
       margin-bottom: 4rem;
-      margin-left: 6rem;
     }
 
     @media only screen and (max-width: 580px) {
@@ -20,15 +16,10 @@
       margin-left: 4.3rem;
     }
 
-    @media only screen and (min-width: 1500px) {
-      width: @vsht-logo-width;
+    @media only screen and (min-width: 1200px) {
+      width: 12rem;
       margin-bottom: 5rem;
       margin-left: 6.5rem;
-
-      @media only screen and (max-width: 1500px) and (min-width: 1200px) {
-        width: 12rem;
-        margin-left: 6rem;
-      }
     }
 
     @media only screen and (max-width: 1200px) and (min-width: 992px) {
@@ -37,10 +28,8 @@
     }
   }
 
- 
-
   &.decoration.arrows {
-    height: @arrow-height;
+    height: 6rem;
 
     @media only screen and (max-width: 580px) {
       height: 4rem;
@@ -75,6 +64,6 @@
   }
 }
 
-.search-container .ui.image.vsht-logo{
-  margin-left: 0
+.search-container .ui.image.vsht-logo {
+  margin-left: 0;
 }

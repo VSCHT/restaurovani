@@ -9,7 +9,7 @@
       color: white;
 
       .search-container & {
-        color: #7e7f79;
+        color: @brownColor;
       }
     }
   }
@@ -24,8 +24,8 @@
   &.styled {
     &.inverted:not(.accordion > .active) > .title:not(.active),
     .title:not(.active) .icon {
-      color: #757670;
-      background-color: white;
+      color: @sandGrayColor;
+      background-color: @white
     }
   }
 

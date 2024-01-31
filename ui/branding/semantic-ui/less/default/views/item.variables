@@ -10,7 +10,7 @@
 
 /* common */
 @display: flex;
-@background: #fff;
+@background: @whiteColor;
 @padding: 1.5rem ;
 
 /* menu item */

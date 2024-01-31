@@ -2,7 +2,7 @@
     OWN
 ---------------*/
 
-@secondaryColor:#626262;
+@secondaryColor: @inputBorderColor;
 @primarySize:2rem;
 @secondarySize:2rem;
 
@@ -12,7 +12,7 @@
 ---------------*/
 
 
-@border:  1px solid #626262;
-@background: @white;
+@border:  1px solid @inputBorderColor;
+@background: none;
 @pointingBorderColor: @red;
-@focusBorderColor: #626262;
+@focusBorderColor: @inputBorderColor;

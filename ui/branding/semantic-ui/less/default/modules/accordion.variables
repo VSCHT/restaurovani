@@ -7,19 +7,19 @@
 
 /* general */
 @titleFontSize: 1rem;
-@titleColor: #222;
+@titleColor: @blackColor;
 @titleFont:source-sans-pro;
 
 /* styled */
 
 
 /* active */
-@styledActiveTitleBackground: #757670;
-@styledActiveTitleColor: white;
+@styledActiveTitleBackground: @sandGrayColor;
+@styledActiveTitleColor: @whiteColor;
 
 /* hover */
-@styledTitleHoverBackground: #757670;
-@styledTitleHoverColor: rgb(182, 177, 177);
+@styledTitleHoverBackground: @sandGrayColor;
+// @styledTitleHoverColor: rgb(182, 177, 177);
 
 @styledContentPadding: 2.5em 1em 1.5em;
 @styledTitlePadding: 0.7rem 1rem;

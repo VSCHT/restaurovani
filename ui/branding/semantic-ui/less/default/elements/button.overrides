@@ -10,17 +10,16 @@
   width: 100%;
 
   &:hover {
-    color: white;
+    color: @whiteColor;
   }
 
   &.primary {
     width: @mediumWidth;
+    a {
+      color: @whiteColor;
+    }
     #form-app & {
       width: 25%;
-    }
-
-    a {
-      color: white;
     }
   }
 
@@ -38,6 +37,10 @@
       position: relative;
     }
   }
+
+  .field &{
+    width:30%
+  }
   &.close-btn {
     background: none;
     margin-top: 0;
@@ -49,10 +52,10 @@
 
   &.left.labeled {
     &:hover {
-      background-color: rgb(96, 94, 94);
+      background-color: @darkestBrown;
     }
-    & .icon {
-      color: white;
+    .icon {
+      color: @whiteColor;
     }
   }
 
@@ -70,7 +73,6 @@
 
     &.primary {
       width: 60%;
-
       .extra & {
         width: 30%;
       }
@@ -85,29 +87,25 @@
   @media only screen and (max-width: 580px) {
     &.primary {
       font-size: @mediumFontSize;
-
       #form-app & {
         width: 45%;
       }
       .extra & {
         width: 25%;
         height: 36px;
-
-        @media only screen and (max-width: 1200px) and (min-width: 992px) {
-          font-size: 0.9rem;
-        }
-
-        @media only screen and (max-width: 992px) and (min-width: 580px) {
-          &.primary {
-            width: 60%;
-            .extra & {
-              width: 40%;
-              font-size: @mediumFontSize;
-              height: 2.2rem;
-            }
-          }
-        }
       }
+    }
+  }
+ 
+}
+
+@media only screen and (max-width: 992px) and (min-width: 580px) {
+  &.primary {
+    width: 60%;
+    .extra & {
+      width: 40%;
+      font-size: @mediumFontSize;
+      height: 2.2rem;
     }
   }
 }

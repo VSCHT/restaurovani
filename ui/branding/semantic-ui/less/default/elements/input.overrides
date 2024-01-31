@@ -1,43 +1,44 @@
-@input-width-large: 65%;
-@input-width-small: 60%;
-@input-font-size-medium: 0.8rem;
+@inputWidthLarge: 65%;
+@inputWidthSmall: 60%;
+@inputFontMedium: 0.8rem;
+@inputHeight:2.5rem;
+@smallerInputHeight: @inputHeight - 0.5rem ;
 
 .ui.input {
   &,
-  .grid-searchbar & input,
   & input {
     border-radius: 30px;
     padding-left: 20px;
-    height: 2rem;
+    height: @inputHeight;
     font-size: 0.9rem;
-    border: 1px solid #626262;
-    width:@input-width-large;
-  }
-  .grid-searchbar & input,    .grid-searchbar & input:focus{
-    height: 2.3rem;
-    width: 100%;
-    background: none;
-  }
-  @media only screen and (max-width: 1200px) and (min-width: 992px) {
-    &,
-    .grid-searchbar & input,
-    & input {
-      font-size: @input-font-size-medium;
-      width:@input-width-small;
+    border: 1px solid @inputBorderColor;
+
+    & {
+      width: @inputWidthLarge;
     }
-  }
+    .grid-searchbar &,
+    .grid-searchbar &:focus {
+      width: 100%;
+      background: none;
+    }
 
-  @media only screen and (max-width: 992px) and (min-width: 580px) {
-    font-size: 0.9rem;
-  }
-
-  @media only screen and (max-width: 580px) {
-    &,
-    & input {
+    @media only screen and (max-width: 580px) {
       height: 2.5rem;
-      font-size: @input-font-size-medium;
+      font-size: @inputFontMedium;
+      height: @smallerInputHeight;
+    }
+    @media only screen and (max-width: 1200px) and (min-width: 992px) {
+      font-size: @inputFontMedium;
+      width: @inputWidthSmall;
+      height: @smallerInputHeight ;
+    }
+    @media only screen and (max-width: 992px) and (min-width: 580px) {
+      font-size: 0.9rem;
+      height:@smallerInputHeight ;
     }
   }
+
+ 
 
   &:has(input) {
     padding-left: 0px;

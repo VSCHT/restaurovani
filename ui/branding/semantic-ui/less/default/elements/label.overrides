@@ -2,12 +2,12 @@
   &.large {
     padding: 0;
     .extra & {
-      color: #7e7f79;
+      color: @brownColor;
     }
   }
 
   &.pointing {
-    border: 1px solid red;
+    border: 1px solid @primaryRed;
   }
 }
 
