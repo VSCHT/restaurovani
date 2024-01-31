@@ -11,7 +11,7 @@
     height: 2rem;
     font-size: 0.9rem;
     border: 1px solid #626262;
-    width: @input-width-large;
+    width:@input-width-large;
   }
   .grid-searchbar & input,    .grid-searchbar & input:focus{
     height: 2.3rem;
@@ -23,6 +23,7 @@
     .grid-searchbar & input,
     & input {
       font-size: @input-font-size-medium;
+      width:@input-width-small;
     }
   }
 

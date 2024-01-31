@@ -1,26 +1,20 @@
-@primary-button-width: 65%;
-@secondary-button-height: 50px;
-@secondary-button-font-size: 1.4rem;
+@mediumWidth: 65%;
+@mediumFontSize: 0.8rem;
 
 .ui.button {
-  border-radius: 30px;
-  font-size: 15px;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 2.5rem;
-  padding: 15px;
+  width: 100%;
 
   &:hover {
     color: white;
   }
 
   &.primary {
-    font-size: 0.9rem;
-    width: @primary-button-width;
-    &:hover {
-      background-color: #6b230b;
-    }
+    width: @mediumWidth;
     #form-app & {
       width: 25%;
     }
@@ -32,18 +26,13 @@
 
   &.secondary {
     border-radius: 2px;
-    width: 100%;
-    height: 2.5rem;
-    font-size: 1rem;
     font-weight: 500;
     justify-content: space-between;
-    // padding: 0 20px; problem on search page aside
   }
 
   &.small {
     width: auto;
     &.transparent {
-      // margin-left: -28px;  problem on search page input
       z-index: 1;
       height: auto;
       position: relative;
@@ -51,7 +40,6 @@
   }
   &.close-btn {
     background: none;
-    color: gray;
     margin-top: 0;
   }
 
@@ -60,7 +48,6 @@
   }
 
   &.left.labeled {
-    background-color: grey;
     &:hover {
       background-color: rgb(96, 94, 94);
     }
@@ -69,50 +56,57 @@
     }
   }
 
+  .ui.menu & {
+    height: auto;
+  }
+  .extra & {
+    width: 25%;
+  }
+
   @media only screen and (max-width: 1200px) and (min-width: 992px) {
-    width: auto;
     height: 35px;
     padding: 10px;
+    font-size: @mediumFontSize;
 
     &.primary {
-      font-size: 0.8rem;
       width: 60%;
+
+      .extra & {
+        width: 30%;
+      }
     }
 
     &.secondary {
-      // width: 60%;  problem search page asside
       height: 37px;
-      font-size: 0.8rem;
       padding: 0 10px;
     }
   }
 
   @media only screen and (max-width: 580px) {
     &.primary {
-      font-size: 0.8rem;
+      font-size: @mediumFontSize;
 
       #form-app & {
         width: 45%;
       }
-    }
-  }
+      .extra & {
+        width: 25%;
+        height: 36px;
 
-  .extra & {
-    width: 20%;
+        @media only screen and (max-width: 1200px) and (min-width: 992px) {
+          font-size: 0.9rem;
+        }
 
-    @media only screen and (max-width: 1200px) and (min-width: 992px) {
-      width: 25%;
-      height: 30px;
-      font-size: 12px;
-    }
-
-    @media only screen and (max-width: 992px) and (min-width: 580px) {
-      &.primary {
-        width: 60%;
-      }
-
-      .extra &.primary {
-        width: 40%;
+        @media only screen and (max-width: 992px) and (min-width: 580px) {
+          &.primary {
+            width: 60%;
+            .extra & {
+              width: 40%;
+              font-size: @mediumFontSize;
+              height: 2.2rem;
+            }
+          }
+        }
       }
     }
   }

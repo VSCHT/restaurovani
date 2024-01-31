@@ -2,28 +2,34 @@
     OWN
 ---------------*/
 @halfSize: 55%;
-@zeroVal:0px;
+@zeroVal: 0px;
 @moreSize: 60%;
-@lessSize:40%;
-@secondarySize:35px;
-@primarySize:45px;
-@absenceVal:none;
-
-
+@lessSize: 40%;
+@secondarySize: 35px;
+@primarySize: 45px;
+@absenceVal: none;
 
 /*--------------
     SEMANTIC
 ---------------*/
-@background: gray;
+
 @textColor: #fff;
 @fontFamily: source-sans-pro;
-@horizontalMargin:0;
-@verticalMargin:0;
-@hoverBackgroundColor:rgb(96, 94, 94);
-@secondaryColor: #A8A8A0;
-@primaryColor: #de4929;
+
+@background: #9b9b93;
+@hoverBackgroundColor: rgb(81, 80, 80);
+
+@secondaryColor: #a8a8a0;
 @secondaryColorHover: #717164;
-@olive: #9B9B93;
+
+@primaryColor: #de4929;
+@primaryColorHover: #a84625;
+
+@olive: #9b9b93;
 @oliveHover: #585848;
-@verticalPadding:0.9rem;
- @horizontalPadding:0.7rem;
+
+@horizontalMargin: 0;
+@verticalMargin: 0;
+@verticalPadding: 0.9rem;
+@horizontalPadding: 0.9rem;
+@borderRadius: 30px;

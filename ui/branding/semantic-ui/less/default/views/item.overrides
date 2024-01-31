@@ -12,56 +12,57 @@
   .ui.items > & > .image > img {
     width: 80%;
   }
- 
-}
+  .content {
+    flex-direction: column;
+    justify-content: space-between;
 
-.content {
-  flex-direction: column;
-  justify-content: space-between;
-
-  & .header a {
-    color: black;
-  }
-  & .extra {
-    align-items: flex-end;
+    & .header a {
+      color: black;
+    }
+    & .extra {
+      align-items: flex-end;
+    }
   }
 }
 
 @media only screen and (max-width: 992px) {
+  .item {
+    &.toggle-burger {
+      display: flex;
+    }
+    & .content {
+      .ui.items > & > .description {
+        font-size: 1.1rem;
+      }
+
+      & .extra {
+        // .ui.items > & > * {
+        //   margin: 0.25rem 30% 0.25rem 0em;
+        // }
+      }
+    }
+  }
+ 
   .ui.menu.top.fixed .item:nth-child(2),
   .ui.menu.top.fixed .right.menu {
     padding: 0 5vw;
     font-size: 0.7rem;
   }
-  .item.toggle-burger {
-    display: flex;
-  }
-  .content {
-    .ui.items > .item > & > .description {
-      font-size: 1.3rem;
-    }
-
-    .extra {
-      .ui.button {
-        width: 40%;
-      }
-    }
-  }
 }
 
 @media only screen and (max-width: 776px) {
-  .content {
-    text-align: center;
+  .item {
+    & .content {
+      text-align: center;
 
-    .extra {
-      justify-content: center;
-
-      .ui.label {
-        display: none;
-      }
-
-      .ui.button {
-        width: 40%;
+      & .extra {
+        justify-content: center;
+        .ui.items > & > * {
+          margin: 0;
+        }
+        .ui.label {
+          display: none;
+        }
       }
     }
   }
@@ -69,12 +70,13 @@
 
 @media only screen and (max-width: 1500px) and (min-width: 1200px) {
   .item {
-    // .ui.items > & > .image > img {
-    //   width: 60%;
-    // }
+    font-size: 1rem;
+
     .ui.items > & > .content > .description {
       margin-top: 0.5em;
-      font-size: 1rem;
+    }
+    .ui.items > & .extra > * {
+        margin: 0.25rem 40% 0.25rem 0em;
     }
     // .ui.items > .item > .image + .content {
     //     display: flex;
@@ -97,10 +99,6 @@
   .item {
     font-size: 1rem;
 
-    .ui.items > & > .content > .description {
-      font-size: 1rem;
-    }
-
     .ui.divided.items > &:first-child {
       padding: 1rem;
     }
@@ -110,6 +108,12 @@
 
     .ui.items > & > .image {
       margin: 0;
+    }
+    .ui.items > & .extra > * {
+        margin: 0.25rem 30% 0.25rem 0em;
+    }
+    .ui.items > & > .content > .description {
+        font-size: 1rem;
     }
   }
 }

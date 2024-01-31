@@ -9,6 +9,7 @@
   }
   &.pagination .item {
     padding: 10px 30px;
+    
     @media only screen and (min-width: 1200px) and (max-width: 1500px) {
       padding: 5px 25px;
       font-size: 1.2rem;
@@ -18,5 +19,10 @@
       padding: 5px 20px;
       font-size: 1rem;
     }
+    @media only screen and (max-width: 992px) { 
+        padding: 5px 15px;
+        font-size: 0.8rem;
+    }
+    
   }
 }
