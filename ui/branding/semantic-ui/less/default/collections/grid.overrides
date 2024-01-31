@@ -1,3 +1,6 @@
+
+@gapWidth: 15px; 
+
 .ui.grid {
   &.gapped {
     gap: @gapWidth;
@@ -8,22 +11,18 @@
     &.column {
       display: flex;
       justify-content: space-between;
+      align-self: center;
 
       &.one {
         flex-wrap: wrap;
         flex-flow: column;
         width: auto;
       }
-      #form-app &.one:not(:has(.ui.accordion)){
-        width: 60%;
-        max-width: 600px;
-      }
       &.two {
-        @gap: 63px;
-        align-self: center;
+        gap: 63px;
 
         &.double {
-          gap: @gap*2 + 0px;
+          gap: @gapWidth * 5; 
         }
 
         &:has(.twelve.wide.column) {
@@ -32,12 +31,12 @@
       }
       &.three {
         gap: 10px;
-        align-self: center;
+      }
+      #form-app &.one:not(:has(.ui.accordion)) {
+        width: 60%;
+        max-width: 600px;
       }
     }
-  }
-  .item & {
-    align-items: flex-end
   }
 
   &.column {
@@ -78,10 +77,33 @@
   }
 }
 
-@media only screen and (max-width: 992px) {
-  .ui[class*="two column"].grid > .column:not(.row) {
-    width: 100%;
+.right.aligned.four.wide.column.computer.tablet.only {
+  font-size: 1rem;
+}
+
+.column {
+  &.predmety__aside__filter {
+    margin-top: 80px;
   }
+  &.predmety__form {
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    width: max-content;
+  }
+  &:has(.mt-20) {
+    background-color: white;
+  }
+  &.img-container {
+    width: 0px;
+  }
+
+  .fields &.one {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 992px) {
   .ui.grid {
     &.gapped {
       width: 90vw;
@@ -92,6 +114,14 @@
     &.column {
       &.two {
         gap: @gapWidth;
+
+        & > .column:not(.row) {
+          width: 100%;
+          flex-flow: column;
+          width: 100%;
+          align-items: center;
+          display: flex;
+        }
       }
     }
   }
@@ -107,7 +137,7 @@
   }
 }
 @media only screen and (max-width: 992px) and (min-width: 558px) {
-  .ui.grid.gapped {
+  main:not(.main-page) .ui.grid.gapped {
     width: 100vw;
   }
 }
@@ -135,7 +165,10 @@
 
       &.column {
         &.two {
-          gap: 50px;
+          @gap: 50px;
+          &.double {
+            gap: @gap * 2 ;
+          }
         }
       }
     }

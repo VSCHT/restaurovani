@@ -120,7 +120,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
           />
           <ItemDescription>{restorer}</ItemDescription>
           <ItemExtra>
-            <Label>Vloženo: {created.slice(0,6)}</Label>
+            <Label size='large'>Vloženo: {created.slice(0,6)}</Label>
             <DetailsButton
               searchUrl={searchAppConfig.ui_endpoint}
               selfLink={`${result.id}`}

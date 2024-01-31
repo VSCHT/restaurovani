@@ -20,29 +20,29 @@
   &:not(.styled) .title ~ .content:not(.ui):last-child {
     padding-bottom: 1em;
   }
-  .ui.container.search-container &:has(.content.active) {
-    background-color: #dbdbce;
 
-  }
-  &:not(.styled):hover{
-    background-color: #dbdbce;
-  }
-
-//   &.styled:hover{
-//     background-color: rgb(55, 54, 54)
-//   }
-
-
-  &.inverted:not(.accordion > .active) > .title:not(.active),
-  .title:not(.active) .icon {
-    color: #757670;
+  &.styled {
+    &.inverted:not(.accordion > .active) > .title:not(.active),
+    .title:not(.active) .icon {
+      color: #757670;
+      background-color: white;
+    }
   }
 
-  @media only screen and (min-width: 1200px) and (max-width: 1500px) {
-  }
+  //   .ui.container.search-container &:has(.content.active),
+  //   &:not(.styled):hover {
+  //     background-color: #dbdbce;
+  //   }
+
   @media only screen and (min-width: 992px) and (max-width: 1200px) {
     &.styled {
       width: 70%;
+    }
+    &:not(.styled) {
+      margin-top: 0;
+      & .title:not(.ui) {
+        font-size: 0.8rem;
+      }
     }
   }
 

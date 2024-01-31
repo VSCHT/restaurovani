@@ -1,26 +1,27 @@
 .ui.label {
-  .extra & {
-    color: #7e7f79;
-  }
-  &.pointing {
-    border: 1px solid red;
-  }
-  .item & {
-    font-size: 0.9rem;
+  &.large {
     padding: 0;
-  }
-
-  @media only screen and (min-width: 1200px) and (max-width: 1500px) {
     .extra & {
-      font-size: 0.9rem;
+      color: #7e7f79;
     }
   }
 
-  @media only screen and (min-width: 992px) and (max-width: 1200px) {
-    /* .ui.label {
-      font-size: 1.1rem;
-    } */
-    .extra & {
+  &.pointing {
+    border: 1px solid red;
+  }
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 992px) {
+  .ui.label {
+    &.large {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .ui.label {
+    &.large {
       font-size: 0.8rem;
     }
   }

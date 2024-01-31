@@ -15,15 +15,15 @@ export const MyBucketAggregationValues = withState(
     return (
       <>
         <List.Item key={bucket.key}>
-          <Grid className="gapped">
+         
           <Checkbox
             value={bucket.key}
             onClick={() => onFilterClicked(bucket.key)}
             checked={isSelected}
           />
-          <Label>{bucket.label}</Label> <Label>{bucket.doc_count}</Label>{" "}
+          <Label size='large'>{bucket.label}</Label> <Label size='large'>{bucket.doc_count}</Label>{" "}
           {childAggCmps}
-          </Grid>
+        
         </List.Item>
       </>
     );

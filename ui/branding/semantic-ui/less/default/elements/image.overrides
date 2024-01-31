@@ -5,7 +5,7 @@
   position: static;
 
   &.vsht-logo {
-    width: @vsht-logo-width;
+    width: 11rem;
     margin-bottom: 3rem;
     margin-left: 6rem;
 

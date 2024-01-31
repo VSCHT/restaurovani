@@ -1,5 +1,6 @@
 .field {
   text-align: left;
+  width: 100%;
 
   & textarea,
   & .tox {

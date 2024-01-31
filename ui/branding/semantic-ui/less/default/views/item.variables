@@ -27,5 +27,5 @@
 @contentImageDistance: 0px;
 @imageMaxHeight: 300px;
 @contentDisplay: flex;
-@descriptionFontSize: 1.5rem;
-@extraHorizontalSpacing:60%;
+@descriptionFontSize: 1.2rem;
+@extraHorizontalSpacing:50%;

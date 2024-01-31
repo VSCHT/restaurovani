@@ -14,8 +14,11 @@
 @itemHorizontalPadding: 10vw ;
 @itemTextColor: @white;
 @fontWeight:500;
+@buttonSize:0.7rem;
 @paginationActiveTextColor: white;
 
 
 @tabularActiveWeight:normal;
 @tabularBorderColor: #626262;
+@buttonVerticalPadding: 0;
+ @buttonVerticalPadding:0;
