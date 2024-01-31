@@ -1,18 +1,14 @@
 .field {
   text-align: left;
-  width: 100%;
+
 
   & textarea,
   & .tox {
     border-radius: 30px;
     min-height: 3rem;
     font-size: 0.9rem;
-    border: 1px solid #626262;
+    border: 1px solid @inputBorderColor;
     width: 100%;
-
-    &:focus {
-      border: 1px solid #626262;
-    }
   }
   & textarea {
     padding: 10px 20px;

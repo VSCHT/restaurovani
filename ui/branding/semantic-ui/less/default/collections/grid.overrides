@@ -1,134 +1,98 @@
+@gapWidth: 15px;
+@gapMedium: 10px;
 
-@gapWidth: 15px; 
+.gapped {
+  gap: @gapWidth;
+  height: inherit;
+  display: flex;
+  align-items: flex-start;
+
+  &.double {
+    gap: @gapWidth * 5;
+  }
+}
 
 .ui.grid {
-  &.gapped {
-    gap: @gapWidth;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.column {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column;
+
+  &.one {
+    flex-wrap: wrap;
+    width: auto;
+
+    &.separated {
+      margin-top: 40px;
+    }
+    .fields & {
+      width: 90%;
+    }
+  }
+  &.two {
     flex-direction: row;
-    flex-wrap: nowrap;
-    height: inherit;
 
-    &.column {
-      display: flex;
-      justify-content: space-between;
-      align-self: center;
-
-      &.one {
-        flex-wrap: wrap;
-        flex-flow: column;
-        width: auto;
-      }
-      &.two {
-        gap: 63px;
-
-        &.double {
-          gap: @gapWidth * 5; 
-        }
-
-        &:has(.twelve.wide.column) {
-          justify-content: center;
-        }
-      }
-      &.three {
-        gap: 10px;
-      }
-      #form-app &.one:not(:has(.ui.accordion)) {
-        width: 60%;
-        max-width: 600px;
-      }
+    &:has(.twelve.wide.column) {
+      justify-content: center;
     }
   }
-
-  &.column {
-    &.one {
-      &.separated {
-        margin-top: 40px;
-      }
-    }
-    &.two {
-      justify-content: space-between;
-    }
+  &.three {
+    gap: 10px;
+    flex-direction: row;
+    width: 100%;
   }
-}
+  #form-app &.one:not(:has(.ui.accordion)) {
+    width: 100%;
+    max-width: 600px;
+  }
 
-.right.aligned.four.wide.column.computer.tablet.only {
-  font-size: 1rem;
-}
-
-.column {
   &.predmety__aside__filter {
     margin-top: 80px;
   }
   &.predmety__form {
     margin: 0 auto;
-    flex-direction: column;
     align-items: center;
     width: max-content;
   }
   &:has(.mt-20) {
-    background-color: white;
+    background-color: @whiteColor;
   }
   &.img-container {
     width: 0px;
-  }
-
-  .fields &.one {
-    width: 90%;
   }
 }
 
 .right.aligned.four.wide.column.computer.tablet.only {
   font-size: 1rem;
-}
-
-.column {
-  &.predmety__aside__filter {
-    margin-top: 80px;
-  }
-  &.predmety__form {
-    margin: 0 auto;
-    flex-direction: column;
-    align-items: center;
-    width: max-content;
-  }
-  &:has(.mt-20) {
-    background-color: white;
-  }
-  &.img-container {
-    width: 0px;
-  }
-
-  .fields &.one {
-    width: 90%;
-  }
 }
 
 @media only screen and (max-width: 992px) {
-  .ui.grid {
-    &.gapped {
-      width: 90vw;
-      #form-app &.one {
+  .column {
+    &.one {
+      #form-app & {
         width: 95%;
       }
     }
-    &.column {
-      &.two {
-        gap: @gapWidth;
+    &.two {
+      gap: @gapWidth;
 
-        & > .column:not(.row) {
-          width: 100%;
-          flex-flow: column;
-          width: 100%;
-          align-items: center;
-          display: flex;
-        }
+      & > .column:not(.row) {
+        width: 100%;
+        flex-flow: column;
+        width: 100%;
+        align-items: center;
+        display: flex;
       }
     }
-  }
-
-  .column {
     &.eleven {
       text-align: center;
+    }
+    &.four.wide{
+      display: none
     }
   }
 
@@ -158,18 +122,16 @@
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-  .ui.grid {
-    &.gapped {
-      gap: @gap-medium;
-      height: inherit;
+  .gapped {
+    gap: @gapMedium;
+    height: inherit;
+  }
 
-      &.column {
-        &.two {
-          @gap: 50px;
-          &.double {
-            gap: @gap * 2 ;
-          }
-        }
+  .column {
+    &.two {
+      @gap: 50px;
+      &.double {
+        gap: @gap * 2;
       }
     }
   }

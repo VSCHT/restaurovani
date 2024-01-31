@@ -1,10 +1,12 @@
-@headerLinkFont:1.5rem;
+@headerLinkFont: 1.5rem;
 
 .header a {
   font-size: @headerLinkFont;
 }
 
 .ui.header {
+ 
+
   h1& {
     font-weight: 300;
   }
@@ -60,6 +62,9 @@
     h1& {
       font-size: .count(@h1, 1.5) [ @result];
       min-height: 10rem;
+    }
+    h2& {
+      font-size: .count(@h2, 0.5) [ @result];
     }
   }
 }

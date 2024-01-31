@@ -1,32 +1,27 @@
 /*--------------
     OWN
 ---------------*/
-@halfSize: 55%;
-@zeroVal: 0px;
-@moreSize: 60%;
-@lessSize: 40%;
-@secondarySize: 35px;
-@primarySize: 45px;
-@absenceVal: none;
+
+
 
 /*--------------
     SEMANTIC
 ---------------*/
 
-@textColor: #fff;
+@textColor: @whiteColor;
 @fontFamily: source-sans-pro;
 
-@background: #9b9b93;
-@hoverBackgroundColor: rgb(81, 80, 80);
+@background: @darkBrown;
+@hoverBackgroundColor: @darkestBrown;
 
-@secondaryColor: #a8a8a0;
-@secondaryColorHover: #717164;
+@secondaryColor: @secondColor;
+@secondaryColorHover: @secondaryColorHov;
 
-@primaryColor: #de4929;
-@primaryColorHover: #a84625;
+@primaryColor: @primaryRed;
+@primaryColorHover: @primaryRedHov;
 
-@olive: #9b9b93;
-@oliveHover: #585848;
+@olive: @brownColor;
+@oliveHover: @sandGrayColor;
 
 @horizontalMargin: 0;
 @verticalMargin: 0;
