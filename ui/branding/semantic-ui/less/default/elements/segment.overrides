@@ -11,8 +11,12 @@
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
-  }
 
+   
+  }
+  &.center.detail-page .ui.two.column.grid{
+    text-align: left;
+}
   &.bg-bottom {
     height: 38vh;
     width: 100vw;
@@ -27,9 +31,10 @@
 
 
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: @mobileSize) {
   .ui.vertical.segment {
     gap: @segmentGapMobile;
   }
+
 }
 

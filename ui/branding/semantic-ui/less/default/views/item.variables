@@ -12,6 +12,7 @@
 @display: flex;
 @background: @whiteColor;
 @padding: 1.5rem ;
+@minHeight:250px;
 
 /* menu item */
 @dividedFirstLastPadding : 1.5rem;
@@ -29,3 +30,4 @@
 @contentDisplay: flex;
 @descriptionFontSize: 1.2rem;
 @extraHorizontalSpacing:50%;
+@imageDisplay:flex;

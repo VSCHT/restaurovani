@@ -1,0 +1,3 @@
+@verticalDividerHeight: 20px;
+@shadowWidth: 1px; 
+@shadowColor: @brownColor;

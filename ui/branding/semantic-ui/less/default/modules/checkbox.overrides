@@ -2,7 +2,7 @@
   margin-right: 15px
 }
 
-@media only screen and (max-width:1300px){
+@media only screen and (max-width: @tabletSize){
   .ui.checkbox{
     margin-right: 8px
   }

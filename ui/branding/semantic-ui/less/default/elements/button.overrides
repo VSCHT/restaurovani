@@ -66,7 +66,7 @@
     width: 25%;
   }
 
-  @media only screen and (max-width: 1200px) and (min-width: 992px) {
+  @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
     height: 35px;
     padding: 10px;
     font-size: @mediumFontSize;
@@ -84,7 +84,7 @@
     }
   }
 
-  @media only screen and (max-width: 580px) {
+  @media only screen and (max-width: @smallMobileSize) {
     &.primary {
       font-size: @mediumFontSize;
       #form-app & {
@@ -99,7 +99,7 @@
  
 }
 
-@media only screen and (max-width: 992px) and (min-width: 580px) {
+@media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
   &.primary {
     width: 60%;
     .extra & {
@@ -114,7 +114,7 @@
   position: relative;
   left: -53px;
 
-  @media only screen and (min-width: 1200px) and (max-width: 1500px) {
+  @media only screen and (min-width: @tabletSize) and (max-width: @computerSize) {
     left: -67px;
   }
 }

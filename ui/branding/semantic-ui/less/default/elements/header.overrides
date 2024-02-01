@@ -13,13 +13,17 @@
   h4& {
     font-weight: 600;
   }
+  .detail-page h3&{
+    color: white;
+    margin: auto 10px;
+  }
 }
 
 .count(@x, @y) {
   @result: (@x - @y + 0rem);
 }
 
-@media only screen and (max-width: 1500px) and (min-width: 1200px) {
+@media only screen and (max-width: @computerSize) and (min-width: @tabletSize) {
   .ui.header {
     h1& {
       font-size: .count(@h1, 0.5) [ @result];
@@ -30,7 +34,7 @@
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
+@media only screen and (min-width: @mobileSize) and (max-width: @tabletSize) {
   .ui.header {
     h1& {
       font-size: .count(@h1, 1) [ @result];
@@ -45,7 +49,7 @@
   }
 }
 
-@media only screen and (max-width: 992px) and (min-width: 580px) {
+@media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
   .ui.header {
     h1& {
       font-size: .count(@h1, 0.5) [ @result];
@@ -57,7 +61,7 @@
   }
 }
 
-@media only screen and (max-width: 580px) {
+@media only screen and (max-width: @smallMobileSize) {
   .ui.header {
     h1& {
       font-size: .count(@h1, 1.5) [ @result];
