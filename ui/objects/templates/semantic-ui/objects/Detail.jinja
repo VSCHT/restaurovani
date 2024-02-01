@@ -4,11 +4,14 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
 
 <div class="ui segment vertical center aligned detail-page">
   <div class="ui container">
+    <div class="ui reduced container">
   <div class="ui one column grid">
 
           <!-- header -->
-          <div class="ui two column gapped grid">
-            <div class="ui gapped grid">
+        
+          <div class="ui two column spaced grid">
+            <div class="ui column">
+            <div class="ui two column grid">
               <h3 class="ui header">
                 {{ metadata.restorationObject.title}}
               </h3>
@@ -18,36 +21,395 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                   class="ui image"
                   alt="Edit icon"
                 />
-              </d>
-            </div>
+              </a>
+            </div></div>
+
         <!-- right side of title -->
-            {% if metadata.restorationObject.stylePeriod %}
-            <div class="ui gapped grid">
-              <p class="parag">
-                {% if metadata.restorationObject.stylePeriod.startYear %}{{
-                  metadata.restorationObject.stylePeriod.startYear
+        <div class="ui column">
+            {% if metadata.restorationObject.creationPeriod %}
+            
+            
+              
+                {% if metadata.restorationObject.creationPeriod.since %}{{
+                  metadata.restorationObject.creationPeriod.since
                 }}
-                {% endif %}{% if metadata.restorationObject.stylePeriod.endYear %} -
-                {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}
-              </p>
+                {% endif %}{% if metadata.restorationObject.creationPeriod.until %} -
+                {{ metadata.restorationObject.creationPeriod.until }} {% endif %}
+              {% if metadata.restorationObject.stylePeriod %}
               <div class="ui vertical divider"></div>
-              <p class="parag">
-                {% if metadata.restorationObject.stylePeriod.period.title %}{{
+              
+               {{
                   metadata.restorationObject.stylePeriod.period.title
                 }}
                 {% endif %}
-              </p>
-            </div>
+             
+            
             {% endif %}
+          </div></div>
+      
+
+
+
+<!-- 
+<div id="images-carousel" data-photos='{{ record.links.files | tojson }}'></div>
+ -->
+
+
+
+
+
+<table class="ui unstackable table">
+ 
+  
+  <tbody class="">
+    
+    {% if metadata.restorationObject.stylePeriod %}
+          <tr class=""><td class="collapsing"><b>Datace</b></td>
+            <td class=""> {% if metadata.restorationObject.stylePeriod.startYear %}
+            {{ metadata.restorationObject.stylePeriod.startYear }} {% endif %}
+            {% if metadata.restorationObject.stylePeriod.endYear %} -
+            {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}{{
+              metadata.restorationObject.stylePeriod.period.title
+            }}</td></tr>
+    {% endif %}
+
+    {% if metadata.restorationObject.itemTypes %}
+          <tr class=""><td class=""><b>Typ předmětu</b></td><td class=""> {% for value in metadata.restorationObject.itemTypes %} {% if
+            loop.index <= 2 %}
+            {{ value.title }}
+            {% endif %} {% endfor %}</td>
+          </tr>
+    {% endif %}
+
+    {% if metadata.restorationObject.dimensions %}
+    <tr class=""><td class=""> <b>
+            Rozměry předmětu
+          </b></td><td class="">
+            <div class="ui accordion">
+              <div class="title active">
+                {% for value in metadata.restorationObject.dimensions %}
+                  {% if loop.index == 1 %}
+                    {% if value.dimension.title %} {{ value.dimension.title }}
+                      {{ value.value }}{{ value.unit }} {% endif %}
+                  {% endif %}
+                  {% if loop.index == 2 %} <i class="dropdown black icon"></i>{% endif %}
+                {% endfor %}
+              </div>
+              <div class="content">
+                <p class="transition visible">
+                  {% for value in metadata.restorationObject.dimensions %}
+                    {% if loop.index >= 2 %}
+                        {{ value.dimension.title }} {{ value.value }}{{ value.unit }}
+                  
+                    {% endif %}
+                  {% endfor %}
+                </p>
+              </div>
+            </div>
+    
+    </td></tr>
+    {% endif %}
+
+    {% if metadata.restorationObject.parts and  metadata.restorationObject.parts[0].materialType and metadata.restorationObject.parts|length == 1 %}
+    <tr class=""><td class=""> <b>Materiál</b></td><td class=""> {{ metadata.restorationObject.parts[0].materialType.title }}</td></tr>
+    {% endif %}
+
+    {% if metadata.restorationObject.parts and metadata.restorationObject.parts[0].fabricationTechnologies and metadata.restorationObject.parts|length ==1 %}
+    <tr class=""><td class=""> <b>Technologie</b></td><td class="">{% for value in metadata.restorationObject.parts[0].fabricationTechnologies %}
+      {{ value.title }}
+      {% endfor %}</td></tr>
+    {% endif %}
+
+    {% if metadata.restorationObject.parts and metadata.restorationObject.parts[0].colors and metadata.restorationObject.parts|length ==1 %}
+    <tr class=""><td class=""><b>Barva</b></td><td class="">{% for value in metadata.restorationObject.parts[0].colors %}
+      {{ value.title }}
+      {% endfor %}</td></tr>
+    {% endif %}
+  </tbody>
+</table>
+
+
+
+
+                 <!-- info o predmetu -->
+       <div class="ui  six column divided grid">
+        
+     
+    <!-- styleperiod -->
+          {% if metadata.restorationObject.stylePeriod %}
+          <div class="column">
+          
+              <b>Datace</b>
+              <p>
+               
+                  {% if metadata.restorationObject.stylePeriod.startYear %}
+                  {{ metadata.restorationObject.stylePeriod.startYear }} {% endif %}
+                  {% if metadata.restorationObject.stylePeriod.endYear %} -
+                  {{ metadata.restorationObject.stylePeriod.endYear }} {% endif %}{{
+                    metadata.restorationObject.stylePeriod.period.title
+                  }}
+               
+              </p>
           </div>
+          {% endif %}
+         
+  <!-- dimensions -->
+          {% if metadata.restorationObject.dimensions %}
+            <div class="column">
+              
+                <b>
+                  Rozměry předmětu
+                </b>
+                <div class="ui accordion">
+                  <div class="title active">
+                    {% for value in metadata.restorationObject.dimensions %}
+                      {% if loop.index == 1 %}
+                        {% if value.dimension.title %} {{ value.dimension.title }}
+                          {{ value.value }}{{ value.unit }} {% endif %}
+                      {% endif %}
+                      {% if loop.index == 2 %} <i class="dropdown black icon"></i>{% endif %}
+                    {% endfor %}
+                  </div>
+                  <div class="content">
+                    <p class="transition visible">
+                      {% for value in metadata.restorationObject.dimensions %}
+                        {% if loop.index >= 2 %}
+                            {{ value.dimension.title }} {{ value.value }}{{ value.unit }}
+                       
+                        {% endif %}
+                      {% endfor %}
+                    </p>
+                  </div>
+                </div>
+              
+            </div>
+          {% endif %}
+ 
+ 
+           
+         
+     <!--itemtypes  -->
+          {% if metadata.restorationObject.itemTypes %}
+          <div class="column">
+           
+                <b>Typ předmětu</b>
+                <p>
+                  {% for value in metadata.restorationObject.itemTypes %} {% if
+                  loop.index <= 2 %}
+                  {{ value.title }}
+                  {% endif %} {% endfor %}
+                </p>
+          </div>
+          {% endif %}
+         
+         
+       <!--  soucasti predmetu pokud jenom jedna soucast-->
+          {% if metadata.restorationObject.parts and  metadata.restorationObject.parts[0].materialType and metadata.restorationObject.parts|length == 1 %}
+         
+              <div class="column">
+              
+                <b>Materiál</b>
+                <p>
+                    {{ metadata.restorationObject.parts[0].materialType.title }}
+                </p>
+               
+              </div>
+          {% endif %}
+ 
+ 
+          {% if metadata.restorationObject.parts and metadata.restorationObject.parts[0].fabricationTechnologies and metadata.restorationObject.parts|length ==1 %}
+          <div class="column">
+             
+               <b>Technologie</b>
+                <p>
+                  {% for value in metadata.restorationObject.parts[0].fabricationTechnologies %}
+                    {{ value.title }}
+                    {% endfor %}
+                </p>
+              
+          </div>
+          {% endif %}
+ 
+          {% if metadata.restorationObject.parts and metadata.restorationObject.parts[0].colors and metadata.restorationObject.parts|length ==1 %}
+          <div class="column">
+             
+                <b>Barva</b>
+                <p>
+                  {% for value in metadata.restorationObject.parts[0].colors %}
+                    {{ value.title }}
+                    {% endfor %}
+              
+          </div>
+          {% endif %}
+       
+    
+       
+      </div>
+ 
+ 
+      <!-- soucasti predmetu -->
+          {% if  metadata.restorationObject.parts and metadata.restorationObject.parts|length >1 %}
+         <div class="ui fluid accordion">
+          {% for value in metadata.restorationObject.parts %}
+          
+                    <div class="title">
+                        <i class="dropdown black icon"></i>
+                        Část {{value.name or loop.index}}
+                    </div>
+
+
+                    <div class="content">
+                      <div class="one column">
+                        <p> Hlávní:  {% if value.main  %} ano {% else %} ne {% endif %}  </p>
+                        
+                        {% if value.colors %}
+                            <p>
+                                Barvy: 
+                                {% for val in value.colors %}
+                                      {{val.title}}
+                                {% endfor %} 
+                              </p>
+                        {% endif %}
+                       
+          
+                        {% if value.materialType %}
+                            <p>
+                              Materiál: 
+                                {{value.materialType.title}}
+                            </p>
+                        {% endif %}
+          
+                        {% if value.secondaryMaterialTypes %}
+                            <p>
+                              Vedlější typy materiálů: 
+                              {% for val in value.secondaryMaterialTypes %}
+                                  {{ val.title }}
+                            {% endfor %}
+                            </p>
+                        {% endif %}
+          
+                        {% if value.fabricationTechnologies %}
+                            <p>
+                              Technologie:
+                              {% for val in value.fabricationTechnologies %}
+                                  {{ val.title }}
+                              {% endfor %}
+                            </p>
+                        {% endif %}
+                      </div>
+                      </div>
+         
+          {% endfor %}
+          </div> 
+          {% endif %}
+ 
+ 
+ 
+        <!-- desc -->
+        {% if metadata.restorationObject.description %}
+        <div aria-label="Popis předmětu">
+          <p>{{ metadata.restorationObject.description[0].value }}</p>
+        </div>
+        {% endif %}
+ 
+ 
+        <div class="ui divider"></div>
+ 
+ 
+      <!-- info table-->
+      {% if metadata.restorationWork.abstract %}
+          <div class="ui two column divided grid" aria-label="Info o předmětu">
+      {% else %}
+          <div class="ui one column grid" aria-label="Info o předmětu">
+      {% endif %}
+          <div class="column">
+ 
+          <table class="ui table" summary="Informace o předmětu">
+            <tbody>
+              {% if metadata.restorationObject.restorationRequestor %}
+              <tr>
+                <td><b>Zadavatel</b></td>
+                <td>
+                  {{ metadata.restorationObject.restorationRequestor.title }}
+                </td>
+              </tr>
+              {% endif %} {% if metadata.restorationWork.restorer or
+              metadata.restorationWork.workType %}
+              <tr>
+                <td><b>Restauroval(a)</b></td>
+                <td>
+                  {% if metadata.restorationWork.restorer %}
+                  {{ metadata.restorationWork.restorer }}
+                  {% endif %} {% if metadata.restorationWork.workType %} ,
+                  {{ metadata.restorationWork.workType.title }}
+                  {% endif %}
+                </td>
+              </tr>
+              {% endif %} {% if metadata.restorationWork.supervisors %}
+              <tr>
+                <td><b>Vedoucí práce</b></td>
+ 
+                <td>
+                  {% for value in metadata.restorationWork.supervisors %}
+                  <div>
+                       {{ value.fullName }}
+                      {{ value.institution }}
+                  </div>
+                 
+                  {% endfor %}
+                </td>
+              </tr>
+              {% endif %} {% if metadata.restorationWork.examinationMethods %}
+              <tr>
+                <td><b>Metody průzkumu</b></td>
+                <td>
+                  {% for value in metadata.restorationWork.examinationMethods %}
+                  {{ value.title }}
+                  {% endfor %}
+                </td>
+              </tr>
+              {% endif %} {% if metadata.restorationWork.restorationMethods %}
+              <tr >
+                <td><b>Metody restaurování</b></td>
+                <td>
+                  {% for value in metadata.restorationWork.restorationMethods %}
+                  {{ value.title }}
+                  {% endfor %}
+                </td>
+              </tr>
+              {% endif %}
+            </tbody>
+          </table>
+          </div>
+          {% if metadata.restorationWork.abstract %}
+          <div class="column">
+           
+              <b>Restaurátorský zásah/zaměr</b>
+            
+              <p>
+                {{ metadata.restorationWork.abstract }}
+              </p>
+            
+          </div>
+          {% endif %}
+          </div>
+ 
+ 
+ 
+      <div class="ui divider"></div>
+ 
+      <!-- docs -->
+      <div id="details__div__docs"></div>
 
 
 
+
+</div>
         </div>
   </div>
 </div>
 <script>
-  const accordionTitles = document.querySelectorAll(".title.parag");
+  const accordionTitles = document.querySelectorAll(".title");
   const accordionContents = document.querySelectorAll(".content");
 
   accordionTitles.forEach((title, index) => {
@@ -57,6 +419,7 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
         accordionContents[index].style.display = "none";
       } else {
         accordionContents[index].style.display = "block";
+        accordionContents[index].style.marginLeft = "50px";
       }
     });
   });

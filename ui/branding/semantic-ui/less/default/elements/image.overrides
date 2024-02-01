@@ -7,22 +7,22 @@
     margin-bottom: 3rem;
     margin-left: 6rem;
 
-    @media only screen and (max-width: 992px) and (min-width: 580px) {
+    @media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
       margin-bottom: 4rem;
     }
 
-    @media only screen and (max-width: 580px) {
+    @media only screen and (max-width: @smallMobileSize) {
       width: 8rem;
       margin-left: 4.3rem;
     }
 
-    @media only screen and (min-width: 1200px) {
+    @media only screen and (min-width: @tabletSize) {
       width: 12rem;
       margin-bottom: 5rem;
       margin-left: 6.5rem;
     }
 
-    @media only screen and (max-width: 1200px) and (min-width: 992px) {
+    @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
       width: 9rem;
       margin-left: 4.5rem;
     }
@@ -31,15 +31,15 @@
   &.decoration.arrows {
     height: 6rem;
 
-    @media only screen and (max-width: 580px) {
+    @media only screen and (max-width: @smallMobileSize) {
       height: 4rem;
     }
 
-    @media only screen and (min-width: 1500px) {
+    @media only screen and (min-width: @computerSize) {
       height: 7rem;
     }
 
-    @media only screen and (max-width: 1200px) and (min-width: 992px) {
+    @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
       height: 5rem;
     }
   }
@@ -47,10 +47,10 @@
   &.left-arrow {
     width: 1.5rem;
 
-    @media only screen and (max-width: 1200px) and (min-width: 992px) {
+    @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
       width: 1.3rem;
     }
-    @media only screen and (max-width: 992px) {
+    @media only screen and (max-width: @mobileSize) {
       height: 1rem;
     }
   }
@@ -58,7 +58,7 @@
   &.hero {
     width: 500px;
 
-    @media only screen and (max-width: 992px) {
+    @media only screen and (max-width: @mobileSize) {
       display: none;
     }
   }

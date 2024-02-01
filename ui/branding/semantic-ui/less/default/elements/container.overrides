@@ -9,14 +9,27 @@
     margin-top: 100px;
   }
 
-  @media only screen and (min-width: 1500px) {
+  .detail-page & {
+    min-height: 90%;
+    margin-top: 70px;
+    background-color: white;
+  }
+
+  &.reduced {
+    width: 90%;
+  }
+
+  @media only screen and (min-width: @computerSize) {
     & {
       width: 70vw;
     }
   }
-  @media only screen and (max-width: 992px) {
+  @media only screen and (max-width: @mobileSize) {
     main:not(.main-page) & {
       width: 100vw;
+    }
+    .detail-page & {
+      align-self: flex-start;
     }
   }
 }

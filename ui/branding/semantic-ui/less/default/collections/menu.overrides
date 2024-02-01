@@ -2,7 +2,7 @@
 
 .ui.menu {
   &.top.fixed {
-    @media only screen and (max-width: 992px) {
+    @media only screen and (max-width: @mobileSize) {
       padding-left: 10vw;
       padding-right: 10vw;
     }
@@ -10,16 +10,16 @@
   &.pagination .item {
     padding: 10px 30px;
     
-    @media only screen and (min-width: 1200px) and (max-width: 1500px) {
+    @media only screen and (min-width: @tabletSize) and (max-width: @computerSize) {
       padding: 5px 25px;
       font-size: 1.2rem;
     }
 
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+    @media only screen and (min-width: @mobileSize) and (max-width: @tabletSize) {
       padding: 5px 20px;
       font-size: 1rem;
     }
-    @media only screen and (max-width: 992px) { 
+    @media only screen and (max-width: @mobileSize) { 
         padding: 5px 15px;
         font-size: 0.8rem;
     }

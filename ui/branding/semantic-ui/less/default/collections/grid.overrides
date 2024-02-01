@@ -1,25 +1,18 @@
 @gapWidth: 15px;
 @gapMedium: 10px;
 
-.gapped {
-  gap: @gapWidth;
-  height: inherit;
-  display: flex;
-  align-items: flex-start;
-
-  &.double {
-    gap: @gapWidth * 5;
-  }
-}
-
 .ui.grid {
   flex-wrap: nowrap;
   flex-direction: column;
 }
 
+.spaced {
+  justify-content: space-between;
+}
+
 .column {
   display: flex;
-  justify-content: space-between;
+
   flex-flow: column;
 
   &.one {
@@ -38,6 +31,20 @@
 
     &:has(.twelve.wide.column) {
       justify-content: center;
+    }
+    .detail-page &.spaced {
+      background-color: @primaryRed;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      color: white;
+
+      & .column:nth-child(2){
+        text-align: right;
+      }
+    }
+    &.divided .column:nth-child(2) {
+      padding-left: 10px;
     }
   }
   &.three {
@@ -66,11 +73,22 @@
   }
 }
 
-.right.aligned.four.wide.column.computer.tablet.only {
-  font-size: 1rem;
+.gapped {
+  gap: @gapWidth;
+  height: inherit;
+  display: flex;
+  align-items: flex-start;
+
+  &.double {
+    gap: @gapWidth * 5;
+  }
 }
 
-@media only screen and (max-width: 992px) {
+// .right.aligned.four.wide.column.computer.tablet.only {
+//   font-size: 1rem;
+// }
+
+@media only screen and (max-width: @mobileSize) {
   .column {
     &.one {
       #form-app & {
@@ -87,25 +105,29 @@
         align-items: center;
         display: flex;
       }
+
+      .ui&.grid > .column:not(.row) {
+        width: 100% //same as above->fix
+    }
+    
     }
     &.eleven {
       text-align: center;
-    }
-    &.four.wide{
-      display: none
     }
   }
 
   .row.grid-searchbar {
     display: none;
   }
+ 
 }
-@media only screen and (max-width: 992px) and (min-width: 558px) {
+
+@media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
   main:not(.main-page) .ui.grid.gapped {
     width: 100vw;
   }
 }
-@media only screen and (min-width: 1200px) and (max-width: 1500px) {
+@media only screen and (min-width: @tabletSize) and (max-width: @computerSize) {
   .ui.grid {
     &.gapped {
       &.column {
@@ -121,7 +143,7 @@
   }
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
+@media only screen and (min-width: @computerSize) and (max-width: @tabletSize) {
   .gapped {
     gap: @gapMedium;
     height: inherit;

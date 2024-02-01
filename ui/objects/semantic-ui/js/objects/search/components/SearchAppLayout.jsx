@@ -66,7 +66,7 @@ export const SearchAppLayout = () => {
 
           {/* header and searchbar */}
           <Container>
-            <Grid columns={2}>
+            <Grid columns={2} className="spaced">
 
               <Grid.Column width={11}>
               <Header as="h2">
@@ -97,7 +97,7 @@ export const SearchAppLayout = () => {
 
 
           {/* search results */}
-          <Grid.Column className="predmety__cards">
+          <Grid.Column>
             <SearchAppResultsPane
               layoutOptions={searchAppConfig.layoutOptions}
               appName={appName}
@@ -131,7 +131,6 @@ export const SearchAppLayout = () => {
               />
             </Button> */}
             <Grid.Column
-              className="predmety__aside__filter"
               aria-label="Filter Options"
             >
               <Button

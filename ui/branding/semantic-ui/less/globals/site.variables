@@ -1,4 +1,5 @@
 
+// color palette
 @darkBrown: #9B9B93;
 @brownColor: #7e7f79;
 @sandGrayColor: #757670;
@@ -13,3 +14,12 @@
 @secondaryColorHov: #717164;
 
 @inputBorderColor: #626262;
+
+
+
+// screens
+
+@smallMobileSize: 580px;
+@mobileSize: 992px;
+@tabletSize: 1200px;
+@computerSize: 1500px;

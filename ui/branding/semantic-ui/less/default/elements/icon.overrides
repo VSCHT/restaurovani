@@ -42,3 +42,7 @@ i.icon{
   font-size: 1.3rem
 } */
 
+
+i.close.icon {
+  color: @darkestBrown;
+}
