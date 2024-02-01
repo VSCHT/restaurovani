@@ -19,8 +19,12 @@
       justify-content: flex-start;
     }
   }
-  .divided.grid & .title:not(.ui) {
-    justify-content: center;
+  .ui.unstackable.table & {
+    margin:0;
+    
+    .title:not(.ui) {
+      padding: 0;
+    }
   }
 
   .detail-page & .title,

@@ -2,6 +2,7 @@
   & tr {
     display: flex;
     flex-flow: column;
+    border-left: 1px solid @brownColor;
   }
   & tbody {
     display: flex;
