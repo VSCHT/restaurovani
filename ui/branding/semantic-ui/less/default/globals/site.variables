@@ -3,4 +3,7 @@
 
 
 
+@linkColor: black;
+
+@paragraphMargin: 0 0 0.3em;
 

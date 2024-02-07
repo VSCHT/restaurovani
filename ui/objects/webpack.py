@@ -8,7 +8,6 @@ theme = WebpackThemeBundle(
         "semantic-ui": dict(
             entry={
                 "objects_search": "./js/objects/search/index.js",
-
                 "objects_img_gallery": "./js/objects/gallery/index.js",
                 "objects_deposit_edit": "./js/objects/editform/index.js",
                 "objects_deposit_create": "./js/objects/createform/form/index.js",

@@ -26,7 +26,7 @@
 /* columns */
 /* @twoColumn: 50%; */
 @twoColumn: 49.5%;
-@threeColumn: 30%;
+@threeColumn: 40%;
 
 
 

@@ -1,4 +1,6 @@
 .ui.unstackable.table {
+  text-align:center;
+  
   & tr {
     display: flex;
     flex-flow: column;

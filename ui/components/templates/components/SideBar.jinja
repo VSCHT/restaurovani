@@ -2,24 +2,25 @@
 
 <!-- sidebar for mobile -->
 <nav class="ui sidebar vertical menu">
-  <button class="sidebar__btn-close">
+  <button class="ui close transparent button">
     <img src="{{ url_for('static', filename='images/close-icon.png') }}" />
   </button>
+
   <div class="item">
-    <div class="ui button main-page__menu__btn-sb main-page__menu__btn-sb-rest">
+    <div class="ui transparent button">
       <a href="/">
         <i class="arrow left icon"></i>
         RESTAUROVÁNÍ VŠCHT Praha</a
       >
     </div>
   </div>
+
   <div class="item">
     {%- if config.ACCOUNTS and current_user.is_authenticated %}
 
     <div class="item">
-      <button class="ui button btn main-page__menu__btn-sb">
+      <button class="ui transparent gapped button">
         <img
-          class="menu__profil-img"
           alt="user icon"
           src="{{ url_for('static', filename='images/user-icon-darker.png') }}"
         />
@@ -27,7 +28,7 @@
       </button>
     </div>
 
-    <div class="menu div__account-links">
+    <div class="menu">
       <a class="item" href="{{ url_for('invenio_userprofiles.profile') }}"
         >Nastavení</a
       >
@@ -35,23 +36,23 @@
       <a class="item" href="{{ url_for('security.logout') }}">Odhlašení</a>
     </div>
   </div>
+
+
   <div class="item">
-    <div class="vert-div main-page__div__btn-sb">
-      <div class="horiz-div">
         <form
           action="{{ url_for('objects.search') }}"
           role="search"
-          class="vert-div main-page__input-sb"
+          class="row"
         >
           <input
             type="text"
             name="q"
-            class="parag main-page__input-search-sb"
+            class="ui input"
             placeholder="{{ _('Vyhledat předmět ...') }}"
           />
           <button
             type="submit"
-            class="parag main-page__btn__addPredmety-sb"
+            class="ui transparent button"
             aria-label="Tlacitko prejit na predmety"
           >
             <img
@@ -60,13 +61,11 @@
             />
           </button>
         </form>
-      </div>
-    </div>
   </div>
 
   <div class="item">
     <a
-      class="predmety__aside__btn"
+      class="ui secondary button"
       href="{{ url_for('objects.create') }}"
       aria-label="Tlacitko dodat novy predmet"
     >
@@ -76,8 +75,8 @@
   </div>
   {%- else %}
   <div class="item">
-    <div class="ui button main-page__menu__btn-sb main-page__menu__btn-sb-rest">
-      <a class="btn" href="{{ url_for('security.login') }}">Přihlásit se</a>
+    <div class="ui secondary button">
+      <a href="{{ url_for('security.login') }}">Přihlásit se</a>
     </div>
 
     {%- endif %}

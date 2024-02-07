@@ -1,0 +1,7 @@
+
+
+
+@widescreenMonitorWidth:80%;
+@computerWidth:80%;
+@tabletWidth:90%;
+@mobileWidth:100%;

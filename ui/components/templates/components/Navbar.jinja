@@ -5,7 +5,10 @@
 
   <div class="ui menu top fixed">
     <div class="item toggle-burger">
-      <button class="ui olive button toggle-burger" alt="Toggle Filter Menu">
+      <button
+        class="ui transparent button toggle-burger"
+        alt="Toggle Filter Menu"
+      >
         <img
           rel="icon"
           src="{{ url_for('static', filename='images/menu-icon.png') }}"
@@ -14,28 +17,25 @@
       </button>
     </div>
 
-    <a class="item btn main-page__menu__btn" href="/">
-      <button class="ui button">
-      <img
-        class="ui image left-arrow"
-        src="{{ url_for('static', filename='images/arrow-left.png') }}"
-        alt="arrow back"
-      />RESTAUROVÁNÍ VŠCHT</button>
+    <a class="item" href="/">
+      <button class="ui gapped button">
+        <img
+          class="ui image left-arrow"
+          src="{{ url_for('static', filename='images/arrow-left.png') }}"
+          alt="arrow back"
+        />RESTAUROVÁNÍ VŠCHT
+      </button>
     </a>
 
     <div class="right menu">
       {%- if config.ACCOUNTS and current_user.is_authenticated %}
 
       <a class="item">
-        <!-- <AccountDropDown /> -->
+        <AccountDropDown />
       </a>
       {%- else %}
 
-      <a
-        class="item btn main-page__menu__btn"
-        href="{{ url_for('security.login') }}"
-        >Přihlásit se</a
-      >
+      <a class="item" href="{{ url_for('security.login') }}">Přihlásit se</a>
 
       {%- endif %}
     </div>
@@ -45,85 +45,4 @@
 <div class="overlay"></div>
 
 <!-- sidebar for mobile -->
-<nav class="ui sidebar vertical menu">
-  <button class="sidebar__btn-close">
-    <img src="{{ url_for('static', filename='images/close-icon.png') }}" />
-  </button>
-  <div class="item">
-    <div class="ui button main-page__menu__btn-sb main-page__menu__btn-sb-rest">
-      <a href="/">
-        <i class="arrow left icon"></i>
-        RESTAUROVÁNÍ VŠCHT Praha</a
-      >
-    </div>
-  </div>
-  <div class="item">
-    {%- if config.ACCOUNTS and current_user.is_authenticated %}
-
-    <div class="item">
-      <button class="ui button btn main-page__menu__btn-sb">
-        <img
-          class="menu__profil-img"
-          alt="user icon"
-          src="{{ url_for('static', filename='images/user-icon-darker.png') }}"
-        />
-        {{ current_user.email }}
-      </button>
-    </div>
-
-    <div class="menu div__account-links">
-      <a class="item" href="{{ url_for('invenio_userprofiles.profile') }}"
-        >Nastavení</a
-      >
-
-      <a class="item" href="{{ url_for('security.logout') }}">Odhlašení</a>
-    </div>
-  </div>
-  <div class="item">
-    <div class="vert-div main-page__div__btn-sb">
-      <div class="horiz-div">
-        <form
-          action="{{ url_for('objects.search') }}"
-          role="search"
-          class="vert-div main-page__input-sb"
-        >
-          <input
-            type="text"
-            name="q"
-            class="parag main-page__input-search-sb"
-            placeholder="{{ _('Vyhledat předmět ...') }}"
-          />
-          <button
-            type="submit"
-            class="parag main-page__btn__addPredmety-sb"
-            aria-label="Tlacitko prejit na predmety"
-          >
-            <img
-              src="{{ url_for('static', filename='images/search-icon-black.png') }}"
-              alt="search"
-            />
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div class="item">
-    <a
-      class="predmety__aside__btn"
-      href="{{ url_for('objects.create') }}"
-      aria-label="Tlacitko dodat novy predmet"
-    >
-      Nový předmět
-      <img src="/static/images/plus-square.png" alt="add new icon" />
-    </a>
-  </div>
-  {%- else %}
-  <div class="item">
-    <div class="ui button main-page__menu__btn-sb main-page__menu__btn-sb-rest">
-      <a class="btn" href="{{ url_for('security.login') }}">Přihlásit se</a>
-    </div>
-
-    {%- endif %}
-  </div>
-</nav>
+<SideBar />

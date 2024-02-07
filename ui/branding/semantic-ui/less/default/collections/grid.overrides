@@ -3,21 +3,38 @@
 
 .ui.grid {
   flex-wrap: nowrap;
-  flex-direction: column;
+  flex-direction: row;
+  margin-bottom: 1rem;
+
+  &.relaxed {
+    flex-direction: column;
+  }
+  & > .row {
+    padding-top: 0;
+  }
 }
 
 .spaced {
   justify-content: space-between;
 }
 
-.column {
+.row {
+  flex-direction: row;
   display: flex;
 
+  div#details__div__docs & {
+    align-items: flex-end;
+  }
+}
+
+.column {
+  display: flex;
   flex-flow: column;
 
   &.one {
     flex-wrap: wrap;
     width: auto;
+    flex-flow: column;
 
     &.separated {
       margin-top: 40px;
@@ -32,6 +49,7 @@
     &:has(.twelve.wide.column) {
       justify-content: center;
     }
+
     .detail-page &.spaced {
       background-color: @primaryRed;
       padding: 0 10px;
@@ -39,12 +57,12 @@
       align-items: center;
       color: white;
 
-      & .column:nth-child(2){
+      & .column:nth-child(2) {
         text-align: right;
       }
     }
     &.divided .column:nth-child(2) {
-      padding-left: 10px;
+      padding-left: 30px;
     }
   }
   &.three {
@@ -54,9 +72,8 @@
   }
   #form-app &.one:not(:has(.ui.accordion)) {
     width: 100%;
-    max-width: 600px;
+    // max-width: 600px;
   }
-
   &.predmety__aside__filter {
     margin-top: 80px;
   }
@@ -71,6 +88,9 @@
   &.img-container {
     width: 0px;
   }
+}
+.row.grid-searchbar .ui.button.filter {
+  display: none;
 }
 
 .gapped {
@@ -102,44 +122,54 @@
         width: 100%;
         flex-flow: column;
         width: 100%;
-        align-items: center;
+        // align-items: center;
+        align-items: left;
         display: flex;
       }
 
       .ui&.grid > .column:not(.row) {
         width: 100% //same as above->fix
-    }
-    
+;
+      }
     }
     &.eleven {
       text-align: center;
     }
   }
 
-  .row.grid-searchbar {
-    display: none;
+  .row {
+    &.grid-searchbar .ui.input {
+      display: none;
+    }
+    &.grid-searchbar .filter {
+      display: flex;
+    }
   }
- 
 }
 
 @media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
   main:not(.main-page) .ui.grid.gapped {
     width: 100vw;
   }
+  .row.grid-searchbar .ui.input {
+    display: none;
+  }
 }
 @media only screen and (min-width: @tabletSize) and (max-width: @computerSize) {
-  .ui.grid {
-    &.gapped {
-      &.column {
-        &.two {
-          gap: 45px;
-        }
-      }
+  .gapped {
+    gap: 45px;
+  }
+
+  .column {
+    &.predmety__aside__filter {
+      margin-top: 73px;
     }
   }
 
-  .column.predmety__aside__filter {
-    margin-top: 73px;
+  .row {
+    &.grid-searchbar .filter {
+      display: flex;
+    }
   }
 }
 

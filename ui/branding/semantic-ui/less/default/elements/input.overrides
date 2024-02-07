@@ -21,7 +21,11 @@
       width: 100%;
       background: none;
     }
-
+    .ui.sidebar & {
+      width: 100%;
+    }
+ 
+    
     @media only screen and (max-width: @smallMobileSize) {
       height: 2.5rem;
       font-size: @inputFontMedium;
@@ -38,7 +42,6 @@
     }
   }
 
- 
 
   &:has(input) {
     padding-left: 0px;

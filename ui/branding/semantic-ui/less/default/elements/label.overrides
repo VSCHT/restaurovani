@@ -1,6 +1,7 @@
 .ui.label {
   &.large {
     padding: 0;
+    max-width: 50%;
     .extra & {
       color: @brownColor;
     }

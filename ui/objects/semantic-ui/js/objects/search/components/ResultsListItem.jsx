@@ -110,7 +110,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
           fallbackSrc="/static/images/image-404.png"
           result={result}
         />
-{/* url */}
+        {/* url */}
         <ItemContent>
           <ItemHeader
             title={title}
@@ -119,7 +119,10 @@ export const ResultsListItemComponent = ({ result, appName }) => {
           />
           <ItemDescription>{restorer}</ItemDescription>
           <ItemExtra>
-            <Label size='large'>Vloženo: {created.slice(0,6)}</Label>
+            <Label size="large">
+              Vloženo:{" "}
+              {created.substring(created.indexOf(",") + 1, created.lastIndexOf(","))}{" "}
+            </Label>
             <DetailsButton
               searchUrl={searchAppConfig.ui_endpoint}
               selfLink={`${result.id}`}

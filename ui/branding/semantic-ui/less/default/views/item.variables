@@ -26,8 +26,10 @@
 @extraDisplay:flex;
 @extraMargin:8% 0  0;
 @contentImageDistance: 0px;
-@imageMaxHeight: 300px;
+/* @imageMaxHeight: 300px; */
 @contentDisplay: flex;
 @descriptionFontSize: 1.2rem;
 @extraHorizontalSpacing:50%;
 @imageDisplay:flex;
+
+@imageMargin: auto;

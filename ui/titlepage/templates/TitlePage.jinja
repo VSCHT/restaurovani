@@ -6,8 +6,9 @@ head_links %} {% block body %}
     <div class="ui container">
       <BrandLogo />
 
-      <div class="ui two column gapped grid">
+      <div class="ui two column double gapped grid">
         
+        <div class="column">
         <div class="ui gapped">
           <img
             src="{{ url_for('static', filename='images/bg-arrows.png') }}"
@@ -45,7 +46,7 @@ head_links %} {% block body %}
           </div>
 
         </div>
-
+        </div>
         <div class="column img-container">
           <img
             class="ui hero image"
