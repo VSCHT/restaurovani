@@ -1,0 +1,3 @@
+.ui.menu .right.menu .dropdown:last-child > .menu {
+  right: 9em;
+}

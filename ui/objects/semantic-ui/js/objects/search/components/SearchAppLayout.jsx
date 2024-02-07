@@ -77,9 +77,8 @@ export const SearchAppLayout = () => {
             <Grid.Column width={4}>
               <Grid.Row className="grid-searchbar">
                 <SearchBar />
-                {/* <Button
-                  transparent
-                  className=""
+                <Button
+                  className="transparent filter"
                   aria-label="Toggle Filter Menu"
                   onClick={toggleModal}
                 >
@@ -88,7 +87,7 @@ export const SearchAppLayout = () => {
                     src="/static/images/filter-icon.png"
                     alt="filter button"
                   />
-                </Button> */}
+                </Button>
               </Grid.Row>
               </Grid.Column>
 
@@ -159,14 +158,13 @@ export const SearchAppLayout = () => {
         >
           <Grid className="predmety__aside" id="predmety__aside">
             <Grid.Column
-              className="vert-div predmety__aside__filter"
               aria-label="Filter Options"
             >
               <h2>Filtrování výsledků</h2>
               <SearchAppFacets aggs={searchAppConfig.aggs} appName={appName} />
             </Grid.Column>
             <Button
-              className="btn predmety__input-search__searchbar-burger btn-close"
+              className="close"
               aria-label="Toggle Filter Menu"
               onClick={toggleModal}
             >

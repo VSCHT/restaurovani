@@ -122,7 +122,8 @@
       
 
         {% include config.THEME_JAVASCRIPT_TEMPLATE %}
-       
+      
+
       {%- endblock javascript %}
 
       {%- block trackingcode %}
@@ -132,4 +133,11 @@
     {%- endblock body %}
  
   </body>
+ 
 </html>
+
+<script>
+    
+  $('.ui.sidebar').sidebar('attach events', '.toggle-burger', 'show');
+  $('.ui.sidebar').sidebar('attach events', '.close', 'close');
+</script>

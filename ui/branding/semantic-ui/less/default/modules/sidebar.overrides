@@ -1,0 +1,15 @@
+.ui.sidebar {
+  &.menu {
+    &.vertical.left.uncover.visible {
+      padding-top: 60px;
+    }
+
+    & .item:not(.ui.input) {
+      text-align: center;
+    }
+
+    & .item * {
+      font-size: 1rem;
+    }
+  }
+}

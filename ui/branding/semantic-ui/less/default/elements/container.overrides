@@ -14,10 +14,10 @@
     margin-top: 70px;
     background-color: white;
   }
-
   &.reduced {
     width: 90%;
   }
+  
 
   @media only screen and (min-width: @computerSize) {
     & {
@@ -27,11 +27,17 @@
   @media only screen and (max-width: @mobileSize) {
     main:not(.main-page) & {
       width: 100vw;
+      
+      &.reduced {
+        width: 90%;
+      }
     }
     .detail-page & {
       align-self: flex-start;
     }
   }
+
+  
 }
 
 .twelve.wide.column .container {

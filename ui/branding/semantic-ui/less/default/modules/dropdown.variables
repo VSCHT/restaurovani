@@ -10,3 +10,8 @@
 @selectionActiveHoverBorderColor:#555;
 
 @selectionIconMargin: auto;
+
+
+@itemPadding: 0 1rem;
+@itemFontSize:0.9rem;
+@itemLineHeight: 1em;

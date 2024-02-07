@@ -23,20 +23,30 @@
       align-items: flex-end;
     }
   }
+  .ui.items > & {
+    overflow: hidden;
+  }
 }
 
 .ui.relaxed.divided.items > .item {
-    margin: 3em 0;
+  margin: 2em 0;
 }
 .ui.items > .item > .image img {
-    max-height: 250px;
-    align-self: center;
+  margin: auto;
+  align-self: center;
+}
+.ui.items > .item > .image {
+  overflow: hidden;
+  max-height: 215px;
 }
 
 @media only screen and (max-width: @mobileSize) {
   .item {
     &.toggle-burger {
-      display: flex;
+      display: flex !important;
+    }
+    .ui.menu.top.fixed &:not(.toggle-burger) {
+        display: none;
     }
     & .content {
       .ui.items > & > .description {
@@ -44,10 +54,10 @@
       }
       .ui.items > & .extra > * {
         margin: 0.25rem 40% 0.25rem 0em;
-    }
+      }
     }
   }
- 
+
   .ui.menu.top.fixed .item:nth-child(2),
   .ui.menu.top.fixed .right.menu {
     padding: 0 5vw;
@@ -81,7 +91,7 @@
       margin-top: 0.5em;
     }
     .ui.items > & .extra > * {
-        margin: 0.25rem 40% 0.25rem 0em;
+      margin: 0.25rem 40% 0.25rem 0em;
     }
     // .ui.items > .item > .image + .content {
     //     display: flex;
@@ -95,7 +105,7 @@
   .item {
     .ui.items > & > .content > .description {
       margin-top: 0.5em;
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
   }
 }
@@ -115,10 +125,10 @@
       margin: 0;
     }
     .ui.items > & .extra > * {
-        margin: 0.25rem 30% 0.25rem 0em;
+      margin: 0.25rem 30% 0.25rem 0em;
     }
     .ui.items > & > .content > .description {
-        font-size: 1rem;
+      font-size: 1rem;
     }
   }
 }

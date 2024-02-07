@@ -18,7 +18,7 @@
 
     @media only screen and (min-width: @tabletSize) {
       width: 12rem;
-      margin-bottom: 5rem;
+      margin-bottom: 5.5rem;
       margin-left: 6.5rem;
     }
 

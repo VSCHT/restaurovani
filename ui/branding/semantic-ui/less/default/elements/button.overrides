@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   height: 2.5rem;
-  width: 100%;
+  // width: 100%; conflict with detail->modal
 
   &:hover {
     color: @whiteColor;
@@ -38,8 +38,8 @@
     }
   }
 
-  .field &{
-    width:30%
+  .field & {
+    width: 30%;
   }
   &.close-btn {
     background: none;
@@ -58,6 +58,10 @@
       color: @whiteColor;
     }
   }
+  .ui.modal .content & {
+    background: none;
+    height: inherit;
+  }
 
   .ui.menu & {
     height: auto;
@@ -66,6 +70,15 @@
     width: 25%;
   }
 
+  &.close {
+    position: relative;
+    left: 90%;
+  }
+
+  .ui.dropdown & {
+    padding: 0;
+  }
+  
   @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
     height: 35px;
     padding: 10px;
@@ -96,7 +109,6 @@
       }
     }
   }
- 
 }
 
 @media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
