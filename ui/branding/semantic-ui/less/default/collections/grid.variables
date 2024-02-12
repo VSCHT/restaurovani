@@ -18,8 +18,9 @@
 @twelveWide: 70%;
 @elevenWide: auto;
 @fourWide : auto;
-@fiveWide : 20%;
-@eightWide:30%;
+@fiveWide : 25%;
+/* @eightWide:30%; conflict with search=> pagination*/ 
+@eightWide:auto;
 @gutterWidth :0;
 
 

@@ -40,12 +40,12 @@
       font-size: .count(@h1, 1) [ @result];
     }
     h2& {
-      font-size: .count(@h2, 1) [ @result];
+      font-size: .count(@h2, 0.8) [ @result];
     }
   }
 
   .header a {
-    font-size: .count(@headerLinkFont, 0.3) [ @result];
+    font-size: .count(@headerLinkFont, 0.1) [ @result];
   }
 }
 

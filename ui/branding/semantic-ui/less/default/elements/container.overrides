@@ -17,7 +17,11 @@
   &.reduced {
     width: 90%;
   }
-  
+
+  .twelve.wide.column .container {
+    margin-top: 50px;
+    margin-bottom: 15px;
+  }
 
   @media only screen and (min-width: @computerSize) {
     & {
@@ -27,7 +31,7 @@
   @media only screen and (max-width: @mobileSize) {
     main:not(.main-page) & {
       width: 100vw;
-      
+
       &.reduced {
         width: 90%;
       }
@@ -35,12 +39,17 @@
     .detail-page & {
       align-self: flex-start;
     }
+    #form-app & {
+      padding: 10px 5vw;
+    }
+    .twelve.wide.column .container {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
   }
-
-  
-}
-
-.twelve.wide.column .container {
-  margin-top: 50px;
-  margin-bottom: 15px;
+  @media only screen and (max-width: @smallMobileSize) {
+    #form-app & {
+      padding: 10px 1vw;
+    }
+  }
 }

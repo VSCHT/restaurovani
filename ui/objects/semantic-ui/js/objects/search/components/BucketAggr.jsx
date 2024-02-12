@@ -15,15 +15,13 @@ export const MyBucketAggregationValues = withState(
     return (
       <>
         <List.Item key={bucket.key}>
-         
           <Checkbox
             value={bucket.key}
             onClick={() => onFilterClicked(bucket.key)}
             checked={isSelected}
           />
-          <Label size='large'>{bucket.label}</Label> <Label size='large'>{bucket.doc_count}</Label>{" "}
-          {childAggCmps}
-        
+          <Label size="large">{bucket.label}</Label>{" "}
+          <Label size="large">{bucket.doc_count}</Label> {childAggCmps}
         </List.Item>
       </>
     );
@@ -61,13 +59,6 @@ export const MyBucketAggregation = withState(({ title, containerCmp }) => {
           }
 
           <Icon name="chevron down" />
-          {/* <Image
-            src="/static/images/chevron-down.png"
-            className={`predmety__aside__dropdown-icon ${
-              activeIndex === title ? "rotate-icon" : ""
-            }`}
-            alt="dropdown icon"
-          /> */}
         </Accordion.Title>
         <Accordion.Content active={activeIndex === title}>
           {containerCmp}

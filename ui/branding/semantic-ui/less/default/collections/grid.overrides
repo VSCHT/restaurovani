@@ -23,7 +23,7 @@
   display: flex;
 
   div#details__div__docs & {
-    align-items: flex-end;
+    align-items: flex-start;
   }
 }
 
@@ -62,7 +62,7 @@
       }
     }
     &.divided .column:nth-child(2) {
-      padding-left: 30px;
+      padding: 0 15px;
     }
   }
   &.three {
@@ -72,7 +72,6 @@
   }
   #form-app &.one:not(:has(.ui.accordion)) {
     width: 100%;
-    // max-width: 600px;
   }
   &.predmety__aside__filter {
     margin-top: 80px;
@@ -80,7 +79,6 @@
   &.predmety__form {
     margin: 0 auto;
     align-items: center;
-    width: max-content;
   }
   &:has(.mt-20) {
     background-color: @whiteColor;
@@ -104,11 +102,10 @@
   }
 }
 
-// .right.aligned.four.wide.column.computer.tablet.only {
-//   font-size: 1rem;
-// }
-
 @media only screen and (max-width: @mobileSize) {
+  .row.grid-searchbar .ui.button.filter {
+    display: flex;
+  }
   .column {
     &.one {
       #form-app & {
@@ -117,19 +114,18 @@
     }
     &.two {
       gap: @gapWidth;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
 
-      & > .column:not(.row) {
-        width: 100%;
-        flex-flow: column;
-        width: 100%;
-        // align-items: center;
-        align-items: left;
-        display: flex;
+      .detail-page & {
+        flex-wrap: nowrap;
       }
 
       .ui&.grid > .column:not(.row) {
-        width: 100% //same as above->fix
-;
+        width: 100%;
+        flex-flow: column;
+        display: flex;
       }
     }
     &.eleven {
@@ -149,7 +145,10 @@
 
 @media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
   main:not(.main-page) .ui.grid.gapped {
-    width: 100vw;
+    width: auto;
+  }
+  #form-app .ui.grid.gapped {
+    width: 100%;
   }
   .row.grid-searchbar .ui.input {
     display: none;
@@ -157,7 +156,7 @@
 }
 @media only screen and (min-width: @tabletSize) and (max-width: @computerSize) {
   .gapped {
-    gap: 45px;
+    gap: 25px;
   }
 
   .column {

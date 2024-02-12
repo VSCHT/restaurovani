@@ -119,7 +119,7 @@ export const SearchAppLayout = () => {
             />
 
             {/* <Button
-              className="btn predmety__input-search__searchbar-burger btn-close"
+              className="transparent close"
               aria-label="Toggle Filter Menu"
               onClick={(e) => toggleSidebar(e)}
             >
@@ -160,7 +160,7 @@ export const SearchAppLayout = () => {
             <Grid.Column
               aria-label="Filter Options"
             >
-              <h2>Filtrování výsledků</h2>
+              <Header as='h3'>Filtrování výsledků</Header>
               <SearchAppFacets aggs={searchAppConfig.aggs} appName={appName} />
             </Grid.Column>
             <Button
@@ -171,7 +171,7 @@ export const SearchAppLayout = () => {
               <Image
                 rel="icon"
                 src="/static/images/close-icon.png"
-                alt="burger filter button"
+                alt="close filter button"
               />
             </Button>
           </Grid>

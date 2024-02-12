@@ -226,7 +226,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
           />
         </Grid.Column>
         <Grid.Column>
-        <FileStat apiUrl={record?.links?.files} record={record} />
+          <FileStat apiUrl={record?.links?.files} record={record} />
         </Grid.Column>
       </Grid>
     </AccordionField>

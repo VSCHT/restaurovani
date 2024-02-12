@@ -16,3 +16,4 @@
 @background: none;
 @pointingBorderColor: @red;
 @focusBorderColor: @inputBorderColor;
+@iconMargin:0;

@@ -24,7 +24,7 @@
 @descriptionColor: #222;
 @extraWidth:100%;
 @extraDisplay:flex;
-@extraMargin:8% 0  0;
+@extraMargin:5% 0  0;
 @contentImageDistance: 0px;
 /* @imageMaxHeight: 300px; */
 @contentDisplay: flex;

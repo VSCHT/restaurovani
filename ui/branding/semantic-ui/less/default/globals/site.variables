@@ -1,7 +1,7 @@
 @emSize: 17px;
-@pageBackground:#EAEAE2;
+@pageBackground: @basicColor;
 
-
+@fontSize:0.9rem;
 
 @linkColor: black;
 

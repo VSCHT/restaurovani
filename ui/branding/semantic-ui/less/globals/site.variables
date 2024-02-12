@@ -14,6 +14,7 @@
 @secondaryColorHov: #717164;
 
 @inputBorderColor: #626262;
+@basicColor:#EAEAE2;
 
 
 

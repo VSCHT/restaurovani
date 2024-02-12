@@ -3,8 +3,7 @@
 .ui.menu {
   &.top.fixed {
     @media only screen and (max-width: @mobileSize) {
-      padding-left: 10vw;
-      padding-right: 10vw;
+      padding-left: 0;
     }
   }
   &.pagination .item {
@@ -25,4 +24,7 @@
     }
     
   }
+}
+.ui.container.stackable .ui.menu a, .item {
+   color: gray;
 }

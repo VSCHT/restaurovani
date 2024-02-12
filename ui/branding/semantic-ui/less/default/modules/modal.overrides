@@ -1,9 +1,11 @@
 .ui.modal {
-    text-align: center;
-
+//   text-align: center;
+    padding: 20px;
+    background-color: @basicColor;
+  
 }
 @media only screen and (max-width: @mobileSize) {
-.ui.modal .image.content {
+  .ui.modal .image.content {
     flex-direction: row;
   }
 }
