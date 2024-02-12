@@ -6,10 +6,10 @@
 
     & .item:not(.ui.input) {
       text-align: center;
-    }
-
-    & .item * {
-      font-size: 1rem;
+      justify-content: center;
+      flex-direction: column;
+      display: flex;
+      align-items: center;
     }
   }
 }

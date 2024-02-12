@@ -1,8 +1,9 @@
 .ui.unstackable.table {
-  text-align:center;
-  
+  text-align: center;
+
   & tr {
     display: flex;
+    align-items: center;
     flex-flow: column;
     border-left: 1px solid @brownColor;
   }
@@ -17,8 +18,10 @@
     & tbody {
       flex-direction: column;
     }
+    & td {
+      width: 50%;
+      align-items: flex-start;
+      display: flex;
+    }
   }
 }
-
-
-

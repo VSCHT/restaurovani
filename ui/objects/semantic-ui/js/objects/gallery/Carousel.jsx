@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
 import {
   Modal,
   Image,
@@ -9,7 +7,7 @@ import {
   Loader,
   Label,
   Grid,
-  Header,
+  Header
 } from "semantic-ui-react";
 
 const fileName = (d) => {
@@ -156,7 +154,7 @@ export const ImgCarousel = ({ imgs }) => {
 export const FilesSection = ({ files }) => {
   return files?.some((file) => file.metadata.fileType === "document") ? (
     <Grid columns={2}>
-      <Grid.Column>Dokumenty</Grid.Column>
+      <Grid.Column><Label className="bold">Dokumenty</Label></Grid.Column>
       <Grid.Column>
         {files?.map((file, index) => {
           if (

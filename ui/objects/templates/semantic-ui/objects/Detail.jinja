@@ -47,41 +47,41 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
         <div id="images-carousel" data-photos='{{ record.links.files | tojson }}'></div>
 
         <table class="ui unstackable table">
-          <tbody class="">
+          <tbody>
             {% if metadata.restorationObject.stylePeriod %}
-            <tr class="">
-              <td class="collapsing"><b>Datace</b></td>
-              <td class="">
+            <tr>
+              <td class="collapsing"><p><b>Datace</b></p></td>
+              <td><p>
                 {% if metadata.restorationObject.stylePeriod.startYear %}
                 {{ metadata.restorationObject.stylePeriod.startYear }}
                 {% endif %} {% if metadata.restorationObject.stylePeriod.endYear
                 %} -
                 {{ metadata.restorationObject.stylePeriod.endYear }}
                 {% endif %}
-                {{ metadata.restorationObject.stylePeriod.period.title }}
+                {{ metadata.restorationObject.stylePeriod.period.title }}</p>
               </td>
             </tr>
             {% endif %} {% if metadata.restorationObject.itemTypes %}
-            <tr class="">
-              <td class=""><b>Typ předmětu</b></td>
-              <td class="">
+            <tr>
+              <td><p><b>Typ předmětu</b></p></td>
+              <td><p>
                 {% for value in metadata.restorationObject.itemTypes %} {% if
                 loop.index <= 2 %}
                 {{ value.title }}
-                {% endif %} {% endfor %}
+                {% endif %} {% endfor %}</p>
               </td>
             </tr>
             {% endif %} {% if metadata.restorationObject.dimensions %}
-            <tr class="">
-              <td class=""><b> Rozměry předmětu</b></td>
-              <td class="">
+            <tr>
+              <td><p><b> Rozměry předmětu</b></p></td>
+              <td>
                 <div class="ui accordion">
                   <div class="title active">
                     {% for value in metadata.restorationObject.dimensions %} {%
-                    if loop.index == 1 %} {% if value.dimension.title %}
+                    if loop.index == 1 %} <p>{% if value.dimension.title %}
                     {{ value.dimension.title }} {{ value.value
                     }}{{ value.unit }} {% endif %} {% endif %} {% if loop.index
-                    == 2 %} <i class="dropdown black icon"></i>{% endif %} {%
+                    == 2 %} <i class="dropdown black icon"></i>{% endif %}</p> {%
                     endfor %}
                   </div>
                   <div class="content">
@@ -97,37 +97,37 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                   </div>
                 </div>
               </td>
-             {% endif %} {% if metadata.restorationObject.parts and
+            
+            </tr> {% endif %} 
+              {% if metadata.restorationObject.parts and
               metadata.restorationObject.parts[0].materialType and
               metadata.restorationObject.parts|length == 1 %}
-            </tr>
-
-            <tr class="">
-              <td class=""><b>Materiál</b></td>
-              <td class="">
-                {{ metadata.restorationObject.parts[0].materialType.title }}
+            <tr>
+              <td><p><b>Materiál</b></p></td>
+              <td><p>
+                {{ metadata.restorationObject.parts[0].materialType.title }}</p>
               </td>
             </tr>
             {% endif %} {% if metadata.restorationObject.parts and
             metadata.restorationObject.parts[0].fabricationTechnologies and
             metadata.restorationObject.parts|length ==1 %}
-            <tr class="">
-              <td class=""><b>Technologie</b></td>
-              <td class="">
+            <tr>
+              <td><p><b>Technologie</b></p></td>
+              <td>
                 {% for value in
                 metadata.restorationObject.parts[0].fabricationTechnologies %}
-                {{ value.title }}
+                <p>{{ value.title }}</p>
                 {% endfor %}
               </td>
             </tr>
             {% endif %} {% if metadata.restorationObject.parts and
             metadata.restorationObject.parts[0].colors and
             metadata.restorationObject.parts|length ==1 %}
-            <tr class="">
-              <td class=""><b>Barva</b></td>
-              <td class="">
+            <tr>
+              <td><p><b>Barva</b></p></td>
+              <td>
                 {% for value in metadata.restorationObject.parts[0].colors %}
-                {{ value.title }}
+                <p>{{ value.title }}</p>
                 {% endfor %}
               </td>
             </tr>
