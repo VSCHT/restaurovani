@@ -1,12 +1,10 @@
-
-
-
 /*--------------
     SEMANTIC
 ---------------*/
 
-
 @inputWidth: auto;
 @fieldsMargin: 1em -0.5em 0em;
 
-
+@inputBorder:1px solid @inputBorderColor;
+@inputBorderRadius: 30px;
+@inputWidth: 100%;

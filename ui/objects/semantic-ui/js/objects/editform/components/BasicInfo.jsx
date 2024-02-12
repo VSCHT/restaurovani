@@ -19,7 +19,7 @@ import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import { FileStat } from "./FileStat";
 
-export const BasicInfo = ({ activeIndex, handleActive, record }) => {
+export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
   const units = [
     { value: "kg", text: "kg" },
     { value: "mg", text: "mg" },
@@ -87,6 +87,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
         </Grid.Column>
         <Grid.Column>
           <LocalVocabularySelectField
+            // optionsListName={`ItemTypes${category}`}
             optionsListName="ItemTypes"
             fieldPath="metadata.restorationObject.itemTypes"
             multiple={true}
@@ -103,13 +104,13 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
           <Grid.Column>
             <TextField
               name="metadata.restorationObject.creationPeriod.since"
-              aria-label="Počateční rok"
+              aria-label="Datace od"
               fieldPath="metadata.restorationObject.creationPeriod.since"
-              placeholder="Počateční rok"
+              placeholder="Datace od"
               label={
                 <FieldLabel
                   htmlFor="metadata.restorationObject.creationPeriod.since"
-                  label="Počateční rok"
+                  label="Datace od"
                 ></FieldLabel>
               }
             />
@@ -117,85 +118,86 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
           <Grid.Column>
             <TextField
               name="metadata.restorationObject.creationPeriod.until"
-              aria-label="Končící rok"
+              aria-label="Datace do"
               fieldPath="metadata.restorationObject.creationPeriod.until"
-              placeholder="Končící rok"
+              placeholder="Datace do"
               label={
                 <FieldLabel
                   htmlFor="metadata.restorationObject.creationPeriod.until"
-                  label="Končící rok"
+                  label="Datace do"
                 ></FieldLabel>
               }
             />
           </Grid.Column>
         </Grid>
-        <ArrayField
-          addButtonLabel="Přidat rozměr"
-          fieldPath="metadata.restorationObject.dimensions"
-          defaultNewValue={{
-            unit: "",
-            value: "",
-          }}
-        >
-          {({ arrayHelpers, indexPath }) => {
-            const fieldPathPrefix = `${"metadata.restorationObject.dimensions"}[${indexPath}]`;
-            return (
-              <ArrayFieldItem
-                name="metadata.restorationObject.dimensions"
-                fieldPath="metadata.restorationObject.dimensions"
-                indexPath={indexPath}
-                arrayHelpers={arrayHelpers}
-              >
-                <Grid columns={3} className="gapped">
-                  <Grid.Column>
-                    <LocalVocabularySelectField
-                      optionsListName="Dimensions"
-                      placeholder="Rozměr"
-                      fieldPath={`${fieldPathPrefix}.dimension`}
-                      clearable
-                      label={
-                        <FieldLabel
-                          htmlFor={`${fieldPathPrefix}.dimension.title`}
-                          label="Rozměr"
-                        />
-                      }
-                    />
-                  </Grid.Column>
-                  <Grid.Column>
-                    <TextField
-                      name={`${fieldPathPrefix}.value`}
-                      aria-label="Value"
-                      fieldPath={`${fieldPathPrefix}.value`}
-                      placeholder="Napište hodnotu"
-                      label={
-                        <FieldLabel
-                          htmlFor={`${fieldPathPrefix}.value`}
-                          label="Hodnota"
-                        ></FieldLabel>
-                      }
-                    />
-                  </Grid.Column>
-                  <Grid.Column>
-                    <SelectField
-                      name={`${fieldPathPrefix}.unit`}
-                      aria-label="Unit"
-                      fieldPath={`${fieldPathPrefix}.unit`}
-                      options={units}
-                      placeholder="Jednotka"
-                      label={
-                        <FieldLabel
-                          htmlFor={`${fieldPathPrefix}.unit`}
-                          label="Jednotka"
-                        ></FieldLabel>
-                      }
-                    />
-                  </Grid.Column>
-                </Grid>
-              </ArrayFieldItem>
-            );
-          }}
-        </ArrayField>
-
+        {category != "textil" && (
+          <ArrayField
+            addButtonLabel="Přidat rozměr"
+            fieldPath="metadata.restorationObject.dimensions"
+            defaultNewValue={{
+              unit: "",
+              value: "",
+            }}
+          >
+            {({ arrayHelpers, indexPath }) => {
+              const fieldPathPrefix = `${"metadata.restorationObject.dimensions"}[${indexPath}]`;
+              return (
+                <ArrayFieldItem
+                  name="metadata.restorationObject.dimensions"
+                  fieldPath="metadata.restorationObject.dimensions"
+                  indexPath={indexPath}
+                  arrayHelpers={arrayHelpers}
+                >
+                  <Grid columns={3} className="gapped">
+                    <Grid.Column>
+                      <LocalVocabularySelectField
+                        optionsListName="Dimensions"
+                        placeholder="Rozměr"
+                        fieldPath={`${fieldPathPrefix}.dimension`}
+                        clearable
+                        label={
+                          <FieldLabel
+                            htmlFor={`${fieldPathPrefix}.dimension.title`}
+                            label="Rozměr"
+                          />
+                        }
+                      />
+                    </Grid.Column>
+                    <Grid.Column>
+                      <TextField
+                        name={`${fieldPathPrefix}.value`}
+                        aria-label="Value"
+                        fieldPath={`${fieldPathPrefix}.value`}
+                        placeholder="Napište hodnotu"
+                        label={
+                          <FieldLabel
+                            htmlFor={`${fieldPathPrefix}.value`}
+                            label="Hodnota"
+                          ></FieldLabel>
+                        }
+                      />
+                    </Grid.Column>
+                    <Grid.Column>
+                      <SelectField
+                        name={`${fieldPathPrefix}.unit`}
+                        aria-label="Unit"
+                        fieldPath={`${fieldPathPrefix}.unit`}
+                        options={units}
+                        placeholder="Jednotka"
+                        label={
+                          <FieldLabel
+                            htmlFor={`${fieldPathPrefix}.unit`}
+                            label="Jednotka"
+                          ></FieldLabel>
+                        }
+                      />
+                    </Grid.Column>
+                  </Grid>
+                </ArrayFieldItem>
+              );
+            }}
+          </ArrayField>
+        )}
         <Grid.Column>
           <BooleanField
             optimized="false"

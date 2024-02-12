@@ -6,7 +6,6 @@ import {
   Grid,
   Button,
   Image,
-  Label,
   Header,
   Modal,
 } from "semantic-ui-react";
@@ -25,11 +24,6 @@ export const SearchAppLayout = () => {
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
-  };
-
-  const toggleSidebar = (e) => {
-    e.preventDefault();
-    setSidebarVisible(!sidebarVisible);
   };
 
   useEffect(() => {
@@ -102,9 +96,8 @@ export const SearchAppLayout = () => {
         {/* second column - facets */}
         {sidebarVisible && (
           <Grid.Column
-            width={5}
+            width={6}
             className="predmety__aside"
-            id="predmety__aside"
           >
             <Image
               className="vsht-logo"

@@ -181,12 +181,12 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
             fieldPath="metadata.restorationWork.examinationMethods"
             multiple={true}
             optionsListName="ExaminationMethods"
-            placeholder="Vyberte metody zkoumání"
+            placeholder="Vyberte metody průzkumu"
             clearable
             label={
               <FieldLabel
                 htmlFor={"metadata.restorationWork.examinationMethods"}
-                label="Metody zkoumání"
+                label="Metody průzkumu"
               />
             }
           />

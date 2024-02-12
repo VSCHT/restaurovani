@@ -13,7 +13,7 @@
     color: @whiteColor;
   }
 
-  &.primary {
+  &.primary:not(.fluid) {
     width: 20%;
     .main-page & {
       width: 65%;
@@ -23,6 +23,11 @@
     }
     #form-app & {
       width: 25%;
+    }
+    .form-actions &{
+      width: 60%;
+      height: 2.5rem;
+      margin-top: 5px;
     }
   }
 
@@ -99,13 +104,15 @@
   .ui.dropdown & {
     padding: 0;
   }
+   
+  
 
   @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
     height: 35px;
     padding: 10px;
     font-size: 0.9rem;
 
-    &.primary {
+    &.primary:not(.fluid)  {
       width: 25%;
       height: 45px;
 
@@ -121,7 +128,7 @@
   }
 
   @media only screen and (max-width: @smallMobileSize) {
-    &.primary {
+    &.primary:not(.fluid)  {
       font-size: @mediumFontSize;
       .main-page & {
         width: 65%;
@@ -140,7 +147,7 @@
   }
 
   @media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
-    &.primary {
+    &.primary:not(.fluid)  {
       width: 30%;
       .main-page & {
         width: 65%;
@@ -152,6 +159,8 @@
       }
     }
   }
+
+
 }
 
 .ui.buttons {

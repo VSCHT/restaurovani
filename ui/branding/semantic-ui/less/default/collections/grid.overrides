@@ -79,7 +79,7 @@
   #form-app &.one:not(:has(.ui.accordion)) {
     width: 100%;
   }
-
+// check if ok
   &.predmety__aside__filter {
     margin-top: 80px;
   }

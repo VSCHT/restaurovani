@@ -51,7 +51,7 @@
 
 @media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
   .ui.header {
-    h1& {
+    h1&:not(.login, .large) {
       font-size: .count(@h1, 0.5) [ @result];
       min-height: 18rem;
     }
@@ -63,7 +63,7 @@
 
 @media only screen and (max-width: @smallMobileSize) {
   .ui.header {
-    h1& {
+    h1&:not(.login, .large) {
       font-size: .count(@h1, 1.5) [ @result];
       min-height: 10rem;
     }

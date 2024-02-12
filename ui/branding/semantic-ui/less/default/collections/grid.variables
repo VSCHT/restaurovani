@@ -18,11 +18,13 @@
 @twelveWide: 70%;
 @elevenWide: auto;
 @fourWide : auto;
-@fiveWide : 25%;
+@sixWide : 25%;
+@fiveWide : 100%;
 /* @eightWide:30%; conflict with search=> pagination*/ 
 @eightWide:auto;
 @gutterWidth :0;
 
+/* @sixteenColumn: 70vw; */
 
 /* columns */
 /* @twoColumn: 50%; */

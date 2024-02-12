@@ -12,7 +12,7 @@ restorationObject:
         facet-groups: [ default ]
     category:
       type: keyword
-      label.cs: Kategorie
+      label.cs: Hlavní materiál
       facets:
         facet-groups: [ default ]
     description:

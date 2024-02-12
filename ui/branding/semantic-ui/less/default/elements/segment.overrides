@@ -7,7 +7,14 @@
     min-height: 100vh;
     height: 100%;
   }
+  &.padded {
+    flex-flow: column;
+    justify-content: center;
 
+    &.login{
+        width: 40vw;
+    }
+  }
   &.centered {
     flex-wrap: wrap;
     justify-content: center;
@@ -26,10 +33,23 @@
   &.attached {
     padding: 20px;
   }
-}
+  article &{
+    padding: 20px;
+  }
+  
+  }
+
 
 @media only screen and (max-width: @mobileSize) {
   .ui.vertical.segment {
     gap: @segmentGapMobile;
+  }
+  .ui.segments {
+    display: flex;
+
+    & > .ui.segment.login {
+      width: 80vw;
+      align-self: center;
+    }
   }
 }

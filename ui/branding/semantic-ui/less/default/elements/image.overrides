@@ -6,6 +6,7 @@
     margin-bottom: 3rem;
     margin-left: 6rem;
 
+    
     @media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
       margin-bottom: 4rem;
     }
@@ -68,6 +69,10 @@
 
   .ui.button.filter & {
     width: 30px;
+  }
+
+  .cover-page & {
+    width: 60px;
   }
 }
 

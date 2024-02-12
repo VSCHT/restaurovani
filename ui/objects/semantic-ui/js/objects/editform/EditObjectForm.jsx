@@ -17,6 +17,7 @@ import { PartsInfo } from "./components/PartsInfo";
 export const EditObjectForm = () => {
   let { record } = useFormConfig();
 
+  let category= record.metadata.restorationObject.category
   const [activeIndex, setActiveIndex] = React.useState(0);
   const handleActive = (x) => {
     setActiveIndex(x);
@@ -45,6 +46,7 @@ export const EditObjectForm = () => {
                 activeIndex={activeIndex}
                 handleActive={handleActive}
                 record={record}
+                category={category}
               />
             </Overridable>
 
