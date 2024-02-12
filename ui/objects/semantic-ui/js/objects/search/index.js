@@ -6,8 +6,12 @@ import {
   SearchAppResultOptions,
   SearchAppSearchbarContainer,
   SearchFiltersToggleElement,
-  SearchAppSort
+  SearchAppSort,
+  BucketAggregationElement,
+  BucketAggregationValuesElement,
+  SearchAppFacets
 } from '@js/oarepo_ui/search'
+
 import {
   EmptyResultsElement,
   ResultsGridItemWithState,
@@ -28,13 +32,16 @@ const ResultsGridItemWithConfig = parametrize(ResultsGridItemWithState, { appNam
 export const defaultComponents = {
   [`${appName}.ActiveFilters.element`]: ActiveFiltersElement,
   [`${appName}.BucketAggregation.element`]: MyBucketAggregation,
-  [`${appName}.BucketAggregationValues.element`]: MyBucketAggregationValues,
+  // [`${appName}.BucketAggregationValues.element`]: MyBucketAggregationValues,
+  // [`${appName}.BucketAggregation.element`]: BucketAggregationElement,
+  [`${appName}.BucketAggregationValues.element`]: BucketAggregationValuesElement,
   [`${appName}.Count.element`]: CountElement,
   [`${appName}.EmptyResults.element`]: EmptyResultsElement,
   [`${appName}.Error.element`]: ErrorElement,
   [`${appName}.ResultsGrid.item`]: ResultsGridItemWithConfig,
   [`${appName}.ResultsList.item`]: ResultsListItemWithConfig,
-  [`${appName}.SearchApp.facets`]: MyFacets,
+  // [`${appName}.SearchApp.facets`]: MyFacets,
+  [`${appName}.SearchApp.facets`]: SearchAppFacets,
   [`${appName}.SearchApp.layout`]: SearchAppLayout,
   [`${appName}.SearchApp.searchbarContainer`]: SearchAppSearchbarContainerWithConfig,
   [`${appName}.SearchApp.sort`]: SearchAppSort,

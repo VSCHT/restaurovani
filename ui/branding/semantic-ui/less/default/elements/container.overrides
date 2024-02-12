@@ -1,4 +1,4 @@
-.ui.container {
+.ui.container:not(.page-subheader) {
   align-self: center;
   width: 80vw;
 
@@ -24,12 +24,13 @@
   }
 
   @media only screen and (min-width: @computerSize) {
-    & {
+    &:not(.page-subheader) {
       width: 70vw;
+      padding: 0 20px;
     }
   }
   @media only screen and (max-width: @mobileSize) {
-    main:not(.main-page) & {
+    main:not(.main-page) &:not(.page-subheader) {
       width: 100vw;
 
       &.reduced {
