@@ -18,12 +18,12 @@
 @styledActiveTitleColor: @whiteColor;
 
 /* hover */
-@styledTitleHoverBackground: @sandGrayColor;
-// @styledTitleHoverColor: rgb(182, 177, 177);
+@styledTitleHoverBackground: none;
+@styledTitleHoverColor: rgb(182, 177, 177);
 
 @styledContentPadding: 2.5em 1em 1.5em;
 @styledTitlePadding: 0.7rem 1rem;
 @styledTitleFontWeight:500;
-// @styledWidth: 60%;
+
 
 

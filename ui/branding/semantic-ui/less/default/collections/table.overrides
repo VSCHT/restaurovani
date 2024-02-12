@@ -1,18 +1,21 @@
 .ui.unstackable.table {
-  text-align: center;
+  text-align: left;
+  
+  & tbody,
+  & tr,
+  & td {
+    display: flex;
+  }
 
   & tr {
-    display: flex;
     align-items: center;
     flex-flow: column;
     border-left: 1px solid @brownColor;
   }
-  & tbody {
-    display: flex;
-  }
+  
+
   @media only screen and (max-width: @mobileSize) {
     & tr {
-      display: flex;
       flex-flow: row;
     }
     & tbody {
@@ -21,7 +24,6 @@
     & td {
       width: 50%;
       align-items: flex-start;
-      display: flex;
     }
   }
 }
