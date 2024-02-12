@@ -1,5 +1,4 @@
 .ui.modal {
-//   text-align: center;
     padding: 20px;
     background-color: @basicColor;
   

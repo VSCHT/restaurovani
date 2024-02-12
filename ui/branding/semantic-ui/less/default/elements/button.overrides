@@ -1,6 +1,7 @@
 @mediumWidth: 65%;
 @mediumFontSize: 0.8rem;
 
+
 .ui.button {
   font-size: 1rem;
   display: flex;
@@ -13,7 +14,10 @@
   }
 
   &.primary {
-    width: @mediumWidth;
+    width: 20%;
+    .main-page & {
+      width: 65%;
+    }
     a {
       color: @whiteColor;
     }
@@ -29,28 +33,21 @@
     min-width: 200px;
   }
 
-  &.small {
-    width: auto;
-    &.transparent {
-      z-index: 1;
-      height: auto;
-      position: relative;
-      &:hover {
-        background: radial-gradient(
-          circle,
-          rgba(88, 88, 88, 0.545) 0%,
-          rgba(88, 88, 88, 0.203) 10%,
-          rgba(88, 88, 88, 0.18) 30%,
-          rgba(88, 88, 88, 0.016) 100%
-        );
-        color: black;
-      }
+  &.small.transparent {
+    z-index: 1;
+    height: auto;
+    position: relative;
+
+    &:hover {
+      background: @radialBg;
+      color: black;
     }
   }
 
   .field & {
     width: 30%;
   }
+
   &.close-btn {
     background: none;
     margin-top: 0;
@@ -70,14 +67,20 @@
       color: @whiteColor;
     }
   }
+
   .ui.modal .content & {
     background: none;
     height: inherit;
   }
 
+  .row.grid-searchbar &.filter {
+    display: none;
+  }
+
   .ui.menu & {
     height: auto;
   }
+
   .extra & {
     width: 25%;
   }
@@ -86,8 +89,9 @@
     position: relative;
     left: 45%;
     background: none;
+
     .ui.sidebar &,
-    .detail-page & {
+    .ui.modal & {
       left: 90%;
     }
   }
@@ -102,7 +106,9 @@
     font-size: 0.9rem;
 
     &.primary {
-      width: 60%;
+      width: 25%;
+      height: 45px;
+
       .extra & {
         width: 30%;
       }
@@ -117,6 +123,9 @@
   @media only screen and (max-width: @smallMobileSize) {
     &.primary {
       font-size: @mediumFontSize;
+      .main-page & {
+        width: 65%;
+      }
       #form-app & {
         width: 45%;
       }
@@ -125,16 +134,22 @@
         height: 36px;
       }
     }
-  }
-}
-
-@media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
-  &.primary {
-    width: 60%;
-    .extra & {
+    .field & {
       width: 40%;
-      font-size: 1rem;
-      height: 2.2rem;
+    }
+  }
+
+  @media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
+    &.primary {
+      width: 30%;
+      .main-page & {
+        width: 65%;
+      }
+      .extra & {
+        width: 25%;
+        font-size: 1rem;
+        height: 2.2rem;
+      }
     }
   }
 }

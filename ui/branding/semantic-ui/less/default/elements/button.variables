@@ -1,7 +1,13 @@
 /*--------------
     OWN
 ---------------*/
-
+@radialBg: radial-gradient(
+  circle,
+  rgba(88, 88, 88, 0.545) 0%,
+  rgba(88, 88, 88, 0.203) 10%,
+  rgba(88, 88, 88, 0.18) 30%,
+  rgba(88, 88, 88, 0.016) 100%
+);
 
 
 /*--------------
@@ -12,7 +18,7 @@
 @fontFamily: source-sans-pro;
 
 @background: @darkBrown;
-@hoverBackgroundColor: @darkestBrown;
+// @hoverBackgroundColor: @radialBg;
 
 @secondaryColor: @secondColor;
 @secondaryColorHover: @secondaryColorHov;

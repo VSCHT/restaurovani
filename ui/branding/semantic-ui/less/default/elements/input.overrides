@@ -31,7 +31,7 @@
     }
     @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
       font-size: @inputFontMedium;
-      width: @inputWidthSmall;
+      width: @inputWidthLarge;
     }
     @media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
       font-size: 0.9rem;

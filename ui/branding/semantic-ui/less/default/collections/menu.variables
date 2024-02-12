@@ -10,7 +10,7 @@
 ---------------*/
 
 @background: @darkBrown;
-@itemVerticalPadding : 0.5rem;
+@itemVerticalPadding : 10px;
 @itemHorizontalPadding: 10vw ;
 @itemTextColor: @white;
 @fontWeight:500;
