@@ -12,6 +12,10 @@ import {
   MultiInput,
 } from "react-invenio-forms";
 
+import { HierarchicalVocabularyField } from "./HierarchicalVocabularyField";
+
+import { useFormConfig } from "@js/oarepo_ui";
+
 import { Form, Grid } from "semantic-ui-react";
 import { ArrayFieldItem } from "@js/oarepo_ui";
 
@@ -28,6 +32,33 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
     { value: "metr", text: "metr" },
     { value: "mm", text: "mm" },
   ];
+
+  const { formConfig } = useFormConfig();
+
+  console.log(formConfig)
+
+  const filteredVocabularies = (item) => {
+    const vocab = formConfig.vocabularies[item];
+    
+    const filteredVocab = { ...vocab };
+  
+    filteredVocab.all = formConfig.vocabularies[item].all.filter(i => {
+      return i.hierarchy.ancestors.includes(category);
+    });
+
+     filteredVocab.all.sort((a, b) => {
+      const textA = a.text.toLowerCase();
+      const textB = b.text.toLowerCase();
+      if (textA < textB) return -1;
+      if (textA > textB) return 1;
+      return 0;
+    });
+  
+    return filteredVocab;
+  };
+
+  filteredVocabularies("ItemTypes")
+
   return (
     <AccordionField
       includesPaths={[
@@ -63,6 +94,19 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           />
         </Grid.Column>
         <Grid.Column>
+              <HierarchicalVocabularyField
+                  optionsListName="ItemTypes"
+                  fieldPath="metadata.restorationObject.itemTypes"
+                  multiple={true}
+                  placeholder="Vyberte typ předmětu"
+                  label={
+                    <FieldLabel
+                      htmlFor="metadata.restorationObject.itemTypes"
+                      label="Typ předmětu Hierarchical"
+                    />
+                  }/>
+        </Grid.Column>
+        <Grid.Column>
           <MultiInput
             fieldPath="metadata.restorationObject.keywords"
             label="Klíčová slova"
@@ -87,7 +131,6 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
         </Grid.Column>
         <Grid.Column>
           <LocalVocabularySelectField
-            // optionsListName={`ItemTypes${category}`}
             optionsListName="ItemTypes"
             fieldPath="metadata.restorationObject.itemTypes"
             multiple={true}
@@ -134,10 +177,10 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           <ArrayField
             addButtonLabel="Přidat rozměr"
             fieldPath="metadata.restorationObject.dimensions"
-            defaultNewValue={{
-              unit: "",
-              value: "",
-            }}
+            // defaultNewValue={{
+            //   unit: "",
+            //   value: "",
+            // }}
           >
             {({ arrayHelpers, indexPath }) => {
               const fieldPathPrefix = `${"metadata.restorationObject.dimensions"}[${indexPath}]`;

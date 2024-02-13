@@ -29,8 +29,8 @@
 /* columns */
 /* @twoColumn: 50%; */
 @twoColumn: 49.5%;
-@threeColumn: 40%;
-
+/* @threeColumn: 40%; */
+@threeColumn: 32%;
 
 
 @dividedBorder: -1px 0px 0px 0px @brownColor;
