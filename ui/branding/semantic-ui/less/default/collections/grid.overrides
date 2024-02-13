@@ -98,6 +98,7 @@
   }
 }
 
+
 .gapped {
   gap: @gapWidth;
   height: inherit;
@@ -200,4 +201,11 @@
       margin-top: 76px;
     }
   }
+}
+
+
+// NEW COMP STYLES
+
+.row.open{
+  background-color: lightblue
 }

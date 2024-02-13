@@ -7,45 +7,43 @@ head_links %} {% block body %}
       <BrandLogo />
 
       <div class="ui two column double gapped grid">
-        
         <div class="column">
-        <div class="ui gapped">
-          <img
-            src="{{ url_for('static', filename='images/bg-arrows.png') }}"
-            alt="decoration image"
-            class="ui image decoration arrows"
-          />
+          <div class="ui gapped">
+            <img
+              src="{{ url_for('static', filename='images/bg-arrows.png') }}"
+              alt="decoration image"
+              class="ui image decoration arrows"
+            />
 
-          <div class="ui one column gapped grid">
-            <h1 class="ui header">
-              DATABÁZE <br />
-              RESTAUROVANÝCH <br />
-              PŘEDMĚTŮ <br />VŠCHT Praha
-            </h1>
+            <div class="ui one column gapped grid">
+              <h1 class="ui header">
+                DATABÁZE <br />
+                RESTAUROVANÝCH <br />
+                PŘEDMĚTŮ <br />VŠCHT Praha
+              </h1>
 
-            <div class="ui one column grid">
-              <form
-                action="{{ url_for('objects.search') }}"
-                role="search"
-                class="ui one column grid"
-              >
-                <div class="column">
-                  <input
-                    type="text"
-                    name="q"
-                    class="ui input"
-                    placeholder="{{ _('Vyhledat předmět ...') }}"
-                  />
-                </div>
-                <button class="ui primary button">PROCHÁZET PŘEDMĚTY</button>
-              </form>
-            </div>
-            <div class="ui grid">
-              <Copyright />
+              <div class="ui one column grid">
+                <form
+                  action="{{ url_for('objects.search') }}"
+                  role="search"
+                  class="ui one column grid"
+                >
+                  <div class="column">
+                    <input
+                      type="text"
+                      name="q"
+                      class="ui input"
+                      placeholder="{{ _('Vyhledat předmět ...') }}"
+                    />
+                  </div>
+                  <button class="ui primary button">PROCHÁZET PŘEDMĚTY</button>
+                </form>
+              </div>
+              <div class="ui grid">
+                <Copyright />
+              </div>
             </div>
           </div>
-
-        </div>
         </div>
         <div class="column img-container">
           <img

@@ -18,7 +18,7 @@ theme = WebpackThemeBundle(
                 "react-media": "^1.10.0",
                 "jquery": "^3.7.1",
                 "@oarepo/file-manager": "^1.0.8",
-                "preact": "^10.5.13"
+                "preact": "^10.5.13",
             },
             devDependencies={},
             aliases={},
