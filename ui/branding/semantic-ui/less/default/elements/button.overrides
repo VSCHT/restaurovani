@@ -173,11 +173,13 @@
 }
 
 
-.three-field .ui.button{
+.tree-field .ui.button{
   padding: 0.2rem
 }
 
-.three-field .ui.basic.button{
+.tree-field .ui.basic.button{
   width: 100%;
   margin: 0;
+  border-radius: 0;
+  font-size: 1rem;
 }

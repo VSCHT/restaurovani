@@ -38,5 +38,8 @@
 
 @black : black;
 @blackHover:none;
+@basicColoredBorderSize:0;
 @basicBorderSize :0px;
 @blackFocus :none;
+@blackActive :none;
+@blackDown:none;

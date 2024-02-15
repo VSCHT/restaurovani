@@ -1,11 +1,9 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { SelectField } from "react-invenio-forms";
 import { useFormConfig } from "@js/oarepo_ui";
-import { useFormikContext, getIn } from "formik";
+import { useFormikContext, getIn, setIn } from "formik";
 import PropTypes from "prop-types";
 import {
-  Dropdown,
-  Divider,
   Breadcrumb,
   ModalHeader,
   ModalActions,
@@ -17,99 +15,12 @@ import {
   Input,
   Icon,
   Checkbox,
+  BreadcrumbDivider,
+  BreadcrumbSection,
   Label,
 } from "semantic-ui-react";
-import { imageConfigDefault } from "next/dist/shared/lib/image-config";
 import { serializedVocabularyItems } from "@js/oarepo_vocabularies";
-import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import axios from "axios";
-
-export const SearchComponent = ({ vocab, parent }) => {
-  const [query, setQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const { formConfig } = useFormConfig();
-  const { vocabularies } = formConfig;
-
-  useEffect(() => {
-    if (query.trim() === "") {
-      setSearchResults([]);
-      return;
-    }
-
-    const apiUrl = `${window.location.origin}/api/vocabularies/${vocab}?q=${query}&sort=title&page=1&size=10`;
-
-    const fetchSearchResults = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(apiUrl);
-        console.log(response);
-        setSearchResults(response.data.hits.hits);
-      } catch (error) {
-        console.error("Error fetching search results:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSearchResults();
-  }, [, query]);
-
-  return (
-    <div>
-      <Input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search..."
-      />
-      {loading && <p>Loading...</p>}
-      {searchResults?.length > 0 && (
-        <ul>
-          {searchResults.map((result, index) => (
-            <li key={index}>{result.title.cs}</li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
-
-const InnerDropdown = ({
-  options,
-  featured,
-  usedOptions = [],
-  value,
-  ...rest
-}) => {
-  const _filterUsed = (opts) =>
-    opts.filter((o) => !usedOptions.includes(o.value) || o.value === value);
-  const allOptions = _filterUsed([
-    ...(featured.length
-      ? [
-          ...featured.sort((a, b) => a.text.localeCompare(b.text)),
-          {
-            content: <Divider fitted />,
-            disabled: true,
-            key: "featured-divider",
-          },
-        ]
-      : []),
-    ...options.filter((o) => !featured.map((o) => o.value).includes(o.value)),
-  ]);
-  console.log(allOptions);
-  return <Dropdown options={allOptions} value={value} {...rest} />;
-};
-
-InnerDropdown.propTypes = {
-  options: PropTypes.array.isRequired,
-  featured: PropTypes.array,
-  usedOptions: PropTypes.array,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]),
-};
 
 export const HierarchicalVocabularyField = ({
   fieldPath,
@@ -133,6 +44,8 @@ export const HierarchicalVocabularyField = ({
       vocabularies
     );
   }
+  const formik = useFormikContext();
+  console.log(formik.values);
 
   const [openState, setOpenState] = useState(false);
   const serializedOptions = useMemo(
@@ -148,7 +61,8 @@ export const HierarchicalVocabularyField = ({
   const handleOpen = () => {
     setOpenState(true);
   };
-
+  console.log(serializedVocabularyItems);
+  console.log(serializedOptions);
   const { values, setFieldTouched } = useFormikContext();
   const value = getIn(values, fieldPath, multiple ? [] : {});
 
@@ -156,61 +70,86 @@ export const HierarchicalVocabularyField = ({
   const [selectedState, setSelectedState] = useState([]);
 
   const updateHierarchy = (parent, index) => () => {
+  
     let updatedParents = [...parentsState];
     updatedParents.splice(index + 1);
     updatedParents[index] = parent;
     setParentsState(updatedParents);
   };
 
-  const handleSelect = (option) => {
-    const existingIndex = selectedState.findIndex(
-      (item) => item.value === option.value
-    );
+  const handleSelect = (option, val, e) => {
+    e?.preventDefault();
+    const existingIndex = selectedState.findIndex((item) => item.value === val);
 
     if (existingIndex !== -1) {
       setSelectedState((prevState) => {
         const newState = [...prevState];
         newState.splice(existingIndex, 1);
-        console.log("option 1");
         return newState;
       });
     } else {
-    if (multiple || selectedState.length === 0) {
-      setSelectedState((prevState) => [
-        ...prevState,
-        { value: option.value, hierarchy: option.hierarchy },
-      ]);
-      console.log("option 2");
-    } else {
-      setSelectedState([{ value: option.value, hierarchy: option.hierarchy }]);
-      console.log("option 3");
-    }
+      if (multiple || selectedState.length === 0) {
+        setSelectedState((prevState) => [
+          ...prevState,
+          {
+            value: val,
+            hierarchy:
+              typeof option.hierarchy.title[0] === "string"
+                ? option.hierarchy
+                : {
+                    ...option.hierarchy,
+                    title: option.hierarchy.title.map((i) => i.cs),
+                  },
+          },
+        ]);
+      } else {
+        setSelectedState([
+          {
+            value: val,
+            hierarchy:
+              typeof option.hierarchy.title[0] === "string"
+                ? option.hierarchy
+                : {
+                    ...option.hierarchy,
+                    title: option.hierarchy.title.map((i) => i.cs),
+                  },
+          },
+        ]);
+      }
     }
   };
 
-  const handleClick = (e) => {
-    switch (e.detail) {
-      case 1: {
-        updateHierarchy(option.value, index);
-        break;
-      }
-      case 2: {
-        handleSelect(option);
-        break;
-      }
-      default: {
-        break;
-      }
-    }
+  const handleSubmit = () => {
+    const prepSelect = [
+      ...selectedState.map((item, index) => {
+        return {
+          key: crypto.randomUUID(),
+          id: item.value,
+          title: [
+            ...item.hierarchy.title.map((i) => {
+              return { cs: i };
+            }),
+          ],
+        };
+      }),
+    ];
+
+    const updatedValues = setIn(formik.values, fieldPath, prepSelect);
+
+    formik.setValues(updatedValues);
+    setOpenState(false);
+    setSelectedState([]);
+    setParentsState([]);
   };
 
   const amount =
-    allOptions[allOptions.length - 1].hierarchy.ancestors.length + 1;
+    serializedOptions[serializedOptions.length - 1].hierarchy.ancestors.length +
+    1;
 
   const renderColumns = (index) => {
     return (
       <Grid.Column>
-        {allOptions.map((option) => {
+        {serializedOptions.map((option) => {
           if (
             option.hierarchy.ancestors.length == index &&
             (index == 0 ||
@@ -223,21 +162,49 @@ export const HierarchicalVocabularyField = ({
                   option.value == parentsState[index] ? "open spaced" : "spaced"
                 }
               >
-                <Checkbox
-                  checked={
-                    String(option.value) === String(selectedState[index])
-                  }
-                  onChange={(e) => handleSelect(option)}
-                />
-                <Button basic color="black" onClick={handleClick(option)}>
+                {multiple && (
+                  <Checkbox
+                    checked={
+                      selectedState.findIndex(
+                        (item) => item.value === option.value
+                      ) != -1
+                        ? true
+                        : false
+                    }
+                    className={
+                      selectedState.findIndex(
+                        (item) => item.hierarchy.ancestors.includes(option.value)
+                      ) != -1
+                        ? "indeterminate"
+                        : ""
+                    }
+                    onChange={(e) => {
+                      handleSelect(option, option.value, e);
+                    }}
+                  />
+                )}
+                <Button
+                  basic
+                  color="black"
+                  onClick={updateHierarchy(option.value, index)}
+                  onDoubleClick={(e) => {
+                    handleSelect(option, option.value, e);
+                  }}
+                  onKeyPress={(e) => {
+                    handleSelect(option, option.value, e);
+                  }}
+                  onKeyDown={(e)=> { e.preventDefault(); updateHierarchy(serializedOptions[index+1]?.value, index)}}
+                  onKeyUp={(e)=>{  e.preventDefault(); updateHierarchy(serializedOptions[index-1]?.value, index)}}
+                >
                   {option.text}
                 </Button>
-
-                <Button onClick={updateHierarchy(option.value, index)}>
-                  {index !== amount - 1 ? (
-                    <Icon name="angle right black " />
-                  ) : null}
-                </Button>
+                {option.element_type == "parent" && (
+                  <Button onClick={updateHierarchy(option.value, index)}>
+                    {index !== amount - 1 ? (
+                      <Icon name="angle right black " />
+                    ) : null}
+                  </Button>
+                )}
               </Grid.Row>
             );
           }
@@ -245,11 +212,73 @@ export const HierarchicalVocabularyField = ({
       </Grid.Column>
     );
   };
+  useEffect(()=>{
+    console.log(parentsState)
+    console.log(selectedState)
+  }, [parentsState, selectedState])
 
-  useEffect(() => {
-    console.log(parentsState);
-    console.log(selectedState);
-  }, [parentsState, selectedState]);
+  const SearchComponent = ({ vocab }) => {
+    const [query, setQuery] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+      if (query.trim() === "") {
+        setSearchResults([]);
+        return;
+      }
+
+      const apiUrl = `${window.location.origin}/api/vocabularies/${vocab}?q=${query}`;
+
+      const fetchSearchResults = async () => {
+        setLoading(true);
+        try {
+          const response = await axios.get(apiUrl);
+          setSearchResults(response.data.hits.hits);
+        } catch (error) {
+          console.error("Error fetching search results:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchSearchResults();
+    }, [, query]);
+
+    return (
+      <Grid.Column>
+        <Input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search..."
+        />
+        {loading && <Label>Loading...</Label>}
+        {searchResults?.length > 0 && (
+          <Grid columns={1}>
+            {searchResults.map((result, index) => (
+              <Label
+                key={index}
+                onClick={(e) => {
+                  handleSelect(result, result.id, e);
+                }}
+              >
+                {" "}
+                <Breadcrumb>
+                  {result.hierarchy.title.map((item, i) => (
+                    <>
+                      <BreadcrumbSection key={i}>{item.cs}</BreadcrumbSection>
+                      <BreadcrumbDivider icon="left angle" />
+                    </>
+                  ))}
+                </Breadcrumb>
+              </Label>
+            ))}
+          </Grid>
+        )}
+      </Grid.Column>
+    );
+  };
 
   return (
     <React.Fragment>
@@ -259,7 +288,6 @@ export const HierarchicalVocabularyField = ({
         onBlur={() => setFieldTouched(fieldPath)}
         deburr
         search
-        control={InnerDropdown}
         fieldPath={fieldPath}
         multiple={multiple}
         featured={featuredOptions}
@@ -276,11 +304,13 @@ export const HierarchicalVocabularyField = ({
           onClose={() => setOpen(false)}
           onOpen={() => setOpen(true)}
           open={open}
-          className="three-field"
+          className="tree-field"
         >
           <ModalHeader>
-            <Header as="h3">Choose Items</Header>
-            <SearchComponent vocab={optionsListName} parents={parentsState} />
+            <Grid.Row>
+              <Header as="h3">Choose Items</Header>
+              <SearchComponent vocab={optionsListName} />
+            </Grid.Row>
           </ModalHeader>
 
           <ModalContent>
@@ -301,31 +331,33 @@ export const HierarchicalVocabularyField = ({
           </ModalContent>
           <ModalActions>
             <Grid.Row>
-              {selectedState.map((item) => (
-                <Label key={item.value}>
-                  {" "}
-                  <Breadcrumb
-                    icon="left angle"
-                    sections={item.hierarchy.title}
-                  />
-                  <Button
-                    className="small transparent"
-                    // onClick={handleSelect(item)}
-                    onClick={handleSelect(item)}
-                  >
-                    <Icon name="delete" />
-                  </Button>
-                </Label>
-              ))}
+              <Grid.Row style={{ width: "80%", flexWrap: "wrap" }}>
+                {selectedState.map((item) => (
+                  <Label key={item.value}>
+                    {" "}
+                    <Breadcrumb
+                      icon="left angle"
+                      sections={item.hierarchy.title}
+                    />
+                    <Button
+                      className="small transparent"
+                      onClick={(e) => {
+                        handleSelect(item, item.value, e);
+                      }}
+                    >
+                      <Icon name="delete" />
+                    </Button>
+                  </Label>
+                ))}
+              </Grid.Row>
               <Button
                 content="Confirm"
                 labelPosition="right"
                 floated="right"
                 icon="checkmark"
-                onClick={() => setOpenState(false)}
+                onClick={handleSubmit}
                 secondary
               />
-              {/* click confirm=> setfield */}
             </Grid.Row>
           </ModalActions>
         </Modal>
