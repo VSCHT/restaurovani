@@ -76,3 +76,8 @@
 h1.mt-20 {
   display: none;
 }
+
+
+.ui.modal.tree-field .ui.header{
+  width: 80%;
+}

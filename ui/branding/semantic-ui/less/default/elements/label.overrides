@@ -30,3 +30,13 @@
     }
   }
 }
+
+
+.ui.modal.tree-field .content  .ui.label {
+  max-width: 30%;
+  text-align: left;
+}
+
+.ui.modal.tree-field .header .ui.label {
+  padding: 10px;
+}
