@@ -33,8 +33,6 @@ export const defaultComponents = {
   [`${appName}.ActiveFilters.element`]: ActiveFiltersElement,
   [`${appName}.BucketAggregation.element`]: MyBucketAggregation,
   [`${appName}.BucketAggregationValues.element`]: MyBucketAggregationValues,
-  // [`${appName}.BucketAggregation.element`]: BucketAggregationElement,
-  // [`${appName}.BucketAggregationValues.element`]: BucketAggregationValuesElement,
   [`${appName}.Count.element`]: CountElement,
   [`${appName}.EmptyResults.element`]: EmptyResultsElement,
   [`${appName}.Error.element`]: ErrorElement,

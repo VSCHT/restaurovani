@@ -34,3 +34,9 @@
 @verticalPadding: 0.9rem;
 @horizontalPadding: 0.9rem;
 @borderRadius: 30px;
+
+
+@black : black;
+@blackHover:none;
+@basicBorderSize :0px;
+@blackFocus :none;
