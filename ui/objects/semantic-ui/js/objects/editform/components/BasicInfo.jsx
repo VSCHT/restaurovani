@@ -12,7 +12,6 @@ import {
   MultiInput,
 } from "react-invenio-forms";
 
-import { HierarchicalVocabularyField } from "./HierarchicalVocabularyField";
 
 import { useFormConfig } from "@js/oarepo_ui";
 
@@ -93,19 +92,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
             }
           />
         </Grid.Column>
-        <Grid.Column>
-              <HierarchicalVocabularyField
-                  optionsListName="ItemTypes"
-                  fieldPath="metadata.restorationObject.itemTypes"
-                  multiple={true}
-                  placeholder="Vyberte typ předmětu"
-                  label={
-                    <FieldLabel
-                      htmlFor="metadata.restorationObject.itemTypes"
-                      label="Typ předmětu Hierarchical"
-                    />
-                  }/>
-        </Grid.Column>
+       
         <Grid.Column>
           <MultiInput
             fieldPath="metadata.restorationObject.keywords"

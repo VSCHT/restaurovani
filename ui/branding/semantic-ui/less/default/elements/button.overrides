@@ -172,12 +172,3 @@
   }
 }
 
-
-.three-field .ui.button{
-  padding: 0.2rem
-}
-
-.three-field .ui.basic.button{
-  width: 100%;
-  margin: 0;
-}

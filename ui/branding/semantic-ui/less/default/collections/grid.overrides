@@ -203,9 +203,3 @@
   }
 }
 
-
-// NEW COMP STYLES
-
-.row.open{
-  background-color: lightblue
-}
