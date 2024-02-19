@@ -8,6 +8,7 @@
 {%- endblock %}
 
 {%- block page_body %}
+{{config}}
 <div class="ui main container">
   <div data-invenio-search-config='{{ search_app_config | tojson }}'></div>
 </div>
