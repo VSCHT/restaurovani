@@ -105,6 +105,9 @@ Sample output:
   /* invenio global css styles */
   @import (optional, multiple) "themes/invenio/@{type}s/@{element}.overrides";
 
+  @import (optional, multiple)
+    "@{siteFolder}/oarepo_ui/themes/@{theme}/@{type}s/@{element}.overrides";
+
   /* components overrides theme css style */
   @import (optional, multiple)
     "@{siteFolder}/components/@{theme}/@{type}s/@{element}.overrides";
