@@ -5,7 +5,9 @@ from invenio_drafts_resources.services.records.components import DraftFilesCompo
 from invenio_drafts_resources.services.records.config import is_record
 from invenio_records_resources.services import ConditionalLink, RecordLink
 from invenio_records_resources.services.records.components import DataComponent
-from oarepo_requests.services.components import PublishDraftComponent
+
+# PublishDraftComponent no longer seems to exist in oarepo_requests
+# from oarepo_requests.services.components import PublishDraftComponent
 from oarepo_runtime.services.config.service import PermissionsPresetsConfigMixin
 from oarepo_runtime.services.files import FilesComponent
 from oarepo_runtime.services.results import RecordList
@@ -40,7 +42,7 @@ class ObjectsServiceConfig(
     components = [
         *PermissionsPresetsConfigMixin.components,
         *InvenioRecordDraftsServiceConfig.components,
-        PublishDraftComponent("publish_draft", "delete_record"),
+        # PublishDraftComponent("publish_draft", "delete_record"),
         FilesComponent,
         DataComponent,
         DraftFilesComponent,
