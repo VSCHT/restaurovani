@@ -117,12 +117,13 @@ export const HierarchicalVocabularyField = ({
   };
 
   const handleKey = (e, option, index) => {
+    console.log(index)
     e.preventDefault();
     const currentIndex = serializedOptions.findIndex(
       (o) => o.value === option.value
     );
   
-    if (currentIndex !== -1 || index == -1) {
+    if (currentIndex !== -1 ) {
       let newIndex = 0;
       if (e.key === "ArrowUp") {
         newIndex = keybState[index] - 1;
@@ -235,9 +236,6 @@ export const HierarchicalVocabularyField = ({
                     handleSelect(option, option.value, e);
                   }}
                   onKeyDown={(e) => {
-                    handleKey(e, option, index);
-                  }}
-                  onKeyUp={(e) => {
                     handleKey(e, option, index);
                   }}
                 >
