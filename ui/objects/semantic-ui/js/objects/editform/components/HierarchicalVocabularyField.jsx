@@ -15,11 +15,13 @@ import {
   Input,
   Icon,
   Checkbox,
-  BreadcrumbDivider,
-  BreadcrumbSection,
   Label,
 } from "semantic-ui-react";
-import { serializedVocabularyItems } from "@js/oarepo_vocabularies";
+import {
+  serializedVocabularyItems,
+  serializeVocabularyItem,
+  deserializeVocabularyItem,
+} from "@js/oarepo_vocabularies";
 import axios from "axios";
 
 export const HierarchicalVocabularyField = ({
@@ -45,7 +47,6 @@ export const HierarchicalVocabularyField = ({
     );
   }
   const formik = useFormikContext();
-  console.log(formik.values);
 
   const [openState, setOpenState] = useState(false);
   const serializedOptions = useMemo(
@@ -61,25 +62,25 @@ export const HierarchicalVocabularyField = ({
   const handleOpen = () => {
     setOpenState(true);
   };
-  console.log(serializedVocabularyItems);
-  console.log(serializedOptions);
+
   const { values, setFieldTouched } = useFormikContext();
   const value = getIn(values, fieldPath, multiple ? [] : {});
 
   const [parentsState, setParentsState] = useState([]);
+  const [keybState, setKeybState] = useState(Array(amount).fill(0));
   const [selectedState, setSelectedState] = useState([]);
 
   const updateHierarchy = (parent, index) => () => {
-  
     let updatedParents = [...parentsState];
     updatedParents.splice(index + 1);
     updatedParents[index] = parent;
     setParentsState(updatedParents);
+    
   };
 
   const handleSelect = (option, val, e) => {
-    e?.preventDefault();
-    const existingIndex = selectedState.findIndex((item) => item.value === val);
+    e.preventDefault();
+    const existingIndex = selectedState.findIndex((i) => i.value === val);
 
     if (existingIndex !== -1) {
       setSelectedState((prevState) => {
@@ -88,51 +89,24 @@ export const HierarchicalVocabularyField = ({
         return newState;
       });
     } else {
-      if (multiple || selectedState.length === 0) {
-        setSelectedState((prevState) => [
-          ...prevState,
-          {
-            value: val,
-            hierarchy:
-              typeof option.hierarchy.title[0] === "string"
-                ? option.hierarchy
-                : {
-                    ...option.hierarchy,
-                    title: option.hierarchy.title.map((i) => i.cs),
-                  },
-          },
-        ]);
+      if (multiple && selectedState.length != 0) {
+        setSelectedState((prevState) => [...prevState, option]);
       } else {
-        setSelectedState([
-          {
-            value: val,
-            hierarchy:
-              typeof option.hierarchy.title[0] === "string"
-                ? option.hierarchy
-                : {
-                    ...option.hierarchy,
-                    title: option.hierarchy.title.map((i) => i.cs),
-                  },
-          },
-        ]);
+        setSelectedState([option]);
       }
     }
   };
-
   const handleSubmit = () => {
-    const prepSelect = [
-      ...selectedState.map((item, index) => {
-        return {
-          key: crypto.randomUUID(),
-          id: item.value,
-          title: [
-            ...item.hierarchy.title.map((i) => {
-              return { cs: i };
-            }),
-          ],
-        };
-      }),
-    ];
+    let prepSelect;
+    if (multiple) {
+      prepSelect = selectedState.map((i) => serializeVocabularyItem(i.value));
+      const existingValues = getIn(formik.values, fieldPath, []);
+      prepSelect = [...existingValues, ...prepSelect];
+    } else {
+      prepSelect = selectedState.map((i) =>
+        serializeVocabularyItem(i.value)
+      )[0];
+    }
 
     const updatedValues = setIn(formik.values, fieldPath, prepSelect);
 
@@ -142,14 +116,83 @@ export const HierarchicalVocabularyField = ({
     setParentsState([]);
   };
 
-  const amount =
+  const handleKey = (e, option, index) => {
+    e.preventDefault();
+    const currentIndex = serializedOptions.findIndex(
+      (o) => o.value === option.value
+    );
+  
+    if (currentIndex !== -1 || index == -1) {
+      let newIndex = 0;
+      if (e.key === "ArrowUp") {
+        newIndex = keybState[index] - 1;
+        if (newIndex >= 0) {
+          updateHierarchy(serializedOptions[newIndex].value, index)();
+          setKeybState((prev) => {
+            const newState = [...prev];
+            newState[index] = newIndex;
+            return newState;
+          });
+        }
+      } else if (e.key === "ArrowDown") {
+        newIndex = keybState[index] + 1;
+        if (newIndex < serializedOptions.length) {
+          updateHierarchy(serializedOptions[newIndex].value, index)();
+          setKeybState((prev) => {
+            const newState = [...prev];
+            newState[index] = newIndex;
+            return newState;
+          });
+        }
+      } else if (e.key === "ArrowLeft") {
+        if (index > 0) {
+          setParentsState((prev) => {
+            const newState = [...prev];
+            newState.splice(index, 1);
+            return newState;
+          });
+          setKeybState((prev) => {
+            const newState = [...prev];
+            newState[index] = null;
+            newState[index - 1] = keybState[index - 1]; 
+            return newState;
+          });
+        }
+      } else if (e.key === "ArrowRight") {
+        if (index < amount - 1) {
+          const nextColumnIndex = serializedOptions.findIndex((o) => {
+            return (
+              parentsState[index] === o.hierarchy.ancestors[0]
+            );
+          });
+          console.log(nextColumnIndex);
+          if (nextColumnIndex !== -1) {
+            updateHierarchy(
+              serializedOptions[nextColumnIndex].value,
+              index + 1
+            )();
+            setKeybState((prev) => {
+              const newState = [...prev];
+              newState[index + 1] = 0; 
+              return newState;
+            });
+          }
+        }
+      }
+    }
+  };
+  
+  
+  
+
+  let amount =
     serializedOptions[serializedOptions.length - 1].hierarchy.ancestors.length +
     1;
 
   const renderColumns = (index) => {
     return (
       <Grid.Column>
-        {serializedOptions.map((option) => {
+        {serializedOptions.map((option, i) => {
           if (
             option.hierarchy.ancestors.length == index &&
             (index == 0 ||
@@ -157,7 +200,7 @@ export const HierarchicalVocabularyField = ({
           ) {
             return (
               <Grid.Row
-                key={option.hierarchy.title[0]}
+                key={i}
                 className={
                   option.value == parentsState[index] ? "open spaced" : "spaced"
                 }
@@ -167,14 +210,12 @@ export const HierarchicalVocabularyField = ({
                     checked={
                       selectedState.findIndex(
                         (item) => item.value === option.value
-                      ) != -1
-                        ? true
-                        : false
+                      ) !== -1
                     }
                     className={
-                      selectedState.findIndex(
-                        (item) => item.hierarchy.ancestors.includes(option.value)
-                      ) != -1
+                      selectedState.some((item) =>
+                        item.hierarchy.ancestors.includes(option.value)
+                      )
                         ? "indeterminate"
                         : ""
                     }
@@ -193,8 +234,12 @@ export const HierarchicalVocabularyField = ({
                   onKeyPress={(e) => {
                     handleSelect(option, option.value, e);
                   }}
-                  onKeyDown={(e)=> { e.preventDefault(); updateHierarchy(serializedOptions[index+1]?.value, index)}}
-                  onKeyUp={(e)=>{  e.preventDefault(); updateHierarchy(serializedOptions[index-1]?.value, index)}}
+                  onKeyDown={(e) => {
+                    handleKey(e, option, index);
+                  }}
+                  onKeyUp={(e) => {
+                    handleKey(e, option, index);
+                  }}
                 >
                   {option.text}
                 </Button>
@@ -212,10 +257,11 @@ export const HierarchicalVocabularyField = ({
       </Grid.Column>
     );
   };
-  useEffect(()=>{
-    console.log(parentsState)
-    console.log(selectedState)
-  }, [parentsState, selectedState])
+  useEffect(() => {
+    console.log(parentsState);
+    console.log(selectedState);
+    console.log(keybState);
+  }, [parentsState, selectedState, keybState]);
 
   const SearchComponent = ({ vocab }) => {
     const [query, setQuery] = useState("");
@@ -233,7 +279,11 @@ export const HierarchicalVocabularyField = ({
       const fetchSearchResults = async () => {
         setLoading(true);
         try {
-          const response = await axios.get(apiUrl);
+          const response = await axios.get(apiUrl, {
+            headers: {
+              Accept: "application/vnd.inveniordm.v1+json",
+            },
+          });
           setSearchResults(response.data.hits.hits);
         } catch (error) {
           console.error("Error fetching search results:", error);
@@ -243,7 +293,7 @@ export const HierarchicalVocabularyField = ({
       };
 
       fetchSearchResults();
-    }, [, query]);
+    }, [query]);
 
     return (
       <Grid.Column>
@@ -256,22 +306,15 @@ export const HierarchicalVocabularyField = ({
         {loading && <Label>Loading...</Label>}
         {searchResults?.length > 0 && (
           <Grid columns={1}>
-            {searchResults.map((result, index) => (
+            {searchResults.map((i, index) => (
               <Label
                 key={index}
                 onClick={(e) => {
-                  handleSelect(result, result.id, e);
+                  handleSelect(i, i.id, e);
                 }}
               >
                 {" "}
-                <Breadcrumb>
-                  {result.hierarchy.title.map((item, i) => (
-                    <>
-                      <BreadcrumbSection key={i}>{item.cs}</BreadcrumbSection>
-                      <BreadcrumbDivider icon="left angle" />
-                    </>
-                  ))}
-                </Breadcrumb>
+                <Breadcrumb icon="left angle" sections={i.hierarchy.title} />
               </Label>
             ))}
           </Grid>
@@ -332,21 +375,23 @@ export const HierarchicalVocabularyField = ({
           <ModalActions>
             <Grid.Row>
               <Grid.Row style={{ width: "80%", flexWrap: "wrap" }}>
-                {selectedState.map((item) => (
-                  <Label key={item.value}>
+                {selectedState.map((i, index) => (
+                  <Label key={index}>
                     {" "}
                     <Breadcrumb
                       icon="left angle"
-                      sections={item.hierarchy.title}
+                      sections={i.hierarchy.title}
                     />
-                    <Button
-                      className="small transparent"
-                      onClick={(e) => {
-                        handleSelect(item, item.value, e);
-                      }}
-                    >
-                      <Icon name="delete" />
-                    </Button>
+                    {multiple && (
+                      <Button
+                        className="small transparent"
+                        onClick={(e) => {
+                          handleSelect(i, i.item, e);
+                        }}
+                      >
+                        <Icon name="delete" />
+                      </Button>
+                    )}
                   </Label>
                 ))}
               </Grid.Row>
