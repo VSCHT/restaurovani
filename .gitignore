@@ -8,3 +8,5 @@ node_modules
 .pdm-build
 .vscode
 .env
+common/old_data/data
+.pdm-python

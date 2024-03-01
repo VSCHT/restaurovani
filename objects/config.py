@@ -1,5 +1,14 @@
+from oarepo_requests.resolvers.ui import (
+    draft_record_entity_reference_ui_resolver,
+    record_entity_reference_ui_resolver,
+    user_entity_reference_ui_resolver,
+)
+from oarepo_requests.resources.draft.resource import DraftRecordRequestsResource
+from oarepo_requests.services.draft.service import DraftRecordRequestsService
 from oarepo_runtime.records.entity_resolvers import UserResolver
 
+from objects.files.api import ObjectsFileDraft
+from objects.files.requests.resolvers import ObjectsFileDraftResolver
 from objects.records.api import ObjectsDraft, ObjectsRecord
 from objects.records.requests.delete_record.types import DeleteRecordRequestType
 from objects.records.requests.publish_draft.types import PublishDraftRequestType
@@ -34,6 +43,12 @@ OBJECTS_RECORD_SERVICE_CONFIG = ObjectsServiceConfig
 OBJECTS_RECORD_SERVICE_CLASS = ObjectsService
 
 
+OBJECTS_REQUESTS_RESOURCE_CLASS = DraftRecordRequestsResource
+
+
+OBJECTS_REQUESTS_SERVICE_CLASS = DraftRecordRequestsService
+
+
 REQUESTS_REGISTERED_TYPES = [
     DeleteRecordRequestType(),
     PublishDraftRequestType(),
@@ -46,7 +61,19 @@ REQUESTS_ENTITY_RESOLVERS = [
     ObjectsDraftResolver(
         record_cls=ObjectsDraft, service_id="objects", type_key="objects_draft"
     ),
+    ObjectsFileDraftResolver(
+        record_cls=ObjectsFileDraft,
+        service_id="objects_file_draft",
+        type_key="objects_file_draft",
+    ),
 ]
+
+
+ENTITY_REFERENCE_UI_RESOLVERS = {
+    "user": user_entity_reference_ui_resolver,
+    "objects": record_entity_reference_ui_resolver,
+    "objects_draft": draft_record_entity_reference_ui_resolver,
+}
 
 
 OBJECTS_FILES_RESOURCE_CONFIG = ObjectsFileResourceConfig

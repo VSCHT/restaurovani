@@ -1,0 +1,9 @@
+extractedText:
+  type: fulltext
+  label.cs: Extrahovaný text
+  label.en: Extracted text
+
+extractedTimestamp:
+  type: datetime
+  label.cs: Datum extrakce
+  label.en: Extraction date

@@ -31,6 +31,7 @@ ui_objects = "ui.objects:create_blueprint"
 objects = "objects.views.records.app:create_app_blueprint"
 objects_file = "objects.views.files.app:create_app_blueprint"
 objects_file_draft = "objects.views.draft_files.app:create_app_blueprint"
+objects_requests = "objects.views.requests.api:create_api_blueprint"
 
 [project.entry-points."invenio_base.api_apps"]
 objects = "objects.ext:ObjectsExt"
@@ -44,25 +45,26 @@ objects = "objects:alembic"
 [project.entry-points."invenio_db.models"]
 objects = "objects.records.models"
 objects_file = "objects.files.models"
+objects_file_draft = "objects.files.models"
 
 [project.entry-points."invenio_base.api_blueprints"]
 objects = "objects.views.records.api:create_api_blueprint"
 objects_file = "objects.views.files.api:create_api_blueprint"
 objects_file_draft = "objects.views.draft_files.api:create_api_blueprint"
+objects_requests = "objects.views.requests.api:create_api_blueprint"
 
 [project.entry-points."invenio_search.mappings"]
 objects = "objects.records.mappings"
-objects_file = "objects.files.mappings"
 
 [project.entry-points."invenio_jsonschemas.schemas"]
 objects = "objects.records.jsonschemas"
 
 [project.entry-points."oarepo.models"]
 objects = "objects.models:records.json"
-objects_file = "objects.models:files.json"
 
 [project.entry-points."invenio_i18n.translations"]
 translations = "i18n"
+objects = "objects"
 
 [project.entry-points."oarepo.ui"]
 objects = "objects.models:ui.json"

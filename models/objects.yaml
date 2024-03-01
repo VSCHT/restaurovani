@@ -33,6 +33,9 @@ record:
     properties:
       use:
       - ./objects-files.yaml
+    service-config:
+      base-classes:
+        - common.services.files.RestorationFileServiceConfig
     use:
     - invenio_files
   module:
@@ -50,6 +53,9 @@ record:
           type: keyword
         submissionStatus:
           type: keyword
+    data:
+      properties:
+        use: ["objects-restoration-data.yaml"]
 
   resource-config:
     base-html-url: /objects/
