@@ -67,16 +67,54 @@ export const HierarchicalVocabularyField = ({
   const value = getIn(values, fieldPath, multiple ? [] : {});
 
   const [parentsState, setParentsState] = useState([]);
-  const [keybState, setKeybState] = useState(Array(amount).fill(0));
+  const [keybState, setKeybState] = useState(Array(amount).fill(null));
   const [selectedState, setSelectedState] = useState([]);
 
-  const updateHierarchy = (parent, index) => () => {
-    let updatedParents = [...parentsState];
-    updatedParents.splice(index + 1);
-    updatedParents[index] = parent;
-    setParentsState(updatedParents);
-    
-  };
+  const hierarchicalData = useMemo(() => {
+    let data = [];
+    let currentRow = [];
+    let currentLevel = 0;
+
+    serializedOptions.forEach((option, index) => {
+      if (option.hierarchy.ancestors.length === currentLevel) {
+        currentRow.push(option);
+      } else {
+        data.push(currentRow);
+        currentRow = [option];
+        currentLevel++;
+      }
+    });
+
+    if (currentRow.length > 0) {
+      data.push(currentRow);
+    }
+
+    return data;
+  }, [serializedOptions]);
+
+console.log(hierarchicalData)
+
+const updateHierarchy = (parent, index) => () => {
+  let updatedParents = [...parentsState];
+  updatedParents.splice(index + 1);
+  updatedParents[index] = parent;
+
+  let updatedKeybState = [...keybState];
+  if (hierarchicalData[index + 1]) {
+    const nextColumnIndex = hierarchicalData[index + 1].findIndex(
+      (o) => o.value === parent
+    );
+    updatedKeybState.splice(index + 1);
+    updatedKeybState[index] =
+      nextColumnIndex !== -1 ? nextColumnIndex : null;
+  } else {
+    updatedKeybState.splice(index + 1);
+  }
+
+  setParentsState(updatedParents);
+  setKeybState(updatedKeybState);
+};
+
 
   const handleSelect = (option, val, e) => {
     e.preventDefault();
@@ -96,6 +134,7 @@ export const HierarchicalVocabularyField = ({
       }
     }
   };
+
   const handleSubmit = () => {
     let prepSelect;
     if (multiple) {
@@ -117,64 +156,57 @@ export const HierarchicalVocabularyField = ({
   };
 
   const handleKey = (e, option, index) => {
-    console.log(index)
     e.preventDefault();
-    const currentIndex = serializedOptions.findIndex(
-      (o) => o.value === option.value
-    );
-  
-    if (currentIndex !== -1 ) {
-      let newIndex = 0;
-      if (e.key === "ArrowUp") {
-        newIndex = keybState[index] - 1;
-        if (newIndex >= 0) {
-          updateHierarchy(serializedOptions[newIndex].value, index)();
-          setKeybState((prev) => {
-            const newState = [...prev];
-            newState[index] = newIndex;
-            return newState;
-          });
-        }
-      } else if (e.key === "ArrowDown") {
-        newIndex = keybState[index] + 1;
-        if (newIndex < serializedOptions.length) {
-          updateHierarchy(serializedOptions[newIndex].value, index)();
-          setKeybState((prev) => {
-            const newState = [...prev];
-            newState[index] = newIndex;
-            return newState;
-          });
-        }
-      } else if (e.key === "ArrowLeft") {
-        if (index > 0) {
-          setParentsState((prev) => {
-            const newState = [...prev];
-            newState.splice(index, 1);
-            return newState;
-          });
-          setKeybState((prev) => {
-            const newState = [...prev];
-            newState[index] = null;
-            newState[index - 1] = keybState[index - 1]; 
-            return newState;
-          });
-        }
-      } else if (e.key === "ArrowRight") {
-        if (index < amount - 1) {
-          const nextColumnIndex = serializedOptions.findIndex((o) => {
-            return (
-              parentsState[index] === o.hierarchy.ancestors[0]
-            );
-          });
-          console.log(nextColumnIndex);
+
+    let newIndex = 0;
+    if (e.key === "ArrowUp") {
+      newIndex = keybState[index] - 1;
+      if (newIndex >= 0) {
+        updateHierarchy(hierarchicalData[index][newIndex].value, index)();
+        setKeybState((prev) => {
+          const newState = [...prev];
+          newState[index] = newIndex;
+          return newState;
+        });
+      }
+    } else if (e.key === "ArrowDown") {
+      newIndex = keybState[index] + 1;
+      if (newIndex < hierarchicalData[index].length) {
+        updateHierarchy(hierarchicalData[index][newIndex].value, index)();
+        setKeybState((prev) => {
+          const newState = [...prev];
+          newState[index] = newIndex;
+          return newState;
+        });
+      }
+    } else if (e.key === "ArrowLeft") {
+      if (index > 0) {
+        setParentsState((prev) => {
+          const newState = [...prev];
+          newState.splice(index, 1);
+          return newState;
+        });
+        setKeybState((prev) => {
+          const newState = [...prev];
+          newState[index] = null;
+          newState[index - 1] = keybState[index - 1];
+          return newState;
+        });
+      }
+    } else   if (e.key === "ArrowRight") {
+      if (index < amount - 1) {
+        const nextColumnOptions = hierarchicalData[index + 1];
+        if (nextColumnOptions) {
+          const nextColumnIndex = nextColumnOptions.findIndex(
+            (o) => o.hierarchy.ancestors[0] === parentsState[index]
+          );
+          console.log(nextColumnIndex)
           if (nextColumnIndex !== -1) {
-            updateHierarchy(
-              serializedOptions[nextColumnIndex].value,
-              index + 1
-            )();
+            newIndex = nextColumnIndex;
+            updateHierarchy(nextColumnOptions[nextColumnIndex].value, index + 1)();
             setKeybState((prev) => {
               const newState = [...prev];
-              newState[index + 1] = 0; 
+              newState[index+1] = newIndex;
               return newState;
             });
           }
@@ -182,13 +214,6 @@ export const HierarchicalVocabularyField = ({
       }
     }
   };
-  
-  
-  
-
-  let amount =
-    serializedOptions[serializedOptions.length - 1].hierarchy.ancestors.length +
-    1;
 
   const renderColumns = (index) => {
     return (
@@ -255,6 +280,7 @@ export const HierarchicalVocabularyField = ({
       </Grid.Column>
     );
   };
+
   useEffect(() => {
     console.log(parentsState);
     console.log(selectedState);
@@ -321,6 +347,8 @@ export const HierarchicalVocabularyField = ({
     );
   };
 
+  const amount = hierarchicalData.length;
+
   return (
     <React.Fragment>
       <SelectField
@@ -358,14 +386,11 @@ export const HierarchicalVocabularyField = ({
             <Grid>
               <Grid columns={1}>
                 <Grid columns={amount} className="gapped">
-                  {Array.from(
-                    { length: parentsState.length + 1 },
-                    (_, index) => (
-                      <React.Fragment key={index}>
-                        {renderColumns(index)}
-                      </React.Fragment>
-                    )
-                  )}
+                  {hierarchicalData.map((column, index) => (
+                    <React.Fragment key={index}>
+                      {renderColumns(index)}
+                    </React.Fragment>
+                  ))}
                 </Grid>
               </Grid>
             </Grid>
