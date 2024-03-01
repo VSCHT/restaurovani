@@ -1490,7 +1490,7 @@ form[action="/login/"] .ui.fluid.large.submit.primary{
   /* details page */
   /* bg */
   .details__bg {
-    background-image: url("~@less/images/bgDetails.png");
+    /* background-image: url("~ @less/images/bgDetails.png"); */
     min-height: 100vh;
     height: auto;
 width: 100vw;
