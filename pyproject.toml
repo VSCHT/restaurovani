@@ -14,6 +14,7 @@ dependencies = [
     "oarepo-vocabularies",
     "oarepo[s3]==12.*",
     "python-dotenv",
+    "PyMuPDF"
 ]
 requires-python = ">=3.9,<3.11"
 
@@ -69,6 +70,9 @@ objects = "objects"
 [project.entry-points."oarepo.ui"]
 objects = "objects.models:ui.json"
 objects_file = "objects.models:ui.json"
+
+[project.entry-points."oarepo.fixtures"]
+fixtures = "fixtures"
 
 [project.optional-dependencies]
 tests = [

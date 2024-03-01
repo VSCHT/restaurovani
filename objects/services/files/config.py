@@ -43,7 +43,7 @@ class ObjectsFileServiceConfig(RestorationFileServiceConfig):
         }
 
 
-class ObjectsFileDraftServiceConfig(PermissionsPresetsConfigMixin, FileServiceConfig):
+class ObjectsFileDraftServiceConfig(RestorationFileServiceConfig):
     """ObjectsDraft service config."""
 
     PERMISSIONS_PRESETS = ["everyone"]

@@ -14,5 +14,7 @@ oarepo-runtime==1.5.14
 oarepo-ui==5.0.106
 oarepo-vocabularies==2.0.76
 openpyxl==3.1.2
+pymupdf==1.23.26
+pymupdfb==1.23.22
 python-dotenv==1.0.1
 whitenoise==6.6.0
