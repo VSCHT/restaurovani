@@ -19,12 +19,11 @@ import {
 } from "semantic-ui-react";
 import {
   serializedVocabularyItems,
-  serializeVocabularyItem,
-  deserializeVocabularyItem,
+  serializeVocabularyItem
 } from "@js/oarepo_vocabularies";
 import axios from "axios";
 
-export const HierarchicalVocabularyField = ({
+export const VocabularyTreeSelectField = ({
   fieldPath,
   multiple,
   optionsListName,
@@ -430,7 +429,7 @@ export const HierarchicalVocabularyField = ({
   );
 };
 
-HierarchicalVocabularyField.propTypes = {
+VocabularyTreeSelectField.propTypes = {
   fieldPath: PropTypes.string.isRequired,
   multiple: PropTypes.bool,
   optionsListName: PropTypes.string.isRequired,
@@ -441,7 +440,7 @@ HierarchicalVocabularyField.propTypes = {
   optimized: PropTypes.bool,
 };
 
-HierarchicalVocabularyField.defaultProps = {
+VocabularyTreeSelectField.defaultProps = {
   noResultsMessage: "No results found.",
   showLeafsOnly: false,
   optimized: false,

@@ -9,7 +9,6 @@ import {
   Image,
   Pagination,
   Grid,
-  Popup,
 } from "semantic-ui-react";
 import {
   ReactWrapperPdf,

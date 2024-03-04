@@ -1,4 +1,3 @@
-import { createSearchAppInit } from '@js/invenio_search_ui'
 import {
   ActiveFiltersElement,
   CountElement,
@@ -11,7 +10,8 @@ import {
   BucketAggregationValuesElement,
   SearchAppFacets
 } from '@js/oarepo_ui/search'
-
+import {createSearchAppsInit,parseSearchAppConfigs
+} from "@js/oarepo_ui";
 import {
   EmptyResultsElement,
   ResultsGridItemWithState,
@@ -23,37 +23,34 @@ import {
 } from './components'
 import { parametrize, overrideStore } from 'react-overridable'
 
-const appName = 'objects'
 
-const SearchAppSearchbarContainerWithConfig = parametrize(SearchAppSearchbarContainer, { appName: appName })
-const ResultsListItemWithConfig = parametrize(ResultsListItemWithState, { appName: appName })
-const ResultsGridItemWithConfig = parametrize(ResultsGridItemWithState, { appName: appName })
+const [searchAppConfig, ...otherSearchAppConfigs] = parseSearchAppConfigs()
+const { overridableIdPrefix } = searchAppConfig
 
-export const defaultComponents = {
-  [`${appName}.ActiveFilters.element`]: ActiveFiltersElement,
-  [`${appName}.BucketAggregation.element`]: MyBucketAggregation,
-  [`${appName}.BucketAggregationValues.element`]: MyBucketAggregationValues,
-  [`${appName}.Count.element`]: CountElement,
-  [`${appName}.EmptyResults.element`]: EmptyResultsElement,
-  [`${appName}.Error.element`]: ErrorElement,
-  [`${appName}.ResultsGrid.item`]: ResultsGridItemWithConfig,
-  [`${appName}.ResultsList.item`]: ResultsListItemWithConfig,
-  // [`${appName}.SearchApp.facets`]: MyFacets,
-  [`${appName}.SearchApp.facets`]: SearchAppFacets,
-  [`${appName}.SearchApp.layout`]: SearchAppLayout,
-  [`${appName}.SearchApp.searchbarContainer`]: SearchAppSearchbarContainerWithConfig,
-  [`${appName}.SearchApp.sort`]: SearchAppSort,
-  [`${appName}.SearchApp.resultOptions`]: SearchAppResultOptions,
-  [`${appName}.SearchFilters.Toggle.element`]: SearchFiltersToggleElement,
-  [`${appName}.SearchBar.element`]: CustomSearchBar,
+
+const SearchAppSearchbarContainerWithConfig = parametrize(SearchAppSearchbarContainer, { overridableIdPrefix: overridableIdPrefix })
+const ResultsListItemWithConfig = parametrize(ResultsListItemWithState, { overridableIdPrefix: overridableIdPrefix })
+const ResultsGridItemWithConfig = parametrize(ResultsGridItemWithState, { overridableIdPrefix: overridableIdPrefix })
+
+export const componentOverrides = {
+  [`${overridableIdPrefix}.ActiveFilters.element`]: ActiveFiltersElement,
+  [`${overridableIdPrefix}.BucketAggregation.element`]: MyBucketAggregation,
+  [`${overridableIdPrefix}.BucketAggregationValues.element`]: MyBucketAggregationValues,
+  [`${overridableIdPrefix}.Count.element`]: CountElement,
+  [`${overridableIdPrefix}.EmptyResults.element`]: EmptyResultsElement,
+  [`${overridableIdPrefix}.Error.element`]: ErrorElement,
+  [`${overridableIdPrefix}.ResultsGrid.item`]: ResultsGridItemWithConfig,
+  [`${overridableIdPrefix}.ResultsList.item`]: ResultsListItemWithConfig,
+  [`${overridableIdPrefix}.SearchApp.facets`]: MyFacets,
+  [`${overridableIdPrefix}.SearchApp.layout`]: SearchAppLayout,
+  [`${overridableIdPrefix}.SearchApp.searchbarContainer`]: SearchAppSearchbarContainerWithConfig,
+  [`${overridableIdPrefix}.SearchApp.sort`]: SearchAppSort,
+  [`${overridableIdPrefix}.SearchApp.resultOptions`]: SearchAppResultOptions,
+  [`${overridableIdPrefix}.SearchFilters.Toggle.element`]: SearchFiltersToggleElement,
+  [`${overridableIdPrefix}.SearchBar.element`]: CustomSearchBar,
   
 }
 
-const overriddenComponents = overrideStore.getAll()
 
-createSearchAppInit(
-  { ...defaultComponents, ...overriddenComponents },
-  true,
-  'invenio-search-config',
-  true,
-)
+
+createSearchAppsInit({ componentOverrides });

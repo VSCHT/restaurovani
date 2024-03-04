@@ -16,14 +16,13 @@ const categories = [
   { value: "textil", label: "Textil", id: "3" },
 ];
 
-export const CreateObjectFormContent = ({ errors }) => {
+const CreateObjectFormContent = ({ errors }) => {
   const { values } = useDepositApiClient();
 
   return (
     <Grid columns={1} className="gapped predmety__form">
       <Header as="h3">Vytvoření nového předmětu</Header>
       <Grid columns={1}>
-
         <Grid.Column>
           <TextField
             fieldPath="metadata.restorationObject.title"
@@ -58,38 +57,37 @@ export const CreateObjectFormContent = ({ errors }) => {
               required
               label="Hlavní materiál"
             ></FieldLabel>
-              <Form.Group>
-                {categories.map((option) => (
-                  <Form.Field key={option.value}>
-                    <div key={option.id}>
-                      <RadioField
-                        label={option.label}
-                        fieldPath="metadata.restorationObject.category"
-                        name="metadata.restorationObject.category"
-                        value={option.value}
-                        checked={
-                          _get(values, "metadata.restorationObject.category") ==
+            <Form.Group>
+              {categories.map((option) => (
+                <Form.Field key={option.value}>
+                  <div key={option.id}>
+                    <RadioField
+                      label={option.label}
+                      fieldPath="metadata.restorationObject.category"
+                      name="metadata.restorationObject.category"
+                      value={option.value}
+                      checked={
+                        _get(values, "metadata.restorationObject.category") ==
+                        option.value
+                      }
+                      onChange={({ formikProps }) => {
+                        formikProps.form.setFieldValue(
+                          "metadata.restorationObject.category",
                           option.value
-                        }
-                        onChange={({ formikProps }) => {
-                          formikProps.form.setFieldValue(
-                            "metadata.restorationObject.category",
-                            option.value
-                          );
-                        }}
-                        optimized
-                      />
-                    </div>
-                  </Form.Field>
-                ))}
-              </Form.Group>
-              {errors?.metadata?.restorationObject?.category ? (
-                <Label pointing="above" prompt>
-                  Pole je povinné
-                </Label>
-              ) : null}
-              <ErrorMessage name="metadata.restorationObject.category" />
-           
+                        );
+                      }}
+                      optimized
+                    />
+                  </div>
+                </Form.Field>
+              ))}
+            </Form.Group>
+            {errors?.metadata?.restorationObject?.category ? (
+              <Label pointing="above" prompt>
+                Pole je povinné
+              </Label>
+            ) : null}
+            <ErrorMessage name="metadata.restorationObject.category" />
           </Form>
         </Grid.Column>
       </Grid>

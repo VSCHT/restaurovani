@@ -14,7 +14,7 @@ export const EmptyResultsElement = ({
   resetQuery,
 }) => {
   return (
-    <Grid>
+    <Grid columns={1}>
       <Divider/>
       <Grid.Row centered>
         <Grid.Column width={12} textAlign="center">
@@ -25,7 +25,7 @@ export const EmptyResultsElement = ({
         </Grid.Column>
       </Grid.Row>
       <Grid.Row centered>
-        <Grid.Column width={8} textAlign="center">
+        <Grid.Column width={12} textAlign="center">
           <Button
             primary
             onClick={resetQuery}

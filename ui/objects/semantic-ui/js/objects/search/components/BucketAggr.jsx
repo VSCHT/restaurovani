@@ -2,9 +2,7 @@ import {
   List,
   Checkbox,
   Accordion,
-  Image,
   Label,
-  Grid,
   Icon,
 } from "semantic-ui-react";
 import { withState } from "react-searchkit";
@@ -15,8 +13,7 @@ export const MyBucketAggregationValues = withState(
     bucket,
     onFilterClicked,
     isSelected,
-    childAggCmps,
-    currentQueryState,
+    childAggCmps
   }) => {
 
     return (
@@ -53,20 +50,6 @@ export const MyBucketAggregation = withState(
             >
               {" "}
               {title}
-              {/* {
-            (title =
-              title.startsWith("metadata/restorationWork/") ||
-              title.startsWith("metadata/restorationObject/")
-                ? title
-                    .replace(
-                      /^(metadata\/restorationObject\/|metadata\/restorationWork\/)|[\/]+|\.label$/g,
-                      " "
-                    )
-                    .trim()
-                    .toLowerCase()
-                    .replace(/^\w/, (c) => c.toUpperCase())
-                : title)
-          } */}
               <Icon name="chevron down" />
             </Accordion.Title>
             <Accordion.Content active={activeIndex === title}>
