@@ -1,18 +1,15 @@
 from invenio_records_resources.services import FileLink, FileServiceConfig, RecordLink
 from invenio_records_resources.services.records.components import DataComponent
 from oarepo_runtime.services.config.service import PermissionsPresetsConfigMixin
-from oarepo_runtime.services.results import RecordList
 
+from common.services.files import RestorationFileServiceConfig
 from objects.records.api import ObjectsDraft, ObjectsRecord
-from objects.services.files.permissions import ObjectsFileDraftPermissionPolicy
 from objects.services.files.schema import ObjectsFileSchema
 from objects.services.records.permissions import ObjectsPermissionPolicy
 
 
-class ObjectsFileServiceConfig(PermissionsPresetsConfigMixin, FileServiceConfig):
+class ObjectsFileServiceConfig(RestorationFileServiceConfig):
     """ObjectsRecord service config."""
-
-    result_list_cls = RecordList
 
     PERMISSIONS_PRESETS = ["everyone"]
 
@@ -26,11 +23,7 @@ class ObjectsFileServiceConfig(PermissionsPresetsConfigMixin, FileServiceConfig)
 
     service_id = "objects_file"
 
-    components = [
-        *PermissionsPresetsConfigMixin.components,
-        *FileServiceConfig.components,
-        DataComponent,
-    ]
+    components = [*RestorationFileServiceConfig.components, DataComponent]
 
     model = "objects"
     allow_upload = False
@@ -50,16 +43,12 @@ class ObjectsFileServiceConfig(PermissionsPresetsConfigMixin, FileServiceConfig)
         }
 
 
-class ObjectsFileDraftServiceConfig(PermissionsPresetsConfigMixin, FileServiceConfig):
+class ObjectsFileDraftServiceConfig(RestorationFileServiceConfig):
     """ObjectsDraft service config."""
-
-    result_list_cls = RecordList
 
     PERMISSIONS_PRESETS = ["everyone"]
 
     url_prefix = "/objects/<pid_value>/draft"
-
-    base_permission_policy_cls = ObjectsFileDraftPermissionPolicy
 
     schema = ObjectsFileSchema
 

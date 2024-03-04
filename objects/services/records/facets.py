@@ -3,8 +3,11 @@
 from invenio_records_resources.services.records.facets import TermsFacet
 from oarepo_runtime.i18n import lazy_gettext as _
 from oarepo_runtime.services.facets.date import DateTimeFacet
-from oarepo_runtime.services.facets.nested_facet import NestedLabeledFacet
 from oarepo_vocabularies.services.facets import VocabularyFacet
+
+data_extractedTimestamp = DateTimeFacet(
+    field="data.extractedTimestamp", label=_("data/extractedTimestamp.label")
+)
 
 metadata_category = TermsFacet(
     field="metadata.category", label=_("metadata/category.label")
@@ -18,6 +21,12 @@ metadata_restorationObject_archeologic = TermsFacet(
 metadata_restorationObject_category = TermsFacet(
     field="metadata.restorationObject.category",
     label=_("metadata/restorationObject/category.label"),
+)
+
+metadata_restorationObject_colors = VocabularyFacet(
+    field="metadata.restorationObject.colors",
+    label=_("metadata/restorationObject/colors.label"),
+    vocabulary="Colors",
 )
 
 metadata_restorationObject_creationPeriod_since = TermsFacet(
@@ -46,6 +55,12 @@ metadata_restorationObject_dimensions_value = TermsFacet(
     label=_("metadata/restorationObject/dimensions/value.label"),
 )
 
+metadata_restorationObject_fabricationTechnologies = VocabularyFacet(
+    field="metadata.restorationObject.fabricationTechnologies",
+    label=_("metadata/restorationObject/fabricationTechnologies.label"),
+    vocabulary="FabricationTechnologies",
+)
+
 metadata_restorationObject_itemTypes = VocabularyFacet(
     field="metadata.restorationObject.itemTypes",
     label=_("metadata/restorationObject/itemTypes.label"),
@@ -57,56 +72,10 @@ metadata_restorationObject_keywords = TermsFacet(
     label=_("metadata/restorationObject/keywords.label"),
 )
 
-metadata_restorationObject_parts_colors = NestedLabeledFacet(
-    path="metadata.restorationObject.parts",
-    nested_facet=VocabularyFacet(
-        field="metadata.restorationObject.parts.colors",
-        label=_("metadata/restorationObject/parts/colors.label"),
-        vocabulary="Colors",
-    ),
-)
-
-metadata_restorationObject_parts_fabricationTechnologies = NestedLabeledFacet(
-    path="metadata.restorationObject.parts",
-    nested_facet=VocabularyFacet(
-        field="metadata.restorationObject.parts.fabricationTechnologies",
-        label=_("metadata/restorationObject/parts/fabricationTechnologies.label"),
-        vocabulary="FabricationTechnologies",
-    ),
-)
-
-metadata_restorationObject_parts_id = NestedLabeledFacet(
-    path="metadata.restorationObject.parts",
-    nested_facet=TermsFacet(
-        field="metadata.restorationObject.parts.id",
-        label=_("metadata/restorationObject/parts/id.label"),
-    ),
-)
-
-metadata_restorationObject_parts_main = NestedLabeledFacet(
-    path="metadata.restorationObject.parts",
-    nested_facet=TermsFacet(
-        field="metadata.restorationObject.parts.main",
-        label=_("metadata/restorationObject/parts/main.label"),
-    ),
-)
-
-metadata_restorationObject_parts_materialType = NestedLabeledFacet(
-    path="metadata.restorationObject.parts",
-    nested_facet=VocabularyFacet(
-        field="metadata.restorationObject.parts.materialType",
-        label=_("metadata/restorationObject/parts/materialType.label"),
-        vocabulary="MaterialTypes",
-    ),
-)
-
-metadata_restorationObject_parts_secondaryMaterialTypes = NestedLabeledFacet(
-    path="metadata.restorationObject.parts",
-    nested_facet=VocabularyFacet(
-        field="metadata.restorationObject.parts.secondaryMaterialTypes",
-        label=_("metadata/restorationObject/parts/secondaryMaterialTypes.label"),
-        vocabulary="MaterialTypes",
-    ),
+metadata_restorationObject_materialType = VocabularyFacet(
+    field="metadata.restorationObject.materialType",
+    label=_("metadata/restorationObject/materialType.label"),
+    vocabulary="MaterialTypes",
 )
 
 metadata_restorationObject_restorationRequestor = VocabularyFacet(
@@ -115,19 +84,16 @@ metadata_restorationObject_restorationRequestor = VocabularyFacet(
     vocabulary="Requestors",
 )
 
+metadata_restorationObject_secondaryMaterialTypes = VocabularyFacet(
+    field="metadata.restorationObject.secondaryMaterialTypes",
+    label=_("metadata/restorationObject/secondaryMaterialTypes.label"),
+    vocabulary="MaterialTypes",
+)
+
 metadata_restorationWork_examinationMethods = VocabularyFacet(
     field="metadata.restorationWork.examinationMethods",
     label=_("metadata/restorationWork/examinationMethods.label"),
     vocabulary="ExaminationMethods",
-)
-
-metadata_restorationWork_parts_restorationMethods = NestedLabeledFacet(
-    path="metadata.restorationWork.parts",
-    nested_facet=VocabularyFacet(
-        field="metadata.restorationWork.parts.restorationMethods",
-        label=_("metadata/restorationWork/parts/restorationMethods.label"),
-        vocabulary="RestorationMethods",
-    ),
 )
 
 metadata_restorationWork_restorationMethods = VocabularyFacet(

@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2024-01-06T14:54:14.742886\n"
-"PO-Revision-Date: 2024-01-06T14:54:14.742887\n"
+"POT-Creation-Date: 2024-03-01T15:34:32.916604\n"
+"PO-Revision-Date: 2024-03-01T15:34:32.916605\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,15 +17,6 @@ msgstr ""
 msgid "$schema.hint"
 msgstr ""
 
-msgid "caption.help"
-msgstr ""
-
-msgid "caption.label"
-msgstr ""
-
-msgid "caption.hint"
-msgstr ""
-
 msgid "created.help"
 msgstr ""
 
@@ -35,28 +26,31 @@ msgstr ""
 msgid "created.hint"
 msgstr ""
 
-msgid "featured.help"
+msgid "data.help"
 msgstr ""
 
-msgid "featured.label"
+msgid "data.label"
 msgstr ""
 
-msgid "featured.hint"
+msgid "data.hint"
 msgstr ""
 
-msgid "fileType.help"
+msgid "data/extractedText.label"
 msgstr ""
 
-msgid "fileType.label"
+msgid "data/extractedText.help"
 msgstr ""
 
-msgid "fileType.hint"
+msgid "data/extractedText.hint"
 msgstr ""
 
-msgid "fileType.enum.photo"
+msgid "data/extractedTimestamp.label"
 msgstr ""
 
-msgid "fileType.enum.document"
+msgid "data/extractedTimestamp.help"
+msgstr ""
+
+msgid "data/extractedTimestamp.hint"
 msgstr ""
 
 msgid "id.help"
@@ -66,6 +60,591 @@ msgid "id.label"
 msgstr ""
 
 msgid "id.hint"
+msgstr ""
+
+msgid "metadata.help"
+msgstr ""
+
+msgid "metadata.label"
+msgstr ""
+
+msgid "metadata.hint"
+msgstr ""
+
+msgid "metadata/category.help"
+msgstr ""
+
+msgid "metadata/category.label"
+msgstr ""
+
+msgid "metadata/category.hint"
+msgstr ""
+
+msgid "metadata/restorationObject.help"
+msgstr ""
+
+msgid "metadata/restorationObject.label"
+msgstr ""
+
+msgid "metadata/restorationObject.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/archeologic.label"
+msgstr ""
+
+msgid "metadata/restorationObject/archeologic.help"
+msgstr ""
+
+msgid "metadata/restorationObject/archeologic.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/category.label"
+msgstr ""
+
+msgid "metadata/restorationObject/category.help"
+msgstr ""
+
+msgid "metadata/restorationObject/category.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/colors.label"
+msgstr ""
+
+msgid "metadata/restorationObject/colors.help"
+msgstr ""
+
+msgid "metadata/restorationObject/colors.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/colors/id.help"
+msgstr ""
+
+msgid "metadata/restorationObject/colors/id.label"
+msgstr ""
+
+msgid "metadata/restorationObject/colors/id.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/colors/title.help"
+msgstr ""
+
+msgid "metadata/restorationObject/colors/title.label"
+msgstr ""
+
+msgid "metadata/restorationObject/colors/title.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/colors/@v.help"
+msgstr ""
+
+msgid "metadata/restorationObject/colors/@v.label"
+msgstr ""
+
+msgid "metadata/restorationObject/colors/@v.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/creationPeriod.label"
+msgstr ""
+
+msgid "metadata/restorationObject/creationPeriod.help"
+msgstr ""
+
+msgid "metadata/restorationObject/creationPeriod.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/creationPeriod/since.label"
+msgstr ""
+
+msgid "metadata/restorationObject/creationPeriod/since.help"
+msgstr ""
+
+msgid "metadata/restorationObject/creationPeriod/since.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/creationPeriod/until.label"
+msgstr ""
+
+msgid "metadata/restorationObject/creationPeriod/until.help"
+msgstr ""
+
+msgid "metadata/restorationObject/creationPeriod/until.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/description.label"
+msgstr ""
+
+msgid "metadata/restorationObject/description.help"
+msgstr ""
+
+msgid "metadata/restorationObject/description.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions.label"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions.help"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/dimension.label"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/dimension.help"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/dimension.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/dimension/id.help"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/dimension/id.label"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/dimension/id.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/dimension/title.help"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/dimension/title.label"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/dimension/title.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/dimension/@v.help"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/dimension/@v.label"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/dimension/@v.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/unit.label"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/unit.help"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/unit.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/value.label"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/value.help"
+msgstr ""
+
+msgid "metadata/restorationObject/dimensions/value.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/fabricationTechnologies.label"
+msgstr ""
+
+msgid "metadata/restorationObject/fabricationTechnologies.help"
+msgstr ""
+
+msgid "metadata/restorationObject/fabricationTechnologies.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/fabricationTechnologies/id.help"
+msgstr ""
+
+msgid "metadata/restorationObject/fabricationTechnologies/id.label"
+msgstr ""
+
+msgid "metadata/restorationObject/fabricationTechnologies/id.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/fabricationTechnologies/title.help"
+msgstr ""
+
+msgid "metadata/restorationObject/fabricationTechnologies/title.label"
+msgstr ""
+
+msgid "metadata/restorationObject/fabricationTechnologies/title.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/fabricationTechnologies/@v.help"
+msgstr ""
+
+msgid "metadata/restorationObject/fabricationTechnologies/@v.label"
+msgstr ""
+
+msgid "metadata/restorationObject/fabricationTechnologies/@v.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/itemTypes.label"
+msgstr ""
+
+msgid "metadata/restorationObject/itemTypes.help"
+msgstr ""
+
+msgid "metadata/restorationObject/itemTypes.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/itemTypes/id.help"
+msgstr ""
+
+msgid "metadata/restorationObject/itemTypes/id.label"
+msgstr ""
+
+msgid "metadata/restorationObject/itemTypes/id.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/itemTypes/title.help"
+msgstr ""
+
+msgid "metadata/restorationObject/itemTypes/title.label"
+msgstr ""
+
+msgid "metadata/restorationObject/itemTypes/title.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/itemTypes/@v.help"
+msgstr ""
+
+msgid "metadata/restorationObject/itemTypes/@v.label"
+msgstr ""
+
+msgid "metadata/restorationObject/itemTypes/@v.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/keywords.label"
+msgstr ""
+
+msgid "metadata/restorationObject/keywords.help"
+msgstr ""
+
+msgid "metadata/restorationObject/keywords.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/materialType.label"
+msgstr ""
+
+msgid "metadata/restorationObject/materialType.help"
+msgstr ""
+
+msgid "metadata/restorationObject/materialType.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/materialType/id.help"
+msgstr ""
+
+msgid "metadata/restorationObject/materialType/id.label"
+msgstr ""
+
+msgid "metadata/restorationObject/materialType/id.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/materialType/title.help"
+msgstr ""
+
+msgid "metadata/restorationObject/materialType/title.label"
+msgstr ""
+
+msgid "metadata/restorationObject/materialType/title.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/materialType/@v.help"
+msgstr ""
+
+msgid "metadata/restorationObject/materialType/@v.label"
+msgstr ""
+
+msgid "metadata/restorationObject/materialType/@v.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/restorationRequestor.label"
+msgstr ""
+
+msgid "metadata/restorationObject/restorationRequestor.help"
+msgstr ""
+
+msgid "metadata/restorationObject/restorationRequestor.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/restorationRequestor/id.help"
+msgstr ""
+
+msgid "metadata/restorationObject/restorationRequestor/id.label"
+msgstr ""
+
+msgid "metadata/restorationObject/restorationRequestor/id.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/restorationRequestor/title.help"
+msgstr ""
+
+msgid "metadata/restorationObject/restorationRequestor/title.label"
+msgstr ""
+
+msgid "metadata/restorationObject/restorationRequestor/title.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/restorationRequestor/@v.help"
+msgstr ""
+
+msgid "metadata/restorationObject/restorationRequestor/@v.label"
+msgstr ""
+
+msgid "metadata/restorationObject/restorationRequestor/@v.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/secondaryMaterialTypes.label"
+msgstr ""
+
+msgid "metadata/restorationObject/secondaryMaterialTypes.help"
+msgstr ""
+
+msgid "metadata/restorationObject/secondaryMaterialTypes.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/secondaryMaterialTypes/id.help"
+msgstr ""
+
+msgid "metadata/restorationObject/secondaryMaterialTypes/id.label"
+msgstr ""
+
+msgid "metadata/restorationObject/secondaryMaterialTypes/id.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/secondaryMaterialTypes/title.help"
+msgstr ""
+
+msgid "metadata/restorationObject/secondaryMaterialTypes/title.label"
+msgstr ""
+
+msgid "metadata/restorationObject/secondaryMaterialTypes/title.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/secondaryMaterialTypes/@v.help"
+msgstr ""
+
+msgid "metadata/restorationObject/secondaryMaterialTypes/@v.label"
+msgstr ""
+
+msgid "metadata/restorationObject/secondaryMaterialTypes/@v.hint"
+msgstr ""
+
+msgid "metadata/restorationObject/title.label"
+msgstr ""
+
+msgid "metadata/restorationObject/title.help"
+msgstr ""
+
+msgid "metadata/restorationObject/title.hint"
+msgstr ""
+
+msgid "metadata/restorationWork.label"
+msgstr ""
+
+msgid "metadata/restorationWork.help"
+msgstr ""
+
+msgid "metadata/restorationWork.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/abstract.label"
+msgstr ""
+
+msgid "metadata/restorationWork/abstract.help"
+msgstr ""
+
+msgid "metadata/restorationWork/abstract.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/examinationMethods.label"
+msgstr ""
+
+msgid "metadata/restorationWork/examinationMethods.help"
+msgstr ""
+
+msgid "metadata/restorationWork/examinationMethods.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/examinationMethods/id.help"
+msgstr ""
+
+msgid "metadata/restorationWork/examinationMethods/id.label"
+msgstr ""
+
+msgid "metadata/restorationWork/examinationMethods/id.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/examinationMethods/title.help"
+msgstr ""
+
+msgid "metadata/restorationWork/examinationMethods/title.label"
+msgstr ""
+
+msgid "metadata/restorationWork/examinationMethods/title.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/examinationMethods/@v.help"
+msgstr ""
+
+msgid "metadata/restorationWork/examinationMethods/@v.label"
+msgstr ""
+
+msgid "metadata/restorationWork/examinationMethods/@v.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationMethods.label"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationMethods.help"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationMethods.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationMethods/id.help"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationMethods/id.label"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationMethods/id.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationMethods/title.help"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationMethods/title.label"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationMethods/title.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationMethods/@v.help"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationMethods/@v.label"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationMethods/@v.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationPeriod.label"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationPeriod.help"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationPeriod.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationPeriod/since.label"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationPeriod/since.help"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationPeriod/since.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationPeriod/until.label"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationPeriod/until.help"
+msgstr ""
+
+msgid "metadata/restorationWork/restorationPeriod/until.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/restorer.label"
+msgstr ""
+
+msgid "metadata/restorationWork/restorer.help"
+msgstr ""
+
+msgid "metadata/restorationWork/restorer.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors.label"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors.help"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/comment.label"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/comment.help"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/comment.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/fullName.label"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/fullName.help"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/fullName.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/institution.label"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/institution.help"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/institution.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/workType.label"
+msgstr ""
+
+msgid "metadata/restorationWork/workType.help"
+msgstr ""
+
+msgid "metadata/restorationWork/workType.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/workType/id.help"
+msgstr ""
+
+msgid "metadata/restorationWork/workType/id.label"
+msgstr ""
+
+msgid "metadata/restorationWork/workType/id.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/workType/title.help"
+msgstr ""
+
+msgid "metadata/restorationWork/workType/title.label"
+msgstr ""
+
+msgid "metadata/restorationWork/workType/title.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/workType/@v.help"
+msgstr ""
+
+msgid "metadata/restorationWork/workType/@v.label"
+msgstr ""
+
+msgid "metadata/restorationWork/workType/@v.hint"
+msgstr ""
+
+msgid "metadata/submissionStatus.help"
+msgstr ""
+
+msgid "metadata/submissionStatus.label"
+msgstr ""
+
+msgid "metadata/submissionStatus.hint"
 msgstr ""
 
 msgid "updated.help"

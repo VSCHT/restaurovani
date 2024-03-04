@@ -18,48 +18,38 @@ restorationObject:
     description:
       type: fulltext
       label.cs: Popis předmětu
-    parts[]:
-      type: nested
-      id: part
-      label.cs: Část předmětu
-      ^label.cs: Části předmětu
-      properties:
-        id:
-          type: keyword
-          label.cs: ID
-        name:
-          type: fulltext+keyword
-          label.cs: Název části
-        main:
-          type: boolean
-          label.cs: Hlavní část
-        fabricationTechnologies[]:
-          type: vocabulary
-          vocabulary-type: FabricationTechnologies
-          label.cs: Technologie výroby
-          ^label.cs: Technologie výroby
-          facets:
-            facet-groups: [ default ]
-        materialType:
-          type: vocabulary
-          vocabulary-type: MaterialTypes
-          label.cs: Materiál
-          facets:
-            facet-groups: [ default ]
-        secondaryMaterialTypes[]:
-          type: vocabulary
-          vocabulary-type: MaterialTypes
-          label.cs: Sekundární materiál
-          ^label.cs: Sekundární materiály
-          facets:
-            facet-groups: [ default ]
-        colors[]:
-          type: vocabulary
-          vocabulary-type: Colors
-          label.cs: Barva
-          ^label.cs: Barvy
-          facets:
-            facet-groups: [ default ]
+
+    fabricationTechnologies[]:
+      type: vocabulary
+      vocabulary-type: FabricationTechnologies
+      label.cs: Technologie výroby
+      ^label.cs: Technologie výroby
+      facets:
+        facet-groups: [ default ]
+
+    materialType:
+      type: vocabulary
+      vocabulary-type: MaterialTypes
+      label.cs: Materiál
+      facets:
+        facet-groups: [ default ]
+
+    secondaryMaterialTypes[]:
+      type: vocabulary
+      vocabulary-type: MaterialTypes
+      label.cs: Sekundární materiál
+      ^label.cs: Sekundární materiály
+      facets:
+        facet-groups: [ default ]
+
+    colors[]:
+      type: vocabulary
+      vocabulary-type: Colors
+      label.cs: Barva
+      ^label.cs: Barvy
+      facets:
+        facet-groups: [ default ]
+
     itemTypes[]:
       type: vocabulary
       vocabulary-type: ItemTypes

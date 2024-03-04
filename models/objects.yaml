@@ -22,6 +22,9 @@ record:
   draft-files:
     resource:
       base-classes: [ oarepo_ui.resources.file_resource.S3RedirectFileResource ]
+    service-config:
+      base-classes:
+        - common.services.files.RestorationFileServiceConfig
 
   search-options:
     base-classes:
@@ -33,6 +36,9 @@ record:
     properties:
       use:
       - ./objects-files.yaml
+    service-config:
+      base-classes:
+        - common.services.files.RestorationFileServiceConfig
     use:
     - invenio_files
   module:
@@ -45,7 +51,7 @@ record:
   properties:
     metadata:
       properties: 
-        use: ["objects-restoration-object.yaml", "objects-restoration-work.yaml"]
+        use: ["objects-restoration-object.yaml", "objects-restoration-work.yaml", "objects-restoration-data.yaml"]
         category:
           type: keyword
         submissionStatus:
