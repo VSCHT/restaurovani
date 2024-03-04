@@ -1,9 +1,9 @@
 {
     "module": "objects.models",
     "file": "objects/models/ui.json",
-    "alias": "objects_file",
-    "detail": "file",
-    "input": "file",
+    "alias": "objects",
+    "detail": "model",
+    "input": "model",
     "help": ".help",
     "label": ".label",
     "hint": ".hint",
@@ -13,57 +13,45 @@
             "input": "keyword",
             "help": "$schema.help",
             "label": "$schema.label",
-            "hint": "$schema.hint",
-            "facet": "_schema"
-        },
-        "caption": {
-            "detail": "keyword",
-            "input": "keyword",
-            "help": "caption.help",
-            "label": "caption.label",
-            "hint": "caption.hint",
-            "facet": "caption"
+            "hint": "$schema.hint"
         },
         "created": {
-            "detail": "date",
-            "input": "date",
+            "detail": "datetime",
+            "input": "datetime",
             "help": "created.help",
             "label": "created.label",
-            "hint": "created.hint",
-            "facet": "created"
+            "hint": "created.hint"
         },
-        "featured": {
-            "detail": "boolean",
-            "input": "boolean",
-            "help": "featured.help",
-            "label": "featured.label",
-            "hint": "featured.hint",
-            "facet": "featured"
-        },
-        "fileType": {
-            "detail": "keyword",
-            "input": "keyword",
-            "help": "fileType.help",
-            "label": "fileType.label",
-            "hint": "fileType.hint",
-            "enum": "fileType.enum",
-            "facet": "fileType"
+        "data": {
+            "detail": "datum",
+            "input": "datum",
+            "help": "data.help",
+            "label": "data.label",
+            "hint": "data.hint",
+            "children": {
+                "extractedText": {
+                    "detail": "fulltext",
+                    "input": "fulltext",
+                    "help": "data/extractedText.help",
+                    "label": "data/extractedText.label",
+                    "hint": "data/extractedText.hint"
+                },
+                "extractedTimestamp": {
+                    "detail": "datetime",
+                    "input": "datetime",
+                    "help": "data/extractedTimestamp.help",
+                    "label": "data/extractedTimestamp.label",
+                    "hint": "data/extractedTimestamp.hint",
+                    "facet": "data_extractedTimestamp"
+                }
+            }
         },
         "id": {
             "detail": "keyword",
             "input": "keyword",
             "help": "id.help",
             "label": "id.label",
-            "hint": "id.hint",
-            "facet": "_id"
-        },
-        "updated": {
-            "detail": "date",
-            "input": "date",
-            "help": "updated.help",
-            "label": "updated.label",
-            "hint": "updated.hint",
-            "facet": "updated"
+            "hint": "id.hint"
         },
         "metadata": {
             "detail": "metadatum",
@@ -102,6 +90,45 @@
                             "label": "metadata/restorationObject/category.label",
                             "hint": "metadata/restorationObject/category.hint",
                             "facet": "metadata_restorationObject_category"
+                        },
+                        "colors": {
+                            "detail": "array",
+                            "input": "array",
+                            "help": "metadata/restorationObject/colors.help",
+                            "label": "metadata/restorationObject/colors.label",
+                            "hint": "metadata/restorationObject/colors.hint",
+                            "child": {
+                                "detail": "vocabulary_item",
+                                "edit": "vocabulary_item",
+                                "input": "vocabulary",
+                                "help": "metadata/restorationObject/colors.help",
+                                "label": "metadata/restorationObject/colors.label",
+                                "hint": "metadata/restorationObject/colors.hint",
+                                "facet": "metadata_restorationObject_colors",
+                                "children": {
+                                    "id": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/colors/id.help",
+                                        "label": "metadata/restorationObject/colors/id.label",
+                                        "hint": "metadata/restorationObject/colors/id.hint"
+                                    },
+                                    "title": {
+                                        "detail": false,
+                                        "input": false,
+                                        "help": "metadata/restorationObject/colors/title.help",
+                                        "label": "metadata/restorationObject/colors/title.label",
+                                        "hint": "metadata/restorationObject/colors/title.hint"
+                                    },
+                                    "@v": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/colors/@v.help",
+                                        "label": "metadata/restorationObject/colors/@v.label",
+                                        "hint": "metadata/restorationObject/colors/@v.hint"
+                                    }
+                                }
+                            }
                         },
                         "creationPeriod": {
                             "detail": false,
@@ -199,6 +226,45 @@
                                 }
                             }
                         },
+                        "fabricationTechnologies": {
+                            "detail": "array",
+                            "input": "array",
+                            "help": "metadata/restorationObject/fabricationTechnologies.help",
+                            "label": "metadata/restorationObject/fabricationTechnologies.label",
+                            "hint": "metadata/restorationObject/fabricationTechnologies.hint",
+                            "child": {
+                                "detail": "vocabulary_item",
+                                "edit": "vocabulary_item",
+                                "input": "vocabulary",
+                                "help": "metadata/restorationObject/fabricationTechnologies.help",
+                                "label": "metadata/restorationObject/fabricationTechnologies.label",
+                                "hint": "metadata/restorationObject/fabricationTechnologies.hint",
+                                "facet": "metadata_restorationObject_fabricationTechnologies",
+                                "children": {
+                                    "id": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/fabricationTechnologies/id.help",
+                                        "label": "metadata/restorationObject/fabricationTechnologies/id.label",
+                                        "hint": "metadata/restorationObject/fabricationTechnologies/id.hint"
+                                    },
+                                    "title": {
+                                        "detail": false,
+                                        "input": false,
+                                        "help": "metadata/restorationObject/fabricationTechnologies/title.help",
+                                        "label": "metadata/restorationObject/fabricationTechnologies/title.label",
+                                        "hint": "metadata/restorationObject/fabricationTechnologies/title.hint"
+                                    },
+                                    "@v": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/fabricationTechnologies/@v.help",
+                                        "label": "metadata/restorationObject/fabricationTechnologies/@v.label",
+                                        "hint": "metadata/restorationObject/fabricationTechnologies/@v.hint"
+                                    }
+                                }
+                            }
+                        },
                         "itemTypes": {
                             "detail": "array",
                             "input": "array",
@@ -253,191 +319,35 @@
                                 "facet": "metadata_restorationObject_keywords"
                             }
                         },
-                        "parts": {
-                            "detail": "array",
-                            "input": "array",
-                            "help": "metadata/restorationObject/parts.help",
-                            "label": "metadata/restorationObject/parts.label",
-                            "hint": "metadata/restorationObject/parts.hint",
-                            "child": {
-                                "detail": "part",
-                                "input": "part",
-                                "help": "metadata/restorationObject/parts.help",
-                                "label": "metadata/restorationObject/parts.label",
-                                "hint": "metadata/restorationObject/parts.hint",
-                                "children": {
-                                    "colors": {
-                                        "detail": "array",
-                                        "input": "array",
-                                        "help": "metadata/restorationObject/parts/colors.help",
-                                        "label": "metadata/restorationObject/parts/colors.label",
-                                        "hint": "metadata/restorationObject/parts/colors.hint",
-                                        "child": {
-                                            "detail": "vocabulary_item",
-                                            "edit": "vocabulary_item",
-                                            "input": "vocabulary",
-                                            "help": "metadata/restorationObject/parts/colors.help",
-                                            "label": "metadata/restorationObject/parts/colors.label",
-                                            "hint": "metadata/restorationObject/parts/colors.hint",
-                                            "facet": "metadata_restorationObject_parts_colors",
-                                            "children": {
-                                                "id": {
-                                                    "detail": "keyword",
-                                                    "input": "keyword",
-                                                    "help": "metadata/restorationObject/parts/colors/id.help",
-                                                    "label": "metadata/restorationObject/parts/colors/id.label",
-                                                    "hint": "metadata/restorationObject/parts/colors/id.hint"
-                                                },
-                                                "title": {
-                                                    "detail": false,
-                                                    "input": false,
-                                                    "help": "metadata/restorationObject/parts/colors/title.help",
-                                                    "label": "metadata/restorationObject/parts/colors/title.label",
-                                                    "hint": "metadata/restorationObject/parts/colors/title.hint"
-                                                },
-                                                "@v": {
-                                                    "detail": "keyword",
-                                                    "input": "keyword",
-                                                    "help": "metadata/restorationObject/parts/colors/@v.help",
-                                                    "label": "metadata/restorationObject/parts/colors/@v.label",
-                                                    "hint": "metadata/restorationObject/parts/colors/@v.hint"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "fabricationTechnologies": {
-                                        "detail": "array",
-                                        "input": "array",
-                                        "help": "metadata/restorationObject/parts/fabricationTechnologies.help",
-                                        "label": "metadata/restorationObject/parts/fabricationTechnologies.label",
-                                        "hint": "metadata/restorationObject/parts/fabricationTechnologies.hint",
-                                        "child": {
-                                            "detail": "vocabulary_item",
-                                            "edit": "vocabulary_item",
-                                            "input": "vocabulary",
-                                            "help": "metadata/restorationObject/parts/fabricationTechnologies.help",
-                                            "label": "metadata/restorationObject/parts/fabricationTechnologies.label",
-                                            "hint": "metadata/restorationObject/parts/fabricationTechnologies.hint",
-                                            "facet": "metadata_restorationObject_parts_fabricationTechnologies",
-                                            "children": {
-                                                "id": {
-                                                    "detail": "keyword",
-                                                    "input": "keyword",
-                                                    "help": "metadata/restorationObject/parts/fabricationTechnologies/id.help",
-                                                    "label": "metadata/restorationObject/parts/fabricationTechnologies/id.label",
-                                                    "hint": "metadata/restorationObject/parts/fabricationTechnologies/id.hint"
-                                                },
-                                                "title": {
-                                                    "detail": false,
-                                                    "input": false,
-                                                    "help": "metadata/restorationObject/parts/fabricationTechnologies/title.help",
-                                                    "label": "metadata/restorationObject/parts/fabricationTechnologies/title.label",
-                                                    "hint": "metadata/restorationObject/parts/fabricationTechnologies/title.hint"
-                                                },
-                                                "@v": {
-                                                    "detail": "keyword",
-                                                    "input": "keyword",
-                                                    "help": "metadata/restorationObject/parts/fabricationTechnologies/@v.help",
-                                                    "label": "metadata/restorationObject/parts/fabricationTechnologies/@v.label",
-                                                    "hint": "metadata/restorationObject/parts/fabricationTechnologies/@v.hint"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "id": {
-                                        "detail": "keyword",
-                                        "input": "keyword",
-                                        "help": "metadata/restorationObject/parts/id.help",
-                                        "label": "metadata/restorationObject/parts/id.label",
-                                        "hint": "metadata/restorationObject/parts/id.hint",
-                                        "facet": "metadata_restorationObject_parts_id"
-                                    },
-                                    "main": {
-                                        "detail": "boolean",
-                                        "input": "boolean",
-                                        "help": "metadata/restorationObject/parts/main.help",
-                                        "label": "metadata/restorationObject/parts/main.label",
-                                        "hint": "metadata/restorationObject/parts/main.hint",
-                                        "facet": "metadata_restorationObject_parts_main"
-                                    },
-                                    "materialType": {
-                                        "detail": "vocabulary_item",
-                                        "edit": "vocabulary_item",
-                                        "input": "vocabulary",
-                                        "help": "metadata/restorationObject/parts/materialType.help",
-                                        "label": "metadata/restorationObject/parts/materialType.label",
-                                        "hint": "metadata/restorationObject/parts/materialType.hint",
-                                        "facet": "metadata_restorationObject_parts_materialType",
-                                        "children": {
-                                            "id": {
-                                                "detail": "keyword",
-                                                "input": "keyword",
-                                                "help": "metadata/restorationObject/parts/materialType/id.help",
-                                                "label": "metadata/restorationObject/parts/materialType/id.label",
-                                                "hint": "metadata/restorationObject/parts/materialType/id.hint"
-                                            },
-                                            "title": {
-                                                "detail": false,
-                                                "input": false,
-                                                "help": "metadata/restorationObject/parts/materialType/title.help",
-                                                "label": "metadata/restorationObject/parts/materialType/title.label",
-                                                "hint": "metadata/restorationObject/parts/materialType/title.hint"
-                                            },
-                                            "@v": {
-                                                "detail": "keyword",
-                                                "input": "keyword",
-                                                "help": "metadata/restorationObject/parts/materialType/@v.help",
-                                                "label": "metadata/restorationObject/parts/materialType/@v.label",
-                                                "hint": "metadata/restorationObject/parts/materialType/@v.hint"
-                                            }
-                                        }
-                                    },
-                                    "name": {
-                                        "detail": "fulltext+keyword",
-                                        "input": "fulltext+keyword",
-                                        "help": "metadata/restorationObject/parts/name.help",
-                                        "label": "metadata/restorationObject/parts/name.label",
-                                        "hint": "metadata/restorationObject/parts/name.hint"
-                                    },
-                                    "secondaryMaterialTypes": {
-                                        "detail": "array",
-                                        "input": "array",
-                                        "help": "metadata/restorationObject/parts/secondaryMaterialTypes.help",
-                                        "label": "metadata/restorationObject/parts/secondaryMaterialTypes.label",
-                                        "hint": "metadata/restorationObject/parts/secondaryMaterialTypes.hint",
-                                        "child": {
-                                            "detail": "vocabulary_item",
-                                            "edit": "vocabulary_item",
-                                            "input": "vocabulary",
-                                            "help": "metadata/restorationObject/parts/secondaryMaterialTypes.help",
-                                            "label": "metadata/restorationObject/parts/secondaryMaterialTypes.label",
-                                            "hint": "metadata/restorationObject/parts/secondaryMaterialTypes.hint",
-                                            "facet": "metadata_restorationObject_parts_secondaryMaterialTypes",
-                                            "children": {
-                                                "id": {
-                                                    "detail": "keyword",
-                                                    "input": "keyword",
-                                                    "help": "metadata/restorationObject/parts/secondaryMaterialTypes/id.help",
-                                                    "label": "metadata/restorationObject/parts/secondaryMaterialTypes/id.label",
-                                                    "hint": "metadata/restorationObject/parts/secondaryMaterialTypes/id.hint"
-                                                },
-                                                "title": {
-                                                    "detail": false,
-                                                    "input": false,
-                                                    "help": "metadata/restorationObject/parts/secondaryMaterialTypes/title.help",
-                                                    "label": "metadata/restorationObject/parts/secondaryMaterialTypes/title.label",
-                                                    "hint": "metadata/restorationObject/parts/secondaryMaterialTypes/title.hint"
-                                                },
-                                                "@v": {
-                                                    "detail": "keyword",
-                                                    "input": "keyword",
-                                                    "help": "metadata/restorationObject/parts/secondaryMaterialTypes/@v.help",
-                                                    "label": "metadata/restorationObject/parts/secondaryMaterialTypes/@v.label",
-                                                    "hint": "metadata/restorationObject/parts/secondaryMaterialTypes/@v.hint"
-                                                }
-                                            }
-                                        }
-                                    }
+                        "materialType": {
+                            "detail": "vocabulary_item",
+                            "edit": "vocabulary_item",
+                            "input": "vocabulary",
+                            "help": "metadata/restorationObject/materialType.help",
+                            "label": "metadata/restorationObject/materialType.label",
+                            "hint": "metadata/restorationObject/materialType.hint",
+                            "facet": "metadata_restorationObject_materialType",
+                            "children": {
+                                "id": {
+                                    "detail": "keyword",
+                                    "input": "keyword",
+                                    "help": "metadata/restorationObject/materialType/id.help",
+                                    "label": "metadata/restorationObject/materialType/id.label",
+                                    "hint": "metadata/restorationObject/materialType/id.hint"
+                                },
+                                "title": {
+                                    "detail": false,
+                                    "input": false,
+                                    "help": "metadata/restorationObject/materialType/title.help",
+                                    "label": "metadata/restorationObject/materialType/title.label",
+                                    "hint": "metadata/restorationObject/materialType/title.hint"
+                                },
+                                "@v": {
+                                    "detail": "keyword",
+                                    "input": "keyword",
+                                    "help": "metadata/restorationObject/materialType/@v.help",
+                                    "label": "metadata/restorationObject/materialType/@v.label",
+                                    "hint": "metadata/restorationObject/materialType/@v.hint"
                                 }
                             }
                         },
@@ -470,6 +380,45 @@
                                     "help": "metadata/restorationObject/restorationRequestor/@v.help",
                                     "label": "metadata/restorationObject/restorationRequestor/@v.label",
                                     "hint": "metadata/restorationObject/restorationRequestor/@v.hint"
+                                }
+                            }
+                        },
+                        "secondaryMaterialTypes": {
+                            "detail": "array",
+                            "input": "array",
+                            "help": "metadata/restorationObject/secondaryMaterialTypes.help",
+                            "label": "metadata/restorationObject/secondaryMaterialTypes.label",
+                            "hint": "metadata/restorationObject/secondaryMaterialTypes.hint",
+                            "child": {
+                                "detail": "vocabulary_item",
+                                "edit": "vocabulary_item",
+                                "input": "vocabulary",
+                                "help": "metadata/restorationObject/secondaryMaterialTypes.help",
+                                "label": "metadata/restorationObject/secondaryMaterialTypes.label",
+                                "hint": "metadata/restorationObject/secondaryMaterialTypes.hint",
+                                "facet": "metadata_restorationObject_secondaryMaterialTypes",
+                                "children": {
+                                    "id": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/secondaryMaterialTypes/id.help",
+                                        "label": "metadata/restorationObject/secondaryMaterialTypes/id.label",
+                                        "hint": "metadata/restorationObject/secondaryMaterialTypes/id.hint"
+                                    },
+                                    "title": {
+                                        "detail": false,
+                                        "input": false,
+                                        "help": "metadata/restorationObject/secondaryMaterialTypes/title.help",
+                                        "label": "metadata/restorationObject/secondaryMaterialTypes/title.label",
+                                        "hint": "metadata/restorationObject/secondaryMaterialTypes/title.hint"
+                                    },
+                                    "@v": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationObject/secondaryMaterialTypes/@v.help",
+                                        "label": "metadata/restorationObject/secondaryMaterialTypes/@v.label",
+                                        "hint": "metadata/restorationObject/secondaryMaterialTypes/@v.hint"
+                                    }
                                 }
                             }
                         },
@@ -531,85 +480,6 @@
                                         "help": "metadata/restorationWork/examinationMethods/@v.help",
                                         "label": "metadata/restorationWork/examinationMethods/@v.label",
                                         "hint": "metadata/restorationWork/examinationMethods/@v.hint"
-                                    }
-                                }
-                            }
-                        },
-                        "parts": {
-                            "detail": "array",
-                            "input": "array",
-                            "help": "metadata/restorationWork/parts.help",
-                            "label": "metadata/restorationWork/parts.label",
-                            "hint": "metadata/restorationWork/parts.hint",
-                            "child": {
-                                "detail": "part",
-                                "input": "part",
-                                "help": "metadata/restorationWork/parts.help",
-                                "label": "metadata/restorationWork/parts.label",
-                                "hint": "metadata/restorationWork/parts.hint",
-                                "children": {
-                                    "part": {
-                                        "detail": "relation",
-                                        "input": "relation",
-                                        "help": "metadata/restorationWork/parts/part.help",
-                                        "label": "metadata/restorationWork/parts/part.label",
-                                        "hint": "metadata/restorationWork/parts/part.hint",
-                                        "children": {
-                                            "id": {
-                                                "detail": "keyword",
-                                                "input": "keyword",
-                                                "help": "metadata/restorationObject/parts/id.help",
-                                                "label": "metadata/restorationObject/parts/id.label",
-                                                "hint": "metadata/restorationObject/parts/id.hint",
-                                                "facet": "metadata_restorationObject_parts_id"
-                                            },
-                                            "@v": {
-                                                "detail": "keyword",
-                                                "input": "keyword",
-                                                "help": "metadata/restorationWork/parts/part/@v.help",
-                                                "label": "metadata/restorationWork/parts/part/@v.label",
-                                                "hint": "metadata/restorationWork/parts/part/@v.hint"
-                                            }
-                                        }
-                                    },
-                                    "restorationMethods": {
-                                        "detail": "array",
-                                        "input": "array",
-                                        "help": "metadata/restorationWork/parts/restorationMethods.help",
-                                        "label": "metadata/restorationWork/parts/restorationMethods.label",
-                                        "hint": "metadata/restorationWork/parts/restorationMethods.hint",
-                                        "child": {
-                                            "detail": "vocabulary_item",
-                                            "edit": "vocabulary_item",
-                                            "input": "vocabulary",
-                                            "help": "metadata/restorationWork/parts/restorationMethods.help",
-                                            "label": "metadata/restorationWork/parts/restorationMethods.label",
-                                            "hint": "metadata/restorationWork/parts/restorationMethods.hint",
-                                            "facet": "metadata_restorationWork_parts_restorationMethods",
-                                            "children": {
-                                                "id": {
-                                                    "detail": "keyword",
-                                                    "input": "keyword",
-                                                    "help": "metadata/restorationWork/parts/restorationMethods/id.help",
-                                                    "label": "metadata/restorationWork/parts/restorationMethods/id.label",
-                                                    "hint": "metadata/restorationWork/parts/restorationMethods/id.hint"
-                                                },
-                                                "title": {
-                                                    "detail": false,
-                                                    "input": false,
-                                                    "help": "metadata/restorationWork/parts/restorationMethods/title.help",
-                                                    "label": "metadata/restorationWork/parts/restorationMethods/title.label",
-                                                    "hint": "metadata/restorationWork/parts/restorationMethods/title.hint"
-                                                },
-                                                "@v": {
-                                                    "detail": "keyword",
-                                                    "input": "keyword",
-                                                    "help": "metadata/restorationWork/parts/restorationMethods/@v.help",
-                                                    "label": "metadata/restorationWork/parts/restorationMethods/@v.label",
-                                                    "hint": "metadata/restorationWork/parts/restorationMethods/@v.hint"
-                                                }
-                                            }
-                                        }
                                     }
                                 }
                             }
@@ -769,6 +639,13 @@
                     "facet": "metadata_submissionStatus"
                 }
             }
+        },
+        "updated": {
+            "detail": "datetime",
+            "input": "datetime",
+            "help": "updated.help",
+            "label": "updated.label",
+            "hint": "updated.hint"
         }
     }
 }

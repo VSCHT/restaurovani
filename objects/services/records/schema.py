@@ -8,67 +8,20 @@ from marshmallow import fields as ma_fields
 from marshmallow.fields import String
 from marshmallow.utils import get_value
 from marshmallow_utils.fields import SanitizedUnicode
-from oarepo_requests.services.schemas import NoneReceiverGenericRequestSchema
+from oarepo_requests.services.schema import RequestsSchemaMixin
 from oarepo_runtime.services.schema.marshmallow import BaseRecordSchema, DictOnlySchema
-from oarepo_runtime.services.schema.validation import validate_date
+from oarepo_runtime.services.schema.validation import validate_date, validate_datetime
 
 
 class GeneratedParentSchema(InvenioParentSchema):
     """"""
 
-    delete_record = ma.fields.Nested(NoneReceiverGenericRequestSchema)
-    publish_draft = ma.fields.Nested(NoneReceiverGenericRequestSchema)
 
-    @ma.pre_load
-    def clean(self, data, **kwargs):
-        """Removes dump_only fields.
-
-        Why: We want to allow the output of a Schema dump, to be a valid input
-             to a Schema load without causing strange issues.
-        """
-        for name, field in self.fields.items():
-            if field.dump_only:
-                data.pop(name, None)
-        return data
-
-    @ma.pre_load
-    def clean_delete_record(self, data, **kwargs):
-        """Clear review if None."""
-        # draft.parent.review returns None when not set, causing the serializer
-        # to dump {'review': None}. As a workaround we pop it if it's none
-        # here.
-        if data.get("delete_record", None) is None:
-            data.pop("delete_record", None)
-        return data
-
-    @ma.post_dump()
-    def pop_delete_record_if_none(self, data, many, **kwargs):
-        """Clear review if None."""
-        if data.get("delete_record", None) is None:
-            data.pop("delete_record", None)
-        return data
-
-    @ma.pre_load
-    def clean_publish_draft(self, data, **kwargs):
-        """Clear review if None."""
-        # draft.parent.review returns None when not set, causing the serializer
-        # to dump {'review': None}. As a workaround we pop it if it's none
-        # here.
-        if data.get("publish_draft", None) is None:
-            data.pop("publish_draft", None)
-        return data
-
-    @ma.post_dump()
-    def pop_publish_draft_if_none(self, data, many, **kwargs):
-        """Clear review if None."""
-        if data.get("publish_draft", None) is None:
-            data.pop("publish_draft", None)
-        return data
-
-
-class ObjectsSchema(BaseRecordSchema):
+class ObjectsSchema(RequestsSchemaMixin, BaseRecordSchema):
     class Meta:
         unknown = ma.RAISE
+
+    data = ma_fields.Nested(lambda: DataSchema())
 
     metadata = ma_fields.Nested(lambda: ObjectsMetadataSchema())
     parent = ma.fields.Nested(GeneratedParentSchema)
@@ -113,21 +66,42 @@ class RestorationObjectSchema(DictOnlySchema):
 
     category = ma_fields.String()
 
+    colors = ma_fields.List(ma_fields.Nested(lambda: ColorsItemSchema()))
+
     creationPeriod = ma_fields.Nested(lambda: CreationPeriodSchema())
 
     description = ma_fields.String()
 
     dimensions = ma_fields.List(ma_fields.Nested(lambda: DimensionsItemSchema()))
 
-    itemTypes = ma_fields.List(ma_fields.Nested(lambda: DimensionSchema()))
+    fabricationTechnologies = ma_fields.List(
+        ma_fields.Nested(lambda: ColorsItemSchema())
+    )
+
+    itemTypes = ma_fields.List(ma_fields.Nested(lambda: ColorsItemSchema()))
 
     keywords = ma_fields.List(ma_fields.String())
 
-    parts = ma_fields.List(ma_fields.Nested(lambda: PartsItemSchema()))
+    materialType = ma_fields.Nested(lambda: ColorsItemSchema())
 
-    restorationRequestor = ma_fields.Nested(lambda: DimensionSchema())
+    restorationRequestor = ma_fields.Nested(lambda: ColorsItemSchema())
+
+    secondaryMaterialTypes = ma_fields.List(
+        ma_fields.Nested(lambda: ColorsItemSchema())
+    )
 
     title = ma_fields.String()
+
+
+class DimensionsItemSchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.RAISE
+
+    dimension = ma_fields.Nested(lambda: ColorsItemSchema())
+
+    unit = ma_fields.String()
+
+    value = ma_fields.Float()
 
 
 class RestorationWorkSchema(DictOnlySchema):
@@ -136,11 +110,9 @@ class RestorationWorkSchema(DictOnlySchema):
 
     abstract = ma_fields.String()
 
-    examinationMethods = ma_fields.List(ma_fields.Nested(lambda: DimensionSchema()))
+    examinationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemSchema()))
 
-    parts = ma_fields.List(ma_fields.Nested(lambda: RestorationWorkPartsItemSchema()))
-
-    restorationMethods = ma_fields.List(ma_fields.Nested(lambda: DimensionSchema()))
+    restorationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemSchema()))
 
     restorationPeriod = ma_fields.Nested(lambda: RestorationPeriodSchema())
 
@@ -148,48 +120,18 @@ class RestorationWorkSchema(DictOnlySchema):
 
     supervisors = ma_fields.List(ma_fields.Nested(lambda: SupervisorsItemSchema()))
 
-    workType = ma_fields.Nested(lambda: DimensionSchema())
+    workType = ma_fields.Nested(lambda: ColorsItemSchema())
 
 
-class DimensionsItemSchema(DictOnlySchema):
+class ColorsItemSchema(DictOnlySchema):
     class Meta:
-        unknown = ma.RAISE
+        unknown = ma.INCLUDE
 
-    dimension = ma_fields.Nested(lambda: DimensionSchema())
+    _id = String(data_key="id", attribute="id")
 
-    unit = ma_fields.String()
+    _version = String(data_key="@v", attribute="@v")
 
-    value = ma_fields.Float()
-
-
-class PartsItemSchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    _id = ma_fields.String(data_key="id", attribute="id")
-
-    colors = ma_fields.List(ma_fields.Nested(lambda: DimensionSchema()))
-
-    fabricationTechnologies = ma_fields.List(
-        ma_fields.Nested(lambda: DimensionSchema())
-    )
-
-    main = ma_fields.Boolean()
-
-    materialType = ma_fields.Nested(lambda: DimensionSchema())
-
-    name = ma_fields.String()
-
-    secondaryMaterialTypes = ma_fields.List(ma_fields.Nested(lambda: DimensionSchema()))
-
-
-class RestorationWorkPartsItemSchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    part = ma_fields.Nested(lambda: PartSchema())
-
-    restorationMethods = ma_fields.List(ma_fields.Nested(lambda: DimensionSchema()))
+    title = i18n_strings
 
 
 class CreationPeriodSchema(DictOnlySchema):
@@ -201,24 +143,13 @@ class CreationPeriodSchema(DictOnlySchema):
     until = ma_fields.Integer()
 
 
-class DimensionSchema(DictOnlySchema):
+class DataSchema(DictOnlySchema):
     class Meta:
-        unknown = ma.INCLUDE
+        unknown = ma.RAISE
 
-    _id = String(data_key="id", attribute="id")
+    extractedText = ma_fields.String()
 
-    _version = String(data_key="@v", attribute="@v")
-
-    title = i18n_strings
-
-
-class PartSchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.INCLUDE
-
-    _id = ma_fields.String(data_key="id", attribute="id")
-
-    _version = String(data_key="@v", attribute="@v")
+    extractedTimestamp = ma_fields.String(validate=[validate_datetime])
 
 
 class RestorationPeriodSchema(DictOnlySchema):
