@@ -5,38 +5,9 @@
             "template": {
                 "settings": {
                     "analysis": {
-                        "char_filter": {
-                            "configured_html_strip": {
-                                "type": "html_strip",
-                                "escaped_tags": []
-                            }
-                        },
-                        "normalizer": {
-                            "wsnormalizer": {
-                                "type": "custom",
-                                "filter": [
-                                    "trim"
-                                ]
-                            }
-                        },
-                        "filter": {
-                            "czech_stop": {
-                                "type": "stop",
-                                "stopwords": "_czech_"
-                            },
-                            "czech_stemmer": {
-                                "type": "stemmer",
-                                "language": "czech"
-                            }
-                        },
                         "analyzer": {
                             "default": {
-                                "tokenizer": "standard",
-                                "filter": [
-                                    "lowercase",
-                                    "czech_stop",
-                                    "czech_stemmer"
-                                ]
+                                "type": "czech"
                             }
                         }
                     }
@@ -49,33 +20,50 @@
             "file": "objects/records/mappings/os-v2/objects/objects-1.0.0.json"
         },
         "requests": {
-            "delete-record": {
-                "type": {
+            "types": {
+                "delete-record": {
                     "base-classes": [
                         "oarepo_requests.types.delete_record.DeleteRecordRequestType"
                     ],
                     "module": "objects.records.requests.delete_record.types",
                     "class": "objects.records.requests.delete_record.types.DeleteRecordRequestType",
                     "generate": true,
-                    "id": "delete_record"
-                },
-                "actions": {
-                    "submit": {
-                        "class": "oarepo_requests.actions.delete_topic.DeleteTopicSubmitAction",
-                        "generate": false,
-                        "module": "objects.records.requests.delete_record.actions",
-                        "base-classes": [
-                            "invenio_requests.customizations.AcceptAction"
-                        ],
-                        "imports": []
-                    }
-                },
-                "parent-marshmallow": {
-                    "parent-field": "delete_record",
-                    "schema-class": "oarepo_requests.services.schemas.NoneReceiverGenericRequestSchema",
-                    "module": "objects.services.records.schema",
-                    "generate": true
+                    "id": "objects_delete_record",
+                    "actions": {}
                 }
+            },
+            "api-blueprint": {
+                "generate": true,
+                "alias": "objects_requests",
+                "module": "objects.views.requests.api",
+                "function": "objects.views.requests.api.create_api_blueprint",
+                "imports": []
+            },
+            "app-blueprint": {
+                "generate": true,
+                "alias": "objects_requests",
+                "extra_code": "",
+                "module": "objects.views.requests.app",
+                "function": "objects.views.requests.app.create_app_blueprint",
+                "imports": []
+            },
+            "resource": {
+                "generate": true,
+                "config-key": "OBJECTS_REQUESTS_RESOURCE_CLASS",
+                "class": "oarepo_requests.resources.draft.resource.DraftRecordRequestsResource",
+                "additional-args": [
+                    "record_requests_config={{oarepo_requests.resources.draft.config.DraftRecordRequestsResourceConfig}}()"
+                ],
+                "skip": false
+            },
+            "service": {
+                "generate": true,
+                "config-key": "OBJECTS_REQUESTS_SERVICE_CLASS",
+                "class": "oarepo_requests.services.draft.service.DraftRecordRequestsService",
+                "additional-args": [
+                    "record_service=self.service_records"
+                ],
+                "skip": false
             }
         },
         "searchable": true,
@@ -96,31 +84,13 @@
         "marshmallow": {
             "imports": [],
             "base-classes": [
+                "oarepo_requests.services.schema.RequestsSchemaMixin",
                 "oarepo_runtime.services.schema.marshmallow.BaseRecordSchema"
             ],
             "generate": true,
             "module": "objects.services.records.schema",
             "class": "objects.services.records.schema.ObjectsSchema",
             "extra-code": ""
-        },
-        "service-config": {
-            "components": [
-                "{{oarepo_requests.services.components.PublishDraftComponent}}(\"publish_draft\", \"delete_record\")",
-                "{{oarepo_runtime.services.files.FilesComponent}}",
-                "{{invenio_records_resources.services.records.components.DataComponent}}",
-                "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}"
-            ],
-            "base-classes": [
-                "oarepo_runtime.services.config.service.PermissionsPresetsConfigMixin",
-                "invenio_drafts_resources.services.RecordServiceConfig{InvenioRecordDraftsServiceConfig}"
-            ],
-            "generate": true,
-            "config-key": "OBJECTS_RECORD_SERVICE_CONFIG",
-            "module": "objects.services.records.config",
-            "class": "objects.services.records.config.ObjectsServiceConfig",
-            "extra-code": "",
-            "service-id": "objects",
-            "result-list-class": "oarepo_runtime.services.results.RecordList"
         },
         "pid": {
             "type": "rstr",
@@ -149,6 +119,7 @@
             "marshmallow": {
                 "imports": [],
                 "base-classes": [
+                    "oarepo_requests.services.ui_schema.UIRequestsSerializationMixin",
                     "oarepo_runtime.services.schema.ui.InvenioUISchema"
                 ],
                 "generate": true,
@@ -171,7 +142,8 @@
             "module": "objects.resources.records.config",
             "class": "objects.resources.records.config.ObjectsResourceConfig",
             "extra-code": "",
-            "imports": []
+            "imports": [],
+            "additional-args": []
         },
         "search-options": {
             "base-classes": [
@@ -182,6 +154,7 @@
             "extra-code": "",
             "class": "objects.services.records.search.ObjectsSearchOptions",
             "imports": [],
+            "fields": {},
             "sort-options-field": "sort_options"
         },
         "module": {
@@ -203,36 +176,15 @@
             "type": "draft_record",
             "properties": {},
             "requests": {
-                "publish-draft": {
-                    "type": {
+                "types": {
+                    "publish-draft": {
                         "base-classes": [
                             "oarepo_requests.types.publish_draft.PublishDraftRequestType"
                         ]
-                    },
-                    "actions": {
-                        "submit": {
-                            "class": "oarepo_requests.actions.publish_draft.PublishDraftSubmitAction",
-                            "generate": false
-                        }
                     }
                 }
             },
             "searchable": true,
-            "tests": {
-                "extra-fixtures": [],
-                "extra-code": "",
-                "module": "tests"
-            }
-        },
-        "draft-files": {
-            "type": "draft-file",
-            "properties": {},
-            "searchable": true,
-            "resource": {
-                "base-classes": [
-                    "oarepo_ui.resources.file_resource.S3RedirectFileResource"
-                ]
-            },
             "tests": {
                 "extra-fixtures": [],
                 "extra-code": "",
@@ -337,6 +289,26 @@
                     "InvenioFileSchema"
                 ]
             },
+            "service-config": {
+                "base-classes": [
+                    "common.services.files.RestorationFileServiceConfig"
+                ]
+            },
+            "resource": {
+                "base-classes": [
+                    "oarepo_ui.resources.file_resource.S3RedirectFileResource"
+                ]
+            },
+            "tests": {
+                "extra-fixtures": [],
+                "extra-code": "",
+                "module": "tests"
+            }
+        },
+        "draft-files": {
+            "type": "draft-file",
+            "properties": {},
+            "searchable": true,
             "resource": {
                 "base-classes": [
                     "oarepo_ui.resources.file_resource.S3RedirectFileResource"
@@ -390,7 +362,8 @@
         "facets": {
             "generate": true,
             "module": "objects.services.records.facets",
-            "extra-code": ""
+            "extra-code": "",
+            "groups": true
         },
         "saved-model": {
             "file": "objects/models/records.json",
@@ -409,7 +382,8 @@
             "module": "objects.records.api",
             "class": "objects.records.api.ObjectsRecord",
             "imports": [],
-            "extra-code": ""
+            "extra-code": "",
+            "fields": {}
         },
         "resource": {
             "base-classes": [
@@ -421,7 +395,8 @@
             "class": "objects.resources.records.resource.ObjectsResource",
             "proxy": "current_resource",
             "extra-code": "",
-            "imports": []
+            "imports": [],
+            "additional-args": []
         },
         "json-schema-settings": {
             "generate": true,
@@ -441,7 +416,11 @@
             "extra-code": "",
             "generate": true,
             "list_schema_cls": "flask_resources.BaseListSchema",
-            "format_serializer_cls": "flask_resources.serializers.JSONSerializer"
+            "format_serializer_cls": "flask_resources.serializers.JSONSerializer",
+            "schema-context-args": {
+                "\"object_key\"": "\"ui\"",
+                "\"identity\"": "{{ flask.g{g.identity} }}"
+            }
         },
         "files-field": {
             "generate": true,
@@ -488,6 +467,24 @@
                 "draft_files_service=self.service_draft_files"
             ]
         },
+        "service-config": {
+            "base-classes": [
+                "oarepo_runtime.services.config.service.PermissionsPresetsConfigMixin",
+                "invenio_drafts_resources.services.RecordServiceConfig{InvenioRecordDraftsServiceConfig}"
+            ],
+            "generate": true,
+            "config-key": "OBJECTS_RECORD_SERVICE_CONFIG",
+            "module": "objects.services.records.config",
+            "class": "objects.services.records.config.ObjectsServiceConfig",
+            "extra-code": "",
+            "service-id": "objects",
+            "components": [
+                "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}",
+                "{{oarepo_runtime.services.files.FilesComponent}}",
+                "{{invenio_records_resources.services.records.components.DataComponent}}"
+            ],
+            "additional-args": []
+        },
         "record-dumper": {
             "generate": true,
             "module": "objects.records.dumpers.dumper",
@@ -511,6 +508,31 @@
             ],
             "extra-code": "",
             "extensions": [],
+            "imports": []
+        },
+        "record-list": {
+            "generate": true,
+            "module": "objects.services.records.results",
+            "class": "objects.services.records.results.ObjectsRecordList",
+            "extra-code": "",
+            "base-classes": [
+                "oarepo_runtime.services.results.RecordList"
+            ],
+            "components": [],
+            "imports": []
+        },
+        "record-item": {
+            "generate": true,
+            "module": "objects.services.records.results",
+            "class": "objects.services.records.results.ObjectsRecordItem",
+            "extra-code": "",
+            "base-classes": [
+                "oarepo_runtime.services.results.RecordItem"
+            ],
+            "components": [
+                "{{oarepo_requests.services.results.RequestsComponent}}()",
+                "{{oarepo_requests.services.results.RequestTypesComponent}}()"
+            ],
             "imports": []
         },
         "draft-parent-record": {
@@ -590,6 +612,10 @@
             ],
             "imports": []
         },
+        "ui-record-resolver": {
+            "generate": true,
+            "function": "oarepo_requests.resolvers.ui.record_entity_reference_ui_resolver"
+        },
         "sortable": [],
         "properties": {
             "$schema": {
@@ -630,6 +656,31 @@
                 },
                 "sample": {
                     "skip": true
+                }
+            },
+            "data": {
+                "type": "object",
+                "marshmallow": {
+                    "generate": true,
+                    "class": "objects.services.records.schema.DataSchema"
+                },
+                "ui": {
+                    "marshmallow": {
+                        "generate": true,
+                        "class": "objects.services.records.ui_schema.DataUISchema"
+                    }
+                },
+                "properties": {
+                    "extractedText": {
+                        "type": "fulltext",
+                        "label.cs": "Extrahovaný text",
+                        "label.en": "Extracted text"
+                    },
+                    "extractedTimestamp": {
+                        "type": "datetime",
+                        "label.cs": "Datum extrakce",
+                        "label.en": "Extraction date"
+                    }
                 }
             },
             "id": {
@@ -694,20 +745,136 @@
                             "archeologic": {
                                 "type": "boolean",
                                 "facets": {
-                                    "facet-groups": [
-                                        "default"
-                                    ]
+                                    "facet-groups": {
+                                        "default": 100000
+                                    }
                                 },
                                 "label.cs": "Archeologický nález"
                             },
                             "category": {
                                 "type": "keyword",
                                 "facets": {
-                                    "facet-groups": [
-                                        "default"
-                                    ]
+                                    "facet-groups": {
+                                        "default": 100000
+                                    }
                                 },
                                 "label.cs": "Kategorie"
+                            },
+                            "colors": {
+                                "type": "array",
+                                "label.cs": "Barvy",
+                                "items": {
+                                    "type": "vocabulary",
+                                    "vocabulary-type": "Colors",
+                                    "facets": {
+                                        "facet-groups": {
+                                            "default": 100000
+                                        },
+                                        "args": [
+                                            "vocabulary='Colors'"
+                                        ]
+                                    },
+                                    "label.cs": "Barva",
+                                    "imports": [
+                                        {
+                                            "import": "invenio_vocabularies.records.api.Vocabulary"
+                                        }
+                                    ],
+                                    "model": "vocabularies",
+                                    "keys": [
+                                        "id",
+                                        "title"
+                                    ],
+                                    "marshmallow": {
+                                        "unknown": "INCLUDE",
+                                        "generate": true,
+                                        "class": "objects.services.records.schema.ColorsItemSchema"
+                                    },
+                                    "ui": {
+                                        "marshmallow": {
+                                            "unknown": "INCLUDE",
+                                            "generate": true,
+                                            "class": "objects.services.records.ui_schema.ColorsItemUISchema"
+                                        },
+                                        "detail": "vocabulary_item",
+                                        "edit": "vocabulary_item"
+                                    },
+                                    "pid-field": "Vocabulary.pid.with_type_ctx(\"Colors\")",
+                                    "properties": {
+                                        "id": {
+                                            "marshmallow": {
+                                                "field-class": "marshmallow.fields.String",
+                                                "validators": [],
+                                                "imports": []
+                                            },
+                                            "ui": {
+                                                "marshmallow": {
+                                                    "field-class": "marshmallow.fields.String",
+                                                    "validators": [],
+                                                    "imports": []
+                                                }
+                                            },
+                                            "type": "keyword",
+                                            "mapping": {
+                                                "fields": {
+                                                    "text": {
+                                                        "type": "search_as_you_type"
+                                                    }
+                                                }
+                                            },
+                                            "sample": {
+                                                "skip": true
+                                            }
+                                        },
+                                        "title": {
+                                            "marshmallow": {
+                                                "generate": false,
+                                                "field": "{{invenio_vocabularies.services.schema.i18n_strings}}",
+                                                "field-class": "marshmallow.fields.Nested",
+                                                "validators": [],
+                                                "class": "invenio_vocabularies.services.records.schema.TitleSchema"
+                                            },
+                                            "ui": {
+                                                "marshmallow": {
+                                                    "field": "{{oarepo_vocabularies.services.ui_schema.VocabularyI18nStrUIField}}()",
+                                                    "generate": false
+                                                }
+                                            },
+                                            "mapping": {
+                                                "dynamic": true,
+                                                "properties": {
+                                                    "en": {
+                                                        "type": "search_as_you_type",
+                                                        "copy_to": "title_sort"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object",
+                                            "propertyNames": {
+                                                "pattern": "^[a-z]{2}$"
+                                            },
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "@v": {
+                                            "type": "keyword",
+                                            "marshmallow": {
+                                                "field-name": "_version",
+                                                "field-class": "marshmallow.fields.String"
+                                            },
+                                            "ui": {
+                                                "marshmallow": {
+                                                    "field-name": "_version",
+                                                    "field-class": "marshmallow.fields.String"
+                                                }
+                                            },
+                                            "facets": {
+                                                "facet": false
+                                            }
+                                        }
+                                    }
+                                }
                             },
                             "creationPeriod": {
                                 "type": "object",
@@ -726,18 +893,18 @@
                                     "since": {
                                         "type": "integer",
                                         "facets": {
-                                            "facet-groups": [
-                                                "default"
-                                            ]
+                                            "facet-groups": {
+                                                "default": 100000
+                                            }
                                         },
                                         "label.cs": "Počátek období"
                                     },
                                     "until": {
                                         "type": "integer",
                                         "facets": {
-                                            "facet-groups": [
-                                                "default"
-                                            ]
+                                            "facet-groups": {
+                                                "default": 100000
+                                            }
                                         },
                                         "label.cs": "Konec období"
                                     }
@@ -780,14 +947,14 @@
                                             ],
                                             "marshmallow": {
                                                 "unknown": "INCLUDE",
-                                                "generate": true,
-                                                "class": "objects.services.records.schema.DimensionSchema"
+                                                "generate": false,
+                                                "class": "objects.services.records.schema.ColorsItemSchema"
                                             },
                                             "ui": {
                                                 "marshmallow": {
                                                     "unknown": "INCLUDE",
-                                                    "generate": true,
-                                                    "class": "objects.services.records.ui_schema.DimensionUISchema"
+                                                    "generate": false,
+                                                    "class": "objects.services.records.ui_schema.ColorsItemUISchema"
                                                 },
                                                 "detail": "vocabulary_item",
                                                 "edit": "vocabulary_item"
@@ -884,6 +1051,122 @@
                                     }
                                 }
                             },
+                            "fabricationTechnologies": {
+                                "type": "array",
+                                "label.cs": "Technologie výroby",
+                                "items": {
+                                    "type": "vocabulary",
+                                    "vocabulary-type": "FabricationTechnologies",
+                                    "facets": {
+                                        "facet-groups": {
+                                            "default": 100000
+                                        },
+                                        "args": [
+                                            "vocabulary='FabricationTechnologies'"
+                                        ]
+                                    },
+                                    "label.cs": "Technologie výroby",
+                                    "imports": [
+                                        {
+                                            "import": "invenio_vocabularies.records.api.Vocabulary"
+                                        }
+                                    ],
+                                    "model": "vocabularies",
+                                    "keys": [
+                                        "id",
+                                        "title"
+                                    ],
+                                    "marshmallow": {
+                                        "unknown": "INCLUDE",
+                                        "generate": false,
+                                        "class": "objects.services.records.schema.ColorsItemSchema"
+                                    },
+                                    "ui": {
+                                        "marshmallow": {
+                                            "unknown": "INCLUDE",
+                                            "generate": false,
+                                            "class": "objects.services.records.ui_schema.ColorsItemUISchema"
+                                        },
+                                        "detail": "vocabulary_item",
+                                        "edit": "vocabulary_item"
+                                    },
+                                    "pid-field": "Vocabulary.pid.with_type_ctx(\"FabricationTechnologies\")",
+                                    "properties": {
+                                        "id": {
+                                            "marshmallow": {
+                                                "field-class": "marshmallow.fields.String",
+                                                "validators": [],
+                                                "imports": []
+                                            },
+                                            "ui": {
+                                                "marshmallow": {
+                                                    "field-class": "marshmallow.fields.String",
+                                                    "validators": [],
+                                                    "imports": []
+                                                }
+                                            },
+                                            "type": "keyword",
+                                            "mapping": {
+                                                "fields": {
+                                                    "text": {
+                                                        "type": "search_as_you_type"
+                                                    }
+                                                }
+                                            },
+                                            "sample": {
+                                                "skip": true
+                                            }
+                                        },
+                                        "title": {
+                                            "marshmallow": {
+                                                "generate": false,
+                                                "field": "{{invenio_vocabularies.services.schema.i18n_strings}}",
+                                                "field-class": "marshmallow.fields.Nested",
+                                                "validators": [],
+                                                "class": "invenio_vocabularies.services.records.schema.TitleSchema"
+                                            },
+                                            "ui": {
+                                                "marshmallow": {
+                                                    "field": "{{oarepo_vocabularies.services.ui_schema.VocabularyI18nStrUIField}}()",
+                                                    "generate": false
+                                                }
+                                            },
+                                            "mapping": {
+                                                "dynamic": true,
+                                                "properties": {
+                                                    "en": {
+                                                        "type": "search_as_you_type",
+                                                        "copy_to": "title_sort"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object",
+                                            "propertyNames": {
+                                                "pattern": "^[a-z]{2}$"
+                                            },
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "@v": {
+                                            "type": "keyword",
+                                            "marshmallow": {
+                                                "field-name": "_version",
+                                                "field-class": "marshmallow.fields.String"
+                                            },
+                                            "ui": {
+                                                "marshmallow": {
+                                                    "field-name": "_version",
+                                                    "field-class": "marshmallow.fields.String"
+                                                }
+                                            },
+                                            "facets": {
+                                                "facet": false
+                                            }
+                                        }
+                                    }
+                                }
+                            },
                             "itemTypes": {
                                 "type": "array",
                                 "label.cs": "Typy předmětu",
@@ -891,9 +1174,9 @@
                                     "type": "vocabulary",
                                     "vocabulary-type": "ItemTypes",
                                     "facets": {
-                                        "facet-groups": [
-                                            "default"
-                                        ],
+                                        "facet-groups": {
+                                            "default": 100000
+                                        },
                                         "args": [
                                             "vocabulary='ItemTypes'"
                                         ]
@@ -912,13 +1195,13 @@
                                     "marshmallow": {
                                         "unknown": "INCLUDE",
                                         "generate": false,
-                                        "class": "objects.services.records.schema.DimensionSchema"
+                                        "class": "objects.services.records.schema.ColorsItemSchema"
                                     },
                                     "ui": {
                                         "marshmallow": {
                                             "unknown": "INCLUDE",
                                             "generate": false,
-                                            "class": "objects.services.records.ui_schema.DimensionUISchema"
+                                            "class": "objects.services.records.ui_schema.ColorsItemUISchema"
                                         },
                                         "detail": "vocabulary_item",
                                         "edit": "vocabulary_item"
@@ -1006,502 +1289,121 @@
                                 "items": {
                                     "type": "keyword",
                                     "facets": {
-                                        "facet-groups": [
-                                            "default"
-                                        ]
+                                        "facet-groups": {
+                                            "default": 100000
+                                        }
                                     },
                                     "label.cs": "Klíčové slovo"
                                 }
                             },
-                            "parts": {
-                                "type": "array",
-                                "label.cs": "Části předmětu",
-                                "items": {
-                                    "type": "nested",
-                                    "id": "part",
-                                    "label.cs": "Část předmětu",
-                                    "marshmallow": {
-                                        "generate": true,
-                                        "class": "objects.services.records.schema.PartsItemSchema"
+                            "materialType": {
+                                "type": "vocabulary",
+                                "vocabulary-type": "MaterialTypes",
+                                "facets": {
+                                    "facet-groups": {
+                                        "default": 100000
                                     },
-                                    "ui": {
+                                    "args": [
+                                        "vocabulary='MaterialTypes'"
+                                    ]
+                                },
+                                "label.cs": "Materiál",
+                                "imports": [
+                                    {
+                                        "import": "invenio_vocabularies.records.api.Vocabulary"
+                                    }
+                                ],
+                                "model": "vocabularies",
+                                "keys": [
+                                    "id",
+                                    "title"
+                                ],
+                                "marshmallow": {
+                                    "unknown": "INCLUDE",
+                                    "generate": false,
+                                    "class": "objects.services.records.schema.ColorsItemSchema"
+                                },
+                                "ui": {
+                                    "marshmallow": {
+                                        "unknown": "INCLUDE",
+                                        "generate": false,
+                                        "class": "objects.services.records.ui_schema.ColorsItemUISchema"
+                                    },
+                                    "detail": "vocabulary_item",
+                                    "edit": "vocabulary_item"
+                                },
+                                "pid-field": "Vocabulary.pid.with_type_ctx(\"MaterialTypes\")",
+                                "properties": {
+                                    "id": {
                                         "marshmallow": {
-                                            "generate": true,
-                                            "class": "objects.services.records.ui_schema.PartsItemUISchema"
+                                            "field-class": "marshmallow.fields.String",
+                                            "validators": [],
+                                            "imports": []
+                                        },
+                                        "ui": {
+                                            "marshmallow": {
+                                                "field-class": "marshmallow.fields.String",
+                                                "validators": [],
+                                                "imports": []
+                                            }
+                                        },
+                                        "type": "keyword",
+                                        "mapping": {
+                                            "fields": {
+                                                "text": {
+                                                    "type": "search_as_you_type"
+                                                }
+                                            }
+                                        },
+                                        "sample": {
+                                            "skip": true
                                         }
                                     },
-                                    "properties": {
-                                        "colors": {
-                                            "type": "array",
-                                            "label.cs": "Barvy",
-                                            "items": {
-                                                "type": "vocabulary",
-                                                "vocabulary-type": "Colors",
-                                                "facets": {
-                                                    "facet-groups": [
-                                                        "default"
-                                                    ],
-                                                    "args": [
-                                                        "vocabulary='Colors'"
-                                                    ]
-                                                },
-                                                "label.cs": "Barva",
-                                                "imports": [
-                                                    {
-                                                        "import": "invenio_vocabularies.records.api.Vocabulary"
-                                                    }
-                                                ],
-                                                "model": "vocabularies",
-                                                "keys": [
-                                                    "id",
-                                                    "title"
-                                                ],
-                                                "marshmallow": {
-                                                    "unknown": "INCLUDE",
-                                                    "generate": false,
-                                                    "class": "objects.services.records.schema.DimensionSchema"
-                                                },
-                                                "ui": {
-                                                    "marshmallow": {
-                                                        "unknown": "INCLUDE",
-                                                        "generate": false,
-                                                        "class": "objects.services.records.ui_schema.DimensionUISchema"
-                                                    },
-                                                    "detail": "vocabulary_item",
-                                                    "edit": "vocabulary_item"
-                                                },
-                                                "pid-field": "Vocabulary.pid.with_type_ctx(\"Colors\")",
-                                                "properties": {
-                                                    "id": {
-                                                        "marshmallow": {
-                                                            "field-class": "marshmallow.fields.String",
-                                                            "validators": [],
-                                                            "imports": []
-                                                        },
-                                                        "ui": {
-                                                            "marshmallow": {
-                                                                "field-class": "marshmallow.fields.String",
-                                                                "validators": [],
-                                                                "imports": []
-                                                            }
-                                                        },
-                                                        "type": "keyword",
-                                                        "mapping": {
-                                                            "fields": {
-                                                                "text": {
-                                                                    "type": "search_as_you_type"
-                                                                }
-                                                            }
-                                                        },
-                                                        "sample": {
-                                                            "skip": true
-                                                        }
-                                                    },
-                                                    "title": {
-                                                        "marshmallow": {
-                                                            "generate": false,
-                                                            "field": "{{invenio_vocabularies.services.schema.i18n_strings}}",
-                                                            "field-class": "marshmallow.fields.Nested",
-                                                            "validators": [],
-                                                            "class": "invenio_vocabularies.services.records.schema.TitleSchema"
-                                                        },
-                                                        "ui": {
-                                                            "marshmallow": {
-                                                                "field": "{{oarepo_vocabularies.services.ui_schema.VocabularyI18nStrUIField}}()",
-                                                                "generate": false
-                                                            }
-                                                        },
-                                                        "mapping": {
-                                                            "dynamic": true,
-                                                            "properties": {
-                                                                "en": {
-                                                                    "type": "search_as_you_type",
-                                                                    "copy_to": "title_sort"
-                                                                }
-                                                            }
-                                                        },
-                                                        "type": "object",
-                                                        "propertyNames": {
-                                                            "pattern": "^[a-z]{2}$"
-                                                        },
-                                                        "additionalProperties": {
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "@v": {
-                                                        "type": "keyword",
-                                                        "marshmallow": {
-                                                            "field-name": "_version",
-                                                            "field-class": "marshmallow.fields.String"
-                                                        },
-                                                        "ui": {
-                                                            "marshmallow": {
-                                                                "field-name": "_version",
-                                                                "field-class": "marshmallow.fields.String"
-                                                            }
-                                                        },
-                                                        "facets": {
-                                                            "facet": false
-                                                        }
-                                                    }
-                                                }
-                                            }
+                                    "title": {
+                                        "marshmallow": {
+                                            "generate": false,
+                                            "field": "{{invenio_vocabularies.services.schema.i18n_strings}}",
+                                            "field-class": "marshmallow.fields.Nested",
+                                            "validators": [],
+                                            "class": "invenio_vocabularies.services.records.schema.TitleSchema"
                                         },
-                                        "fabricationTechnologies": {
-                                            "type": "array",
-                                            "label.cs": "Technologie výroby",
-                                            "items": {
-                                                "type": "vocabulary",
-                                                "vocabulary-type": "FabricationTechnologies",
-                                                "facets": {
-                                                    "facet-groups": [
-                                                        "default"
-                                                    ],
-                                                    "args": [
-                                                        "vocabulary='FabricationTechnologies'"
-                                                    ]
-                                                },
-                                                "label.cs": "Technologie výroby",
-                                                "imports": [
-                                                    {
-                                                        "import": "invenio_vocabularies.records.api.Vocabulary"
-                                                    }
-                                                ],
-                                                "model": "vocabularies",
-                                                "keys": [
-                                                    "id",
-                                                    "title"
-                                                ],
-                                                "marshmallow": {
-                                                    "unknown": "INCLUDE",
-                                                    "generate": false,
-                                                    "class": "objects.services.records.schema.DimensionSchema"
-                                                },
-                                                "ui": {
-                                                    "marshmallow": {
-                                                        "unknown": "INCLUDE",
-                                                        "generate": false,
-                                                        "class": "objects.services.records.ui_schema.DimensionUISchema"
-                                                    },
-                                                    "detail": "vocabulary_item",
-                                                    "edit": "vocabulary_item"
-                                                },
-                                                "pid-field": "Vocabulary.pid.with_type_ctx(\"FabricationTechnologies\")",
-                                                "properties": {
-                                                    "id": {
-                                                        "marshmallow": {
-                                                            "field-class": "marshmallow.fields.String",
-                                                            "validators": [],
-                                                            "imports": []
-                                                        },
-                                                        "ui": {
-                                                            "marshmallow": {
-                                                                "field-class": "marshmallow.fields.String",
-                                                                "validators": [],
-                                                                "imports": []
-                                                            }
-                                                        },
-                                                        "type": "keyword",
-                                                        "mapping": {
-                                                            "fields": {
-                                                                "text": {
-                                                                    "type": "search_as_you_type"
-                                                                }
-                                                            }
-                                                        },
-                                                        "sample": {
-                                                            "skip": true
-                                                        }
-                                                    },
-                                                    "title": {
-                                                        "marshmallow": {
-                                                            "generate": false,
-                                                            "field": "{{invenio_vocabularies.services.schema.i18n_strings}}",
-                                                            "field-class": "marshmallow.fields.Nested",
-                                                            "validators": [],
-                                                            "class": "invenio_vocabularies.services.records.schema.TitleSchema"
-                                                        },
-                                                        "ui": {
-                                                            "marshmallow": {
-                                                                "field": "{{oarepo_vocabularies.services.ui_schema.VocabularyI18nStrUIField}}()",
-                                                                "generate": false
-                                                            }
-                                                        },
-                                                        "mapping": {
-                                                            "dynamic": true,
-                                                            "properties": {
-                                                                "en": {
-                                                                    "type": "search_as_you_type",
-                                                                    "copy_to": "title_sort"
-                                                                }
-                                                            }
-                                                        },
-                                                        "type": "object",
-                                                        "propertyNames": {
-                                                            "pattern": "^[a-z]{2}$"
-                                                        },
-                                                        "additionalProperties": {
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "@v": {
-                                                        "type": "keyword",
-                                                        "marshmallow": {
-                                                            "field-name": "_version",
-                                                            "field-class": "marshmallow.fields.String"
-                                                        },
-                                                        "ui": {
-                                                            "marshmallow": {
-                                                                "field-name": "_version",
-                                                                "field-class": "marshmallow.fields.String"
-                                                            }
-                                                        },
-                                                        "facets": {
-                                                            "facet": false
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        "id": {
-                                            "type": "keyword",
-                                            "label.cs": "ID"
-                                        },
-                                        "main": {
-                                            "type": "boolean",
-                                            "label.cs": "Hlavní část"
-                                        },
-                                        "materialType": {
-                                            "type": "vocabulary",
-                                            "vocabulary-type": "MaterialTypes",
-                                            "facets": {
-                                                "facet-groups": [
-                                                    "default"
-                                                ],
-                                                "args": [
-                                                    "vocabulary='MaterialTypes'"
-                                                ]
-                                            },
-                                            "label.cs": "Materiál",
-                                            "imports": [
-                                                {
-                                                    "import": "invenio_vocabularies.records.api.Vocabulary"
-                                                }
-                                            ],
-                                            "model": "vocabularies",
-                                            "keys": [
-                                                "id",
-                                                "title"
-                                            ],
+                                        "ui": {
                                             "marshmallow": {
-                                                "unknown": "INCLUDE",
-                                                "generate": false,
-                                                "class": "objects.services.records.schema.DimensionSchema"
-                                            },
-                                            "ui": {
-                                                "marshmallow": {
-                                                    "unknown": "INCLUDE",
-                                                    "generate": false,
-                                                    "class": "objects.services.records.ui_schema.DimensionUISchema"
-                                                },
-                                                "detail": "vocabulary_item",
-                                                "edit": "vocabulary_item"
-                                            },
-                                            "pid-field": "Vocabulary.pid.with_type_ctx(\"MaterialTypes\")",
+                                                "field": "{{oarepo_vocabularies.services.ui_schema.VocabularyI18nStrUIField}}()",
+                                                "generate": false
+                                            }
+                                        },
+                                        "mapping": {
+                                            "dynamic": true,
                                             "properties": {
-                                                "id": {
-                                                    "marshmallow": {
-                                                        "field-class": "marshmallow.fields.String",
-                                                        "validators": [],
-                                                        "imports": []
-                                                    },
-                                                    "ui": {
-                                                        "marshmallow": {
-                                                            "field-class": "marshmallow.fields.String",
-                                                            "validators": [],
-                                                            "imports": []
-                                                        }
-                                                    },
-                                                    "type": "keyword",
-                                                    "mapping": {
-                                                        "fields": {
-                                                            "text": {
-                                                                "type": "search_as_you_type"
-                                                            }
-                                                        }
-                                                    },
-                                                    "sample": {
-                                                        "skip": true
-                                                    }
-                                                },
-                                                "title": {
-                                                    "marshmallow": {
-                                                        "generate": false,
-                                                        "field": "{{invenio_vocabularies.services.schema.i18n_strings}}",
-                                                        "field-class": "marshmallow.fields.Nested",
-                                                        "validators": [],
-                                                        "class": "invenio_vocabularies.services.records.schema.TitleSchema"
-                                                    },
-                                                    "ui": {
-                                                        "marshmallow": {
-                                                            "field": "{{oarepo_vocabularies.services.ui_schema.VocabularyI18nStrUIField}}()",
-                                                            "generate": false
-                                                        }
-                                                    },
-                                                    "mapping": {
-                                                        "dynamic": true,
-                                                        "properties": {
-                                                            "en": {
-                                                                "type": "search_as_you_type",
-                                                                "copy_to": "title_sort"
-                                                            }
-                                                        }
-                                                    },
-                                                    "type": "object",
-                                                    "propertyNames": {
-                                                        "pattern": "^[a-z]{2}$"
-                                                    },
-                                                    "additionalProperties": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "@v": {
-                                                    "type": "keyword",
-                                                    "marshmallow": {
-                                                        "field-name": "_version",
-                                                        "field-class": "marshmallow.fields.String"
-                                                    },
-                                                    "ui": {
-                                                        "marshmallow": {
-                                                            "field-name": "_version",
-                                                            "field-class": "marshmallow.fields.String"
-                                                        }
-                                                    },
-                                                    "facets": {
-                                                        "facet": false
-                                                    }
+                                                "en": {
+                                                    "type": "search_as_you_type",
+                                                    "copy_to": "title_sort"
                                                 }
                                             }
                                         },
-                                        "name": {
-                                            "type": "fulltext+keyword",
-                                            "label.cs": "Název části"
+                                        "type": "object",
+                                        "propertyNames": {
+                                            "pattern": "^[a-z]{2}$"
                                         },
-                                        "secondaryMaterialTypes": {
-                                            "type": "array",
-                                            "label.cs": "Sekundární materiály",
-                                            "items": {
-                                                "type": "vocabulary",
-                                                "vocabulary-type": "MaterialTypes",
-                                                "facets": {
-                                                    "facet-groups": [
-                                                        "default"
-                                                    ],
-                                                    "args": [
-                                                        "vocabulary='MaterialTypes'"
-                                                    ]
-                                                },
-                                                "label.cs": "Sekundární materiál",
-                                                "imports": [
-                                                    {
-                                                        "import": "invenio_vocabularies.records.api.Vocabulary"
-                                                    }
-                                                ],
-                                                "model": "vocabularies",
-                                                "keys": [
-                                                    "id",
-                                                    "title"
-                                                ],
-                                                "marshmallow": {
-                                                    "unknown": "INCLUDE",
-                                                    "generate": false,
-                                                    "class": "objects.services.records.schema.DimensionSchema"
-                                                },
-                                                "ui": {
-                                                    "marshmallow": {
-                                                        "unknown": "INCLUDE",
-                                                        "generate": false,
-                                                        "class": "objects.services.records.ui_schema.DimensionUISchema"
-                                                    },
-                                                    "detail": "vocabulary_item",
-                                                    "edit": "vocabulary_item"
-                                                },
-                                                "pid-field": "Vocabulary.pid.with_type_ctx(\"MaterialTypes\")",
-                                                "properties": {
-                                                    "id": {
-                                                        "marshmallow": {
-                                                            "field-class": "marshmallow.fields.String",
-                                                            "validators": [],
-                                                            "imports": []
-                                                        },
-                                                        "ui": {
-                                                            "marshmallow": {
-                                                                "field-class": "marshmallow.fields.String",
-                                                                "validators": [],
-                                                                "imports": []
-                                                            }
-                                                        },
-                                                        "type": "keyword",
-                                                        "mapping": {
-                                                            "fields": {
-                                                                "text": {
-                                                                    "type": "search_as_you_type"
-                                                                }
-                                                            }
-                                                        },
-                                                        "sample": {
-                                                            "skip": true
-                                                        }
-                                                    },
-                                                    "title": {
-                                                        "marshmallow": {
-                                                            "generate": false,
-                                                            "field": "{{invenio_vocabularies.services.schema.i18n_strings}}",
-                                                            "field-class": "marshmallow.fields.Nested",
-                                                            "validators": [],
-                                                            "class": "invenio_vocabularies.services.records.schema.TitleSchema"
-                                                        },
-                                                        "ui": {
-                                                            "marshmallow": {
-                                                                "field": "{{oarepo_vocabularies.services.ui_schema.VocabularyI18nStrUIField}}()",
-                                                                "generate": false
-                                                            }
-                                                        },
-                                                        "mapping": {
-                                                            "dynamic": true,
-                                                            "properties": {
-                                                                "en": {
-                                                                    "type": "search_as_you_type",
-                                                                    "copy_to": "title_sort"
-                                                                }
-                                                            }
-                                                        },
-                                                        "type": "object",
-                                                        "propertyNames": {
-                                                            "pattern": "^[a-z]{2}$"
-                                                        },
-                                                        "additionalProperties": {
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "@v": {
-                                                        "type": "keyword",
-                                                        "marshmallow": {
-                                                            "field-name": "_version",
-                                                            "field-class": "marshmallow.fields.String"
-                                                        },
-                                                        "ui": {
-                                                            "marshmallow": {
-                                                                "field-name": "_version",
-                                                                "field-class": "marshmallow.fields.String"
-                                                            }
-                                                        },
-                                                        "facets": {
-                                                            "facet": false
-                                                        }
-                                                    }
-                                                }
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "@v": {
+                                        "type": "keyword",
+                                        "marshmallow": {
+                                            "field-name": "_version",
+                                            "field-class": "marshmallow.fields.String"
+                                        },
+                                        "ui": {
+                                            "marshmallow": {
+                                                "field-name": "_version",
+                                                "field-class": "marshmallow.fields.String"
                                             }
+                                        },
+                                        "facets": {
+                                            "facet": false
                                         }
                                     }
                                 }
@@ -1510,9 +1412,9 @@
                                 "type": "vocabulary",
                                 "vocabulary-type": "Requestors",
                                 "facets": {
-                                    "facet-groups": [
-                                        "default"
-                                    ],
+                                    "facet-groups": {
+                                        "default": 100000
+                                    },
                                     "args": [
                                         "vocabulary='Requestors'"
                                     ]
@@ -1531,13 +1433,13 @@
                                 "marshmallow": {
                                     "unknown": "INCLUDE",
                                     "generate": false,
-                                    "class": "objects.services.records.schema.DimensionSchema"
+                                    "class": "objects.services.records.schema.ColorsItemSchema"
                                 },
                                 "ui": {
                                     "marshmallow": {
                                         "unknown": "INCLUDE",
                                         "generate": false,
-                                        "class": "objects.services.records.ui_schema.DimensionUISchema"
+                                        "class": "objects.services.records.ui_schema.ColorsItemUISchema"
                                     },
                                     "detail": "vocabulary_item",
                                     "edit": "vocabulary_item"
@@ -1618,6 +1520,122 @@
                                     }
                                 }
                             },
+                            "secondaryMaterialTypes": {
+                                "type": "array",
+                                "label.cs": "Sekundární materiály",
+                                "items": {
+                                    "type": "vocabulary",
+                                    "vocabulary-type": "MaterialTypes",
+                                    "facets": {
+                                        "facet-groups": {
+                                            "default": 100000
+                                        },
+                                        "args": [
+                                            "vocabulary='MaterialTypes'"
+                                        ]
+                                    },
+                                    "label.cs": "Sekundární materiál",
+                                    "imports": [
+                                        {
+                                            "import": "invenio_vocabularies.records.api.Vocabulary"
+                                        }
+                                    ],
+                                    "model": "vocabularies",
+                                    "keys": [
+                                        "id",
+                                        "title"
+                                    ],
+                                    "marshmallow": {
+                                        "unknown": "INCLUDE",
+                                        "generate": false,
+                                        "class": "objects.services.records.schema.ColorsItemSchema"
+                                    },
+                                    "ui": {
+                                        "marshmallow": {
+                                            "unknown": "INCLUDE",
+                                            "generate": false,
+                                            "class": "objects.services.records.ui_schema.ColorsItemUISchema"
+                                        },
+                                        "detail": "vocabulary_item",
+                                        "edit": "vocabulary_item"
+                                    },
+                                    "pid-field": "Vocabulary.pid.with_type_ctx(\"MaterialTypes\")",
+                                    "properties": {
+                                        "id": {
+                                            "marshmallow": {
+                                                "field-class": "marshmallow.fields.String",
+                                                "validators": [],
+                                                "imports": []
+                                            },
+                                            "ui": {
+                                                "marshmallow": {
+                                                    "field-class": "marshmallow.fields.String",
+                                                    "validators": [],
+                                                    "imports": []
+                                                }
+                                            },
+                                            "type": "keyword",
+                                            "mapping": {
+                                                "fields": {
+                                                    "text": {
+                                                        "type": "search_as_you_type"
+                                                    }
+                                                }
+                                            },
+                                            "sample": {
+                                                "skip": true
+                                            }
+                                        },
+                                        "title": {
+                                            "marshmallow": {
+                                                "generate": false,
+                                                "field": "{{invenio_vocabularies.services.schema.i18n_strings}}",
+                                                "field-class": "marshmallow.fields.Nested",
+                                                "validators": [],
+                                                "class": "invenio_vocabularies.services.records.schema.TitleSchema"
+                                            },
+                                            "ui": {
+                                                "marshmallow": {
+                                                    "field": "{{oarepo_vocabularies.services.ui_schema.VocabularyI18nStrUIField}}()",
+                                                    "generate": false
+                                                }
+                                            },
+                                            "mapping": {
+                                                "dynamic": true,
+                                                "properties": {
+                                                    "en": {
+                                                        "type": "search_as_you_type",
+                                                        "copy_to": "title_sort"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object",
+                                            "propertyNames": {
+                                                "pattern": "^[a-z]{2}$"
+                                            },
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "@v": {
+                                            "type": "keyword",
+                                            "marshmallow": {
+                                                "field-name": "_version",
+                                                "field-class": "marshmallow.fields.String"
+                                            },
+                                            "ui": {
+                                                "marshmallow": {
+                                                    "field-name": "_version",
+                                                    "field-class": "marshmallow.fields.String"
+                                                }
+                                            },
+                                            "facets": {
+                                                "facet": false
+                                            }
+                                        }
+                                    }
+                                }
+                            },
                             "title": {
                                 "type": "fulltext+keyword",
                                 "label.cs": "Název"
@@ -1649,9 +1667,9 @@
                                     "type": "vocabulary",
                                     "vocabulary-type": "ExaminationMethods",
                                     "facets": {
-                                        "facet-groups": [
-                                            "default"
-                                        ],
+                                        "facet-groups": {
+                                            "default": 100000
+                                        },
                                         "args": [
                                             "vocabulary='ExaminationMethods'"
                                         ]
@@ -1670,13 +1688,13 @@
                                     "marshmallow": {
                                         "unknown": "INCLUDE",
                                         "generate": false,
-                                        "class": "objects.services.records.schema.DimensionSchema"
+                                        "class": "objects.services.records.schema.ColorsItemSchema"
                                     },
                                     "ui": {
                                         "marshmallow": {
                                             "unknown": "INCLUDE",
                                             "generate": false,
-                                            "class": "objects.services.records.ui_schema.DimensionUISchema"
+                                            "class": "objects.services.records.ui_schema.ColorsItemUISchema"
                                         },
                                         "detail": "vocabulary_item",
                                         "edit": "vocabulary_item"
@@ -1758,183 +1776,6 @@
                                     }
                                 }
                             },
-                            "parts": {
-                                "type": "array",
-                                "label.cs": "Části předmětu",
-                                "items": {
-                                    "type": "nested",
-                                    "label.cs": "Část předmětu",
-                                    "marshmallow": {
-                                        "generate": true,
-                                        "class": "objects.services.records.schema.RestorationWorkPartsItemSchema"
-                                    },
-                                    "ui": {
-                                        "marshmallow": {
-                                            "generate": true,
-                                            "class": "objects.services.records.ui_schema.RestorationWorkPartsItemUISchema"
-                                        }
-                                    },
-                                    "properties": {
-                                        "part": {
-                                            "type": "relation",
-                                            "model": "#part",
-                                            "keys": [
-                                                "id"
-                                            ],
-                                            "label.cs": "Část předmětu",
-                                            "marshmallow": {
-                                                "unknown": "INCLUDE",
-                                                "generate": true,
-                                                "class": "objects.services.records.schema.PartSchema"
-                                            },
-                                            "ui": {
-                                                "marshmallow": {
-                                                    "unknown": "INCLUDE",
-                                                    "generate": true,
-                                                    "class": "objects.services.records.ui_schema.PartUISchema"
-                                                }
-                                            },
-                                            "properties": {
-                                                "id": {
-                                                    "type": "keyword",
-                                                    "label.cs": "ID"
-                                                },
-                                                "@v": {
-                                                    "type": "keyword",
-                                                    "marshmallow": {
-                                                        "field-name": "_version",
-                                                        "field-class": "marshmallow.fields.String"
-                                                    },
-                                                    "ui": {
-                                                        "marshmallow": {
-                                                            "field-name": "_version",
-                                                            "field-class": "marshmallow.fields.String"
-                                                        }
-                                                    },
-                                                    "facets": {
-                                                        "facet": false
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        "restorationMethods": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "vocabulary",
-                                                "vocabulary-type": "RestorationMethods",
-                                                "facets": {
-                                                    "facet-groups": [
-                                                        "default"
-                                                    ],
-                                                    "args": [
-                                                        "vocabulary='RestorationMethods'"
-                                                    ]
-                                                },
-                                                "label.cs": "Metoda restaurování",
-                                                "imports": [
-                                                    {
-                                                        "import": "invenio_vocabularies.records.api.Vocabulary"
-                                                    }
-                                                ],
-                                                "model": "vocabularies",
-                                                "keys": [
-                                                    "id",
-                                                    "title"
-                                                ],
-                                                "marshmallow": {
-                                                    "unknown": "INCLUDE",
-                                                    "generate": false,
-                                                    "class": "objects.services.records.schema.DimensionSchema"
-                                                },
-                                                "ui": {
-                                                    "marshmallow": {
-                                                        "unknown": "INCLUDE",
-                                                        "generate": false,
-                                                        "class": "objects.services.records.ui_schema.DimensionUISchema"
-                                                    },
-                                                    "detail": "vocabulary_item",
-                                                    "edit": "vocabulary_item"
-                                                },
-                                                "pid-field": "Vocabulary.pid.with_type_ctx(\"RestorationMethods\")",
-                                                "properties": {
-                                                    "id": {
-                                                        "marshmallow": {
-                                                            "field-class": "marshmallow.fields.String",
-                                                            "validators": [],
-                                                            "imports": []
-                                                        },
-                                                        "ui": {
-                                                            "marshmallow": {
-                                                                "field-class": "marshmallow.fields.String",
-                                                                "validators": [],
-                                                                "imports": []
-                                                            }
-                                                        },
-                                                        "type": "keyword",
-                                                        "mapping": {
-                                                            "fields": {
-                                                                "text": {
-                                                                    "type": "search_as_you_type"
-                                                                }
-                                                            }
-                                                        },
-                                                        "sample": {
-                                                            "skip": true
-                                                        }
-                                                    },
-                                                    "title": {
-                                                        "marshmallow": {
-                                                            "generate": false,
-                                                            "field": "{{invenio_vocabularies.services.schema.i18n_strings}}",
-                                                            "field-class": "marshmallow.fields.Nested",
-                                                            "validators": [],
-                                                            "class": "invenio_vocabularies.services.records.schema.TitleSchema"
-                                                        },
-                                                        "ui": {
-                                                            "marshmallow": {
-                                                                "field": "{{oarepo_vocabularies.services.ui_schema.VocabularyI18nStrUIField}}()",
-                                                                "generate": false
-                                                            }
-                                                        },
-                                                        "mapping": {
-                                                            "dynamic": true,
-                                                            "properties": {
-                                                                "en": {
-                                                                    "type": "search_as_you_type",
-                                                                    "copy_to": "title_sort"
-                                                                }
-                                                            }
-                                                        },
-                                                        "type": "object",
-                                                        "propertyNames": {
-                                                            "pattern": "^[a-z]{2}$"
-                                                        },
-                                                        "additionalProperties": {
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "@v": {
-                                                        "type": "keyword",
-                                                        "marshmallow": {
-                                                            "field-name": "_version",
-                                                            "field-class": "marshmallow.fields.String"
-                                                        },
-                                                        "ui": {
-                                                            "marshmallow": {
-                                                                "field-name": "_version",
-                                                                "field-class": "marshmallow.fields.String"
-                                                            }
-                                                        },
-                                                        "facets": {
-                                                            "facet": false
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            },
                             "restorationMethods": {
                                 "type": "array",
                                 "label.cs": "Metody restaurování",
@@ -1942,9 +1783,9 @@
                                     "type": "vocabulary",
                                     "vocabulary-type": "RestorationMethods",
                                     "facets": {
-                                        "facet-groups": [
-                                            "default"
-                                        ],
+                                        "facet-groups": {
+                                            "default": 100000
+                                        },
                                         "args": [
                                             "vocabulary='RestorationMethods'"
                                         ]
@@ -1963,13 +1804,13 @@
                                     "marshmallow": {
                                         "unknown": "INCLUDE",
                                         "generate": false,
-                                        "class": "objects.services.records.schema.DimensionSchema"
+                                        "class": "objects.services.records.schema.ColorsItemSchema"
                                     },
                                     "ui": {
                                         "marshmallow": {
                                             "unknown": "INCLUDE",
                                             "generate": false,
-                                            "class": "objects.services.records.ui_schema.DimensionUISchema"
+                                            "class": "objects.services.records.ui_schema.ColorsItemUISchema"
                                         },
                                         "detail": "vocabulary_item",
                                         "edit": "vocabulary_item"
@@ -2078,9 +1919,9 @@
                             "restorer": {
                                 "type": "keyword",
                                 "facets": {
-                                    "facet-groups": [
-                                        "default"
-                                    ]
+                                    "facet-groups": {
+                                        "default": 100000
+                                    }
                                 },
                                 "label.cs": "Restaurátor"
                             },
@@ -2108,18 +1949,18 @@
                                         "fullName": {
                                             "type": "keyword",
                                             "facets": {
-                                                "facet-groups": [
-                                                    "default"
-                                                ]
+                                                "facet-groups": {
+                                                    "default": 100000
+                                                }
                                             },
                                             "label.cs": "Jméno a příjmení vedoucího"
                                         },
                                         "institution": {
                                             "type": "keyword",
                                             "facets": {
-                                                "facet-groups": [
-                                                    "default"
-                                                ]
+                                                "facet-groups": {
+                                                    "default": 100000
+                                                }
                                             },
                                             "label.cs": "Instituce vedoucího práce"
                                         }
@@ -2130,9 +1971,9 @@
                                 "type": "vocabulary",
                                 "vocabulary-type": "WorkTypes",
                                 "facets": {
-                                    "facet-groups": [
-                                        "default"
-                                    ],
+                                    "facet-groups": {
+                                        "default": 100000
+                                    },
                                     "args": [
                                         "vocabulary='WorkTypes'"
                                     ]
@@ -2151,13 +1992,13 @@
                                 "marshmallow": {
                                     "unknown": "INCLUDE",
                                     "generate": false,
-                                    "class": "objects.services.records.schema.DimensionSchema"
+                                    "class": "objects.services.records.schema.ColorsItemSchema"
                                 },
                                 "ui": {
                                     "marshmallow": {
                                         "unknown": "INCLUDE",
                                         "generate": false,
-                                        "class": "objects.services.records.ui_schema.DimensionUISchema"
+                                        "class": "objects.services.records.ui_schema.ColorsItemUISchema"
                                     },
                                     "detail": "vocabulary_item",
                                     "edit": "vocabulary_item"

@@ -1,0 +1,16 @@
+restorationData[]:
+  properties:
+    text:
+      type: fulltext
+      label.cs: Extrahovaný text
+      label.en: Extracted text
+
+    timestamp:
+      type: datetime
+      label.cs: Datum extrakce
+      label.en: Extraction date
+
+    key:
+      type: keyword
+      label.cs: Klíč
+      label.en: Key
