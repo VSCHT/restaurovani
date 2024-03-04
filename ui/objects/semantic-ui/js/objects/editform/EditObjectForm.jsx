@@ -12,7 +12,7 @@ import Overridable from "react-overridable";
 import { SaveButton } from "../forms/components/";
 import { BasicInfo } from "./components/BasicInfo";
 import { RestorationWork } from "./components/RestorationWork";
-import { PartsInfo } from "./components/PartsInfo";
+import { MoreInfo } from "./components/MoreInfo";
 
 export const EditObjectForm = () => {
   let { record } = useFormConfig();
@@ -60,7 +60,7 @@ export const EditObjectForm = () => {
             </Overridable>
 
             <Overridable id="Deposit.AccordionFieldBasicInformation.container">
-              <PartsInfo
+              <MoreInfo
                 activeIndex={activeIndex}
                 handleActive={handleActive}
                 values={values}
