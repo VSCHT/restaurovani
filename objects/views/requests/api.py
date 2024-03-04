@@ -1,8 +1,8 @@
 
 
 def create_api_blueprint(app):
-    """Create ObjectsFile blueprint."""
-    blueprint = app.extensions["objects"].resource_files.as_blueprint()
+    """Create ObjectsRecord blueprint."""
+    blueprint = app.extensions["objects"].resource_requests.as_blueprint()
     blueprint.record_once(init_create_api_blueprint)
 
     # calls record_once for all other functions starting with "init_addons_"
@@ -11,7 +11,7 @@ def create_api_blueprint(app):
     funcs = [
         v
         for k, v in funcs.items()
-        if k.startswith("init_addons_objects_file") and callable(v)
+        if k.startswith("init_addons_objects") and callable(v)
     ]
     for func in funcs:
         blueprint.record_once(func)
@@ -27,12 +27,13 @@ def init_create_api_blueprint(state):
     # register service
     sregistry = app.extensions["invenio-records-resources"].registry
     sregistry.register(
-        ext.service_files, service_id=ext.service_files.config.service_id
+        ext.service_requests, service_id=ext.service_requests.config.service_id
     )
 
     # Register indexer
-    if hasattr(ext.service_files, "indexer"):
+    if hasattr(ext.service_requests, "indexer"):
         iregistry = app.extensions["invenio-indexer"].registry
         iregistry.register(
-            ext.service_files.indexer, indexer_id=ext.service_files.config.service_id
+            ext.service_requests.indexer,
+            indexer_id=ext.service_requests.config.service_id,
         )

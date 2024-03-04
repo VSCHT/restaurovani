@@ -4,14 +4,8 @@ from invenio_drafts_resources.records.api import Record as InvenioRecord
 from invenio_records.systemfields import ConstantField, ModelField
 from invenio_records_resources.records.systemfields import FilesField, IndexField
 from invenio_records_resources.records.systemfields.pid import PIDField, PIDFieldContext
-from invenio_requests.records import Request
-from invenio_requests.records.systemfields.relatedrecord import RelatedRecord
 from invenio_vocabularies.records.api import Vocabulary
-from oarepo_runtime.records.relations import (
-    InternalRelation,
-    PIDRelation,
-    RelationsField,
-)
+from oarepo_runtime.records.relations import PIDRelation, RelationsField
 from oarepo_runtime.records.systemfields.has_draftcheck import HasDraftCheckField
 from oarepo_runtime.records.systemfields.record_status import RecordStatusSystemField
 
@@ -27,14 +21,6 @@ from objects.records.models import (
 
 class ObjectsParentRecord(ParentRecord):
     model_cls = ObjectsParentMetadata
-    delete_record = RelatedRecord(
-        Request,
-        keys=["type", "receiver", "status"],
-    )
-    publish_draft = RelatedRecord(
-        Request,
-        keys=["type", "receiver", "status"],
-    )
 
 
 class ObjectsIdProvider(DraftRecordIdProviderV2):
@@ -54,33 +40,28 @@ class ObjectsRecord(InvenioRecord):
     dumper = ObjectsDumper()
 
     relations = RelationsField(
+        colors=PIDRelation(
+            "metadata.restorationObject.colors",
+            keys=["id", "title"],
+            pid_field=Vocabulary.pid.with_type_ctx("Colors"),
+        ),
         dimension=PIDRelation(
             "metadata.restorationObject.dimensions.dimension",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("Dimensions"),
+        ),
+        fabricationTechnologies=PIDRelation(
+            "metadata.restorationObject.fabricationTechnologies",
+            keys=["id", "title"],
+            pid_field=Vocabulary.pid.with_type_ctx("FabricationTechnologies"),
         ),
         itemTypes=PIDRelation(
             "metadata.restorationObject.itemTypes",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("ItemTypes"),
         ),
-        colors=PIDRelation(
-            "metadata.restorationObject.parts.colors",
-            keys=["id", "title"],
-            pid_field=Vocabulary.pid.with_type_ctx("Colors"),
-        ),
-        fabricationTechnologies=PIDRelation(
-            "metadata.restorationObject.parts.fabricationTechnologies",
-            keys=["id", "title"],
-            pid_field=Vocabulary.pid.with_type_ctx("FabricationTechnologies"),
-        ),
         materialType=PIDRelation(
-            "metadata.restorationObject.parts.materialType",
-            keys=["id", "title"],
-            pid_field=Vocabulary.pid.with_type_ctx("MaterialTypes"),
-        ),
-        secondaryMaterialTypes=PIDRelation(
-            "metadata.restorationObject.parts.secondaryMaterialTypes",
+            "metadata.restorationObject.materialType",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("MaterialTypes"),
         ),
@@ -89,22 +70,17 @@ class ObjectsRecord(InvenioRecord):
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("Requestors"),
         ),
+        secondaryMaterialTypes=PIDRelation(
+            "metadata.restorationObject.secondaryMaterialTypes",
+            keys=["id", "title"],
+            pid_field=Vocabulary.pid.with_type_ctx("MaterialTypes"),
+        ),
         examinationMethods=PIDRelation(
             "metadata.restorationWork.examinationMethods",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("ExaminationMethods"),
         ),
-        part=InternalRelation(
-            "metadata.restorationWork.parts.part",
-            keys=["id"],
-            related_part="metadata.restorationObject.parts",
-        ),
         restorationMethods=PIDRelation(
-            "metadata.restorationWork.parts.restorationMethods",
-            keys=["id", "title"],
-            pid_field=Vocabulary.pid.with_type_ctx("RestorationMethods"),
-        ),
-        restorationWork_restorationMethods=PIDRelation(
             "metadata.restorationWork.restorationMethods",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("RestorationMethods"),
@@ -145,33 +121,28 @@ class ObjectsDraft(InvenioDraft):
     dumper = ObjectsDraftDumper()
 
     relations = RelationsField(
+        colors=PIDRelation(
+            "metadata.restorationObject.colors",
+            keys=["id", "title"],
+            pid_field=Vocabulary.pid.with_type_ctx("Colors"),
+        ),
         dimension=PIDRelation(
             "metadata.restorationObject.dimensions.dimension",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("Dimensions"),
+        ),
+        fabricationTechnologies=PIDRelation(
+            "metadata.restorationObject.fabricationTechnologies",
+            keys=["id", "title"],
+            pid_field=Vocabulary.pid.with_type_ctx("FabricationTechnologies"),
         ),
         itemTypes=PIDRelation(
             "metadata.restorationObject.itemTypes",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("ItemTypes"),
         ),
-        colors=PIDRelation(
-            "metadata.restorationObject.parts.colors",
-            keys=["id", "title"],
-            pid_field=Vocabulary.pid.with_type_ctx("Colors"),
-        ),
-        fabricationTechnologies=PIDRelation(
-            "metadata.restorationObject.parts.fabricationTechnologies",
-            keys=["id", "title"],
-            pid_field=Vocabulary.pid.with_type_ctx("FabricationTechnologies"),
-        ),
         materialType=PIDRelation(
-            "metadata.restorationObject.parts.materialType",
-            keys=["id", "title"],
-            pid_field=Vocabulary.pid.with_type_ctx("MaterialTypes"),
-        ),
-        secondaryMaterialTypes=PIDRelation(
-            "metadata.restorationObject.parts.secondaryMaterialTypes",
+            "metadata.restorationObject.materialType",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("MaterialTypes"),
         ),
@@ -180,22 +151,17 @@ class ObjectsDraft(InvenioDraft):
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("Requestors"),
         ),
+        secondaryMaterialTypes=PIDRelation(
+            "metadata.restorationObject.secondaryMaterialTypes",
+            keys=["id", "title"],
+            pid_field=Vocabulary.pid.with_type_ctx("MaterialTypes"),
+        ),
         examinationMethods=PIDRelation(
             "metadata.restorationWork.examinationMethods",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("ExaminationMethods"),
         ),
-        part=InternalRelation(
-            "metadata.restorationWork.parts.part",
-            keys=["id"],
-            related_part="metadata.restorationObject.parts",
-        ),
         restorationMethods=PIDRelation(
-            "metadata.restorationWork.parts.restorationMethods",
-            keys=["id", "title"],
-            pid_field=Vocabulary.pid.with_type_ctx("RestorationMethods"),
-        ),
-        restorationWork_restorationMethods=PIDRelation(
             "metadata.restorationWork.restorationMethods",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("RestorationMethods"),
