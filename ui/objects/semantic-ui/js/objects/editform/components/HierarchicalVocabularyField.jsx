@@ -67,7 +67,7 @@ export const HierarchicalVocabularyField = ({
   const value = getIn(values, fieldPath, multiple ? [] : {});
 
   const [parentsState, setParentsState] = useState([]);
-  const [keybState, setKeybState] = useState(Array(amount).fill(null));
+  const [keybState, setKeybState] = useState([]);
   const [selectedState, setSelectedState] = useState([]);
 
   const hierarchicalData = useMemo(() => {
@@ -92,33 +92,31 @@ export const HierarchicalVocabularyField = ({
     return data;
   }, [serializedOptions]);
 
-console.log(hierarchicalData)
+  const updateHierarchy = (parent, index) => () => {
+    let updatedParents = [...parentsState];
+    updatedParents.splice(index + 1);
+    updatedParents[index] = parent;
 
-const updateHierarchy = (parent, index) => () => {
-  let updatedParents = [...parentsState];
-  updatedParents.splice(index + 1);
-  updatedParents[index] = parent;
+    let updatedKeybState = [...keybState];
+    if (hierarchicalData[index + 1]) {
+      const nextColumnIndex = hierarchicalData[index + 1].findIndex(
+        (o) => o.value === parent
+      );
+      updatedKeybState.splice(index + 1);
+      updatedKeybState[index] = nextColumnIndex !== -1 ? nextColumnIndex : null;
+    } else {
+      updatedKeybState.splice(index + 1);
+    }
 
-  let updatedKeybState = [...keybState];
-  if (hierarchicalData[index + 1]) {
-    const nextColumnIndex = hierarchicalData[index + 1].findIndex(
-      (o) => o.value === parent
-    );
-    updatedKeybState.splice(index + 1);
-    updatedKeybState[index] =
-      nextColumnIndex !== -1 ? nextColumnIndex : null;
-  } else {
-    updatedKeybState.splice(index + 1);
-  }
-
-  setParentsState(updatedParents);
-  setKeybState(updatedKeybState);
-};
-
+    setParentsState(updatedParents);
+    setKeybState(updatedKeybState);
+  };
 
   const handleSelect = (option, val, e) => {
     e.preventDefault();
-    const existingIndex = selectedState.findIndex((i) => i.value === val);
+    const existingIndex = selectedState.findIndex(
+      (i) => i.value === option.value
+    );
 
     if (existingIndex !== -1) {
       setSelectedState((prevState) => {
@@ -157,8 +155,11 @@ const updateHierarchy = (parent, index) => () => {
 
   const handleKey = (e, option, index) => {
     e.preventDefault();
-
     let newIndex = 0;
+    index =
+      keybState.length - 1 > index && !keybState.includes(null)
+        ? keybState.length - 1
+        : index;
     if (e.key === "ArrowUp") {
       newIndex = keybState[index] - 1;
       if (newIndex >= 0) {
@@ -188,30 +189,33 @@ const updateHierarchy = (parent, index) => () => {
         });
         setKeybState((prev) => {
           const newState = [...prev];
-          newState[index] = null;
-          newState[index - 1] = keybState[index - 1];
+          newState.splice(index, 1);
           return newState;
         });
       }
-    } else   if (e.key === "ArrowRight") {
+    } else if (e.key === "ArrowRight") {
       if (index < amount - 1) {
         const nextColumnOptions = hierarchicalData[index + 1];
         if (nextColumnOptions) {
           const nextColumnIndex = nextColumnOptions.findIndex(
             (o) => o.hierarchy.ancestors[0] === parentsState[index]
           );
-          console.log(nextColumnIndex)
           if (nextColumnIndex !== -1) {
             newIndex = nextColumnIndex;
-            updateHierarchy(nextColumnOptions[nextColumnIndex].value, index + 1)();
+            updateHierarchy(
+              nextColumnOptions[nextColumnIndex].value,
+              index + 1
+            )();
             setKeybState((prev) => {
               const newState = [...prev];
-              newState[index+1] = newIndex;
+              newState[index + 1] = newIndex;
               return newState;
             });
           }
         }
       }
+    } else if (e.key === "Enter") {
+      handleSelect(hierarchicalData[index][keybState[index]], index, e);
     }
   };
 
@@ -257,12 +261,10 @@ const updateHierarchy = (parent, index) => () => {
                   onDoubleClick={(e) => {
                     handleSelect(option, option.value, e);
                   }}
-                  onKeyPress={(e) => {
-                    handleSelect(option, option.value, e);
-                  }}
                   onKeyDown={(e) => {
                     handleKey(e, option, index);
                   }}
+                  tabIndex={0}
                 >
                   {option.text}
                 </Button>
@@ -280,12 +282,6 @@ const updateHierarchy = (parent, index) => () => {
       </Grid.Column>
     );
   };
-
-  useEffect(() => {
-    console.log(parentsState);
-    console.log(selectedState);
-    console.log(keybState);
-  }, [parentsState, selectedState, keybState]);
 
   const SearchComponent = ({ vocab }) => {
     const [query, setQuery] = useState("");
@@ -370,8 +366,8 @@ const updateHierarchy = (parent, index) => () => {
 
       {openState && (
         <Modal
-          onClose={() => setOpen(false)}
-          onOpen={() => setOpen(true)}
+          onClose={() => setOpenState(false)}
+          onOpen={() => setOpenState(true)}
           open={open}
           className="tree-field"
         >
