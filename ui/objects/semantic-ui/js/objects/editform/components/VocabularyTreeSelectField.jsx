@@ -24,7 +24,7 @@ import {
 } from "@js/oarepo_vocabularies";
 import axios from "axios";
 
-export const HierarchicalVocabularyField = ({
+export const VocabularyTreeSelectField = ({
   fieldPath,
   multiple,
   optionsListName,
