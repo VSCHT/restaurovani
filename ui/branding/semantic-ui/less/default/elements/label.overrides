@@ -6,7 +6,7 @@
       color: @brownColor;
     }
   }
-  .predmety__aside & {
+  .aside & {
     color: #222;
   }
 

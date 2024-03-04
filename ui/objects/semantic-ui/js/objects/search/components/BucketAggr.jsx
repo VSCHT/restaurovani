@@ -16,7 +16,6 @@ export const MyBucketAggregationValues = withState(
     onFilterClicked,
     isSelected,
     childAggCmps,
-    currentQueryState,
   }) => {
 
     return (

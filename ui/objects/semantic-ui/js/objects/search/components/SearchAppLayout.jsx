@@ -97,7 +97,7 @@ export const SearchAppLayout = () => {
         {sidebarVisible && (
           <Grid.Column
             width={6}
-            className="predmety__aside"
+            className="aside"
           >
             <Image
               className="vsht-logo"
@@ -129,7 +129,7 @@ export const SearchAppLayout = () => {
           open={modalOpen}
           onClose={toggleModal}
         >
-          <Grid className="predmety__aside">
+          <Grid className="aside">
             <Grid.Column aria-label="Filter Options">
               <Header as="h3">Filtrování výsledků</Header>
               <SearchAppFacets aggs={searchAppConfig.aggs} appName={appName} />
