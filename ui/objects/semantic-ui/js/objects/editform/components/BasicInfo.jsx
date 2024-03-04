@@ -12,7 +12,7 @@ import {
   MultiInput,
 } from "react-invenio-forms";
 
-import { HierarchicalVocabularyField } from "./HierarchicalVocabularyField";
+import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 
 import { useFormConfig } from "@js/oarepo_ui";
 
@@ -94,7 +94,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           />
         </Grid.Column>
         <Grid.Column>
-              <HierarchicalVocabularyField
+              <VocabularyTreeSelectField
                   optionsListName="ItemTypes"
                   fieldPath="metadata.restorationObject.itemTypes"
                   multiple={true}
