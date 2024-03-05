@@ -62,7 +62,6 @@ export const VocabularyTreeSelectField = ({
     setOpenState(true);
   };
 
-  
   const hierarchicalData = useMemo(() => {
     let data = [];
     let currentRow = [];
@@ -72,13 +71,13 @@ export const VocabularyTreeSelectField = ({
       if (option.hierarchy.ancestors.length === currentLevel) {
         currentRow.push(option);
       } else {
-        currentRow.sort((a, b) => {
-          const textA = a.hierarchy.title[0].toLowerCase();
-          const textB = b.hierarchy.title[0].toLowerCase();
-          if (textA < textB) return -1;
-          if (textA > textB) return 1;
-          return 0;
-        });
+        // currentRow.sort((a, b) => {
+        //   const textA = a.hierarchy.title[0].toLowerCase();
+        //   const textB = b.hierarchy.title[0].toLowerCase();
+        //   if (textA < textB) return -1;
+        //   if (textA > textB) return 1;
+        //   return 0;
+        // });
         data.push(currentRow);
         currentRow = [option];
         currentLevel++;
@@ -92,7 +91,6 @@ export const VocabularyTreeSelectField = ({
     return data;
   }, [serializedOptions]);
 
-  console.log(hierarchicalData)
   const amount = hierarchicalData.length;
 
   const updateHierarchy = (parent, index) => () => {
@@ -162,10 +160,10 @@ export const VocabularyTreeSelectField = ({
     index = keybState.length - 1 > index ? keybState.length - 1 : index;
     let data = hierarchicalData[index];
 
-    const moveKey = (index, newIndex, back=false) => {
+    const moveKey = (index, newIndex, back = false) => {
       setKeybState((prev) => {
         const newState = [...prev];
-        back? newState.splice(index, 1) : newState[index] =  newIndex;
+        back ? newState.splice(index, 1) : (newState[index] = newIndex);
         return newState;
       });
     };
@@ -209,6 +207,8 @@ export const VocabularyTreeSelectField = ({
         }
       }
     } else if (e.key === "Enter") {
+      handleSelect(data[keybState[index]], index, e);
+    } else if ((e.key = " ")) {
       handleSelect(data[keybState[index]], index, e);
     }
   };
