@@ -20,7 +20,6 @@ import {
 import {
   serializedVocabularyItems,
   serializeVocabularyItem,
-  deserializeVocabularyItem,
 } from "@js/oarepo_vocabularies";
 import axios from "axios";
 
@@ -103,7 +102,7 @@ export const VocabularyTreeSelectField = ({
         (o) => o.value === parent
       );
       updatedKeybState.splice(index + 1);
-      updatedKeybState[index] = nextColumnIndex !== -1 ? nextColumnIndex : null;
+      updatedKeybState[index] = nextColumnIndex !== -1 ? nextColumnIndex : 0;
     } else {
       updatedKeybState.splice(index + 1);
     }
@@ -156,10 +155,7 @@ export const VocabularyTreeSelectField = ({
   const handleKey = (e, option, index) => {
     e.preventDefault();
     let newIndex = 0;
-    index =
-      keybState.length - 1 > index && !keybState.includes(null)
-        ? keybState.length - 1
-        : index;
+    index = keybState.length - 1 > index ? keybState.length - 1 : index;
     if (e.key === "ArrowUp") {
       newIndex = keybState[index] - 1;
       if (newIndex >= 0) {
@@ -219,6 +215,8 @@ export const VocabularyTreeSelectField = ({
     }
   };
 
+
+
   const renderColumns = (index) => {
     return (
       <Grid.Column>
@@ -242,12 +240,12 @@ export const VocabularyTreeSelectField = ({
                         (item) => item.value === option.value
                       ) !== -1
                     }
-                    className={
+                    indeterminate={
                       selectedState.some((item) =>
                         item.hierarchy.ancestors.includes(option.value)
                       )
-                        ? "indeterminate"
-                        : ""
+                        ? true
+                        : false
                     }
                     onChange={(e) => {
                       handleSelect(option, option.value, e);
@@ -270,9 +268,7 @@ export const VocabularyTreeSelectField = ({
                 </Button>
                 {option.element_type == "parent" && (
                   <Button onClick={updateHierarchy(option.value, index)}>
-                    {index !== amount - 1 ? (
-                      <Icon name="angle right black " />
-                    ) : null}
+                    {index !== amount - 1 && <Icon name="angle right black " />}
                   </Button>
                 )}
               </Grid.Row>
@@ -430,7 +426,7 @@ export const VocabularyTreeSelectField = ({
   );
 };
 
-HierarchicalVocabularyField.propTypes = {
+VocabularyTreeSelectField.propTypes = {
   fieldPath: PropTypes.string.isRequired,
   multiple: PropTypes.bool,
   optionsListName: PropTypes.string.isRequired,
@@ -441,7 +437,7 @@ HierarchicalVocabularyField.propTypes = {
   optimized: PropTypes.bool,
 };
 
-HierarchicalVocabularyField.defaultProps = {
+VocabularyTreeSelectField.defaultProps = {
   noResultsMessage: "No results found.",
   showLeafsOnly: false,
   optimized: false,
