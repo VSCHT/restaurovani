@@ -36,7 +36,7 @@ export const EditObjectForm = () => {
         validateOnBlur={false}
       >
         {({ values, errors }) => (
-          <Grid columns={1} className="gapped predmety__form">
+          <Grid columns={1} className="gapped grid-form">
             <Header as="h3">
               Editace předmětu &nbsp;
               {values.metadata.restorationObject.title}

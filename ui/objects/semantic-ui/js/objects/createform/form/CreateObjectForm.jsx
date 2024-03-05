@@ -20,7 +20,7 @@ const CreateObjectFormContent = ({ errors }) => {
   const { values } = useDepositApiClient();
 
   return (
-    <Grid columns={1} className="gapped predmety__form">
+    <Grid columns={1} className="gapped grid-form-create">
       <Header as="h3">Vytvoření nového předmětu</Header>
       <Grid columns={1}>
         <Grid.Column>

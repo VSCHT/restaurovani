@@ -18,7 +18,6 @@
 @fontFamily: source-sans-pro;
 
 @background: @darkBrown;
-// @hoverBackgroundColor: @radialBg;
 
 @secondaryColor: @secondColor;
 @secondaryColorHover: @secondaryColorHov;

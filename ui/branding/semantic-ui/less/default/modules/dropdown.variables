@@ -15,3 +15,5 @@
 @itemPadding: 0 1rem;
 @itemFontSize:0.9rem;
 @itemLineHeight: 1em;
+
+@selectionMinHeight: 2rem;

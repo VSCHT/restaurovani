@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { ImgCarousel, FilesSection } from "./Carousel.jsx";
+import '../../../less/slick-styles.less'
+
+
 
 const imgGalleryComp = document.getElementById("images-carousel");
-const filesDivComp = document.getElementById("details__div__docs");
+const filesDivComp = document.getElementById("details-docs");
 
 async function fetchAndRender() {
   try {
