@@ -35,8 +35,6 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
 
   const { formConfig } = useFormConfig();
 
-  console.log(formConfig)
-
   const filteredVocabularies = (item) => {
     const vocab = formConfig.vocabularies[item];
     
@@ -59,7 +57,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
 
   filteredVocabularies("ItemTypes")
 
-  console.log( filteredVocabularies("ItemTypes"))
+ 
 
   return (
     <AccordionField

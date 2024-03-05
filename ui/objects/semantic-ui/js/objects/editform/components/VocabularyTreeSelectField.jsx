@@ -38,7 +38,6 @@ export const VocabularyTreeSelectField = ({
   const { values, setFieldTouched } = useFormikContext();
   const value = getIn(values, fieldPath, multiple ? [] : {});
 
-  
   const { all: allOptions, featured: featuredOptions } =
     vocabularies[optionsListName];
 
@@ -48,16 +47,11 @@ export const VocabularyTreeSelectField = ({
       vocabularies
     );
   }
- 
 
-  const [openState, setOpenState] = useState(false); 
+  const [openState, setOpenState] = useState(false);
   const [parentsState, setParentsState] = useState([]);
   const [keybState, setKeybState] = useState([]);
   const [selectedState, setSelectedState] = useState([]);
-
-
- 
-
 
   const serializedOptions = useMemo(
     () => serializedVocabularyItems(allOptions),
@@ -68,6 +62,7 @@ export const VocabularyTreeSelectField = ({
     setOpenState(true);
   };
 
+  
   const hierarchicalData = useMemo(() => {
     let data = [];
     let currentRow = [];
@@ -77,6 +72,13 @@ export const VocabularyTreeSelectField = ({
       if (option.hierarchy.ancestors.length === currentLevel) {
         currentRow.push(option);
       } else {
+        currentRow.sort((a, b) => {
+          const textA = a.hierarchy.title[0].toLowerCase();
+          const textB = b.hierarchy.title[0].toLowerCase();
+          if (textA < textB) return -1;
+          if (textA > textB) return 1;
+          return 0;
+        });
         data.push(currentRow);
         currentRow = [option];
         currentLevel++;
@@ -89,6 +91,9 @@ export const VocabularyTreeSelectField = ({
 
     return data;
   }, [serializedOptions]);
+
+  console.log(hierarchicalData)
+  const amount = hierarchicalData.length;
 
   const updateHierarchy = (parent, index) => () => {
     let updatedParents = [...parentsState];
@@ -155,25 +160,27 @@ export const VocabularyTreeSelectField = ({
     e.preventDefault();
     let newIndex = 0;
     index = keybState.length - 1 > index ? keybState.length - 1 : index;
+    let data = hierarchicalData[index];
+
+    const moveKey = (index, newIndex, back=false) => {
+      setKeybState((prev) => {
+        const newState = [...prev];
+        back? newState.splice(index, 1) : newState[index] =  newIndex;
+        return newState;
+      });
+    };
+
     if (e.key === "ArrowUp") {
       newIndex = keybState[index] - 1;
       if (newIndex >= 0) {
-        updateHierarchy(hierarchicalData[index][newIndex].value, index)();
-        setKeybState((prev) => {
-          const newState = [...prev];
-          newState[index] = newIndex;
-          return newState;
-        });
+        updateHierarchy(data[newIndex].value, index)();
+        moveKey(index, newIndex);
       }
     } else if (e.key === "ArrowDown") {
       newIndex = keybState[index] + 1;
-      if (newIndex < hierarchicalData[index].length) {
-        updateHierarchy(hierarchicalData[index][newIndex].value, index)();
-        setKeybState((prev) => {
-          const newState = [...prev];
-          newState[index] = newIndex;
-          return newState;
-        });
+      if (newIndex < data.length) {
+        updateHierarchy(data[newIndex].value, index)();
+        moveKey(index, newIndex);
       }
     } else if (e.key === "ArrowLeft") {
       if (index > 0) {
@@ -182,11 +189,7 @@ export const VocabularyTreeSelectField = ({
           newState.splice(index, 1);
           return newState;
         });
-        setKeybState((prev) => {
-          const newState = [...prev];
-          newState.splice(index, 1);
-          return newState;
-        });
+        moveKey(index, null, true);
       }
     } else if (e.key === "ArrowRight") {
       if (index < amount - 1) {
@@ -201,16 +204,12 @@ export const VocabularyTreeSelectField = ({
               nextColumnOptions[nextColumnIndex].value,
               index + 1
             )();
-            setKeybState((prev) => {
-              const newState = [...prev];
-              newState[index + 1] = newIndex;
-              return newState;
-            });
+            moveKey(index + 1, newIndex);
           }
         }
       }
     } else if (e.key === "Enter") {
-      handleSelect(hierarchicalData[index][keybState[index]], index, e);
+      handleSelect(data[keybState[index]], index, e);
     }
   };
 
@@ -335,8 +334,6 @@ export const VocabularyTreeSelectField = ({
       </Grid.Column>
     );
   };
-
-  const amount = hierarchicalData.length;
 
   return (
     <React.Fragment>

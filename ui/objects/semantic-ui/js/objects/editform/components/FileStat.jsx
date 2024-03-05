@@ -33,7 +33,7 @@ export const FileStat = ({ apiUrl, record }) => {
       const result = await response.json();
       setData(result);
     } catch (error) {
-      console.log("Error fetching data");
+      console.error("Error fetching data");
     }
   };
 
@@ -112,7 +112,7 @@ export const FileStat = ({ apiUrl, record }) => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
       } catch (error) {
-        console.log("Error deleting data");
+        console.error("Error deleting data");
       } finally {
         setConfirmOpen(false);
         fetchData();
