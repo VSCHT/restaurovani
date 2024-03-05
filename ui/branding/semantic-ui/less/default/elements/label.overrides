@@ -32,15 +32,23 @@
 }
 
 
-.ui.modal.tree-field   .ui.label a{
-  font-size: 1rem;
-  color: #222
-}
-.ui.modal.tree-field .content  .ui.label {
-  max-width: 30%;
-  text-align: left;
+
+.ui.modal.tree-field {
+  .content  .ui.label {
+    max-width: 30%;
+    text-align: left;
+  }
+
+   .header .ui.label {
+    padding: 10px;
+  }
+
+  .ui.label{
+    a{
+      font-size: 1rem;
+      color: #222
+    }
+  }
 }
 
-.ui.modal.tree-field .header .ui.label {
-  padding: 10px;
-}
+
