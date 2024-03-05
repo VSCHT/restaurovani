@@ -11,7 +11,6 @@ export const PublishButton = ({ modalMessage, modalHeader }) => {
     <React.Fragment>
       <Button
         name="publish"
-        className="form main-page__btn__addPredmety"
         onClick={handleOpenModal}
         labelPosition="left"
         content={"Publish"}

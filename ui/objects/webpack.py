@@ -13,7 +13,7 @@ theme = WebpackThemeBundle(
                 "objects_deposit_create": "./js/objects/createform/form/index.js",
             },
             dependencies={
-                "react-slick": "0.29.0",
+                "react-slick": "0.30.0",
                 "slick-carousel": "1.8.1",
                 "react-media": "^1.10.0",
                 "jquery": "^3.7.1",

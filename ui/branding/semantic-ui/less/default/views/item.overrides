@@ -82,7 +82,7 @@
       }
 
       & .extra > * {
-        margin: 0.25rem 30% 0.25rem 0em;
+        margin: 0.25rem 50% 0.25rem 0em;
       }
 
       & > .content > .description {

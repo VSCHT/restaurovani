@@ -1,7 +1,6 @@
 @mediumWidth: 65%;
 @mediumFontSize: 0.8rem;
 
-
 .ui.button {
   font-size: 1rem;
   display: flex;
@@ -24,10 +23,14 @@
     #form-app & {
       width: 25%;
     }
-    .form-actions &{
+    .form-actions & {
       width: 60%;
       height: 2.5rem;
       margin-top: 5px;
+    }
+    .search-container .centered & {
+      margin: 0 auto;
+      width: auto;
     }
   }
 
@@ -88,6 +91,7 @@
 
   .extra & {
     width: 25%;
+    font-size: 0.9rem;
   }
 
   &.close {
@@ -104,20 +108,20 @@
   .ui.dropdown & {
     padding: 0;
   }
-   
-  
 
   @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
     height: 35px;
     padding: 10px;
     font-size: 0.9rem;
 
-    &.primary:not(.fluid)  {
+    &.primary:not(.fluid) {
       width: 25%;
       height: 45px;
 
       .extra & {
-        width: 30%;
+        width: 20%;
+        height: 40px;
+        font-size: 0.9rem;
       }
     }
 
@@ -128,10 +132,11 @@
   }
 
   @media only screen and (max-width: @smallMobileSize) {
-    &.primary:not(.fluid)  {
+    &.primary:not(.fluid) {
       font-size: @mediumFontSize;
       .main-page & {
         width: 65%;
+        height: 2.2rem;
       }
       #form-app & {
         width: 45%;
@@ -139,6 +144,7 @@
       .extra & {
         width: 25%;
         height: 36px;
+        font-size: 0.9rem;
       }
     }
     .field & {
@@ -147,37 +153,31 @@
   }
 
   @media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
-    &.primary:not(.fluid)  {
+    &.primary:not(.fluid) {
       width: 30%;
       .main-page & {
         width: 65%;
       }
       .extra & {
         width: 25%;
-        font-size: 1rem;
+        font-size: 0.8rem;
         height: 2.2rem;
       }
     }
   }
-
-
 }
 
 .ui.buttons {
-  position: relative;
-  left: -53px;
-
-  @media only screen and (min-width: @tabletSize) and (max-width: @computerSize) {
-    left: -67px;
-  }
+  position: absolute;
+  left: 130px;
+  top: 10px;
 }
 
-
-.tree-field .ui.button{
-  padding: 0.2rem
+.tree-field .ui.button {
+  padding: 0.2rem;
 }
 
-.tree-field .ui.basic.button{
+.tree-field .ui.basic.button {
   width: 100%;
   margin: 0;
   border-radius: 0;

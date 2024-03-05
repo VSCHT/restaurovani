@@ -6,7 +6,7 @@
       color: @brownColor;
     }
   }
-  .predmety__aside & {
+  .predmety__aside &, .aside &:not(:nth-child(3)) {
     color: #222;
   }
 

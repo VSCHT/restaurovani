@@ -34,3 +34,7 @@
     justify-content: space-between;
   }
 }
+
+.ui.form{
+  width: 100%
+}

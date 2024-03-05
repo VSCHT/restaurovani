@@ -25,7 +25,7 @@ export const EmptyResultsElement = ({
         </Grid.Column>
       </Grid.Row>
       <Grid.Row centered>
-        <Grid.Column width={12} textAlign="center">
+        <Grid.Column textAlign="center">
           <Button
             primary
             onClick={resetQuery}
@@ -36,7 +36,7 @@ export const EmptyResultsElement = ({
         </Grid.Column>
       </Grid.Row>
       <Grid.Row centered>
-        <Grid.Column width={12}>
+        <Grid.Column>
           <Segment secondary padded size="large">
             <Header as="h3" size="small">
               ProTip!

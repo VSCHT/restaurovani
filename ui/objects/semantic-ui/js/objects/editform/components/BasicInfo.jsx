@@ -241,7 +241,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           />
         </Grid.Column>
         <Grid.Column>
-          <VocabularyTreeSelectField
+          <LocalVocabularySelectField
             fieldPath="metadata.restorationObject.restorationRequestor"
             multiple={false}
             optionsListName="Requestors"
