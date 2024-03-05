@@ -9,4 +9,4 @@
 @contentBackground: @basicColor;
 @headerBackground: @basicColor;
 @actionBackground: @basicColor;
-@closeHitbox:10vw;
+@closeHitbox:8vw;

@@ -29,13 +29,16 @@ export const VocabularyTreeSelectField = ({
   optionsListName,
   usedOptions = [],
   helpText,
-  showLeafsOnly,
   optimized,
   ...uiProps
 }) => {
   const { formConfig } = useFormConfig();
   const { vocabularies } = formConfig;
+  const formik = useFormikContext();
+  const { values, setFieldTouched } = useFormikContext();
+  const value = getIn(values, fieldPath, multiple ? [] : {});
 
+  
   const { all: allOptions, featured: featuredOptions } =
     vocabularies[optionsListName];
 
@@ -45,29 +48,25 @@ export const VocabularyTreeSelectField = ({
       vocabularies
     );
   }
-  const formik = useFormikContext();
+ 
 
-  const [openState, setOpenState] = useState(false);
+  const [openState, setOpenState] = useState(false); 
+  const [parentsState, setParentsState] = useState([]);
+  const [keybState, setKeybState] = useState([]);
+  const [selectedState, setSelectedState] = useState([]);
+
+
+ 
+
+
   const serializedOptions = useMemo(
-    () =>
-      showLeafsOnly
-        ? serializedVocabularyItems(allOptions).filter(
-            (o) => o.element_type === "leaf"
-          )
-        : serializedVocabularyItems(allOptions),
-    [allOptions, showLeafsOnly]
+    () => serializedVocabularyItems(allOptions),
+    [allOptions]
   );
 
   const handleOpen = () => {
     setOpenState(true);
   };
-
-  const { values, setFieldTouched } = useFormikContext();
-  const value = getIn(values, fieldPath, multiple ? [] : {});
-
-  const [parentsState, setParentsState] = useState([]);
-  const [keybState, setKeybState] = useState([]);
-  const [selectedState, setSelectedState] = useState([]);
 
   const hierarchicalData = useMemo(() => {
     let data = [];
@@ -214,14 +213,6 @@ export const VocabularyTreeSelectField = ({
       handleSelect(hierarchicalData[index][keybState[index]], index, e);
     }
   };
-
-  console.log(serializedOptions);
-  useEffect(() => {
-    console.log(hierarchicalData);
-    console.log(parentsState);
-    console.log(selectedState);
-    console.log(keybState);
-  }, [hierarchicalData, parentsState, selectedState, keybState]);
 
   const renderColumns = (index) => {
     return (
@@ -439,12 +430,10 @@ VocabularyTreeSelectField.propTypes = {
   helpText: PropTypes.string,
   noResultsMessage: PropTypes.string,
   usedOptions: PropTypes.array,
-  showLeafsOnly: PropTypes.bool,
   optimized: PropTypes.bool,
 };
 
 VocabularyTreeSelectField.defaultProps = {
   noResultsMessage: "No results found.",
-  showLeafsOnly: false,
   optimized: false,
 };
