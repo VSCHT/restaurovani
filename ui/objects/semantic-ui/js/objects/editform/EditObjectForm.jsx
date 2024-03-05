@@ -16,7 +16,6 @@ import { MoreInfo } from "./components/MoreInfo";
 
 export const EditObjectForm = () => {
   let { record } = useFormConfig();
-  console.log(record)
   let category= record.metadata.restorationObject.category
 
   const [activeIndex, setActiveIndex] = React.useState(0);
