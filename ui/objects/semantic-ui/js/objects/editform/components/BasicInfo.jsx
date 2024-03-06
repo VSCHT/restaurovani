@@ -29,7 +29,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
     { value: "mg", text: "mg" },
     { value: "gr", text: "gr" },
     { value: "cm", text: "cm" },
-    { value: "metr", text: "metr" },
+    { value: "m", text: "m" },
     { value: "mm", text: "mm" },
   ];
 

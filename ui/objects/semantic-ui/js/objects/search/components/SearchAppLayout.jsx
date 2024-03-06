@@ -102,12 +102,12 @@ export const SearchAppLayout = () => {
             <Image
               className="vsht-logo"
               src="/static/images/logoVSCHT_zakl.png"
-              alt="vsht logo"
+              alt="VŠCHT logo"
             />
             <Grid.Column aria-label="Filter Options">
               <Button
                 secondary
-                aria-label="Tlacitko dodat novy predmet"
+                aria-label="Vložit nový předmět"
                 onClick={createNewHandler}
               >
                 Nový předmět

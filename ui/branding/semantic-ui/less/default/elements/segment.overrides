@@ -1,4 +1,5 @@
-@segmentGapMobile: 95px;
+
+
 
 .ui.segment:not(.secondary) {
   display: flex;

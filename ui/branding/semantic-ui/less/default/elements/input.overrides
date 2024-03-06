@@ -1,9 +1,3 @@
-@inputWidthLarge: 65%;
-@inputWidthSmall: 60%;
-@inputFontMedium: 0.8rem;
-@inputHeight: 2.5rem;
-@smallerInputHeight: @inputHeight - 0.5rem;
-
 .ui.input {
   &,
   & input {
@@ -45,5 +39,3 @@
     background: none;
   }
 }
-
-
