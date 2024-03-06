@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Overridable from "react-overridable";
 import _get from "lodash/get";
@@ -14,7 +14,7 @@ import {
 } from "semantic-ui-react";
 import { withState, buildUID } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
-import { ImageWithFallback } from "./imgFallback";
+import { FeaturedImage } from "./FeaturedImage";
 
 const ItemHeader = ({ title, searchUrl, selfLink }) => {
   const [smallScreen, setSmallScreen] = React.useState(
@@ -58,7 +58,7 @@ const DetailsButton = ({ searchUrl, selfLink }) => {
     new URL(searchUrl, window.location.origin)
   );
   return (
-    <Button primary floated="right" aria-label="Tlacitko vytvorit detaily">
+    <Button primary floated="right" aria-label="Zobrazit detail předmětu">
       <a href={viewLink}>DETAIL</a>
     </Button>
   );
@@ -85,6 +85,34 @@ export const ResultsListItemComponent = ({ result, appName }) => {
     };
   }, []);
 
+  const [imagesState, setImagesState] = useState([]);
+
+  useEffect(() => {
+    fetch(result?.links?.files)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        return response.json();
+      })
+      .then(async (res) => {
+        const imageEntries = res?.entries?.filter(
+          (item) => item.metadata.fileType === "photo"
+        );
+
+        const fImg = imageEntries.filter(
+          (item) => item.metadata.featured == true
+        );
+        const rImg = imageEntries?.[0] ?? imageEntries?.[1];
+        fImg.length == 1 ? setImagesState(fImg) : setImagesState(rImg);
+      })
+
+      .catch(() => {
+        console.error("No photos");
+      });
+  }, [result]);
+
   const searchAppConfig = useContext(SearchConfigurationContext);
 
   const title = _get(result, "metadata.restorationObject.title", "<no title>");
@@ -105,10 +133,9 @@ export const ResultsListItemComponent = ({ result, appName }) => {
       title={title}
     >
       <Item key={result.id}>
-        <ImageWithFallback
+        <FeaturedImage
           src="/static/images/image-noimage.png"
-          fallbackSrc="/static/images/image-404.png"
-          result={result}
+          result={imagesState}
         />
         {/* url */}
         <ItemContent>
@@ -121,7 +148,10 @@ export const ResultsListItemComponent = ({ result, appName }) => {
           <ItemExtra>
             <Label size="large">
               Vloženo:{" "}
-              {created.substring(created.indexOf(",") + 1, created.lastIndexOf(","))}{" "}
+              {created.substring(
+                created.indexOf(",") + 1,
+                created.lastIndexOf(",")
+              )}{" "}
             </Label>
             <DetailsButton
               searchUrl={searchAppConfig.ui_endpoint}
