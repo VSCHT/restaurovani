@@ -15,15 +15,15 @@
 
   &.pagination .item {
     padding: 10px 30px;
+    color: white;
+    font-size: 1rem;
 
     @media only screen and (min-width: @tabletSize) and (max-width: @computerSize) {
       padding: 5px 25px;
-      font-size: 1.2rem;
     }
 
     @media only screen and (min-width: @mobileSize) and (max-width: @tabletSize) {
       padding: 5px 20px;
-      font-size: 1rem;
     }
     @media only screen and (max-width: @mobileSize) {
       padding: 5px 15px;

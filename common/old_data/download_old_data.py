@@ -26,7 +26,7 @@ class Vocabularies:
         self.vocabularies = {}
 
         catalogue = self.get_catalogue(
-            Path(__file__).parent.parent / "fixtures" / "catalogue.yaml"
+            Path(__file__).parent.parent.parent / "fixtures" / "catalogue.yaml"
         )
         for vocabulary_name, vocabulary_file in catalogue.items():
             self.load_vocabulary(vocabulary_name, vocabulary_file)
@@ -89,7 +89,7 @@ class Vocabularies:
 
     def load_replaced_vocabulary_terms(self):
         with (
-            Path(__file__).parent.parent
+            Path(__file__).parent.parent.parent
             / "fixtures"
             / "files"
             / "replaced_identifiers.yaml"
@@ -160,13 +160,21 @@ def convert_object(restoration_object, vocabulary):
     ret["description"] = cs_language(restoration_object.pop("description", None))
     ret["category"] = restoration_object.pop("category")
     ret["keywords"] = restoration_object.pop("keywords", [])
-    ret_parts = ret["parts"] = []
-    methods_for_part = {}
-    for part in restoration_object.pop("parts", []):
+
+    methods = None
+    all_parts = restoration_object.pop("parts", [])
+    if all_parts:
+        if len(all_parts) > 1:
+            print(f"More than one part in {restoration_object['id']}")
+            part = [x for x in all_parts if x['main']][0]
+        else:
+            part = all_parts[0]
+
+        part_id = part.pop('id', None)
+        part.pop('name', None)
+        part.pop('main', None)
+
         ret_part = {
-            "id": uuid.uuid4().hex,
-            "name": part.pop("name"),
-            "main": part.pop("main"),
             "fabricationTechnologies": convert_vocabulary_entry(
                 part.pop("fabricationTechnology", []),
                 vocabulary,
@@ -181,14 +189,17 @@ def convert_object(restoration_object, vocabulary):
             ],
             "colors": [vocabulary.convert("Colors", x) for x in part.pop("color", [])],
         }
+        ret.update(ret_part)
+
         if "restorationMethods" in part:
-            methods_for_part[ret_part["id"]] = [
+            methods = [
                 vocabulary.convert("RestorationMethods", x)
                 for x in part.pop("restorationMethods", [])
             ]
+
         if part != {}:
             raise AssertionError(f"Expected empty part after conversion, got {part}")
-        ret_parts.append(part)
+
     # some of the itemtypes are undefined, so catching the exception here
     ret["itemTypes"] = convert_vocabulary_entry(
         restoration_object.pop("itemType", []), vocabulary, "ItemTypes"
@@ -243,7 +254,7 @@ def convert_object(restoration_object, vocabulary):
         work_files = [*files]
         restoration_works_and_files.append(
             (
-                convert_work(object_id, x, vocabulary, methods_for_part, work_files),
+                convert_work(object_id, x, vocabulary, part_id, methods, work_files),
                 work_files,
             )
         )
@@ -268,7 +279,7 @@ def convert_object(restoration_object, vocabulary):
     ]
 
 
-def convert_work(object_id, restoration_work, vocabulary, methods_for_part, files):
+def convert_work(object_id, restoration_work, vocabulary, part_id, methods, files):
     restoration_work = restoration_work["metadata"]
     ret = {"restorer": restoration_work.pop("creator")}
     restoration_work.pop("$schema")
@@ -288,6 +299,8 @@ def convert_work(object_id, restoration_work, vocabulary, methods_for_part, file
     ret["restorationMethods"] = convert_vocabulary_entry(
         restoration_work.pop("restorationMethods", []), vocabulary, "RestorationMethods"
     )
+    if methods:
+        ret["restorationMethods"].append(methods)
 
     ret["restorationPeriod"] = restoration_work.pop("restorationPeriod", None)
     supervisors = ret["supervisors"] = []
@@ -308,11 +321,7 @@ def convert_work(object_id, restoration_work, vocabulary, methods_for_part, file
 
         if sup != {}:
             raise AssertionError(f"Expected empty sup after conversion, got {sup}")
-    if methods_for_part:
-        ret["parts"] = [
-            {"id": part_id, "restorationMethods": methods}
-            for part_id, methods in methods_for_part.items()
-        ]
+
     ret["workType"] = vocabulary.convert(
         "WorkTypes", restoration_work.pop("workType", None)
     )

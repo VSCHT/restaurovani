@@ -20,7 +20,7 @@ class ObjectsResourceConfig(RecordsUIResourceConfig):
 
     components = [BabelComponent, RestorationVocabularyOptionsComponent, FilesComponent]
 
-    search_app_id="objects"
+    application_id="objects"
 
     templates = {
         "detail": "objects.Detail",

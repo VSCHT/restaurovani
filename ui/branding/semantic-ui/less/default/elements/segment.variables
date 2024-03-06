@@ -3,7 +3,7 @@
 ---------------*/
 
 
-
+@segmentGapMobile: 95px;
 
 /*--------------
     SEMANTIC
@@ -11,6 +11,5 @@
 @margin:0px;
 @padding: 0px;
 
-/* @groupedSegmentWidth:40vw; */
 
 @attachedBorder: 1px solid @inputBorderColor;

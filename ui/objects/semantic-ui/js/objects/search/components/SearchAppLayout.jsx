@@ -97,17 +97,17 @@ export const SearchAppLayout = () => {
         {sidebarVisible && (
           <Grid.Column
             width={6}
-            className="predmety__aside"
+            className="aside"
           >
             <Image
               className="vsht-logo"
               src="/static/images/logoVSCHT_zakl.png"
-              alt="vsht logo"
+              alt="VŠCHT logo"
             />
             <Grid.Column aria-label="Filter Options">
               <Button
                 secondary
-                aria-label="Tlacitko dodat novy predmet"
+                aria-label="Vložit nový předmět"
                 onClick={createNewHandler}
               >
                 Nový předmět
@@ -129,7 +129,7 @@ export const SearchAppLayout = () => {
           open={modalOpen}
           onClose={toggleModal}
         >
-          <Grid className="predmety__aside">
+          <Grid className="aside">
             <Grid.Column aria-label="Filter Options">
               <Header as="h3">Filtrování výsledků</Header>
               <SearchAppFacets aggs={searchAppConfig.aggs} appName={appName} />

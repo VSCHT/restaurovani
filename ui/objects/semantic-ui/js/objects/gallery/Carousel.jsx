@@ -10,6 +10,7 @@ import {
   Header
 } from "semantic-ui-react";
 
+
 const fileName = (d) => {
   if (d?.metadata && d?.metadata?.caption) {
     if (
@@ -60,7 +61,6 @@ export const ImgCarousel = ({ imgs }) => {
 
   // Update slidesToShow
   useEffect(() => {
-    console.log();
     const updateSlidesToShow = () => {
       if (window.innerWidth <= 992 && window.innerWidth >= 530) {
         setSlidesToShow(3);
@@ -102,7 +102,7 @@ export const ImgCarousel = ({ imgs }) => {
         const filteredUrls = urls.filter((url) => url !== null);
         setImageUrls(filteredUrls);
       } catch (error) {
-        console.log("Error fetching images");
+        console.error("Error fetching images");
       } finally {
         setLoading(false);
       }

@@ -104,7 +104,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
       result={result}
       title={title}
     >
-      <Item className="predmety__card" key={result.id}>
+      <Item key={result.id}>
         <ImageWithFallback
           src="/static/images/image-noimage.png"
           fallbackSrc="/static/images/image-404.png"

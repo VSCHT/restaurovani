@@ -12,12 +12,11 @@ import Overridable from "react-overridable";
 import { SaveButton } from "../forms/components/";
 import { BasicInfo } from "./components/BasicInfo";
 import { RestorationWork } from "./components/RestorationWork";
-import { PartsInfo } from "./components/PartsInfo";
+import { MoreInfo } from "./components/MoreInfo";
 
 export const EditObjectForm = () => {
-  let { record } = useFormConfig();
-  console.log(record)
-  let category= record.metadata.restorationObject.category
+  const { record } = useFormConfig();
+  const category= record.metadata.restorationObject.category
 
   const [activeIndex, setActiveIndex] = React.useState(0);
   const handleActive = (x) => {
@@ -36,9 +35,9 @@ export const EditObjectForm = () => {
         validateOnBlur={false}
       >
         {({ values, errors }) => (
-          <Grid columns={1} className="gapped predmety__form">
+          <Grid columns={1} className="gapped grid-form">
             <Header as="h3">
-              Editace předmětu &nbsp;
+              Editace předmětu {' '}
               {values.metadata.restorationObject.title}
             </Header>
 
@@ -60,7 +59,7 @@ export const EditObjectForm = () => {
             </Overridable>
 
             <Overridable id="Deposit.AccordionFieldBasicInformation.container">
-              <PartsInfo
+              <MoreInfo
                 activeIndex={activeIndex}
                 handleActive={handleActive}
                 values={values}

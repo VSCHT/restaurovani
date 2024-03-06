@@ -8,6 +8,8 @@
   rgba(88, 88, 88, 0.18) 30%,
   rgba(88, 88, 88, 0.016) 100%
 );
+@mediumWidth: 65%;
+@mediumFontSize: 0.8rem;
 
 
 /*--------------
@@ -18,7 +20,6 @@
 @fontFamily: source-sans-pro;
 
 @background: @darkBrown;
-// @hoverBackgroundColor: @radialBg;
 
 @secondaryColor: @secondColor;
 @secondaryColorHover: @secondaryColorHov;
