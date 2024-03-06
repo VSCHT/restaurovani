@@ -16,7 +16,7 @@ import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 
 import { useFormConfig } from "@js/oarepo_ui";
 
-import { Form, Grid } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import { ArrayFieldItem } from "@js/oarepo_ui";
 
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
@@ -29,13 +29,11 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
     { value: "mg", text: "mg" },
     { value: "gr", text: "gr" },
     { value: "cm", text: "cm" },
-    { value: "metr", text: "metr" },
+    { value: "m", text: "m" },
     { value: "mm", text: "mm" },
   ];
 
   const { formConfig } = useFormConfig();
-
-  console.log(formConfig)
 
   const filteredVocabularies = (item) => {
     const vocab = formConfig.vocabularies[item];
@@ -58,6 +56,8 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
   };
 
   filteredVocabularies("ItemTypes")
+
+ 
 
   return (
     <AccordionField
@@ -94,19 +94,6 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           />
         </Grid.Column>
         <Grid.Column>
-              <VocabularyTreeSelectField
-                  optionsListName="ItemTypes"
-                  fieldPath="metadata.restorationObject.itemTypes"
-                  multiple={true}
-                  placeholder="Vyberte typ předmětu"
-                  label={
-                    <FieldLabel
-                      htmlFor="metadata.restorationObject.itemTypes"
-                      label="Typ předmětu Hierarchical"
-                    />
-                  }/>
-        </Grid.Column>
-        <Grid.Column>
           <MultiInput
             fieldPath="metadata.restorationObject.keywords"
             label="Klíčová slova"
@@ -130,7 +117,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           />
         </Grid.Column>
         <Grid.Column>
-          <LocalVocabularySelectField
+          <VocabularyTreeSelectField
             optionsListName="ItemTypes"
             fieldPath="metadata.restorationObject.itemTypes"
             multiple={true}
@@ -177,10 +164,6 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           <ArrayField
             addButtonLabel="Přidat rozměr"
             fieldPath="metadata.restorationObject.dimensions"
-            // defaultNewValue={{
-            //   unit: "",
-            //   value: "",
-            // }}
           >
             {({ arrayHelpers, indexPath }) => {
               const fieldPathPrefix = `${"metadata.restorationObject.dimensions"}[${indexPath}]`;

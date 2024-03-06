@@ -73,6 +73,7 @@
       {{ webpack['components.css'] }}
       {{ webpack['branding.css'] }}
       
+      
       {%- endblock css %}
       
     {%- endblock head %}
@@ -120,9 +121,9 @@
 
       {%- block javascript %}
       
-
+     
         {% include config.THEME_JAVASCRIPT_TEMPLATE %}
-      
+        {{ webpack['branding.js'] }}
 
       {%- endblock javascript %}
 
@@ -136,8 +137,3 @@
  
 </html>
 
-<script>
-    
-  $('.ui.sidebar').sidebar('attach events', '.toggle-burger', 'show');
-  $('.ui.sidebar').sidebar('attach events', '.close', 'close');
-</script>

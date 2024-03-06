@@ -12,5 +12,3 @@
 @fontWeight: 400;
 @medium: 0.8rem;
 @large: 1rem;
-/* @verticalPadding: 0;
-@horizontalPadding: 0; */

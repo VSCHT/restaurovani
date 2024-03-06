@@ -37,6 +37,7 @@
 
     @media only screen and (max-width: @smallMobileSize) {
       height: 4rem;
+      margin-top: -0.5rem;
     }
 
     @media only screen and (min-width: @computerSize) {
@@ -45,6 +46,7 @@
 
     @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
       height: 5rem;
+      margin-top: -0.4rem;
     }
   }
 
@@ -73,6 +75,10 @@
 
   .cover-page & {
     width: 60px;
+  }
+
+  .detail-page & {
+    width: 1.2rem;
   }
 }
 

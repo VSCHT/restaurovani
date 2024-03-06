@@ -1,6 +1,6 @@
 .ui.unstackable.table {
   text-align: left;
-  
+
   & tbody,
   & tr,
   & td {
@@ -11,12 +11,19 @@
     align-items: center;
     flex-flow: column;
     border-left: 1px solid @brownColor;
+    
+    &:last-child {
+      border-right: 1px solid @brownColor;
+    }
   }
-  
 
   @media only screen and (max-width: @mobileSize) {
     & tr {
       flex-flow: row;
+
+      &:last-child {
+        border-right: none;
+      }
     }
     & tbody {
       flex-direction: column;

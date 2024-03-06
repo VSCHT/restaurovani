@@ -24,7 +24,7 @@
   }
 
   @media only screen and (min-width: @computerSize) {
-    &:not(.page-subheader) {
+    .detail-page &:not(.page-subheader) {
       width: 70vw;
       padding: 0 20px;
     }
@@ -51,6 +51,9 @@
   @media only screen and (max-width: @smallMobileSize) {
     #form-app & {
       padding: 10px 1vw;
+    }
+    .main-page &{
+      margin-top: 100px;
     }
   }
 }

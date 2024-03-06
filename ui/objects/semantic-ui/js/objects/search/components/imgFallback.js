@@ -40,7 +40,7 @@ export function ImageWithFallback({ src, result, fallbackSrc }) {
 
       .catch(() => {
         setLoading(false);
-        console.log("No photos");
+        console.error("No photos");
       });
   }, [result]);
 

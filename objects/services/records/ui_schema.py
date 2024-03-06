@@ -2,14 +2,21 @@ import marshmallow as ma
 from marshmallow import Schema
 from marshmallow import fields as ma_fields
 from marshmallow.fields import String
+from oarepo_requests.services.ui_schema import UIRequestsSerializationMixin
 from oarepo_runtime.services.schema.marshmallow import DictOnlySchema
-from oarepo_runtime.services.schema.ui import InvenioUISchema, LocalizedDate
+from oarepo_runtime.services.schema.ui import (
+    InvenioUISchema,
+    LocalizedDate,
+    LocalizedDateTime,
+)
 from oarepo_vocabularies.services.ui_schema import VocabularyI18nStrUIField
 
 
-class ObjectsUISchema(InvenioUISchema):
+class ObjectsUISchema(UIRequestsSerializationMixin, InvenioUISchema):
     class Meta:
         unknown = ma.RAISE
+
+    data = ma_fields.Nested(lambda: DataUISchema())
 
     metadata = ma_fields.Nested(lambda: ObjectsMetadataUISchema())
 
@@ -35,21 +42,42 @@ class RestorationObjectUISchema(DictOnlySchema):
 
     category = ma_fields.String()
 
+    colors = ma_fields.List(ma_fields.Nested(lambda: ColorsItemUISchema()))
+
     creationPeriod = ma_fields.Nested(lambda: CreationPeriodUISchema())
 
     description = ma_fields.String()
 
     dimensions = ma_fields.List(ma_fields.Nested(lambda: DimensionsItemUISchema()))
 
-    itemTypes = ma_fields.List(ma_fields.Nested(lambda: DimensionUISchema()))
+    fabricationTechnologies = ma_fields.List(
+        ma_fields.Nested(lambda: ColorsItemUISchema())
+    )
+
+    itemTypes = ma_fields.List(ma_fields.Nested(lambda: ColorsItemUISchema()))
 
     keywords = ma_fields.List(ma_fields.String())
 
-    parts = ma_fields.List(ma_fields.Nested(lambda: PartsItemUISchema()))
+    materialType = ma_fields.Nested(lambda: ColorsItemUISchema())
 
-    restorationRequestor = ma_fields.Nested(lambda: DimensionUISchema())
+    restorationRequestor = ma_fields.Nested(lambda: ColorsItemUISchema())
+
+    secondaryMaterialTypes = ma_fields.List(
+        ma_fields.Nested(lambda: ColorsItemUISchema())
+    )
 
     title = ma_fields.String()
+
+
+class DimensionsItemUISchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.RAISE
+
+    dimension = ma_fields.Nested(lambda: ColorsItemUISchema())
+
+    unit = ma_fields.String()
+
+    value = ma_fields.Float()
 
 
 class RestorationWorkUISchema(DictOnlySchema):
@@ -58,11 +86,9 @@ class RestorationWorkUISchema(DictOnlySchema):
 
     abstract = ma_fields.String()
 
-    examinationMethods = ma_fields.List(ma_fields.Nested(lambda: DimensionUISchema()))
+    examinationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemUISchema()))
 
-    parts = ma_fields.List(ma_fields.Nested(lambda: RestorationWorkPartsItemUISchema()))
-
-    restorationMethods = ma_fields.List(ma_fields.Nested(lambda: DimensionUISchema()))
+    restorationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemUISchema()))
 
     restorationPeriod = ma_fields.Nested(lambda: RestorationPeriodUISchema())
 
@@ -70,50 +96,18 @@ class RestorationWorkUISchema(DictOnlySchema):
 
     supervisors = ma_fields.List(ma_fields.Nested(lambda: SupervisorsItemUISchema()))
 
-    workType = ma_fields.Nested(lambda: DimensionUISchema())
+    workType = ma_fields.Nested(lambda: ColorsItemUISchema())
 
 
-class DimensionsItemUISchema(DictOnlySchema):
+class ColorsItemUISchema(DictOnlySchema):
     class Meta:
-        unknown = ma.RAISE
+        unknown = ma.INCLUDE
 
-    dimension = ma_fields.Nested(lambda: DimensionUISchema())
+    _id = String(data_key="id", attribute="id")
 
-    unit = ma_fields.String()
+    _version = String(data_key="@v", attribute="@v")
 
-    value = ma_fields.Float()
-
-
-class PartsItemUISchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    _id = ma_fields.String(data_key="id", attribute="id")
-
-    colors = ma_fields.List(ma_fields.Nested(lambda: DimensionUISchema()))
-
-    fabricationTechnologies = ma_fields.List(
-        ma_fields.Nested(lambda: DimensionUISchema())
-    )
-
-    main = ma_fields.Boolean()
-
-    materialType = ma_fields.Nested(lambda: DimensionUISchema())
-
-    name = ma_fields.String()
-
-    secondaryMaterialTypes = ma_fields.List(
-        ma_fields.Nested(lambda: DimensionUISchema())
-    )
-
-
-class RestorationWorkPartsItemUISchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    part = ma_fields.Nested(lambda: PartUISchema())
-
-    restorationMethods = ma_fields.List(ma_fields.Nested(lambda: DimensionUISchema()))
+    title = VocabularyI18nStrUIField()
 
 
 class CreationPeriodUISchema(DictOnlySchema):
@@ -125,24 +119,13 @@ class CreationPeriodUISchema(DictOnlySchema):
     until = ma_fields.Integer()
 
 
-class DimensionUISchema(DictOnlySchema):
+class DataUISchema(DictOnlySchema):
     class Meta:
-        unknown = ma.INCLUDE
+        unknown = ma.RAISE
 
-    _id = String(data_key="id", attribute="id")
+    extractedText = ma_fields.String()
 
-    _version = String(data_key="@v", attribute="@v")
-
-    title = VocabularyI18nStrUIField()
-
-
-class PartUISchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.INCLUDE
-
-    _id = ma_fields.String(data_key="id", attribute="id")
-
-    _version = String(data_key="@v", attribute="@v")
+    extractedTimestamp = LocalizedDateTime()
 
 
 class RestorationPeriodUISchema(DictOnlySchema):

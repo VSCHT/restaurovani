@@ -5,3 +5,8 @@
 @computerWidth:80%;
 @tabletWidth:90%;
 @mobileWidth:100%;
+@closeTop: 1.5rem;
+@contentBackground: @basicColor;
+@headerBackground: @basicColor;
+@actionBackground: @basicColor;
+@closeHitbox:8vw;

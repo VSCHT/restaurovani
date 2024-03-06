@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { ImgCarousel, FilesSection } from "./Carousel.jsx";
 
 const imgGalleryComp = document.getElementById("images-carousel");
-const filesDivComp = document.getElementById("details__div__docs");
+const filesDivComp = document.getElementById("details-docs");
 
 async function fetchAndRender() {
   try {
@@ -14,13 +14,10 @@ async function fetchAndRender() {
     const data = await response.json();
 
     ReactDOM.render(<ImgCarousel imgs={data.entries} />, imgGalleryComp);
-    ReactDOM.render(<FilesSection files={data.entries}/>, filesDivComp);
-
+    ReactDOM.render(<FilesSection files={data.entries} />, filesDivComp);
   } catch (error) {
-    console.log("Error fetching data");
+    console.error("Error fetching data");
   }
 }
 
 fetchAndRender();
-
-

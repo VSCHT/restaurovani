@@ -2,7 +2,8 @@
    OWN
 ---------------*/
 
-
+@gapWidth: 15px;
+@gapMedium: 10px;
 
 
 
@@ -20,16 +21,12 @@
 @fourWide : auto;
 @sixWide : 25%;
 @fiveWide : 100%;
-/* @eightWide:30%; conflict with search=> pagination*/ 
 @eightWide:auto;
 @gutterWidth :0;
 
-/* @sixteenColumn: 70vw; */
 
 /* columns */
-/* @twoColumn: 50%; */
 @twoColumn: 49.5%;
-/* @threeColumn: 40%; */
 @threeColumn: 32%;
 
 

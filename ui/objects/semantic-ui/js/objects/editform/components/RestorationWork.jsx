@@ -11,13 +11,14 @@ import {
 import { Header, Grid } from "semantic-ui-react";
 import { ArrayFieldItem } from "@js/oarepo_ui";
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
+import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 import _get from "lodash/get";
 
 export const RestorationWork = ({ activeIndex, handleActive, values }) => {
   return (
     <AccordionField
       includesPaths={[
-        "metadata.restorationObject.restorationMethods",
+        "metadata.restorationWork.restorationMethods",
         "metadata.restorationWork.workType",
         "metadata.restorationWork.examinationMethods",
         "metadata.restorationWork.restorer",
@@ -177,7 +178,7 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
           />
         </Grid.Column>
         <Grid.Column>
-          <LocalVocabularySelectField
+          <VocabularyTreeSelectField
             fieldPath="metadata.restorationWork.examinationMethods"
             multiple={true}
             optionsListName="ExaminationMethods"
@@ -187,6 +188,21 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
               <FieldLabel
                 htmlFor={"metadata.restorationWork.examinationMethods"}
                 label="Metody průzkumu"
+              />
+            }
+          />
+        </Grid.Column>
+        <Grid.Column>
+          <VocabularyTreeSelectField
+            fieldPath="metadata.restorationWork.restorationMethods"
+            multiple={true}
+            optionsListName="RestorationMethods"
+            placeholder="Vyberte metody restaurování"
+            clearable
+            label={
+              <FieldLabel
+                htmlFor={"metadata.restorationWork.restorationMethods"}
+                label="Metody restaurování"
               />
             }
           />

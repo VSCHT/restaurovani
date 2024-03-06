@@ -1,7 +1,10 @@
 .ui.modal {
     padding: 20px;
     background-color: @basicColor;
-  
+    
+    & > .image.content {
+      justify-content: space-between;
+    }
 }
 @media only screen and (max-width: @mobileSize) {
   .ui.modal .image.content {

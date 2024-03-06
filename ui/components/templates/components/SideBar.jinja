@@ -18,23 +18,7 @@
   <div class="item">
     {%- if config.ACCOUNTS and current_user.is_authenticated %}
 
-    <div class="item">
-      <button class="ui transparent button">
-        <img
-          alt="user icon"
-          src="{{ url_for('static', filename='images/user-icon-darker.png') }}"
-        />
-        {{ current_user.email }}
-      </button>
-    </div>
-
-    <div class="menu">
-      <a class="item" href="{{ url_for('invenio_userprofiles.profile') }}"
-        >Nastavení</a
-      >
-
-      <a class="item" href="{{ url_for('security.logout') }}">Odhlašení</a>
-    </div>
+    <AccountDropDown />
   </div>
 
 
@@ -67,7 +51,7 @@
     <a
       class="ui secondary button"
       href="{{ url_for('objects.create') }}"
-      aria-label="Tlacitko dodat novy predmet"
+      aria-label="Vložit nový předmět"
     >
       Nový předmět
       <img src="/static/images/plus-square.png" alt="add new icon" />
