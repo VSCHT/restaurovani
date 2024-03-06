@@ -71,13 +71,6 @@ export const VocabularyTreeSelectField = ({
       if (option.hierarchy.ancestors.length === currentLevel) {
         currentRow.push(option);
       } else {
-        // currentRow.sort((a, b) => {
-        //   const textA = a.hierarchy.title[0].toLowerCase();
-        //   const textB = b.hierarchy.title[0].toLowerCase();
-        //   if (textA < textB) return -1;
-        //   if (textA > textB) return 1;
-        //   return 0;
-        // });
         data.push(currentRow);
         currentRow = [option];
         currentLevel++;
@@ -99,15 +92,11 @@ export const VocabularyTreeSelectField = ({
     updatedParents[index] = parent;
 
     let updatedKeybState = [...keybState];
-    if (hierarchicalData[index + 1]) {
-      const nextColumnIndex = hierarchicalData[index + 1].findIndex(
-        (o) => o.value === parent
-      );
-      updatedKeybState.splice(index + 1);
-      updatedKeybState[index] = nextColumnIndex !== -1 ? nextColumnIndex : 0;
-    } else {
-      updatedKeybState.splice(index + 1);
-    }
+
+    const columnOptions = hierarchicalData[index];
+    const nextColumnIndex = columnOptions.findIndex((o) => o.value === parent);
+    updatedKeybState.splice(index + 1);
+    updatedKeybState[index] = nextColumnIndex;
 
     setParentsState(updatedParents);
     setKeybState(updatedKeybState);
@@ -134,6 +123,7 @@ export const VocabularyTreeSelectField = ({
     }
   };
 
+
   const handleSubmit = () => {
     let prepSelect;
     if (multiple) {
@@ -157,6 +147,7 @@ export const VocabularyTreeSelectField = ({
   const handleKey = (e, option, index) => {
     e.preventDefault();
     let newIndex = 0;
+
     index = keybState.length - 1 > index ? keybState.length - 1 : index;
     let data = hierarchicalData[index];
 
@@ -167,18 +158,18 @@ export const VocabularyTreeSelectField = ({
         return newState;
       });
     };
-
     if (e.key === "ArrowUp") {
       newIndex = keybState[index] - 1;
       if (newIndex >= 0) {
         updateHierarchy(data[newIndex].value, index)();
-        moveKey(index, newIndex);
+        moveKey(index, newIndex, false);
       }
     } else if (e.key === "ArrowDown") {
       newIndex = keybState[index] + 1;
+      
       if (newIndex < data.length) {
         updateHierarchy(data[newIndex].value, index)();
-        moveKey(index, newIndex);
+        moveKey(index, newIndex, false);
       }
     } else if (e.key === "ArrowLeft") {
       if (index > 0) {
@@ -202,7 +193,7 @@ export const VocabularyTreeSelectField = ({
               nextColumnOptions[nextColumnIndex].value,
               index + 1
             )();
-            moveKey(index + 1, newIndex);
+            moveKey(index + 1, newIndex, false);
           }
         }
       }
