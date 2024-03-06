@@ -29,12 +29,14 @@ export const VocabularyTreeSelectField = ({
   optionsListName,
   usedOptions = [],
   helpText,
-  showLeafsOnly,
   optimized,
   ...uiProps
 }) => {
   const { formConfig } = useFormConfig();
   const { vocabularies } = formConfig;
+  const formik = useFormikContext();
+  const { values, setFieldTouched } = useFormikContext();
+  const value = getIn(values, fieldPath, multiple ? [] : {});
 
   const { all: allOptions, featured: featuredOptions } =
     vocabularies[optionsListName];
@@ -45,29 +47,20 @@ export const VocabularyTreeSelectField = ({
       vocabularies
     );
   }
-  const formik = useFormikContext();
 
   const [openState, setOpenState] = useState(false);
+  const [parentsState, setParentsState] = useState([]);
+  const [keybState, setKeybState] = useState([]);
+  const [selectedState, setSelectedState] = useState([]);
+
   const serializedOptions = useMemo(
-    () =>
-      showLeafsOnly
-        ? serializedVocabularyItems(allOptions).filter(
-            (o) => o.element_type === "leaf"
-          )
-        : serializedVocabularyItems(allOptions),
-    [allOptions, showLeafsOnly]
+    () => serializedVocabularyItems(allOptions),
+    [allOptions]
   );
 
   const handleOpen = () => {
     setOpenState(true);
   };
-
-  const { values, setFieldTouched } = useFormikContext();
-  const value = getIn(values, fieldPath, multiple ? [] : {});
-
-  const [parentsState, setParentsState] = useState([]);
-  const [keybState, setKeybState] = useState([]);
-  const [selectedState, setSelectedState] = useState([]);
 
   const hierarchicalData = useMemo(() => {
     let data = [];
@@ -91,21 +84,19 @@ export const VocabularyTreeSelectField = ({
     return data;
   }, [serializedOptions]);
 
+  const amount = hierarchicalData.length;
+
   const updateHierarchy = (parent, index) => () => {
     let updatedParents = [...parentsState];
     updatedParents.splice(index + 1);
     updatedParents[index] = parent;
 
     let updatedKeybState = [...keybState];
-    if (hierarchicalData[index + 1]) {
-      const nextColumnIndex = hierarchicalData[index + 1].findIndex(
-        (o) => o.value === parent
-      );
-      updatedKeybState.splice(index + 1);
-      updatedKeybState[index] = nextColumnIndex !== -1 ? nextColumnIndex : 0;
-    } else {
-      updatedKeybState.splice(index + 1);
-    }
+
+    const columnOptions = hierarchicalData[index];
+    const nextColumnIndex = columnOptions.findIndex((o) => o.value === parent);
+    updatedKeybState.splice(index + 1);
+    updatedKeybState[index] = nextColumnIndex;
 
     setParentsState(updatedParents);
     setKeybState(updatedKeybState);
@@ -132,6 +123,7 @@ export const VocabularyTreeSelectField = ({
     }
   };
 
+
   const handleSubmit = () => {
     let prepSelect;
     if (multiple) {
@@ -155,26 +147,29 @@ export const VocabularyTreeSelectField = ({
   const handleKey = (e, option, index) => {
     e.preventDefault();
     let newIndex = 0;
+
     index = keybState.length - 1 > index ? keybState.length - 1 : index;
+    let data = hierarchicalData[index];
+
+    const moveKey = (index, newIndex, back = false) => {
+      setKeybState((prev) => {
+        const newState = [...prev];
+        back ? newState.splice(index, 1) : (newState[index] = newIndex);
+        return newState;
+      });
+    };
     if (e.key === "ArrowUp") {
       newIndex = keybState[index] - 1;
       if (newIndex >= 0) {
-        updateHierarchy(hierarchicalData[index][newIndex].value, index)();
-        setKeybState((prev) => {
-          const newState = [...prev];
-          newState[index] = newIndex;
-          return newState;
-        });
+        updateHierarchy(data[newIndex].value, index)();
+        moveKey(index, newIndex, false);
       }
     } else if (e.key === "ArrowDown") {
       newIndex = keybState[index] + 1;
-      if (newIndex < hierarchicalData[index].length) {
-        updateHierarchy(hierarchicalData[index][newIndex].value, index)();
-        setKeybState((prev) => {
-          const newState = [...prev];
-          newState[index] = newIndex;
-          return newState;
-        });
+      
+      if (newIndex < data.length) {
+        updateHierarchy(data[newIndex].value, index)();
+        moveKey(index, newIndex, false);
       }
     } else if (e.key === "ArrowLeft") {
       if (index > 0) {
@@ -183,11 +178,7 @@ export const VocabularyTreeSelectField = ({
           newState.splice(index, 1);
           return newState;
         });
-        setKeybState((prev) => {
-          const newState = [...prev];
-          newState.splice(index, 1);
-          return newState;
-        });
+        moveKey(index, null, true);
       }
     } else if (e.key === "ArrowRight") {
       if (index < amount - 1) {
@@ -202,20 +193,16 @@ export const VocabularyTreeSelectField = ({
               nextColumnOptions[nextColumnIndex].value,
               index + 1
             )();
-            setKeybState((prev) => {
-              const newState = [...prev];
-              newState[index + 1] = newIndex;
-              return newState;
-            });
+            moveKey(index + 1, newIndex, false);
           }
         }
       }
     } else if (e.key === "Enter") {
-      handleSelect(hierarchicalData[index][keybState[index]], index, e);
+      handleSelect(data[keybState[index]], index, e);
+    } else if ((e.key = " ")) {
+      handleSelect(data[keybState[index]], index, e);
     }
   };
-
-
 
   const renderColumns = (index) => {
     return (
@@ -339,8 +326,6 @@ export const VocabularyTreeSelectField = ({
     );
   };
 
-  const amount = hierarchicalData.length;
-
   return (
     <React.Fragment>
       <SelectField
@@ -433,12 +418,10 @@ VocabularyTreeSelectField.propTypes = {
   helpText: PropTypes.string,
   noResultsMessage: PropTypes.string,
   usedOptions: PropTypes.array,
-  showLeafsOnly: PropTypes.bool,
   optimized: PropTypes.bool,
 };
 
 VocabularyTreeSelectField.defaultProps = {
   noResultsMessage: "No results found.",
-  showLeafsOnly: false,
   optimized: false,
 };
