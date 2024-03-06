@@ -15,6 +15,7 @@ import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 import _get from "lodash/get";
 
 export const RestorationWork = ({ activeIndex, handleActive, values }) => {
+  const fieldPath="metadata.restorationWork"
   return (
     <AccordionField
       includesPaths={[
@@ -35,12 +36,12 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
       <Grid columns={1}>
         <Grid.Column>
           <TextField
-            name="metadata.restorationWork.restorer"
+            name={`${fieldPath}.restorer`}
             aria-label="Restauroval(a)"
-            fieldPath="metadata.restorationWork.restorer"
+            fieldPath={`${fieldPath}.restorer`}
             label={
               <FieldLabel
-                htmlFor="metadata.restorationWork.restorer"
+                htmlFor={`${fieldPath}.restorer`}
                 label="Restauroval(a)"
               />
             }
@@ -48,12 +49,12 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
         </Grid.Column>
         <Grid.Column>
           <RichInputField
-            name="metadata.restorationWork.abstract"
+            name={`${fieldPath}.abstract`}
             aria-label="Popis restaurování"
-            fieldPath="metadata.restorationWork.abstract"
+            fieldPath={`${fieldPath}.abstract`}
             label={
               <FieldLabel
-                htmlFor="metadata.restorationWork.abstract"
+                htmlFor={`${fieldPath}.abstract`}
                 label="Popis restaurování"
               ></FieldLabel>
             }
@@ -61,15 +62,15 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
         </Grid.Column>
         <ArrayField
           addButtonLabel="Přidat vedoucího"
-          fieldPath="metadata.restorationWork.supervisors"
+          fieldPath={`${fieldPath}.supervisors`}
           defaultNewValue={{ fullName: "", comment: "", institution: "" }}
         >
           {({ arrayHelpers, indexPath }) => {
-            const fieldPathPrefix = `${"metadata.restorationWork.supervisors"}[${indexPath}]`;
+            const fieldPathPrefix = `${fieldPath}.supervisors[${indexPath}]`;
             return (
               <>
                 <Header as="h4">
-                  Vedoucí &nbsp;
+                  Vedoucí {" "}
                   {values.metadata?.restorationWork?.supervisors?.[indexPath]
                     ?.fullName == null
                     ? indexPath + 1
@@ -77,8 +78,8 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
                         .fullName}
                 </Header>
                 <ArrayFieldItem
-                  name="metadata.restorationWork.supervisors"
-                  fieldPath="metadata.restorationWork.supervisors"
+                  name={`${fieldPath}.supervisors`}
+                  fieldPath={`${fieldPath}.supervisors`}
                   indexPath={indexPath}
                   arrayHelpers={arrayHelpers}
                 >
@@ -135,13 +136,13 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
         <Grid columns={2} className="gapped">
           <Grid.Column>
             <TextField
-              name="metadata.restorationWork.restorationPeriod.since"
+              name={`${fieldPath}.restorationPeriod.since`}
               aria-label="Od"
               placeholder="rrrr-mm-dd"
-              fieldPath="metadata.restorationWork.restorationPeriod.since"
+              fieldPath={`${fieldPath}.restorationPeriod.since`}
               label={
                 <FieldLabel
-                  htmlFor="metadata.restorationWork.restorationPeriod.since"
+                  htmlFor={`${fieldPath}.restorationPeriod.since`}
                   label="Období restaurování od"
                 ></FieldLabel>
               }
@@ -149,13 +150,13 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
           </Grid.Column>
           <Grid.Column>
             <TextField
-              name="metadata.restorationWork.restorationPeriod.until"
+              name={`${fieldPath}.restorationPeriod.until`}
               aria-label="Do"
-              fieldPath="metadata.restorationWork.restorationPeriod.until"
+              fieldPath={`${fieldPath}.restorationPeriod.until`}
               placeholder="rrrr-mm-dd"
               label={
                 <FieldLabel
-                  htmlFor="metadata.restorationWork.restorationPeriod.until"
+                  htmlFor={`${fieldPath}.restorationPeriod.until`}
                   label="Období restaurování do"
                 ></FieldLabel>
               }
@@ -164,14 +165,14 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
         </Grid>
         <Grid.Column>
           <LocalVocabularySelectField
-            fieldPath="metadata.restorationWork.workType"
+            fieldPath={`${fieldPath}.workType`}
             multiple={false}
             optionsListName="WorkTypes"
             placeholder="Vyberte typ práce"
             clearable
             label={
               <FieldLabel
-                htmlFor={"metadata.restorationWork.workType"}
+                htmlFor={`${fieldPath}.workType`}
                 label="Typ práce"
               />
             }
@@ -179,14 +180,14 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
         </Grid.Column>
         <Grid.Column>
           <VocabularyTreeSelectField
-            fieldPath="metadata.restorationWork.examinationMethods"
+            fieldPath={`${fieldPath}.examinationMethods`}
             multiple={true}
             optionsListName="ExaminationMethods"
             placeholder="Vyberte metody průzkumu"
             clearable
             label={
               <FieldLabel
-                htmlFor={"metadata.restorationWork.examinationMethods"}
+                htmlFor={`${fieldPath}.examinationMethods`}
                 label="Metody průzkumu"
               />
             }
@@ -194,14 +195,14 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
         </Grid.Column>
         <Grid.Column>
           <VocabularyTreeSelectField
-            fieldPath="metadata.restorationWork.restorationMethods"
+            fieldPath={`${fieldPath}.restorationMethods`}
             multiple={true}
             optionsListName="RestorationMethods"
             placeholder="Vyberte metody restaurování"
             clearable
             label={
               <FieldLabel
-                htmlFor={"metadata.restorationWork.restorationMethods"}
+                htmlFor={`${fieldPath}.restorationMethods`}
                 label="Metody restaurování"
               />
             }
