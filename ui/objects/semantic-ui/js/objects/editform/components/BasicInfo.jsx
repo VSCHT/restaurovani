@@ -14,8 +14,6 @@ import {
 
 import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 
-import { useFormConfig } from "@js/oarepo_ui";
-
 import { Grid } from "semantic-ui-react";
 import { ArrayFieldItem } from "@js/oarepo_ui";
 
@@ -32,32 +30,6 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
     { value: "m", text: "m" },
     { value: "mm", text: "mm" },
   ];
-
-  const { formConfig } = useFormConfig();
-
-  const filteredVocabularies = (item) => {
-    const vocab = formConfig.vocabularies[item];
-    
-    const filteredVocab = { ...vocab };
-  
-    filteredVocab.all = formConfig.vocabularies[item].all.filter(i => {
-      return i.hierarchy.ancestors.includes(category);
-    });
-
-     filteredVocab.all.sort((a, b) => {
-      const textA = a.text.toLowerCase();
-      const textB = b.text.toLowerCase();
-      if (textA < textB) return -1;
-      if (textA > textB) return 1;
-      return 0;
-    });
-  
-    return filteredVocab;
-  };
-
-  filteredVocabularies("ItemTypes")
-
- 
 
   return (
     <AccordionField

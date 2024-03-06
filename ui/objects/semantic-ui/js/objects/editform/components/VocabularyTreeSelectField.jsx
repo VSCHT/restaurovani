@@ -123,10 +123,6 @@ export const VocabularyTreeSelectField = ({
     }
   };
 
-  useEffect(() => {
-    console.log(keybState);
-    console.log(parentsState);
-  }, [keybState, parentsState]);
 
   const handleSubmit = () => {
     let prepSelect;
@@ -156,7 +152,7 @@ export const VocabularyTreeSelectField = ({
     let data = hierarchicalData[index];
 
     const moveKey = (index, newIndex, back = false) => {
-      console.log(index, newIndex)
+    
       setKeybState((prev) => {
         const newState = [...prev];
         back ? newState.splice(index, 1) : (newState[index] = newIndex);
