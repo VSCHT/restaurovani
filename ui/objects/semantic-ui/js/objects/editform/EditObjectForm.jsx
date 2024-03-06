@@ -15,8 +15,8 @@ import { RestorationWork } from "./components/RestorationWork";
 import { MoreInfo } from "./components/MoreInfo";
 
 export const EditObjectForm = () => {
-  let { record } = useFormConfig();
-  let category= record.metadata.restorationObject.category
+  const { record } = useFormConfig();
+  const category= record.metadata.restorationObject.category
 
   const [activeIndex, setActiveIndex] = React.useState(0);
   const handleActive = (x) => {
@@ -37,7 +37,7 @@ export const EditObjectForm = () => {
         {({ values, errors }) => (
           <Grid columns={1} className="gapped grid-form">
             <Header as="h3">
-              Editace předmětu &nbsp;
+              Editace předmětu {' '}
               {values.metadata.restorationObject.title}
             </Header>
 

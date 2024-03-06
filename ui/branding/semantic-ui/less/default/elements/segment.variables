@@ -3,7 +3,7 @@
 ---------------*/
 
 
-
+@segmentGapMobile: 95px;
 
 /*--------------
     SEMANTIC

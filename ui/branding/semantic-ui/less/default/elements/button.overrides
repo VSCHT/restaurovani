@@ -1,6 +1,3 @@
-@mediumWidth: 65%;
-@mediumFontSize: 0.8rem;
-
 .ui.button {
   font-size: 1rem;
   display: flex;
@@ -107,6 +104,11 @@
 
   .ui.dropdown & {
     padding: 0;
+  }
+
+  .ui.sidebar .dropdown &{
+    background: white;
+    color: @darkestBrown;
   }
 
   @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
