@@ -1,3 +1,4 @@
+
 const accordionTitles = document.querySelectorAll(".title");
 const accordionContents = document.querySelectorAll(".content");
 

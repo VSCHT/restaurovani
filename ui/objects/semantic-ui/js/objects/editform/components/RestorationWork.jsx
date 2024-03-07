@@ -15,7 +15,8 @@ import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 import _get from "lodash/get";
 
 export const RestorationWork = ({ activeIndex, handleActive, values }) => {
-  const fieldPath="metadata.restorationWork"
+  const fieldPath = "metadata.restorationWork";
+
   return (
     <AccordionField
       includesPaths={[
@@ -67,15 +68,11 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
         >
           {({ arrayHelpers, indexPath }) => {
             const fieldPathPrefix = `${fieldPath}.supervisors[${indexPath}]`;
+            const existingName = _get(values, `${fieldPathPrefix}.fullName`);
             return (
               <>
                 <Header as="h4">
-                  Vedoucí {" "}
-                  {values.metadata?.restorationWork?.supervisors?.[indexPath]
-                    ?.fullName == null
-                    ? indexPath + 1
-                    : values.metadata.restorationWork.supervisors[indexPath]
-                        .fullName}
+                  Vedoucí {existingName == null ? indexPath + 1 : existingName}
                 </Header>
                 <ArrayFieldItem
                   name={`${fieldPath}.supervisors`}
@@ -171,10 +168,7 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
             placeholder="Vyberte typ práce"
             clearable
             label={
-              <FieldLabel
-                htmlFor={`${fieldPath}.workType`}
-                label="Typ práce"
-              />
+              <FieldLabel htmlFor={`${fieldPath}.workType`} label="Typ práce" />
             }
           />
         </Grid.Column>

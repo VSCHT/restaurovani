@@ -4,41 +4,23 @@ import {
   Modal,
   Image,
   Button,
-  Loader,
-  Label,
   Grid,
   Header
 } from "semantic-ui-react";
 
 
-const fileName = (d) => {
-  if (d?.metadata && d?.metadata?.caption) {
-    if (
-      d.metadata.caption === "default_image_name" ||
-      d.metadata.caption === "default_pdf_name" ||
-      Object.values(d.metadata.caption).length === 0
-    ) {
-      return d?.key;
-    } else {
-      return d.metadata.caption;
-    }
-  } else {
-    return d?.key;
-  }
-};
 
-export const ImgCarousel = ({ imgs }) => {
+export const ImgCarousel = ({ imagesCollection, fileName}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(5);
-  const [imagesCollection, setImagesCollection] = useState([]);
-  const [loading, setLoading] = useState(true);
+  
 
   const settings = {
     dots: true,
     infinite: false,
     speed: 100,
-    slidesToShow: loading ? 1 : slidesToShow,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
     swipeToSlide: true,
   };
@@ -83,8 +65,8 @@ export const ImgCarousel = ({ imgs }) => {
   return (
     <>
       <Slider {...settings}>
-        {loading && <Loader active></Loader>}
-        {imagesCollection?.map((image, index) => (
+        {imagesCollection?.map((image, index) => {
+          return (
           <Image
             key={index}
             src={image.links.content}
@@ -94,7 +76,7 @@ export const ImgCarousel = ({ imgs }) => {
               setModalOpen(true);
             }}
           />
-        ))}
+        )})}
       </Slider>
 
       <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
