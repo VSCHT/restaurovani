@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import {
-  Modal,
-  Image,
-  Button,
-  Grid,
-  Header
-} from "semantic-ui-react";
+import { Modal, Image, Button, Grid, Header } from "semantic-ui-react";
 
-
-
-export const ImgCarousel = ({ imagesCollection, fileName}) => {
+export const ImgCarousel = ({ imagesCollection }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(5);
-  
+  let selectedImage = imagesCollection?.[selectedImageIndex];
 
   const settings = {
     dots: true,
@@ -60,34 +52,39 @@ export const ImgCarousel = ({ imagesCollection, fileName}) => {
     };
   }, []);
 
-
-
   return (
     <>
       <Slider {...settings}>
         {imagesCollection?.map((image, index) => {
           return (
-          <Image
-            key={index}
-            src={image.links.content}
-            alt={fileName(image)}
-            onClick={() => {
-              setSelectedImageIndex(index);
-              setModalOpen(true);
-            }}
-          />
-        )})}
+            <Image
+              key={index}
+              src={image.links.content}
+              alt={
+                selectedImage?.metadata.caption === "default_image_name" ||
+                selectedImage?.metadata.caption == 0
+                  ? selectedImage?.key
+                  : selectedImage?.metadata.caption
+              }
+              onClick={() => {
+                setSelectedImageIndex(index);
+                setModalOpen(true);
+              }}
+            />
+          );
+        })}
       </Slider>
 
       <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
         <Modal.Content image>
           <Button icon="chevron left black" onClick={handlePrevImage} />
           <Grid columns={1}>
-            <Image
-              src={imagesCollection?.[selectedImageIndex]?.links?.content}
-            />
-            <Header as="a3">
-              {fileName(imagesCollection?.[selectedImageIndex])}
+            <Image src={selectedImage?.links?.content} />
+            <Header as="h4">
+              {selectedImage?.metadata.caption === "default_image_name" ||
+              selectedImage?.metadata.caption == 0
+                ? selectedImage?.key
+                : selectedImage?.metadata.caption}
             </Header>
           </Grid>
           <Button icon="chevron right black" onClick={handleNextImage} />
@@ -101,4 +98,3 @@ export const ImgCarousel = ({ imagesCollection, fileName}) => {
     </>
   );
 };
-

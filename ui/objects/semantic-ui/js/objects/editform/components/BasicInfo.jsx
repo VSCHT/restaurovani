@@ -46,7 +46,6 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
       ]}
       label="Údaje"
       active={activeIndex === 0}
-      defaultActiveIndex={0}
       styled
       onClick={() => handleActive(0)}
     >

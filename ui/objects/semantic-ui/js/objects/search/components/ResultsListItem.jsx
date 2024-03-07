@@ -11,10 +11,10 @@ import {
   ItemDescription,
   ItemExtra,
   Label,
+  ItemImage,
 } from "semantic-ui-react";
 import { withState, buildUID } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
-import { FeaturedImage } from "./FeaturedImage";
 
 const ItemHeader = ({ title, searchUrl, selfLink }) => {
   const [smallScreen, setSmallScreen] = React.useState(
@@ -85,7 +85,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
     };
   }, []);
 
-  const [imagesState, setImagesState] = useState([]);
+  const [objectImages, setObjectImages] = useState([]);
 
   useEffect(() => {
     fetch(result?.links?.files)
@@ -104,12 +104,12 @@ export const ResultsListItemComponent = ({ result, appName }) => {
         const fImg = imageEntries.filter(
           (item) => item.metadata.featured == true
         );
-        const rImg = imageEntries?.[0] ;
-        fImg.length == 1 ? setImagesState(fImg[0]) : setImagesState(rImg);
+        const rImg = imageEntries?.[0];
+        fImg.length == 1 ? setObjectImages(fImg[0]) : setObjectImages(rImg);
       })
 
       .catch(() => {
-        console.error("No photos");
+        setObjectImages([]);
       });
   }, [result]);
 
@@ -132,9 +132,17 @@ export const ResultsListItemComponent = ({ result, appName }) => {
       title={title}
     >
       <Item key={result.id}>
-        <FeaturedImage
-          src="/static/images/image-noimage.png"
-          result={imagesState}
+        <ItemImage
+          size="tiny"
+          src={
+            objectImages?.links?.content ?? "/static/images/image-noimage.png"
+          }
+          alt={
+            objectImages?.[0]?.metadata?.caption === undefined
+              ? ""
+              : objectImages?.[0]?.metadata?.caption ||
+                objectImages?.[0]?.metadata?.caption === undefined
+          }
         />
         {/* url */}
         <ItemContent>

@@ -13,7 +13,6 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
       includesPaths={["metadata.restorationObject"]}
       label="Další údaje"
       active={activeIndex === 2}
-      defaultActiveIndex={2}
       styled
       onClick={() => handleActive(2)}
     >

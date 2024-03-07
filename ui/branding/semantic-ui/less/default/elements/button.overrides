@@ -40,7 +40,8 @@
 
   &.small.transparent {
     z-index: 1;
-    height: auto;
+    height: min-content;
+
     position: relative;
 
     &:hover {
@@ -76,6 +77,8 @@
   .ui.modal .content & {
     background: none;
     height: inherit;
+    justify-content: flex-start;
+    text-align: left;
   }
 
   .row.grid-searchbar &.filter {
@@ -85,9 +88,11 @@
   .ui.menu:not(.sidebar) & {
     height: 1rem;
 
-    &:hover, &:active, &:focus{
+    &:hover,
+    &:active,
+    &:focus {
       background-color: @brownColor;
-      color: white
+      color: white;
     }
   }
 
@@ -116,11 +121,11 @@
     color: @darkestBrown;
   }
 
-  .tree-field &{
+  .tree-field & {
     padding: 0.2rem;
   }
-  
-  .tree-field &.basic{
+
+  .tree-field &.basic {
     width: 100%;
     margin: 0;
     border-radius: 0;
@@ -190,5 +195,3 @@
   left: 130px;
   top: 10px;
 }
-
-

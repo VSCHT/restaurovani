@@ -2,6 +2,12 @@
   right: 9em;
 }
 
-.ui.selection.dropdown {
-  line-height: 1rem;
+.ui.dropdown {
+  &.selection {
+    line-height: 1rem;
+
+    &:has(.label) {
+      padding-left: 20px;
+    }
+  }
 }

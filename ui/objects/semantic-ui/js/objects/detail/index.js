@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { ImgCarousel } from "./Carousel.jsx";
-import { FilesSection } from "./DocsSection.jsx";
+import { FilesSection } from "./FilesSection.jsx";
 
 const imgGalleryComp = document.getElementById("images-carousel");
 const filesDivComp = document.getElementById("details-docs");

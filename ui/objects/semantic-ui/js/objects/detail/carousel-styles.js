@@ -1,2 +1,2 @@
-import '../../../less/slick-styles.less'
+import '@less/slick-styles.less'
 
