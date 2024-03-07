@@ -254,11 +254,8 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
   {%- endblock page_body %} {%- block javascript %}
 
   {{ super() }}
-
+  
   {{ webpack["objects_img_gallery.js"] }}
   {{ webpack["carousel-styles.css"] }}
-
- 
-
   {% endblock %}
 </div>

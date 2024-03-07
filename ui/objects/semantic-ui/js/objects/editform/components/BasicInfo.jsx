@@ -15,7 +15,7 @@ import {
 import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 
 import { Grid } from "semantic-ui-react";
-import { ArrayFieldItem } from "@js/oarepo_ui";
+import { ArrayFieldItem, EDTFDateRangePickerField} from "@js/oarepo_ui";
 
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
@@ -104,32 +104,19 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
         </Grid.Column>
         <Grid columns={2} className="gapped">
           <Grid.Column>
-            <TextField
-              name="metadata.restorationObject.creationPeriod.since"
-              aria-label="Datace od"
-              fieldPath="metadata.restorationObject.creationPeriod.since"
-              placeholder="Datace od"
+            <EDTFDateRangePickerField 
+              name="metadata.restorationObject.creationPeriod"
+              aria-label="Datace"
+              fieldPath="metadata.restorationObject.creationPeriod"
+              startDateInputPlaceholder="Datace od"
+              endDateInputPlaceholder="Datace do"
+              clearButtonClassName="small transparent"
               label={
                 <FieldLabel
-                  htmlFor="metadata.restorationObject.creationPeriod.since"
-                  label="Datace od"
+                  htmlFor="metadata.restorationObject.creationPeriod"
+                  label="Datace"
                 ></FieldLabel>
-              }
-            />
-          </Grid.Column>
-          <Grid.Column>
-            <TextField
-              name="metadata.restorationObject.creationPeriod.until"
-              aria-label="Datace do"
-              fieldPath="metadata.restorationObject.creationPeriod.until"
-              placeholder="Datace do"
-              label={
-                <FieldLabel
-                  htmlFor="metadata.restorationObject.creationPeriod.until"
-                  label="Datace do"
-                ></FieldLabel>
-              }
-            />
+              }/>
           </Grid.Column>
         </Grid>
         {category != "textil" && (
