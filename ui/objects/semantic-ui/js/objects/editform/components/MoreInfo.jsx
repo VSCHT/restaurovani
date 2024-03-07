@@ -7,7 +7,7 @@ import { Grid } from "semantic-ui-react";
 import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 import _get from "lodash/get";
 
-export const MoreInfo = ({ activeIndex, handleActive}) => {
+export const MoreInfo = ({ activeIndex, handleActive, category }) => {
   return (
     <AccordionField
       includesPaths={["metadata.restorationObject.parts"]}
@@ -18,21 +18,23 @@ export const MoreInfo = ({ activeIndex, handleActive}) => {
       onClick={() => handleActive(2)}
     >
       <Grid columns={1}>
-        <Grid.Column>
-          <VocabularyTreeSelectField
-            optionsListName="Colors"
-            fieldPath={`metadata.restorationObject.colors`}
-            multiple={true}
-            clearable
-            label={
-              <FieldLabel
-                htmlFor={`metadata.restorationObject.colors`}
-                label="Barva"
-              />
-            }
-            placeholder="Vyberte barvu"
-          />
-        </Grid.Column>
+        {category == "sklo" && (
+          <Grid.Column>
+            <VocabularyTreeSelectField
+              optionsListName="Colors"
+              fieldPath={`metadata.restorationObject.colors`}
+              multiple={true}
+              clearable
+              label={
+                <FieldLabel
+                  htmlFor={`metadata.restorationObject.colors`}
+                  label="Barva"
+                />
+              }
+              placeholder="Vyberte barvu"
+            />
+          </Grid.Column>
+        )}
         <Grid.Column>
           <VocabularyTreeSelectField
             optionsListName="FabricationTechnologies"

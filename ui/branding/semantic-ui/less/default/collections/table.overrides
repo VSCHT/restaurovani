@@ -11,10 +11,15 @@
     align-items: center;
     flex-flow: column;
     border-left: 1px solid @brownColor;
-    
+    width: 100%;
+
     &:last-child {
       border-right: 1px solid @brownColor;
     }
+  }
+
+  & td{
+    padding: 0.2rem
   }
 
   @media only screen and (max-width: @mobileSize) {

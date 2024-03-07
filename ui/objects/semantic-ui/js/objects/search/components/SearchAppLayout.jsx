@@ -100,7 +100,7 @@ export const SearchAppLayout = () => {
             className="aside"
           >
             <Image
-              className="vsht-logo"
+              className="brandlogo"
               src="/static/images/logoVSCHT_zakl.png"
               alt="VŠCHT logo"
             />
