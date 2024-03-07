@@ -84,6 +84,11 @@
 
   .ui.menu:not(.sidebar) & {
     height: 1rem;
+
+    &:hover, &:active, &:focus{
+      background-color: @brownColor;
+      color: white
+    }
   }
 
   .extra & {
@@ -109,6 +114,17 @@
   .ui.sidebar .dropdown & {
     background: white;
     color: @darkestBrown;
+  }
+
+  .tree-field &{
+    padding: 0.2rem;
+  }
+  
+  .tree-field &.basic{
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    font-size: 1rem;
   }
 
   @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
@@ -175,13 +191,4 @@
   top: 10px;
 }
 
-.tree-field .ui.button {
-  padding: 0.2rem;
-}
 
-.tree-field .ui.basic.button {
-  width: 100%;
-  margin: 0;
-  border-radius: 0;
-  font-size: 1rem;
-}

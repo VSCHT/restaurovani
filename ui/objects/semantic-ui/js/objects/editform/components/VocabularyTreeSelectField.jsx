@@ -92,6 +92,7 @@ export const VocabularyTreeSelectField = ({
   optionsListName,
   usedOptions = [],
   helpText,
+  placeholder,
   optimized,
   ...uiProps
 }) => {
@@ -357,7 +358,7 @@ export const VocabularyTreeSelectField = ({
         >
           <ModalHeader>
             <Grid.Row>
-              <Header as="h3">Choose Items</Header>
+              <Header as="h3">{placeholder? placeholder : "Choose Items"}</Header>
               <SearchComponent vocab={optionsListName} />
             </Grid.Row>
           </ModalHeader>

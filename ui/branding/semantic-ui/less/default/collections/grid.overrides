@@ -38,6 +38,11 @@
   &.open {
     background-color: lightblue;
   }
+
+  .ui.modal.tree-field .actions & & {
+    width: 80%;
+    flex-wrap: wrap;
+  }
 }
 
 .column {
