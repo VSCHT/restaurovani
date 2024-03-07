@@ -11,8 +11,7 @@ theme = WebpackThemeBundle(
                 "objects_img_gallery": "./js/objects/detail/index.js",
                 "objects_deposit_edit": "./js/objects/editform/index.js",
                 "objects_deposit_create": "./js/objects/createform/form/index.js",
-                "carousel-styles": './js/objects/detail/carousel-styles.js',
-                
+                "carousel-styles": './js/objects/detail/carousel-styles.js'
             },
             dependencies={
                 "react-slick": "0.30.0",
