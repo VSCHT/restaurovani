@@ -6,7 +6,7 @@
     justify-content: space-between;
   }
 
-  .tree-field & .actions {
+  .tree-field& .actions:first-child {
     width: 80%;
     flex-wrap: wrap;
   }

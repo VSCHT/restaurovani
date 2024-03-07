@@ -15,7 +15,7 @@ import {
 import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 
 import { Grid } from "semantic-ui-react";
-import { ArrayFieldItem, EDTFDateRangePickerField} from "@js/oarepo_ui";
+import { ArrayFieldItem } from "@js/oarepo_ui";
 
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
@@ -102,23 +102,24 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
             }
           />
         </Grid.Column>
-        <Grid columns={2} className="gapped">
-          <Grid.Column>
-            <EDTFDateRangePickerField 
-              name="metadata.restorationObject.creationPeriod"
-              aria-label="Datace"
-              fieldPath="metadata.restorationObject.creationPeriod"
-              startDateInputPlaceholder="Datace od"
-              endDateInputPlaceholder="Datace do"
-              clearButtonClassName="small transparent"
-              label={
-                <FieldLabel
-                  htmlFor="metadata.restorationObject.creationPeriod"
-                  label="Datace"
-                ></FieldLabel>
-              }/>
-          </Grid.Column>
-        </Grid>
+
+        {/* <Grid.Column>
+          <EDTFDateRangePickerField
+            name="metadata.restorationObject.creationPeriod"
+            aria-label="Datace"
+            fieldPath="metadata.restorationObject.creationPeriod"
+            startDateInputPlaceholder="Datace od"
+            endDateInputPlaceholder="Datace do"
+            clearButtonClassName="small transparent"
+            label={
+              <FieldLabel
+                htmlFor="metadata.restorationObject.creationPeriod"
+                label="Datace"
+              ></FieldLabel>
+            }
+          />
+        </Grid.Column> */}
+
         {category != "textil" && (
           <ArrayField
             addButtonLabel="Přidat rozměr"

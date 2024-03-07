@@ -35,7 +35,7 @@
   div#details-docs & {
     align-items: flex-start;
   }
-  .open {
+  &.open {
     background-color: lightblue;
   }
 }
