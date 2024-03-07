@@ -31,7 +31,6 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
       label="Práce"
       styled
       active={activeIndex === 1}
-      defaultActiveIndex={1}
       onClick={() => handleActive(1, values)}
     >
       <Grid columns={1}>

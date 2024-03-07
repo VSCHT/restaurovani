@@ -22,7 +22,7 @@ import {
   serializeVocabularyItem,
 } from "@js/oarepo_vocabularies";
 
-const SearchComponent = ({ vocab }) => {
+const SearchComponent = ({ vocab, handleSelect}) => {
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -90,7 +90,6 @@ export const VocabularyTreeSelectField = ({
   fieldPath,
   multiple,
   optionsListName,
-  usedOptions = [],
   helpText,
   placeholder,
   optimized,
@@ -211,7 +210,7 @@ export const VocabularyTreeSelectField = ({
     setParentsState([]);
   };
 
-  
+
   const handleKey = (e, option, index) => {
     e.preventDefault();
     let newIndex = 0;
@@ -319,7 +318,7 @@ export const VocabularyTreeSelectField = ({
                   }}
                   tabIndex={0}
                 >
-                  {option.text}
+                  {option.hierarchy.title[0]}
                 </Button>
                 {option.element_type == "parent" && (
                   <Button onClick={openHierarchyNode(option.value, index)}>
@@ -348,7 +347,6 @@ export const VocabularyTreeSelectField = ({
         multiple={multiple}
         featured={featuredOptions}
         options={serializedOptions}
-        usedOptions={usedOptions}
         onClick={handleOpen}
         value={multiple ? value.map((o) => o?.id) : value?.id}
         {...uiProps}
@@ -359,7 +357,7 @@ export const VocabularyTreeSelectField = ({
         <Modal
           onClose={() => setOpenState(false)}
           onOpen={() => setOpenState(true)}
-          open={open}
+          open={openState}
           className="tree-field"
         >
           <ModalHeader>
@@ -367,7 +365,7 @@ export const VocabularyTreeSelectField = ({
               <Header as="h3">
                 {placeholder ? placeholder : "Choose Items"}
               </Header>
-              <SearchComponent vocab={optionsListName} />
+              <SearchComponent vocab={optionsListName} handleSelect={handleSelect}/>
             </Grid.Row>
           </ModalHeader>
 
@@ -429,7 +427,6 @@ VocabularyTreeSelectField.propTypes = {
   optionsListName: PropTypes.string.isRequired,
   helpText: PropTypes.string,
   noResultsMessage: PropTypes.string,
-  usedOptions: PropTypes.array,
   optimized: PropTypes.bool,
 };
 
