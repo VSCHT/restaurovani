@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { SelectField } from "react-invenio-forms";
 import { useFormConfig } from "@js/oarepo_ui";
-import { useFormikContext, getIn, setIn } from "formik";
+import { useFormikContext, getIn } from "formik";
 import PropTypes from "prop-types";
 import {
   Breadcrumb,
@@ -21,7 +21,70 @@ import {
   serializedVocabularyItems,
   serializeVocabularyItem,
 } from "@js/oarepo_vocabularies";
-import axios from "axios";
+
+const SearchComponent = ({ vocab }) => {
+  const [query, setQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (query.trim() === "") {
+      setSearchResults([]);
+      return;
+    }
+
+    const apiUrl = `${window.location.origin}/api/vocabularies/${vocab}?q=${query}`;
+
+    const fetchSearchResults = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(apiUrl, {
+          headers: {
+            Accept: "application/vnd.inveniordm.v1+json",
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        setSearchResults(data.hits.hits);
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSearchResults();
+  }, [query]);
+
+  return (
+    <Grid.Column>
+      <Input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search..."
+      />
+      {loading && <Label>Loading...</Label>}
+      {searchResults?.length > 0 && (
+        <Grid columns={1}>
+          {searchResults.map((i, index) => (
+            <Label
+              key={index}
+              onClick={(e) => {
+                handleSelect(i, i.id, e);
+              }}
+            >
+              {" "}
+              <Breadcrumb icon="left angle" sections={i.hierarchy.title} />
+            </Label>
+          ))}
+        </Grid>
+      )}
+    </Grid.Column>
+  );
+};
 
 export const VocabularyTreeSelectField = ({
   fieldPath,
@@ -64,39 +127,39 @@ export const VocabularyTreeSelectField = ({
 
   const hierarchicalData = useMemo(() => {
     let data = [];
-    let currentRow = [];
+    let currentColumn = [];
     let currentLevel = 0;
 
     serializedOptions.forEach((option, index) => {
       if (option.hierarchy.ancestors.length === currentLevel) {
-        currentRow.push(option);
+        currentColumn.push(option);
       } else {
-        data.push(currentRow);
-        currentRow = [option];
+        data.push(currentColumn);
+        currentColumn = [option];
         currentLevel++;
       }
     });
 
-    if (currentRow.length > 0) {
-      data.push(currentRow);
+    if (currentColumn.length > 0) {
+      data.push(currentColumn);
     }
 
     return data;
   }, [serializedOptions]);
 
-  const amount = hierarchicalData.length;
+  const columnsCount = hierarchicalData.length;
 
-  const updateHierarchy = (parent, index) => () => {
+  const openHierarchyNode = (parent, level) => () => {
     let updatedParents = [...parentsState];
-    updatedParents.splice(index + 1);
-    updatedParents[index] = parent;
+    updatedParents.splice(level + 1);
+    updatedParents[level] = parent;
 
     let updatedKeybState = [...keybState];
 
-    const columnOptions = hierarchicalData[index];
+    const columnOptions = hierarchicalData[level];
     const nextColumnIndex = columnOptions.findIndex((o) => o.value === parent);
-    updatedKeybState.splice(index + 1);
-    updatedKeybState[index] = nextColumnIndex;
+    updatedKeybState.splice(level + 1);
+    updatedKeybState[level] = nextColumnIndex;
 
     setParentsState(updatedParents);
     setKeybState(updatedKeybState);
@@ -123,22 +186,20 @@ export const VocabularyTreeSelectField = ({
     }
   };
 
-
   const handleSubmit = () => {
     let prepSelect;
     if (multiple) {
       prepSelect = selectedState.map((i) => serializeVocabularyItem(i.value));
       const existingValues = getIn(formik.values, fieldPath, []);
       prepSelect = [...existingValues, ...prepSelect];
+      prepSelect = [...new Set(prepSelect)];
     } else {
       prepSelect = selectedState.map((i) =>
         serializeVocabularyItem(i.value)
       )[0];
     }
 
-    const updatedValues = setIn(formik.values, fieldPath, prepSelect);
-
-    formik.setValues(updatedValues);
+    formik.setFieldValue(fieldPath, prepSelect);
     setOpenState(false);
     setSelectedState([]);
     setParentsState([]);
@@ -152,7 +213,6 @@ export const VocabularyTreeSelectField = ({
     let data = hierarchicalData[index];
 
     const moveKey = (index, newIndex, back = false) => {
-    
       setKeybState((prev) => {
         const newState = [...prev];
         back ? newState.splice(index, 1) : (newState[index] = newIndex);
@@ -162,14 +222,14 @@ export const VocabularyTreeSelectField = ({
     if (e.key === "ArrowUp") {
       newIndex = keybState[index] - 1;
       if (newIndex >= 0) {
-        updateHierarchy(data[newIndex].value, index)();
+        openHierarchyNode(data[newIndex].value, index)();
         moveKey(index, newIndex, false);
       }
     } else if (e.key === "ArrowDown") {
       newIndex = keybState[index] + 1;
 
       if (newIndex < data.length) {
-        updateHierarchy(data[newIndex].value, index)();
+        openHierarchyNode(data[newIndex].value, index)();
         moveKey(index, newIndex, false);
       }
     } else if (e.key === "ArrowLeft") {
@@ -182,7 +242,7 @@ export const VocabularyTreeSelectField = ({
         moveKey(index, null, true);
       }
     } else if (e.key === "ArrowRight") {
-      if (index < amount - 1) {
+      if (index < columnsCount - 1) {
         const nextColumnOptions = hierarchicalData[index + 1];
         if (nextColumnOptions) {
           const nextColumnIndex = nextColumnOptions.findIndex(
@@ -190,7 +250,7 @@ export const VocabularyTreeSelectField = ({
           );
           if (nextColumnIndex !== -1) {
             newIndex = nextColumnIndex;
-            updateHierarchy(
+            openHierarchyNode(
               nextColumnOptions[nextColumnIndex].value,
               index + 1
             )();
@@ -205,10 +265,10 @@ export const VocabularyTreeSelectField = ({
     }
   };
 
-  const renderColumns = (index) => {
+  const renderColumn = (column, index) => {
     return (
       <Grid.Column>
-        {serializedOptions.map((option, i) => {
+        {column.map((option, i) => {
           if (
             option.hierarchy.ancestors.length == index &&
             (index == 0 ||
@@ -216,7 +276,7 @@ export const VocabularyTreeSelectField = ({
           ) {
             return (
               <Grid.Row
-                key={i}
+                key={option.value}
                 className={
                   option.value == parentsState[index] ? "open spaced" : "spaced"
                 }
@@ -243,7 +303,7 @@ export const VocabularyTreeSelectField = ({
                 <Button
                   basic
                   color="black"
-                  onClick={updateHierarchy(option.value, index)}
+                  onClick={openHierarchyNode(option.value, index)}
                   onDoubleClick={(e) => {
                     handleSelect(option, option.value, e);
                   }}
@@ -255,74 +315,16 @@ export const VocabularyTreeSelectField = ({
                   {option.text}
                 </Button>
                 {option.element_type == "parent" && (
-                  <Button onClick={updateHierarchy(option.value, index)}>
-                    {index !== amount - 1 && <Icon name="angle right black " />}
+                  <Button onClick={openHierarchyNode(option.value, index)}>
+                    {index !== columnsCount - 1 && (
+                      <Icon name="angle right black " />
+                    )}
                   </Button>
                 )}
               </Grid.Row>
             );
           }
         })}
-      </Grid.Column>
-    );
-  };
-
-  const SearchComponent = ({ vocab }) => {
-    const [query, setQuery] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-      if (query.trim() === "") {
-        setSearchResults([]);
-        return;
-      }
-
-      const apiUrl = `${window.location.origin}/api/vocabularies/${vocab}?q=${query}`;
-
-      const fetchSearchResults = async () => {
-        setLoading(true);
-        try {
-          const response = await axios.get(apiUrl, {
-            headers: {
-              Accept: "application/vnd.inveniordm.v1+json",
-            },
-          });
-          setSearchResults(response.data.hits.hits);
-        } catch (error) {
-          console.error("Error fetching search results:", error);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      fetchSearchResults();
-    }, [query]);
-
-    return (
-      <Grid.Column>
-        <Input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search..."
-        />
-        {loading && <Label>Loading...</Label>}
-        {searchResults?.length > 0 && (
-          <Grid columns={1}>
-            {searchResults.map((i, index) => (
-              <Label
-                key={index}
-                onClick={(e) => {
-                  handleSelect(i, i.id, e);
-                }}
-              >
-                {" "}
-                <Breadcrumb icon="left angle" sections={i.hierarchy.title} />
-              </Label>
-            ))}
-          </Grid>
-        )}
       </Grid.Column>
     );
   };
@@ -363,10 +365,10 @@ export const VocabularyTreeSelectField = ({
           <ModalContent>
             <Grid>
               <Grid columns={1}>
-                <Grid columns={amount} className="gapped">
-                  {hierarchicalData.map((column, index) => (
-                    <React.Fragment key={index}>
-                      {renderColumns(index)}
+                <Grid columns={columnsCount} className="gapped">
+                  {hierarchicalData.map((column, level) => (
+                    <React.Fragment key={level}>
+                      {renderColumn(column, level)}
                     </React.Fragment>
                   ))}
                 </Grid>
@@ -375,7 +377,7 @@ export const VocabularyTreeSelectField = ({
           </ModalContent>
           <ModalActions>
             <Grid.Row>
-              <Grid.Row style={{ width: "80%", flexWrap: "wrap" }}>
+              <Grid.Row>
                 {selectedState.map((i, index) => (
                   <Label key={index}>
                     {" "}

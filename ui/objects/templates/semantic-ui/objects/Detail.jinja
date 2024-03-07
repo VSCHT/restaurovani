@@ -44,10 +44,7 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
           </div>
         </div>
 
-        <div
-          id="images-carousel"
-          data-photos="{{ record.links.files | tojson }}"
-        ></div>
+        <div id="images-carousel" data-photos='{{ record.links.files | tojson }}'></div>
 
         <table class="ui unstackable table">
           <tbody>
@@ -260,6 +257,8 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
 
   {{ webpack["objects_img_gallery.js"] }}
   {{ webpack["carousel-styles.css"] }}
+
+ 
 
   {% endblock %}
 </div>
