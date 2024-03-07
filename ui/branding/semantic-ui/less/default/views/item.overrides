@@ -1,3 +1,7 @@
+.count(@x, @y) {
+  @result: (@x - @y + 0rem);
+}
+
 .item {
   &.toggle-burger {
     display: none !important;
@@ -20,12 +24,14 @@
 
     .header a {
       color: black;
+      font-size: @headerLinkFont;
     }
 
     .extra {
       align-items: flex-end;
     }
   }
+
   .ui.relaxed.divided.items > & {
     margin: 2em 0;
   }
@@ -58,6 +64,9 @@
 
     .ui.items > & > .image + .content {
       display: flex;
+    }
+    & .header a {
+      font-size: .count(@headerLinkFont, 0.1) [ @result];
     }
   }
 }
@@ -94,6 +103,9 @@
     }
     & > .item:first-child {
       padding: 1rem;
+    }
+    & .header a {
+      font-size: .count(@headerLinkFont, 0.1) [ @result];
     }
   }
 }

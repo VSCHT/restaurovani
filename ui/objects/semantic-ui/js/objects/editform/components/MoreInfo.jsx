@@ -10,7 +10,7 @@ import _get from "lodash/get";
 export const MoreInfo = ({ activeIndex, handleActive, category }) => {
   return (
     <AccordionField
-      includesPaths={["metadata.restorationObject.parts"]}
+      includesPaths={["metadata.restorationObject"]}
       label="Další údaje"
       active={activeIndex === 2}
       defaultActiveIndex={2}

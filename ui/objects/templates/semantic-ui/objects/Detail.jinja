@@ -71,12 +71,27 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                 <p><b>Typ předmětu</b></p>
               </td>
               <td>
-                <p>
-                  {% for value in metadata.restorationObject.itemTypes %} {% if
-                  loop.index <= 2 %}
-                  {{ value.title }}
-                  {% endif %} {% endfor %}
-                </p>
+                <div class="ui accordion">
+                  <div class="title active">
+                    {% for value in metadata.restorationObject.itemTypes  %} {%
+                    if loop.index == 1 %}
+                    <p>
+                      {% if value.title %}
+                      {{ value.title  }} {% endif %} {% endif %} {% if
+                      loop.index == 2 %} <i class="dropdown black icon"></i>{%
+                      endif %}
+                    </p>
+                    {% endfor %}
+                  </div>
+                  <div class="content">
+                    {% for value in metadata.restorationObject.itemTypes   %} {%
+                    if loop.index >= 2 %}
+                    <p>
+                      {{ value.title }}
+                    </p>
+                    {% endif %} {% endfor %}
+                  </div>
+                </div>
               </td>
             </tr>
             {% endif %} {% if metadata.restorationObject.dimensions %}
@@ -128,10 +143,27 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                 <p><b>Technologie</b></p>
               </td>
               <td>
-                {% for value in
-                metadata.restorationObject.fabricationTechnologies %}
-                <p>{{ value.title }}</p>
-                {% endfor %}
+                <div class="ui accordion">
+                  <div class="title active">
+                    {% for value in metadata.restorationObject.fabricationTechnologies %} {%
+                    if loop.index == 1 %}
+                    <p>
+                      {% if value.title %}
+                      {{ value.title  }} {% endif %} {% endif %} {% if
+                      loop.index == 2 %} <i class="dropdown black icon"></i>{%
+                      endif %}
+                    </p>
+                    {% endfor %}
+                  </div>
+                  <div class="content">
+                    {% for value in metadata.restorationObject.fabricationTechnologies  %} {%
+                    if loop.index >= 2 %}
+                    <p>
+                      {{ value.title }}
+                    </p>
+                    {% endif %} {% endfor %}
+                  </div>
+                </div>
               </td>
             </tr>
             {% endif %} {% if metadata.restorationObject.colors %}
@@ -140,8 +172,10 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                 <p><b>Barva</b></p>
               </td>
               <td>
+                <div class="column">
                 {% for value in metadata.restorationObject.colors %}
                 <p>{{ value.title }}</p>
+                </div>
                 {% endfor %}
               </td>
             </tr>
@@ -151,8 +185,8 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
 
         <!-- desc -->
         {% if metadata.restorationObject.description %}
-        <div aria-label="Popis předmětu">
-          <p>{{ metadata.restorationObject.description.value }}</p>
+        <div class="left aligned column" aria-label="Popis předmětu">
+          <p>{{ metadata.restorationObject.description }}</p>
         </div>
         {% endif %}
 
