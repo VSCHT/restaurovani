@@ -187,13 +187,18 @@ export const VocabularyTreeSelectField = ({
     }
   };
 
+  
   const handleSubmit = () => {
     let prepSelect;
     if (multiple) {
       prepSelect = selectedState.map((i) => serializeVocabularyItem(i.value));
       const existingValues = getIn(formik.values, fieldPath, []);
+
+      const existingIds = existingValues.map((item) => item.id);
+
+      prepSelect = prepSelect.filter((item) => !existingIds.includes(item.id));
+
       prepSelect = [...existingValues, ...prepSelect];
-      prepSelect = [...new Set(prepSelect)];
     } else {
       prepSelect = selectedState.map((i) =>
         serializeVocabularyItem(i.value)
@@ -206,6 +211,7 @@ export const VocabularyTreeSelectField = ({
     setParentsState([]);
   };
 
+  
   const handleKey = (e, option, index) => {
     e.preventDefault();
     let newIndex = 0;
@@ -358,7 +364,9 @@ export const VocabularyTreeSelectField = ({
         >
           <ModalHeader>
             <Grid.Row>
-              <Header as="h3">{placeholder? placeholder : "Choose Items"}</Header>
+              <Header as="h3">
+                {placeholder ? placeholder : "Choose Items"}
+              </Header>
               <SearchComponent vocab={optionsListName} />
             </Grid.Row>
           </ModalHeader>
