@@ -60,21 +60,7 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
         since: Yup.number().typeError(numMessage),
       }),
 
-      parts: Yup.array()
-        .of(
-          Yup.object().shape({
-            name: Yup.string().required(requiredMessage),
-            main: Yup.boolean().required(),
-          })
-        )
-        .test(
-          "hasMainPart",
-          "Maximalně jedna součást může být hlavní",
-          function (value) {
-            const mainCount = value?.filter((part) => part.main).length;
-            return mainCount == 1 || mainCount == 0 || mainCount== undefined; 
-          }
-        )
+
     }),
     restorationWork: Yup.object().shape({
       restorer: Yup.string().required(requiredMessage),

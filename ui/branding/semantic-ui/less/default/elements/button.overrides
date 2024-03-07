@@ -83,7 +83,7 @@
   }
 
   .ui.menu & {
-    height: auto;
+    height: 1rem;
   }
 
   .extra & {
@@ -106,7 +106,7 @@
     padding: 0;
   }
 
-  .ui.sidebar .dropdown &{
+  .ui.sidebar .dropdown & {
     background: white;
     color: @darkestBrown;
   }
@@ -149,6 +149,9 @@
         font-size: 0.9rem;
       }
     }
+    .ui.menu & {
+      height: 2.5rem;
+    }
     .field & {
       width: 40%;
     }
@@ -165,6 +168,9 @@
         font-size: 0.8rem;
         height: 2.2rem;
       }
+    }
+    .ui.menu & {
+      height: 2.5rem;
     }
   }
 }

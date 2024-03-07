@@ -1,7 +1,3 @@
-.header a {
-  font-size: @headerLinkFont;
-}
-
 .ui.header {
   h1& {
     font-weight: 300;
@@ -12,6 +8,9 @@
   .detail-page h3& {
     color: white;
     margin: auto 10px;
+  }
+  .ui.modal.tree-field & {
+    width: 80%;
   }
 }
 
@@ -39,10 +38,6 @@
       font-size: .count(@h2, 0.8) [ @result];
     }
   }
-
-  .header a {
-    font-size: .count(@headerLinkFont, 0.1) [ @result];
-  }
 }
 
 @media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
@@ -50,9 +45,6 @@
     h1&:not(.login, .large) {
       font-size: .count(@h1, 0.5) [ @result];
       min-height: 18rem;
-    }
-    .header a {
-      font-size: .count(@headerLinkFont, 0.1) [ @result];
     }
   }
 }
@@ -71,8 +63,4 @@
 
 h1.mt-20 {
   display: none;
-}
-
-.ui.modal.tree-field .ui.header {
-  width: 80%;
 }
