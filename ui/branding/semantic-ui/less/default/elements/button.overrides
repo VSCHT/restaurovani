@@ -82,7 +82,7 @@
     display: none;
   }
 
-  .ui.menu & {
+  .ui.menu:not(.sidebar) & {
     height: 1rem;
   }
 
@@ -149,9 +149,6 @@
         font-size: 0.9rem;
       }
     }
-    .ui.menu & {
-      height: 2.5rem;
-    }
     .field & {
       width: 40%;
     }
@@ -168,9 +165,6 @@
         font-size: 0.8rem;
         height: 2.2rem;
       }
-    }
-    .ui.menu & {
-      height: 2.5rem;
     }
   }
 }

@@ -104,8 +104,8 @@ export const ResultsListItemComponent = ({ result, appName }) => {
         const fImg = imageEntries.filter(
           (item) => item.metadata.featured == true
         );
-        const rImg = imageEntries?.[0] ?? imageEntries?.[1];
-        fImg.length == 1 ? setImagesState(fImg) : setImagesState(rImg);
+        const rImg = imageEntries?.[0] ;
+        fImg.length == 1 ? setImagesState(fImg[0]) : setImagesState(rImg);
       })
 
       .catch(() => {
@@ -122,7 +122,6 @@ export const ResultsListItemComponent = ({ result, appName }) => {
     "metadata.restorationWork.restorer",
     "<no data>"
   );
-  const desc = _get(result, "metadata.restorationWork.abstract", "<no data>");
 
   const created = _get(result, "created", "<no data>");
 
