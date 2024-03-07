@@ -32,10 +32,12 @@
     padding-top: 0;
   }
 
-  &:not(.styled) .title ~ .content:not(.ui):last-child {
-    padding-bottom: 1em;
+  &:not(.styled) .title ~ .content:not(.ui) {
+    padding-top: 0;
+    &:last-child {
+      padding-bottom: 1em;
+    }
   }
-
   &.styled.inverted:not(.accordion > .active) > .title:not(.active),
   .title:not(.active) .icon {
     color: @sandGrayColor;
