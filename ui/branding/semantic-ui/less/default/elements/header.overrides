@@ -10,8 +10,10 @@
     margin: auto 10px;
   }
   .ui.modal.tree-field & {
-    width: 80%;
-  }
+    width: 100%;
+    font-size: 1.3rem;
+    text-align: center;
+}
 }
 
 .count(@x, @y) {

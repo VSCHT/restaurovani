@@ -16,13 +16,14 @@ import {
   Icon,
   Checkbox,
   Label,
+  Container,
 } from "semantic-ui-react";
 import {
   serializedVocabularyItems,
   serializeVocabularyItem,
 } from "@js/oarepo_vocabularies";
 
-const SearchComponent = ({ vocab, handleSelect}) => {
+const SearchComponent = ({ vocab, handleSelect }) => {
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -168,7 +169,7 @@ export const VocabularyTreeSelectField = ({
   const handleSelect = (option, val, e) => {
     e.preventDefault();
     const existingIndex = selectedState.findIndex(
-      (i) => i.value === option.value
+      (i) => i.value === option?.value
     );
 
     if (existingIndex !== -1) {
@@ -186,7 +187,6 @@ export const VocabularyTreeSelectField = ({
     }
   };
 
-  
   const handleSubmit = () => {
     let prepSelect;
     if (multiple) {
@@ -210,7 +210,6 @@ export const VocabularyTreeSelectField = ({
     setParentsState([]);
   };
 
-
   const handleKey = (e, option, index) => {
     e.preventDefault();
     let newIndex = 0;
@@ -225,18 +224,33 @@ export const VocabularyTreeSelectField = ({
         return newState;
       });
     };
-    if (e.key === "ArrowUp") {
+    if (
+      e.key === "ArrowUp" ||
+      (e.shiftKey && e.key === "ArrowUp") ||
+      (e.ctrlKey && e.key === "ArrowUp")
+    ) {
       newIndex = keybState[index] - 1;
       if (newIndex >= 0) {
         openHierarchyNode(data[newIndex].value, index)();
         moveKey(index, newIndex, false);
       }
-    } else if (e.key === "ArrowDown") {
+      if (e.shiftKey && e.key === "ArrowUp") {
+        handleSelect(data[newIndex], index, e);
+      }
+    } else if (
+      e.key === "ArrowDown" ||
+      (e.shiftKey && e.key === "ArrowDown") ||
+      (e.ctrlKey && e.key === "ArrowDown") ||
+      e.key === "Tab"
+    ) {
       newIndex = keybState[index] + 1;
 
       if (newIndex < data.length) {
         openHierarchyNode(data[newIndex].value, index)();
         moveKey(index, newIndex, false);
+      }
+      if (e.shiftKey && e.key === "ArrowDown") {
+        handleSelect(data[newIndex], index, e);
       }
     } else if (e.key === "ArrowLeft") {
       if (index > 0) {
@@ -264,16 +278,18 @@ export const VocabularyTreeSelectField = ({
           }
         }
       }
-    } else if (e.key === "Enter") {
-      handleSelect(data[keybState[index]], index, e);
-    } else if ((e.key = " ")) {
+    } else if (
+      e.key === "Enter" ||
+      (e.ctrlKey && e.key === " ") ||
+      e.key == " "
+    ) {
       handleSelect(data[keybState[index]], index, e);
     }
   };
 
   const renderColumn = (column, index) => {
     return (
-      <Grid.Column>
+      <Grid.Column key={index}>
         {column.map((option, i) => {
           if (
             option.hierarchy.ancestors.length == index &&
@@ -323,7 +339,7 @@ export const VocabularyTreeSelectField = ({
                 {option.element_type == "parent" && (
                   <Button onClick={openHierarchyNode(option.value, index)}>
                     {index !== columnsCount - 1 && (
-                      <Icon name="angle right black " />
+                      <Icon name="angle right" color="black" />
                     )}
                   </Button>
                 )}
@@ -365,21 +381,26 @@ export const VocabularyTreeSelectField = ({
               <Header as="h3">
                 {placeholder ? placeholder : "Choose Items"}
               </Header>
-              <SearchComponent vocab={optionsListName} handleSelect={handleSelect}/>
+              <SearchComponent
+                vocab={optionsListName}
+                handleSelect={handleSelect}
+              />
             </Grid.Row>
           </ModalHeader>
 
           <ModalContent>
             <Grid>
-              <Grid columns={1}>
-                <Grid columns={columnsCount} className="gapped">
-                  {hierarchicalData.map((column, level) => (
-                    <React.Fragment key={level}>
-                      {renderColumn(column, level)}
-                    </React.Fragment>
-                  ))}
+              <div className="columns-container">
+                <Grid columns={1}>
+                  <Container>
+                    {hierarchicalData.map((column, level) => (
+                      <React.Fragment key={level}>
+                        {renderColumn(column, level)}
+                      </React.Fragment>
+                    ))}
+                  </Container>
                 </Grid>
-              </Grid>
+              </div>
             </Grid>
           </ModalContent>
           <ModalActions>

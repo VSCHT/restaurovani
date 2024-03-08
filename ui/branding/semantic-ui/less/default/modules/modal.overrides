@@ -11,3 +11,9 @@
     flex-direction: row;
   }
 }
+
+.tree-field {
+ &  .columns-container {
+    overflow-x: auto;
+  }
+}

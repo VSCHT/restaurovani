@@ -163,6 +163,7 @@
       }
       #form-app & {
         width: 45%;
+        align-self: center;
       }
       .extra & {
         width: 25%;
@@ -171,7 +172,7 @@
       }
     }
     .field & {
-      width: 40%;
+      width: auto;
     }
   }
 
