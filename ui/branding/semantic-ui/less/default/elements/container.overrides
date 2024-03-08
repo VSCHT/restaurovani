@@ -23,6 +23,13 @@
     margin-bottom: 15px;
   }
 
+  .tree-field & {
+    align-self: flex-start;
+    width: 80vw;
+    margin: 1.5rem 1.5rem 0 0;
+    display: flex
+  }
+
   @media only screen and (min-width: @computerSize) {
     .detail-page &:not(.page-subheader) {
       width: 70vw;
@@ -52,7 +59,7 @@
     #form-app & {
       padding: 10px 1vw;
     }
-    .main-page &{
+    .main-page & {
       margin-top: 100px;
     }
   }

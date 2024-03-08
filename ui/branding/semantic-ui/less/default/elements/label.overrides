@@ -6,7 +6,8 @@
       color: @brownColor;
     }
   }
-  .predmety__aside &, .aside &:not(:nth-child(3)) {
+  .predmety__aside &,
+  .aside &:not(:nth-child(3)) {
     color: #222;
   }
 
@@ -29,29 +30,26 @@
       display: none;
     }
   }
-  .tree-field .actions &{
-    display: flex
+  .tree-field .actions & {
+    display: flex;
+    text-align: left;
   }
 }
 
-
-
 .ui.modal.tree-field {
-  .content  .ui.label {
+  .content .ui.label {
     max-width: 30%;
     text-align: left;
   }
 
-   .header .ui.label {
+  .header .ui.label {
     padding: 10px;
   }
 
-  .ui.label{
-    a{
+  .ui.label {
+    a {
       font-size: 1rem;
-      color: #222
+      color: #222;
     }
   }
 }
-
-

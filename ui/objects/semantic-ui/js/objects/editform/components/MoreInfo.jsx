@@ -67,7 +67,7 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
         <Grid.Column>
           <VocabularyTreeSelectField
             optionsListName="MaterialTypes"
-            fieldPath={`metadata.restorationObject..secondaryMaterialTypes`}
+            fieldPath={`metadata.restorationObject.secondaryMaterialTypes`}
             multiple={true}
             clearable
             placeholder="Vyberte vedlejší typy materiálů"

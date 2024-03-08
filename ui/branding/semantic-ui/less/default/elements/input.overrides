@@ -7,6 +7,10 @@
     font-size: 0.9rem;
     border: 1px solid @inputBorderColor;
 
+    #form-app &{
+      height: 2.5rem;
+    }
+
     & {
       width: @inputWidthLarge;
     }

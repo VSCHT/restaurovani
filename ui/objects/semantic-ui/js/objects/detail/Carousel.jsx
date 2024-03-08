@@ -9,11 +9,9 @@ export const ImgCarousel = ({ imagesCollection }) => {
   let selectedImage = imagesCollection?.[selectedImageIndex];
 
   const settings = {
-    dots: true,
     infinite: false,
     speed: 100,
     slidesToShow: slidesToShow,
-    slidesToScroll: 1,
     swipeToSlide: true,
   };
 
