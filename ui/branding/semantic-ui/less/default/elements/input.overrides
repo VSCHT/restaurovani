@@ -23,6 +23,9 @@
     .ui.sidebar & {
       width: 100%;
     }
+    .tree-field .header &{
+      background: white;
+    }
 
     @media only screen and (max-width: @smallMobileSize) {
       font-size: @inputFontMedium;
