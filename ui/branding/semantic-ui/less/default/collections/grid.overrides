@@ -120,6 +120,7 @@
   &.img-container {
     width: 0px;
   }
+
 }
 
 .gapped {

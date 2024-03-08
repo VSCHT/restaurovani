@@ -75,7 +75,7 @@ export const SearchAppLayout = () => {
                     <Image
                       rel="icon"
                       src="/static/images/filter-icon.png"
-                      alt="filter button"
+                      alt="filtrovat"
                     />
                   </Button>
                 </Grid.Row>
@@ -113,7 +113,7 @@ export const SearchAppLayout = () => {
                 Nový předmět
                 <Image
                   src="/static/images/plus-square.png"
-                  alt="add new icon"
+                  alt="Vytvořit nový předmět"
                 />
               </Button>
 
@@ -130,7 +130,7 @@ export const SearchAppLayout = () => {
           onClose={toggleModal}
         >
           <Grid className="aside">
-            <Grid.Column aria-label="Filter Options">
+            <Grid.Column aria-label="Filtrování">
               <Header as="h3">Filtrování výsledků</Header>
               <SearchAppFacets aggs={searchAppConfig.aggs} appName={appName} />
             </Grid.Column>
@@ -142,7 +142,7 @@ export const SearchAppLayout = () => {
               <Image
                 rel="icon"
                 src="/static/images/close-icon.png"
-                alt="close filter button"
+                alt="Zavřit"
               />
             </Button>
           </Grid>

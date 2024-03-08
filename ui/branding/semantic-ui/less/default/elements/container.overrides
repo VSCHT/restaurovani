@@ -27,7 +27,8 @@
     align-self: flex-start;
     width: 80vw;
     margin: 1.5rem 1.5rem 0 0;
-    display: flex
+    display: flex;
+    border: 1px solid @darkBrown;
   }
 
   @media only screen and (min-width: @computerSize) {

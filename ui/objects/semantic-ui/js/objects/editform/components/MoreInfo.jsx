@@ -24,6 +24,7 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
               fieldPath={`metadata.restorationObject.colors`}
               multiple={true}
               clearable
+              category={category}
               label={
                 <FieldLabel
                   htmlFor={`metadata.restorationObject.colors`}
@@ -40,6 +41,7 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
             fieldPath={`metadata.restorationObject.fabricationTechnologies`}
             placeholder="Vyberte technologie výroby"
             multiple={true}
+            category={category}
             clearable
             label={
               <FieldLabel

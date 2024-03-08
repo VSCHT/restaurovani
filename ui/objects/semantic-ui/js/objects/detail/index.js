@@ -40,12 +40,11 @@ const fetchImages = async () => {
   }
 };
 
-const fileName = (d) => {
+const getCaption = (d) => {
   if (d?.metadata && d?.metadata?.caption) {
     if (
       d.metadata.caption === "default_image_name" ||
-      d.metadata.caption === "default_pdf_name" ||
-      Object.values(d.metadata.caption).length === 0
+      d.metadata.caption === "default_pdf_name" 
     ) {
       return d?.key;
     } else {
@@ -61,10 +60,10 @@ async function fetchAndRender() {
     await fetchImages();
 
     ReactDOM.render(
-      <ImgCarousel imagesCollection={imagesCollection} fileName={fileName}/>,
+      <ImgCarousel imagesCollection={imagesCollection} getCaption={getCaption}/>,
       imgGalleryComp
     );
-    ReactDOM.render(<FilesSection filesCollection= {filesCollection} fileName={fileName}/>, filesDivComp);
+    ReactDOM.render(<FilesSection filesCollection={filesCollection} getCaption={getCaption}/>, filesDivComp);
   } catch (error) {
     console.error("Error rendering component");
   }
