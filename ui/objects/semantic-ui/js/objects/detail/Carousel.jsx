@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import { Modal, Image, Button, Grid, Header } from "semantic-ui-react";
 
-export const ImgCarousel = ({ imagesCollection }) => {
+export const ImgCarousel = ({ imagesCollection, getCaption }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(5);
@@ -79,10 +79,7 @@ export const ImgCarousel = ({ imagesCollection }) => {
           <Grid columns={1}>
             <Image src={selectedImage?.links?.content} />
             <Header as="h4">
-              {selectedImage?.metadata.caption === "default_image_name" ||
-              selectedImage?.metadata.caption == 0
-                ? selectedImage?.key
-                : selectedImage?.metadata.caption}
+              {getCaption(selectedImage)}
             </Header>
           </Grid>
           <Button icon="chevron right black" onClick={handleNextImage} />

@@ -131,6 +131,9 @@
     border-radius: 0;
     font-size: 1rem;
   }
+  .tree-field .actions & {
+    padding: 0.1rem 0.3rem 0;
+}
 
   @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
     height: 35px;

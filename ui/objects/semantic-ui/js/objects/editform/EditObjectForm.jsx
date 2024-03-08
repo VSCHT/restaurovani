@@ -55,6 +55,7 @@ export const EditObjectForm = () => {
                 activeIndex={activeIndex}
                 handleActive={handleActive}
                 values={values}
+                category={category}
               />
             </Overridable>
 

@@ -65,25 +65,6 @@ const DetailsButton = ({ searchUrl, selfLink }) => {
 };
 
 export const ResultsListItemComponent = ({ result, appName }) => {
-  const [wideScreen, setWideScreen] = React.useState(window.innerWidth >= 1200);
-
-  useEffect(() => {
-    function updateDescVisibility() {
-      if (window.innerWidth <= 992) {
-        setWideScreen(false);
-      } else {
-        setWideScreen(true);
-      }
-    }
-
-    updateDescVisibility();
-
-    window.addEventListener("resize", updateDescVisibility);
-
-    return () => {
-      window.removeEventListener("resize", updateDescVisibility);
-    };
-  }, []);
 
   const [objectImages, setObjectImages] = useState([]);
 

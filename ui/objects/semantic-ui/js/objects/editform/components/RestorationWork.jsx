@@ -14,7 +14,7 @@ import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 import _get from "lodash/get";
 
-export const RestorationWork = ({ activeIndex, handleActive, values }) => {
+export const RestorationWork = ({ activeIndex, handleActive, values , category}) => {
   const fieldPath = "metadata.restorationWork";
 
   return (
@@ -191,6 +191,7 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
             fieldPath={`${fieldPath}.restorationMethods`}
             multiple={true}
             optionsListName="RestorationMethods"
+            category={category}
             placeholder="Vyberte metody restaurování"
             clearable
             label={

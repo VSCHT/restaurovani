@@ -5,11 +5,7 @@ import { useFormikContext, getIn } from "formik";
 import PropTypes from "prop-types";
 import {
   Breadcrumb,
-  ModalHeader,
-  ModalActions,
-  ModalContent,
   Button,
-  Modal,
   Header,
   Grid,
   Input,
@@ -17,75 +13,15 @@ import {
   Checkbox,
   Label,
   Container,
+  Modal,
+  ModalHeader,
+  ModalContent,
+  ModalActions,
 } from "semantic-ui-react";
 import {
   serializedVocabularyItems,
   serializeVocabularyItem,
 } from "@js/oarepo_vocabularies";
-
-const SearchComponent = ({ vocab, handleSelect }) => {
-  const [query, setQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (query.trim() === "") {
-      setSearchResults([]);
-      return;
-    }
-
-    const apiUrl = `${window.location.origin}/api/vocabularies/${vocab}?q=${query}`;
-
-    const fetchSearchResults = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(apiUrl, {
-          headers: {
-            Accept: "application/vnd.inveniordm.v1+json",
-          },
-        });
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const data = await response.json();
-        setSearchResults(data.hits.hits);
-      } catch (error) {
-        console.error("Error fetching search results:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSearchResults();
-  }, [query]);
-
-  return (
-    <Grid.Column>
-      <Input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search..."
-      />
-      {loading && <Label>Loading...</Label>}
-      {searchResults?.length > 0 && (
-        <Grid columns={1}>
-          {searchResults.map((i, index) => (
-            <Label
-              key={index}
-              onClick={(e) => {
-                handleSelect(i, i.id, e);
-              }}
-            >
-              {" "}
-              <Breadcrumb icon="left angle" sections={i.hierarchy.title} />
-            </Label>
-          ))}
-        </Grid>
-      )}
-    </Grid.Column>
-  );
-};
 
 export const VocabularyTreeSelectField = ({
   fieldPath,
@@ -93,6 +29,7 @@ export const VocabularyTreeSelectField = ({
   optionsListName,
   helpText,
   placeholder,
+  category,
   optimized,
   ...uiProps
 }) => {
@@ -101,7 +38,6 @@ export const VocabularyTreeSelectField = ({
   const formik = useFormikContext();
   const { values, setFieldTouched } = useFormikContext();
   const value = getIn(values, fieldPath, multiple ? [] : {});
-
   const { all: allOptions, featured: featuredOptions } =
     vocabularies[optionsListName];
 
@@ -111,33 +47,52 @@ export const VocabularyTreeSelectField = ({
       vocabularies
     );
   }
-
-  const [openState, setOpenState] = useState(false);
-  const [parentsState, setParentsState] = useState([]);
-  const [keybState, setKeybState] = useState([]);
-  const [selectedState, setSelectedState] = useState([]);
-
   const serializedOptions = useMemo(
     () => serializedVocabularyItems(allOptions),
     [allOptions]
   );
 
+  const [openState, setOpenState] = useState(false);
+  const [parentsState, setParentsState] = useState([]);
+  const [keybState, setKeybState] = useState([]);
+  const [selectedState, setSelectedState] = useState(() => {
+    if (multiple && Array.isArray(value)) {
+      return value.reduce((acc, val) => {
+        const foundOption = serializedOptions.find(
+          (option) => option.value === val.id
+        );
+        if (foundOption) {
+          acc.push(foundOption);
+        }
+        return acc;
+      }, []);
+    } else {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    console.log(selectedState);
+  }, [selectedState]);
+
   const handleOpen = () => {
     setOpenState(true);
   };
-
+  const [query, setQuery] = useState("");
   const hierarchicalData = useMemo(() => {
     let data = [];
     let currentColumn = [];
-    let currentLevel = 0;
+    let currentLevel = 1;
 
     serializedOptions.forEach((option, index) => {
-      if (option.hierarchy.ancestors.length === currentLevel) {
-        currentColumn.push(option);
-      } else {
-        data.push(currentColumn);
-        currentColumn = [option];
-        currentLevel++;
+      if (option.hierarchy.ancestors.includes(category) || !category) {
+        if (option.hierarchy.ancestors.length === currentLevel) {
+          currentColumn.push(option);
+        } else {
+          data.push(currentColumn);
+          currentColumn = [option];
+          currentLevel = option.hierarchy.ancestors.length;
+        }
       }
     });
 
@@ -145,8 +100,17 @@ export const VocabularyTreeSelectField = ({
       data.push(currentColumn);
     }
 
-    return data;
-  }, [serializedOptions]);
+    return query == ""
+      ? data
+      : data.map((column) =>
+          column.filter((option) =>
+            option.hierarchy.title[0]
+              .toLowerCase()
+              .includes(query.toLowerCase())
+          )
+        );
+  }, [serializedOptions, category, query]);
+
 
   const columnsCount = hierarchicalData.length;
 
@@ -292,9 +256,8 @@ export const VocabularyTreeSelectField = ({
       <Grid.Column key={index}>
         {column.map((option, i) => {
           if (
-            option.hierarchy.ancestors.length == index &&
-            (index == 0 ||
-              option.hierarchy.ancestors[0] == parentsState[index - 1])
+            index == 0 ||
+            option.hierarchy.ancestors[0] == parentsState[index - 1]
           ) {
             return (
               <Grid.Row
@@ -381,10 +344,14 @@ export const VocabularyTreeSelectField = ({
               <Header as="h3">
                 {placeholder ? placeholder : "Choose Items"}
               </Header>
-              <SearchComponent
-                vocab={optionsListName}
-                handleSelect={handleSelect}
-              />
+              <Grid.Column>
+                <Input
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search..."
+                />
+              </Grid.Column>
             </Grid.Row>
           </ModalHeader>
 

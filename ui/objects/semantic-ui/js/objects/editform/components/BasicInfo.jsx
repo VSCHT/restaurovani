@@ -93,6 +93,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
             fieldPath="metadata.restorationObject.itemTypes"
             multiple={true}
             placeholder="Vyberte typ předmětu"
+            category={category}
             label={
               <FieldLabel
                 htmlFor="metadata.restorationObject.itemTypes"
