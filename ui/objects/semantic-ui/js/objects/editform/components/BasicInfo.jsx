@@ -15,7 +15,7 @@ import {
 import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 
 import { Grid } from "semantic-ui-react";
-import { ArrayFieldItem } from "@js/oarepo_ui";
+import { ArrayFieldItem, EDTFDaterangePicker } from "@js/oarepo_ui";
 
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
@@ -104,19 +104,14 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
         </Grid.Column>
 
         {/* <Grid.Column>
-          <EDTFDateRangePickerField
+          <EDTFDaterangePicker
             name="metadata.restorationObject.creationPeriod"
             aria-label="Datace"
             fieldPath="metadata.restorationObject.creationPeriod"
             startDateInputPlaceholder="Datace od"
             endDateInputPlaceholder="Datace do"
             clearButtonClassName="small transparent"
-            label={
-              <FieldLabel
-                htmlFor="metadata.restorationObject.creationPeriod"
-                label="Datace"
-              ></FieldLabel>
-            }
+            label="Datace"
           />
         </Grid.Column> */}
 

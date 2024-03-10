@@ -24,10 +24,15 @@
   }
   .tree-field .columns-container & {
     flex-wrap: nowrap;
+    height: 100%;
     display: flex;
 
     .column {
-      margin-right: 20px;
+      width: 100%;
+      border: 1px solid @darkBrown;
+      &:not(:has(.row)) {
+        display: none;
+      }
     }
     .row.spaced {
       min-width: 210px;
@@ -54,10 +59,10 @@
     width: 80%;
     flex-wrap: wrap;
   }
-  .tree-field  .ui.container &.spaced {
+  .tree-field .ui.container &.spaced {
     border: 1px solid @darkBrown;
     padding: 0.5rem;
-}
+  }
 }
 
 .column {
@@ -124,9 +129,9 @@
   &.img-container {
     width: 0px;
   }
-  .tree-field  .ui.container &.gapped {
-    min-width: 210px
-}
+  .tree-field .ui.container &.gapped {
+    min-width: 210px;
+  }
 }
 
 .gapped {
@@ -183,11 +188,11 @@
     &.grid-searchbar .ui.button.filter {
       display: flex;
     }
-    .tree-field .actions & ,  .tree-field .header &  {
+    .tree-field .actions &,
+    .tree-field .header & {
       flex-direction: column;
     }
   }
- 
 }
 
 @media only screen and (max-width: @smallMobileSize) {
