@@ -5,20 +5,22 @@
   & > .image.content {
     justify-content: space-between;
   }
+  &.tree-field {
+    & .columns-container {
+      overflow-x: auto;
+      min-height: 60vh;
+    }
+    .content {
+      min-height: 60vh;
+    }
+    & > .header {
+      padding-right: 4vw;
+    }
+  }
 }
 
 @media only screen and (max-width: @mobileSize) {
   .ui.modal .image.content {
     flex-direction: row;
-  }
-}
-
-.tree-field {
-  & .columns-container {
-    overflow-x: auto;
-    min-height: 60vh;
-  }
-  .content {
-    min-height: 60vh;
   }
 }
