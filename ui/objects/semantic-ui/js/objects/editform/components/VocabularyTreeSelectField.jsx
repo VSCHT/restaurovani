@@ -370,7 +370,7 @@ export const VocabularyTreeSelectField = ({
           </ModalContent>
           <ModalActions>
             <Grid.Row className='gapped'>
-              <Grid.Row>
+              <Grid.Row className='gapped'>
                 {selectedState.map((i, index) => (
                   <Label key={index}>
                     {" "}
