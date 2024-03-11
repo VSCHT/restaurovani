@@ -49,7 +49,6 @@ InputElement.propTypes = {
   clearButtonClassName: PropTypes.string,
   handleClear: PropTypes.func,
   fieldPath: PropTypes.string,
-  label: PropTypes.string,
   className: PropTypes.string,
   placeholder: PropTypes.string,
   onKeyDown: PropTypes.func,

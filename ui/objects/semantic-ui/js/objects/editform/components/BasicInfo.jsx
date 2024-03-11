@@ -14,7 +14,7 @@ import {
 import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 
 import { Grid } from "semantic-ui-react";
-import { ArrayFieldItem, EDTFDaterangePicker } from "@js/oarepo_ui";
+import { ArrayFieldItem } from "@js/oarepo_ui";
 
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";

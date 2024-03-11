@@ -12,11 +12,12 @@
       align-items: center;
     }
   }
+  & .ui.dropdown .menu {
+    left: 1.5rem;
+  }
 }
 
-
-
-body.pushable > .pusher  {
+body.pushable > .pusher {
   &:has(#form-app),
   &:has(.detail-page) {
     background-image: url("~@less/images/bgDetails.png");

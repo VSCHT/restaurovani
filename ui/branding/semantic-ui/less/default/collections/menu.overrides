@@ -8,9 +8,6 @@
   .item {
     color: gray;
   }
-  .right.menu .item {
-    color: white;
-  }
 
   & .brand.item {
     padding: 1rem;
