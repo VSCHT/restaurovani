@@ -4,7 +4,6 @@ import Overridable from "react-overridable";
 import _get from "lodash/get";
 
 import {
-  Grid,
   Item,
   Button,
   ItemContent,
@@ -15,6 +14,7 @@ import {
 } from "semantic-ui-react";
 import { withState, buildUID } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
+import { getCaption } from "../../detail";
 
 const ItemHeader = ({ title, searchUrl, selfLink }) => {
   const [smallScreen, setSmallScreen] = React.useState(
@@ -65,7 +65,6 @@ const DetailsButton = ({ searchUrl, selfLink }) => {
 };
 
 export const ResultsListItemComponent = ({ result, appName }) => {
-
   const [objectImages, setObjectImages] = useState([]);
 
   useEffect(() => {
@@ -118,12 +117,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
           src={
             objectImages?.links?.content ?? "/static/images/image-noimage.png"
           }
-          alt={
-            objectImages?.[0]?.metadata?.caption === undefined
-              ? ""
-              : objectImages?.[0]?.metadata?.caption ||
-                objectImages?.[0]?.metadata?.caption === undefined
-          }
+          alt={getCaption(objectImages)}
         />
         {/* url */}
         <ItemContent>

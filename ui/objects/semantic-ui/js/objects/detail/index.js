@@ -40,7 +40,9 @@ const fetchImages = async () => {
   }
 };
 
-const getCaption = (d) => {
+
+
+export const getCaption = (d) => {
   if (d?.metadata && d?.metadata?.caption) {
     if (
       d.metadata.caption === "default_image_name" ||

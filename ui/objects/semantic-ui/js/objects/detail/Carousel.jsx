@@ -58,12 +58,7 @@ export const ImgCarousel = ({ imagesCollection, getCaption }) => {
             <Image
               key={index}
               src={image.links.content}
-              alt={
-                selectedImage?.metadata.caption === "default_image_name" ||
-                selectedImage?.metadata.caption == 0
-                  ? selectedImage?.key
-                  : selectedImage?.metadata.caption
-              }
+              alt={getCaption(selectedImage)}
               onClick={() => {
                 setSelectedImageIndex(index);
                 setModalOpen(true);
@@ -78,9 +73,7 @@ export const ImgCarousel = ({ imagesCollection, getCaption }) => {
           <Button icon="chevron left black" onClick={handlePrevImage} />
           <Grid columns={1}>
             <Image src={selectedImage?.links?.content} />
-            <Header as="h4">
-              {getCaption(selectedImage)}
-            </Header>
+            <Header as="h4">{getCaption(selectedImage)}</Header>
           </Grid>
           <Button icon="chevron right black" onClick={handleNextImage} />
         </Modal.Content>
