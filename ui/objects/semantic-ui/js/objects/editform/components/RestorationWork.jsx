@@ -13,6 +13,7 @@ import { ArrayFieldItem } from "@js/oarepo_ui";
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 import _get from "lodash/get";
+import { DaterangePicker } from "./DateRange";
 
 export const RestorationWork = ({ activeIndex, handleActive, values , category}) => {
   const fieldPath = "metadata.restorationWork";
@@ -129,36 +130,20 @@ export const RestorationWork = ({ activeIndex, handleActive, values , category})
           }}
         </ArrayField>
 
-        <Grid columns={2} className="gapped">
-          <Grid.Column>
-            <TextField
-              name={`${fieldPath}.restorationPeriod.since`}
-              aria-label="Od"
-              placeholder="rrrr-mm-dd"
-              fieldPath={`${fieldPath}.restorationPeriod.since`}
-              label={
-                <FieldLabel
-                  htmlFor={`${fieldPath}.restorationPeriod.since`}
-                  label="Období restaurování od"
-                ></FieldLabel>
-              }
-            />
-          </Grid.Column>
-          <Grid.Column>
-            <TextField
-              name={`${fieldPath}.restorationPeriod.until`}
-              aria-label="Do"
-              fieldPath={`${fieldPath}.restorationPeriod.until`}
-              placeholder="rrrr-mm-dd"
-              label={
-                <FieldLabel
-                  htmlFor={`${fieldPath}.restorationPeriod.until`}
-                  label="Období restaurování do"
-                ></FieldLabel>
-              }
-            />
-          </Grid.Column>
-        </Grid>
+        <Grid.Column>
+          <DaterangePicker
+            name={`${fieldPath}.restorationPeriod`}
+            aria-label="Období restaurování"
+            fieldPath={`${fieldPath}.restorationPeriod`}
+            startDateInputPlaceholder="Období restaurování"
+            endDateInputPlaceholder="Období restaurování"
+            clearButtonClassName="small transparent"
+            label="Období restaurování"
+            dateFormat='yyyy/MM/dd'
+          />
+        </Grid.Column>
+
+
         <Grid.Column>
           <LocalVocabularySelectField
             fieldPath={`${fieldPath}.workType`}

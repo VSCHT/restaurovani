@@ -11,7 +11,6 @@ import {
   TextAreaField,
   MultiInput,
 } from "react-invenio-forms";
-
 import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 
 import { Grid } from "semantic-ui-react";
@@ -20,6 +19,7 @@ import { ArrayFieldItem, EDTFDaterangePicker } from "@js/oarepo_ui";
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import { FileStat } from "./FileStat";
+import {DaterangePicker} from './DateRange'
 
 export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
   const units = [
@@ -30,6 +30,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
     { value: "m", text: "m" },
     { value: "mm", text: "mm" },
   ];
+
 
   return (
     <AccordionField
@@ -103,8 +104,8 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           />
         </Grid.Column>
 
-        {/* <Grid.Column>
-          <EDTFDaterangePicker
+        <Grid.Column>
+          <DaterangePicker
             name="metadata.restorationObject.creationPeriod"
             aria-label="Datace"
             fieldPath="metadata.restorationObject.creationPeriod"
@@ -112,8 +113,11 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
             endDateInputPlaceholder="Datace do"
             clearButtonClassName="small transparent"
             label="Datace"
+            dateFormat='yyyy'
           />
-        </Grid.Column> */}
+        </Grid.Column>
+        
+
 
         {category != "textil" && (
           <ArrayField

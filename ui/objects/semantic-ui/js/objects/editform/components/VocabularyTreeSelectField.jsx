@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState } from "react";
 import { SelectField } from "react-invenio-forms";
 import { useFormConfig } from "@js/oarepo_ui";
 import { useFormikContext, getIn } from "formik";
@@ -71,9 +71,7 @@ export const VocabularyTreeSelectField = ({
     }
   });
 
-  useEffect(() => {
-    console.log(selectedState);
-  }, [selectedState]);
+
 
   const handleOpen = () => {
     setOpenState(true);

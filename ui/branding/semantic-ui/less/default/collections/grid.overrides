@@ -63,6 +63,10 @@
     border: 1px solid @darkBrown;
     padding: 0.5rem;
   }
+  .detail-page &:has(.ui.header){
+    align-items: center;
+
+  }
 }
 
 .column {
@@ -131,6 +135,10 @@
   }
   .tree-field .ui.container &.gapped {
     min-width: 210px;
+  }
+  & .react-datepicker-popper{
+    background-color: white;
+    z-index: 10
   }
 }
 
