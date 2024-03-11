@@ -136,10 +136,6 @@
   .tree-field .ui.container &.gapped {
     min-width: 210px;
   }
-  & .react-datepicker-popper{
-    background-color: white;
-    z-index: 10
-  }
 }
 
 .gapped {
