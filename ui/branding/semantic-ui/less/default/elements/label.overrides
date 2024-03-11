@@ -33,6 +33,8 @@
   .tree-field .actions & {
     display: flex;
     text-align: left;
+    border: 1px solid @darkBrown;
+    width: min-content;
   }
 }
 
