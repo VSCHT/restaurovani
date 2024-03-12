@@ -21,7 +21,7 @@
 /* card content */
 @imageMargin: 0 0 0 2rem;
 @descriptionFontSize:1rem;
-@descriptionColor: #222;
+@descriptionColor: @blackColor;
 @extraWidth:100%;
 @extraDisplay:flex;
 @extraMargin:5% 0  0;

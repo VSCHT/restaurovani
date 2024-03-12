@@ -8,7 +8,7 @@
   }
   .predmety__aside &,
   .aside &:not(:nth-child(3)) {
-    color: #222;
+    color: @blackColor;
   }
 
   &.pointing {
@@ -17,7 +17,7 @@
   &.bold {
     font-size: 1rem;
     font-weight: 700;
-    color: #222;
+    color: @blackColor;
   }
 
   @media only screen and (max-width: @mobileSize) {
@@ -30,15 +30,15 @@
       display: none;
     }
   }
-  .tree-field .actions & {
+}
+
+.ui.modal.tree-field {
+  .actions .ui.label {
     display: flex;
     text-align: left;
     border: 1px solid @darkBrown;
     width: min-content;
   }
-}
-
-.ui.modal.tree-field {
   .content .ui.label {
     max-width: 30%;
     text-align: left;
@@ -51,7 +51,7 @@
   .ui.label {
     a {
       font-size: 1rem;
-      color: #222;
+      color: @blackColor;
     }
   }
 }

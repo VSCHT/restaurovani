@@ -46,6 +46,7 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
 
        <Carousel record={record}/>
 
+       <div class="ui left aligned one column grid">
         <table class="ui unstackable table">
           <tbody>
             {% if metadata.restorationObject.stylePeriod %}
@@ -182,10 +183,10 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
             {% endif %}
           </tbody>
         </table>
-
+      </div>
         <!-- desc -->
         {% if metadata.restorationObject.description %}
-        <div class="left aligned column" aria-label="Popis předmětu">
+        <div class="ui left aligned one column grid" aria-label="Popis předmětu">
           <p>{{ metadata.restorationObject.description }}</p>
         </div>
         {% endif %}
