@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import { Modal, Image, Button, Grid, Header } from "semantic-ui-react";
+import { getCaption } from "./index";
 
-export const ImgCarousel = ({ imagesCollection, getCaption }) => {
+export const ImgCarousel = ({ imagesCollection }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(5);
