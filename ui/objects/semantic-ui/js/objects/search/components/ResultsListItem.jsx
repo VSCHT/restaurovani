@@ -104,6 +104,8 @@ export const ResultsListItemComponent = ({ result, appName }) => {
   );
 
   const created = _get(result, "created", "<no data>");
+  const creationDate= new Date(created).toISOString().slice(0, 10);
+  
 
   return (
     <Overridable
@@ -130,10 +132,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
           <ItemExtra>
             <Label size="large">
               Vloženo:{" "}
-              {created.substring(
-                created.indexOf(",") + 1,
-                created.lastIndexOf(",")
-              )}{" "}
+              {creationDate}{" "}
             </Label>
             <DetailsButton
               searchUrl={searchAppConfig.ui_endpoint}

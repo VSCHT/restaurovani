@@ -32,6 +32,9 @@
     }
     .row.spaced {
       min-width: 210px;
+      &.open {
+        background-color: lightblue;
+      }
     }
   }
 }
@@ -124,6 +127,9 @@
   .tree-field .ui.container &.gapped {
     min-width: 210px;
   }
+  .tree-field .header & {
+    min-width: 20vw;
+  }
 }
 
 .gapped {
@@ -145,7 +151,7 @@
       }
       .detail-page .ui.left.aligned.grid& {
         padding: 0 1rem;
-        &:has(.ui.table){
+        &:has(.ui.table) {
           padding-top: 2rem;
         }
       }
