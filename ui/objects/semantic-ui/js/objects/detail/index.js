@@ -62,10 +62,10 @@ async function fetchAndRender() {
     await fetchImages();
 
     ReactDOM.render(
-      <ImgCarousel imagesCollection={imagesCollection} getCaption={getCaption}/>,
+      <ImgCarousel imagesCollection={imagesCollection}/>,
       imgGalleryComp
     );
-    ReactDOM.render(<FilesSection filesCollection={filesCollection} getCaption={getCaption}/>, filesDivComp);
+    ReactDOM.render(<FilesSection filesCollection={filesCollection}/>, filesDivComp);
   } catch (error) {
     console.error("Error rendering component");
   }
