@@ -2,6 +2,7 @@
   .search-container & {
     margin-top: 10px;
   }
+
   .title {
     display: flex;
     justify-content: space-between;
@@ -15,11 +16,9 @@
     }
   }
 
-  .detail-page & .title:not(.ui) {
-    justify-content: flex-start;
-  }
-
+  .detail-page & .title:not(.ui),
   .ui.unstackable.table & .title:not(.ui) {
+    justify-content: flex-start;
     padding: 0;
   }
 
@@ -38,10 +37,16 @@
       padding-bottom: 1em;
     }
   }
+
   &.styled.inverted:not(.accordion > .active) > .title:not(.active),
   .title:not(.active) .icon {
     color: @sandGrayColor;
     background-color: none;
+  }
+
+  &.invenio-accordion-field .title {
+    background: none;
+    margin-bottom: 0;
   }
 
   @media only screen and (min-width: @mobileSize) and (max-width: @tabletSize) {
