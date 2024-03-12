@@ -71,12 +71,12 @@ export const ImgCarousel = ({ imagesCollection }) => {
 
       <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
         <Modal.Content image>
-          <Button icon="chevron left black" onClick={handlePrevImage} />
+          <Button icon="chevron left" color='black' onClick={handlePrevImage} />
           <Grid columns={1}>
             <Image src={selectedImage?.links?.content} />
             <Header as="h4">{getCaption(selectedImage)}</Header>
           </Grid>
-          <Button icon="chevron right black" onClick={handleNextImage} />
+          <Button icon="chevron right" color='black' onClick={handleNextImage} />
         </Modal.Content>
         <Button
           icon="close"
