@@ -16,7 +16,6 @@ export const DaterangePicker = ({
 }) => {
   const [field] = useField(fieldPath);
   const { setFieldValue } = useFormikContext();
-
   const [dates, setDates] = useState([null, null]);
 
   useEffect(() => {
@@ -28,12 +27,14 @@ export const DaterangePicker = ({
     } else {
       setDates([null, null]);
     }
-  }, [field?.value]);
+  }, []);
 
   const handleChange = (newDates) => {
-    const [startDate, endDate] = newDates.map(date => {
+    const [startDate, endDate] = newDates.map((date) => {
       if (date) {
-        return dateFormat === "yyyy" ? date.toISOString().slice(0, 4) : date.toISOString().slice(0, 10);
+        return dateFormat === "yyyy"
+          ? date.getFullYear()
+          : date.toISOString().slice(0, 10);
       }
       return null;
     });
