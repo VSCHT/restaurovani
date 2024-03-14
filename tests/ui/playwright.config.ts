@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "playwright/test";
 
 export default defineConfig({
-  testDir: "tests",
+  testDir: ".",
 
   fullyParallel: true,
 
@@ -14,8 +14,7 @@ export default defineConfig({
   reporter: "html",
 
   use: {
-    baseURL: "https://127.0.0.1:5000",
-
+    baseURL: "https://127.0.0.1:5000/",
     ignoreHTTPSErrors: true,
     trace: "on-first-retry",
   },
@@ -29,10 +28,6 @@ export default defineConfig({
         storageState: "playwright/.auth/user.json",
       },
       dependencies: ["setup"],
-    },
-    // {
-    //   name: 'chromium',
-    //   use: { ...devices['Desktop Chrome'] },
-    // },
+    }
   ],
 });
