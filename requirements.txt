@@ -5,6 +5,7 @@ et-xmlfile==1.1.0
 flask-babelex==0.9.4
 frozendict==2.4.4
 jinja2-simple-tags==0.6.1
+<<<<<<< HEAD
 jinjax==0.36
 json5==0.9.25
 langcodes==3.4.0
@@ -15,6 +16,16 @@ oarepo-requests==1.1.16
 oarepo-runtime==1.5.30
 oarepo-ui==5.1.31
 oarepo-vocabularies==2.0.87
+=======
+jinjax==0.31
+json5==0.9.22
+langcodes==3.3.0
+oarepo-published-service==1.0.3
+oarepo-requests==1.1.2
+oarepo-runtime==1.5.18
+oarepo-ui==5.1.5
+oarepo-vocabularies==2.0.79
+>>>>>>> 4cc04d6 (config+ auth)
 openpyxl==3.1.2
 pymupdf==1.24.4
 pymupdfb==1.24.3

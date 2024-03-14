@@ -3250,7 +3250,11 @@ files = [
 
 [[package]]
 name = "oarepo-runtime"
+<<<<<<< HEAD
 version = "1.5.30"
+=======
+version = "1.5.18"
+>>>>>>> 4cc04d6 (config+ auth)
 summary = "A set of runtime extensions of Invenio repository"
 groups = ["default"]
 dependencies = [
@@ -3263,14 +3267,24 @@ dependencies = [
     "tqdm",
 ]
 files = [
+<<<<<<< HEAD
     {file = "oarepo-runtime-1.5.30.tar.gz", hash = "sha256:98c6d5c85603db23fbd6402f627385e6da3060c692bf7e196bc9506db12bab91"},
     {file = "oarepo_runtime-1.5.30-py3-none-any.whl", hash = "sha256:27326c4c7a03112835b1600760b6abc812e5d61c538e9cb2073c146adeea567d"},
+=======
+    {file = "oarepo-runtime-1.5.18.tar.gz", hash = "sha256:4043c73f2ca3da5b5878e256ace1dd3d6a76dd4a5700154bbe45d9101291d65c"},
+    {file = "oarepo_runtime-1.5.18-py3-none-any.whl", hash = "sha256:9fd63bbfc26b91fedcd6636e5e21939077ee428dfe08c7a0990584f590511deb"},
+>>>>>>> 4cc04d6 (config+ auth)
 ]
 
 [[package]]
 name = "oarepo-ui"
+<<<<<<< HEAD
 version = "5.1.31"
 requires_python = ">=3.10"
+=======
+version = "5.1.5"
+requires_python = ">=3.6"
+>>>>>>> 4cc04d6 (config+ auth)
 summary = "UI module for invenio 3.5+"
 groups = ["default"]
 dependencies = [
@@ -3281,13 +3295,22 @@ dependencies = [
     "oarepo-runtime",
 ]
 files = [
+<<<<<<< HEAD
     {file = "oarepo_ui-5.1.31-py2.py3-none-any.whl", hash = "sha256:69de8f7063a28bbd3ab54f193ada8d65106ffa9aaf85f95c574e303ded8463f9"},
     {file = "oarepo_ui-5.1.31.tar.gz", hash = "sha256:0aa90d4be60fe4d5f9ed5f8a44d352fe653704252f48f973d6a26f8c34b5cf98"},
+=======
+    {file = "oarepo-ui-5.1.5.tar.gz", hash = "sha256:3a551c3f9933af6d0e61cff3f0a1aa923dcd7609df11a898ce87e7bedd708ac3"},
+    {file = "oarepo_ui-5.1.5-py2.py3-none-any.whl", hash = "sha256:a77f9f0f8a1c9af6ad0fbe419c3d62be5d5e1ea2b57eb9ed889645f99615f1c3"},
+>>>>>>> 4cc04d6 (config+ auth)
 ]
 
 [[package]]
 name = "oarepo-vocabularies"
+<<<<<<< HEAD
 version = "2.0.87"
+=======
+version = "2.0.79"
+>>>>>>> 4cc04d6 (config+ auth)
 summary = "Support for custom fields and hierarchy on Invenio vocabularies"
 groups = ["default"]
 dependencies = [
@@ -3298,8 +3321,13 @@ dependencies = [
     "openpyxl",
 ]
 files = [
+<<<<<<< HEAD
     {file = "oarepo_vocabularies-2.0.87-py3-none-any.whl", hash = "sha256:63fd4f4fed9a1812f05712c81399ff9b3f5e0786508045b2cd0e92e3a9ec1544"},
     {file = "oarepo_vocabularies-2.0.87.tar.gz", hash = "sha256:1f0041a317e31924fbe5c2e5e55f0034fd91ae1714f9610d59be53b3a556e63e"},
+=======
+    {file = "oarepo-vocabularies-2.0.79.tar.gz", hash = "sha256:2c27741faa849f039e54b7a96651dacf3154d0bd5d3b0697a973f5827014557c"},
+    {file = "oarepo_vocabularies-2.0.79-py3-none-any.whl", hash = "sha256:d5ffc831595cb0cefcd0c67633433b821b5a676f769c3818f2602fab00f9d03c"},
+>>>>>>> 4cc04d6 (config+ auth)
 ]
 
 [[package]]
@@ -4054,13 +4082,22 @@ files = [
 
 [[package]]
 name = "setuptools"
+<<<<<<< HEAD
 version = "70.0.0"
+=======
+version = "69.2.0"
+>>>>>>> 4cc04d6 (config+ auth)
 requires_python = ">=3.8"
 summary = "Easily download, build, install, upgrade, and uninstall Python packages"
 groups = ["default"]
 files = [
+<<<<<<< HEAD
     {file = "setuptools-70.0.0-py3-none-any.whl", hash = "sha256:54faa7f2e8d2d11bcd2c07bed282eef1046b5c080d1c32add737d7b5817b1ad4"},
     {file = "setuptools-70.0.0.tar.gz", hash = "sha256:f211a66637b8fa059bb28183da127d4e86396c991a942b028c6650d4319c3fd0"},
+=======
+    {file = "setuptools-69.2.0-py3-none-any.whl", hash = "sha256:c21c49fb1042386df081cb5d86759792ab89efca84cf114889191cd09aacc80c"},
+    {file = "setuptools-69.2.0.tar.gz", hash = "sha256:0ff4183f8f42cd8fa3acea16c45205521a4ef28f73c6391d8a25e92893134f2e"},
+>>>>>>> 4cc04d6 (config+ auth)
 ]
 
 [[package]]
