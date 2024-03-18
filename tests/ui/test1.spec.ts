@@ -10,10 +10,28 @@ test("has title", async ({ page }) => {
   );
 });
 
-test("file download start after clicking link", async ({ page }) => {
-  await page.goto(`${url}objekty/g6fbq-qas91`);
+test("file download after clicking link", async ({ page, request }) => {
+  const response = await request.get(
+    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=5&size=10`
+  );
+
+  expect(response.ok()).toBeTruthy();
+
+  const responseBody = await response.body();
+  const responseData = JSON.parse(responseBody.toString());
+  const responseID = responseData.hits.hits[4].id;
+
+  const response2 = await request.get(responseData.hits.hits[4].links.files);
+
+  const responseBody2 = await response2.body();
+  const responseData2 = JSON.parse(responseBody2.toString());
+
+  const lastFile = responseData2.entries.slice(-1);
+  const fileName = lastFile[0].key;
   const downloadPromise = page.waitForEvent("download");
-  await page.locator('a:text("bp-pulcova-beroun.pdf")').click();
+  await page.goto(`${url}objekty/${responseID}`);
+
+  await page.locator(`a:text('${fileName}')`).click();
   const download = await downloadPromise;
   expect(download.suggestedFilename()).toContain(".pdf");
 });
@@ -101,3 +119,60 @@ test("tree-field manipulation", async ({ page }) => {
   expect(page.locator("a").filter({ hasText: "popelnice" })).toBeTruthy();
 });
 
+test("redirection to detail page after search page", async ({
+  page,
+  request,
+}) => {
+  await page.goto(`${url}objekty/?q=&l=list&p=5&s=10&sort=newest`);
+
+  try {
+    const response = await request.get(
+      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=5&size=10`
+    );
+
+    expect(response.ok()).toBeTruthy();
+
+    const responseBody = await response.body();
+    const responseData = JSON.parse(responseBody.toString());
+    const responseID = responseData.hits.hits[4].id;
+    const responseName =
+      responseData.hits.hits[4].metadata.restorationObject.title;
+
+    await page.getByRole("link", { name: responseName }).first().click();
+
+    const expectedURL = `${url}objekty/${responseID}`;
+    expect(await page.waitForURL(expectedURL));
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+});
+
+test("redirection to detail page after edit form", async ({
+  page,
+  request,
+}) => {
+  try {
+    const response = await request.get(
+      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=5&size=10`
+    );
+
+    expect(response.ok()).toBeTruthy();
+
+    const responseBody = await response.body();
+    const responseData = JSON.parse(responseBody.toString());
+    const responseID = responseData.hits.hits[4].id;
+
+    await page.goto(`${url}objekty/${responseID}/edit`);
+    const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
+    await page.getByLabel("tlacitko vytvoreni predmetu").click();
+    await pagenav;
+
+    const expectedURL = `${url}objekty/${responseID}`;
+
+    expect(page.url()).toBe(expectedURL);
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+});
