@@ -104,8 +104,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
   );
 
   const created = _get(result, "created", "<no data>");
-  const creationDate= new Date(created).toISOString().slice(0, 10);
-  
+  const creationDate = new Date(created).toLocaleDateString();
 
   return (
     <Overridable
@@ -130,10 +129,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
           />
           <ItemDescription>{restorer}</ItemDescription>
           <ItemExtra>
-            <Label size="large">
-              Vloženo:{" "}
-              {creationDate}{" "}
-            </Label>
+            <Label size="large">Vloženo: {creationDate} </Label>
             <DetailsButton
               searchUrl={searchAppConfig.ui_endpoint}
               selfLink={`${result.id}`}

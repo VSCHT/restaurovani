@@ -1,5 +1,8 @@
-
-
-i.close.icon {
-  color: @darkestBrown;
+.icon {
+  i.close& {
+    color: @darkestBrown;
+  }
+  .ui.fluid.dropdown > .dropdown& {
+    z-index: 100;
+  }
 }
