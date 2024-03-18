@@ -18,7 +18,7 @@ test.afterAll(async ({}) => {
 });
 
 test("get error on unfilled form", async ({ page }) => {
-  await page.goto(`${url}objekty/\_new`);
+  await page.goto(`${url}objekty/_new`);
 
   await page.getByLabel("tlacitko vytvoreni predmetu").click();
   await page.waitForSelector(
@@ -34,7 +34,6 @@ test("get error on unfilled form", async ({ page }) => {
   ).toBe(true);
 });
 
-
 test("successful form submit", async ({ page, request }) => {
   try {
     const response = await request.post(`https://127.0.0.1:5000/api/objects`, {
@@ -48,17 +47,41 @@ test("successful form submit", async ({ page, request }) => {
     });
 
     expect(response.ok()).toBeTruthy();
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+});
+
+test("successful form submit 2", async ({ page, request }) => {
+  try {
+    await page.goto(`${url}objekty/_new`);
+
+    await page.getByLabel("Název").fill("test");
+    await page.getByLabel("Restauroval(a)").fill("test");
+    await page.getByText("Kovy").click();
+
+    await page.getByLabel("tlacitko vytvoreni predmetu").click();
+
+    const response = await Promise.all([
+      page.waitForResponse(
+        (resp) => resp.url().includes("/api/objects") && resp.status() === 201
+      ),
+      page.waitForNavigation({ waitUntil: "networkidle" }),
+    ]);
+
+    console.log(response);
 
     const responseBody = await response.body();
     const responseData = JSON.parse(responseBody.toString());
     const responseID = responseData.id;
 
     const expectedURL = `${url}objekty/${responseID}/edit`;
-    // expect(await page.waitForURL(expectedURL)).toBeTruthy();
-
-    console.log("Form submitted successfully. Object ID:", responseID);
+    expect(page.url()).toBe(expectedURL);
   } catch (error) {
     console.error("Error:", error);
     throw error;
   }
 });
+
+
