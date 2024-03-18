@@ -17,13 +17,37 @@ import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
 import { getCaption } from "../../detail";
 
 const ItemHeader = ({ title, searchUrl, selfLink }) => {
+  const [smallScreen, setSmallScreen] = React.useState(
+    window.innerWidth <= 730
+  );
+
+  useEffect(() => {
+    function updateDescVisibility() {
+      if (window.innerWidth >= 730) {
+        setSmallScreen(false);
+      } else {
+        setSmallScreen(true);
+      }
+    }
+
+    updateDescVisibility();
+
+    window.addEventListener("resize", updateDescVisibility);
+
+    return () => {
+      window.removeEventListener("resize", updateDescVisibility);
+    };
+  }, []);
+
   const viewLink = new URL(
     selfLink,
     new URL(searchUrl, window.location.origin)
   );
+  let truncatedTitle =
+    title.length > 10 && smallScreen ? title.substring(0, 10) + "..." : title;
   return (
     <Item.Header>
-      <a href={viewLink}>{title}</a>
+      <a href={viewLink}>{truncatedTitle}</a>
     </Item.Header>
   );
 };
@@ -82,14 +106,6 @@ export const ResultsListItemComponent = ({ result, appName }) => {
   const created = _get(result, "created", "<no data>");
   const creationDate = new Date(created).toLocaleDateString();
 
-  const restDescription = _get(result, "metadata.restorationWork.abstract", "");
-
-  const objDescription = _get(
-    result,
-    "metadata.restorationObject.description",
-    ""
-  );
-
   return (
     <Overridable
       id={buildUID("RecordsResultsListItem.layout", "", appName)}
@@ -112,13 +128,6 @@ export const ResultsListItemComponent = ({ result, appName }) => {
             selfLink={`${result.id}`}
           />
           <ItemDescription>{restorer}</ItemDescription>
-          <ItemDescription>
-            <p>
-              {restDescription.length != 0
-                ? restDescription
-                : objDescription}
-            </p>
-          </ItemDescription>
           <ItemExtra>
             <Label size="large">Vloženo: {creationDate} </Label>
             <DetailsButton

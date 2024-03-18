@@ -137,36 +137,6 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                 </p>
               </td>
             </tr>
-            {% endif %}
-            {% if metadata.restorationObject.secondaryMaterialTypes %}
-            <tr>
-              <td>
-                <p><b>Vedlejší materiály</b></p>
-              </td>
-              <td>
-                <div class="ui accordion">
-                  <div class="title active">
-                    {% for value in  metadata.restorationObject.secondaryMaterialTypes %} {%
-                    if loop.index == 1 %}
-                    <p>
-                      {% if value.title %}
-                      {{ value.title }} {% endif %} {% endif %} {% if
-                      loop.index == 2 %} <i class="dropdown black icon"></i>{%
-                      endif %}
-                    </p>
-                    {% endfor %}
-                  </div>
-                  <div class="content">
-                    {% for value in metadata.restorationObject.secondaryMaterialTypes %} {%
-                    if loop.index >= 2 %}
-                    <p>
-                      {{ value.title }} 
-                    </p>
-                    {% endif %} {% endfor %}
-                  </div>
-                </div>
-              </td>
-            </tr>
             {% endif %} {% if metadata.restorationObject.fabricationTechnologies
             %}
             <tr>
@@ -225,12 +195,11 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
 
         <!-- info table-->
        
-        <div class="ui two column divided grid">
+        <div class="ui two column divided grid" aria-label="Info o předmětu">
             <div class="column">
               <table
                 class="ui top aligned table"
                 summary="Informace o předmětu"
-                aria-label="Informace o předmětu"
               >
                 <tbody>
                   {% if metadata.restorationObject.restorationRequestor %}
@@ -262,7 +231,7 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                       {% for value in metadata.restorationWork.supervisors %}
                       <div>
                         {{ value.fullName }}
-                        {{ value.institution }} {% if not loop.last %}, {% endif %}
+                        {{ value.institution }}
                       </div>
 
                       {% endfor %}
@@ -275,16 +244,18 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                     <td>
                       {% for value in
                       metadata.restorationWork.examinationMethods %}
-                      {{ value.title }}{% if not loop.last %}, {% endif %}
+                      {{ value.title }}
                       {% endfor %}
                     </td>
                   </tr>
-                  {% endif %} {% if metadata.restorationWork.restorationMethods %}
+                  {% endif %} {% if metadata.restorationWork.restorationMethods
+                  %}
                   <tr>
                     <td><b>Metody restaurování</b></td>
                     <td>
-                      {% for value in metadata.restorationWork.restorationMethods %}
-                        {{ value.title }}{% if not loop.last %}, {% endif %}
+                      {% for value in
+                      metadata.restorationWork.restorationMethods %}
+                      {{ value.title }}
                       {% endfor %}
                     </td>
                   </tr>
@@ -297,7 +268,7 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
               <b>Restaurátorský zásah/zaměr</b>
 
               <p>
-                {{ metadata.restorationWork.abstract|striptags }}
+                {{ metadata.restorationWork.abstract }}
               </p>
             </div>
             {% endif %}
