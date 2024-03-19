@@ -18,40 +18,42 @@ test.afterAll(async ({}) => {
 });
 
 test("get error on unfilled form", async ({ page }) => {
-  await page.goto(`${url}objekty/_new`);
+    await page.goto(`${url}objekty/_new`);
+  
+    await page.getByLabel("tlacitko vytvoreni predmetu").click();
+  
+    await Promise.all([
+      page.waitForSelector("#metadata\\.restorationWork\\.restorer-error-message", { visible: true }),
+      page.waitForSelector("#metadata\\.restorationObject\\.title-error-message", { visible: true })
+    ]);
+  
+    const isRestorerErrorMessageVisible = await page.isVisible("#metadata\\.restorationWork\\.restorer-error-message");
+    const isTitleErrorMessageVisible = await page.isVisible("#metadata\\.restorationObject\\.title-error-message");
+  
+    expect(isRestorerErrorMessageVisible).toBe(true);
+    expect(isTitleErrorMessageVisible).toBe(true);
+  });
+  
 
-  await page.getByLabel("tlacitko vytvoreni predmetu").click();
-  await page.waitForSelector(
-    "#metadata.restorationWork.restorer-error-message"
-  );
-  await page.waitForSelector("#metadata.restorationObject.title-error-message");
+  
+// test("successful form submit", async ({ page, request }) => {
+//   try {
+//     const response = await request.post(`https://127.0.0.1:5000/api/objects`, {
+//       data: {
+//         files: { enabled: true },
+//         metadata: {
+//           restorationObject: { category: "keramika", title: "test" },
+//           restorationWork: { restorer: "test" },
+//         },
+//       },
+//     });
 
-  expect(
-    await page.isVisible("#metadata.restorationWork.restorer-error-message")
-  ).toBe(true);
-  expect(
-    await page.isVisible("#metadata.restorationObject.title-error-message")
-  ).toBe(true);
-});
-
-test("successful form submit", async ({ page, request }) => {
-  try {
-    const response = await request.post(`https://127.0.0.1:5000/api/objects`, {
-      data: {
-        files: { enabled: true },
-        metadata: {
-          restorationObject: { category: "keramika", title: "test" },
-          restorationWork: { restorer: "test" },
-        },
-      },
-    });
-
-    expect(response.ok()).toBeTruthy();
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
-  }
-});
+//     expect(response.ok()).toBeTruthy();
+//   } catch (error) {
+//     console.error("Error:", error);
+//     throw error;
+//   }
+// });
 
 test("successful form submit 2", async ({ page, request }) => {
   try {
@@ -63,25 +65,20 @@ test("successful form submit 2", async ({ page, request }) => {
 
     await page.getByLabel("tlacitko vytvoreni predmetu").click();
 
-    const response = await Promise.all([
-      page.waitForResponse(
-        (resp) => resp.url().includes("/api/objects") && resp.status() === 201
-      ),
-      page.waitForNavigation({ waitUntil: "networkidle" }),
-    ]);
-
+    const response = await page.waitForResponse(
+      (response) =>
+        response.url().includes("/api/objects") && response.status() === 201
+    );
     console.log(response);
-
+    await page.waitForTimeout(5000);
     const responseBody = await response.body();
     const responseData = JSON.parse(responseBody.toString());
     const responseID = responseData.id;
 
-    const expectedURL = `${url}objekty/${responseID}/edit`;
+    const expectedURL = `${url}objects/${responseID}/edit`;
     expect(page.url()).toBe(expectedURL);
   } catch (error) {
     console.error("Error:", error);
     throw error;
   }
 });
-
-

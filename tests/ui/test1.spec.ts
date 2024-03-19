@@ -1,5 +1,5 @@
 // import { test, expect } from "./playwright/fixtures";
-import { test, expect } from "playwright/test";
+import { test, expect, Locator  } from "playwright/test";
 
 const url = "https://127.0.0.1:5000/";
 
@@ -11,30 +11,48 @@ test("has title", async ({ page }) => {
 });
 
 test("file download after clicking link", async ({ page, request }) => {
-  const response = await request.get(
-    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=5&size=10`
-  );
+  try {
+    const response = await request.get(
+      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=7&size=10`
+    );
 
-  expect(response.ok()).toBeTruthy();
+    expect(response.ok()).toBeTruthy();
 
-  const responseBody = await response.body();
-  const responseData = JSON.parse(responseBody.toString());
-  const responseID = responseData.hits.hits[4].id;
+    const responseBody = await response.body();
+    const responseData = JSON.parse(responseBody.toString());
+    const responseID = responseData.hits.hits[4].id;
 
-  const response2 = await request.get(responseData.hits.hits[4].links.files);
+    const response2 = await request.get(responseData.hits.hits[4].links.files);
 
-  const responseBody2 = await response2.body();
-  const responseData2 = JSON.parse(responseBody2.toString());
+    const responseBody2 = await response2.body();
+    const responseData2 = JSON.parse(responseBody2.toString());
 
-  const lastFile = responseData2.entries.slice(-1);
-  const fileName = lastFile[0].key;
-  const downloadPromise = page.waitForEvent("download");
-  await page.goto(`${url}objekty/${responseID}`);
+    if (responseData2.entries && responseData2.entries.length > 0) {
+      const pdfFile = responseData2.entries.find(entry => entry.metadata.mimetype === "application/pdf");
+      
+      if (pdfFile) {
+        const fileName = pdfFile.key;
 
-  await page.locator(`a:text('${fileName}')`).click();
-  const download = await downloadPromise;
-  expect(download.suggestedFilename()).toContain(".pdf");
+        const downloadPromise = page.waitForEvent("download");
+        await page.goto(`${url}objekty/${responseID}`);
+
+        await page.waitForSelector(`a:text('${fileName}')`);
+        await page.click(`a:text('${fileName}')`);
+
+        const download = await downloadPromise;
+        expect(download.suggestedFilename()).toContain(".pdf");
+      } else {
+        throw new Error("No PDF file found in responseData2.entries");
+      }
+    } else {
+      throw new Error("No files found in responseData2.entries");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
 });
+
 
 test("search and check URL", async ({ page }) => {
   await page.goto(url);
@@ -58,27 +76,21 @@ test("redirection to create page", async ({ page }) => {
   await expect(page).toHaveURL(`${url}objekty/_new`);
 });
 
-// test("checkbox", async ({ page }) => {
-//   await page.goto(`${url}objekty/?q=&l=list&p=1&s=10&sort=newest`);
+test("checkbox", async ({ page }) => {
+  await page.goto(`${url}objekty/?q=&l=list&p=1&s=10&sort=newest`);
+  await page.locator('text="metadata/restorationObject/category.label"').click();
 
-//   await page
-//     .getByText("metadata/restorationObject/creationPeriod/since.label")
-//     .click();
+  await page.waitForSelector('input[type="checkbox"][value="keramika"]');
 
-//   await page
-//     .getByRole("list")
-//     .locator("div")
-//     .filter({ hasText: "1700" })
-//     .first()
-//     .click();
+  const checkbox = await page.locator('input[type="checkbox"][value="keramika"]');
 
-//    await page.getByRole("list")
-//     .filter(new Locator.FilterOptions()
-//         .setHas(page.GetByRole('checkbox',
-//                                new Page.GetByRoleOptions().setName("1700"))))
+  const isChecked = await checkbox.evaluate(element => element.checked);
 
-//  await expect(page.locator('.checkbox:left-of(:text("1700"))')).toHaveClass(/checked/);
-// });
+  expect(isChecked).toBeTruthy();
+});
+
+
+
 
 test("images carousel", async ({ page }) => {
   await page.goto(`${url}objekty/mwa1x-1kj76`);
@@ -123,11 +135,11 @@ test("redirection to detail page after search page", async ({
   page,
   request,
 }) => {
-  await page.goto(`${url}objekty/?q=&l=list&p=5&s=10&sort=newest`);
+  await page.goto(`${url}objekty/?q=&l=list&p=7&s=10&sort=newest`);
 
   try {
     const response = await request.get(
-      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=5&size=10`
+      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=7&size=10`
     );
 
     expect(response.ok()).toBeTruthy();
@@ -138,8 +150,12 @@ test("redirection to detail page after search page", async ({
     const responseName =
       responseData.hits.hits[4].metadata.restorationObject.title;
 
-    await page.getByRole("link", { name: responseName }).first().click();
+    const linkElement = await page.waitForSelector(
+      `a:has-text("${responseName}")`,
+      { timeout: 10000 }
+    );
 
+    await linkElement.click();
     const expectedURL = `${url}objekty/${responseID}`;
     expect(await page.waitForURL(expectedURL));
   } catch (error) {
