@@ -30,13 +30,13 @@ test("get filtered objects", async ({ page }) => {
     .first()
     .click();
 
-  const newResp = await apiContext.get(
-    `${url}/api/user/objects/?q=&sort=newest&page=1&size=10&metadata_restorationObject_creationPeriod_since=1700`
+  const response = await page.waitForResponse(
+    (response) =>
+      response.url().includes("/api/user/objects") && response.status() === 200
   );
 
-  expect(newResp.ok()).toBeTruthy();
-  const response = await page.evaluate(() =>
-    fetch(`https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=1&size=10&metadata_restorationObject_creationPeriod_since=1700`).then((res) => res.json())
-  );
-  expect(response.hits.total).toBe(4);
+  expect(response.ok()).toBeTruthy();
+  const responseData = await response.json();
+
+  expect(responseData.hits.total).toBe(4);
 });
