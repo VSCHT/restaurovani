@@ -1,5 +1,5 @@
 // import { test, expect } from "./playwright/fixtures";
-import { test, expect, Locator  } from "playwright/test";
+import { test, expect, Locator } from "playwright/test";
 
 const url = "https://127.0.0.1:5000/";
 
@@ -28,8 +28,10 @@ test("file download after clicking link", async ({ page, request }) => {
     const responseData2 = JSON.parse(responseBody2.toString());
 
     if (responseData2.entries && responseData2.entries.length > 0) {
-      const pdfFile = responseData2.entries.find(entry => entry.metadata.mimetype === "application/pdf");
-      
+      const pdfFile = responseData2.entries.find(
+        (entry) => entry.metadata.mimetype === "application/pdf"
+      );
+
       if (pdfFile) {
         const fileName = pdfFile.key;
 
@@ -53,7 +55,6 @@ test("file download after clicking link", async ({ page, request }) => {
   }
 });
 
-
 test("search and check URL", async ({ page }) => {
   await page.goto(url);
   await page.getByRole("textbox", { name: "Vyhledat předmět" }).fill("sklo");
@@ -76,21 +77,35 @@ test("redirection to create page", async ({ page }) => {
   await expect(page).toHaveURL(`${url}objekty/_new`);
 });
 
+// test("checkbox", async ({ page }) => {
+//   await page.goto(`${url}objekty/?q=&l=list&p=1&s=10&sort=newest`);
+//   await page
+//     .locator('text="metadata/restorationObject/category.label"')
+//     .click();
+
+//   await page.waitForSelector('input[type="checkbox"][value="keramika"]');
+
+//   const checkbox = await page.locator(
+//     'input[type="checkbox"][value="keramika"]'
+//   );
+
+//   const isChecked = await checkbox.evaluate((element) => element.checked);
+
+//   expect(isChecked).toBeTruthy();
+// });
+
 test("checkbox", async ({ page }) => {
   await page.goto(`${url}objekty/?q=&l=list&p=1&s=10&sort=newest`);
+  
   await page.locator('text="metadata/restorationObject/category.label"').click();
 
-  await page.waitForSelector('input[type="checkbox"][value="keramika"]');
-
   const checkbox = await page.locator('input[type="checkbox"][value="keramika"]');
-
-  const isChecked = await checkbox.evaluate(element => element.checked);
+  await page.waitForSelector('input[type="checkbox"][value="keramika"]:checked');
+  const isChecked = await checkbox.evaluate((element) => element.checked);
 
   expect(isChecked).toBeTruthy();
 });
-
-
-
+ 
 
 test("images carousel", async ({ page }) => {
   await page.goto(`${url}objekty/mwa1x-1kj76`);
@@ -191,4 +206,23 @@ test("redirection to detail page after edit form", async ({
     console.error("Error:", error);
     throw error;
   }
+});
+
+test("logout", async ({ page }) => {
+  await page.goto(`${url}objekty`);
+
+  await page.locator(".right.menu .account-dropdown").click();
+  await page.waitForSelector(".menu.transition");
+
+  await page.evaluate(() => {
+    const links = Array.from(
+      document.querySelectorAll(".menu.transition a.item")
+    );
+    const logoutLink = links.find(
+      (link) => link.textContent.trim() === "Odhlášení"
+    );
+    logoutLink.click();
+  });
+
+  await expect(page).toHaveURL(url);
 });
