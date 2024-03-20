@@ -23,17 +23,16 @@ test("top menu content visibility", async ({ page }) => {
 test("images carousel 2", async ({ page }) => {
   await page.goto(`${url}objekty/xtejz-jpj71`);
 
-  await page
-    .getByRole("button", { name: "slick-arrow slick-next" })
-    .isVisible();
+  await expect(page.locator(".slick-arrow.slick-next")).toBeVisible();
 });
 
 test("search filter button", async ({ page }) => {
   await page.goto(`${url}objekty`);
 
-  await page
-    .getByRole("button", { name: "ui button transparent filter" })
-    .isVisible();
+  await expect(page.locator(".ui.button.filter")).toBeVisible();
+
+  await page.locator(".ui.button.filter").click();
+  await expect(page.locator(".ui.modal")).toBeVisible();
 });
 
 test("sidebar search", async ({ page }) => {
@@ -51,4 +50,51 @@ test("sidebar search", async ({ page }) => {
   await page.locator(`[type='submit']`).click();
 
   await expect(page).toHaveURL(`${url}objekty/?q=sklo`);
+});
+
+test("sidebar homepage", async ({ page }) => {
+  await page.goto(`${url}objekty`);
+  await page.locator(".item").first().click();
+  await expect(page.locator(".sidebar")).toBeVisible();
+  await page
+    .locator("div.item")
+    .filter({ hasText: "RESTAUROVÁNÍ VŠCHT Praha" })
+    .click();
+
+  await expect(page).toHaveURL(url);
+});
+
+test("sidebar new item", async ({ page }) => {
+  await page.goto(`${url}objekty`);
+  await page.locator(".item").first().click();
+  await expect(page.locator(".sidebar")).toBeVisible();
+  await page.locator("div.item").filter({ hasText: "Nový předmět" }).click();
+
+  await expect(page).toHaveURL(`${url}objekty/_new`);
+});
+
+test("sidebar logout", async ({ page }) => {
+    await page.goto(`${url}objekty`);
+    await page.locator(".item").first().click();
+    await expect(page.locator(".sidebar")).toBeVisible();
+    await page.waitForSelector('.sidebar .item .account-dropdown', { visible: true });
+
+    await page.locator('.sidebar .item .account-dropdown').click();
+    await expect(page.locator('.sidebar .menu.transition')).toBeVisible();
+
+    await page.getByRole('link', { name: 'Odhlášení' }).click()
+
+    await expect(page).toHaveURL(url);
+});
+
+
+
+
+test("sidebar close", async ({ page }) => {
+  await page.goto(`${url}objekty`);
+  await page.locator(".item").first().click();
+  await expect(page.locator(".sidebar")).toBeVisible();
+  await page.locator(".ui.close").click();
+
+  await expect(page.locator(".sidebar")).toBeHidden();
 });
