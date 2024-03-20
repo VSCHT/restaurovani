@@ -18,44 +18,34 @@ test.afterAll(async ({}) => {
 });
 
 test("get error on unfilled form", async ({ page }) => {
-    await page.goto(`${url}objekty/_new`);
-  
-    await page.getByLabel("tlacitko vytvoreni predmetu").click();
-  
-    await Promise.all([
-      page.waitForSelector("#metadata\\.restorationWork\\.restorer-error-message", { visible: true }),
-      page.waitForSelector("#metadata\\.restorationObject\\.title-error-message", { visible: true })
-    ]);
-  
-    const isRestorerErrorMessageVisible = await page.isVisible("#metadata\\.restorationWork\\.restorer-error-message");
-    const isTitleErrorMessageVisible = await page.isVisible("#metadata\\.restorationObject\\.title-error-message");
-  
-    expect(isRestorerErrorMessageVisible).toBe(true);
-    expect(isTitleErrorMessageVisible).toBe(true);
-  });
-  
+  await page.goto(`${url}objekty/_new`);
 
-  
-// test("successful form submit", async ({ page, request }) => {
-//   try {
-//     const response = await request.post(`https://127.0.0.1:5000/api/objects`, {
-//       data: {
-//         files: { enabled: true },
-//         metadata: {
-//           restorationObject: { category: "keramika", title: "test" },
-//           restorationWork: { restorer: "test" },
-//         },
-//       },
-//     });
+  await page.getByLabel("tlacitko vytvoreni predmetu").click();
 
-//     expect(response.ok()).toBeTruthy();
-//   } catch (error) {
-//     console.error("Error:", error);
-//     throw error;
-//   }
-// });
+  await Promise.all([
+    page.waitForSelector(
+      "#metadata\\.restorationWork\\.restorer-error-message",
+      { visible: true }
+    ),
+    page.waitForSelector(
+      "#metadata\\.restorationObject\\.title-error-message",
+      { visible: true }
+    ),
+  ]);
 
-test("successful form submit 2", async ({ page, request }) => {
+  const isRestorerErrorMessageVisible = await page.isVisible(
+    "#metadata\\.restorationWork\\.restorer-error-message"
+  );
+  const isTitleErrorMessageVisible = await page.isVisible(
+    "#metadata\\.restorationObject\\.title-error-message"
+  );
+
+  expect(isRestorerErrorMessageVisible).toBe(true);
+  expect(isTitleErrorMessageVisible).toBe(true);
+});
+
+
+test("successful form submit", async ({ page, request }) => {
   try {
     await page.goto(`${url}objekty/_new`);
 
@@ -63,14 +53,20 @@ test("successful form submit 2", async ({ page, request }) => {
     await page.getByLabel("Restauroval(a)").fill("test");
     await page.getByText("Kovy").click();
 
-    await page.getByLabel("tlacitko vytvoreni predmetu").click();
-
+    await page.route("**/*", (route) => {
+      if (route.request().isNavigationRequest()) {
+        route.abort();
+      } else {
+        route.continue();
+      }
+    });
     const response = await page.waitForResponse(
       (response) =>
         response.url().includes("/api/objects") && response.status() === 201
     );
-    console.log(response);
-    await page.waitForTimeout(5000);
+
+    await page.getByLabel("tlacitko vytvoreni predmetu").click();
+
     const responseBody = await response.body();
     const responseData = JSON.parse(responseBody.toString());
     const responseID = responseData.id;
