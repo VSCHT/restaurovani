@@ -13,5 +13,8 @@
     "fs-extra": "^11.2.0",
     "path": "^0.12.7",
     "playwright": "^1.42.1"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "^4.8.5"
   }
 }
