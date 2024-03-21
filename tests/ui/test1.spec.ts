@@ -69,6 +69,12 @@ test("search and check URL 2", async ({ page }) => {
   await expect(page).toHaveURL(
     `${url}objekty/?q=sklo&l=list&p=1&s=10&sort=bestmatch`
   );
+
+  await page.getByRole("textbox", { name: "Hledat..." }).fill("sklo");
+  await page.locator(".ui > button:nth-child(2)").click();
+  await expect(page).toHaveURL(
+    `${url}objekty/?q=sklo&l=list&p=1&s=10&sort=bestmatch`
+  );
 });
 
 test("redirection to create page", async ({ page }) => {
@@ -96,16 +102,21 @@ test("redirection to create page", async ({ page }) => {
 
 test("checkbox", async ({ page }) => {
   await page.goto(`${url}objekty/?q=&l=list&p=1&s=10&sort=newest`);
-  
-  await page.locator('text="metadata/restorationObject/category.label"').click();
 
-  const checkbox = await page.locator('input[type="checkbox"][value="keramika"]');
-  await page.waitForSelector('input[type="checkbox"][value="keramika"]:checked');
+  await page
+    .locator('text="metadata/restorationObject/category.label"')
+    .click();
+
+  const checkbox = await page.locator(
+    'input[type="checkbox"][value="keramika"]'
+  );
+  await page.waitForSelector(
+    'input[type="checkbox"][value="keramika"]:checked'
+  );
   const isChecked = await checkbox.evaluate((element) => element.checked);
 
   expect(isChecked).toBeTruthy();
 });
- 
 
 test("images carousel", async ({ page }) => {
   await page.goto(`${url}objekty/mwa1x-1kj76`);
@@ -207,22 +218,63 @@ test("redirection to detail page after edit form", async ({
     throw error;
   }
 });
+test("clear search results", async ({ page }) => {
+  const urlEnding = "&l=list&p=1&s=10&sort=newest";
+  await page.goto(`${url}objekty/?q=sklo${urlEnding}`);
+  const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
+  await page.locator(".row > div > div > button").first().click();
+  await pagenav;
 
-test("logout", async ({ page }) => {
-  await page.goto(`${url}objekty`);
-
-  await page.locator(".right.menu .account-dropdown").click();
-  await page.waitForSelector(".menu.transition");
-
-  await page.evaluate(() => {
-    const links = Array.from(
-      document.querySelectorAll(".menu.transition a.item")
-    );
-    const logoutLink = links.find(
-      (link) => link.textContent.trim() === "Odhlášení"
-    );
-    logoutLink.click();
-  });
-
-  await expect(page).toHaveURL(url);
+  expect(page.url()).toBe(`${url}objekty/?q=${urlEnding}`);
 });
+
+test("pagination", async ({ page }) => {
+  await page.goto(`${url}objekty/?q=&l=list&p=1&s=10&sort=newest`);
+  const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
+  await page.locator("#main").getByRole("navigation").getByText("4").click();
+  await pagenav;
+
+  expect(page.url()).toBe(`${url}objekty/?q=&l=list&p=4&s=10&sort=newest`);
+});
+
+test("accordion edit form", async ({ page, request }) => {
+  const response = await request.get(
+    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=5&size=10`
+  );
+
+  expect(response.ok()).toBeTruthy();
+
+  const responseBody = await response.body();
+  const responseData = JSON.parse(responseBody.toString());
+  const responseID = responseData.hits.hits[4].id;
+
+  await page.goto(`${url}objekty/${responseID}/edit`);
+
+  await page.getByText("Práce", { exact: true }).click();
+
+  const titleElement = page.locator('div.title:has-text("Práce")');
+  const classList = await titleElement.evaluate((element) => element.classList);
+  expect(classList).not.toContain("active");
+});
+
+test("checkbox edit form", async ({ page, request }) => {
+  const response = await request.get(
+    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=5&size=10`
+  );
+
+  expect(response.ok()).toBeTruthy();
+
+  const responseBody = await response.body();
+  const responseData = JSON.parse(responseBody.toString());
+  const responseID = responseData.hits.hits[4].id;
+
+  await page.goto(`${url}objekty/${responseID}/edit`);
+console.log(responseID)
+  const checkboxLocator = page.locator('input[name="metadata.restorationObject.archeologic"]');
+  await checkboxLocator.click();
+  await page.waitForTimeout(500);
+
+  const isCheckedAfterClick = await checkboxLocator.evaluate(element => element.checked);
+  expect(isCheckedAfterClick).toBeTruthy();
+});
+
