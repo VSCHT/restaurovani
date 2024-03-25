@@ -17,15 +17,38 @@ export const DaterangePicker = ({
   const [field] = useField(fieldPath);
   const { setFieldValue } = useFormikContext();
   const [dates, setDates] = useState([null, null]);
+  const [format, setFormat] = useState([dateFormat, dateFormat]);
 
   useEffect(() => {
     if (field?.value) {
       const { since, until } = field.value;
       let startDate;
       let endDate;
-      if (String(since).length === 4) {
-        startDate = new Date(since, 0);
-        endDate = new Date(until, 0);
+      if (String(since).length <= 4) {
+        if (String(since).length < 4) {
+          const yearLengthSince = String(since).length - 1;
+          const formatStringSince = "y".repeat(yearLengthSince) + " GGG";
+          setFormat((prevFormat) => ({
+            ...prevFormat,
+            [0]: formatStringSince,
+          }));
+
+          startDate = new Date(since + 1, 0);
+        } else {
+          startDate = new Date(since, 0);
+        }
+
+        if (String(until).length === 4) {
+          endDate = new Date(until, 0);
+        } else {
+          const yearLengthUntil = String(until).length - 1;
+          const formatStringUntil = "y".repeat(yearLengthUntil) + " GGG";
+          setFormat((prevFormat) => ({
+            ...prevFormat,
+            [1]: formatStringUntil,
+          }));
+          endDate = new Date(until + 1, 0);
+        }
       } else {
         startDate = new Date(since);
         endDate = new Date(until);
@@ -66,7 +89,7 @@ export const DaterangePicker = ({
           handleChange={handleStartDateChange}
           placeholder={startDateInputPlaceholder}
           clearButtonClassName={clearButtonClassName}
-          dateFormat={dateFormat}
+          dateFormat={format[0]}
           datePickerProps={{
             selected: dates[0],
             startDate: dates[0],
@@ -79,7 +102,7 @@ export const DaterangePicker = ({
         <DatePickerWrapper
           handleChange={handleEndDateChange}
           placeholder={endDateInputPlaceholder}
-          dateFormat={dateFormat}
+          dateFormat={format[1]}
           clearButtonClassName={clearButtonClassName}
           datePickerProps={{
             selected: dates[1],
