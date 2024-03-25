@@ -1,9 +1,9 @@
-import { test, expect, devices } from "playwright/test";
+import { test, expect } from "playwright/test";
 
 const url = "https://127.0.0.1:5000/";
 
 test.use({
-  viewport: { width: 600, height: 300 },
+  viewport: { width: 400, height: 300 },
 });
 
 test("burger menu visibility", async ({ page }) => {
@@ -20,8 +20,18 @@ test("top menu content visibility", async ({ page }) => {
   ).toBeHidden();
 });
 
-test("images carousel 2", async ({ page }) => {
-  await page.goto(`${url}objekty/xtejz-jpj71`);
+test("images carousel 2", async ({ page, request }) => {
+  const response = await request.get(
+    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
+  );
+
+  expect(response.ok()).toBeTruthy();
+
+  const responseBody = await response.body();
+  const responseData = JSON.parse(responseBody.toString());
+  const responseID = responseData.hits.hits[4].id;
+
+  await page.goto(`${url}objekty/${responseID}`);
 
   await expect(page.locator(".slick-arrow.slick-next")).toBeVisible();
 });
@@ -74,21 +84,20 @@ test("sidebar new item", async ({ page }) => {
 });
 
 test("sidebar logout", async ({ page }) => {
-    await page.goto(`${url}objekty`);
-    await page.locator(".item").first().click();
-    await expect(page.locator(".sidebar")).toBeVisible();
-    await page.waitForSelector('.sidebar .item .account-dropdown', { visible: true });
+  await page.goto(`${url}objekty`);
+  await page.locator(".item").first().click();
+  await expect(page.locator(".sidebar")).toBeVisible();
+  await page.waitForSelector(".sidebar .item .account-dropdown", {
+    visible: true,
+  });
 
-    await page.locator('.sidebar .item .account-dropdown').click();
-    await expect(page.locator('.sidebar .menu.transition')).toBeVisible();
+  await page.locator(".sidebar .item .account-dropdown").click();
+  await expect(page.locator(".sidebar .menu.transition")).toBeVisible();
 
-    await page.getByRole('link', { name: 'Odhlášení' }).click()
+  await page.getByRole("link", { name: "Odhlášení" }).click();
 
-    await expect(page).toHaveURL(url);
+  await expect(page).toHaveURL(url);
 });
-
-
-
 
 test("sidebar close", async ({ page }) => {
   await page.goto(`${url}objekty`);

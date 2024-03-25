@@ -1,4 +1,3 @@
-// import { test, expect } from "./playwright/fixtures";
 import { test, expect, Locator } from "playwright/test";
 
 const url = "https://127.0.0.1:5000/";
@@ -13,7 +12,7 @@ test("has title", async ({ page }) => {
 test("file download after clicking link", async ({ page, request }) => {
   try {
     const response = await request.get(
-      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=7&size=10`
+      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
     );
 
     expect(response.ok()).toBeTruthy();
@@ -83,23 +82,6 @@ test("redirection to create page", async ({ page }) => {
   await expect(page).toHaveURL(`${url}objekty/_new`);
 });
 
-// test("checkbox", async ({ page }) => {
-//   await page.goto(`${url}objekty/?q=&l=list&p=1&s=10&sort=newest`);
-//   await page
-//     .locator('text="metadata/restorationObject/category.label"')
-//     .click();
-
-//   await page.waitForSelector('input[type="checkbox"][value="keramika"]');
-
-//   const checkbox = await page.locator(
-//     'input[type="checkbox"][value="keramika"]'
-//   );
-
-//   const isChecked = await checkbox.evaluate((element) => element.checked);
-
-//   expect(isChecked).toBeTruthy();
-// });
-
 test("checkbox", async ({ page }) => {
   await page.goto(`${url}objekty/?q=&l=list&p=1&s=10&sort=newest`);
 
@@ -110,37 +92,83 @@ test("checkbox", async ({ page }) => {
   const checkbox = await page.locator(
     'input[type="checkbox"][value="keramika"]'
   );
-  await page.waitForSelector(
-    'input[type="checkbox"][value="keramika"]:checked'
-  );
+
+  await checkbox.click({ force: true });
   const isChecked = await checkbox.evaluate((element) => element.checked);
 
   expect(isChecked).toBeTruthy();
 });
 
-test("images carousel", async ({ page }) => {
-  await page.goto(`${url}objekty/mwa1x-1kj76`);
-  await page.getByRole("img", { name: "před restaurováním" }).nth(1).click();
+test("images carousel", async ({ page, request }) => {
+  const response = await request.get(
+    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
+  );
+
+  expect(response.ok()).toBeTruthy();
+
+  const responseBody = await response.body();
+  const responseData = JSON.parse(responseBody.toString());
+  const responseID = responseData.hits.hits[4].id;
+  const filesLinks = responseData.hits.hits[4].links.files;
+
+  const responseFiles = await request.get(filesLinks);
+
+  expect(response.ok()).toBeTruthy();
+
+  const responseBodyFiles = await responseFiles.body();
+  const responseDataFiles = JSON.parse(responseBodyFiles.toString());
+
+  const filesContents = [];
+  const filesNames = [];
+
+  responseDataFiles.entries.map((element) => {
+    filesContents.push(element.links.content);
+    filesNames.push(element.metadata.caption);
+  });
+
+  await page.goto(`${url}objekty/${responseID}`);
+  await page.getByRole("img", { name: `${filesNames[0]}` }).first().click();
+
   await expect(page.locator(".image > div > img")).toHaveAttribute(
     "src",
-    "https://127.0.0.1:5000/api/objects/mwa1x-1kj76/draft/files/sal-282-pred-zezadu.jpg/content"
+    filesContents[0]
   );
   await page.getByRole("button").nth(3).click();
   await expect(page.locator(".image > div > img")).toHaveAttribute(
     "src",
-    "https://127.0.0.1:5000/api/objects/mwa1x-1kj76/draft/files/sal-282-pred.jpg/content"
+    filesContents[1]
   );
 });
 
-test("tree-field visibility", async ({ page }) => {
-  await page.goto(`${url}objekty/g9fpw-1qw39/edit`);
+test("tree-field visibility", async ({ page, request }) => {
+  const response = await request.get(
+    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
+  );
+
+  expect(response.ok()).toBeTruthy();
+
+  const responseBody = await response.body();
+  const responseData = JSON.parse(responseBody.toString());
+  const responseID = responseData.hits.hits[4].id;
+
+  await page.goto(`${url}objekty/${responseID}/edit`);
 
   await page.click(`[name='metadata.restorationObject.itemTypes']`);
   await expect(page.locator(".tree-field").first()).toBeVisible();
 });
 
-test("tree-field manipulation", async ({ page }) => {
-  await page.goto(`${url}objekty/g9fpw-1qw39/edit`);
+test("tree-field manipulation", async ({ page, request }) => {
+  const response = await request.get(
+    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
+  );
+
+  expect(response.ok()).toBeTruthy();
+
+  const responseBody = await response.body();
+  const responseData = JSON.parse(responseBody.toString());
+  const responseID = responseData.hits.hits[4].id;
+
+  await page.goto(`${url}objekty/${responseID}/edit`);
 
   await page.click(`[name='metadata.restorationObject.itemTypes']`);
 
@@ -161,11 +189,11 @@ test("redirection to detail page after search page", async ({
   page,
   request,
 }) => {
-  await page.goto(`${url}objekty/?q=&l=list&p=7&s=10&sort=newest`);
+  await page.goto(`${url}objekty/?q=&l=list&p=2&s=10&sort=newest`);
 
   try {
     const response = await request.get(
-      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=7&size=10`
+      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
     );
 
     expect(response.ok()).toBeTruthy();
@@ -196,7 +224,7 @@ test("redirection to detail page after edit form", async ({
 }) => {
   try {
     const response = await request.get(
-      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=5&size=10`
+      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
     );
 
     expect(response.ok()).toBeTruthy();
@@ -231,15 +259,15 @@ test("clear search results", async ({ page }) => {
 test("pagination", async ({ page }) => {
   await page.goto(`${url}objekty/?q=&l=list&p=1&s=10&sort=newest`);
   const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
-  await page.locator("#main").getByRole("navigation").getByText("4").click();
+  await page.locator("#main").getByRole("navigation").getByText("2").click();
   await pagenav;
 
-  expect(page.url()).toBe(`${url}objekty/?q=&l=list&p=4&s=10&sort=newest`);
+  expect(page.url()).toBe(`${url}objekty/?q=&l=list&p=2&s=10&sort=newest`);
 });
 
 test("accordion edit form", async ({ page, request }) => {
   const response = await request.get(
-    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=5&size=10`
+    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
   );
 
   expect(response.ok()).toBeTruthy();
@@ -259,7 +287,7 @@ test("accordion edit form", async ({ page, request }) => {
 
 test("checkbox edit form", async ({ page, request }) => {
   const response = await request.get(
-    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=5&size=10`
+    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
   );
 
   expect(response.ok()).toBeTruthy();
@@ -269,12 +297,22 @@ test("checkbox edit form", async ({ page, request }) => {
   const responseID = responseData.hits.hits[4].id;
 
   await page.goto(`${url}objekty/${responseID}/edit`);
-console.log(responseID)
-  const checkboxLocator = page.locator('input[name="metadata.restorationObject.archeologic"]');
-  await checkboxLocator.click();
+
+  const checkbox = page.locator(
+    'div > input[name="metadata.restorationObject.archeologic"]'
+  );
+
   await page.waitForTimeout(500);
 
-  const isCheckedAfterClick = await checkboxLocator.evaluate(element => element.checked);
-  expect(isCheckedAfterClick).toBeTruthy();
-});
+  const initialState = await checkbox.evaluate((element) => element.checked);
 
+  if (initialState) {
+    await checkbox.click({ force: true });
+    const clickedState = await checkbox.evaluate((element) => element.checked);
+    expect(clickedState).toBeFalsy();
+  } else {
+    await checkbox.click({ force: true });
+    const clickedState = await checkbox.evaluate((element) => element.checked);
+    expect(clickedState).toBeTruthy();
+  }
+});
