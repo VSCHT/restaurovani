@@ -43,11 +43,9 @@ const ItemHeader = ({ title, searchUrl, selfLink }) => {
     selfLink,
     new URL(searchUrl, window.location.origin)
   );
-  let truncatedTitle =
-    title.length > 10 && smallScreen ? title.substring(0, 10) + "..." : title;
   return (
     <Item.Header>
-      <a href={viewLink}>{truncatedTitle}</a>
+      <a href={viewLink}>{title}</a>
     </Item.Header>
   );
 };
