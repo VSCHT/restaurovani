@@ -15,7 +15,12 @@ import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 import _get from "lodash/get";
 import { DaterangePicker } from "./DateRange";
 
-export const RestorationWork = ({ activeIndex, handleActive, values , category}) => {
+export const RestorationWork = ({
+  activeIndex,
+  handleActive,
+  values,
+  category,
+}) => {
   const fieldPath = "metadata.restorationWork";
 
   return (
@@ -139,10 +144,9 @@ export const RestorationWork = ({ activeIndex, handleActive, values , category})
             endDateInputPlaceholder="Období restaurování"
             clearButtonClassName="small transparent"
             label="Období restaurování"
-            dateFormat='yyyy/MM/dd'
+            dateFormat="yyyy/MM/dd"
           />
         </Grid.Column>
-
 
         <Grid.Column>
           <LocalVocabularySelectField
