@@ -17,6 +17,7 @@ import {
   ModalHeader,
   ModalContent,
   ModalActions,
+  Form
 } from "semantic-ui-react";
 import {
   serializedVocabularyItems,
@@ -55,6 +56,8 @@ export const VocabularyTreeSelectField = ({
   const [openState, setOpenState] = useState(false);
   const [parentsState, setParentsState] = useState([]);
   const [keybState, setKeybState] = useState([]);
+
+ 
   const [selectedState, setSelectedState] = useState(() => {
     if (multiple && Array.isArray(value)) {
       return value.reduce((acc, val) => {
@@ -170,6 +173,21 @@ export const VocabularyTreeSelectField = ({
     setOpenState(false);
     setSelectedState([]);
     setParentsState([]);
+  };
+  const handleChange = ({ e, data, formikProps }) => {
+    if (multiple) {
+      let vocabularyItems = allOptions.filter((o) =>
+        data.value.includes(o.value)
+      );
+      vocabularyItems = vocabularyItems.map((vocabularyItem) => {
+        return { ...vocabularyItem, id: vocabularyItem.value };
+      });
+      formikProps.form.setFieldValue(fieldPath, [...vocabularyItems]);
+    } else {
+      let vocabularyItem = allOptions.find((o) => o.value === data.value);
+      vocabularyItem = { ...vocabularyItem, id: vocabularyItem?.value };
+      formikProps.form.setFieldValue(fieldPath, vocabularyItem);
+    }
   };
 
   const handleKey = (e, option, index) => {
@@ -319,16 +337,17 @@ export const VocabularyTreeSelectField = ({
         optimized={optimized}
         onBlur={() => setFieldTouched(fieldPath)}
         deburr
-        search
         fieldPath={fieldPath}
         multiple={multiple}
         featured={featuredOptions}
         options={serializedOptions}
         onClick={handleOpen}
+        onChange={handleChange}
         value={multiple ? value.map((o) => o?.id) : value?.id}
         {...uiProps}
       />
       <label className="helptext">{helpText}</label>
+
 
       {openState && (
         <Modal
