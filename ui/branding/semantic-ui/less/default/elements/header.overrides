@@ -62,7 +62,7 @@
     h2& {
       font-size: .count(@h2, 0.5) [ @result];
     }
-    .ui.modal.tree-field & {
+    .ui.modal.tree-field & , #form-app h3& {
       text-align: center;
     }
   }

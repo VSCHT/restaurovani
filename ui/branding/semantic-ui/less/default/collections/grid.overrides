@@ -168,6 +168,13 @@
       }
       .detail-page & {
         flex-wrap: nowrap;
+
+        &.divided.grid .column {
+          box-shadow: none;
+          p:last-child {
+            width: 90vw;
+          }
+        }
       }
 
       .ui&.grid > &:not(.row) {
