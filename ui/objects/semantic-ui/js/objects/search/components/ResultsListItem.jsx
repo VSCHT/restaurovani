@@ -17,28 +17,6 @@ import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
 import { getCaption } from "../../detail";
 
 const ItemHeader = ({ title, searchUrl, selfLink }) => {
-  const [smallScreen, setSmallScreen] = React.useState(
-    window.innerWidth <= 730
-  );
-
-  useEffect(() => {
-    function updateDescVisibility() {
-      if (window.innerWidth >= 730) {
-        setSmallScreen(false);
-      } else {
-        setSmallScreen(true);
-      }
-    }
-
-    updateDescVisibility();
-
-    window.addEventListener("resize", updateDescVisibility);
-
-    return () => {
-      window.removeEventListener("resize", updateDescVisibility);
-    };
-  }, []);
-
   const viewLink = new URL(
     selfLink,
     new URL(searchUrl, window.location.origin)

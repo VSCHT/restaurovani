@@ -76,6 +76,11 @@
     .fields & {
       width: 90%;
     }
+    .tree-column{
+      max-height: 70vh;
+      overflow-y: auto;
+      min-width: 250px
+    }
   }
 
   &.two {
