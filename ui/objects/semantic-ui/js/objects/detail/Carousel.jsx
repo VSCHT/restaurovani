@@ -3,34 +3,11 @@ import Slider from "react-slick";
 import { Modal, Image, Button, Grid, Header } from "semantic-ui-react";
 import { getCaption } from "./index";
 
-export const ImgCarousel = ({ imagesCollection }) => {
+export const ImgCarousel = ({ imagesCollection, settings }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
   const [slidesToShow, setSlidesToShow] = useState(5);
-  let selectedImage = imagesCollection?.[selectedImageIndex];
-
-  const settings = {
-    infinite: false,
-    speed: 100,
-    slidesToShow: slidesToShow,
-    swipeToSlide: true,
-  };
-
-  // next image
-  const handleNextImage = () => {
-    setSelectedImageIndex(
-      (prevIndex) => (prevIndex + 1) % imagesCollection.length
-    );
-  };
-
-  // previous image
-  const handlePrevImage = () => {
-    setSelectedImageIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + imagesCollection.length) % imagesCollection.length
-    );
-  };
-
   // Update slidesToShow
   useEffect(() => {
     const updateSlidesToShow = () => {
@@ -50,6 +27,25 @@ export const ImgCarousel = ({ imagesCollection }) => {
       window.removeEventListener("resize", updateSlidesToShow);
     };
   }, []);
+
+  let selectedImage = imagesCollection?.[selectedImageIndex];
+
+  // next image
+  const handleNextImage = () => {
+    setSelectedImageIndex(
+      (prevIndex) => (prevIndex + 1) % imagesCollection.length
+    );
+  };
+
+  // previous image
+  const handlePrevImage = () => {
+    setSelectedImageIndex(
+      (prevIndex) =>
+        (prevIndex - 1 + imagesCollection.length) % imagesCollection.length
+    );
+  };
+
+  settings = { ...settings, slidesToShow: slidesToShow };
 
   return (
     <>
@@ -71,12 +67,16 @@ export const ImgCarousel = ({ imagesCollection }) => {
 
       <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
         <Modal.Content image>
-          <Button icon="chevron left" color='black' onClick={handlePrevImage} />
+          <Button icon="chevron left" color="black" onClick={handlePrevImage} />
           <Grid columns={1}>
             <Image src={selectedImage?.links?.content} />
             <Header as="h4">{getCaption(selectedImage)}</Header>
           </Grid>
-          <Button icon="chevron right" color='black' onClick={handleNextImage} />
+          <Button
+            icon="chevron right"
+            color="black"
+            onClick={handleNextImage}
+          />
         </Modal.Content>
         <Button
           icon="close"

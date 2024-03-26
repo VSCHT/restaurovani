@@ -25,30 +25,25 @@ export const DaterangePicker = ({
       let startDate;
       let endDate;
       if (String(since).length <= 4) {
-        if (String(since).length < 4) {
-          const yearLengthSince = String(since).length - 1;
-          const formatStringSince = "y".repeat(yearLengthSince) + " GGG";
-          setFormat((prevFormat) => ({
-            ...prevFormat,
-            [0]: formatStringSince,
-          }));
+        const yearLengthSince = String(since).length - 1;
+        const formatStringSince = "y".repeat(yearLengthSince) + " GGG";
+        setFormat((prevFormat) => ({
+          ...prevFormat,
+          [0]: formatStringSince,
+        }));
+        String(since).startsWith("-")
+          ? (startDate = new Date(since + 1, 0))
+          : (startDate = new Date(since, 0));
 
-          startDate = new Date(since + 1, 0);
-        } else {
-          startDate = new Date(since, 0);
-        }
-
-        if (String(until).length === 4) {
-          endDate = new Date(until, 0);
-        } else {
-          const yearLengthUntil = String(until).length - 1;
-          const formatStringUntil = "y".repeat(yearLengthUntil) + " GGG";
-          setFormat((prevFormat) => ({
-            ...prevFormat,
-            [1]: formatStringUntil,
-          }));
-          endDate = new Date(until + 1, 0);
-        }
+        const yearLengthUntil = String(until).length - 1;
+        const formatStringUntil = "y".repeat(yearLengthUntil) + " GGG";
+        setFormat((prevFormat) => ({
+          ...prevFormat,
+          [1]: formatStringUntil,
+        }));
+        String(until).startsWith("-")
+          ? (endDate = new Date(until + 1, 0))
+          : (endDate = new Date(until, 0));
       } else {
         startDate = new Date(since);
         endDate = new Date(until);
@@ -57,25 +52,35 @@ export const DaterangePicker = ({
     }
   }, []);
 
+ 
+
   const handleChange = (newDates) => {
     const [startDate, endDate] = newDates.map((date) => {
       if (date) {
-        return dateFormat === "yyyy"
-          ? date.getFullYear()
-          : date.toISOString().slice(0, 10);
+        let formattedDate;
+        if (dateFormat === "yyyy" || dateFormat.includes("GGG")) {
+          formattedDate = date.getFullYear();
+        } else {
+          formattedDate = date.toISOString().slice(0, 10);
+        }
+        return formattedDate;
       }
       return null;
     });
     setFieldValue(fieldPath, { since: startDate, until: endDate });
   };
 
+  // TODO datepicker changes <1000 values that are typed to 20**
+
   const handleStartDateChange = (date) => {
+    
     const newDates = [date, dates[1]];
     setDates(newDates);
     handleChange(newDates);
   };
 
   const handleEndDateChange = (date) => {
+   
     const newDates = [dates[0], date];
     setDates(newDates);
     handleChange(newDates);

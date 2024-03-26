@@ -17,7 +17,7 @@ import {
   ModalHeader,
   ModalContent,
   ModalActions,
-  Form
+  Form,
 } from "semantic-ui-react";
 import {
   serializedVocabularyItems,
@@ -57,7 +57,6 @@ export const VocabularyTreeSelectField = ({
   const [parentsState, setParentsState] = useState([]);
   const [keybState, setKeybState] = useState([]);
 
- 
   const [selectedState, setSelectedState] = useState(() => {
     if (multiple && Array.isArray(value)) {
       return value.reduce((acc, val) => {
@@ -74,9 +73,8 @@ export const VocabularyTreeSelectField = ({
     }
   });
 
-
-
-  const handleOpen = () => {
+  const handleOpen = (e) => {
+    if (e.currentTarget.classList.contains("icon")) return;
     setOpenState(true);
   };
   const [query, setQuery] = useState("");
@@ -111,7 +109,6 @@ export const VocabularyTreeSelectField = ({
           )
         );
   }, [serializedOptions, category, query]);
-
 
   const columnsCount = hierarchicalData.length;
 
@@ -153,27 +150,16 @@ export const VocabularyTreeSelectField = ({
   };
 
   const handleSubmit = () => {
-    let prepSelect;
-    if (multiple) {
-      prepSelect = selectedState.map((i) => serializeVocabularyItem(i.value));
-      const existingValues = getIn(formik.values, fieldPath, []);
-
-      const existingIds = existingValues.map((item) => item.id);
-
-      prepSelect = prepSelect.filter((item) => !existingIds.includes(item.id));
-
-      prepSelect = [...existingValues, ...prepSelect];
-    } else {
-      prepSelect = selectedState.map((i) =>
-        serializeVocabularyItem(i.value)
-      )[0];
-    }
+    const prepSelect = selectedState.map((i) =>
+      serializeVocabularyItem(i.value)
+    );
 
     formik.setFieldValue(fieldPath, prepSelect);
     setOpenState(false);
     setSelectedState([]);
     setParentsState([]);
   };
+
   const handleChange = ({ e, data, formikProps }) => {
     if (multiple) {
       let vocabularyItems = allOptions.filter((o) =>
@@ -269,7 +255,7 @@ export const VocabularyTreeSelectField = ({
 
   const renderColumn = (column, index) => {
     return (
-      <Grid.Column key={index}>
+      <Grid.Column key={index} className="tree-column">
         {column.map((option, i) => {
           if (
             index == 0 ||
@@ -341,13 +327,12 @@ export const VocabularyTreeSelectField = ({
         multiple={multiple}
         featured={featuredOptions}
         options={serializedOptions}
-        onClick={handleOpen}
+        onClick={(e) => handleOpen(e)}
         onChange={handleChange}
         value={multiple ? value.map((o) => o?.id) : value?.id}
         {...uiProps}
       />
       <label className="helptext">{helpText}</label>
-
 
       {openState && (
         <Modal
@@ -388,8 +373,8 @@ export const VocabularyTreeSelectField = ({
             </Grid>
           </ModalContent>
           <ModalActions>
-            <Grid.Row className='gapped'>
-              <Grid.Row className='gapped'>
+            <Grid.Row className="gapped">
+              <Grid.Row className="gapped">
                 {selectedState.map((i, index) => (
                   <Label key={index}>
                     {" "}
