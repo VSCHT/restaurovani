@@ -1,0 +1,14 @@
+/*--------------
+    OWN
+---------------*/
+
+
+
+/*--------------
+    SEMANTIC
+---------------*/
+@backgroundColor: none;
+@blackColor: #222;
+@fontWeight: 400;
+@medium: 0.8rem;
+@large: 1rem;

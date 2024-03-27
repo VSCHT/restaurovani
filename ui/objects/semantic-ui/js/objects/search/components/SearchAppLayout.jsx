@@ -6,7 +6,6 @@ import {
   Grid,
   Button,
   Image,
-  Label,
   Header,
   Modal,
 } from "semantic-ui-react";
@@ -25,11 +24,6 @@ export const SearchAppLayout = () => {
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
-  };
-
-  const toggleSidebar = (e) => {
-    e.preventDefault();
-    setSidebarVisible(!sidebarVisible);
   };
 
   useEffect(() => {
@@ -59,135 +53,101 @@ export const SearchAppLayout = () => {
     window.location.href = new URL(searchAppConfig.ui_links.create);
   };
   return (
-    <Container className="predmety__body-bg">
-      <Container className=" predmety__body-bg pages__predmety">
-        <Grid className="horiz-div">
-          <Grid className="vert-div predmety_main-container">
-            <Container className="horiz-div predmety__title-search-fixed">
-              <Grid.Row className="horiz-div predmety__title-search">
-                <Header className="predmety__title">
-                  Restaurované předměty
-                </Header>
+    <Container className="search-container">
+      <Grid columns={2} className="double gapped">
+        {/* first column-  main content */}
+        <Grid.Column width={12}>
+          {/* header and searchbar */}
+          <Container>
+            <Grid columns={2} className="spaced">
+              <Grid.Column width={11}>
+                <Header as="h2">Restaurované předměty</Header>
+              </Grid.Column>
 
-                <Grid className="horiz-div predmety__title-search__searchbar">
+              <Grid.Column width={4}>
+                <Grid.Row className="grid-searchbar">
                   <SearchBar />
                   <Button
-                    className="btn predmety__input-search__searchbar-burger"
+                    className="transparent filter"
                     aria-label="Toggle Filter Menu"
                     onClick={toggleModal}
                   >
                     <Image
                       rel="icon"
                       src="/static/images/filter-icon.png"
-                      alt="filter button"
+                      alt="filtrovat"
                     />
                   </Button>
-                </Grid>
-              </Grid.Row>
-            </Container>
-
-            <Grid className="vert-div predmety__cards">
-              <SearchAppResultsPane
-                layoutOptions={searchAppConfig.layoutOptions}
-                appName={appName}
-                buildUID={buildUID}
-              />
+                </Grid.Row>
+              </Grid.Column>
             </Grid>
-          </Grid>
+          </Container>
 
-          {sidebarVisible && (
-            <Grid.Column
-              className="vert-div predmety__aside"
-              id="predmety__aside"
-            >
-              <Grid.Row className="vsht-logo div__vsht-logo predmety__div__vsht-logo">
-                <Image
-                  className="vsht-logo image__vsht-logo predmety__image__vsht-logo"
-                  src="/static/images/logo_VSHT.png"
-                  alt="vsht logo"
-                />
-                <Label className="vsht-logo text__vsht-logo predmety__text__vsht-logo">
-                  VYSOKÁ ŠKOLA
-                  <br />
-                  CHEMICKO-TECHNOLOGICKÁ
-                  <br />V PRAZE
-                </Label>
-              </Grid.Row>
+          {/* search results */}
+          <Grid.Column>
+            <SearchAppResultsPane
+              layoutOptions={searchAppConfig.layoutOptions}
+              appName={appName}
+              buildUID={buildUID}
+            />
+          </Grid.Column>
+        </Grid.Column>
 
-              <Button
-                className="btn predmety__input-search__searchbar-burger btn-close"
-                aria-label="Toggle Filter Menu"
-                onClick={(e) => toggleSidebar(e)}
-              >
-                <Image
-                  rel="icon"
-                  src="/static/images/close-icon.png"
-                  alt="burger filter button"
-                />
-              </Button>
-              <Grid
-                className="vert-div predmety__aside__filter"
-                aria-label="Filter Options"
-              >
-                <Button
-                  className="predmety__aside__btn"
-                  aria-label="Tlacitko dodat novy predmet"
-                  onClick={createNewHandler}
-                >
-                  Nový předmět
-                  <Image
-                    src="/static/images/plus-square.png"
-                    alt="add new icon"
-                  />
-                </Button>
-
-                <SearchAppFacets
-                  aggs={searchAppConfig.aggs}
-                  appName={appName}
-                />
-              </Grid>
-            </Grid.Column>
-          )}
-
-          <Modal
-            as={Grid.Column}
-            animation="overlay"
-            icon="labeled"
-            open={modalOpen}
-            onClose={toggleModal}
+        {/* second column - facets */}
+        {sidebarVisible && (
+          <Grid.Column
+            width={6}
+            className="aside"
           >
-            <Grid
-              className="predmety__aside"
-              id="predmety__aside"
-            >
-            
-
-            
-              <Grid
-                className="vert-div predmety__aside__filter"
-                aria-label="Filter Options"
-              >
-                <h2>Filtrování výsledků</h2>
-                <SearchAppFacets
-                  aggs={searchAppConfig.aggs}
-                  appName={appName}
-                />
-              </Grid>
+            <Image
+              className="brandlogo"
+              src="/static/images/logoVSCHT_zakl.png"
+              alt="VŠCHT logo"
+            />
+            <Grid.Column aria-label="Filter Options">
               <Button
-                className="btn predmety__input-search__searchbar-burger btn-close"
-                aria-label="Toggle Filter Menu"
-                onClick={toggleModal}
+                secondary
+                aria-label="Vložit nový předmět"
+                onClick={createNewHandler}
               >
+                Nový předmět
                 <Image
-                  rel="icon"
-                  src="/static/images/close-icon.png"
-                  alt="burger filter button"
+                  src="/static/images/plus-square.png"
+                  alt="Vytvořit nový předmět"
                 />
               </Button>
-            </Grid>
-          </Modal>
-        </Grid>
-      </Container>
+
+              <SearchAppFacets aggs={searchAppConfig.aggs} appName={appName} />
+            </Grid.Column>
+          </Grid.Column>
+        )}
+
+        <Modal
+          as={Grid.Column}
+          animation="overlay"
+          icon="labeled"
+          open={modalOpen}
+          onClose={toggleModal}
+        >
+          <Grid className="aside">
+            <Grid.Column aria-label="Filtrování">
+              <Header as="h3">Filtrování výsledků</Header>
+              <SearchAppFacets aggs={searchAppConfig.aggs} appName={appName} />
+            </Grid.Column>
+            <Button
+              className="close"
+              aria-label="Toggle Filter Menu"
+              onClick={toggleModal}
+            >
+              <Image
+                rel="icon"
+                src="/static/images/close-icon.png"
+                alt="Zavřit"
+              />
+            </Button>
+          </Grid>
+        </Modal>
+      </Grid>
     </Container>
   );
 };

@@ -1,0 +1,35 @@
+/*--------------
+    OWN
+---------------*/
+@headerLinkFont: 1.3rem;
+
+
+/*--------------
+    SEMANTIC
+---------------*/
+
+/* common */
+@display: flex;
+@background: @whiteColor;
+@padding: 1.5rem ;
+@minHeight:250px;
+
+/* menu item */
+@dividedFirstLastPadding : 1.5rem;
+@dividedFirstLastPadding : 1.5rem;
+
+/* card content */
+@imageMargin: 0 0 0 2rem;
+@descriptionFontSize:1rem;
+@descriptionColor: @blackColor;
+@extraWidth:100%;
+@extraDisplay:flex;
+@extraMargin:5% 0  0;
+@contentImageDistance: 0px;
+/* @imageMaxHeight: 300px; */
+@contentDisplay: flex;
+@descriptionFontSize: 1.2rem;
+@extraHorizontalSpacing:50%;
+@imageDisplay:flex;
+
+@imageMargin: auto;

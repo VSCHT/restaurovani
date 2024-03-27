@@ -1,0 +1,25 @@
+/*--------------
+    OWN
+---------------*/
+
+
+/*--------------
+    SEMANTIC
+---------------*/
+
+/* general */
+
+@checkboxSize:17px;
+
+
+/* border */
+@checkboxBorder: 2px solid @primaryRed;
+@checkboxFocusBorderColor: @primaryRed;
+@checkboxActiveBorderColor: @primaryRed;
+
+/* input */
+@labelFocusColor: @primaryRed;
+@radioFocusBulletColor: @primaryRed;
+@checkboxActiveFocusCheckColor: @primaryRed;
+@checkboxActiveCheckColor: @primaryRed;
+@labelPressedColor: @primaryRed;

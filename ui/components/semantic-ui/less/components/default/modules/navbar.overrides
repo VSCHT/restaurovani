@@ -1,0 +1,3 @@
+.ui.navbar{
+    justify-content: space-between
+}

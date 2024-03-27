@@ -1,0 +1,28 @@
+{# def #}
+
+<div class="ui account-dropdown dropdown">
+    <div class="text">
+        <button class="ui button">
+            <img
+              alt="user icon"
+              src="{{ url_for('static', filename='images/user-icon.png') }}"
+            />{{ current_user.email }}
+            <img
+              alt="dropdown icon"
+              src="{{ url_for('static', filename='images/chevron-down-white.png') }}"
+            />
+          </button>
+    </div>
+    <div class="menu">
+      <div class="item">
+        <a
+        class="item"
+        href="{{ url_for('invenio_userprofiles.profile') }}"
+        >Nastavení</a
+      ></div>
+      <div class="item">
+            <a class="item" href="{{ url_for('security.logout') }}">Odhlášení</a>
+      </div>
+      
+    </div>
+  </div>

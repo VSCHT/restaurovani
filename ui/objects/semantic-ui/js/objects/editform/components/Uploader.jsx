@@ -10,7 +10,7 @@ export const ReactWrapperPdf = ({ preactComponent, props }) => {
         TriggerComponent: ({ onClick, ...props }) =>
           h(
             "button",
-            { className: "predmety__form__attachments__btn", onClick: onClick },
+            { className: "ui button", onClick: onClick },
             "Dodat soubory"
           ),
         ...props,
@@ -31,7 +31,7 @@ export const ReactWrapperImg = ({ preactComponent, props }) => {
         TriggerComponent: ({ onClick, ...props }) =>
           h(
             "button",
-            { className: "predmety__form__attachments__btn", onClick: onClick },
+            { className: "ui button", onClick: onClick },
             "Dodat obrázky"
           ),
         ...props,
@@ -51,7 +51,7 @@ export const EditWrapper = ({ preactComponent, props }) => {
       h(
         "button",
         {
-          className: "form__stat__btn",
+          className: "ui small transparent button",
           title: "Editovat",
           onClick: onClick,
           ...triggerProps,
@@ -76,7 +76,7 @@ export const ExtractWrapper = ({ preactComponent, props }) => {
       h(
         "button",
         {
-          className: "form__stat__btn",
+          className: "ui small transparent button",
           title: "Extrahovat obrázky",
           onClick: onClick,
           ...triggerProps,

@@ -1,0 +1,70 @@
+{# def #}
+
+<!-- sidebar for mobile -->
+<nav class="ui sidebar vertical menu">
+  <button class="ui close transparent button">
+    <img src="{{ url_for('static', filename='images/close-icon.png') }}" />
+  </button>
+
+  <div class="item">
+    <div class="ui transparent button">
+      <a href="/">
+        <i class="arrow left icon"></i>
+        RESTAUROVÁNÍ VŠCHT Praha</a
+      >
+    </div>
+  </div>
+
+  <div class="item">
+    {%- if config.ACCOUNTS and current_user.is_authenticated %}
+
+    <AccountDropDown />
+  </div>
+
+
+  <div class="item">
+        <form
+          action="{{ url_for('objects.search') }}"
+          role="search"
+          class="row"
+        >
+          <input
+            type="text"
+            name="q"
+            class="ui input"
+            placeholder="{{ _('Vyhledat předmět ...') }}"
+          />
+          <button
+            type="submit"
+            class="ui  small transparent button"
+            aria-label="Tlacitko prejit na predmety"
+          >
+            <img
+              src="{{ url_for('static', filename='images/search-icon-black.png') }}"
+              alt="search"
+            />
+          </button>
+        </form>
+  </div>
+
+  <div class="item">
+    <a
+      class="ui secondary button"
+      href="{{ url_for('objects.create') }}"
+      aria-label="Vložit nový předmět"
+    >
+      Nový předmět
+      <img src="/static/images/plus-square.png" alt="add new icon" />
+    </a>
+  </div>
+  {%- else %}
+  <div class="item">
+    <div class="ui secondary button">
+      <a href="{{ url_for('security.login') }}">Přihlásit se</a>
+    </div>
+
+    {%- endif %}
+  </div>
+</nav>
+
+

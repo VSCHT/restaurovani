@@ -1,12 +1,11 @@
-import { createFormAppInit } from "@js/oarepo_ui";
-import{ CreateObjectForm }from "./CreateObjectForm.jsx";
+import { CreateObjectForm } from "./CreateObjectForm.jsx";
+import { createFormAppInit, parseFormAppConfig } from "@js/oarepo_ui";
 
-export const overriddenComponents = {
-  "FormApp.layout": CreateObjectForm,
+const { formConfig } = parseFormAppConfig();
+const { overridableIdPrefix } = formConfig;
+
+export const componentOverrides = {
+  [`${overridableIdPrefix}.FormApp.layout`]: CreateObjectForm,
 };
 
-createFormAppInit(overriddenComponents);
-
-
-
-
+createFormAppInit({ componentOverrides });

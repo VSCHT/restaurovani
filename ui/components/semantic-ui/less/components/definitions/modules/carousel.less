@@ -1,0 +1,61 @@
+/*******************************
+            Theme
+*******************************/
+
+/*
+  The type is the type of the component as defined in semantic-ui - element, collection, view, module
+  For simple component, 'element' is the correct type
+*/
+@type: "module";
+
+/*
+  This is the name of the component - though not required, keep it the same as the filename
+*/
+@element: "carousel";
+
+@import (multiple) "../../theme.config";
+
+/*
+  This is the styling of your component. The class should start with .ui.carousel
+
+  Note: use variables here, not the exact values. Placing the values to the generated variables file (carousel.variables)
+  will allow users to override these values.
+ */
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.ui.carousel {
+  .slick-track {
+    display: flex;
+    gap: 10px;
+  }
+
+  .slick-slider {
+    & button:before {
+      color: white;
+      opacity: 1;
+    }
+    .slick-prev {
+      left: 14px;
+      z-index: 10;
+    }
+    .slick-next {
+      right: 14px;
+      z-index: 10;
+    }
+    .slick-track {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+  }
+
+  .slick-slide.slick-active {
+    max-height: 250px;
+  }
+}
+
+/*
+  This will load the overrides, enabling the user of your component to override your css if required
+ */
+.loadUIOverrides();

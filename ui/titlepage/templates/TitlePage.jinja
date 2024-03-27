@@ -1,92 +1,69 @@
 {%- extends "invenio_theme/frontpage.html" %} {% block head_links %} {% endblock
-  head_links %} {% block body %}
-  
-  <main class="pusher">
-    <Navbar />
-    <div class="main-page__half--background">
-    <div class="horiz-div main-page__main-container">
-      <div class="vert-div main-page__main-container__content">
-        <!-- page title -->
-  
-        <div class="horiz-div main-page__title">
-          <div>
+head_links %} {% block body %}
+
+<main class="pusher main-page">
+  <div class="ui segment hero vertical left aligned">
+    <div class="ui container">
+      <BrandLogo />
+
+      <div class="ui two column double gapped grid">
+        <div class="column">
+          <div class="ui gapped">
             <img
               src="{{ url_for('static', filename='images/bg-arrows.png') }}"
               alt="decoration image"
-              class="main-page__title__img"
+              class="ui image decoration arrows"
             />
-          </div>
-          <div class="vert-div main-page__main-container__content">
-            <!-- vsht logo -->
-            <div class="vert-div main-page__main-container__titles">
-              <div class="vsht-logo div__vsht-logo main-page__div__vsht-logo">
-                <img
-                  class="vsht-logo image__vsht-logo main-page__image__vsht-logo"
-                  src="{{ url_for('static', filename='images/logo_VSHT.png') }}"
-                  alt="vsht logo"
-                />
-                <p class="vsht-logo text__vsht-logo main-page__text__vsht-logo">
-                  VYSOKÁ ŠKOLA<br />
-                  CHEMICKO-TECHNOLOGICKÁ <br />
-                  V PRAZE
-                </p>
-              </div>
-  
-              <p>DATABÁZE RESTAUROVANÝCH PŘEDMĚTŮ <br />VŠCHT Praha</p>
-            </div>
-  
-            <!-- actions-buttons -->
-            <div class="vert-div main-page__div__btn">
-              <div class="horiz-div">
+
+            <div class="ui one column gapped grid">
+              <h1 class="ui header">
+                DATABÁZE <br />
+                RESTAUROVANÝCH <br />
+                PŘEDMĚTŮ <br />VŠCHT Praha
+              </h1>
+
+              <div class="ui one column grid">
                 <form
                   action="{{ url_for('objects.search') }}"
                   role="search"
-                  class="vert-div main-page__input"
+                  class="ui one column grid"
                 >
-                  <input
-                    type="text"
-                    name="q"
-                    class="main-page__input-search parag"
-                    placeholder="{{ _('Vyhledat předmět ...') }}"
-                  />
-                  <button
-                    type="submit"
-                    class="main-page__btn__addPredmety parag"
-                    aria-label="Tlacitko prejit na predmety"
-                  >
-                    PROCHÁZET PŘEDMĚTY
-                  </button>
+                  <div class="column">
+                    <input
+                      type="text"
+                      name="q"
+                      class="ui input"
+                      placeholder="{{ _('Vyhledat předmět ...') }}"
+                    />
+                  </div>
+                  <button class="ui primary button">PROCHÁZET PŘEDMĚTY</button>
                 </form>
               </div>
-            </div>
-  
-            <!-- copyright -->
-            <div>
-              <p class="main-page__text__copyright">
-                © 2020 VŠCHT Praha, Ústav chemické technologie restaurování
-                památek - databáze restaurovaných předmětů
-              </p>
+              <div class="ui grid">
+                <Copyright />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- main image -->
-      <div class="vert-div main-page__main-container__image">
-        <div class="main-page__div__main-image">
+        <div class="column img-container">
           <img
-            class="main-page__main-image"
+            class="ui hero image"
             src="{{ url_for('static', filename='images/mainPageImg.png') }}"
             alt="decoration image"
           />
         </div>
       </div>
     </div>
-   
-    <!-- <div class="main-page__half--background"> -->
-      <div class="main-page__half--background bg-top" aria-hidden="true"></div>
-      <div class="main-page__half--background bg-bottom" aria-hidden="true"></div>
-    </div>
-  </main>
-  
-  {%- block javascript %} {% include config.THEME_JAVASCRIPT_TEMPLATE %} {%-
-  endblock javascript %} {% endblock %}
+
+    <Footer />
+  </div>
+  <div class="ui segment bg-bottom" aria-hidden="true"></div>
+</main>
+
+{%- block javascript %} {% include config.THEME_JAVASCRIPT_TEMPLATE %}
+
+{{ super() }}
+
+{{ webpack["components.js"] }}
+
+{%- endblock javascript %} {% endblock %}

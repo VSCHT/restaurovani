@@ -1,0 +1,8 @@
+
+/* https://github.com/Semantic-Org/example-github/blob/master/semantic/src/themes/default/globals/site.variables */
+/* @copyrightBackground: @inputBackground; */
+            
+
+@primarySize: 0.5rem;
+@secondarySize: 0.7rem;
+@averageSize: 0.6rem;

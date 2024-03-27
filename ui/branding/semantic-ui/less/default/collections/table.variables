@@ -1,0 +1,4 @@
+@borderCollapse: separate;
+ @borderSpacing: 0 0.1rem;
+ @border: none;
+ @rowBorder: none;

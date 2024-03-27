@@ -1,11 +1,11 @@
+import { EditObjectForm } from "./EditObjectForm.jsx";
+import { createFormAppInit, parseFormAppConfig } from "@js/oarepo_ui";
 
+const { formConfig } = parseFormAppConfig();
+const { overridableIdPrefix } = formConfig;
 
-import { createFormAppInit } from "@js/oarepo_ui";
-import { EditObjectForm } from "./EditObjectForm"
-
-
-export const overriddenComponents = {
-    "FormApp.layout": EditObjectForm,
+export const componentOverrides = {
+  [`${overridableIdPrefix}.FormApp.layout`]: EditObjectForm,
 };
 
-createFormAppInit(overriddenComponents);
+createFormAppInit({ componentOverrides });

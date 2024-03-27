@@ -1,0 +1,15 @@
+/*--------------
+    OWN
+---------------*/
+
+
+@segmentGapMobile: 95px;
+
+/*--------------
+    SEMANTIC
+---------------*/
+@margin:0px;
+@padding: 0px;
+
+
+@attachedBorder: 1px solid @inputBorderColor;

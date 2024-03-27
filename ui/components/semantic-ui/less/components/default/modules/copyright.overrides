@@ -1,0 +1,24 @@
+@media only screen and (max-width:1200px) and (min-width:992px){
+.ui.copyright{
+    font-size: @primarySize
+}}
+
+@media only screen and (max-width:580px){
+.ui.copyright{
+    font-size: 0.5rem
+}}
+
+@media only screen and (max-width:992px) and (min-width:580px){
+.ui.copyright{
+    font-size: 0.6rem
+}}
+
+@media only screen and (min-width:1200px) and (max-width:1500px){
+.ui.copyright{
+    font-size: 12px
+}}
+
+@media only screen and (min-width:1500px){
+.ui.copyright{
+    font-size: @secondarySize
+}}

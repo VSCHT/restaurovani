@@ -6,7 +6,7 @@ restorationWork:
       label.cs: Abstrakt
     restorer:
       type: keyword
-      label.cs: Restaurátor
+      label.cs: Autor(ka)
       facets:
         facet-groups: [ default ]
     supervisors[]:
@@ -16,7 +16,7 @@ restorationWork:
       properties:
         fullName:
           type: keyword
-          label.cs: Jméno a příjmení vedoucího
+          label.cs: Vedoucí práce
           facets:
             facet-groups: [ default ]
         comment:

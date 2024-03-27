@@ -1,8 +1,8 @@
 models:
 - api_prefix: objects
   base_model: empty
-  features: [relations, communities, files, requests, vocabularies, tests, custom_fields,
-    drafts]
+  features: [files, drafts, tests, relations, custom_fields, communities, vocabularies,
+    requests]
   model_description: Restoration objects
   model_name: objects
   model_package: objects

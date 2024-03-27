@@ -1,0 +1,13 @@
+
+
+
+@widescreenMonitorWidth:80%;
+@computerWidth:80%;
+@tabletWidth:90%;
+@mobileWidth:100%;
+@closeTop: -1rem;
+@contentBackground: @basicColor;
+@headerBackground: @basicColor;
+@actionBackground: @basicColor;
+@closeHitbox:8vw;
+@innerCloseTop:0.5rem;

@@ -1,0 +1,9 @@
+@emSize: 17px;
+@pageBackground: @basicColor;
+
+@fontSize:0.9rem;
+
+@linkColor: black;
+
+@paragraphMargin: 0 0 0.3em;
+

@@ -2,5 +2,5 @@
 /* https://github.com/Semantic-Org/example-github/blob/master/semantic/src/themes/default/globals/site.variables */
 /* @navbarBackground: @inputBackground; */
 
-@navbarBackground: @red;
+@navbarBackground: @darkBrown;
 @navbarTextColor: @white;

@@ -1,0 +1,5 @@
+// @media only screen and (max-width: @mobileSize) {
+//   .ui.search > .prompt {
+//     font-size: 0.9rem;
+//   }
+// }
