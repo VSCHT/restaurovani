@@ -10,7 +10,12 @@ import _get from "lodash/get";
 export const MoreInfo = ({ activeIndex, handleActive, category }) => {
   return (
     <AccordionField
-      includesPaths={["metadata.restorationObject"]}
+      includesPaths={[
+        "metadata.restorationObject.colors",
+        "metadata.restorationObject.fabricationTechnologies",
+        "metadata.restorationObject.materialType",
+        "metadata.restorationObject.secondaryMaterialTypes",
+      ]}
       label="Další údaje"
       active={activeIndex === 2}
       styled
@@ -21,13 +26,13 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
           <Grid.Column>
             <VocabularyTreeSelectField
               optionsListName="Colors"
-              fieldPath={`metadata.restorationObject.colors`}
+              fieldPath="metadata.restorationObject.colors"
               multiple={true}
               clearable
               category={category}
               label={
                 <FieldLabel
-                  htmlFor={`metadata.restorationObject.colors`}
+                  htmlFor="metadata.restorationObject.colors"
                   label="Barva"
                 />
               }
@@ -38,14 +43,14 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
         <Grid.Column>
           <VocabularyTreeSelectField
             optionsListName="FabricationTechnologies"
-            fieldPath={`metadata.restorationObject.fabricationTechnologies`}
+            fieldPath="metadata.restorationObject.fabricationTechnologies"
             placeholder="Vyberte technologie výroby"
             multiple={true}
             category={category}
             clearable
             label={
               <FieldLabel
-                htmlFor={`metadata.restorationObject.fabricationTechnologies`}
+                htmlFor="metadata.restorationObject.fabricationTechnologies"
                 label="Technologie výroby"
               />
             }
@@ -54,13 +59,13 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
         <Grid.Column>
           <VocabularyTreeSelectField
             optionsListName="MaterialTypes"
-            fieldPath={`metadata.restorationObject.materialType`}
+            fieldPath="metadata.restorationObject.materialType"
             multiple={false}
             clearable
             placeholder="Vyberte typy materiálů"
             label={
               <FieldLabel
-                htmlFor={`metadata.restorationObject.materialType`}
+                htmlFor="metadata.restorationObject.materialType"
                 label="Typ materiálů"
               />
             }
@@ -69,13 +74,13 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
         <Grid.Column>
           <VocabularyTreeSelectField
             optionsListName="MaterialTypes"
-            fieldPath={`metadata.restorationObject.secondaryMaterialTypes`}
+            fieldPath="metadata.restorationObject.secondaryMaterialTypes"
             multiple={true}
             clearable
             placeholder="Vyberte vedlejší typy materiálů"
             label={
               <FieldLabel
-                htmlFor={`metadata.restorationObject.secondaryMaterialTypes`}
+                htmlFor="metadata.restorationObject.secondaryMaterialTypes"
                 label="Vedlejší typy materiálů"
               />
             }
