@@ -37,7 +37,7 @@
 @borderRadius: 30px;
 
 
-@black : black;
+@blackTextColor : @darkestBrown;
 @blackHover:none;
 @basicColoredBorderSize:0;
 @basicBorderSize :0px;

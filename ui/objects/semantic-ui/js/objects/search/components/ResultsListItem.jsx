@@ -17,37 +17,13 @@ import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
 import { getCaption } from "../../detail";
 
 const ItemHeader = ({ title, searchUrl, selfLink }) => {
-  const [smallScreen, setSmallScreen] = React.useState(
-    window.innerWidth <= 730
-  );
-
-  useEffect(() => {
-    function updateDescVisibility() {
-      if (window.innerWidth >= 730) {
-        setSmallScreen(false);
-      } else {
-        setSmallScreen(true);
-      }
-    }
-
-    updateDescVisibility();
-
-    window.addEventListener("resize", updateDescVisibility);
-
-    return () => {
-      window.removeEventListener("resize", updateDescVisibility);
-    };
-  }, []);
-
   const viewLink = new URL(
     selfLink,
     new URL(searchUrl, window.location.origin)
   );
-  let truncatedTitle =
-    title.length > 10 && smallScreen ? title.substring(0, 10) + "..." : title;
   return (
     <Item.Header>
-      <a href={viewLink}>{truncatedTitle}</a>
+      <a href={viewLink}>{title}</a>
     </Item.Header>
   );
 };
@@ -104,8 +80,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
   );
 
   const created = _get(result, "created", "<no data>");
-  const creationDate= new Date(created).toISOString().slice(0, 10);
-  
+  const creationDate = new Date(created).toLocaleDateString();
 
   return (
     <Overridable
@@ -130,10 +105,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
           />
           <ItemDescription>{restorer}</ItemDescription>
           <ItemExtra>
-            <Label size="large">
-              Vloženo:{" "}
-              {creationDate}{" "}
-            </Label>
+            <Label size="large">Vloženo: {creationDate} </Label>
             <DetailsButton
               searchUrl={searchAppConfig.ui_endpoint}
               selfLink={`${result.id}`}

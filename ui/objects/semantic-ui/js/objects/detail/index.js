@@ -29,7 +29,7 @@ const fetchImages = async () => {
 
           const blob = await response.blob();
           return URL.createObjectURL(blob);
-        } else{
+        } else {
           filesCollection.push(item);
         }
         return null;
@@ -40,13 +40,11 @@ const fetchImages = async () => {
   }
 };
 
-
-
 export const getCaption = (d) => {
   if (d?.metadata && d?.metadata?.caption) {
     if (
       d.metadata.caption === "default_image_name" ||
-      d.metadata.caption === "default_pdf_name" 
+      d.metadata.caption === "default_pdf_name"
     ) {
       return d?.key;
     } else {
@@ -58,14 +56,23 @@ export const getCaption = (d) => {
 };
 
 async function fetchAndRender() {
+  let settings = {
+    infinite: false,
+    speed: 100,
+    swipeToSlide: true,
+  };
+
   try {
     await fetchImages();
 
     ReactDOM.render(
-      <ImgCarousel imagesCollection={imagesCollection}/>,
+      <ImgCarousel imagesCollection={imagesCollection} settings={settings} />,
       imgGalleryComp
     );
-    ReactDOM.render(<FilesSection filesCollection={filesCollection}/>, filesDivComp);
+    ReactDOM.render(
+      <FilesSection filesCollection={filesCollection} />,
+      filesDivComp
+    );
   } catch (error) {
     console.error("Error rendering component");
   }

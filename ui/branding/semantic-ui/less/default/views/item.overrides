@@ -40,6 +40,9 @@
     overflow: hidden;
     max-height: 215px;
   }
+  .right.menu a& {
+    color: white;
+  }
 }
 
 @media only screen and (max-width: @mobileSize) {
@@ -67,6 +70,14 @@
     }
     & .header a {
       font-size: .count(@headerLinkFont, 0.1) [ @result];
+    }
+    .ui.items > & > .content > .header:not(.ui) {
+      max-width: 50vw;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .ui.items > & > .content > .header:not(.ui) a {
+      white-space: nowrap;
     }
   }
 }

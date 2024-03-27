@@ -19,7 +19,6 @@ import { ArrayFieldItem } from "@js/oarepo_ui";
 import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import { FileStat } from "./FileStat";
-import {DaterangePicker} from './DateRange'
 
 export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
   const units = [
@@ -30,7 +29,6 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
     { value: "m", text: "m" },
     { value: "mm", text: "mm" },
   ];
-
 
   return (
     <AccordionField
@@ -92,7 +90,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           <VocabularyTreeSelectField
             optionsListName="ItemTypes"
             fieldPath="metadata.restorationObject.itemTypes"
-            multiple={true}
+            multiple={false}
             placeholder="Vyberte typ předmětu"
             category={category}
             label={
@@ -104,20 +102,36 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           />
         </Grid.Column>
 
-        <Grid.Column>
-          <DaterangePicker
-            name="metadata.restorationObject.creationPeriod"
-            aria-label="Datace"
-            fieldPath="metadata.restorationObject.creationPeriod"
-            startDateInputPlaceholder="Datace od"
-            endDateInputPlaceholder="Datace do"
-            clearButtonClassName="small transparent"
-            label="Datace"
-            dateFormat='yyyy'
-          />
-        </Grid.Column>
-        
-
+        <Grid columns={2}>
+          <Grid.Column>
+            <TextField
+              name="metadata.restorationObject.creationPeriod.since"
+              aria-label="Datace od"
+              fieldPath="metadata.restorationObject.creationPeriod.since"
+              required
+              label={
+                <FieldLabel
+                  htmlFor="metadata.restorationObject.creationPeriod.since"
+                  label="Datace od"
+                />
+              }
+            />
+          </Grid.Column>
+          <Grid.Column>
+            <TextField
+              name="metadata.restorationObject.creationPeriod.until"
+              aria-label="Datace do"
+              fieldPath="metadata.restorationObject.creationPeriod.until"
+              required
+              label={
+                <FieldLabel
+                  htmlFor="metadata.restorationObject.creationPeriod.until"
+                  label="Datace do"
+                />
+              }
+            />
+          </Grid.Column>
+        </Grid>
 
         {category != "textil" && (
           <ArrayField

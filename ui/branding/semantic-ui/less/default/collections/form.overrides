@@ -5,9 +5,12 @@
   & .tox {
     border-radius: 30px;
     min-height: 3rem;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     border: 1px solid @inputBorderColor;
     width: 100%;
+    @media only screen and (min-width: @tabletSize) {
+      font-size: 0.9rem
+    }
   }
   & textarea {
     padding: 10px 20px;

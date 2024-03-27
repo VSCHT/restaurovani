@@ -55,6 +55,7 @@ export const VocabularyTreeSelectField = ({
   const [openState, setOpenState] = useState(false);
   const [parentsState, setParentsState] = useState([]);
   const [keybState, setKeybState] = useState([]);
+
   const [selectedState, setSelectedState] = useState(() => {
     if (multiple && Array.isArray(value)) {
       return value.reduce((acc, val) => {
@@ -71,9 +72,8 @@ export const VocabularyTreeSelectField = ({
     }
   });
 
-
-
-  const handleOpen = () => {
+  const handleOpen = (e) => {
+    if (e.currentTarget.classList.contains("icon")) return;
     setOpenState(true);
   };
   const [query, setQuery] = useState("");
@@ -109,7 +109,6 @@ export const VocabularyTreeSelectField = ({
         );
   }, [serializedOptions, category, query]);
 
-
   const columnsCount = hierarchicalData.length;
 
   const openHierarchyNode = (parent, level) => () => {
@@ -128,21 +127,47 @@ export const VocabularyTreeSelectField = ({
     setKeybState(updatedKeybState);
   };
 
-  const handleSelect = (option, val, e) => {
+  const handleSelect = (option, e) => {
     e.preventDefault();
+
     const existingIndex = selectedState.findIndex(
       (i) => i.value === option?.value
     );
+    const existingParentIndex = selectedState.findIndex((i) =>
+      option?.hierarchy.ancestors.includes(i.value)
+    );
+    const childIndexes = selectedState.reduce(
+      (acc, curr, index) =>
+        curr.hierarchy?.ancestors.includes(option.value)
+          ? [...acc, index]
+          : acc,
+      []
+    );
 
     if (existingIndex !== -1) {
-      setSelectedState((prevState) => {
-        const newState = [...prevState];
-        newState.splice(existingIndex, 1);
-        return newState;
-      });
+      setSelectedState((prevState) =>
+        prevState.filter((_, index) => index !== existingIndex)
+      );
     } else {
-      if (multiple && selectedState.length != 0) {
-        setSelectedState((prevState) => [...prevState, option]);
+      if (multiple && selectedState.length !== 0) {
+        setSelectedState((prevState) => {
+          let newState = prevState;
+          if (childIndexes.length > 0) {
+            childIndexes.forEach((childIndex, i) => {
+              newState = newState.filter(
+                (_, index) => index !== childIndex - i
+              );
+            });
+            return [...newState, option];
+          } else if (existingParentIndex !== -1) {
+            newState = prevState.filter(
+              (_, index) => index !== existingParentIndex
+            );
+            return [...newState, option];
+          } else {
+            return [...prevState, option];
+          }
+        });
       } else {
         setSelectedState([option]);
       }
@@ -150,21 +175,9 @@ export const VocabularyTreeSelectField = ({
   };
 
   const handleSubmit = () => {
-    let prepSelect;
-    if (multiple) {
-      prepSelect = selectedState.map((i) => serializeVocabularyItem(i.value));
-      const existingValues = getIn(formik.values, fieldPath, []);
-
-      const existingIds = existingValues.map((item) => item.id);
-
-      prepSelect = prepSelect.filter((item) => !existingIds.includes(item.id));
-
-      prepSelect = [...existingValues, ...prepSelect];
-    } else {
-      prepSelect = selectedState.map((i) =>
-        serializeVocabularyItem(i.value)
-      )[0];
-    }
+    const prepSelect = selectedState.map((i) =>
+      serializeVocabularyItem(i.value)
+    );
 
     formik.setFieldValue(fieldPath, prepSelect);
     setOpenState(false);
@@ -172,7 +185,23 @@ export const VocabularyTreeSelectField = ({
     setParentsState([]);
   };
 
-  const handleKey = (e, option, index) => {
+  const handleChange = ({ e, data, formikProps }) => {
+    if (multiple) {
+      let vocabularyItems = allOptions.filter((o) =>
+        data.value.includes(o.value)
+      );
+      vocabularyItems = vocabularyItems.map((vocabularyItem) => {
+        return { ...vocabularyItem, id: vocabularyItem.value };
+      });
+      formikProps.form.setFieldValue(fieldPath, [...vocabularyItems]);
+    } else {
+      let vocabularyItem = allOptions.find((o) => o.value === data.value);
+      vocabularyItem = { ...vocabularyItem, id: vocabularyItem?.value };
+      formikProps.form.setFieldValue(fieldPath, vocabularyItem);
+    }
+  };
+
+  const handleKey = (e, index) => {
     e.preventDefault();
     let newIndex = 0;
 
@@ -197,7 +226,7 @@ export const VocabularyTreeSelectField = ({
         moveKey(index, newIndex, false);
       }
       if (e.shiftKey && e.key === "ArrowUp") {
-        handleSelect(data[newIndex], index, e);
+        handleSelect(data[newIndex], e);
       }
     } else if (
       e.key === "ArrowDown" ||
@@ -212,7 +241,7 @@ export const VocabularyTreeSelectField = ({
         moveKey(index, newIndex, false);
       }
       if (e.shiftKey && e.key === "ArrowDown") {
-        handleSelect(data[newIndex], index, e);
+        handleSelect(data[newIndex], e);
       }
     } else if (e.key === "ArrowLeft") {
       if (index > 0) {
@@ -245,13 +274,13 @@ export const VocabularyTreeSelectField = ({
       (e.ctrlKey && e.key === " ") ||
       e.key == " "
     ) {
-      handleSelect(data[keybState[index]], index, e);
+      handleSelect(data[keybState[index]], e);
     }
   };
 
   const renderColumn = (column, index) => {
     return (
-      <Grid.Column key={index}>
+      <Grid.Column key={index} className="tree-column">
         {column.map((option, i) => {
           if (
             index == 0 ||
@@ -279,7 +308,7 @@ export const VocabularyTreeSelectField = ({
                         : false
                     }
                     onChange={(e) => {
-                      handleSelect(option, option.value, e);
+                      handleSelect(option, e);
                     }}
                   />
                 )}
@@ -288,10 +317,10 @@ export const VocabularyTreeSelectField = ({
                   color="black"
                   onClick={openHierarchyNode(option.value, index)}
                   onDoubleClick={(e) => {
-                    handleSelect(option, option.value, e);
+                    handleSelect(option, e);
                   }}
                   onKeyDown={(e) => {
-                    handleKey(e, option, index);
+                    handleKey(e, index);
                   }}
                   tabIndex={0}
                 >
@@ -319,12 +348,12 @@ export const VocabularyTreeSelectField = ({
         optimized={optimized}
         onBlur={() => setFieldTouched(fieldPath)}
         deburr
-        search
         fieldPath={fieldPath}
         multiple={multiple}
         featured={featuredOptions}
         options={serializedOptions}
-        onClick={handleOpen}
+        onClick={(e) => handleOpen(e)}
+        onChange={handleChange}
         value={multiple ? value.map((o) => o?.id) : value?.id}
         {...uiProps}
       />
@@ -369,8 +398,8 @@ export const VocabularyTreeSelectField = ({
             </Grid>
           </ModalContent>
           <ModalActions>
-            <Grid.Row className='gapped'>
-              <Grid.Row className='gapped'>
+            <Grid.Row className="gapped">
+              <Grid.Row className="gapped">
                 {selectedState.map((i, index) => (
                   <Label key={index}>
                     {" "}
@@ -382,7 +411,7 @@ export const VocabularyTreeSelectField = ({
                       <Button
                         className="small transparent"
                         onClick={(e) => {
-                          handleSelect(i, i.item, e);
+                          handleSelect(i, e);
                         }}
                       >
                         <Icon name="delete" />

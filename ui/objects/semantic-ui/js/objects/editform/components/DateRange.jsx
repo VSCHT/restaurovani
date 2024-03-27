@@ -21,20 +21,20 @@ export const DaterangePicker = ({
   useEffect(() => {
     if (field?.value) {
       const { since, until } = field.value;
+
       const startDate = new Date(since);
       const endDate = new Date(until);
+
       setDates([startDate, endDate]);
-    } else {
-      setDates([null, null]);
     }
   }, []);
 
   const handleChange = (newDates) => {
     const [startDate, endDate] = newDates.map((date) => {
       if (date) {
-        return dateFormat === "yyyy"
-          ? date.getFullYear()
-          : date.toISOString().slice(0, 10);
+        const formattedDate = date.toISOString().slice(0, 10);
+
+        return formattedDate;
       }
       return null;
     });
@@ -53,26 +53,12 @@ export const DaterangePicker = ({
     handleChange(newDates);
   };
 
-  const handleClearStartDate = () => {
-    const newDates = [null, dates[1]];
-    setDates(newDates);
-    handleChange(newDates);
-  };
-
-  const handleClearEndDate = () => {
-    const newDates = [dates[0], null];
-    setDates(newDates);
-    handleChange(newDates);
-  };
-
   return (
     <Form.Field className="ui datepicker" required={required}>
       <FieldLabel htmlFor={fieldPath} label={label} />
       <GroupField>
         <DatePickerWrapper
-          fieldPath={`${fieldPath}.since`}
           handleChange={handleStartDateChange}
-          handleClear={handleClearStartDate}
           placeholder={startDateInputPlaceholder}
           clearButtonClassName={clearButtonClassName}
           dateFormat={dateFormat}
@@ -86,9 +72,7 @@ export const DaterangePicker = ({
           customInputProps={{ label: { startDateInputPlaceholder } }}
         />
         <DatePickerWrapper
-          fieldPath={`${fieldPath}.until`}
           handleChange={handleEndDateChange}
-          handleClear={handleClearEndDate}
           placeholder={endDateInputPlaceholder}
           dateFormat={dateFormat}
           clearButtonClassName={clearButtonClassName}

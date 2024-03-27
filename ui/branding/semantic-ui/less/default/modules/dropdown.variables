@@ -16,4 +16,5 @@
 @itemFontSize:0.9rem;
 @itemLineHeight: 1em;
 
-@selectionMinHeight: 2rem;
+@selectionMinHeight: 2.5rem;
+@multipleSelectionPadding:0.1rem;

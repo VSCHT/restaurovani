@@ -21,3 +21,4 @@
 @pointingBorderColor: @red;
 @focusBorderColor: @inputBorderColor;
 @iconMargin:0;
+@placeholderColor: @darkBrown;
