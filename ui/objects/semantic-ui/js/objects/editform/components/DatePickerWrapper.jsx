@@ -18,9 +18,6 @@ export const DatePickerWrapper = ({
       clearButtonClassName={clearButtonClassName}
       dateFormat={dateFormat}
       isClearable
-      showYearPicker={
-        dateFormat == "yyyy" || dateFormat.indexOf("GGG") > -1 ? true : false
-      }
       placeholderText={placeholder}
       {...datePickerProps}
     />
