@@ -195,11 +195,12 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
 
         <!-- info table-->
        
-        <div class="ui two column divided grid" aria-label="Info o předmětu">
+        <div class="ui two column divided grid">
             <div class="column">
               <table
                 class="ui top aligned table"
                 summary="Informace o předmětu"
+                aria-label="Informace o předmětu"
               >
                 <tbody>
                   {% if metadata.restorationObject.restorationRequestor %}
