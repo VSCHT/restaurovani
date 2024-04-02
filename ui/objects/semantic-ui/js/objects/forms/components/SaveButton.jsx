@@ -13,6 +13,7 @@ export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
       aria-label="tlacitko vytvoreni predmetu"
       disabled={isSubmitting}
       loading={isSubmitting}
+      data-testid='submit-button'
       onClick={async () => {
         const err = await formik.validateForm();
         if (!formik.isValid) {

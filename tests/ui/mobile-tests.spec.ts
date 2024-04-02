@@ -1,4 +1,5 @@
 import { test, expect } from "playwright/test";
+const call = require("./api-call.spec.ts");
 
 const url = "https://127.0.0.1:5000/";
 
@@ -7,37 +8,29 @@ test.use({
 });
 
 test("burger menu visibility", async ({ page }) => {
-  await page.goto(url);
+  await page.goto("/");
   await expect(page.locator(".item.toggle-burger").first()).toBeVisible();
 });
 
 test("top menu content visibility", async ({ page }) => {
-  await page.goto(url);
+  await page.goto("/");
   await expect(
     page
-      .getByRole("button", { name: "RESTAUROVÁNÍ VŠCHT" })
-      .locator(".ui.menu.top.fixed")
+      .locator(".ui.menu.top.fixed a").first()
   ).toBeHidden();
 });
 
-test("images carousel 2", async ({ page, request }) => {
-  const response = await request.get(
-    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
-  );
+test("images carousel 2", async ({ page, request, baseURL }) => {
+  const responseData = await call( baseURL, request );
+  const responseID = responseData.id;
 
-  expect(response.ok()).toBeTruthy();
-
-  const responseBody = await response.body();
-  const responseData = JSON.parse(responseBody.toString());
-  const responseID = responseData.hits.hits[4].id;
-
-  await page.goto(`${url}objekty/${responseID}`);
+  await page.goto(`/objekty/${responseID}`);
 
   await expect(page.locator(".slick-arrow.slick-next")).toBeVisible();
 });
 
 test("search filter button", async ({ page }) => {
-  await page.goto(`${url}objekty`);
+  await page.goto(`/objekty`);
 
   await expect(page.locator(".ui.button.filter")).toBeVisible();
 
@@ -45,7 +38,7 @@ test("search filter button", async ({ page }) => {
   await expect(page.locator(".ui.modal")).toBeVisible();
 });
 
-test("sidebar search", async ({ page }) => {
+test("sidebar search", async ({ page, baseURL }) => {
   await page.goto(url);
 
   await page.locator(".item").first().click();
@@ -59,11 +52,11 @@ test("sidebar search", async ({ page }) => {
     .fill("sklo");
   await page.locator(`[type='submit']`).click();
 
-  await expect(page).toHaveURL(`${url}objekty/?q=sklo`);
+  await expect(page).toHaveURL(`${baseURL}objekty/?q=sklo`);
 });
 
-test("sidebar homepage", async ({ page }) => {
-  await page.goto(`${url}objekty`);
+test("sidebar homepage", async ({ page, baseURL }) => {
+  await page.goto(`/objekty`);
   await page.locator(".item").first().click();
   await expect(page.locator(".sidebar")).toBeVisible();
   await page
@@ -71,20 +64,20 @@ test("sidebar homepage", async ({ page }) => {
     .filter({ hasText: "RESTAUROVÁNÍ VŠCHT Praha" })
     .click();
 
-  await expect(page).toHaveURL(url);
+  await expect(page).toHaveURL(`${baseURL}`);
 });
 
-test("sidebar new item", async ({ page }) => {
-  await page.goto(`${url}objekty`);
+test("sidebar new item", async ({ page, baseURL }) => {
+  await page.goto(`/objekty`);
   await page.locator(".item").first().click();
   await expect(page.locator(".sidebar")).toBeVisible();
   await page.locator("div.item").filter({ hasText: "Nový předmět" }).click();
 
-  await expect(page).toHaveURL(`${url}objekty/_new`);
+  await expect(page).toHaveURL(`${baseURL}objekty/_new`);
 });
 
-test("sidebar logout", async ({ page }) => {
-  await page.goto(`${url}objekty`);
+test("sidebar logout", async ({ page, baseURL }) => {
+  await page.goto(`/objekty`);
   await page.locator(".item").first().click();
   await expect(page.locator(".sidebar")).toBeVisible();
   await page.waitForSelector(".sidebar .item .account-dropdown", {
@@ -96,14 +89,18 @@ test("sidebar logout", async ({ page }) => {
 
   await page.getByRole("link", { name: "Odhlášení" }).click();
 
-  await expect(page).toHaveURL(url);
+  await expect(page).toHaveURL(`${baseURL}`);
 });
 
 test("sidebar close", async ({ page }) => {
-  await page.goto(`${url}objekty`);
+  await page.goto(`/objekty`);
   await page.locator(".item").first().click();
   await expect(page.locator(".sidebar")).toBeVisible();
   await page.locator(".ui.close").click();
 
   await expect(page.locator(".sidebar")).toBeHidden();
 });
+
+// отделить повторяющиеся части
+// селекторы полобрать получше
+// слайд мобил следущие картинки

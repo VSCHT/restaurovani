@@ -2,47 +2,44 @@ import { test, expect } from "playwright/test";
 
 test.use({ storageState: { cookies: [], origins: [] } });
 
-const url = "https://127.0.0.1:5000/";
-
 test("has title", async ({ page }) => {
-  await page.goto(url);
+  await page.goto("/");
   await expect(page).toHaveTitle(
     /Repozitář dokumentace restaurování uměleckých předmětů/
   );
 });
 
 test("redirection to login page", async ({ page }) => {
-  await page.goto(url);
-  await page.getByRole("link", { name: "Přihlásit se" }).click();
-  await expect(page).toHaveURL(`${url}login/`);
+  await page.goto("/");
+  await page.locator(".right.menu a").click();
+  await expect(page).toHaveURL(`/login/`);
 });
 
-test("redirection to title page", async ({ page }) => {
-  await page.goto(url);
-  page.getByRole("button", { name: "RESTAUROVÁNÍ VŠCHT" });
-  await expect(page).toHaveURL(url);
+test("redirection to title page", async ({ page, baseURL }) => {
+  await page.goto("/objekty");
+  const button = page.locator(".ui.menu.top.fixed a").first();
+  await button.click();
+  await expect(page).toHaveURL(`${baseURL}`);
 });
 
-test("redirection to create page", async ({ page }) => {
-  await page.goto(`${url}objekty/?q=&l=list&p=1&s=10&sort=newest`);
-  await page.getByRole("button", { name: "Nový předmět" }).click();
-  await expect(page).toHaveURL(`${url}login/?next=%2Fobjekty%2F_new`);
+test("redirection to create page", async ({ page, baseURL }) => {
+  await page.goto(`${baseURL}objekty`);
+  await page.locator(".aside .ui.secondary.button").click();
+  await expect(page).toHaveURL(`${baseURL}login/?next=%2Fobjekty%2F_new`);
 });
 
 test("burger menu visibility", async ({ page }) => {
-  await expect(
-    page.getByRole("button", { name: "item toggle-burger" })
-  ).toBeHidden();
+  await expect(page.locator(".item .toggle-burger")).toBeHidden();
 });
 
 test("falsy search", async ({ page }) => {
-  await page.goto(`${url}objekty`);
-  const response = await page.evaluate(() =>
-    fetch(
-      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=1&size=10&metadata_restorationObject_creationPeriod_since=1700`
-    ).then((res) => res.json())
+  await page.goto("/objekty");
+  const response = await page.waitForResponse((response) =>
+    response.url().includes("/api/user/objects")
   );
-  expect(response).toStrictEqual({
+
+  const responseData = await response.json();
+  expect(responseData).toStrictEqual({
     message: "Permission denied.",
     status: 403,
   });
