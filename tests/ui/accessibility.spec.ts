@@ -24,7 +24,7 @@ test.describe('search', () => {
 });
 
 test.describe('detail', () => { 
-  test('should not have any automatically detectable accessibility issues', async ({ page }) => {
+  test('should not have any automatically detectable accessibility issues', async ({ page, request }) => {
     const response = await request.get(
       `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
     );
