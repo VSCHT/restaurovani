@@ -310,6 +310,8 @@ export const VocabularyTreeSelectField = ({
                     onChange={(e) => {
                       handleSelect(option, e);
                     }}
+                    value={option.value}
+                    name={option.value}
                   />
                 )}
                 <Button
