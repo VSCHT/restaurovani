@@ -1,4 +1,4 @@
-import { test, expect, Locator } from "playwright/test";
+import { test, expect } from "playwright/test";
 
 const url = "https://127.0.0.1:5000/";
 
