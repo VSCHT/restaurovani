@@ -1,16 +1,14 @@
-import { test as setup, expect } from 'playwright/test';
+import { test as setup, expect } from "playwright/test";
 
-const authFile = 'playwright/.auth/user.json';
-const url = "https://127.0.0.1:5000/";
+const authFile = "playwright/.auth/user.json";
 
-setup('authenticate', async ({ page }) => {
-  await page.goto(`${url}login`);
-  await page.getByPlaceholder('Email Address').fill('makisheva@cesnet.cz');
-  await page.getByPlaceholder('Password').fill('cesnet1');
-  await page.getByRole('button', { name: 'Log in' }).click();
-  
-  await page.waitForURL(url);
+setup("authenticate", async ({ page, baseURL }) => {
+  await page.goto(`/login`);
+  await page.locator(`[name='email']`).fill("makisheva@cesnet.cz");
+  await page.locator(`[name='password']`).fill("cesnet1");
+  await page.locator('.submit.primary.button').click();
 
+  expect(await page.waitForURL(`${baseURL}`));
 
   await page.context().storageState({ path: authFile });
 });

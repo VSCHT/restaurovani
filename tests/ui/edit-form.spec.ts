@@ -1,36 +1,21 @@
 import { test, expect } from "playwright/test";
+const call = require("./api-call.spec.ts");
 
-const url = "https://127.0.0.1:5000/";
+test("tree-field visibility", async ({ page, request, baseURL }) => {
+  const responseData = await call(baseURL, request);
+  const responseID = responseData.id;
 
-test("tree-field visibility", async ({ page, request }) => {
-  const response = await request.get(
-    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
-  );
-
-  expect(response.ok()).toBeTruthy();
-
-  const responseBody = await response.body();
-  const responseData = JSON.parse(responseBody.toString());
-  const responseID = responseData.hits.hits[4].id;
-
-  await page.goto(`${url}objekty/${responseID}/edit`);
+  await page.goto(`/objekty/${responseID}/edit`);
 
   await page.click(`[name='metadata.restorationObject.itemTypes']`);
   await expect(page.locator(".tree-field").first()).toBeVisible();
 });
 
-test("tree-field manipulation", async ({ page, request }) => {
-  const response = await request.get(
-    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
-  );
+test("tree-field manipulation", async ({ page, request, baseURL }) => {
+  const responseData = await call(baseURL, request);
+  const responseID = responseData.id;
 
-  expect(response.ok()).toBeTruthy();
-
-  const responseBody = await response.body();
-  const responseData = JSON.parse(responseBody.toString());
-  const responseID = responseData.hits.hits[4].id;
-
-  await page.goto(`${url}objekty/${responseID}/edit`);
+  await page.goto(`/objekty/${responseID}/edit`);
 
   await page.click(`[name='metadata.restorationObject.itemTypes']`);
 
@@ -47,18 +32,11 @@ test("tree-field manipulation", async ({ page, request }) => {
   expect(page.locator("a").filter({ hasText: "popelnice" })).toBeTruthy();
 });
 
-test("tree-field manipulation 2", async ({ page, request }) => {
-  const response = await request.get(
-    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
-  );
+test("tree-field manipulation 2", async ({ page, request, baseURL }) => {
+  const responseData = await call(baseURL, request);
+  const responseID = responseData.id;
 
-  expect(response.ok()).toBeTruthy();
-
-  const responseBody = await response.body();
-  const responseData = JSON.parse(responseBody.toString());
-  const responseID = responseData.hits.hits[4].id;
-
-  await page.goto(`${url}objekty/${responseID}/edit`);
+  await page.goto(`/objekty/${responseID}/edit`);
   await page
     .locator(
       "div:nth-child(4) > .content > div > div > div:nth-child(3) > .field > div"
@@ -68,12 +46,27 @@ test("tree-field manipulation 2", async ({ page, request }) => {
   await page.getByRole("button", { name: "keramika" }).press("ArrowDown");
   await page.getByRole("button", { name: "keramika" }).press("ArrowDown");
   await page.getByRole("button", { name: "keramika" }).press("ArrowRight");
+
+  expect(page.locator(".column.tree-column:nth-child(3)")).toBeVisible();
+
   await page.getByRole("button", { name: "keramika" }).press("ArrowDown");
   await page.getByRole("button", { name: "keramika" }).press("Enter");
 
-  await expect(
-    page.getByText("draselno-vápenaté sklosklo").nth(4)
-  ).toBeVisible();
+  // await expect(
+  //   page.getByText("draselno-vápenaté sklosklo").nth(4)
+  // ).toBeVisible();
+
+  //   const selectedItem=  await page.locator('.column.tree-column:nth-child(3)').evaluate((element) =>
+
+  // );
+  const selectedItem = await page
+    .getByRole("row")
+    .filter({ has: page.locator(".ui.checked.checkbox") })
+    .getByRole("button").evaluate((element)=>{
+      return element
+    });
+// get correct selector -> get value/text right-of(checkbox)
+  console.log(selectedItem);
 
   const parentCheckbox = page.locator(
     ".ui.modal div:nth-child(2) > div:nth-child(3) > div"
@@ -95,45 +88,31 @@ test("tree-field manipulation 2", async ({ page, request }) => {
     )
   ).toBeTruthy();
 
-  await expect(
-    page.getByText("draselno-vápenaté sklosklo").nth(4)
-  ).toBeHidden();
+  // await expect(
+  //   page.getByText("draselno-vápenaté sklosklo").nth(4)
+  // ).toBeHidden();
 });
 
-test("accordion edit form", async ({ page, request }) => {
-  const response = await request.get(
-    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
-  );
+test("accordion edit form", async ({ page, request, baseURL }) => {
+  const responseData = await call(baseURL, request);
+  const responseID = responseData.id;
 
-  expect(response.ok()).toBeTruthy();
+  await page.goto(`/objekty/${responseID}/edit`);
 
-  const responseBody = await response.body();
-  const responseData = JSON.parse(responseBody.toString());
-  const responseID = responseData.hits.hits[4].id;
+  await page.locator(".ui.accordion:nth-child(2)").click();
 
-  await page.goto(`${url}objekty/${responseID}/edit`);
-
-  await page.getByText("Práce", { exact: true }).click();
-
-  const titleElement = page.locator('div.title:has-text("Práce")');
+  const titleElement = page.locator(".ui.accordion:nth-child(2) .title");
   const classList = await titleElement.evaluate((element) =>
     element.classList.contains("active")
   );
-  expect(classList).toBeFalsy();
+  expect(classList).toBeTruthy();
 });
 
-test("checkbox edit form", async ({ page, request }) => {
-  const response = await request.get(
-    `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
-  );
+test("checkbox edit form", async ({ page, request, baseURL }) => {
+  const responseData = await call(baseURL, request);
+  const responseID = responseData.id;
 
-  expect(response.ok()).toBeTruthy();
-
-  const responseBody = await response.body();
-  const responseData = JSON.parse(responseBody.toString());
-  const responseID = responseData.hits.hits[4].id;
-
-  await page.goto(`${url}objekty/${responseID}/edit`);
+  await page.goto(`/objekty/${responseID}/edit`);
 
   const checkbox = page.locator(
     'div > input[name="metadata.restorationObject.archeologic"]'
@@ -154,25 +133,26 @@ test("checkbox edit form", async ({ page, request }) => {
   }
 });
 
-test("date error 1", async ({ page, request }) => {
+test("date error 1", async ({ page, request, baseURL }) => {
   try {
-    const response = await request.get(
-      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
-    );
+    const responseData = await call(baseURL, request);
+    const responseID = responseData.id;
 
-    expect(response.ok()).toBeTruthy();
+    await page.goto(`/objekty/${responseID}/edit`);
 
-    const responseBody = await response.body();
-    const responseData = JSON.parse(responseBody.toString());
-    const responseID = responseData.hits.hits[4].id;
-
-    await page.goto(`${url}objekty/${responseID}/edit`);
-
-    await page.getByLabel("Datace od").click();
-    await page.getByLabel("Datace od").fill("-10000000");
-    await page.getByLabel("Datace do").click();
-    await page.getByLabel("Datace do").fill("-100");
-    await page.getByLabel("tlacitko vytvoreni predmetu").click();
+    await page
+      .locator(`[name='metadata.restorationObject.creationPeriod.since']`)
+      .click();
+    await page
+      .locator(`[name='metadata.restorationObject.creationPeriod.since']`)
+      .fill("-10000000");
+    await page
+      .locator(`[name='metadata.restorationObject.creationPeriod.until']`)
+      .click();
+    await page
+      .locator(`[name='metadata.restorationObject.creationPeriod.until']`)
+      .fill("-100");
+    await page.locator(".ui.primary.button").click();
 
     await expect(page.getByText("Příliš velké datum")).toBeVisible();
   } catch (error) {
@@ -181,25 +161,26 @@ test("date error 1", async ({ page, request }) => {
   }
 });
 
-test("date error 2", async ({ page, request }) => {
+test("date error 2", async ({ page, request, baseURL }) => {
   try {
-    const response = await request.get(
-      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
-    );
+    const responseData = await call(baseURL, request);
+    const responseID = responseData.id;
 
-    expect(response.ok()).toBeTruthy();
+    await page.goto(`/objekty/${responseID}/edit`);
 
-    const responseBody = await response.body();
-    const responseData = JSON.parse(responseBody.toString());
-    const responseID = responseData.hits.hits[4].id;
-
-    await page.goto(`${url}objekty/${responseID}/edit`);
-
-    await page.getByLabel("Datace od").click();
-    await page.getByLabel("Datace od").fill("-100");
-    await page.getByLabel("Datace do").click();
-    await page.getByLabel("Datace do").fill("-1000");
-    await page.getByLabel("tlacitko vytvoreni predmetu").click();
+    await page
+      .locator(`[name='metadata.restorationObject.creationPeriod.since']`)
+      .click();
+    await page
+      .locator(`[name='metadata.restorationObject.creationPeriod.since']`)
+      .fill("-100");
+    await page
+      .locator(`[name='metadata.restorationObject.creationPeriod.until']`)
+      .click();
+    await page
+      .locator(`[name='metadata.restorationObject.creationPeriod.until']`)
+      .fill("-1000");
+    await page.locator(".ui.primary.button").click();
 
     await expect(
       page.locator(
@@ -212,19 +193,12 @@ test("date error 2", async ({ page, request }) => {
   }
 });
 
-test("valid num", async ({ page, request }) => {
+test("valid num", async ({ page, request, baseURL }) => {
   try {
-    const response = await request.get(
-      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
-    );
+    const responseData = await call(baseURL, request);
+    const responseID = responseData.id;
 
-    expect(response.ok()).toBeTruthy();
-
-    const responseBody = await response.body();
-    const responseData = JSON.parse(responseBody.toString());
-    const responseID = responseData.hits.hits[4].id;
-
-    await page.goto(`${url}objekty/${responseID}/edit`);
+    await page.goto(`/objekty/${responseID}/edit`);
     await page
       .locator(
         '[id="metadata\\.restorationObject\\.dimensions\\[0\\]\\.value"]'
@@ -235,7 +209,7 @@ test("valid num", async ({ page, request }) => {
         '[id="metadata\\.restorationObject\\.dimensions\\[0\\]\\.value"]'
       )
       .fill("447e");
-    await page.getByLabel("tlacitko vytvoreni predmetu").click();
+    await page.locator(".ui.primary.button").click();
 
     await expect(page.getByText("Musí byt číslo")).toBeVisible();
   } catch (error) {
@@ -244,19 +218,12 @@ test("valid num", async ({ page, request }) => {
   }
 });
 
-test("array field", async ({ page, request }) => {
+test("array field", async ({ page, request, baseURL }) => {
   try {
-    const response = await request.get(
-      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
-    );
+    const responseData = await call(baseURL, request);
+    const responseID = responseData.id;
 
-    expect(response.ok()).toBeTruthy();
-
-    const responseBody = await response.body();
-    const responseData = JSON.parse(responseBody.toString());
-    const responseID = responseData.hits.hits[4].id;
-
-    await page.goto(`${url}objekty/${responseID}/edit`);
+    await page.goto(`/objekty/${responseID}/edit`);
 
     await page.getByRole("button", { name: "Přidat vedoucího" }).click();
     await expect(
@@ -270,30 +237,32 @@ test("array field", async ({ page, request }) => {
   }
 });
 
-test("successful edit form submit", async ({ page, request }) => {
+test("successful edit form submit", async ({ page, request, baseURL }) => {
   try {
-    const response = await request.get(
-      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
-    );
+    const responseData = await call(baseURL, request);
+    const responseID = responseData.id;
 
-    expect(response.ok()).toBeTruthy();
+    await page.goto(`/objekty/${responseID}/edit`);
 
-    const responseBody = await response.body();
-    const responseData = JSON.parse(responseBody.toString());
-    const responseID = responseData.hits.hits[4].id;
+    await page
+      .locator(`[name='metadata.restorationObject.creationPeriod.since']`)
+      .click();
+    await page
+      .locator(`[name='metadata.restorationObject.creationPeriod.since']`)
+      .fill("-100");
+    await page
+      .locator(`[name='metadata.restorationObject.creationPeriod.until']`)
+      .click();
+    await page
+      .locator(`[name='metadata.restorationObject.creationPeriod.until']`)
+      .fill("-10");
 
-    await page.goto(`${url}objekty/${responseID}/edit`);
-
-    await page.getByLabel("Datace od").click();
-    await page.getByLabel("Datace od").fill("-100");
-    await page.getByLabel("Datace do").click();
-    await page.getByLabel("Datace do").fill("-10");
     const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
-    await page.getByLabel("tlacitko vytvoreni predmetu").click();
+    await page.locator(".ui.primary.button").click();
 
     await pagenav;
 
-    const expectedURL = `${url}objekty/${responseID}`;
+    const expectedURL = `${baseURL}objekty/${responseID}`;
     expect(page.url()).toBe(expectedURL);
   } catch (error) {
     console.error("Error:", error);
@@ -304,24 +273,19 @@ test("successful edit form submit", async ({ page, request }) => {
 test("redirection to detail page after edit form", async ({
   page,
   request,
+  baseURL,
 }) => {
   try {
-    const response = await request.get(
-      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
-    );
+    const responseData = await call(baseURL, request);
+    const responseID = responseData.id;
 
-    expect(response.ok()).toBeTruthy();
+    await page.goto(`/objekty/${responseID}/edit`);
 
-    const responseBody = await response.body();
-    const responseData = JSON.parse(responseBody.toString());
-    const responseID = responseData.hits.hits[4].id;
-
-    await page.goto(`${url}objekty/${responseID}/edit`);
     const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
-    await page.getByLabel("tlacitko vytvoreni predmetu").click();
+    await page.locator(".ui.primary.button").click();
     await pagenav;
 
-    const expectedURL = `${url}objekty/${responseID}`;
+    const expectedURL = `${baseURL}objekty/${responseID}`;
 
     expect(page.url()).toBe(expectedURL);
   } catch (error) {

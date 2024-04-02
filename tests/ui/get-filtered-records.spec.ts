@@ -1,7 +1,6 @@
 import { test, expect } from "playwright/test";
 
 let apiContext;
-const url = "https://127.0.0.1:5000/";
 
 test.beforeAll(async ({ playwright }) => {
   apiContext = await playwright.request.newContext({
@@ -18,25 +17,29 @@ test.afterAll(async ({}) => {
 });
 
 test("get filtered objects", async ({ page }) => {
-  await page.goto(`${url}objekty/?q=&l=list&p=1&s=10&sort=newest`);
+  await page.goto(`/objekty/?q=&l=list&p=1&s=10&sort=newest`);
 
   await page
-    .getByText("metadata/restorationObject/creationPeriod/since.label")
-    .click();
-  await page
-    .getByRole("list")
-    .locator("div")
-    .filter({ hasText: "1700" })
-    .first()
+    .locator('text="metadata/restorationObject/category.label"')
     .click();
 
-  const response = await page.waitForResponse(
-    (response) =>
-      response.url().includes("/api/user/objects") && response.status() === 200
+  const checkbox = await page.locator(
+    'input[type="checkbox"][value="keramika"]'
+  );
+
+  await checkbox.click({ force: true });
+
+  const response = await page.waitForResponse((response) =>
+    response.url().includes("/api/user/objects")
   );
 
   expect(response.ok()).toBeTruthy();
   const responseData = await response.json();
+  expect(responseData.hits.total).toBe(20);
 
-  expect(responseData.hits.total).toBe(4);
+  expect(
+    responseData.hits.hits.every((element) => {
+      return element.metadata.restorationObject.category === "keramika";
+    })
+  ).toBeTruthy();
 });

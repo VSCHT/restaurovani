@@ -1,9 +1,8 @@
 import { test, expect } from "playwright/test";
 
-const url = "https://127.0.0.1:5000/";
 
-test("logout", async ({ page }) => {
-  await page.goto(`${url}objekty`);
+test("logout", async ({ page, baseURL }) => {
+  await page.goto(`/objekty`);
 
   await page.locator(".right.menu .account-dropdown").click();
   await page.waitForSelector(".menu.transition");
@@ -18,5 +17,5 @@ test("logout", async ({ page }) => {
     logoutLink.click();
   });
 
-  await expect(page).toHaveURL(url);
+  await expect(page).toHaveURL(`${baseURL}`);
 });

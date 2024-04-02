@@ -1,11 +1,11 @@
 import { test, expect } from 'playwright/test';
 import AxeBuilder from '@axe-core/playwright'; 
+const call = require("./api-call.spec.ts");
 
-const url = "https://127.0.0.1:5000/";
 
 test.describe('homepage', () => { 
   test('should not have any automatically detectable accessibility issues', async ({ page }) => {
-    await page.goto(url); 
+    await page.goto('/'); 
 
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze(); 
 
@@ -15,7 +15,7 @@ test.describe('homepage', () => {
 
 test.describe('search', () => { 
   test('should not have any automatically detectable accessibility issues', async ({ page }) => {
-    await page.goto(`${url}/objekty`); 
+    await page.goto(`/objekty`); 
 
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze(); 
 
@@ -24,18 +24,11 @@ test.describe('search', () => {
 });
 
 test.describe('detail', () => { 
-  test('should not have any automatically detectable accessibility issues', async ({ page, request }) => {
-    const response = await request.get(
-      `https://127.0.0.1:5000/api/user/objects/?q=&sort=newest&page=2&size=10`
-    );
+  test('should not have any automatically detectable accessibility issues', async ({ page, request, baseURL }) => {
+    const responseData = await call(baseURL, request );
+    const responseID = responseData.id;
 
-    expect(response.ok()).toBeTruthy();
-
-    const responseBody = await response.body();
-    const responseData = JSON.parse(responseBody.toString());
-    const responseID = responseData.hits.hits[4].id;
-
-    await page.goto(`${url}objekty/${responseID}/edit`);
+    await page.goto(`${baseURL}objekty/${responseID}/edit`);
 
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze(); 
 
@@ -45,7 +38,7 @@ test.describe('detail', () => {
 
 test.describe('create', () => { 
   test('should not have any automatically detectable accessibility issues', async ({ page }) => {
-    await page.goto(`${url}/objekty/_new`); 
+    await page.goto(`/objekty/_new`); 
 
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze(); 
 

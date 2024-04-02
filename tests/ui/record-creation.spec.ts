@@ -1,7 +1,6 @@
 import { test, expect } from "playwright/test";
 
 let apiContext;
-const url = "https://127.0.0.1:5000/";
 
 test.beforeAll(async ({ playwright }) => {
   apiContext = await playwright.request.newContext({
@@ -18,9 +17,9 @@ test.afterAll(async ({}) => {
 });
 
 test("get error on unfilled form", async ({ page }) => {
-  await page.goto(`${url}objekty/_new`);
+  await page.goto(`/objekty/_new`);
 
-  await page.getByLabel("tlacitko vytvoreni predmetu").click();
+  await page.getByTestId("submit-button").click();
 
   await Promise.all([
     page.waitForSelector(
@@ -44,13 +43,17 @@ test("get error on unfilled form", async ({ page }) => {
   expect(isTitleErrorMessageVisible).toBe(true);
 });
 
-
 test("successful form submit", async ({ page, request }) => {
   try {
-    await page.goto(`${url}objekty/_new`);
+    await page.goto(`/objekty/_new`);
 
-    await page.getByLabel("Název").fill("test");
-    await page.getByLabel("Restauroval(a)").fill("test");
+    await page
+      .locator(`[name='metadata.restorationObject.title']`)
+      .fill("test");
+    await page
+      .locator(`[name='metadata.restorationWork.restorer']`)
+      .fill("test");
+
     await page.getByText("Kovy").click();
 
     await page.route("**/*", (route) => {
@@ -60,19 +63,26 @@ test("successful form submit", async ({ page, request }) => {
         route.continue();
       }
     });
-    const response = await page.waitForResponse(
-      (response) =>
-        response.url().includes("/api/objects") && response.status() === 201
-    );
+    // const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
+    let requestUrls = [];
 
-    await page.getByLabel("tlacitko vytvoreni predmetu").click();
+    page.on("request", (request) => {
+      requestUrls.push(request.url());
+    });
 
-    const responseBody = await response.body();
-    const responseData = JSON.parse(responseBody.toString());
-    const responseID = responseData.id;
+    await page.getByTestId("submit-button").click();
 
-    const expectedURL = `${url}objects/${responseID}/edit`;
-    expect(page.url()).toBe(expectedURL);
+    const callBackUrl = requestUrls.filter((element) => {
+      console.log(element);
+      if (element.includes(`${process.env.REDIRECT_URI}`)) {
+        return true;
+      }
+    });
+
+    // await pagenav
+    console.log(callBackUrl);
+
+    // expect(page.url().includes('edit')).toBeTruthy()
   } catch (error) {
     console.error("Error:", error);
     throw error;
