@@ -1,5 +1,5 @@
 import { test, expect } from "playwright/test";
-const call = require("./api-call.spec.ts");
+const callAPI = require("./api-call.spec.ts");
 
 test("file download after clicking link", async ({
   page,
@@ -7,12 +7,11 @@ test("file download after clicking link", async ({
   baseURL,
 }) => {
   try {
-    const responseData = await call( baseURL, request );
+    const responseData = await callAPI(baseURL, request);
     const response2 = await request.get(responseData.links.files);
 
     const responseBody2 = await response2.body();
     const responseData2 = JSON.parse(responseBody2.toString());
-
 
     if (responseData2.entries && responseData2.entries.length > 0) {
       const pdfFile = responseData2.entries.find(
@@ -43,7 +42,7 @@ test("file download after clicking link", async ({
 });
 
 test("images carousel", async ({ page, request, baseURL }) => {
-  const responseData = await call( baseURL, request );
+  const responseData = await callAPI(baseURL, request);
 
   const responseID = responseData.id;
   const filesLinks = responseData.links.files;
@@ -76,4 +75,14 @@ test("images carousel", async ({ page, request, baseURL }) => {
     "src",
     filesContents[1]
   );
+});
+
+test("detail page title", async ({ page, request, baseURL }) => {
+  const responseData = await callAPI(baseURL, request);
+
+  const responseID = responseData.id;
+  const responseName = responseData.metadata.restorationObject.title;
+
+  await page.goto(`/objekty/${responseID}`);
+  await expect(page).toHaveTitle(`${responseName} | Detail`);
 });

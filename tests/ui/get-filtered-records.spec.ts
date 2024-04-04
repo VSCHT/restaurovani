@@ -17,17 +17,13 @@ test.afterAll(async ({}) => {
 });
 
 test("get filtered objects", async ({ page }) => {
-  await page.goto(`/objekty/?q=&l=list&p=1&s=10&sort=newest`);
+  await page.goto("/objekty");
+
+  await page.locator('.title:has-text("category")').click();
 
   await page
-    .locator('text="metadata/restorationObject/category.label"')
-    .click();
-
-  const checkbox = await page.locator(
-    'input[type="checkbox"][value="keramika"]'
-  );
-
-  await checkbox.click({ force: true });
+    .locator('input[type="checkbox"][value="keramika"]')
+    .click({ force: true });
 
   const response = await page.waitForResponse((response) =>
     response.url().includes("/api/user/objects")
