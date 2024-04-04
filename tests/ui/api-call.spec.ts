@@ -1,6 +1,6 @@
 import { expect } from "playwright/test";
 
-module.exports = async function login( baseURL, request, oneItem=true, certainURL ) {
+module.exports = async function callAPI( baseURL, request, oneItem=true, certainURL ) {
   const response = await request.get(
     certainURL?  certainURL : `${baseURL}api/user/objects/?q=&sort=newest&page=2&size=10`
   );

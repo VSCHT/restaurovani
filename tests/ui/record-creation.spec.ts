@@ -43,7 +43,7 @@ test("get error on unfilled form", async ({ page }) => {
   expect(isTitleErrorMessageVisible).toBe(true);
 });
 
-test("successful form submit", async ({ page, request }) => {
+test("successful form submit", async ({ page }) => {
   try {
     await page.goto(`/objekty/_new`);
 
@@ -54,35 +54,22 @@ test("successful form submit", async ({ page, request }) => {
       .locator(`[name='metadata.restorationWork.restorer']`)
       .fill("test");
 
-    await page.getByText("Kovy").click();
+    const parentSelector =
+      'div.field:has(input[name="metadata.restorationObject.category"])';
 
-    await page.route("**/*", (route) => {
-      if (route.request().isNavigationRequest()) {
-        route.abort();
-      } else {
-        route.continue();
-      }
-    });
-    // const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
-    let requestUrls = [];
+    const labels = await page.$$(`${parentSelector} label`);
 
-    page.on("request", (request) => {
-      requestUrls.push(request.url());
-    });
+    const randomIndex = Math.floor(Math.random() * labels.length);
+    const labelToClick = labels[randomIndex];
+    await labelToClick.click();
 
-    await page.getByTestId("submit-button").click();
+    const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
+    await page.locator(".ui.primary.button").click();
 
-    const callBackUrl = requestUrls.filter((element) => {
-      console.log(element);
-      if (element.includes(`${process.env.REDIRECT_URI}`)) {
-        return true;
-      }
-    });
+    await pagenav;
 
-    // await pagenav
-    console.log(callBackUrl);
-
-    // expect(page.url().includes('edit')).toBeTruthy()
+    console.log(page.url());
+    expect(page.url().includes("edit")).toBeTruthy();
   } catch (error) {
     console.error("Error:", error);
     throw error;
