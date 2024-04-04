@@ -1,8 +1,8 @@
 import { test, expect } from "playwright/test";
-const call = require("./api-call.spec.ts");
+const callAPI = require("./api-call.spec.ts");
 
 test("tree-field visibility", async ({ page, request, baseURL }) => {
-  const responseData = await call(baseURL, request);
+  const responseData = await callAPI(baseURL, request);
   const responseID = responseData.id;
 
   await page.goto(`/objekty/${responseID}/edit`);
@@ -12,7 +12,7 @@ test("tree-field visibility", async ({ page, request, baseURL }) => {
 });
 
 test("tree-field manipulation", async ({ page, request, baseURL }) => {
-  const responseData = await call(baseURL, request);
+  const responseData = await callAPI(baseURL, request);
   const responseID = responseData.id;
 
   await page.goto(`/objekty/${responseID}/edit`);
@@ -23,24 +23,46 @@ test("tree-field manipulation", async ({ page, request, baseURL }) => {
     ".ui.icon.secondary.right.floated.right.labeled.button"
   );
 
-  const choiceButton = page.getByRole("button", { name: "popelnice" });
+  const numberOfOptions = await page
+    .locator(".tree-column.column .row")
+    .locator("visible=true")
+    .count();
+  const randomIndex = await Math.floor(Math.random() * numberOfOptions);
 
-  await choiceButton.click();
+  await page
+    .locator(".tree-column .row.spaced")
+    .locator("visible=true")
+    .nth(randomIndex)
+    .dblclick();
+
+  const checkedButtonText = await page
+    .locator(".tree-column .row.spaced")
+    .locator("visible=true")
+    .nth(randomIndex)
+    .innerText();
+
+  const breadcrumbText = await page.evaluate(() => {
+    const breadcrumb = document.querySelector(".actions .ui.breadcrumb");
+    return breadcrumb ? breadcrumb.innerText.trim() : null;
+  });
+
+  expect(`${breadcrumbText}:has-text("${checkedButtonText}")`).toBeTruthy();
+
   await submitButton.first().click();
 
   await expect(page.locator(".tree-field").first()).toBeHidden();
-  expect(page.locator("a").filter({ hasText: "popelnice" })).toBeTruthy();
+  expect(
+    page.locator("a").filter({ hasText: `${checkedButtonText}` })
+  ).toBeTruthy();
 });
 
 test("tree-field manipulation 2", async ({ page, request, baseURL }) => {
-  const responseData = await call(baseURL, request);
+  const responseData = await callAPI(baseURL, request);
   const responseID = responseData.id;
 
   await page.goto(`/objekty/${responseID}/edit`);
   await page
-    .locator(
-      "div:nth-child(4) > .content > div > div > div:nth-child(3) > .field > div"
-    )
+    .locator(`[name="metadata.restorationObject.secondaryMaterialTypes"]`)
     .click();
   await page.getByRole("button", { name: "keramika" }).click();
   await page.getByRole("button", { name: "keramika" }).press("ArrowDown");
@@ -52,49 +74,43 @@ test("tree-field manipulation 2", async ({ page, request, baseURL }) => {
   await page.getByRole("button", { name: "keramika" }).press("ArrowDown");
   await page.getByRole("button", { name: "keramika" }).press("Enter");
 
-  // await expect(
-  //   page.getByText("draselno-vápenaté sklosklo").nth(4)
-  // ).toBeVisible();
+  const checkedButtonText = await page.evaluate(() => {
+    const checkedCheckboxContainer = document.querySelector(
+      ".row.spaced .ui.checked.fitted.checkbox"
+    );
+    const buttonText =
+      checkedCheckboxContainer?.nextElementSibling?.innerText.trim() ||
+      "No text found";
+    return buttonText;
+  });
 
-  //   const selectedItem=  await page.locator('.column.tree-column:nth-child(3)').evaluate((element) =>
+  const buttonTextIndeter = await page.evaluate(() => {
+    const indeterminateCheckbox = document.querySelector(
+      ".ui.indeterminate.fitted.checkbox"
+    );
+    const buttonNextToCheckbox = indeterminateCheckbox
+      .closest(".row")
+      .querySelector("button.ui.black.basic.button");
+    return buttonNextToCheckbox
+      ? buttonNextToCheckbox.innerText.trim()
+      : "Button not found";
+  });
 
-  // );
-  const selectedItem = await page
-    .getByRole("row")
-    .filter({ has: page.locator(".ui.checked.checkbox") })
-    .getByRole("button").evaluate((element)=>{
-      return element
-    });
-// get correct selector -> get value/text right-of(checkbox)
-  console.log(selectedItem);
+  const breadcrumbText = await page.evaluate(() => {
+    const breadcrumb = document.querySelector(".actions .ui.breadcrumb");
+    return breadcrumb ? breadcrumb.innerText.trim() : null;
+  });
 
-  const parentCheckbox = page.locator(
-    ".ui.modal div:nth-child(2) > div:nth-child(3) > div"
-  );
+  const expectedBreadcrumbText = `${checkedButtonText}${buttonTextIndeter}`;
+  if (breadcrumbText != expectedBreadcrumbText) {
+    throw new Error("Breadcrumb does not match.");
+  }
 
-  await page.waitForTimeout(500);
-
-  const classList = await parentCheckbox.evaluate((element) =>
-    element.classList.contains("indeterminate")
-  );
-
-  expect(classList).toBeTruthy();
-
-  await parentCheckbox.click();
-
-  expect(
-    await parentCheckbox.evaluate((element) =>
-      element.classList.contains("checked")
-    )
-  ).toBeTruthy();
-
-  // await expect(
-  //   page.getByText("draselno-vápenaté sklosklo").nth(4)
-  // ).toBeHidden();
+  expect(expectedBreadcrumbText == breadcrumbText).toBeTruthy();
 });
 
 test("accordion edit form", async ({ page, request, baseURL }) => {
-  const responseData = await call(baseURL, request);
+  const responseData = await callAPI(baseURL, request);
   const responseID = responseData.id;
 
   await page.goto(`/objekty/${responseID}/edit`);
@@ -109,7 +125,7 @@ test("accordion edit form", async ({ page, request, baseURL }) => {
 });
 
 test("checkbox edit form", async ({ page, request, baseURL }) => {
-  const responseData = await call(baseURL, request);
+  const responseData = await callAPI(baseURL, request);
   const responseID = responseData.id;
 
   await page.goto(`/objekty/${responseID}/edit`);
@@ -135,7 +151,7 @@ test("checkbox edit form", async ({ page, request, baseURL }) => {
 
 test("date error 1", async ({ page, request, baseURL }) => {
   try {
-    const responseData = await call(baseURL, request);
+    const responseData = await callAPI(baseURL, request);
     const responseID = responseData.id;
 
     await page.goto(`/objekty/${responseID}/edit`);
@@ -163,7 +179,7 @@ test("date error 1", async ({ page, request, baseURL }) => {
 
 test("date error 2", async ({ page, request, baseURL }) => {
   try {
-    const responseData = await call(baseURL, request);
+    const responseData = await callAPI(baseURL, request);
     const responseID = responseData.id;
 
     await page.goto(`/objekty/${responseID}/edit`);
@@ -195,7 +211,7 @@ test("date error 2", async ({ page, request, baseURL }) => {
 
 test("valid num", async ({ page, request, baseURL }) => {
   try {
-    const responseData = await call(baseURL, request);
+    const responseData = await callAPI(baseURL, request);
     const responseID = responseData.id;
 
     await page.goto(`/objekty/${responseID}/edit`);
@@ -220,15 +236,24 @@ test("valid num", async ({ page, request, baseURL }) => {
 
 test("array field", async ({ page, request, baseURL }) => {
   try {
-    const responseData = await call(baseURL, request);
+    const responseData = await callAPI(baseURL, request);
     const responseID = responseData.id;
 
     await page.goto(`/objekty/${responseID}/edit`);
 
-    await page.getByRole("button", { name: "Přidat vedoucího" }).click();
+    const numberOfFields = await page
+      .locator("[name='metadata.restorationWork.supervisors']")
+      .locator("visible=true")
+      .count();
+
+    const buttonSelector =
+      'div.field:has(input[name="metadata.restorationWork.supervisors[0].fullName"]) .left.labeled.button';
+
+    await page.click(buttonSelector);
+
     await expect(
       page.locator(
-        '[id="metadata\\.restorationWork\\.supervisors\\[2\\]\\.fullName"]'
+        `[id="metadata\\.restorationWork\\.supervisors\\[${numberOfFields}\\]\\.fullName"]`
       )
     ).toBeVisible();
   } catch (error) {
@@ -239,7 +264,7 @@ test("array field", async ({ page, request, baseURL }) => {
 
 test("successful edit form submit", async ({ page, request, baseURL }) => {
   try {
-    const responseData = await call(baseURL, request);
+    const responseData = await callAPI(baseURL, request);
     const responseID = responseData.id;
 
     await page.goto(`/objekty/${responseID}/edit`);
@@ -257,7 +282,7 @@ test("successful edit form submit", async ({ page, request, baseURL }) => {
       .locator(`[name='metadata.restorationObject.creationPeriod.until']`)
       .fill("-10");
 
-    const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
+    const pagenav = page.waitForNavigation({ waitUntil: "load" });
     await page.locator(".ui.primary.button").click();
 
     await pagenav;
@@ -276,12 +301,12 @@ test("redirection to detail page after edit form", async ({
   baseURL,
 }) => {
   try {
-    const responseData = await call(baseURL, request);
+    const responseData = await callAPI(baseURL, request);
     const responseID = responseData.id;
 
     await page.goto(`/objekty/${responseID}/edit`);
 
-    const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
+    const pagenav = page.waitForNavigation();
     await page.locator(".ui.primary.button").click();
     await pagenav;
 

@@ -1,6 +1,6 @@
 import { test, expect } from 'playwright/test';
 import AxeBuilder from '@axe-core/playwright'; 
-const call = require("./api-call.spec.ts");
+const callAPI = require("./api-call.spec.ts");
 
 
 test.describe('homepage', () => { 
@@ -25,7 +25,7 @@ test.describe('search', () => {
 
 test.describe('detail', () => { 
   test('should not have any automatically detectable accessibility issues', async ({ page, request, baseURL }) => {
-    const responseData = await call(baseURL, request );
+    const responseData = await callAPI(baseURL, request );
     const responseID = responseData.id;
 
     await page.goto(`${baseURL}objekty/${responseID}/edit`);
