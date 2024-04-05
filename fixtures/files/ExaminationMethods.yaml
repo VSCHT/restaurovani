@@ -2,30 +2,6 @@ id: zit
 title:
   cs: Základní identifikační techniky
 ---
-id: tama
-title:
-  cs: Termická a mechanická analýza
----
-id: mikr
-title:
-  cs: Mikroskopie
----
-id: zobrnmik
-title:
-  cs: Zobrazovací metody mimo mikroskopii
----
-id: metody-pruzkumu-nespecifikovany
-title:
-  cs: Metody průzkumu nespecifikovány
----
-id: difra
-title:
-  cs: Difrakční metody
----
-id: spektro
-title:
-  cs: Spektroskopické metody
----
 hierarchy:
   parent: zit
 id: zit-drk
@@ -86,6 +62,10 @@ id: zit-skladovaci-vlhkost
 title:
   cs: Skladovací vlhkost
 ---
+id: tama
+title:
+  cs: Termická a mechanická analýza
+---
 hierarchy:
   parent: tama
 id: tama-dsc
@@ -106,6 +86,10 @@ hierarchy:
 id: tama-dilatometrie
 title:
   cs: Dilatometrie
+---
+id: mikr
+title:
+  cs: Mikroskopie
 ---
 hierarchy:
   parent: mikr
@@ -152,6 +136,10 @@ id: mikr-svetelna-polarizacni-mikroskopie-keramicke-vybrusy-nabrusy
 title:
   cs: Světelná polarizační mikroskopie/ keramické výbrusy/nábrusy
 ---
+id: zobrnmik
+title:
+  cs: Zobrazovací metody mimo mikroskopii
+---
 hierarchy:
   parent: zobrnmik
 id: zobrnmik-rentgen
@@ -166,6 +154,14 @@ props:
 title:
   cs: CT
 ---
+id: metody-pruzkumu-nespecifikovany
+title:
+  cs: Metody průzkumu nespecifikovány
+---
+id: difra
+title:
+  cs: Difrakční metody
+---
 hierarchy:
   parent: difra
 id: difra-xrd
@@ -174,6 +170,10 @@ props:
   url: https://cs.wikipedia.org/wiki/Rentgenov%C3%A1_krystalografie
 title:
   cs: XRD
+---
+id: spektro
+title:
+  cs: Spektroskopické metody
 ---
 hierarchy:
   parent: spektro
