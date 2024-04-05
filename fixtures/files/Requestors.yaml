@@ -2,22 +2,6 @@ id: cirkevni-sprava
 title:
   cs: Církevní správa
 ---
-id: ostatni-zadavatele
-title:
-  cs: Ostatní zadavatelé
----
-id: soukromy-vlastnik
-title:
-  cs: Soukromý vlastník
----
-id: zadavatel-neuveden
-title:
-  cs: Zadavatel neuveden
----
-id: muzea
-title:
-  cs: Muzea
----
 hierarchy:
   parent: cirkevni-sprava
 id: cirkevni-sprava-arcibiskupstvi-olmoucke-olomouc
@@ -106,7 +90,7 @@ hierarchy:
   parent: cirkevni-sprava
 id: cirkevni-sprava-rimskokatolicka-farnost-dekanstvi-zelezny-brod
 title:
-  cs: Římskokatolická farnost – děkanství Železný Brod
+  cs: 'Římskokatolická farnost – děkanství Železný Brod '
 ---
 hierarchy:
   parent: cirkevni-sprava
@@ -248,7 +232,7 @@ title:
 ---
 hierarchy:
   parent: cirkevni-sprava
-id: cirkevni-sprava-rimskokatolicka-farnost-ostrov
+id: cirkevni-sprava-rimskokatolicka-farnost-ostrov-1
 title:
   cs: Římskokatolická farnost Ostrov
 ---
@@ -276,11 +260,15 @@ id: cirkevni-sprava-cirkev-ceskoslovenska-husitska-v-plzni
 title:
   cs: Církev československá husitská v Plzni
 ---
+id: ostatni-zadavatele
+title:
+  cs: Ostatní zadavatelé
+---
 hierarchy:
   parent: ostatni-zadavatele
 id: ostatni-zadavatele-archaia-brno-z-u
 title:
-  cs: Archaia Brno, z.ú.
+  cs: 'Archaia Brno, z.ú. '
 ---
 hierarchy:
   parent: ostatni-zadavatele
@@ -389,7 +377,7 @@ title:
 ---
 hierarchy:
   parent: ostatni-zadavatele
-id: ostatni-zadavatele-umeleckoprumyslove-museum-v-praze
+id: ostatni-zadavatele-umeleckoprumyslove-museum-v-praze-1
 title:
   cs: Uměleckoprůmyslové museum v Praze
 ---
@@ -433,13 +421,25 @@ hierarchy:
   parent: ostatni-zadavatele
 id: ostatni-zadavatele-narodni-pamatkovy-ustav-uzemni-odborne-pracoviste-v-ostrave
 title:
-  cs: Národní památkový ústav – Územní odborné pracoviště v Ostravě
+  cs: 'Národní památkový ústav – Územní odborné pracoviště v Ostravě '
 ---
 hierarchy:
   parent: ostatni-zadavatele
 id: ostatni-zadavatele-narodni-archiv
 title:
   cs: Národní archiv
+---
+id: soukromy-vlastnik
+title:
+  cs: Soukromý vlastník
+---
+id: zadavatel-neuveden
+title:
+  cs: Zadavatel neuveden
+---
+id: muzea
+title:
+  cs: Muzea
 ---
 hierarchy:
   parent: muzea
@@ -545,7 +545,7 @@ title:
 ---
 hierarchy:
   parent: muzea
-id: muzea-oblastni-muzeum-v-chomutove
+id: muzea-oblastni-muzeum-v-chomutove-1
 title:
   cs: Oblastní muzeum v Chomutově
 ---

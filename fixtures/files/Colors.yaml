@@ -9,12 +9,6 @@ title:
   cs: čiré sklo
 ---
 hierarchy:
-  parent: sklo
-id: sklo-zakalene
-title:
-  cs: zakalené sklo
----
-hierarchy:
   parent: sklo-cire
 id: sklo-cire-bezbarve
 title:
@@ -85,6 +79,12 @@ hierarchy:
 id: sklo-cire-ruzove
 title:
   cs: růžové
+---
+hierarchy:
+  parent: sklo
+id: sklo-zakalene
+title:
+  cs: zakalené sklo
 ---
 hierarchy:
   parent: sklo-zakalene
