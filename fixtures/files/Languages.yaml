@@ -1,0 +1,919 @@
+id: aa
+title:
+  cs: afarština
+  en: Afar
+---
+id: ab
+title:
+  cs: abcházština
+  en: Abkhazian
+---
+id: af
+title:
+  cs: afrikánština
+  en: Afrikaans
+---
+id: ak
+title:
+  cs: akanština
+  en: Akan
+---
+id: am
+title:
+  cs: amharština
+  en: Amharic
+---
+id: ar
+title:
+  cs: arabština
+  en: Arabic
+---
+id: an
+title:
+  cs: aragonština
+  en: Aragonese
+---
+id: as
+title:
+  cs: ásámština
+  en: Assamese
+---
+id: av
+title:
+  cs: avarština
+  en: Avaric
+---
+id: ae
+title:
+  cs: avestánština
+  en: Avestan
+---
+id: ay
+title:
+  cs: ajmarština
+  en: Aymara
+---
+id: az
+title:
+  cs: ázerbájdžánština
+  en: Azerbaijani
+---
+id: ba
+title:
+  cs: baškirština
+  en: Bashkir
+---
+id: bm
+title:
+  cs: bambarština
+  en: Bambara
+---
+id: be
+title:
+  cs: běloruština
+  en: Belarusian
+---
+id: bn
+title:
+  cs: bengálština
+  en: Bangla
+---
+id: bi
+title:
+  cs: bislamština
+  en: Bislama
+---
+id: bo
+title:
+  cs: tibetština
+  en: Tibetan
+---
+id: bs
+title:
+  cs: bosenština
+  en: Bosnian
+---
+id: br
+title:
+  cs: bretonština
+  en: Breton
+---
+id: bg
+title:
+  cs: bulharština
+  en: Bulgarian
+---
+id: ca
+title:
+  cs: katalánština
+  en: Catalan
+---
+id: cs
+title:
+  cs: čeština
+  en: Czech
+---
+id: ch
+title:
+  cs: čamoro
+  en: Chamorro
+---
+id: ce
+title:
+  cs: čečenština
+  en: Chechen
+---
+id: cu
+title:
+  cs: staroslověnština
+  en: Church Slavic
+---
+id: cv
+title:
+  cs: čuvaština
+  en: Chuvash
+---
+id: kw
+title:
+  cs: kornština
+  en: Cornish
+---
+id: co
+title:
+  cs: korsičtina
+  en: Corsican
+---
+id: cr
+title:
+  cs: kríjština
+  en: Cree
+---
+id: cy
+title:
+  cs: velština
+  en: Welsh
+---
+id: da
+title:
+  cs: dánština
+  en: Danish
+---
+id: de
+title:
+  cs: němčina
+  en: German
+---
+id: dv
+title:
+  cs: maledivština
+  en: Divehi
+---
+id: dz
+title:
+  cs: dzongkä
+  en: Dzongkha
+---
+id: el
+title:
+  cs: řečtina
+  en: Greek
+---
+id: en
+title:
+  cs: angličtina
+  en: English
+---
+id: eo
+title:
+  cs: esperanto
+  en: Esperanto
+---
+id: et
+title:
+  cs: estonština
+  en: Estonian
+---
+id: eu
+title:
+  cs: baskičtina
+  en: Basque
+---
+id: ee
+title:
+  cs: eweština
+  en: Ewe
+---
+id: fo
+title:
+  cs: faerština
+  en: Faroese
+---
+id: fa
+title:
+  cs: perština
+  en: Persian
+---
+id: fj
+title:
+  cs: fidžijština
+  en: Fijian
+---
+id: fi
+title:
+  cs: finština
+  en: Finnish
+---
+id: fr
+title:
+  cs: francouzština
+  en: French
+---
+id: fy
+title:
+  cs: fríština (západní)
+  en: Western Frisian
+---
+id: ff
+title:
+  cs: fulbština
+  en: Fulah
+---
+id: gd
+title:
+  cs: skotská gaelština
+  en: Scottish Gaelic
+---
+id: ga
+title:
+  cs: irština
+  en: Irish
+---
+id: gl
+title:
+  cs: galicijština
+  en: Galician
+---
+id: gv
+title:
+  cs: manština
+  en: Manx
+---
+id: gn
+title:
+  cs: guaranština
+  en: Guarani
+---
+id: gu
+title:
+  cs: gudžarátština
+  en: Gujarati
+---
+id: ht
+title:
+  cs: haitština
+  en: Haitian Creole
+---
+id: ha
+title:
+  cs: hauština
+  en: Hausa
+---
+id: sh
+title:
+  cs: srbochorvatština
+  en: Serbo-Croatian
+---
+id: he
+title:
+  cs: hebrejština
+  en: Hebrew
+---
+id: hz
+title:
+  cs: hererština
+  en: Herero
+---
+id: hi
+title:
+  cs: hindština
+  en: Hindi
+---
+id: ho
+title:
+  cs: hiri motu
+  en: Hiri Motu
+---
+id: hr
+title:
+  cs: chorvatština
+  en: Croatian
+---
+id: hu
+title:
+  cs: maďarština
+  en: Hungarian
+---
+id: hy
+title:
+  cs: arménština
+  en: Armenian
+---
+id: ig
+title:
+  cs: igboština
+  en: Igbo
+---
+id: io
+title:
+  cs: ido
+  en: Ido
+---
+id: ii
+title:
+  cs: iština (sečuánská)
+  en: Sichuan Yi
+---
+id: iu
+title:
+  cs: inuktitutština
+  en: Inuktitut
+---
+id: ie
+title:
+  cs: interlingue
+  en: Interlingue
+---
+id: ia
+title:
+  cs: interlingua
+  en: Interlingua
+---
+id: id
+title:
+  cs: indonéština
+  en: Indonesian
+---
+id: ik
+title:
+  cs: inupiakština
+  en: Inupiaq
+---
+id: is
+title:
+  cs: islandština
+  en: Icelandic
+---
+id: it
+title:
+  cs: italština
+  en: Italian
+---
+id: jv
+title:
+  cs: javánština
+  en: Javanese
+---
+id: ja
+title:
+  cs: japonština
+  en: Japanese
+---
+id: kl
+title:
+  cs: grónština
+  en: Kalaallisut
+---
+id: kn
+title:
+  cs: kannadština
+  en: Kannada
+---
+id: ks
+title:
+  cs: kašmírština
+  en: Kashmiri
+---
+id: ka
+title:
+  cs: gruzínština
+  en: Georgian
+---
+id: kr
+title:
+  cs: kanuri
+  en: Kanuri
+---
+id: kk
+title:
+  cs: kazaština
+  en: Kazakh
+---
+id: km
+title:
+  cs: khmérština
+  en: Khmer
+---
+id: ki
+title:
+  cs: kikujština
+  en: Kikuyu
+---
+id: rw
+title:
+  cs: kiňarwandština
+  en: Kinyarwanda
+---
+id: ky
+title:
+  cs: kyrgyzština
+  en: Kyrgyz
+---
+id: kv
+title:
+  cs: komijština
+  en: Komi
+---
+id: kg
+title:
+  cs: konžština
+  en: Kongo
+---
+id: ko
+title:
+  cs: korejština
+  en: Korean
+---
+id: kj
+title:
+  cs: kuaňamština
+  en: Kuanyama
+---
+id: ku
+title:
+  cs: kurdština
+  en: Kurdish
+---
+id: lo
+title:
+  cs: laoština
+  en: Lao
+---
+id: la
+title:
+  cs: latina
+  en: Latin
+---
+id: lv
+title:
+  cs: lotyština
+  en: Latvian
+---
+id: li
+title:
+  cs: limburština
+  en: Limburgish
+---
+id: ln
+title:
+  cs: lingalština
+  en: Lingala
+---
+id: lt
+title:
+  cs: litevština
+  en: Lithuanian
+---
+id: lb
+title:
+  cs: lucemburština
+  en: Luxembourgish
+---
+id: lu
+title:
+  cs: lubu-katanžština
+  en: Luba-Katanga
+---
+id: lg
+title:
+  cs: gandština
+  en: Ganda
+---
+id: mh
+title:
+  cs: maršálština
+  en: Marshallese
+---
+id: ml
+title:
+  cs: malajálamština
+  en: Malayalam
+---
+id: mr
+title:
+  cs: maráthština
+  en: Marathi
+---
+id: mk
+title:
+  cs: makedonština
+  en: Macedonian
+---
+id: mg
+title:
+  cs: malgaština
+  en: Malagasy
+---
+id: mt
+title:
+  cs: maltština
+  en: Maltese
+---
+id: mn
+title:
+  cs: mongolština
+  en: Mongolian
+---
+id: mi
+title:
+  cs: maorština
+  en: Maori
+---
+id: ms
+title:
+  cs: malajština
+  en: Malay
+---
+id: my
+title:
+  cs: barmština
+  en: Burmese
+---
+id: na
+title:
+  cs: naurština
+  en: Nauru
+---
+id: nv
+title:
+  cs: navažština
+  en: Navajo
+---
+id: nr
+title:
+  cs: ndebele (Jižní Afrika)
+  en: South Ndebele
+---
+id: nd
+title:
+  cs: ndebele (Zimbabwe)
+  en: North Ndebele
+---
+id: ng
+title:
+  cs: ndondština
+  en: Ndonga
+---
+id: ne
+title:
+  cs: nepálština
+  en: Nepali
+---
+id: nl
+title:
+  cs: nizozemština
+  en: Dutch
+---
+id: nn
+title:
+  cs: norština (nynorsk)
+  en: Norwegian Nynorsk
+---
+id: nb
+title:
+  cs: norština (bokmål)
+  en: Norwegian Bokmål
+---
+id: no
+title:
+  cs: norština
+  en: Norwegian
+---
+id: ny
+title:
+  cs: ňandžština
+  en: Nyanja
+---
+id: oc
+title:
+  cs: okcitánština
+  en: Occitan
+---
+id: oj
+title:
+  cs: odžibvejština
+  en: Ojibwa
+---
+id: or
+title:
+  cs: urijština
+  en: Odia
+---
+id: om
+title:
+  cs: oromština
+  en: Oromo
+---
+id: os
+title:
+  cs: osetština
+  en: Ossetic
+---
+id: pa
+title:
+  cs: paňdžábština
+  en: Punjabi
+---
+id: pi
+title:
+  cs: pálí
+  en: Pali
+---
+id: pl
+title:
+  cs: polština
+  en: Polish
+---
+id: pt
+title:
+  cs: portugalština
+  en: Portuguese
+---
+id: ps
+title:
+  cs: paštština
+  en: Pashto
+---
+id: qu
+title:
+  cs: kečuánština
+  en: Quechua
+---
+id: rm
+title:
+  cs: rétorománština
+  en: Romansh
+---
+id: ro
+title:
+  cs: rumunština
+  en: Romanian
+---
+id: rn
+title:
+  cs: kirundština
+  en: Rundi
+---
+id: ru
+title:
+  cs: ruština
+  en: Russian
+---
+id: sg
+title:
+  cs: sangština
+  en: Sango
+---
+id: sa
+title:
+  cs: sanskrt
+  en: Sanskrit
+---
+id: si
+title:
+  cs: sinhálština
+  en: Sinhala
+---
+id: sk
+title:
+  cs: slovenština
+  en: Slovak
+---
+id: sl
+title:
+  cs: slovinština
+  en: Slovenian
+---
+id: se
+title:
+  cs: sámština (severní)
+  en: Northern Sami
+---
+id: sm
+title:
+  cs: samojština
+  en: Samoan
+---
+id: sn
+title:
+  cs: šonština
+  en: Shona
+---
+id: sd
+title:
+  cs: sindhština
+  en: Sindhi
+---
+id: so
+title:
+  cs: somálština
+  en: Somali
+---
+id: st
+title:
+  cs: sotština (jižní)
+  en: Southern Sotho
+---
+id: es
+title:
+  cs: španělština
+  en: Spanish
+---
+id: sq
+title:
+  cs: albánština
+  en: Albanian
+---
+id: sc
+title:
+  cs: sardština
+  en: Sardinian
+---
+id: sr
+title:
+  cs: srbština
+  en: Serbian
+---
+id: ss
+title:
+  cs: siswatština
+  en: Swati
+---
+id: su
+title:
+  cs: sundština
+  en: Sundanese
+---
+id: sw
+title:
+  cs: svahilština
+  en: Swahili
+---
+id: sv
+title:
+  cs: švédština
+  en: Swedish
+---
+id: ty
+title:
+  cs: tahitština
+  en: Tahitian
+---
+id: ta
+title:
+  cs: tamilština
+  en: Tamil
+---
+id: tt
+title:
+  cs: tatarština
+  en: Tatar
+---
+id: te
+title:
+  cs: telugština
+  en: Telugu
+---
+id: tg
+title:
+  cs: tádžičtina
+  en: Tajik
+---
+id: tl
+title:
+  cs: tagalog
+  en: Tagalog
+---
+id: th
+title:
+  cs: thajština
+  en: Thai
+---
+id: ti
+title:
+  cs: tigrinijština
+  en: Tigrinya
+---
+id: to
+title:
+  cs: tongánština
+  en: Tongan
+---
+id: tn
+title:
+  cs: setswanština
+  en: Tswana
+---
+id: ts
+title:
+  cs: tsonga
+  en: Tsonga
+---
+id: tk
+title:
+  cs: turkmenština
+  en: Turkmen
+---
+id: tr
+title:
+  cs: turečtina
+  en: Turkish
+---
+id: tw
+title:
+  cs: twi
+  en: Twi
+---
+id: ug
+title:
+  cs: ujgurština
+  en: Uyghur
+---
+id: uk
+title:
+  cs: ukrajinština
+  en: Ukrainian
+---
+id: ur
+title:
+  cs: urdština
+  en: Urdu
+---
+id: uz
+title:
+  cs: uzbečtina
+  en: Uzbek
+---
+id: ve
+title:
+  cs: venda
+  en: Venda
+---
+id: vi
+title:
+  cs: vietnamština
+  en: Vietnamese
+---
+id: vo
+title:
+  cs: volapük
+  en: Volapük
+---
+id: wa
+title:
+  cs: valonština
+  en: Walloon
+---
+id: wo
+title:
+  cs: wolofština
+  en: Wolof
+---
+id: xh
+title:
+  cs: xhoština
+  en: Xhosa
+---
+id: yi
+title:
+  cs: jidiš
+  en: Yiddish
+---
+id: yo
+title:
+  cs: jorubština
+  en: Yoruba
+---
+id: za
+title:
+  cs: čuangština
+  en: Zhuang
+---
+id: zh
+title:
+  cs: čínština
+  en: Chinese
+---
+id: zu
+title:
+  cs: zuluština
+  en: Zulu
