@@ -59,6 +59,7 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
         until: Yup.number()
           .typeError(numMessage)
           .test("len", "Příliš velké datum", (val) => {
+            if (val === null || val === undefined) return true;
             val = String(val);
             const numLength = val.startsWith("-") ? val.length - 1 : val.length;
             return numLength <= 4;
@@ -67,6 +68,7 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
         since: Yup.number()
           .typeError(numMessage)
           .test("len", "Příliš velké datum", (val) => {
+            if (val === null || val === undefined) return true;
             val = String(val);
             const numLength = val.startsWith("-") ? val.length - 1 : val.length;
             return numLength <= 4;
