@@ -19,7 +19,6 @@ import {
   ModalActions,
 } from "semantic-ui-react";
 import {
-  serializedVocabularyItems,
   processVocabularyItems ,
   serializeVocabularyItem,
 } from "@js/oarepo_vocabularies";
