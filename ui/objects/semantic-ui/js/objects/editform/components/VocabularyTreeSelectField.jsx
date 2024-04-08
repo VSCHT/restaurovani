@@ -20,6 +20,7 @@ import {
 } from "semantic-ui-react";
 import {
   serializedVocabularyItems,
+  processVocabularyItems ,
   serializeVocabularyItem,
 } from "@js/oarepo_vocabularies";
 
@@ -47,8 +48,9 @@ export const VocabularyTreeSelectField = ({
       vocabularies
     );
   }
+ 
   const serializedOptions = useMemo(
-    () => serializedVocabularyItems(allOptions),
+    () => processVocabularyItems(allOptions),
     [allOptions]
   );
 

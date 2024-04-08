@@ -1159,28 +1159,28 @@ files = [
 
 [[package]]
 name = "frozendict"
-version = "2.4.0"
+version = "2.4.1"
 requires_python = ">=3.6"
 summary = "A simple immutable dictionary"
 groups = ["default"]
 files = [
-    {file = "frozendict-2.4.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:475c65202a6f5421df8cacb8a2f29c5087134a0542b0540ae95fbf4db7af2ff9"},
-    {file = "frozendict-2.4.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:2607e82efdd2c277224a58bda3994d4cd48e49eff7fa31e404cf3066e8dbfeae"},
-    {file = "frozendict-2.4.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:2fd4583194baabe100c135883017da76259a315d34e303eddf198541b7e02e44"},
-    {file = "frozendict-2.4.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:efca7281184b54f7abab6980cf25837b709f72ced62791f62dabcd7b184d958a"},
-    {file = "frozendict-2.4.0-cp310-cp310-musllinux_1_1_aarch64.whl", hash = "sha256:9fc4cba1ced988ce9020dfcaae6fe3f5521eebc00c5772b511aaf691b0be91e6"},
-    {file = "frozendict-2.4.0-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:8fab616e7c0fea2ac928f107c740bd9ba516fc083adfcd1c391d6bfc9164403d"},
-    {file = "frozendict-2.4.0-cp310-cp310-win_amd64.whl", hash = "sha256:09ba8ee37d260adde311b8eb4cd12bf27f64071242f736757ae6a11d331eb860"},
-    {file = "frozendict-2.4.0-cp310-cp310-win_arm64.whl", hash = "sha256:0615ed71570eec3cc96df063930ea6e563211efeeac86e3f3cc8bdfc9c9bfab7"},
-    {file = "frozendict-2.4.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:a3f51bfa64e0c4a6608e3f2878bab1211a6b3b197de6fa57151bbe73f1184457"},
-    {file = "frozendict-2.4.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:a1d232f092dc686e6ef23d436bde30f82c018f31cef1b89b31caef03814b1617"},
-    {file = "frozendict-2.4.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:9e530658134e88607ff8c2c8934a07b2bb5e9fffab5045f127746f6542c6c77e"},
-    {file = "frozendict-2.4.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:23a52bbea30c9e35b89291273944393770fb031e522a172e3aff19b62cc50047"},
-    {file = "frozendict-2.4.0-cp39-cp39-musllinux_1_1_aarch64.whl", hash = "sha256:f91acaff475d0ef0d3436b805c9b91fc627a6a8a281771a24f7ab7f458a0b34f"},
-    {file = "frozendict-2.4.0-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:08d9c7c1aa92b94538b3a79c43999f999012e174588435f197794d5e5a80e0f5"},
-    {file = "frozendict-2.4.0-cp39-cp39-win_amd64.whl", hash = "sha256:05c5a77957ecba4286c7ab33861a8f4f2badc7ea86fc82b834fb360d3aa4c108"},
-    {file = "frozendict-2.4.0-cp39-cp39-win_arm64.whl", hash = "sha256:c8af8a6a39e0050d3f3193cda56c42b43534a9b3995c44241bb9527e3c3fd451"},
-    {file = "frozendict-2.4.0.tar.gz", hash = "sha256:c26758198e403337933a92b01f417a8240c954f553e1d4b5e0f8e39d9c8e3f0a"},
+    {file = "frozendict-2.4.1-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:992cc157b6cdf788c1f24ab9531ba37104aba2d21f1520949a03bf3f9af7935e"},
+    {file = "frozendict-2.4.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:a571fbbe8c0cb0d0d31dce24b1026301013d3884b2fc3099741ba7a9bd5764df"},
+    {file = "frozendict-2.4.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:c113eb12f0713b53f6d0bbf3bced19dd429e17cac1cf3c350bf05c82c573613d"},
+    {file = "frozendict-2.4.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:53eb5d19ff5b71d3f7806620000e80c1d2478a22c481799ea7b16fb218d42923"},
+    {file = "frozendict-2.4.1-cp310-cp310-musllinux_1_1_aarch64.whl", hash = "sha256:5b64b5c6ac3542a4028a431c01d39c60bfb809316cdd8c940d252d084437787f"},
+    {file = "frozendict-2.4.1-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:107a9953272410cd05fcfba4dcf31f01825cd6b3c17f3cf616072e9611480034"},
+    {file = "frozendict-2.4.1-cp310-cp310-win_amd64.whl", hash = "sha256:42b3906ac43cf2c77f1e69fe7bdd93347044d1a0bc15bf5b733d47c39bfe2e3a"},
+    {file = "frozendict-2.4.1-cp310-cp310-win_arm64.whl", hash = "sha256:ace99e4430802bb3d52969870a9432d68919cd33af18f9086ccd6a3a46ac6e7c"},
+    {file = "frozendict-2.4.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:b06df1995b14fca1e9acc53b1423a4c2dca072517acd619c1576fc6b352428ec"},
+    {file = "frozendict-2.4.1-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:d1b02f873866f5d245a4bc4f9f2647aacb0d5f9a4d47e1de52c46cf03368c8cc"},
+    {file = "frozendict-2.4.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d5619bd7f092b1f7ab69163ddcdff674e6786b7a19aea1217a6a46b942430631"},
+    {file = "frozendict-2.4.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ee12840600814adf4fb1fb84eafb8098bf1701d536949ead096158e3b11cf6f8"},
+    {file = "frozendict-2.4.1-cp39-cp39-musllinux_1_1_aarch64.whl", hash = "sha256:884a3cbaff8cfd1b36f07a8749b48a6cfebd7fca196e13b9664d33df38b38d27"},
+    {file = "frozendict-2.4.1-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:7bd5b958264646ca0c5589a4c82ec4be2bf7ff0d4d1202b9d9599f24be4d51c7"},
+    {file = "frozendict-2.4.1-cp39-cp39-win_amd64.whl", hash = "sha256:de9f7194f4edbacdc609c66f49f583a658ec130e0f68e482fccae35d1befddaf"},
+    {file = "frozendict-2.4.1-cp39-cp39-win_arm64.whl", hash = "sha256:1ed0f607c73e6482e8a8080ea22d9d9f057f0624225e04e7e3e16a94ec215827"},
+    {file = "frozendict-2.4.1.tar.gz", hash = "sha256:1b32eb2f30bb734b7a699ee7003c86f81964f1c3b6e0e0f18efcbbdeb5b220bf"},
 ]
 
 [[package]]
@@ -2431,13 +2431,13 @@ files = [
 
 [[package]]
 name = "json5"
-version = "0.9.22"
+version = "0.9.24"
 requires_python = ">=3.8"
 summary = "A Python implementation of the JSON5 data format."
 groups = ["default"]
 files = [
-    {file = "json5-0.9.22-py3-none-any.whl", hash = "sha256:6621007c70897652f8b5d03885f732771c48d1925591ad989aa80c7e0e5ad32f"},
-    {file = "json5-0.9.22.tar.gz", hash = "sha256:b729bde7650b2196a35903a597d2b704b8fdf8648bfb67368cfb79f1174a17bd"},
+    {file = "json5-0.9.24-py3-none-any.whl", hash = "sha256:4ca101fd5c7cb47960c055ef8f4d0e31e15a7c6c48c3b6f1473fc83b6c462a13"},
+    {file = "json5-0.9.24.tar.gz", hash = "sha256:0c638399421da959a20952782800e5c1a78c14e08e1dc9738fa10d8ec14d58c8"},
 ]
 
 [[package]]
@@ -3214,20 +3214,21 @@ files = [
 
 [[package]]
 name = "oarepo-requests"
-version = "1.1.2"
+version = "1.1.13"
 summary = ""
 groups = ["default"]
 dependencies = [
     "invenio-requests",
+    "oarepo-runtime",
 ]
 files = [
-    {file = "oarepo-requests-1.1.2.tar.gz", hash = "sha256:dd272fb1bffbaad6d1d07f71bc09e204c7dbef3071081c9fd31b840c5cb5c76b"},
-    {file = "oarepo_requests-1.1.2-py3-none-any.whl", hash = "sha256:522155ae0da38ec78ff3c0bae4ecee6a0eff18fd86159656988be9e4ef12e962"},
+    {file = "oarepo-requests-1.1.13.tar.gz", hash = "sha256:98055fa81377786ba83f267bcc61aeecd04eabb23c990beb9ae1f0492381e6f9"},
+    {file = "oarepo_requests-1.1.13-py3-none-any.whl", hash = "sha256:c6428a449e1e2a52553a96700bcb638ee9563690225481806de40d2f16f88bfa"},
 ]
 
 [[package]]
 name = "oarepo-runtime"
-version = "1.5.18"
+version = "1.5.29"
 summary = "A set of runtime extensions of Invenio repository"
 groups = ["default"]
 dependencies = [
@@ -3240,13 +3241,13 @@ dependencies = [
     "tqdm",
 ]
 files = [
-    {file = "oarepo-runtime-1.5.18.tar.gz", hash = "sha256:4043c73f2ca3da5b5878e256ace1dd3d6a76dd4a5700154bbe45d9101291d65c"},
-    {file = "oarepo_runtime-1.5.18-py3-none-any.whl", hash = "sha256:9fd63bbfc26b91fedcd6636e5e21939077ee428dfe08c7a0990584f590511deb"},
+    {file = "oarepo-runtime-1.5.29.tar.gz", hash = "sha256:ea7bbf354586984abe31023bba8aeaeb6298c7c3e78db58e634cd0f5b2dcc7f9"},
+    {file = "oarepo_runtime-1.5.29-py3-none-any.whl", hash = "sha256:8024727a38ae11ee05c415ed3263f63644330070c7e7c5a622c26a45eadb6fa9"},
 ]
 
 [[package]]
 name = "oarepo-ui"
-version = "5.1.5"
+version = "5.1.19"
 requires_python = ">=3.6"
 summary = "UI module for invenio 3.5+"
 groups = ["default"]
@@ -3258,13 +3259,13 @@ dependencies = [
     "oarepo-runtime",
 ]
 files = [
-    {file = "oarepo-ui-5.1.5.tar.gz", hash = "sha256:3a551c3f9933af6d0e61cff3f0a1aa923dcd7609df11a898ce87e7bedd708ac3"},
-    {file = "oarepo_ui-5.1.5-py2.py3-none-any.whl", hash = "sha256:a77f9f0f8a1c9af6ad0fbe419c3d62be5d5e1ea2b57eb9ed889645f99615f1c3"},
+    {file = "oarepo-ui-5.1.19.tar.gz", hash = "sha256:e312390ec6f56e16159dac04d7c5b5e52b2e6c154fd03f19efa9f6aa9c8006c2"},
+    {file = "oarepo_ui-5.1.19-py2.py3-none-any.whl", hash = "sha256:5bc67332d98aa2d5443fc11e576ead68b111a8363cadf0401c8b0b6584c7d9f8"},
 ]
 
 [[package]]
 name = "oarepo-vocabularies"
-version = "2.0.79"
+version = "2.0.83"
 summary = "Support for custom fields and hierarchy on Invenio vocabularies"
 groups = ["default"]
 dependencies = [
@@ -3275,8 +3276,8 @@ dependencies = [
     "openpyxl",
 ]
 files = [
-    {file = "oarepo-vocabularies-2.0.79.tar.gz", hash = "sha256:2c27741faa849f039e54b7a96651dacf3154d0bd5d3b0697a973f5827014557c"},
-    {file = "oarepo_vocabularies-2.0.79-py3-none-any.whl", hash = "sha256:d5ffc831595cb0cefcd0c67633433b821b5a676f769c3818f2602fab00f9d03c"},
+    {file = "oarepo-vocabularies-2.0.83.tar.gz", hash = "sha256:d0cf60b87c4615bda4d7291a2ba892734b5c306cd9416484261424f55b7294c3"},
+    {file = "oarepo_vocabularies-2.0.83-py3-none-any.whl", hash = "sha256:02aadd5b69566258b0a14cca133952da09864274cf80d0c7eeb7b810441cd5f6"},
 ]
 
 [[package]]
@@ -3635,42 +3636,42 @@ files = [
 
 [[package]]
 name = "pymupdf"
-version = "1.23.26"
+version = "1.24.1"
 requires_python = ">=3.8"
 summary = "A high performance Python library for data extraction, analysis, conversion & manipulation of PDF (and other) documents."
 groups = ["default"]
 dependencies = [
-    "PyMuPDFb==1.23.22",
+    "PyMuPDFb==1.24.1",
 ]
 files = [
-    {file = "PyMuPDF-1.23.26-cp310-none-macosx_10_9_x86_64.whl", hash = "sha256:645a05321aecc8c45739f71f0eb574ce33138d19189582ffa5241fea3a8e2549"},
-    {file = "PyMuPDF-1.23.26-cp310-none-macosx_11_0_arm64.whl", hash = "sha256:2dfc9e010669ae92fade6fb72aaea49ebe3b8dcd7ee4dcbbe50115abcaa4d3fe"},
-    {file = "PyMuPDF-1.23.26-cp310-none-manylinux2014_aarch64.whl", hash = "sha256:734ee380b3abd038602be79114194a3cb74ac102b7c943bcb333104575922c50"},
-    {file = "PyMuPDF-1.23.26-cp310-none-manylinux2014_x86_64.whl", hash = "sha256:b22f8d854f8196ad5b20308c1cebad3d5189ed9f0988acbafa043947ea7e6c55"},
-    {file = "PyMuPDF-1.23.26-cp310-none-win32.whl", hash = "sha256:cc0f794e3466bc96b5bf79d42fbc1551428751e3fef38ebc10ac70396b676144"},
-    {file = "PyMuPDF-1.23.26-cp310-none-win_amd64.whl", hash = "sha256:2eb701247d8e685a24e45899d1175f01a3ce5fc792a4431c91fbb68633b29298"},
-    {file = "PyMuPDF-1.23.26-cp39-none-macosx_10_9_x86_64.whl", hash = "sha256:73fce034f2afea886a59ead2d0caedf27e2b2a8558b5da16d0286882e0b1eb82"},
-    {file = "PyMuPDF-1.23.26-cp39-none-macosx_11_0_arm64.whl", hash = "sha256:b3de8618b7cb5b36db611083840b3bcf09b11a893e2d8262f4e042102c7e65de"},
-    {file = "PyMuPDF-1.23.26-cp39-none-manylinux2014_aarch64.whl", hash = "sha256:879e7f5ad35709d8760ab6103c3d5dac8ab8043a856ab3653fd324af7358ee87"},
-    {file = "PyMuPDF-1.23.26-cp39-none-manylinux2014_x86_64.whl", hash = "sha256:deee96c2fd415ded7b5070d8d5b2c60679aee6ed0e28ac0d2cb998060d835c2c"},
-    {file = "PyMuPDF-1.23.26-cp39-none-win32.whl", hash = "sha256:9f7f4ef99dd8ac97fb0b852efa3dcbee515798078b6c79a6a13c7b1e7c5d41a4"},
-    {file = "PyMuPDF-1.23.26-cp39-none-win_amd64.whl", hash = "sha256:ba9a54552c7afb9ec85432c765e2fa9a81413acfaa7d70db7c9b528297749e5b"},
-    {file = "PyMuPDF-1.23.26.tar.gz", hash = "sha256:a904261b317b761b0aa2bd2c1f6cd25d25aa4258be67a90c02a878efc5dca649"},
+    {file = "PyMuPDF-1.24.1-cp310-none-macosx_10_9_x86_64.whl", hash = "sha256:6427aee313e24447f57edbfc7a28aa6bbca007fe0ad77603f54a371c6c510eeb"},
+    {file = "PyMuPDF-1.24.1-cp310-none-macosx_11_0_arm64.whl", hash = "sha256:12078c0bee337de969dbd6d89ef446312794d74db365cb9ac14902b863b35414"},
+    {file = "PyMuPDF-1.24.1-cp310-none-manylinux2014_aarch64.whl", hash = "sha256:73f86eefd7f3878f112fa10791aa2e63934cf59a4c024dd54cd6fe94443c352c"},
+    {file = "PyMuPDF-1.24.1-cp310-none-manylinux2014_x86_64.whl", hash = "sha256:caf6ceb1dbebe9f70bf7dd683cc91b896604a7c62873e5b50089f9e85e85c517"},
+    {file = "PyMuPDF-1.24.1-cp310-none-win32.whl", hash = "sha256:468a8bb2b95828e0f6739fbfe509700cc0dac600f756d8cb6316316e1eba9689"},
+    {file = "PyMuPDF-1.24.1-cp310-none-win_amd64.whl", hash = "sha256:e47504391908e2d721c743aed36196310a5e15355a85459c1c4ddcf8f2002fbe"},
+    {file = "PyMuPDF-1.24.1-cp39-none-macosx_10_9_x86_64.whl", hash = "sha256:e3f7a101a14d742c93b660b7586ab4c1491caea9062a5de9c308578a7a4f8b69"},
+    {file = "PyMuPDF-1.24.1-cp39-none-macosx_11_0_arm64.whl", hash = "sha256:dbc5d67dfd07123293993eb93bee35d329fce0bc8134b9cd5514ef75c68ffee8"},
+    {file = "PyMuPDF-1.24.1-cp39-none-manylinux2014_aarch64.whl", hash = "sha256:0edda1024ada67603e5888f31656048d3fd53167c8b0d56f435b986eb507df8f"},
+    {file = "PyMuPDF-1.24.1-cp39-none-manylinux2014_x86_64.whl", hash = "sha256:38728bb6aab9e3879aa8ac4d337be8fe838d33973f43e3b7805b86265c24f349"},
+    {file = "PyMuPDF-1.24.1-cp39-none-win32.whl", hash = "sha256:b8a5247d0cec87765481c38d2b8602f0264bf7ca6b5dc3013caf64ce46ad4d5e"},
+    {file = "PyMuPDF-1.24.1-cp39-none-win_amd64.whl", hash = "sha256:d1078ea265635e962693d7298bd39be64af7d1dd2c6dc663a8562e75f547f948"},
+    {file = "PyMuPDF-1.24.1.tar.gz", hash = "sha256:38e6101dab2ff86c4e2444fcec8a04377ae1d6db1bef0f7a1ddab3ac6abe4d41"},
 ]
 
 [[package]]
 name = "pymupdfb"
-version = "1.23.22"
+version = "1.24.1"
 requires_python = ">=3.8"
 summary = "MuPDF shared libraries for PyMuPDF."
 groups = ["default"]
 files = [
-    {file = "PyMuPDFb-1.23.22-py3-none-macosx_10_9_x86_64.whl", hash = "sha256:9085a1e2fbf16f2820f9f7ad3d25e85f81d9b9eb0409110c1670d4cf5a27a678"},
-    {file = "PyMuPDFb-1.23.22-py3-none-macosx_11_0_arm64.whl", hash = "sha256:01016dd33220cef4ecaf929d09fd27a584dc3ec3e5c9f4112dfe63613ea35135"},
-    {file = "PyMuPDFb-1.23.22-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:cf50e814db91f2a2325219302fbac229a23682c372cf8232aabd51ea3f18210e"},
-    {file = "PyMuPDFb-1.23.22-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:3ffa713ad18e816e584c8a5f569995c32d22f8ac76ab6e4a61f2d2983c4b73d9"},
-    {file = "PyMuPDFb-1.23.22-py3-none-win32.whl", hash = "sha256:d00e372452845aea624659c302d25e935052269fd3aafe26948301576d6f2ee8"},
-    {file = "PyMuPDFb-1.23.22-py3-none-win_amd64.whl", hash = "sha256:7c9c157281fdee9f296e666a323307dbf74cb38f017921bb131fa7bfcd39c2bd"},
+    {file = "PyMuPDFb-1.24.1-py3-none-macosx_10_9_x86_64.whl", hash = "sha256:37179e363bf69ce9be637937c5469957b96968341dabe3ce8f4b690a82e9ad92"},
+    {file = "PyMuPDFb-1.24.1-py3-none-macosx_11_0_arm64.whl", hash = "sha256:17444ea7d6897c27759880ad76af537d19779f901de82ae9548598a70f614558"},
+    {file = "PyMuPDFb-1.24.1-py3-none-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:490f7fff4dbe362bc895cefdfc5030d712311d024d357a1388d64816eb215d34"},
+    {file = "PyMuPDFb-1.24.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:0fbcc0d2a9ce79fa38eb4e8bb5c959b582f7a49938874e9f61d1a6f5eeb1e4b8"},
+    {file = "PyMuPDFb-1.24.1-py3-none-win32.whl", hash = "sha256:ae67736058882cdd9459810a4aae9ac2b2e89ac2e916cb5fefb0f651c9739e9e"},
+    {file = "PyMuPDFb-1.24.1-py3-none-win_amd64.whl", hash = "sha256:01c8b7f0ce9166310eb28c7aebcb8d5fe12a4bc082f9b00d580095eebeaf0af5"},
 ]
 
 [[package]]
