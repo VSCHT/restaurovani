@@ -90,7 +90,8 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           <VocabularyTreeSelectField
             optionsListName="ItemTypes"
             fieldPath="metadata.restorationObject.itemTypes"
-            multiple={false}
+            multiple={true}
+            clearable
             placeholder="Vyberte typ předmětu"
             category={category}
             label={

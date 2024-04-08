@@ -43,7 +43,6 @@
     height: min-content;
 
     position: relative;
-
     &:hover {
       background: @radialBg;
       color: black;
@@ -73,7 +72,9 @@
       color: @whiteColor;
     }
   }
-
+  .sidebar .small.transparent& {
+    align-self: center;
+  }
   .ui.modal .content & {
     background: none;
     height: inherit;
@@ -102,13 +103,14 @@
   }
 
   &.close {
-    position: relative;
+    position: fixed;
     left: 45%;
     background: none;
 
     .ui.sidebar &,
     .ui.modal & {
       left: 90%;
+      z-index: 100;
     }
   }
 
@@ -137,8 +139,8 @@
     &:not(.icon) > .icon:not(.button):not(.dropdown) {
       margin: 0;
     }
-    &.secondary{
-      font-size: 1rem
+    &.secondary {
+      font-size: 1rem;
     }
   }
 
