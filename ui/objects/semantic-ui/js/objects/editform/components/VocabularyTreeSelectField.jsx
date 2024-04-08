@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState} from "react";
 import { SelectField } from "react-invenio-forms";
 import { useFormConfig } from "@js/oarepo_ui";
 import { useFormikContext, getIn } from "formik";
@@ -19,7 +19,7 @@ import {
   ModalActions,
 } from "semantic-ui-react";
 import {
-  serializedVocabularyItems,
+  processVocabularyItems,
   serializeVocabularyItem,
 } from "@js/oarepo_vocabularies";
 
@@ -47,8 +47,9 @@ export const VocabularyTreeSelectField = ({
       vocabularies
     );
   }
+ 
   const serializedOptions = useMemo(
-    () => serializedVocabularyItems(allOptions),
+    () => processVocabularyItems(allOptions),
     [allOptions]
   );
 
@@ -185,7 +186,7 @@ export const VocabularyTreeSelectField = ({
     setParentsState([]);
   };
 
-  const handleChange = ({ e, data, formikProps }) => {
+  const handleChange = ({ e, data }) => {
     if (multiple) {
       let vocabularyItems = allOptions.filter((o) =>
         data.value.includes(o.value)
@@ -193,11 +194,13 @@ export const VocabularyTreeSelectField = ({
       vocabularyItems = vocabularyItems.map((vocabularyItem) => {
         return { ...vocabularyItem, id: vocabularyItem.value };
       });
-      formikProps.form.setFieldValue(fieldPath, [...vocabularyItems]);
+      formik.setFieldValue(fieldPath, [...vocabularyItems]);
+      setSelectedState(vocabularyItems);
     } else {
       let vocabularyItem = allOptions.find((o) => o.value === data.value);
       vocabularyItem = { ...vocabularyItem, id: vocabularyItem?.value };
-      formikProps.form.setFieldValue(fieldPath, vocabularyItem);
+      formik.setFieldValue(fieldPath, vocabularyItem);
+      setSelectedState(vocabularyItem);
     }
   };
 
