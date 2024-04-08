@@ -58,6 +58,9 @@
   .detail-page &:has(.ui.header) {
     align-items: center;
   }
+  .search-container .relaxed.grid &{
+    padding-top: 0;
+  }
 }
 
 .column {

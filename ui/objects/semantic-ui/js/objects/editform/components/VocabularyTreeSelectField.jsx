@@ -19,7 +19,7 @@ import {
   ModalActions,
 } from "semantic-ui-react";
 import { processVocabularyItems } from "@js/oarepo_vocabularies";
-
+import restorationMethodsOptions from './obj.json'
 export const VocabularyTreeSelectField = ({
   fieldPath,
   multiple,
@@ -35,9 +35,14 @@ export const VocabularyTreeSelectField = ({
   const formik = useFormikContext();
   const { values, setFieldTouched } = useFormikContext();
   const value = getIn(values, fieldPath, multiple ? [] : {});
-  const { all: allOptions, featured: featuredOptions } =
+  let { all: allOptions, featured: featuredOptions } =
     vocabularies[optionsListName];
 
+
+if(optionsListName=='RestorationMethods'){
+  allOptions=restorationMethodsOptions
+}
+console.log({optionsListName, allOptions})
   if (!allOptions) {
     console.error(
       `Do not have options for ${optionsListName} inside:`,
@@ -174,9 +179,8 @@ export const VocabularyTreeSelectField = ({
 
   const handleSubmit = () => {
     const prepSelect = [
-      ...selectedState.map((item, index) => {
+      ...selectedState.map((item) => {
         return {
-          key: crypto.randomUUID(),
           id: item.value,
           title: [
             ...item.hierarchy.title.map((i) => {

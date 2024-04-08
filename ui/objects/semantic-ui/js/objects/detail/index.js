@@ -56,17 +56,11 @@ export const getCaption = (d) => {
 };
 
 async function fetchAndRender() {
-  let settings = {
-    infinite: false,
-    speed: 100,
-    swipeToSlide: true,
-  };
-
   try {
     await fetchImages();
 
     ReactDOM.render(
-      <ImgCarousel imagesCollection={imagesCollection} settings={settings} />,
+      <ImgCarousel imagesCollection={imagesCollection} />,
       imgGalleryComp
     );
     ReactDOM.render(

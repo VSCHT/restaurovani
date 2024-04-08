@@ -137,6 +137,36 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                 </p>
               </td>
             </tr>
+            {% endif %}
+            {% if metadata.restorationObject.secondaryMaterialTypes %}
+            <tr>
+              <td>
+                <p><b>Vedlejší materiály</b></p>
+              </td>
+              <td>
+                <div class="ui accordion">
+                  <div class="title active">
+                    {% for value in  metadata.restorationObject.secondaryMaterialTypes %} {%
+                    if loop.index == 1 %}
+                    <p>
+                      {% if value.title %}
+                      {{ value.title }} {% endif %} {% endif %} {% if
+                      loop.index == 2 %} <i class="dropdown black icon"></i>{%
+                      endif %}
+                    </p>
+                    {% endfor %}
+                  </div>
+                  <div class="content">
+                    {% for value in metadata.restorationObject.secondaryMaterialTypes %} {%
+                    if loop.index >= 2 %}
+                    <p>
+                      {{ value.title }} 
+                    </p>
+                    {% endif %} {% endfor %}
+                  </div>
+                </div>
+              </td>
+            </tr>
             {% endif %} {% if metadata.restorationObject.fabricationTechnologies
             %}
             <tr>
@@ -232,7 +262,7 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                       {% for value in metadata.restorationWork.supervisors %}
                       <div>
                         {{ value.fullName }}
-                        {{ value.institution }}
+                        {{ value.institution }} {% if not loop.last %}, {% endif %}
                       </div>
 
                       {% endfor %}
@@ -245,18 +275,16 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                     <td>
                       {% for value in
                       metadata.restorationWork.examinationMethods %}
-                      {{ value.title }}
+                      {{ value.title }}{% if not loop.last %}, {% endif %}
                       {% endfor %}
                     </td>
                   </tr>
-                  {% endif %} {% if metadata.restorationWork.restorationMethods
-                  %}
+                  {% endif %} {% if metadata.restorationWork.restorationMethods %}
                   <tr>
                     <td><b>Metody restaurování</b></td>
                     <td>
-                      {% for value in
-                      metadata.restorationWork.restorationMethods %}
-                      {{ value.title }}
+                      {% for value in metadata.restorationWork.restorationMethods %}
+                        {{ value.title }}{% if not loop.last %}, {% endif %}
                       {% endfor %}
                     </td>
                   </tr>
