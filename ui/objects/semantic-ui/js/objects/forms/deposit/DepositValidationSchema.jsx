@@ -59,18 +59,21 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
         until: Yup.number()
           .typeError(numMessage)
           .test("len", "Příliš velké datum", (val) => {
+            if (val === null || val === undefined) return true;
             val = String(val);
             const numLength = val.startsWith("-") ? val.length - 1 : val.length;
             return numLength <= 4;
-          })
+        })
           .moreThan(Yup.ref("since"), "Chybný interval"),
+
         since: Yup.number()
           .typeError(numMessage)
           .test("len", "Příliš velké datum", (val) => {
+            if (val === null || val === undefined) return true;
             val = String(val);
             const numLength = val.startsWith("-") ? val.length - 1 : val.length;
             return numLength <= 4;
-          })
+        })
           .lessThan(Yup.ref("until"), "Chybný interval"),
       }),
     }),
