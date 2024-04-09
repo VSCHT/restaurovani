@@ -58,6 +58,10 @@ export const RestorationWork = ({
             name={`${fieldPath}.abstract`}
             aria-label="Popis restaurování"
             fieldPath={`${fieldPath}.abstract`}
+            editorConfig={{
+              toolbar:
+                "bold italic | bullist numlist | outdent indent | undo redo",
+            }}
             label={
               <FieldLabel
                 htmlFor={`${fieldPath}.abstract`}

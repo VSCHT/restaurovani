@@ -122,7 +122,7 @@ export const VocabularyTreeSelectField = ({
           )
         );
   }, [serializedOptions, category, query]);
-
+  
   const columnsCount = hierarchicalData.length;
 
   const openHierarchyNode = (parent, level) => () => {
@@ -324,11 +324,9 @@ export const VocabularyTreeSelectField = ({
                         (item) => item.value === option.value
                       ) !== -1
                     }
-                    indeterminate={
-                      selectedState.some((item) =>
-                        item.hierarchy.ancestors.includes(option.value)
-                      )
-                    }
+                    indeterminate={selectedState.some((item) =>
+                      item.hierarchy.ancestors.includes(option.value)
+                    )}
                     onChange={(e) => {
                       handleSelect(option, e);
                     }}
@@ -390,9 +388,7 @@ export const VocabularyTreeSelectField = ({
         >
           <ModalHeader>
             <Grid.Row>
-              <Header as="h3">
-              {placeholder || "Choose Items"}
-              </Header>
+              <Header as="h3">{placeholder || "Choose Items"}</Header>
               <Grid.Column>
                 <Input
                   type="text"

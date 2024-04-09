@@ -297,7 +297,7 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
               <b>Restaurátorský zásah/zaměr</b>
 
               <p>
-                {{ metadata.restorationWork.abstract }}
+                {{ metadata.restorationWork.abstract|striptags }}
               </p>
             </div>
             {% endif %}
