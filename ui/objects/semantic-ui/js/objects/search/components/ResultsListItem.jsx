@@ -95,6 +95,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
     tmpElement.innerHTML = html;
     return tmpElement.textContent ? tmpElement.innerText : "";
   }
+  
   return (
     <Overridable
       id={buildUID("RecordsResultsListItem.layout", "", appName)}

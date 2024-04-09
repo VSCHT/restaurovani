@@ -44,9 +44,10 @@
     color: white;
   }
   .description:has(p) {
-    max-height: 60px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
     max-width: 90%;
     & p {
       font-size: 0.9rem;
