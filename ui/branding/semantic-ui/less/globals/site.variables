@@ -22,5 +22,5 @@
 
 @smallMobileSize: 580px;
 @mobileSize: 992px;
-@tabletSize: 1200px;
+@tabletSize: 1300px;
 @computerSize: 1500px;

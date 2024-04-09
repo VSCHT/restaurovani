@@ -9,10 +9,6 @@
     color: white;
     margin: auto 10px;
   }
-  .ui.modal.tree-field & {
-    width: 100%;
-    font-size: 1.3rem;
-  }
 }
 
 .count(@x, @y) {
@@ -47,9 +43,6 @@
       font-size: .count(@h1, 0.5) [ @result];
       min-height: 18rem;
     }
-    .ui.modal.tree-field & {
-      text-align: center;
-    }
   }
 }
 
@@ -61,9 +54,6 @@
     }
     h2& {
       font-size: .count(@h2, 0.5) [ @result];
-    }
-    .ui.modal.tree-field & , #form-app h3& {
-      text-align: center;
     }
   }
 }

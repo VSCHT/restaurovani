@@ -90,6 +90,9 @@
       white-space: nowrap;
     }
   }
+  .ui.items > .item .extra > * {
+    margin: 0.25rem 35% 0.25rem 0em;
+  }
 }
 @media only screen and (max-width: 767px) {
   .item {
@@ -115,7 +118,7 @@
       }
 
       & .extra > * {
-        margin: 0.25rem 50% 0.25rem 0em;
+        margin: 0.25rem 40% 0.25rem 0em;
       }
 
       & > .content > .description {
