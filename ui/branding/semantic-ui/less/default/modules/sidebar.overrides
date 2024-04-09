@@ -20,6 +20,8 @@
 body.pushable > .pusher {
   &:has(#form-app),
   &:has(.detail-page) {
-    background-image: url("~@less/images/bgDetails.png");
+    background-image: url("~@less/images/bgDetails-min.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
   }
 }
