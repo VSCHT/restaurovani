@@ -19,7 +19,8 @@ import {
   ModalActions,
 } from "semantic-ui-react";
 import { processVocabularyItems } from "@js/oarepo_vocabularies";
-import restorationMethodsOptions from './obj.json'
+import { useTranslation } from "react-i18next";
+
 export const VocabularyTreeSelectField = ({
   fieldPath,
   multiple,
@@ -38,11 +39,6 @@ export const VocabularyTreeSelectField = ({
   let { all: allOptions, featured: featuredOptions } =
     vocabularies[optionsListName];
 
-
-if(optionsListName=='RestorationMethods'){
-  allOptions=restorationMethodsOptions
-}
-console.log({optionsListName, allOptions})
   if (!allOptions) {
     console.error(
       `Do not have options for ${optionsListName} inside:`,
@@ -54,6 +50,7 @@ console.log({optionsListName, allOptions})
     () => processVocabularyItems(allOptions),
     [allOptions]
   );
+  const { i18n } = useTranslation();
 
   const [openState, setOpenState] = useState(false);
   const [parentsState, setParentsState] = useState([]);
@@ -80,16 +77,23 @@ console.log({optionsListName, allOptions})
     setOpenState(true);
   };
   const [query, setQuery] = useState("");
+
   const hierarchicalData = useMemo(() => {
     let data = [];
     let currentColumn = [];
     let currentLevel = 1;
-
-    serializedOptions.forEach((option, index) => {
+    serializedOptions.forEach((option) => {
       if (option.hierarchy.ancestors.includes(category) || !category) {
         if (option.hierarchy.ancestors.length === currentLevel) {
           currentColumn.push(option);
         } else {
+          currentColumn.sort((a, b) =>
+            a.hierarchy.title[0].localeCompare(
+              b.hierarchy.title[0],
+              i18n.language,
+              { sensitivity: "base" }
+            )
+          );
           data.push(currentColumn);
           currentColumn = [option];
           currentLevel = option.hierarchy.ancestors.length;
@@ -98,10 +102,17 @@ console.log({optionsListName, allOptions})
     });
 
     if (currentColumn.length > 0) {
+      currentColumn.sort((a, b) =>
+        a.hierarchy.title[0].localeCompare(
+          b.hierarchy.title[0],
+          i18n.language,
+          { sensitivity: "base" }
+        )
+      );
       data.push(currentColumn);
     }
 
-    return query == ""
+    return query === ""
       ? data
       : data.map((column) =>
           column.filter((option) =>
@@ -190,7 +201,7 @@ console.log({optionsListName, allOptions})
         };
       }),
     ];
-    formik.setFieldValue(fieldPath, multiple? prepSelect : prepSelect[0]);
+    formik.setFieldValue(fieldPath, multiple ? prepSelect : prepSelect[0]);
     setOpenState(false);
     setSelectedState([]);
     setParentsState([]);

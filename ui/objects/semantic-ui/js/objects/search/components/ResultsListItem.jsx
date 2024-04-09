@@ -82,6 +82,18 @@ export const ResultsListItemComponent = ({ result, appName }) => {
   const created = _get(result, "created", "<no data>");
   const creationDate = new Date(created).toLocaleDateString();
 
+  const restDescription = _get(
+    result,
+    "metadata.restorationWork.abstract",
+    ""
+  );
+
+  const objDescription = _get(
+    result,
+    "metadata.restorationObject.description",
+    ""
+  );
+
   return (
     <Overridable
       id={buildUID("RecordsResultsListItem.layout", "", appName)}
@@ -104,6 +116,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
             selfLink={`${result.id}`}
           />
           <ItemDescription>{restorer}</ItemDescription>
+          <ItemDescription><p>{restDescription.length != 0 ? restDescription: objDescription}</p></ItemDescription>
           <ItemExtra>
             <Label size="large">Vloženo: {creationDate} </Label>
             <DetailsButton

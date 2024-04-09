@@ -43,6 +43,16 @@
   .right.menu a& {
     color: white;
   }
+  .description:has(p) {
+    max-height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    & p {
+      font-size: 0.9rem;
+      color: @brownColor;
+    }
+  }
 }
 
 @media only screen and (max-width: @mobileSize) {
@@ -88,6 +98,9 @@
     }
     & .extra {
       justify-content: center;
+    }
+    & .content .description {
+      margin: 0 auto;
     }
   }
 }
