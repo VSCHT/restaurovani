@@ -328,8 +328,6 @@ export const VocabularyTreeSelectField = ({
                       selectedState.some((item) =>
                         item.hierarchy.ancestors.includes(option.value)
                       )
-                        ? true
-                        : false
                     }
                     onChange={(e) => {
                       handleSelect(option, e);
@@ -393,7 +391,7 @@ export const VocabularyTreeSelectField = ({
           <ModalHeader>
             <Grid.Row>
               <Header as="h3">
-                {placeholder ? placeholder : "Choose Items"}
+              {placeholder || "Choose Items"}
               </Header>
               <Grid.Column>
                 <Input

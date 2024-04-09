@@ -15,7 +15,6 @@ theme = WebpackThemeBundle(
             dependencies={
                 "react-slick": "0.30.0",
                 "slick-carousel": "1.8.1",
-                "react-media": "^1.10.0",
                 "@oarepo/file-manager": "^1.0.8",
                 "preact": "^10.5.13",
                 "react-datepicker": "^4.21.0",

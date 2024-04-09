@@ -123,27 +123,6 @@
     color: @darkestBrown;
   }
 
-  .tree-field & {
-    padding: 0.2rem;
-  }
-
-  .tree-field &.basic {
-    width: 100%;
-    margin: 0;
-    border-radius: 0;
-    font-size: 1rem;
-  }
-  .tree-field .actions & {
-    padding: 0.1rem 0.3rem 0;
-    margin-left: 0;
-    &:not(.icon) > .icon:not(.button):not(.dropdown) {
-      margin: 0;
-    }
-    &.secondary {
-      font-size: 1rem;
-    }
-  }
-
   @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
     height: 35px;
     padding: 10px;

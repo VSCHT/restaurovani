@@ -10,33 +10,6 @@
   &.error-page {
     margin: 200px auto;
   }
-
-  .ui.modal.tree-field .header &.one.column {
-    margin-top: 45px;
-    position: absolute;
-    background-color: white;
-    z-index: 10;
-    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.14);
-  }
-  .tree-field .columns-container & {
-    flex-wrap: nowrap;
-    height: 100%;
-    display: flex;
-
-    .column {
-      width: 100%;
-      border: 1px solid @darkBrown;
-      &:not(:has(.row)) {
-        display: none;
-      }
-    }
-    .row.spaced {
-      min-width: 210px;
-      &.open {
-        background-color: lightblue;
-      }
-    }
-  }
 }
 
 .spaced {
@@ -47,18 +20,10 @@
   flex-direction: row;
   display: flex;
 
-  .ui.modal.tree-field .actions & & {
-    width: 80%;
-    flex-wrap: wrap;
-  }
-  .tree-field .ui.container &.spaced {
-    border: 1px solid @darkBrown;
-    padding: 0.5rem;
-  }
   .detail-page &:has(.ui.header) {
     align-items: center;
   }
-  .search-container .relaxed.grid &{
+  .search-container .relaxed.grid & {
     padding-top: 0;
   }
 }
@@ -78,11 +43,6 @@
 
     .fields & {
       width: 90%;
-    }
-    .tree-column{
-      max-height: 70vh;
-      overflow-y: auto;
-      min-width: 250px
     }
   }
 
@@ -131,12 +91,6 @@
 
   &.img-container {
     width: 0px;
-  }
-  .tree-field .ui.container &.gapped {
-    min-width: 210px;
-  }
-  .tree-field .header & {
-    min-width: 20vw;
   }
 }
 
@@ -206,10 +160,6 @@
     }
     &.grid-searchbar .ui.button.filter {
       display: flex;
-    }
-    .tree-field .actions &,
-    .tree-field .header & {
-      flex-direction: column;
     }
   }
 }
