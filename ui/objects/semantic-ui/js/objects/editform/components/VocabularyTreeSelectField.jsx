@@ -27,7 +27,7 @@ export const VocabularyTreeSelectField = ({
   optionsListName,
   helpText,
   placeholder,
-  category,
+  preFilteringOption,
   optimized,
   ...uiProps
 }) => {
@@ -79,50 +79,76 @@ export const VocabularyTreeSelectField = ({
   const [query, setQuery] = useState("");
 
   const hierarchicalData = useMemo(() => {
-    let data = [];
-    let currentColumn = [];
-    let currentLevel = 1;
+    const map = new Map();
+    let excludeFirstGroup = false;
+
     serializedOptions.forEach((option) => {
-      if (option.hierarchy.ancestors.includes(category) || !category) {
-        if (option.hierarchy.ancestors.length === currentLevel) {
-          currentColumn.push(option);
-        } else {
-          currentColumn.sort((a, b) =>
-            a.hierarchy.title[0].localeCompare(
-              b.hierarchy.title[0],
-              i18n.language,
-              { sensitivity: "base" }
-            )
-          );
-          data.push(currentColumn);
-          currentColumn = [option];
-          currentLevel = option.hierarchy.ancestors.length;
+      const ancestorCount = option.hierarchy.ancestors.length;
+
+      if (preFilteringOption && option.value == preFilteringOption) {
+        excludeFirstGroup = true;
+      }
+
+      if (!(preFilteringOption && excludeFirstGroup && ancestorCount === 0)) {
+        if (!map.has(ancestorCount)) {
+          map.set(ancestorCount, []);
         }
+        map.get(ancestorCount).push(option);
       }
     });
 
-    if (currentColumn.length > 0) {
-      currentColumn.sort((a, b) =>
-        a.hierarchy.title[0].localeCompare(
-          b.hierarchy.title[0],
+    map.forEach((options, _) => {
+      options.sort((a, b) => {
+        const titleComparison = a.hierarchy.ancestors?.[0]?.localeCompare(
+          b.hierarchy.ancestors[0],
           i18n.language,
           { sensitivity: "base" }
-        )
-      );
-      data.push(currentColumn);
-    }
+        );
+        if (titleComparison !== 0) {
+          return titleComparison;
+        } else {
+          return a.hierarchy.title[0].localeCompare(
+            b.hierarchy.title[0],
+            i18n.language,
+            { sensitivity: "base" }
+          );
+        }
+      });
+    });
+
+    let result = Array.from(map.entries())
+      .sort((a, b) => a[0] - b[0])
+      .filter(
+        ([ancestorCount, _]) =>
+          !(preFilteringOption && excludeFirstGroup && ancestorCount === 0)
+      )
+      .map(([_, options]) => {
+        if (preFilteringOption) {
+          return options.filter(
+            (option) =>
+              option.hierarchy.ancestors.includes(preFilteringOption) ||
+              option.hierarchy.ancestors.length === 0
+          );
+        } else {
+          return options;
+        }
+      })
+      .filter((group) => group.length > 0)
+      .map((group) => {
+        return group;
+      });
 
     return query === ""
-      ? data
-      : data.map((column) =>
-          column.filter((option) =>
+      ? result
+      : result.map((group) =>
+          group.filter((option) =>
             option.hierarchy.title[0]
               .toLowerCase()
               .includes(query.toLowerCase())
           )
         );
-  }, [serializedOptions, category, query]);
-  
+  }, [serializedOptions, query, preFilteringOption]);
+
   const columnsCount = hierarchicalData.length;
 
   const openHierarchyNode = (parent, level) => () => {
@@ -307,7 +333,7 @@ export const VocabularyTreeSelectField = ({
       <Grid.Column key={index} className="tree-column">
         {column.map((option, i) => {
           if (
-            index == 0 ||
+            index == 0  ||
             option.hierarchy.ancestors[0] == parentsState[index - 1]
           ) {
             return (
@@ -461,6 +487,7 @@ VocabularyTreeSelectField.propTypes = {
   helpText: PropTypes.string,
   noResultsMessage: PropTypes.string,
   optimized: PropTypes.bool,
+  preFilteringOption: PropTypes.string,
 };
 
 VocabularyTreeSelectField.defaultProps = {

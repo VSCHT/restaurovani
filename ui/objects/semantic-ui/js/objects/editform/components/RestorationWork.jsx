@@ -61,6 +61,8 @@ export const RestorationWork = ({
             editorConfig={{
               toolbar:
                 "bold italic | bullist numlist | outdent indent | undo redo",
+                valid_elements : 'strong,b,div,br, p, i',
+                invalid_elements: '/<\?*\?>/g',
             }}
             label={
               <FieldLabel
@@ -68,7 +70,7 @@ export const RestorationWork = ({
                 label="Popis restaurování"
               ></FieldLabel>
             }
-          ></RichInputField>
+          />
         </Grid.Column>
         <ArrayField
           addButtonLabel="Přidat vedoucího"
@@ -184,7 +186,7 @@ export const RestorationWork = ({
             fieldPath={`${fieldPath}.restorationMethods`}
             multiple={true}
             optionsListName="RestorationMethods"
-            category={category}
+            preFilteringOption={category}
             placeholder="Vyberte metody restaurování"
             clearable
             label={
