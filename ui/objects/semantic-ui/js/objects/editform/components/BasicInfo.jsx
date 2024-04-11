@@ -94,7 +94,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
             multiple={true}
             clearable
             placeholder="Vyberte typ předmětu"
-            category={category}
+            preFilteringOption={category}
             label={
               <FieldLabel
                 htmlFor="metadata.restorationObject.itemTypes"
@@ -214,12 +214,12 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           />
         </Grid.Column>
         <Grid.Column>
-          <LocalVocabularySelectField
+            <VocabularyTreeSelectField
+            optionsListName="Requestors"
             fieldPath="metadata.restorationObject.restorationRequestor"
             multiple={false}
-            optionsListName="Requestors"
-            placeholder="Vyberte zadavatele"
             clearable
+            placeholder="Vyberte zadavatele"
             label={
               <FieldLabel
                 htmlFor={"metadata.restorationObject.restorationRequestor"}
