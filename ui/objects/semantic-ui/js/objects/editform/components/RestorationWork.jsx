@@ -61,8 +61,7 @@ export const RestorationWork = ({
             editorConfig={{
               toolbar:
                 "bold italic | bullist numlist | outdent indent | undo redo",
-                valid_elements : 'strong,b,div,br, p, i',
-                invalid_elements: '/<\?*\?>/g',
+              valid_elements: "strong,b,div,br, p, i",
             }}
             label={
               <FieldLabel
