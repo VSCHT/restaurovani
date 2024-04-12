@@ -4,7 +4,7 @@ import _cloneDeep from "lodash/cloneDeep";
 import { AccordionField, FieldLabel } from "react-invenio-forms";
 
 import { Grid } from "semantic-ui-react";
-import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
+import { VocabularyTreeSelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 
 export const MoreInfo = ({ activeIndex, handleActive, category }) => {

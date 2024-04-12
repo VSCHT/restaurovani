@@ -11,8 +11,10 @@ import {
 } from "react-invenio-forms";
 import { Header, Grid } from "semantic-ui-react";
 import { ArrayFieldItem } from "@js/oarepo_ui";
-import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
-import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
+import {
+  LocalVocabularySelectField,
+  VocabularyTreeSelectField,
+} from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import { DaterangePicker } from "./DateRange";
 import { decode } from "html-entities";
