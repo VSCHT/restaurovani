@@ -32,8 +32,8 @@ export const RestorationWork = ({
   const convertHTMLToTags = (htmlString) => {
     const regex = /<(?!\/?(strong|b|div|br|p|i|li)\b)[^>]*>[^<]*<\/.*?>/gi;
     const decodedString = decode(htmlString);
-    const a3 = decodedString.replace(regex, "");
-    const noTags = a3.replace(/<[^>]*>?/gm, "");
+    const cleanedContent = decodedString.replace(regex, "");
+    const noTags = cleanedContent.replace(/<[^>]*>?/gm, "");
     return noTags;
   };
 
