@@ -94,7 +94,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
             multiple={true}
             clearable
             placeholder="Vyberte typ předmětu"
-            preFilteringOption={category}
+            root={category}
             label={
               <FieldLabel
                 htmlFor="metadata.restorationObject.itemTypes"

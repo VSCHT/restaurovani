@@ -16,34 +16,11 @@ import {
 } from "@js/invenio_search_ui/components";
 
 export const SearchAppLayout = () => {
-  const [sidebarVisible, setSidebarVisible] = React.useState(
-    window.innerWidth >= 992
-  );
-
   const [modalOpen, setModalOpen] = useState(false);
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
   };
-
-  useEffect(() => {
-    function updateSidebarVisibility() {
-      if (window.innerWidth <= 992) {
-        setSidebarVisible(false);
-      } else {
-        setSidebarVisible(true);
-        setModalOpen(false);
-      }
-    }
-
-    updateSidebarVisibility();
-
-    window.addEventListener("resize", updateSidebarVisibility);
-
-    return () => {
-      window.removeEventListener("resize", updateSidebarVisibility);
-    };
-  }, []);
 
   const { appName, buildUID } = useContext(SearchConfigurationContext);
 
@@ -94,33 +71,29 @@ export const SearchAppLayout = () => {
         </Grid.Column>
 
         {/* second column - facets */}
-        {sidebarVisible && (
-          <Grid.Column
-            width={6}
-            className="aside"
-          >
-            <Image
-              className="brandlogo"
-              src="/static/images/logoVSCHT_zakl.png"
-              alt="VŠCHT logo"
-            />
-            <Grid.Column aria-label="Filter Options">
-              <Button
-                secondary
-                aria-label="Vložit nový předmět"
-                onClick={createNewHandler}
-              >
-                Nový předmět
-                <Image
-                  src="/static/images/plus-square.png"
-                  alt="Vytvořit nový předmět"
-                />
-              </Button>
 
-              <SearchAppFacets aggs={searchAppConfig.aggs} appName={appName} />
-            </Grid.Column>
+        <Grid.Column width={6} className="aside">
+          <Image
+            className="brandlogo"
+            src="/static/images/logoVSCHT_zakl.png"
+            alt="VŠCHT logo"
+          />
+          <Grid.Column aria-label="Filter Options">
+            <Button
+              secondary
+              aria-label="Vložit nový předmět"
+              onClick={createNewHandler}
+            >
+              Nový předmět
+              <Image
+                src="/static/images/plus-square.png"
+                alt="Vytvořit nový předmět"
+              />
+            </Button>
+
+            <SearchAppFacets aggs={searchAppConfig.aggs} appName={appName} />
           </Grid.Column>
-        )}
+        </Grid.Column>
 
         <Modal
           as={Grid.Column}

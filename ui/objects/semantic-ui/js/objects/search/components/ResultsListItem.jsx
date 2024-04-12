@@ -90,12 +90,6 @@ export const ResultsListItemComponent = ({ result, appName }) => {
     ""
   );
 
-  function stripHtmlTags(html) {
-    const tmpElement = document.createElement("div");
-    tmpElement.innerHTML = html;
-    return tmpElement.textContent ? tmpElement.innerText : "";
-  }
-  
   return (
     <Overridable
       id={buildUID("RecordsResultsListItem.layout", "", appName)}
@@ -121,7 +115,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
           <ItemDescription>
             <p>
               {restDescription.length != 0
-                ? stripHtmlTags(restDescription)
+                ? restDescription
                 : objDescription}
             </p>
           </ItemDescription>

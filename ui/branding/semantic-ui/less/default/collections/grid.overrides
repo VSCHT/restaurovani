@@ -153,6 +153,9 @@
     &.eleven {
       text-align: center;
     }
+    &.six.wide.aside {
+      display: none;
+    }
   }
   .row {
     &.grid-searchbar .ui.input {
