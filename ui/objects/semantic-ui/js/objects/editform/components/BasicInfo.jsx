@@ -10,14 +10,16 @@ import {
   ArrayField,
   TextAreaField,
   MultiInput,
-  NumberInput
+  NumberInput,
 } from "react-invenio-forms";
-import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 
 import { Grid } from "semantic-ui-react";
 import { ArrayFieldItem } from "@js/oarepo_ui";
 
-import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
+import {
+  LocalVocabularySelectField,
+  VocabularyTreeSelectField,
+} from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import { FileStat } from "./FileStat";
 
@@ -214,7 +216,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           />
         </Grid.Column>
         <Grid.Column>
-            <VocabularyTreeSelectField
+          <VocabularyTreeSelectField
             optionsListName="Requestors"
             fieldPath="metadata.restorationObject.restorationRequestor"
             multiple={false}
