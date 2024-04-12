@@ -18,7 +18,7 @@ theme = WebpackThemeBundle(
                 "@oarepo/file-manager": "^1.0.8",
                 "preact": "^10.5.13",
                 "react-datepicker": "^4.21.0",
-                "dompurify": "3.1.0",
+                "html-entities": "2.5.2" 
             },
             devDependencies={},
             aliases={},

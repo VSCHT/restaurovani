@@ -7,6 +7,7 @@ import {
   FieldLabel,
   ArrayField,
   RichInputField,
+  RichEditor,
 } from "react-invenio-forms";
 import { Header, Grid } from "semantic-ui-react";
 import { ArrayFieldItem } from "@js/oarepo_ui";
@@ -14,14 +15,25 @@ import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
 import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 import _get from "lodash/get";
 import { DaterangePicker } from "./DateRange";
+import { decode } from "html-entities";
 
 export const RestorationWork = ({
   activeIndex,
   handleActive,
   values,
   category,
+  setFieldValue,
+  setFieldTouched,
 }) => {
   const fieldPath = "metadata.restorationWork";
+
+  const convertHTMLToTags = (htmlString) => {
+    const regex = /<(?!\/?(strong|b|div|br|p|i|li)\b)[^>]*>[^<]*<\/.*?>/gi;
+    const decodedString = decode(htmlString);
+    const a3 = decodedString.replace(regex, "");
+    const noTags = a3.replace(/<[^>]*>?/gm, "");
+    return noTags;
+  };
 
   return (
     <AccordionField
@@ -58,11 +70,28 @@ export const RestorationWork = ({
             name={`${fieldPath}.abstract`}
             aria-label="Popis restaurování"
             fieldPath={`${fieldPath}.abstract`}
-            editorConfig={{
-              toolbar:
-                "bold italic | bullist numlist | outdent indent | undo redo",
-              valid_elements: "strong,b,div,br, p, i",
-            }}
+            editor={
+              <RichEditor
+                value={values.metadata.restorationWork.abstract}
+                optimized
+                editorConfig={{
+                  toolbar:
+                    "bold italic | bullist numlist | outdent indent | undo redo",
+                  valid_elements: "strong,b,div,br,p,i,li",
+                  invalid_elements: "style",
+                }}
+                onBlur={async (event, editor) => {
+                  const cleanedContent = await convertHTMLToTags(
+                    editor.getContent()
+                  );
+                  setFieldValue(
+                    "metadata.restorationWork.abstract",
+                    cleanedContent
+                  );
+                  setFieldTouched("metadata.restorationWork.abstract", true);
+                }}
+              />
+            }
             label={
               <FieldLabel
                 htmlFor={`${fieldPath}.abstract`}
@@ -185,7 +214,7 @@ export const RestorationWork = ({
             fieldPath={`${fieldPath}.restorationMethods`}
             multiple={true}
             optionsListName="RestorationMethods"
-            preFilteringOption={category}
+            root={category}
             placeholder="Vyberte metody restaurování"
             clearable
             label={
