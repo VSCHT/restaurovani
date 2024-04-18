@@ -1,0 +1,27 @@
+.ui.sidebar {
+  &.menu {
+    &.vertical.left.uncover.visible {
+      padding-top: 60px;
+    }
+
+    & .item:not(.ui.input) {
+      text-align: center;
+      justify-content: center;
+      flex-direction: column;
+      display: flex;
+      align-items: center;
+    }
+  }
+  & .ui.dropdown .menu {
+    left: 1.5rem;
+  }
+}
+
+body.pushable > .pusher {
+  &:has(#form-app),
+  &:has(.detail-page) {
+    background-image: url("~@less/images/bgDetails-min.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+}

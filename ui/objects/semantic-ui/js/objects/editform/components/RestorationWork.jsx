@@ -6,18 +6,41 @@ import {
   TextField,
   FieldLabel,
   ArrayField,
-  TextAreaField,
   RichInputField,
+  RichEditor,
 } from "react-invenio-forms";
+import { Header, Grid } from "semantic-ui-react";
 import { ArrayFieldItem } from "@js/oarepo_ui";
-import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
+import {
+  LocalVocabularySelectField,
+  VocabularyTreeSelectField,
+} from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
+import { DaterangePicker } from "./DateRange";
+import { decode } from "html-entities";
 
-export const RestorationWork = ({ activeIndex, handleActive, values }) => {
+export const RestorationWork = ({
+  activeIndex,
+  handleActive,
+  values,
+  category,
+  setFieldValue,
+  setFieldTouched,
+}) => {
+  const fieldPath = "metadata.restorationWork";
+
+  const convertHTMLToTags = (htmlString) => {
+    const regex = /<(?!\/?(strong|b|div|br|p|i|li)\b)[^>]*>[^<]*<\/.*?>/gi;
+    const decodedString = decode(htmlString);
+    const cleanedContent = decodedString.replace(regex, "");
+    const noTags = cleanedContent.replace(/<[^>]*>?/gm, "");
+    return noTags;
+  };
+
   return (
     <AccordionField
       includesPaths={[
-        "metadata.restorationObject.restorationMethods",
+        "metadata.restorationWork.restorationMethods",
         "metadata.restorationWork.workType",
         "metadata.restorationWork.examinationMethods",
         "metadata.restorationWork.restorer",
@@ -26,68 +49,80 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
         "metadata.restorationWork.supervisors",
       ]}
       label="Práce"
+      styled
       active={activeIndex === 1}
-      defaultActiveIndex={1}
       onClick={() => handleActive(1, values)}
     >
-      <div className="vert-div predmety__form__div-fields">
-        <div className="vert-div predmety__form__div">
+      <Grid columns={1}>
+        <Grid.Column>
           <TextField
-            name="metadata.restorationWork.restorer"
+            name={`${fieldPath}.restorer`}
             aria-label="Restauroval(a)"
-            fieldPath="metadata.restorationWork.restorer"
-            className="form__input"
+            fieldPath={`${fieldPath}.restorer`}
             label={
               <FieldLabel
-                htmlFor="metadata.restorationWork.restorer"
-                className="predmety__form__div__label"
+                htmlFor={`${fieldPath}.restorer`}
                 label="Restauroval(a)"
               />
             }
           />
-        </div>
-        <div className="vert-div predmety__form__div">
+        </Grid.Column>
+        <Grid.Column>
           <RichInputField
-            name="metadata.restorationWork.abstract"
+            name={`${fieldPath}.abstract`}
             aria-label="Popis restaurování"
-            fieldPath="metadata.restorationWork.abstract"
+            fieldPath={`${fieldPath}.abstract`}
+            editor={
+              <RichEditor
+                value={values.metadata.restorationWork.abstract}
+                optimized
+                editorConfig={{
+                  toolbar:
+                    "bold italic | bullist numlist | outdent indent | undo redo",
+                  valid_elements: "strong,b,div,br,p,i,li",
+                  invalid_elements: "style",
+                }}
+                onBlur={async (event, editor) => {
+                  const cleanedContent = await convertHTMLToTags(
+                    editor.getContent()
+                  );
+                  setFieldValue(
+                    "metadata.restorationWork.abstract",
+                    cleanedContent
+                  );
+                  setFieldTouched("metadata.restorationWork.abstract", true);
+                }}
+              />
+            }
             label={
               <FieldLabel
-                htmlFor="metadata.restorationWork.abstract"
-                className="predmety__form__div__label"
+                htmlFor={`${fieldPath}.abstract`}
                 label="Popis restaurování"
               ></FieldLabel>
             }
-          ></RichInputField>
-        </div>
-        
-        <div className="vert-div predmety__form__div">
-          <ArrayField
-            addButtonLabel="Přidat vedoucího"
-            fieldPath="metadata.restorationWork.supervisors"
-            defaultNewValue={{ fullName: "", comment: "", institution: "" }}
-          >
-            {({ arrayHelpers, indexPath }) => {
-              const fieldPathPrefix = `${"metadata.restorationWork.supervisors"}[${indexPath}]`;
-              return (
+          />
+        </Grid.Column>
+        <ArrayField
+          addButtonLabel="Přidat vedoucího"
+          fieldPath={`${fieldPath}.supervisors`}
+          defaultNewValue={{ fullName: "", comment: "", institution: "" }}
+        >
+          {({ arrayHelpers, indexPath }) => {
+            const fieldPathPrefix = `${fieldPath}.supervisors[${indexPath}]`;
+            const existingName = _get(values, `${fieldPathPrefix}.fullName`);
+            return (
+              <>
+                <Header as="h4">
+                  Vedoucí {existingName == null ? indexPath + 1 : existingName}
+                </Header>
                 <ArrayFieldItem
-                  name="metadata.restorationWork.supervisors"
-                  fieldPath="metadata.restorationWork.supervisors"
+                  name={`${fieldPath}.supervisors`}
+                  fieldPath={`${fieldPath}.supervisors`}
                   indexPath={indexPath}
                   arrayHelpers={arrayHelpers}
                 >
-                  <div className="vert-div predmety__form__div-fields__parts">
-                    <h3 className="form__input__title-small">
-                      Vedoucí &nbsp;
-                      {values.metadata?.restorationWork?.supervisors?.[
-                        indexPath
-                      ]?.fullName == null
-                        ? indexPath + 1
-                        : values.metadata.restorationWork.supervisors[indexPath]
-                            .fullName}
-                    </h3>
-
-                    <div className="vert-div form__input-supervisor">
+                  <Grid columns={3} className="gapped">
+                    <Grid.Column>
                       <TextField
                         name={`${fieldPathPrefix}.fullName`}
                         aria-label="Celé jméno"
@@ -96,119 +131,103 @@ export const RestorationWork = ({ activeIndex, handleActive, values }) => {
                         label={
                           <FieldLabel
                             htmlFor={`${fieldPathPrefix}.fullName`}
-                            className="predmety__form__div__label"
                             label="Celé jméno"
                           ></FieldLabel>
                         }
                       />
-
-                      <div className="horiz-div predmety__form__div-small">
-                        <div className="vert-div predmety__form__div-medium">
-                          <TextField
-                            name={`${fieldPathPrefix}.comment`}
-                            aria-label="Komentář"
-                            fieldPath={`${fieldPathPrefix}.comment`}
-                            placeholder="Komentář"
-                            label={
-                              <FieldLabel
-                                htmlFor={`${fieldPathPrefix}.comment`}
-                                className="predmety__form__div__label"
-                                label="Komentář"
-                              ></FieldLabel>
-                            }
-                          />
-                        </div>
-                        <div className="vert-div predmety__form__div-medium">
-                          <TextField
-                            name={`${fieldPathPrefix}.institution`}
-                            aria-label="Institut"
-                            fieldPath={`${fieldPathPrefix}.institution`}
-                            placeholder="Institut"
-                            label={
-                              <FieldLabel
-                                htmlFor={`${fieldPathPrefix}.institution`}
-                                className="predmety__form__div__label"
-                                label="Institut"
-                              ></FieldLabel>
-                            }
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    </Grid.Column>
+                    <Grid.Column>
+                      <TextField
+                        name={`${fieldPathPrefix}.comment`}
+                        aria-label="Komentář"
+                        fieldPath={`${fieldPathPrefix}.comment`}
+                        placeholder="Komentář"
+                        label={
+                          <FieldLabel
+                            htmlFor={`${fieldPathPrefix}.comment`}
+                            label="Komentář"
+                          ></FieldLabel>
+                        }
+                      />
+                    </Grid.Column>
+                    <Grid.Column>
+                      <TextField
+                        name={`${fieldPathPrefix}.institution`}
+                        aria-label="Institut"
+                        fieldPath={`${fieldPathPrefix}.institution`}
+                        placeholder="Institut"
+                        label={
+                          <FieldLabel
+                            htmlFor={`${fieldPathPrefix}.institution`}
+                            label="Institut"
+                          ></FieldLabel>
+                        }
+                      />
+                    </Grid.Column>
+                  </Grid>
                 </ArrayFieldItem>
-              );
-            }}
-          </ArrayField>
-        </div>
+              </>
+            );
+          }}
+        </ArrayField>
 
-        <div className="horiz-div predmety__form__div-small">
-          <div className="vert-div predmety__form__div-medium">
-            <TextField
-              name="metadata.restorationWork.restorationPeriod.since"
-              aria-label="Od"
-              placeholder="rrrr-mm-dd"
-              fieldPath="metadata.restorationWork.restorationPeriod.since"
-              label={
-                <FieldLabel
-                  htmlFor="metadata.restorationWork.restorationPeriod.since"
-                  className="predmety__form__div__label-small"
-                  label="Období restaurování od"
-                ></FieldLabel>
-              }
-            />
-          </div>
+        <Grid.Column>
+          <DaterangePicker
+            name={`${fieldPath}.restorationPeriod`}
+            aria-label="Období restaurování"
+            fieldPath={`${fieldPath}.restorationPeriod`}
+            startDateInputPlaceholder="Období restaurování"
+            endDateInputPlaceholder="Období restaurování"
+            clearButtonClassName="small transparent"
+            label="Období restaurování"
+            dateFormat="yyyy/MM/dd"
+          />
+        </Grid.Column>
 
-          <div className="vert-div predmety__form__div-medium">
-            <TextField
-              name="metadata.restorationWork.restorationPeriod.until"
-              aria-label="Do"
-              fieldPath="metadata.restorationWork.restorationPeriod.until"
-              placeholder="rrrr-mm-dd"
-              label={
-                <FieldLabel
-                  htmlFor="metadata.restorationWork.restorationPeriod.until"
-                  className="predmety__form__div__label-small"
-                  label="Období restaurování do"
-                ></FieldLabel>
-              }
-            />
-          </div>
-        </div>
-
-        <div className="vert-div predmety__form__div">
+        <Grid.Column>
           <LocalVocabularySelectField
-            fieldPath="metadata.restorationWork.workType"
+            fieldPath={`${fieldPath}.workType`}
             multiple={false}
             optionsListName="WorkTypes"
             placeholder="Vyberte typ práce"
             clearable
             label={
-              <FieldLabel
-                htmlFor={"metadata.restorationWork.workType"}
-                label="Typ práce"
-                className="predmety__form__div__label"
-              />
+              <FieldLabel htmlFor={`${fieldPath}.workType`} label="Typ práce" />
             }
           />
-        </div>
-        <div className="vert-div predmety__form__div">
-          <LocalVocabularySelectField
-            fieldPath="metadata.restorationWork.examinationMethods"
+        </Grid.Column>
+        <Grid.Column>
+          <VocabularyTreeSelectField
+            fieldPath={`${fieldPath}.examinationMethods`}
             multiple={true}
             optionsListName="ExaminationMethods"
-            placeholder="Vyberte metody zkoumání"
+            placeholder="Vyberte metody průzkumu"
             clearable
             label={
               <FieldLabel
-                htmlFor={"metadata.restorationWork.examinationMethods"}
-                label="Metody zkoumání"
-                className="predmety__form__div__label"
+                htmlFor={`${fieldPath}.examinationMethods`}
+                label="Metody průzkumu"
               />
             }
           />
-        </div>
-      </div>
+        </Grid.Column>
+        <Grid.Column>
+          <VocabularyTreeSelectField
+            fieldPath={`${fieldPath}.restorationMethods`}
+            multiple={true}
+            optionsListName="RestorationMethods"
+            root={category}
+            placeholder="Vyberte metody restaurování"
+            clearable
+            label={
+              <FieldLabel
+                htmlFor={`${fieldPath}.restorationMethods`}
+                label="Metody restaurování"
+              />
+            }
+          />
+        </Grid.Column>
+      </Grid>
     </AccordionField>
   );
 };

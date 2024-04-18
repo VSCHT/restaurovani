@@ -2,7 +2,7 @@ import React from "react";
 import _isEmpty from "lodash/isEmpty";
 import { TextField, FieldLabel, RadioField } from "react-invenio-forms";
 
-import { Container, Label, Form } from "semantic-ui-react";
+import { Container, Label, Form, Grid, Header } from "semantic-ui-react";
 import { DepositValidationSchemaDraft } from "../../forms/deposit/DepositValidationSchema";
 import { useFormConfig, useDepositApiClient } from "@js/oarepo_ui";
 import { Formik, ErrorMessage } from "formik";
@@ -16,68 +16,51 @@ const categories = [
   { value: "textil", label: "Textil", id: "3" },
 ];
 
-export const CreateObjectFormContent = ({ errors }) => {
+const CreateObjectFormContent = ({ errors }) => {
   const { values } = useDepositApiClient();
-  
 
   return (
-    <div className="vert-div predmety__form">
-      <h3 className="predmety__form__h">Vytvoření nového předmětu</h3>
-      <div className="vert-div predmety__form-main">
-        <div className="vert-div predmety__form__div">
+    <Grid columns={1} className="gapped grid-form-create">
+      <Header as="h3">Vytvoření nového předmětu</Header>
+      <Grid columns={1}>
+        <Grid.Column>
           <TextField
             fieldPath="metadata.restorationObject.title"
-            className="form__input"
             label={
-              <div className="horiz-div form__label__div-err">
-                <FieldLabel
-                  htmlFor="metadata.restorationObject.title"
-                  className="predmety__form__div__label"
-                  label="Název"
-                />
-              </div>
+              <FieldLabel
+                htmlFor="metadata.restorationObject.title"
+                label="Název"
+              />
             }
             required
           />
-        </div>
-
-        <div className="vert-div predmety__form__div">
+        </Grid.Column>
+        <Grid.Column>
           <TextField
             name="metadata.restorationWork.restorer"
             aria-label="Restauroval(a)"
             optimized={true}
             fieldPath="metadata.restorationWork.restorer"
             required={true}
-            className="form__input"
             label={
-              <div className="horiz-div form__label__div-err">
-                <FieldLabel
-                  htmlFor="metadata.restorationWork.restorer"
-                  className="predmety__form__div__label"
-                  label="Restauroval(a)"
-                />
-              </div>
+              <FieldLabel
+                htmlFor="metadata.restorationWork.restorer"
+                label="Restauroval(a)"
+              />
             }
           />
-        </div>
-
-        <div className="vert-div predmety__form__div">
+        </Grid.Column>
+        <Grid.Column>
           <Form>
-            <div className="horiz-div form__label__div-err">
-              <FieldLabel
-                htmlFor="metadata.restorationObject.category"
-                className="predmety__form__div__label"
-                required
-                label="Kategorie"
-              ></FieldLabel>
-            </div>
-            <Form.Group className="horiz-div predmety__form__div__input-radio">
+            <FieldLabel
+              htmlFor="metadata.restorationObject.category"
+              required
+              label="Hlavní materiál"
+            ></FieldLabel>
+            <Form.Group>
               {categories.map((option) => (
                 <Form.Field key={option.value}>
-                  <div
-                    key={option.id}
-                    className="predmety__form__div__label horiz-div"
-                  >
+                  <div key={option.id}>
                     <RadioField
                       label={option.label}
                       fieldPath="metadata.restorationObject.category"
@@ -106,30 +89,15 @@ export const CreateObjectFormContent = ({ errors }) => {
             ) : null}
             <ErrorMessage name="metadata.restorationObject.category" />
           </Form>
-        </div>
-      </div>
+        </Grid.Column>
+      </Grid>
       <SaveButton />
-    </div>
+    </Grid>
   );
 };
 
 export const CreateObjectForm = () => {
   const { record } = useFormConfig();
-
-  let initVal = {
-    ...record,
-    files: {enabled: true},
-    metadata: {
-      restorationObject: {
-        title: "",
-        category: "",
-      },
-
-      restorationWork: {
-        restorer: "",
-      },
-    },
-  };
 
   return (
     <Container>

@@ -11,3 +11,4 @@ node_modules
 common/old_data/data
 .pdm-python
 .DS_Store
+.venv/bin/python

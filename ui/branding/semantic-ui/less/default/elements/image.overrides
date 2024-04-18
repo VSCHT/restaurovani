@@ -1,58 +1,62 @@
-/* .ui.image.vsht-logo.image__vsht-logo.predmety__image__vsht-logo {
-  margin-right: 10px;
-  max-width: 100%;
-  height: auto;
-  width: 38px !important;
-}
+.ui.image {
+  position: static;
 
-.rotate-icon {
-  transform: rotate(180deg);
-} */
+  &.decoration.arrows {
+    height: 6rem;
 
-.ui.image.modal-image {
-  min-height: 50vh;
-  align-self: center;
-}
-.modal-content .vert-div p {
-  width: auto;
-  align-self: center;
-  font-size: 20px;
-}
+    @media only screen and (max-width: @smallMobileSize) {
+      height: 4rem;
+      margin-top: -0.5rem;
+    }
 
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
-  .ui.image.vsht-logo.image__vsht-logo.predmety__image__vsht-logo {
-    width: 42px !important;
-    margin-right: 10px;
-    max-width: 100%;
-    height: auto;
+    @media only screen and (min-width: @computerSize) {
+      height: 7rem;
+    }
+
+    @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
+      height: 5rem;
+      margin-top: -0.4rem;
+    }
+  }
+
+  &.left-arrow {
+    width: 1.5rem;
+
+    @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
+      width: 1.3rem;
+    }
+    @media only screen and (max-width: @mobileSize) {
+      height: 1rem;
+    }
+  }
+
+  &.hero {
+    width: 500px;
+
+    @media only screen and (max-width: @mobileSize) {
+      display: none;
+    }
+  }
+
+  .ui.button.filter & {
+    width: 30px;
+  }
+
+  .cover-page & {
+    width: 60px;
+  }
+
+  .detail-page & {
+    width: 1.2rem;
+  }
+  @media only screen and (max-width: @smallMobileSize) {
+    .detail-page .ui.button & {
+      width: 2rem;
+    }
+  }
+  @media only screen and (min-width: @smallMobileSize) and (max-width: @mobileSize) {
+    .detail-page .ui.button & {
+      width: 1.5rem;
+    }
   }
 }
-
-@media only screen and (min-width: 3000px) {
-  .ui.image.vsht-logo.image__vsht-logo.predmety__image__vsht-logo {
-    margin-right: 10px;
-    max-width: 100%;
-    height: auto;
-    width: 78px !important;
-  }
-  img.ui.image.predmety__aside__dropdown-icon {
-    width: 40px;
-  }
-  img.ui.image {
-    width: 40px;
-  }
-}
-
-@media only screen and (min-width: 2000px) and (max-width: 3000px) {
-  .ui.image.vsht-logo.image__vsht-logo.predmety__image__vsht-logo {
-    margin-right: 10px;
-    max-width: 100%;
-    height: auto;
-    width: 66px !important;
-  }
-}
-
-@media only screen (max-width: 992px) {
-.modal-content .vert-div p {
-  font-size: 17px;
-}}

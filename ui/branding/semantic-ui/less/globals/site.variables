@@ -1,0 +1,26 @@
+
+// color palette
+@darkBrown: #9B9B93;
+@brownColor: #7e7f79;
+@sandGrayColor: #757670;
+@darkestBrown: #46473e;
+@whiteColor: white;
+@blackColor: #222;
+
+@primaryRed: #de4929;
+@primaryRedHov: #a84625;
+
+@secondColor: #a8a8a0;
+@secondaryColorHov: #717164;
+
+@inputBorderColor: #626262;
+@basicColor:#EAEAE2;
+
+
+
+// screens
+
+@smallMobileSize: 580px;
+@mobileSize: 992px;
+@tabletSize: 1300px;
+@computerSize: 1500px;

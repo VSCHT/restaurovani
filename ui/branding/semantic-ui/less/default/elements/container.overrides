@@ -1,114 +1,59 @@
-.ui.container{
+.ui.container:not(.page-subheader) {
+  align-self: center;
+  width: 80vw;
 
-margin-left: 0px !important             ;
-margin-right: 0px !important;
-}
-@media only screen and (min-width: 1200px){
-.ui.container.predmety__body-bg{
-background-color:                       #eaeae2;
-width: 100vw                            ;
-min-height: 100vh                       ;
-background-size: cover                  ;
-margin-right: 0px                       ;
-margin-left:0px;
-}
+  &.search-container {
+    margin-top: 70px;
+  }
+  &.main {
+    margin-top: 100px;
+  }
 
-.container.pages__predmety{
-width: auto !important;
-}
+  .detail-page & {
+    min-height: 90%;
+    margin-top: 70px;
+    background-color: white;
+  }
+  &.reduced {
+    width: 90%;
+  }
 
-.ui.container.predmety__title-search-fixed{
-display: flex !important                    ;
-flex-direction: column !important           ;
-background-color:                           #eaeae2;
-height: auto                               ;
-width: 54vw                                 ;
-align-items: flex-end !important            ;
-z-index: 1                                  ;
-padding-bottom: 0px                        ;
-padding-left: 0px !important;
-padding-right: 0px !important;
-}}
+  .twelve.wide.column .container {
+    margin-top: 50px;
+    margin-bottom: 15px;
+  }
 
-@media only screen and (min-width: 992px) and (max-width: 1200px){
-.ui.container.predmety__body-bg{
-background-color:                                                  #eaeae2;
-width: 100vw;
-min-height: 100vh;
-}
+  @media only screen and (min-width: @computerSize) {
+    .detail-page &:not(.page-subheader) {
+      width: 70vw;
+      padding: 0 20px;
+    }
+  }
+  @media only screen and (max-width: @mobileSize) {
+    main:not(.main-page) &:not(.page-subheader) {
+      width: 100vw;
 
-.container.pages__predmety{
-width: auto !important;
-}
-
-.ui.container.predmety__title-search-fixed{
-display: flex !important                    ;
-flex-direction: column !important           ;
-background-color:                           #eaeae2;
-height: 165px                               ;
-width: 100%                                ;
-align-items: flex-end !important            ;
-z-index: 1                                  ;
-padding-bottom: 25px                        ;
-justify-content: flex-end                   ;
-padding-left: 0px !important;
-padding-right: 0px !important;
-}
-
-}
-
-@media only screen and (max-width: 992px) and (min-width: 730px){
-.ui.container.predmety__body-bg{
-background-color:                          #eaeae2;
-width: 100vw !important                    ;
-min-height: 100vh                           ;
-background-size: cover !important          ;
-margin-right: 0px !important               ;
-margin-left:0px !important;
-}
-
-.container.pages__predmety{
-width: auto !important;
-}
-
-.ui.container.predmety__title-search-fixed{
-display: flex !important                    ;
-position: static !important;
-flex-direction: row !important              ;
-background-color:                           #eaeae2;
-height: 320px                               ;
-width: 100vw !important                     ;
-align-items: flex-end !important            ;
-z-index: 1                                  ;
-padding-bottom: 0px                         ;
-align-items: center !important              ;
-}
-}
-@media only screen and (max-width: 730px){
-.ui.container.predmety__body-bg{
-background-color:                          #eaeae2;
-width: 100vw !important                    ;
-min-height: 100vh                           ;
-background-size: cover !important          ;
-margin-right: 0px !important               ;
-margin-left:0px !important;
-}
-
-.container.pages__predmety{
-width: auto !important;
-}
-
-.ui.container.predmety__title-search-fixed{
-display: flex !important                    ;
-position: static !important;
-flex-direction: row !important              ;
-background-color:                           #eaeae2;
-height: 320px                               ;
-width: 90vw !important                     ;
-align-items: flex-end !important            ;
-z-index: 1                                  ;
-padding-bottom: 0px                         ;
-align-items: center !important              ;
-align-self: center;
-}
+      &.reduced {
+        width: 90%;
+      }
+    }
+    .detail-page & {
+      align-self: flex-start;
+    }
+    #form-app & {
+      padding: 10px 5vw;
+    }
+    .twelve.wide.column .container {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+  }
+  @media only screen and (max-width: @smallMobileSize) {
+    #form-app & {
+      padding: 10px 1vw;
+    }
+    .main-page & {
+      margin-top: 100px;
+    }
+  }
 }

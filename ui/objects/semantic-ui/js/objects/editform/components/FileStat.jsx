@@ -8,7 +8,7 @@ import {
   Modal,
   Image,
   Pagination,
-  Popup,
+  Grid,
 } from "semantic-ui-react";
 import {
   ReactWrapperPdf,
@@ -33,7 +33,7 @@ export const FileStat = ({ apiUrl, record }) => {
       const result = await response.json();
       setData(result);
     } catch (error) {
-      console.log("Error fetching data");
+      console.error("Error fetching data");
     }
   };
 
@@ -112,7 +112,7 @@ export const FileStat = ({ apiUrl, record }) => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
       } catch (error) {
-        console.log("Error deleting data");
+        console.error("Error deleting data");
       } finally {
         setConfirmOpen(false);
         fetchData();
@@ -122,7 +122,7 @@ export const FileStat = ({ apiUrl, record }) => {
     return (
       <>
         <Button
-          className="form__stat__btn"
+          className="small transparent"
           onClick={() => setConfirmOpen(true)}
           title="Smazat"
         >
@@ -144,20 +144,18 @@ export const FileStat = ({ apiUrl, record }) => {
   // button for file edit
   const editFile = (key, record) => {
     return (
-    
-        <EditWrapper
-          fetchData={fetchData}
-          preactComponent={FileManagementDialog}
-          props={{
-            config: { record: record },
-            autoExtractImagesFromPDFs: false,
-            locale: "cs_CS",
-            startEvent: { event: "edit-file", data: { file_key: key } },
-            onSuccessfulUpload: () => fetchData(),
-            onFailedUpload: () => fetchData(),
-          }}
-        />
-    
+      <EditWrapper
+        fetchData={fetchData}
+        preactComponent={FileManagementDialog}
+        props={{
+          config: { record: record },
+          autoExtractImagesFromPDFs: false,
+          locale: "cs_CS",
+          startEvent: { event: "edit-file", data: { file_key: key } },
+          onSuccessfulUpload: () => fetchData(),
+          onFailedUpload: () => fetchData(),
+        }}
+      />
     );
   };
 
@@ -170,25 +168,27 @@ export const FileStat = ({ apiUrl, record }) => {
   };
 
   const renderTableBody = (fileTypeFilter) => {
-    const fileName = (d, conc=false) => {
+    const fileName = (d, conc = false) => {
       if (d.metadata && d.metadata?.caption) {
         if (
           d.metadata.caption === "default_image_name" ||
           d.metadata.caption === "default_pdf_name" ||
           Object.values(d.metadata.caption).length === 0
         ) {
-         return d.key.length > 15 && conc? d.key.substring(0, 15) + "..." : d.key;
+          return d.key.length > 15 && conc
+            ? d.key.substring(0, 15) + "..."
+            : d.key;
         } else {
           return d.metadata.caption.length > 15 && conc
             ? d.metadata.caption.substring(0, 15) + "..."
             : d.metadata.caption;
         }
       } else {
-        return d.key.length > 15 && conc? d.key.substring(0, 15) + "..." : d.key;
+        return d.key.length > 15 && conc
+          ? d.key.substring(0, 15) + "..."
+          : d.key;
       }
     };
-
-    
 
     const typeAmount = data?.entries?.filter(
       (d) => d.metadata.fileType === fileTypeFilter
@@ -207,7 +207,6 @@ export const FileStat = ({ apiUrl, record }) => {
           <Table.Row key={d.key}>
             {d.metadata.fileType === "photo" && (
               <Table.Cell
-                className="form__attach__title"
                 title={fileName(d)}
                 onClick={() => {
                   setSelectedImage(index);
@@ -218,19 +217,19 @@ export const FileStat = ({ apiUrl, record }) => {
               </Table.Cell>
             )}
             {d.metadata.fileType === "document" && (
-              <Table.Cell title={fileName(d)} >{fileName(d, true)}</Table.Cell>
+              <Table.Cell title={fileName(d)}>{fileName(d, true)}</Table.Cell>
             )}
             <Table.Cell>{formatBytes(d.size)}</Table.Cell>
             <Table.Cell>{d.metadata.fileType}</Table.Cell>
             <Table.Cell>
-              <span className="horiz-div">
+              <Grid.Row>
                 <DeleteButton apiUrl={d.links.self} />
 
                 {editFile(d.key, record)}
 
                 {d.metadata.fileType === "document" &&
                   extractImg(d.key, record)}
-              </span>
+              </Grid.Row>
             </Table.Cell>
           </Table.Row>
         ))}
@@ -238,7 +237,6 @@ export const FileStat = ({ apiUrl, record }) => {
           <Table.Cell colSpan="5">
             {data?.entries?.length > itemsPerPage && (
               <Pagination
-                className="form__attach__pagination"
                 totalPages={Math.ceil(typeAmount?.length / itemsPerPage)}
                 activePage={activePage}
                 onPageChange={changePage}
@@ -357,19 +355,11 @@ export const FileStat = ({ apiUrl, record }) => {
 
       {/* modal for full screen image */}
       <div>
-        <Modal
-          open={modalOpen}
-          onClose={() => setModalOpen(false)}
-          className="custom-modal"
-        >
-          <Modal.Content image className="modal-content">
-            <div className="vert-div">
-              <Image
-                src={data?.entries?.[selectedImage]?.links?.content}
-                className="modal-image"
-              />
-              <p>{data?.entries?.[selectedImage]?.metadata?.caption}</p>
-            </div>
+        <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
+          <Modal.Content image>
+            <Image src={data?.entries?.[selectedImage]?.links?.content} />
+            {data?.entries?.[selectedImage]?.metadata?.caption}
+
             <Button
               icon="close"
               onClick={() => setModalOpen(false)}

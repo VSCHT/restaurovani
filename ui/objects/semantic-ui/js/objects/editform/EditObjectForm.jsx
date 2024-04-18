@@ -2,7 +2,7 @@ import React from "react";
 import _isEmpty from "lodash/isEmpty";
 import _cloneDeep from "lodash/cloneDeep";
 
-import { Container, Grid } from "semantic-ui-react";
+import { Container, Grid, Header } from "semantic-ui-react";
 import { DepositValidationSchemaEdit } from "../forms/deposit/DepositValidationSchema";
 import { useFormConfig } from "@js/oarepo_ui";
 import { Formik } from "formik";
@@ -12,17 +12,17 @@ import Overridable from "react-overridable";
 import { SaveButton } from "../forms/components/";
 import { BasicInfo } from "./components/BasicInfo";
 import { RestorationWork } from "./components/RestorationWork";
-import { PartsInfo } from "./components/PartsInfo";
+import { MoreInfo } from "./components/MoreInfo";
 
 export const EditObjectForm = () => {
-  let { record } = useFormConfig();
+  const { record } = useFormConfig();
+  const category= record.metadata.restorationObject.category
 
   const [activeIndex, setActiveIndex] = React.useState(0);
   const handleActive = (x) => {
     setActiveIndex(x);
   };
   const edit = _has(record, "updated");
-
 
   return (
     <Container>
@@ -34,51 +34,42 @@ export const EditObjectForm = () => {
         validateOnChange={false}
         validateOnBlur={false}
       >
-        {({ values , errors}) => (
-          <Grid className="vert-div predmety__form">
-            <div>
-              <h3 className="predmety__form__h">
-                Editace předmětu &nbsp;
-                {values.metadata.restorationObject.title}
-              </h3>
-            </div>
+        {({ values, errors, setFieldValue, setFieldTouched}) => (
+          <Grid columns={1} className="gapped grid-form">
+            <Header as="h3">
+              Editace předmětu {' '}
+              {values.metadata.restorationObject.title}
+            </Header>
 
-            <div className="vert-div predmety__form-main">
-              <div className="vert-div predmety__form__div-fields">
-                <Overridable id="Deposit.AccordionFieldBasicInformation.container">
-                  <BasicInfo
-                    activeIndex={activeIndex}
-                    handleActive={handleActive}
-                    record={record}
-                  />
-                </Overridable>
-              </div>
-            </div>
+            <Overridable id="Deposit.AccordionFieldBasicInformation.container">
+              <BasicInfo
+                activeIndex={activeIndex}
+                handleActive={handleActive}
+                record={record}
+                category={category}
+              />
+            </Overridable>
 
-            <div className="vert-div predmety__form-main">
-              <div className="vert-div predmety__form__div-fields">
-                <Overridable id="Deposit.AccordionFieldBasicInformation.container">
-                  <RestorationWork
-                    activeIndex={activeIndex}
-                    handleActive={handleActive}
-                    values={values}
-                  />
-                </Overridable>
-              </div>
-            </div>
+            <Overridable id="Deposit.AccordionFieldBasicInformation.container">
+              <RestorationWork
+                activeIndex={activeIndex}
+                handleActive={handleActive}
+                values={values}
+                category={category}
+                setFieldValue={setFieldValue}
+                setFieldTouched={setFieldTouched}
+              />
+            </Overridable>
 
-            <div className="vert-div predmety__form-main">
-              <div className="vert-div predmety__form__div-fields">
-                <Overridable id="Deposit.AccordionFieldBasicInformation.container">
-                  <PartsInfo
-                    activeIndex={activeIndex}
-                    handleActive={handleActive}
-                    values={values}
-                    errors={errors}
-                  />
-                </Overridable>
-              </div>
-            </div>
+            <Overridable id="Deposit.AccordionFieldBasicInformation.container">
+              <MoreInfo
+                activeIndex={activeIndex}
+                handleActive={handleActive}
+                values={values}
+                errors={errors}
+                category={category}
+              />
+            </Overridable>
 
             <SaveButton title="ULOŽIT" edit={edit} />
           </Grid>
