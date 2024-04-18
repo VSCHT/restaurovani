@@ -1,0 +1,33 @@
+/*--------------
+   OWN
+---------------*/
+
+@gapWidth: 15px;
+@gapMedium: 10px;
+
+
+
+
+/*--------------
+    SEMANTIC
+---------------*/
+
+
+/* width */
+
+@oneWide: 50%;
+@twelveWide: 70%;
+@elevenWide: auto;
+@fourWide : auto;
+@sixWide : 25%;
+@fiveWide : 100%;
+@eightWide:auto;
+@gutterWidth :0;
+
+
+/* columns */
+@twoColumn: 49.5%;
+@threeColumn: 32%;
+
+
+@dividedBorder: -1px 0px 0px 0px @brownColor;

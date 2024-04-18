@@ -10,24 +10,29 @@ import {
   ArrayField,
   TextAreaField,
   MultiInput,
+  NumberInput,
 } from "react-invenio-forms";
 
-import { Form } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import { ArrayFieldItem } from "@js/oarepo_ui";
 
-import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
+import {
+  LocalVocabularySelectField,
+  VocabularyTreeSelectField,
+} from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import { FileStat } from "./FileStat";
 
-export const BasicInfo = ({ activeIndex, handleActive, record }) => {
+export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
   const units = [
     { value: "kg", text: "kg" },
     { value: "mg", text: "mg" },
     { value: "gr", text: "gr" },
     { value: "cm", text: "cm" },
-    { value: "metr", text: "metr" },
+    { value: "m", text: "m" },
     { value: "mm", text: "mm" },
   ];
+
   return (
     <AccordionField
       includesPaths={[
@@ -43,28 +48,25 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
       ]}
       label="Údaje"
       active={activeIndex === 0}
-      defaultActiveIndex={0}
+      styled
       onClick={() => handleActive(0)}
     >
-      <div className="vert-div predmety__form__div-fields">
-        <div className="vert-div predmety__form__div">
+      <Grid columns={1}>
+        <Grid.Column>
           <TextField
             name="metadata.restorationObject.title"
-            className="form__input"
             aria-label="Název předmětu"
             fieldPath="metadata.restorationObject.title"
             required
             label={
               <FieldLabel
                 htmlFor="metadata.restorationObject.title"
-                className="predmety__form__div__label"
                 label="Název předmětu"
               />
             }
           />
-        </div>
-
-        <div className="vert-div predmety__form__div">
+        </Grid.Column>
+        <Grid.Column>
           <MultiInput
             fieldPath="metadata.restorationObject.keywords"
             label="Klíčová slova"
@@ -73,8 +75,8 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
             name="metadata.restorationObject.keywords"
             disabled={false}
           />
-        </div>
-        <div className="vert-div predmety__form__div">
+        </Grid.Column>
+        <Grid.Column>
           <TextAreaField
             name="metadata.restorationObject.description"
             aria-label="Popis"
@@ -82,70 +84,63 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
             label={
               <FieldLabel
                 htmlFor="metadata.restorationObject.description"
-                className="predmety__form__div__label"
                 label="Popis"
               ></FieldLabel>
             }
           />
-        </div>
-
-        <div className="vert-div predmety__form__div">
-          <LocalVocabularySelectField
+        </Grid.Column>
+        <Grid.Column>
+          <VocabularyTreeSelectField
             optionsListName="ItemTypes"
             fieldPath="metadata.restorationObject.itemTypes"
             multiple={true}
+            clearable
             placeholder="Vyberte typ předmětu"
+            root={category}
             label={
               <FieldLabel
                 htmlFor="metadata.restorationObject.itemTypes"
                 label="Typ předmětu"
-                className="predmety__form__div__label"
               />
             }
           />
-        </div>
-        <div>
-          <div className="horiz-div predmety__form__div">
-            <div className="vert-div predmety__form__div-medium">
-              <TextField
-                name="metadata.restorationObject.creationPeriod.since"
-                aria-label="Počateční rok"
-                fieldPath="metadata.restorationObject.creationPeriod.since"
-                placeholder="Počateční rok"
-                label={
-                  <FieldLabel
-                    htmlFor="metadata.restorationObject.creationPeriod.since"
-                    className="predmety__form__div__label"
-                    label="Počateční rok"
-                  ></FieldLabel>
-                }
-              />
-            </div>
-            <div className="vert-div predmety__form__div-medium">
-              <TextField
-                name="metadata.restorationObject.creationPeriod.until"
-                aria-label="Končící rok"
-                fieldPath="metadata.restorationObject.creationPeriod.until"
-                placeholder="Končící rok"
-                label={
-                  <FieldLabel
-                    htmlFor="metadata.restorationObject.creationPeriod.until"
-                    className="predmety__form__div__label"
-                    label="Končící rok"
-                  ></FieldLabel>
-                }
-              />
-            </div>
-          </div>
-        </div>
-        <div className="vert-div predmety__form__div-dimensions">
+        </Grid.Column>
+
+        <Grid columns={2}>
+          <Grid.Column>
+            <NumberInput
+              name="metadata.restorationObject.creationPeriod.since"
+              aria-label="Datace od"
+              fieldPath="metadata.restorationObject.creationPeriod.since"
+              required
+              label={
+                <FieldLabel
+                  htmlFor="metadata.restorationObject.creationPeriod.since"
+                  label="Datace od"
+                />
+              }
+            />
+          </Grid.Column>
+          <Grid.Column>
+            <NumberInput
+              name="metadata.restorationObject.creationPeriod.until"
+              aria-label="Datace do"
+              fieldPath="metadata.restorationObject.creationPeriod.until"
+              required
+              label={
+                <FieldLabel
+                  htmlFor="metadata.restorationObject.creationPeriod.until"
+                  label="Datace do"
+                />
+              }
+            />
+          </Grid.Column>
+        </Grid>
+
+        {category != "textil" && (
           <ArrayField
             addButtonLabel="Přidat rozměr"
             fieldPath="metadata.restorationObject.dimensions"
-            defaultNewValue={{
-              unit: "",
-              value: "",
-            }}
           >
             {({ arrayHelpers, indexPath }) => {
               const fieldPathPrefix = `${"metadata.restorationObject.dimensions"}[${indexPath}]`;
@@ -156,8 +151,8 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
                   indexPath={indexPath}
                   arrayHelpers={arrayHelpers}
                 >
-                  <div className="horiz-div predmety__form__div-small">
-                    <div className="vert-div predmety__form__div-small__div">
+                  <Grid columns={3} className="gapped">
+                    <Grid.Column>
                       <LocalVocabularySelectField
                         optionsListName="Dimensions"
                         placeholder="Rozměr"
@@ -167,13 +162,11 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
                           <FieldLabel
                             htmlFor={`${fieldPathPrefix}.dimension.title`}
                             label="Rozměr"
-                            className="predmety__form__div__label"
                           />
                         }
                       />
-                    </div>
-
-                    <div className="vert-div predmety__form__div-small__div">
+                    </Grid.Column>
+                    <Grid.Column>
                       <TextField
                         name={`${fieldPathPrefix}.value`}
                         aria-label="Value"
@@ -182,14 +175,12 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
                         label={
                           <FieldLabel
                             htmlFor={`${fieldPathPrefix}.value`}
-                            className="predmety__form__div__label"
                             label="Hodnota"
                           ></FieldLabel>
                         }
                       />
-                    </div>
-
-                    <div className="vert-div predmety__form__div-small__div predmety__form__div-unit">
+                    </Grid.Column>
+                    <Grid.Column>
                       <SelectField
                         name={`${fieldPathPrefix}.unit`}
                         aria-label="Unit"
@@ -199,56 +190,50 @@ export const BasicInfo = ({ activeIndex, handleActive, record }) => {
                         label={
                           <FieldLabel
                             htmlFor={`${fieldPathPrefix}.unit`}
-                            className="predmety__form__div__label"
                             label="Jednotka"
                           ></FieldLabel>
                         }
                       />
-                    </div>
-                  </div>
+                    </Grid.Column>
+                  </Grid>
                 </ArrayFieldItem>
               );
             }}
           </ArrayField>
-        </div>
-        <div className="vert-div predmety__form__div predmety__form__div-checkbox">
-          <Form.Field>
-            <BooleanField
-              optimized="false"
-              name="metadata.restorationObject.archeologic"
-              aria-label="Archeologický nález"
-              fieldPath="metadata.restorationObject.archeologic"
-              label={
-                <FieldLabel
-                  htmlFor="metadata.restorationObject.archeologic"
-                  className="predmety__form__div__label"
-                  label="Archeologický nález"
-                ></FieldLabel>
-              }
-            />
-          </Form.Field>
-        </div>
-        <div className="vert-div predmety__form__div">
-          <LocalVocabularySelectField
+        )}
+        <Grid.Column>
+          <BooleanField
+            optimized="false"
+            name="metadata.restorationObject.archeologic"
+            aria-label="Archeologický nález"
+            fieldPath="metadata.restorationObject.archeologic"
+            label={
+              <FieldLabel
+                htmlFor="metadata.restorationObject.archeologic"
+                label="Archeologický nález"
+              ></FieldLabel>
+            }
+          />
+        </Grid.Column>
+        <Grid.Column>
+          <VocabularyTreeSelectField
+            optionsListName="Requestors"
             fieldPath="metadata.restorationObject.restorationRequestor"
             multiple={false}
-            optionsListName="Requestors"
-            placeholder="Vyberte zadavatele"
             clearable
+            placeholder="Vyberte zadavatele"
             label={
               <FieldLabel
                 htmlFor={"metadata.restorationObject.restorationRequestor"}
                 label="Zadavatel"
-                className="predmety__form__div__label"
               />
             }
           />
-        </div>
-
-        <div className="vert-div predmety__form__div">
+        </Grid.Column>
+        <Grid.Column>
           <FileStat apiUrl={record?.links?.files} record={record} />
-        </div>
-      </div>
+        </Grid.Column>
+      </Grid>
     </AccordionField>
   );
 };

@@ -1,0 +1,24 @@
+
+
+/*--------------
+    OWN
+---------------*/
+
+
+/*--------------
+   SEMANTIC
+---------------*/
+
+@background: @darkBrown;
+@itemVerticalPadding : 10px;
+@itemHorizontalPadding: 10vw ;
+@itemTextColor: @white;
+@fontWeight:500;
+@buttonSize:0.8rem;
+@paginationActiveTextColor: @whiteColor;
+
+
+@tabularActiveWeight:normal;
+@tabularBorderColor: @inputBorderColor;
+@buttonVerticalPadding: 0;
+ @buttonVerticalPadding:0;

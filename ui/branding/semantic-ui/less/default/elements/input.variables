@@ -1,0 +1,24 @@
+/*--------------
+    OWN
+---------------*/
+
+@secondaryColor: @inputBorderColor;
+@primarySize:2rem;
+@secondarySize:2rem;
+@inputWidthLarge: 65%;
+@inputWidthSmall: 60%;
+@inputFontMedium: 0.8rem;
+@inputHeight: 2.5rem;
+@smallerInputHeight: @inputHeight - 0.5rem;
+
+/*--------------
+    SEMANTIC
+---------------*/
+
+
+@border:  1px solid @inputBorderColor;
+@background: none;
+@pointingBorderColor: @red;
+@focusBorderColor: @inputBorderColor;
+@iconMargin:0;
+@placeholderColor: @darkBrown;

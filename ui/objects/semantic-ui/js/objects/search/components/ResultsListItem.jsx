@@ -1,45 +1,29 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Overridable from "react-overridable";
 import _get from "lodash/get";
 
-import { Grid, Item, Button } from "semantic-ui-react";
+import {
+  Item,
+  Button,
+  ItemContent,
+  ItemDescription,
+  ItemExtra,
+  Label,
+  ItemImage,
+} from "semantic-ui-react";
 import { withState, buildUID } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
-import {ImageWithFallback} from "./imgFallback"
+import { getCaption } from "../../detail";
 
 const ItemHeader = ({ title, searchUrl, selfLink }) => {
-  const [smallScreen, setSmallScreen] = React.useState(
-    window.innerWidth <= 730
-  );
-
-  useEffect(() => {
-    function updateDescVisibility() {
-      if (window.innerWidth >= 730) {
-        setSmallScreen(false);
-      } else {
-        setSmallScreen(true);
-      }
-    }
-
-    updateDescVisibility();
-
-    window.addEventListener("resize", updateDescVisibility);
-
-    return () => {
-      window.removeEventListener("resize", updateDescVisibility);
-    };
-  }, []);
-
   const viewLink = new URL(
     selfLink,
     new URL(searchUrl, window.location.origin)
   );
-  let truncatedTitle =
-    title.length > 10 && smallScreen ? title.substring(0, 10) + "..." : title;
   return (
-    <Item.Header className="predmety__card__title">
-      <a href={viewLink}>{truncatedTitle}</a>
+    <Item.Header>
+      <a href={viewLink}>{title}</a>
     </Item.Header>
   );
 };
@@ -50,35 +34,40 @@ const DetailsButton = ({ searchUrl, selfLink }) => {
     new URL(searchUrl, window.location.origin)
   );
   return (
-    <Button
-      className="predmety__card__btn"
-      aria-label="Tlacitko tevrit detaily"
-    >
+    <Button primary floated="right" aria-label="Zobrazit detail předmětu">
       <a href={viewLink}>DETAIL</a>
     </Button>
   );
 };
 
 export const ResultsListItemComponent = ({ result, appName }) => {
-  const [wideScreen, setWideScreen] = React.useState(window.innerWidth >= 1200);
+  const [objectImages, setObjectImages] = useState([]);
 
   useEffect(() => {
-    function updateDescVisibility() {
-      if (window.innerWidth <= 992) {
-        setWideScreen(false);
-      } else {
-        setWideScreen(true);
-      }
-    }
+    fetch(result?.links?.files)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-    updateDescVisibility();
+        return response.json();
+      })
+      .then(async (res) => {
+        const imageEntries = res?.entries?.filter(
+          (item) => item.metadata.fileType === "photo"
+        );
 
-    window.addEventListener("resize", updateDescVisibility);
+        const fImg = imageEntries.filter(
+          (item) => item.metadata.featured == true
+        );
+        const rImg = imageEntries?.[0];
+        fImg.length == 1 ? setObjectImages(fImg[0]) : setObjectImages(rImg);
+      })
 
-    return () => {
-      window.removeEventListener("resize", updateDescVisibility);
-    };
-  }, []);
+      .catch(() => {
+        setObjectImages([]);
+      });
+  }, [result]);
 
   const searchAppConfig = useContext(SearchConfigurationContext);
 
@@ -89,15 +78,17 @@ export const ResultsListItemComponent = ({ result, appName }) => {
     "metadata.restorationWork.restorer",
     "<no data>"
   );
-  const desc = _get(
-    result,
-    "metadata.restorationWork.abstract",
-    "<no data>"
-  );
 
   const created = _get(result, "created", "<no data>");
+  const creationDate = new Date(created).toLocaleDateString();
 
+  const restDescription = _get(result, "metadata.restorationWork.abstract", "");
 
+  const objDescription = _get(
+    result,
+    "metadata.restorationObject.description",
+    ""
+  );
 
   return (
     <Overridable
@@ -105,38 +96,38 @@ export const ResultsListItemComponent = ({ result, appName }) => {
       result={result}
       title={title}
     >
-      <Grid className="predmety__card" key={result.id}>
-        <Item className="horiz-div predmety__card-content">
-          <Grid className="predmety__card__img-container">
-            
-            <ImageWithFallback src="/static/images/image-noimage.png" fallbackSrc="/static/images/image-404.png"   result={result} classN=''/>
-           
-          </Grid>
-          <Item.Content className="vert-div predmety__card__info">
-            <Grid.Column className="vert-div predmety__card__main-info">
-              <ItemHeader
-                className="predmety__card__title"
-                title={title}
-                searchUrl={searchAppConfig.ui_endpoint}
-                selfLink={`${result.id}`}
-              />
-              <Item.Description className="parag">{restorer}</Item.Description>
-              {/*  {wideScreen && <Item.Description className="parag">{desc.substring(0,70)}...</Item.Description>
-              } */}
-            </Grid.Column>
-            <Item.Group className="horiz-div predmety__card__extra-info">
-              <Item.Extra className="horiz-div predmety__card__extra-info">
-              <p className="parag">Vloženo: {created}</p>
-              </Item.Extra>
-              <DetailsButton
-                className="predmety__card__btn"
-                searchUrl={searchAppConfig.ui_endpoint}
-                selfLink={`${result.id}`}
-              />
-            </Item.Group>
-          </Item.Content>
-        </Item>
-      </Grid>
+      <Item key={result.id}>
+        <ItemImage
+          size="tiny"
+          src={
+            objectImages?.links?.content ?? "/static/images/image-noimage.png"
+          }
+          alt={getCaption(objectImages)}
+        />
+        {/* url */}
+        <ItemContent>
+          <ItemHeader
+            title={title}
+            searchUrl={searchAppConfig.ui_endpoint}
+            selfLink={`${result.id}`}
+          />
+          <ItemDescription>{restorer}</ItemDescription>
+          <ItemDescription>
+            <p>
+              {restDescription.length != 0
+                ? restDescription
+                : objDescription}
+            </p>
+          </ItemDescription>
+          <ItemExtra>
+            <Label size="large">Vloženo: {creationDate} </Label>
+            <DetailsButton
+              searchUrl={searchAppConfig.ui_endpoint}
+              selfLink={`${result.id}`}
+            />
+          </ItemExtra>
+        </ItemContent>
+      </Item>
     </Overridable>
   );
 };

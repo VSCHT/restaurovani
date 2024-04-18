@@ -1,51 +1,63 @@
-@media only screen and (max-width:992px) and (min-width: 730px){
-  .header.predmety__title {
-    color: #1b1919;
-    font-size: 50px !important;
-    font-family: Noto_Sans_regular;
-    word-wrap: break-word;
-    margin: 0px;
-    width: auto;
-}
-}
-
-@media only screen and (max-width:730px){
-    .header.predmety__title{
-    color: #1b1919;
-    font-size: 40px !important;
-    font-family: Noto_Sans_regular;
-    word-wrap: break-word;
-    margin: 0px;
-    text-align: center;
-}
-}
-@media only screen and (min-width:1200px) and (max-width:3000px){
-.header.predmety__title {
-    color: #1b1919;
-    font-size: 50px !important;
-    font-family: 'Noto_Sans_regular';
-    word-wrap: break-word;
-    width: 500px;
-    margin: 0px
-} 
+.ui.header {
+  h1& {
+    font-weight: 300;
+  }
+  h4& {
+    font-weight: 600;
+  }
+  .detail-page h3& {
+    color: white;
+    margin: auto 10px;
+  }
 }
 
-@media only screen and (min-width:992px) and (max-width:1200px) {
-   .header.predmety__title{
-    color: #1b1919;
-    font-size: 42px !important;
-    font-family: Noto_Sans_light;
-    word-wrap: break-word;
-    width: 472px;
-    margin: 0
-} 
+.count(@x, @y) {
+  @result: (@x - @y + 0rem);
 }
 
-@media only screen and (min-width:3000px){
-.header.predmety__title {
-  font-size: 7rem !important;
-  width: 1149px;
-   color: #1b1919;
-  font-family: Noto_Sans_light;
+@media only screen and (max-width: @computerSize) and (min-width: @tabletSize) {
+  .ui.header {
+    h1& {
+      font-size: .count(@h1, 0.5) [ @result];
+    }
+    h2& {
+      font-size: .count(@h2, 0.5) [ @result];
+    }
+  }
 }
+
+@media only screen and (min-width: @mobileSize) and (max-width: @tabletSize) {
+  .ui.header {
+    h1& {
+      font-size: .count(@h1, 1) [ @result];
+    }
+    h2& {
+      font-size: .count(@h2, 0.8) [ @result];
+    }
+  }
+}
+
+@media only screen and (max-width: @mobileSize) and (min-width: @smallMobileSize) {
+  .ui.header {
+    h1&:not(.login, .large) {
+      font-size: .count(@h1, 0.5) [ @result];
+      min-height: 18rem;
+    }
+  }
+}
+
+@media only screen and (max-width: @smallMobileSize) {
+  .ui.header {
+    h1&:not(.login, .large) {
+      font-size: .count(@h1, 1.5) [ @result];
+      min-height: 10rem;
+    }
+    h2& {
+      font-size: .count(@h2, 0.5) [ @result];
+    }
+  }
+}
+
+h1.mt-20 {
+  display: none;
 }

@@ -1,5 +1,48 @@
 {# def #}
-<div class="ui navbar">
-  This is the navbar component. It should be red and bold.
-</div>
-        
+
+<nav class="ui navbar horiz-div" aria-label="Main Menu">
+  <!-- upper menu -->
+
+  <div class="ui menu top fixed">
+    <div class="item toggle-burger">
+      <button
+        class="ui transparent button toggle-burger"
+        alt="Toggle Filter Menu"
+      >
+        <img
+          rel="icon"
+          src="{{ url_for('static', filename='images/menu-icon.png') }}"
+          alt="ui image burger filter button"
+        />
+      </button>
+    </div>
+
+    <a class="item" href="/">
+      <button class="ui button">
+        <img
+          class="ui image left-arrow"
+          src="{{ url_for('static', filename='images/arrow-left.png') }}"
+          alt="arrow back"
+        />RESTAUROVÁNÍ VŠCHT
+      </button>
+    </a>
+
+    <div class="right menu">
+      {%- if config.ACCOUNTS and current_user.is_authenticated %}
+
+      <a class="item">
+        <AccountDropDown />
+      </a>
+      {%- else %}
+
+      <a class="item" href="{{ url_for('security.login') }}">Přihlásit se</a>
+
+      {%- endif %}
+    </div>
+  </div>
+</nav>
+
+<div class="overlay"></div>
+
+<!-- sidebar for mobile -->
+<SideBar />

@@ -1,43 +1,8 @@
-.ui.icon.left.labeled.button{
-    background-color: #808080;
-    color: #fff;
-    margin-top: 10px;
-}
-.ui.icon.left.labeled.button:hover{
-    background-color: #595959;
-}
-
-.ui.icon.button.close-btn{
-    background: none;
-    color: #222
-}
-i.red.icon{
-    height: auto ;
-}
-i.icon{
-  content: "\f007";
-  font-size: 1.5rem;
-  margin-right: 10px;
-}
-i.add.icon{
-  content: "\f007";
-  font-size: 1rem;
-  margin-right: 10px;
-}
-i.close.icon{
-  content: "\f007";
-  font-size: 1.2rem;
-  margin-right: 10px;
-}
-@media only screen and (max-width: 450px){
-i.icon{
-  content: "\f007";
-  font-size: 1rem;
-  margin-right: 10px;
-}
-}
-
-
-.delete.icon.predmety__btn-reset{
-  font-size: 1.3rem
+.icon {
+  i.close& {
+    color: @darkestBrown;
+  }
+  .ui.fluid.dropdown > .dropdown& {
+    z-index: 100;
+  }
 }
