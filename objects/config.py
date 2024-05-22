@@ -1,11 +1,13 @@
 from oarepo_requests.resolvers.ui import (
-    draft_record_entity_reference_ui_resolver,
-    record_entity_reference_ui_resolver,
-    user_entity_reference_ui_resolver,
+    FallbackEntityReferenceUIResolver,
+    GroupEntityReferenceUIResolver,
+    RecordEntityDraftReferenceUIResolver,
+    RecordEntityReferenceUIResolver,
+    UserEntityReferenceUIResolver,
 )
 from oarepo_requests.resources.draft.resource import DraftRecordRequestsResource
 from oarepo_requests.services.draft.service import DraftRecordRequestsService
-from oarepo_runtime.records.entity_resolvers import UserResolver
+from oarepo_runtime.records.entity_resolvers import GroupResolver, UserResolver
 
 from objects.files.api import ObjectsFileDraft
 from objects.files.requests.resolvers import ObjectsFileDraftResolver
@@ -57,6 +59,7 @@ REQUESTS_REGISTERED_TYPES = [
 
 REQUESTS_ENTITY_RESOLVERS = [
     UserResolver(),
+    GroupResolver(),
     ObjectsResolver(record_cls=ObjectsRecord, service_id="objects", type_key="objects"),
     ObjectsDraftResolver(
         record_cls=ObjectsDraft, service_id="objects", type_key="objects_draft"
@@ -70,10 +73,13 @@ REQUESTS_ENTITY_RESOLVERS = [
 
 
 ENTITY_REFERENCE_UI_RESOLVERS = {
-    "user": user_entity_reference_ui_resolver,
-    "objects": record_entity_reference_ui_resolver,
-    "objects_draft": draft_record_entity_reference_ui_resolver,
+    "user": UserEntityReferenceUIResolver("user"),
+    "fallback": FallbackEntityReferenceUIResolver("fallback"),
+    "group": GroupEntityReferenceUIResolver("group"),
+    "objects": RecordEntityReferenceUIResolver("objects"),
+    "objects_draft": RecordEntityDraftReferenceUIResolver("objects_draft"),
 }
+REQUESTS_UI_SERIALIZATION_REFERENCED_FIELDS = ["created_by", "receiver", "topic"]
 
 
 OBJECTS_FILES_RESOURCE_CONFIG = ObjectsFileResourceConfig

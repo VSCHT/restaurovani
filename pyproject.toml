@@ -5,6 +5,7 @@ description = ""
 packages = []
 authors = []
 dependencies = [
+    "PyMuPDF",
     "invenio-drafts-resources>=1.0.4",
     "json5",
     "oarepo-published-service>=1.0.0",
@@ -14,7 +15,6 @@ dependencies = [
     "oarepo-vocabularies",
     "oarepo[s3]==12.*",
     "python-dotenv",
-    "PyMuPDF"
 ]
 requires-python = ">=3.10,<3.11"
 
@@ -41,7 +41,7 @@ objects = "objects.ext:ObjectsExt"
 objects = "objects.ext:ObjectsExt"
 
 [project.entry-points."invenio_db.alembic"]
-objects = "common:alembic"
+objects = "objects:alembic"
 
 [project.entry-points."invenio_db.models"]
 objects = "objects.records.models"
@@ -73,6 +73,9 @@ objects_file = "objects.models:ui.json"
 
 [project.entry-points."oarepo.fixtures"]
 fixtures = "fixtures"
+
+[project.entry-points."invenio_requests.types"]
+objects_delete_record = "objects.records.requests.delete_record.types:DeleteRecordRequestType"
 
 [project.optional-dependencies]
 tests = [
