@@ -1,6 +1,5 @@
-from invenio_records_resources.services import FileLink, FileServiceConfig, RecordLink
+from invenio_records_resources.services import FileLink, RecordLink
 from invenio_records_resources.services.records.components import DataComponent
-from oarepo_runtime.services.config.service import PermissionsPresetsConfigMixin
 
 from common.services.files import RestorationFileServiceConfig
 from objects.records.api import ObjectsDraft, ObjectsRecord
@@ -39,6 +38,7 @@ class ObjectsFileServiceConfig(RestorationFileServiceConfig):
         return {
             "commit": FileLink("{+api}/objects/{id}/files/{key}/commit"),
             "content": FileLink("{+api}/objects/{id}/files/{key}/content"),
+            "preview": FileLink("{+ui}/objects/files/{key}/preview"),
             "self": FileLink("{+api}/objects/{id}/files/{key}"),
         }
 
@@ -56,11 +56,7 @@ class ObjectsFileDraftServiceConfig(RestorationFileServiceConfig):
 
     service_id = "objects_file_draft"
 
-    components = [
-        *PermissionsPresetsConfigMixin.components,
-        *FileServiceConfig.components,
-        DataComponent,
-    ]
+    components = [*RestorationFileServiceConfig.components, DataComponent]
 
     model = "objects"
 
