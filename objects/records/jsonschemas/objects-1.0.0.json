@@ -8,18 +8,6 @@
             "type": "string",
             "format": "date-time"
         },
-        "data": {
-            "type": "object",
-            "properties": {
-                "extractedText": {
-                    "type": "string"
-                },
-                "extractedTimestamp": {
-                    "type": "string",
-                    "format": "date-time"
-                }
-            }
-        },
         "id": {
             "type": "string"
         },
@@ -28,6 +16,24 @@
             "properties": {
                 "category": {
                     "type": "string"
+                },
+                "restorationData": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "key": {
+                                "type": "string"
+                            },
+                            "text": {
+                                "type": "string"
+                            },
+                            "timestamp": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        }
+                    }
                 },
                 "restorationObject": {
                     "type": "object",

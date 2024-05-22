@@ -1,5 +1,6 @@
 import re
 from functools import cached_property
+
 from oarepo_requests.proxies import current_oarepo_requests_service
 from oarepo_requests.resources.draft.config import DraftRecordRequestsResourceConfig
 
@@ -63,7 +64,7 @@ class ObjectsExt:
     def service_requests(self):
         return config.OBJECTS_REQUESTS_SERVICE_CLASS(
             record_service=self.service_records,
-            oarepo_requests_service=current_oarepo_requests_service
+            oarepo_requests_service=current_oarepo_requests_service,
         )
 
     @cached_property
@@ -83,7 +84,7 @@ class ObjectsExt:
 
         return ObjectsPublishedService(
             config=ObjectsPublishedServiceConfig(
-                proxied_drafts_config=self.service_records.config,
+                proxied_drafts_config=self.service_records.config
             ),
         )
 
@@ -98,6 +99,17 @@ class ObjectsExt:
         return config.OBJECTS_FILES_RESOURCE_CLASS(
             service=self.service_files,
             config=config.OBJECTS_FILES_RESOURCE_CONFIG(),
+        )
+
+    @cached_property
+    def published_service_files(self):
+        from objects.services.files.published.config import (
+            ObjectsFilePublishedServiceConfig,
+        )
+        from objects.services.files.published.service import ObjectsFilePublishedService
+
+        return ObjectsFilePublishedService(
+            config=ObjectsFilePublishedServiceConfig(),
         )
 
     @cached_property
