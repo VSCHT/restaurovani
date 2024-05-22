@@ -16,12 +16,12 @@ from oarepo_runtime.services.schema.validation import validate_date, validate_da
 class GeneratedParentSchema(InvenioParentSchema):
     """"""
 
+    owners = ma.fields.List(ma.fields.Dict(), load_only=True)
+
 
 class ObjectsSchema(RequestsSchemaMixin, BaseRecordSchema):
     class Meta:
         unknown = ma.RAISE
-
-    data = ma_fields.Nested(lambda: DataSchema())
 
     metadata = ma_fields.Nested(lambda: ObjectsMetadataSchema())
     parent = ma.fields.Nested(GeneratedParentSchema)
@@ -50,6 +50,10 @@ class ObjectsMetadataSchema(Schema):
         unknown = ma.RAISE
 
     category = ma_fields.String()
+
+    restorationData = ma_fields.List(
+        ma_fields.Nested(lambda: RestorationDataItemSchema())
+    )
 
     restorationObject = ma_fields.Nested(lambda: RestorationObjectSchema())
 
@@ -143,13 +147,15 @@ class CreationPeriodSchema(DictOnlySchema):
     until = ma_fields.Integer()
 
 
-class DataSchema(DictOnlySchema):
+class RestorationDataItemSchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
-    extractedText = ma_fields.String()
+    key = ma_fields.String()
 
-    extractedTimestamp = ma_fields.String(validate=[validate_datetime])
+    text = ma_fields.String()
+
+    timestamp = ma_fields.String(validate=[validate_datetime])
 
 
 class RestorationPeriodSchema(DictOnlySchema):
