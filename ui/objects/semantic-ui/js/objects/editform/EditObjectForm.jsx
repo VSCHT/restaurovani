@@ -16,7 +16,7 @@ import { MoreInfo } from "./components/MoreInfo";
 
 export const EditObjectForm = () => {
   const { record } = useFormConfig();
-  const category= record.metadata.restorationObject.category
+  const category = record.metadata.restorationObject.category;
 
   const [activeIndex, setActiveIndex] = React.useState(0);
   const handleActive = (x) => {
@@ -34,11 +34,10 @@ export const EditObjectForm = () => {
         validateOnChange={false}
         validateOnBlur={false}
       >
-        {({ values, errors, setFieldValue, setFieldTouched}) => (
+        {({ values, errors, setFieldValue, setFieldTouched }) => (
           <Grid columns={1} className="gapped grid-form">
             <Header as="h3">
-              Editace předmětu {' '}
-              {values.metadata.restorationObject.title}
+              Editace předmětu {values.metadata.restorationObject.title}
             </Header>
 
             <Overridable id="Deposit.AccordionFieldBasicInformation.container">
@@ -46,7 +45,10 @@ export const EditObjectForm = () => {
                 activeIndex={activeIndex}
                 handleActive={handleActive}
                 record={record}
+                values={values}
                 category={category}
+                setFieldValue={setFieldValue}
+                setFieldTouched={setFieldTouched}
               />
             </Overridable>
 

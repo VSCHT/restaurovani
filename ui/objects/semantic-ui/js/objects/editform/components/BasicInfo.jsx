@@ -14,7 +14,7 @@ import {
 } from "react-invenio-forms";
 
 import { Grid } from "semantic-ui-react";
-import { ArrayFieldItem } from "@js/oarepo_ui";
+import { ArrayFieldItem, sanitizeInput } from "@js/oarepo_ui";
 
 import {
   LocalVocabularySelectField,
@@ -22,8 +22,17 @@ import {
 } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import { FileStat } from "./FileStat";
+import { getIn } from "formik";
 
-export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
+export const BasicInfo = ({
+  activeIndex,
+  handleActive,
+  record,
+  category,
+  values,
+  setFieldValue,
+  setFieldTouched,
+}) => {
   const units = [
     { value: "kg", text: "kg" },
     { value: "mg", text: "mg" },
@@ -32,19 +41,20 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
     { value: "m", text: "m" },
     { value: "mm", text: "mm" },
   ];
+  const fieldPath = "metadata.restorationObject";
 
   return (
     <AccordionField
       includesPaths={[
-        "metadata.restorationObject.itemTypes",
-        "metadata.restorationObject.dimensions",
-        "metadata.restorationObject.description",
-        "metadata.restorationObject.title",
-        "metadata.restorationObject.archeologic",
-        "metadata.restorationObject.keywords",
-        "metadata.restorationObject.creationPeriod.since",
-        "metadata.restorationObject.creationPeriod.until",
-        "metadata.restorationObject.restorationRequestor",
+        `${fieldPath}.itemTypes`,
+        `${fieldPath}.dimensions`,
+        `${fieldPath}.description`,
+        `${fieldPath}.title`,
+        `${fieldPath}.archeologic`,
+        `${fieldPath}.keywords`,
+        `${fieldPath}.creationPeriod.since`,
+        `${fieldPath}.creationPeriod.until`,
+        `${fieldPath}.restorationRequestor`,
       ]}
       label="Údaje"
       active={activeIndex === 0}
@@ -54,52 +64,66 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
       <Grid columns={1}>
         <Grid.Column>
           <TextField
-            name="metadata.restorationObject.title"
+            name={`${fieldPath}.title`}
             aria-label="Název předmětu"
-            fieldPath="metadata.restorationObject.title"
+            fieldPath={`${fieldPath}.title`}
             required
             label={
               <FieldLabel
-                htmlFor="metadata.restorationObject.title"
+                htmlFor={`${fieldPath}.title`}
                 label="Název předmětu"
               />
             }
+            onBlur={() => {
+              const cleanedContent = sanitizeInput(
+                getIn(values, `${fieldPath}.title`)
+              );
+              setFieldValue(`${fieldPath}.title`, cleanedContent);
+              setFieldTouched(`${fieldPath}.title`, true);
+            }}
           />
         </Grid.Column>
         <Grid.Column>
           <MultiInput
-            fieldPath="metadata.restorationObject.keywords"
+            fieldPath={`${fieldPath}.keywords`}
             label="Klíčová slova"
             placeholder="Napište klíčová slova..."
             required={false}
-            name="metadata.restorationObject.keywords"
+            name={`${fieldPath}.keywords`}
             disabled={false}
           />
         </Grid.Column>
         <Grid.Column>
           <TextAreaField
-            name="metadata.restorationObject.description"
+            name={`${fieldPath}.description`}
             aria-label="Popis"
-            fieldPath="metadata.restorationObject.description"
+            fieldPath={`${fieldPath}.description`}
             label={
               <FieldLabel
-                htmlFor="metadata.restorationObject.description"
+                htmlFor={`${fieldPath}.description`}
                 label="Popis"
               ></FieldLabel>
             }
+            onBlur={() => {
+              const cleanedContent = sanitizeInput(
+                getIn(values, `${fieldPath}.description`)
+              );
+              setFieldValue(`${fieldPath}.description`, cleanedContent);
+              setFieldTouched(`${fieldPath}.description`, true);
+            }}
           />
         </Grid.Column>
         <Grid.Column>
           <VocabularyTreeSelectField
             optionsListName="ItemTypes"
-            fieldPath="metadata.restorationObject.itemTypes"
+            fieldPath={`${fieldPath}.itemTypes`}
             multiple={true}
             clearable
             placeholder="Vyberte typ předmětu"
             root={category}
             label={
               <FieldLabel
-                htmlFor="metadata.restorationObject.itemTypes"
+                htmlFor={`${fieldPath}.itemTypes`}
                 label="Typ předmětu"
               />
             }
@@ -109,13 +133,13 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
         <Grid columns={2}>
           <Grid.Column>
             <NumberInput
-              name="metadata.restorationObject.creationPeriod.since"
+              name={`${fieldPath}.creationPeriod.since`}
               aria-label="Datace od"
-              fieldPath="metadata.restorationObject.creationPeriod.since"
+              fieldPath={`${fieldPath}.creationPeriod.since`}
               required
               label={
                 <FieldLabel
-                  htmlFor="metadata.restorationObject.creationPeriod.since"
+                  htmlFor={`${fieldPath}.creationPeriod.since`}
                   label="Datace od"
                 />
               }
@@ -123,13 +147,13 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           </Grid.Column>
           <Grid.Column>
             <NumberInput
-              name="metadata.restorationObject.creationPeriod.until"
+              name={`${fieldPath}.creationPeriod.until`}
               aria-label="Datace do"
-              fieldPath="metadata.restorationObject.creationPeriod.until"
+              fieldPath={`${fieldPath}.creationPeriod.until`}
               required
               label={
                 <FieldLabel
-                  htmlFor="metadata.restorationObject.creationPeriod.until"
+                  htmlFor={`${fieldPath}.creationPeriod.until`}
                   label="Datace do"
                 />
               }
@@ -140,14 +164,14 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
         {category != "textil" && (
           <ArrayField
             addButtonLabel="Přidat rozměr"
-            fieldPath="metadata.restorationObject.dimensions"
+            fieldPath={`${fieldPath}.dimensions`}
           >
             {({ arrayHelpers, indexPath }) => {
-              const fieldPathPrefix = `${"metadata.restorationObject.dimensions"}[${indexPath}]`;
+              const fieldPathPrefix = `${fieldPath}.dimensions[${indexPath}]`;
               return (
                 <ArrayFieldItem
-                  name="metadata.restorationObject.dimensions"
-                  fieldPath="metadata.restorationObject.dimensions"
+                  name={`${fieldPath}.dimensions`}
+                  fieldPath={`${fieldPath}.dimensions`}
                   indexPath={indexPath}
                   arrayHelpers={arrayHelpers}
                 >
@@ -204,12 +228,12 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
         <Grid.Column>
           <BooleanField
             optimized="false"
-            name="metadata.restorationObject.archeologic"
+            name={`${fieldPath}.archeologic`}
             aria-label="Archeologický nález"
-            fieldPath="metadata.restorationObject.archeologic"
+            fieldPath={`${fieldPath}.archeologic`}
             label={
               <FieldLabel
-                htmlFor="metadata.restorationObject.archeologic"
+                htmlFor={`${fieldPath}.archeologic`}
                 label="Archeologický nález"
               ></FieldLabel>
             }
@@ -218,13 +242,13 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
         <Grid.Column>
           <VocabularyTreeSelectField
             optionsListName="Requestors"
-            fieldPath="metadata.restorationObject.restorationRequestor"
+            fieldPath={`${fieldPath}.restorationRequestor`}
             multiple={false}
             clearable
             placeholder="Vyberte zadavatele"
             label={
               <FieldLabel
-                htmlFor={"metadata.restorationObject.restorationRequestor"}
+                htmlFor={`${fieldPath}.restorationRequestor`}
                 label="Zadavatel"
               />
             }
