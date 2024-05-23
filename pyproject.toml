@@ -76,7 +76,7 @@ fixtures = "fixtures"
 
 [project.entry-points."invenio_requests.types"]
 objects_delete_record = "objects.records.requests.delete_record.types:DeleteRecordRequestType"
-
+objects_publish_draft = "objects.records.requests.publish_draft.types:PublishDraftRequestType"
 [project.optional-dependencies]
 tests = [
     "pytest-invenio>=1.4.11",
