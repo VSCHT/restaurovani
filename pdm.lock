@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:1f9ee57ef875adf5b03371723fa31ed703ec35f5d5a24b970d419b6ff9402bc4"
+content_hash = "sha256:8c05a60b619a2564b49116a5690a7b353679a06200f7f2ebd5ed51a2d06a4b26"
 
 [[package]]
 name = "alembic"
@@ -3287,7 +3287,7 @@ files = [
 
 [[package]]
 name = "oarepo-vocabularies"
-version = "2.0.88"
+version = "2.0.87"
 summary = "Support for custom fields and hierarchy on Invenio vocabularies"
 groups = ["default"]
 dependencies = [
@@ -3298,8 +3298,8 @@ dependencies = [
     "openpyxl",
 ]
 files = [
-    {file = "oarepo_vocabularies-2.0.88-py3-none-any.whl", hash = "sha256:1376b5639d7fe52a029a54148be4b0da641c4ce2d557aa3984e82f5569a5a564"},
-    {file = "oarepo_vocabularies-2.0.88.tar.gz", hash = "sha256:0d98e320259fae09d3cbff71bd5e46ba6dd628efc9e81496f6b4c15c2211403d"},
+    {file = "oarepo_vocabularies-2.0.87-py3-none-any.whl", hash = "sha256:63fd4f4fed9a1812f05712c81399ff9b3f5e0786508045b2cd0e92e3a9ec1544"},
+    {file = "oarepo_vocabularies-2.0.87.tar.gz", hash = "sha256:1f0041a317e31924fbe5c2e5e55f0034fd91ae1714f9610d59be53b3a556e63e"},
 ]
 
 [[package]]
