@@ -7,7 +7,7 @@
     font-size: 0.9rem;
     border: 1px solid @inputBorderColor;
 
-    #form-app &{
+    #form-app & {
       height: 2.5rem;
     }
 
@@ -23,12 +23,8 @@
     .ui.sidebar & {
       width: 100%;
     }
-    .tree-field .header &{
-      background: white;
-    }
 
     @media only screen and (max-width: @smallMobileSize) {
-      // font-size: @inputFontMedium;
       height: @smallerInputHeight;
     }
     @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
@@ -49,9 +45,9 @@
 }
 
 .react-datepicker__input-container input {
-    width: 100%;
-    min-height: 2.5rem;
-    border-radius: 30px;
-    padding-left: 1rem;
-    border: 1px solid @inputBorderColor;
+  width: 100%;
+  min-height: 2.5rem;
+  border-radius: 30px;
+  padding-left: 1rem;
+  border: 1px solid @inputBorderColor;
 }

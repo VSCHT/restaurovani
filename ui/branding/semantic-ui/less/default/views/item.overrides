@@ -43,6 +43,17 @@
   .right.menu a& {
     color: white;
   }
+  .description:has(p) {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 90%;
+    & p {
+      font-size: 0.9rem;
+      color: @brownColor;
+    }
+  }
 }
 
 @media only screen and (max-width: @mobileSize) {
@@ -80,6 +91,9 @@
       white-space: nowrap;
     }
   }
+  .ui.items > .item .extra > * {
+    margin: 0.25rem 35% 0.25rem 0em;
+  }
 }
 @media only screen and (max-width: 767px) {
   .item {
@@ -88,6 +102,9 @@
     }
     & .extra {
       justify-content: center;
+    }
+    & .content .description {
+      margin: 0 auto;
     }
   }
 }
@@ -102,7 +119,7 @@
       }
 
       & .extra > * {
-        margin: 0.25rem 50% 0.25rem 0em;
+        margin: 0.25rem 40% 0.25rem 0em;
       }
 
       & > .content > .description {

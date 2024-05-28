@@ -34,7 +34,7 @@ export const EditObjectForm = () => {
         validateOnChange={false}
         validateOnBlur={false}
       >
-        {({ values, errors }) => (
+        {({ values, errors, setFieldValue, setFieldTouched}) => (
           <Grid columns={1} className="gapped grid-form">
             <Header as="h3">
               Editace předmětu {' '}
@@ -56,6 +56,8 @@ export const EditObjectForm = () => {
                 handleActive={handleActive}
                 values={values}
                 category={category}
+                setFieldValue={setFieldValue}
+                setFieldTouched={setFieldTouched}
               />
             </Overridable>
 

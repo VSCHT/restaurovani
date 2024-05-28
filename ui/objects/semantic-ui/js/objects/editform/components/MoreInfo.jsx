@@ -4,7 +4,7 @@ import _cloneDeep from "lodash/cloneDeep";
 import { AccordionField, FieldLabel } from "react-invenio-forms";
 
 import { Grid } from "semantic-ui-react";
-import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
+import { VocabularyTreeSelectField } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 
 export const MoreInfo = ({ activeIndex, handleActive, category }) => {
@@ -29,7 +29,7 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
               fieldPath="metadata.restorationObject.colors"
               multiple={true}
               clearable
-              category={category}
+              root={category}
               label={
                 <FieldLabel
                   htmlFor="metadata.restorationObject.colors"
@@ -46,7 +46,7 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
             fieldPath="metadata.restorationObject.fabricationTechnologies"
             placeholder="Vyberte technologie výroby"
             multiple={true}
-            category={category}
+            root={category}
             clearable
             label={
               <FieldLabel

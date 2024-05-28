@@ -10,13 +10,16 @@ import {
   ArrayField,
   TextAreaField,
   MultiInput,
+  NumberInput,
 } from "react-invenio-forms";
-import { VocabularyTreeSelectField } from "./VocabularyTreeSelectField";
 
 import { Grid } from "semantic-ui-react";
 import { ArrayFieldItem } from "@js/oarepo_ui";
 
-import { LocalVocabularySelectField } from "@js/oarepo_vocabularies";
+import {
+  LocalVocabularySelectField,
+  VocabularyTreeSelectField,
+} from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import { FileStat } from "./FileStat";
 
@@ -90,9 +93,10 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           <VocabularyTreeSelectField
             optionsListName="ItemTypes"
             fieldPath="metadata.restorationObject.itemTypes"
-            multiple={false}
+            multiple={true}
+            clearable
             placeholder="Vyberte typ předmětu"
-            category={category}
+            root={category}
             label={
               <FieldLabel
                 htmlFor="metadata.restorationObject.itemTypes"
@@ -104,7 +108,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
 
         <Grid columns={2}>
           <Grid.Column>
-            <TextField
+            <NumberInput
               name="metadata.restorationObject.creationPeriod.since"
               aria-label="Datace od"
               fieldPath="metadata.restorationObject.creationPeriod.since"
@@ -118,7 +122,7 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
             />
           </Grid.Column>
           <Grid.Column>
-            <TextField
+            <NumberInput
               name="metadata.restorationObject.creationPeriod.until"
               aria-label="Datace do"
               fieldPath="metadata.restorationObject.creationPeriod.until"
@@ -212,12 +216,12 @@ export const BasicInfo = ({ activeIndex, handleActive, record, category }) => {
           />
         </Grid.Column>
         <Grid.Column>
-          <LocalVocabularySelectField
+          <VocabularyTreeSelectField
+            optionsListName="Requestors"
             fieldPath="metadata.restorationObject.restorationRequestor"
             multiple={false}
-            optionsListName="Requestors"
-            placeholder="Vyberte zadavatele"
             clearable
+            placeholder="Vyberte zadavatele"
             label={
               <FieldLabel
                 htmlFor={"metadata.restorationObject.restorationRequestor"}

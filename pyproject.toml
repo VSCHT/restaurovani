@@ -16,7 +16,7 @@ dependencies = [
     "python-dotenv",
     "PyMuPDF"
 ]
-requires-python = ">=3.9,<3.11"
+requires-python = ">=3.10,<3.11"
 
 [project.entry-points."invenio_assets.webpack"]
 branding = "ui.branding.webpack:theme"
@@ -41,7 +41,7 @@ objects = "objects.ext:ObjectsExt"
 objects = "objects.ext:ObjectsExt"
 
 [project.entry-points."invenio_db.alembic"]
-objects = "objects:alembic"
+objects = "common:alembic"
 
 [project.entry-points."invenio_db.models"]
 objects = "objects.records.models"

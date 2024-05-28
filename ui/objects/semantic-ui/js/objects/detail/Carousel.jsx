@@ -3,7 +3,14 @@ import Slider from "react-slick";
 import { Modal, Image, Button, Grid, Header } from "semantic-ui-react";
 import { getCaption } from "./index";
 
-export const ImgCarousel = ({ imagesCollection, settings }) => {
+export const ImgCarousel = ({
+  imagesCollection,
+  settings = {
+    infinite: false,
+    speed: 100,
+    swipeToSlide: true,
+  },
+}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 

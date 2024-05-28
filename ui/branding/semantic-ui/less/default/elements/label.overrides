@@ -6,7 +6,6 @@
       color: @brownColor;
     }
   }
-  .predmety__aside &,
   .aside &:not(:nth-child(3)) {
     color: @blackColor;
   }
@@ -28,29 +27,6 @@
   @media only screen and (max-width: 767px) {
     .extra &.large {
       display: none;
-    }
-  }
-}
-
-.ui.modal.tree-field {
-  .actions .ui.label {
-    display: flex;
-    text-align: left;
-    border: 1px solid @darkBrown;
-  }
-  .content .ui.label {
-    max-width: 30%;
-    text-align: left;
-  }
-
-  .header .ui.label {
-    padding: 10px;
-  }
-
-  .ui.label {
-    a {
-      font-size: 1rem;
-      color: @blackColor;
     }
   }
 }

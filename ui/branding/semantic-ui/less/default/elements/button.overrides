@@ -43,7 +43,6 @@
     height: min-content;
 
     position: relative;
-
     &:hover {
       background: @radialBg;
       color: black;
@@ -73,7 +72,9 @@
       color: @whiteColor;
     }
   }
-
+  .sidebar .small.transparent& {
+    align-self: center;
+  }
   .ui.modal .content & {
     background: none;
     height: inherit;
@@ -102,13 +103,14 @@
   }
 
   &.close {
-    position: relative;
+    position: fixed;
     left: 45%;
     background: none;
 
     .ui.sidebar &,
     .ui.modal & {
       left: 90%;
+      z-index: 100;
     }
   }
 
@@ -119,27 +121,6 @@
   .ui.sidebar .dropdown & {
     background: white;
     color: @darkestBrown;
-  }
-
-  .tree-field & {
-    padding: 0.2rem;
-  }
-
-  .tree-field &.basic {
-    width: 100%;
-    margin: 0;
-    border-radius: 0;
-    font-size: 1rem;
-  }
-  .tree-field .actions & {
-    padding: 0.1rem 0.3rem 0;
-    margin-left: 0;
-    &:not(.icon) > .icon:not(.button):not(.dropdown) {
-      margin: 0;
-    }
-    &.secondary{
-      font-size: 1rem
-    }
   }
 
   @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {

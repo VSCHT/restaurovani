@@ -48,12 +48,6 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
       ),
 
       keywords: Yup.array(),
-      restorationRequestor: Yup.object().shape({
-        title: Yup.object().shape({
-          cs: Yup.string(),
-        }),
-        id: Yup.string(),
-      }),
 
       creationPeriod: Yup.object().shape({
         until: Yup.number()

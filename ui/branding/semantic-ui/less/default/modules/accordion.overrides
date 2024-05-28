@@ -48,6 +48,9 @@
     background: none;
     margin-bottom: 0;
   }
+  .aside & .active.title i.chevron.down.icon {
+    transform: rotate(270deg);
+  }
 
   @media only screen and (min-width: @mobileSize) and (max-width: @tabletSize) {
     &.styled {

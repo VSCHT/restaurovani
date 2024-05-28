@@ -8,7 +8,7 @@ export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
 
   return (
     <Button
-    primary
+      primary
       name="save"
       aria-label="tlacitko vytvoreni predmetu"
       disabled={isSubmitting}
@@ -22,6 +22,7 @@ export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
         if (!_isEmpty(err)) {
           return;
         }
+
         const res = await save();
 
         edit
