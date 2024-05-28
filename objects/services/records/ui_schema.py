@@ -16,8 +16,6 @@ class ObjectsUISchema(UIRequestsSerializationMixin, InvenioUISchema):
     class Meta:
         unknown = ma.RAISE
 
-    data = ma_fields.Nested(lambda: DataUISchema())
-
     metadata = ma_fields.Nested(lambda: ObjectsMetadataUISchema())
 
 
@@ -26,6 +24,10 @@ class ObjectsMetadataUISchema(Schema):
         unknown = ma.RAISE
 
     category = ma_fields.String()
+
+    restorationData = ma_fields.List(
+        ma_fields.Nested(lambda: RestorationDataItemUISchema())
+    )
 
     restorationObject = ma_fields.Nested(lambda: RestorationObjectUISchema())
 
@@ -119,13 +121,15 @@ class CreationPeriodUISchema(DictOnlySchema):
     until = ma_fields.Integer()
 
 
-class DataUISchema(DictOnlySchema):
+class RestorationDataItemUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
-    extractedText = ma_fields.String()
+    key = ma_fields.String()
 
-    extractedTimestamp = LocalizedDateTime()
+    text = ma_fields.String()
+
+    timestamp = LocalizedDateTime()
 
 
 class RestorationPeriodUISchema(DictOnlySchema):

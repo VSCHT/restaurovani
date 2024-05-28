@@ -5,12 +5,17 @@ from oarepo_runtime.i18n import lazy_gettext as _
 from oarepo_runtime.services.facets.date import DateTimeFacet
 from oarepo_vocabularies.services.facets import VocabularyFacet
 
-data_extractedTimestamp = DateTimeFacet(
-    field="data.extractedTimestamp", label=_("data/extractedTimestamp.label")
-)
-
 metadata_category = TermsFacet(
     field="metadata.category", label=_("metadata/category.label")
+)
+
+metadata_restorationData_key = TermsFacet(
+    field="metadata.restorationData.key", label=_("metadata/restorationData/key.label")
+)
+
+metadata_restorationData_timestamp = DateTimeFacet(
+    field="metadata.restorationData.timestamp",
+    label=_("metadata/restorationData/timestamp.label"),
 )
 
 metadata_restorationObject_archeologic = TermsFacet(
@@ -141,3 +146,8 @@ metadata_restorationWork_workType = VocabularyFacet(
 metadata_submissionStatus = TermsFacet(
     field="metadata.submissionStatus", label=_("metadata/submissionStatus.label")
 )
+
+
+record_status = TermsFacet(field="record_status", label=_("record_status"))
+
+has_draft = TermsFacet(field="has_draft", label=_("has_draft"))
