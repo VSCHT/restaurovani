@@ -29,7 +29,7 @@ export const CustomSB = ({
               <Icon color="black" name="delete" />
             </Button>
             <Button onClick={onBtnSearchClick} className="small transparent">
-              <Icon color="black" name="search"/>
+              <Icon color="black" name="search" data-testid="search-button"/>
             </Button>
           </Button.Group>
         )

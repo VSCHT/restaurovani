@@ -23,11 +23,11 @@ test("get error on unfilled form", async ({ page }) => {
 
   await Promise.all([
     page.waitForSelector(
-      "#metadata\\.restorationWork\\.restorer-error-message",
+      "#metadata.restorationWork.restorer-error-message",
       { visible: true }
     ),
     page.waitForSelector(
-      "#metadata\\.restorationObject\\.title-error-message",
+      "#metadata.restorationObject.title-error-message",
       { visible: true }
     ),
   ]);
@@ -64,11 +64,10 @@ test("successful form submit", async ({ page }) => {
     await labelToClick.click();
 
     const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
-    await page.locator(".ui.primary.button").click();
+    await page.locator(".grid-form-create > .ui.button").click();
 
     await pagenav;
 
-    console.log(page.url());
     expect(page.url().includes("edit")).toBeTruthy();
   } catch (error) {
     console.error("Error:", error);

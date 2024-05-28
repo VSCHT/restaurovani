@@ -77,12 +77,13 @@ test("images carousel", async ({ page, request, baseURL }) => {
   );
 });
 
-test("detail page title", async ({ page, request, baseURL }) => {
-  const responseData = await callAPI(baseURL, request);
+test("detail page title", async ({ page }) => {
+  await page.goto("/objekty");
+  const firstItem = page.getByTestId('result-item').first();
+  const itemName = firstItem
+    .locator(".header a")
+    .textContent();
+  await firstItem.locator(".extra .ui.button").click();
 
-  const responseID = responseData.id;
-  const responseName = responseData.metadata.restorationObject.title;
-
-  await page.goto(`/objekty/${responseID}`);
-  await expect(page).toHaveTitle(`${responseName} | Detail`);
+  await expect(page).toHaveTitle(`${itemName} | Detail`);
 });

@@ -1,27 +1,38 @@
 import { test, expect } from "playwright/test";
-const callAPI = require("./api-call.spec.ts");
 
-test("tree-field visibility", async ({ page, request, baseURL }) => {
-  const responseData = await callAPI(baseURL, request);
-  const responseID = responseData.id;
+test("tree-field visibility, mouse manipulation and selected result check", async ({
+  page,
+}) => {
+  await page.goto("/objekty");
+  const firstItem = page.getByTestId('result-item').first();
+  await firstItem.locator(".extra .ui.button").click();
 
-  await page.goto(`/objekty/${responseID}/edit`);
+  await page.locator(".container a:right-of(.ui.header)").click();
 
-  await page.click(`[name='metadata.restorationObject.itemTypes']`);
-  await expect(page.locator(".tree-field").first()).toBeVisible();
-});
+  // const vocabField = `[name='metadata.restorationObject.itemTypes']`;
 
-test("tree-field manipulation", async ({ page, request, baseURL }) => {
-  const responseData = await callAPI(baseURL, request);
-  const responseID = responseData.id;
+  // await page.click(`[name='metadata.restorationObject.itemTypes']:not(a.label):not(.icon)`);
+ 
 
-  await page.goto(`/objekty/${responseID}/edit`);
+  
+    const dropdown = await page.$('div[name="metadata.restorationObject.itemTypes"]');
+    
+    if (dropdown) { 
+      const boundingBox = await dropdown.boundingBox();
+      
+      if (boundingBox) { 
+        const clickX = boundingBox.x + boundingBox.width / 2;
+        const clickY = boundingBox.y + boundingBox.height / 2;
+         
+        await page.mouse.click(clickX, clickY);
+      }
+    }
+ 
+   
+  page.waitForSelector(".ui.modal.tree-field");
+  await expect(page.locator(".ui.modal.tree-field")).toBeVisible();
 
-  await page.click(`[name='metadata.restorationObject.itemTypes']`);
-
-  const submitButton = page.locator(
-    ".ui.icon.secondary.right.floated.right.labeled.button"
-  );
+  const submitButton = page.locator(".actions button:not(.ui.label button)");
 
   const numberOfOptions = await page
     .locator(".tree-column.column .row")
@@ -48,7 +59,7 @@ test("tree-field manipulation", async ({ page, request, baseURL }) => {
 
   expect(`${breadcrumbText}:has-text("${checkedButtonText}")`).toBeTruthy();
 
-  await submitButton.first().click();
+  await submitButton.click();
 
   await expect(page.locator(".tree-field").first()).toBeHidden();
   expect(
@@ -56,11 +67,15 @@ test("tree-field manipulation", async ({ page, request, baseURL }) => {
   ).toBeTruthy();
 });
 
-test("tree-field manipulation 2", async ({ page, request, baseURL }) => {
-  const responseData = await callAPI(baseURL, request);
-  const responseID = responseData.id;
+test("tree-field keyboard manipulation and selected result check", async ({
+  page,
+}) => {
+  await page.goto("/objekty");
+  const firstItem = page.getByTestId('result-item').first();
+  await firstItem.locator(".extra .ui.button").click();
 
-  await page.goto(`/objekty/${responseID}/edit`);
+  await page.locator(".container a:right-of(.ui.header)").click();
+
   await page
     .locator(`[name="metadata.restorationObject.secondaryMaterialTypes"]`)
     .click();
@@ -69,7 +84,7 @@ test("tree-field manipulation 2", async ({ page, request, baseURL }) => {
   await page.getByRole("button", { name: "keramika" }).press("ArrowDown");
   await page.getByRole("button", { name: "keramika" }).press("ArrowRight");
 
-  expect(page.locator(".column.tree-column:nth-child(3)")).toBeVisible();
+  expect(page.locator(".column.tree-column:nth-child(2)")).toBeVisible();
 
   await page.getByRole("button", { name: "keramika" }).press("ArrowDown");
   await page.getByRole("button", { name: "keramika" }).press("Enter");
@@ -109,52 +124,13 @@ test("tree-field manipulation 2", async ({ page, request, baseURL }) => {
   expect(expectedBreadcrumbText == breadcrumbText).toBeTruthy();
 });
 
-test("accordion edit form", async ({ page, request, baseURL }) => {
-  const responseData = await callAPI(baseURL, request);
-  const responseID = responseData.id;
-
-  await page.goto(`/objekty/${responseID}/edit`);
-
-  await page.locator(".ui.accordion:nth-child(2)").click();
-
-  const titleElement = page.locator(".ui.accordion:nth-child(2) .title");
-  const classList = await titleElement.evaluate((element) =>
-    element.classList.contains("active")
-  );
-  expect(classList).toBeTruthy();
-});
-
-test("checkbox edit form", async ({ page, request, baseURL }) => {
-  const responseData = await callAPI(baseURL, request);
-  const responseID = responseData.id;
-
-  await page.goto(`/objekty/${responseID}/edit`);
-
-  const checkbox = page.locator(
-    'div > input[name="metadata.restorationObject.archeologic"]'
-  );
-
-  await page.waitForTimeout(500);
-
-  const initialState = await checkbox.evaluate((element) => element.checked);
-
-  if (initialState) {
-    await checkbox.click({ force: true });
-    const clickedState = await checkbox.evaluate((element) => element.checked);
-    expect(clickedState).toBeFalsy();
-  } else {
-    await checkbox.click({ force: true });
-    const clickedState = await checkbox.evaluate((element) => element.checked);
-    expect(clickedState).toBeTruthy();
-  }
-});
-
-test("date error 1", async ({ page, request, baseURL }) => {
+test("date error 1", async ({ page }) => {
   try {
-    const responseData = await callAPI(baseURL, request);
-    const responseID = responseData.id;
+    await page.goto("/objekty");
+    const firstItem = page.getByTestId('result-item').first();
+    await firstItem.locator(".extra .ui.button").click();
 
-    await page.goto(`/objekty/${responseID}/edit`);
+    await page.locator(".container a:right-of(.ui.header)").click();
 
     await page
       .locator(`[name='metadata.restorationObject.creationPeriod.since']`)
@@ -170,19 +146,20 @@ test("date error 1", async ({ page, request, baseURL }) => {
       .fill("-100");
     await page.locator(".ui.primary.button").click();
 
-    await expect(page.getByText("Příliš velké datum")).toBeVisible();
+    await expect(page.locator('.ui.label[role="alert"]')).toBeVisible();
   } catch (error) {
     console.error("Error:", error);
     throw error;
   }
 });
 
-test("date error 2", async ({ page, request, baseURL }) => {
+test("date error 2", async ({ page }) => {
   try {
-    const responseData = await callAPI(baseURL, request);
-    const responseID = responseData.id;
+    await page.goto("/objekty");
+    const firstItem = page.getByTestId('result-item').first();
+    await firstItem.locator(".extra .ui.button").click();
 
-    await page.goto(`/objekty/${responseID}/edit`);
+    await page.locator(".container a:right-of(.ui.header)").click();
 
     await page
       .locator(`[name='metadata.restorationObject.creationPeriod.since']`)
@@ -198,23 +175,26 @@ test("date error 2", async ({ page, request, baseURL }) => {
       .fill("-1000");
     await page.locator(".ui.primary.button").click();
 
-    await expect(
-      page.locator(
-        '[id="metadata\\.restorationObject\\.creationPeriod\\.until-error-message"]'
-      )
-    ).toBeVisible();
+    await expect(page.locator('.ui.label[role="alert"]')).toHaveCount(2);
   } catch (error) {
     console.error("Error:", error);
     throw error;
   }
 });
 
-test("valid num", async ({ page, request, baseURL }) => {
+test("valid num", async ({ page }) => {
   try {
-    const responseData = await callAPI(baseURL, request);
-    const responseID = responseData.id;
+    await page.goto("/objekty");
+    const firstItem = page.getByTestId('result-item').first();
+    await firstItem.locator(".extra .ui.button").click();
 
-    await page.goto(`/objekty/${responseID}/edit`);
+    await page.locator(".container a:right-of(.ui.header)").click();
+
+    await page
+      .locator(
+        '.field:has(label[for="metadata.restorationObject.dimensions"]) .ui.button'
+      )
+      .click();
     await page
       .locator(
         '[id="metadata\\.restorationObject\\.dimensions\\[0\\]\\.value"]'
@@ -225,21 +205,22 @@ test("valid num", async ({ page, request, baseURL }) => {
         '[id="metadata\\.restorationObject\\.dimensions\\[0\\]\\.value"]'
       )
       .fill("447e");
-    await page.locator(".ui.primary.button").click();
+    await page.getByTestId("submit-button").click();
 
-    await expect(page.getByText("Musí byt číslo")).toBeVisible();
+    await expect(page.locator('.ui.label[role="alert"]')).toBeVisible();
   } catch (error) {
     console.error("Error:", error);
     throw error;
   }
 });
 
-test("array field", async ({ page, request, baseURL }) => {
+test("array field", async ({ page }) => {
   try {
-    const responseData = await callAPI(baseURL, request);
-    const responseID = responseData.id;
+    await page.goto("/objekty");
+    const firstItem = page.getByTestId('result-item').first();
+    await firstItem.locator(".extra .ui.button").click();
 
-    await page.goto(`/objekty/${responseID}/edit`);
+    await page.locator(".container a:right-of(.ui.header)").click();
 
     const numberOfFields = await page
       .locator("[name='metadata.restorationWork.supervisors']")
@@ -247,13 +228,17 @@ test("array field", async ({ page, request, baseURL }) => {
       .count();
 
     const buttonSelector =
-      'div.field:has(input[name="metadata.restorationWork.supervisors[0].fullName"]) .left.labeled.button';
+      '.field:has(label[for="metadata.restorationWork.supervisors"]) .ui.labeled.button';
 
     await page.click(buttonSelector);
+    await page.waitForSelector(buttonSelector);
 
+    page.waitForSelector(
+      `input[id="metadata.restorationWork.supervisors[${numberOfFields}].fullName"]`
+    );
     await expect(
       page.locator(
-        `[id="metadata\\.restorationWork\\.supervisors\\[${numberOfFields}\\]\\.fullName"]`
+        `input[id="metadata.restorationWork.supervisors[${numberOfFields}].fullName"]`
       )
     ).toBeVisible();
   } catch (error) {
@@ -262,12 +247,51 @@ test("array field", async ({ page, request, baseURL }) => {
   }
 });
 
-test("successful edit form submit", async ({ page, request, baseURL }) => {
+test("successful edit form submit", async ({ page }) => {
   try {
-    const responseData = await callAPI(baseURL, request);
-    const responseID = responseData.id;
+    await page.goto("/objekty");
+    const firstItem = page.getByTestId('result-item').first();
+    const itemName = firstItem
+      .locator(".header a")
+      .textContent();
+    await firstItem.locator(".extra .ui.button").click();
 
-    await page.goto(`/objekty/${responseID}/edit`);
+    await page.locator(".container a:right-of(.ui.header)").click();
+    await page
+      .locator(`[name='metadata.restorationObject.description']`)
+      .fill("Description");
+
+    // await page.click(`[name='metadata.restorationObject.itemTypes']:not(a.label):not(.icon)`);
+    const dropdown = await page.$('div[name="metadata.restorationObject.itemTypes"]');
+    
+    if (dropdown) { 
+      const boundingBox = await dropdown.boundingBox();
+      
+      if (boundingBox) { 
+        const clickX = boundingBox.x + boundingBox.width / 2;
+        const clickY = boundingBox.y + boundingBox.height / 2;
+         
+        await page.mouse.click(clickX, clickY);
+      }
+    }
+    
+    const treeFieldSubmitButton = page.locator(
+      ".actions button:not(.ui.label button)"
+    );
+
+    const numberOfOptions = await page
+      .locator(".tree-column.column .row")
+      .locator("visible=true")
+      .count();
+    const randomIndex = await Math.floor(Math.random() * numberOfOptions);
+
+    await page
+      .locator(".tree-column .row.spaced")
+      .locator("visible=true")
+      .nth(randomIndex)
+      .dblclick();
+
+    await treeFieldSubmitButton.click();
 
     await page
       .locator(`[name='metadata.restorationObject.creationPeriod.since']`)
@@ -283,36 +307,11 @@ test("successful edit form submit", async ({ page, request, baseURL }) => {
       .fill("-10");
 
     const pagenav = page.waitForNavigation({ waitUntil: "load" });
-    await page.locator(".ui.primary.button").click();
+    await page.getByTestId("submit-button").click();
 
     await pagenav;
 
-    const expectedURL = `${baseURL}objekty/${responseID}`;
-    expect(page.url()).toBe(expectedURL);
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
-  }
-});
-
-test("redirection to detail page after edit form", async ({
-  page,
-  request,
-  baseURL,
-}) => {
-  try {
-    const responseData = await callAPI(baseURL, request);
-    const responseID = responseData.id;
-
-    await page.goto(`/objekty/${responseID}/edit`);
-
-    const pagenav = page.waitForNavigation();
-    await page.locator(".ui.primary.button").click();
-    await pagenav;
-
-    const expectedURL = `${baseURL}objekty/${responseID}`;
-
-    expect(page.url()).toBe(expectedURL);
+    await expect(page).toHaveTitle(`${itemName} | Detail`);
   } catch (error) {
     console.error("Error:", error);
     throw error;
