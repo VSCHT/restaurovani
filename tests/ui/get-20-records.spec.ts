@@ -16,14 +16,21 @@ test.afterAll(async ({}) => {
   await apiContext.dispose();
 });
 
-test("redirection to search page with 20 records", async ({ page, baseURL }) => {
+
+test("redirection to search page with 20 records", async ({ page }) => {
+   
   await page.goto('/');
+ 
+  await page.locator('form[role="search"]:not(.sidebar form) .ui.button').click();
 
-  await page.locator('.ui.primary.button').click();
-  await expect(page).toHaveURL(`${baseURL}objekty/?q=&l=list&p=1&s=10&sort=newest`);
+   await expect(page.getByTestId('result-item')).toHaveCount(10);
+ 
+  const resPerPage = page.locator('.computer div[role="listbox"]');
+   
+  await resPerPage.click();
+ 
+  await resPerPage.locator('span', { hasText: '50' }).click();
 
-  const response = await page.evaluate(() =>
-    fetch(`https://127.0.0.1:5000/api/user/objects`).then((res) => res.json())
-  );
-  expect(response.hits.total).toBe(20);
+  await expect(page.getByTestId('result-item')).toHaveCount(20);
+
 });

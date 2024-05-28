@@ -1,5 +1,4 @@
 import { test, expect } from "playwright/test";
-const callAPI = require("./api-call.spec.ts");
 
 test.use({
   viewport: { width: 400, height: 300 },
@@ -16,10 +15,10 @@ test("top menu content visibility", async ({ page }) => {
 });
 
 test("images carousel 2", async ({ page, request, baseURL }) => {
-  const responseData = await callAPI(baseURL, request);
-  const responseID = responseData.id;
-
-  await page.goto(`/objekty/${responseID}`);
+  await page.goto("/objekty");
+  const firstItem = page.getByTestId('result-item').first();
+  
+  await firstItem.locator(".extra .ui.button").click();
 
   await expect(page.locator(".slick-arrow.slick-next")).toBeVisible();
   await page.locator(".slick-arrow.slick-next").click();
@@ -83,7 +82,7 @@ test("sidebar logout", async ({ page, baseURL }) => {
   await page.locator(".sidebar .item .account-dropdown").click();
   await expect(page.locator(".sidebar .menu.transition")).toBeVisible();
 
-  await page.getByRole("link", { name: "Odhlášení" }).click();
+  await page.getByTestId('logout-button').click();
 
   await expect(page).toHaveURL(`${baseURL}`);
 });

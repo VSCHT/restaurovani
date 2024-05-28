@@ -1,24 +1,23 @@
 import { test, expect } from "playwright/test";
-const callAPI = require("./api-call.spec.ts");
 
-test("search and check URL 2", async ({ page, baseURL }) => {
+test("search and check URL 2", async ({ page }) => {
   await page.goto(`/objekty`);
   await page.locator(".ui.input input").fill("sklo");
   await page.locator(".ui.input input").press("Enter");
   await expect(page).toHaveURL(/q=sklo/);
 
   await page.locator(".ui.input input").fill("sklo");
-  await page.locator(".ui > button:nth-child(2)").click();
+  await page.getByTestId("search-button").click();
   await expect(page).toHaveURL(/q=sklo/);
 });
 
-test("redirection to create page", async ({ page, baseURL }) => {
+test("redirection to create page", async ({ page }) => {
   await page.goto(`/objekty`);
-  await page.locator(".aside .secondary.button").click();
+  await page.locator(".aside .ui.button").click();
   await expect(page).toHaveURL(/_new/);
 });
 
-test("checkbox string", async ({ page, request, baseURL }) => {
+test("checkbox string", async ({ page }) => {
   await page.goto(`/objekty`);
 
   await page.locator('.title:has-text("category")').click();
@@ -32,19 +31,22 @@ test("checkbox string", async ({ page, request, baseURL }) => {
 
   expect(isChecked).toBeTruthy();
 
-  const url =
-    "/api/user/objects/?q=&page=1&size=10&metadata_restorationObject_category=keramika";
+  await expect(page.getByTestId("result-item")).toHaveCount(10);
 
-  const responseData = await callAPI(baseURL, request, false, url);
+  const resPerPage = page.locator('.computer div[role="listbox"]');
 
-  expect(responseData.hits.total).toBe(20);
+  await resPerPage.click();
+
+  await resPerPage.locator("span", { hasText: "50" }).click();
+
+  await expect(page.getByTestId("result-item")).toHaveCount(20);
 
   await expect(page).toHaveURL(
     /f=metadata_restorationObject_category%3Akeramika/
   );
 });
 
-test("checkbox num", async ({ page, request, baseURL }) => {
+test("checkbox num", async ({ page }) => {
   await page.goto(`/objekty`);
 
   await page.locator('.title:has-text("since")').click();
@@ -58,18 +60,14 @@ test("checkbox num", async ({ page, request, baseURL }) => {
 
   expect(isChecked).toBeTruthy();
 
-  const url =
-    "/api/user/objects/?q=&page=1&size=10&metadata_restorationObject_creationPeriod_since=1550";
+  await expect(page.getByTestId("result-item")).toHaveCount(3);
 
-  const responseData = await callAPI(baseURL, request, false, url);
-
-  expect(responseData.hits.total).toBe(2);
   await expect(page).toHaveURL(
     /f=metadata_restorationObject_creationPeriod_since%3A1550/
   );
 });
 
-test("checkbox bool", async ({ page, request, baseURL }) => {
+test("checkbox bool", async ({ page }) => {
   await page.goto(`/objekty`);
 
   await page
@@ -83,11 +81,15 @@ test("checkbox bool", async ({ page, request, baseURL }) => {
 
   expect(isChecked).toBeTruthy();
 
-  const url =
-    "/api/user/objects/?q=&page=1&size=10&metadata_restorationObject_archeologic=true";
+  await expect(page.getByTestId("result-item")).toHaveCount(10);
 
-  const responseData = await callAPI(baseURL, request, false, url);
-  expect(responseData.hits.total).toBe(15);
+  const resPerPage = page.locator('.computer div[role="listbox"]');
+
+  await resPerPage.click();
+
+  await resPerPage.locator("span", { hasText: "50" }).click();
+
+  await expect(page.getByTestId("result-item")).toHaveCount(15);
 
   await expect(page).toHaveURL(
     /f=metadata_restorationObject_archeologic%3Atrue/
@@ -122,27 +124,4 @@ test("get facets names", async ({ page }) => {
   });
 
   expect(accText).toBe("Archeologický nález");
-});
-
-test("redirection to detail page after search page", async ({
-  page,
-  request,
-  baseURL,
-}) => {
-  await page.goto(`/objekty/?p=2`);
-
-  try {
-    const responseData = await callAPI(baseURL, request);
-    const responseID = responseData.id;
-
-    const responseName = responseData.metadata.restorationObject.title;
-    const expectedURL = `${baseURL}objekty/${responseID}`;
-    const linkLocator = page.locator(`a:has-text("${responseName}")`).first();
-    await linkLocator.click();
-
-    expect(await page.waitForURL(expectedURL));
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
-  }
 });

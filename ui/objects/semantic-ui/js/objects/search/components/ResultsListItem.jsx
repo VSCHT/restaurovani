@@ -96,7 +96,7 @@ export const ResultsListItemComponent = ({ result, appName }) => {
       result={result}
       title={title}
     >
-      <Item key={result.id}>
+      <Item key={result.id} data-testid="result-item">
         <ItemImage
           size="tiny"
           src={
