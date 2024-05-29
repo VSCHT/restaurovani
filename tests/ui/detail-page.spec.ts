@@ -1,88 +1,74 @@
 import { test, expect } from "playwright/test";
-const callAPI = require("./api-call.spec.ts");
 
-test("file download after clicking link", async ({
-  page,
-  request,
-  baseURL,
-}) => {
+test("file download after clicking link", async ({ page }) => {
   try {
-    const responseData = await callAPI(baseURL, request);
-    const response2 = await request.get(responseData.links.files);
+    await page.goto("/objekty");
 
-    const responseBody2 = await response2.body();
-    const responseData2 = JSON.parse(responseBody2.toString());
+    const firstItem = page.getByTestId("result-item").first();
+    await firstItem.locator(".extra .ui.button").click();
 
-    if (responseData2.entries && responseData2.entries.length > 0) {
-      const pdfFile = responseData2.entries.find(
-        (entry) => entry.metadata.mimetype === "application/pdf"
-      );
+    const downloadPromise = page.waitForEvent("download");
 
-      if (pdfFile) {
-        const fileName = pdfFile.key;
+    const section = page.getByTestId("document-section");
+    const numberOfFiles = await section.locator("a").count();
 
-        const downloadPromise = page.waitForEvent("download");
-        await page.goto(`/objekty/${responseData.id}`);
+    const randomIndex = Math.floor(Math.random() * numberOfFiles);
 
-        await page.waitForSelector(`a:text('${fileName}')`);
-        await page.click(`a:text('${fileName}')`);
+    await section.locator("a").nth(randomIndex).click();
 
-        const download = await downloadPromise;
-        expect(download.suggestedFilename()).toContain(".pdf");
-      } else {
-        throw new Error("No PDF file found in responseData2.entries");
-      }
-    } else {
-      throw new Error("No files found in responseData2.entries");
-    }
+    const download = await downloadPromise;
+    expect(download.suggestedFilename()).toContain(".pdf");
   } catch (error) {
     console.error("Error:", error);
     throw error;
   }
 });
 
-test("images carousel", async ({ page, request, baseURL }) => {
-  const responseData = await callAPI(baseURL, request);
+test("images carousel arrows", async ({ page }) => {
+  await page.goto("/objekty");
 
-  const responseID = responseData.id;
-  const filesLinks = responseData.links.files;
+  const firstItem = page.getByTestId("result-item").first();
+  await firstItem.locator(".extra .ui.button").click();
 
-  const responseFiles = await request.get(filesLinks);
-
-  const responseBodyFiles = await responseFiles.body();
-  const responseDataFiles = JSON.parse(responseBodyFiles.toString());
-
-  const filesContents = [];
-  const filesNames = [];
-
-  responseDataFiles.entries.map((element) => {
-    filesContents.push(element.links.content);
-    filesNames.push(element.metadata.caption);
-  });
-
-  await page.goto(`/objekty/${responseID}`);
-  await page
-    .getByRole("img", { name: `${filesNames[0]}` })
-    .first()
-    .click();
-
-  await expect(page.locator(".image > div > img")).toHaveAttribute(
-    "src",
-    filesContents[0]
+  const firstImageImgBox = page.locator(`[data-index="1"]`);
+  const firstImageClassList = await firstImageImgBox.evaluate((element) =>
+    element.classList.contains("slick-active")
   );
-  await page.getByRole("button").nth(3).click();
-  await expect(page.locator(".image > div > img")).toHaveAttribute(
-    "src",
-    filesContents[1]
-  );
+
+  expect(firstImageClassList).toBeTruthy();
+
+  await expect(page.locator(".slick-arrow.slick-next")).toBeVisible();
+  await page.locator(".slick-arrow.slick-next").click();
+
+  const firstImageClickedClassList = await firstImageImgBox.evaluate((element) =>
+  element.classList.contains("slick-active")
+);
+
+  expect(firstImageClickedClassList).toBeFalsy();
+});
+
+test("modal images carousel", async ({ page }) => {
+  await page.goto("/objekty");
+
+  const firstItem = page.getByTestId("result-item").first();
+  await firstItem.locator(".extra .ui.button").click();
+
+  await page.locator(".image").first().click();
+
+  await page.waitForSelector(".modal");
+  const firstTitle = (await page.locator(".modal .header").textContent()) || "";
+
+  await page.locator(".modal .right").click();
+
+  const nextTitle = (await page.locator(".modal .header").textContent()) || "";
+
+  expect(nextTitle).not.toMatch(firstTitle);
 });
 
 test("detail page title", async ({ page }) => {
   await page.goto("/objekty");
-  const firstItem = page.getByTestId('result-item').first();
-  const itemName = firstItem
-    .locator(".header a")
-    .textContent();
+  const firstItem = page.getByTestId("result-item").first();
+  const itemName = firstItem.locator(".header a").textContent();
   await firstItem.locator(".extra .ui.button").click();
 
   await expect(page).toHaveTitle(`${itemName} | Detail`);

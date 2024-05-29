@@ -8,7 +8,7 @@ export const FilesSection = ({ filesCollection }) => {
       <Grid.Column>
         <Label className="bold">Dokumenty</Label>
       </Grid.Column>
-      <Grid.Column>
+      <Grid.Column data-tesid='document-section'>
         {filesCollection?.map((file, index) => (
           <Grid.Row key={index}>
             <Icon name="file alternate outline" />
