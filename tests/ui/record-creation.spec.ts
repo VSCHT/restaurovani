@@ -33,10 +33,10 @@ test("get error on unfilled form", async ({ page }) => {
   ]);
 
   const isRestorerErrorMessageVisible = await page.isVisible(
-    "#metadata\\.restorationWork\\.restorer-error-message"
+    "#metadata.restorationWork.restorer-error-message"
   );
   const isTitleErrorMessageVisible = await page.isVisible(
-    "#metadata\\.restorationObject\\.title-error-message"
+    "#metadata.restorationObject.title-error-message"
   );
 
   expect(isRestorerErrorMessageVisible).toBe(true);

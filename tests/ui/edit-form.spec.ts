@@ -1,35 +1,69 @@
 import { test, expect } from "playwright/test";
 
+async function getClickLocation(dropdownLocator) {
+  const dropdownBox = await dropdownLocator.boundingBox();
+  if (!dropdownBox) {
+    throw new Error("Dropdown not found");
+  }
+
+  const labels = await dropdownLocator.locator(".label").elementHandles();
+  const icons = await dropdownLocator.locator(".icon").elementHandles();
+
+  const isPointInsideBox = (point, box) => {
+    return (
+      point.x >= box.x &&
+      point.x <= box.x + box.width &&
+      point.y >= box.y &&
+      point.y <= box.y + box.height
+    );
+  };
+
+  const findNonCollidingPoint = async () => {
+    for (let i = 0; i < 10; i++) {
+      const point = {
+        x: dropdownBox.x + Math.random() * dropdownBox.width,
+        y: dropdownBox.y + Math.random() * dropdownBox.height,
+      };
+
+      let collision = false;
+      for (const element of [...labels, ...icons]) {
+        const box = await element.boundingBox();
+        if (box && isPointInsideBox(point, box)) {
+          collision = true;
+          break;
+        }
+      }
+
+      if (!collision) {
+        return point;
+      }
+    }
+
+    return {
+      x: dropdownBox.x + dropdownBox.width / 2,
+      y: dropdownBox.y + dropdownBox.height / 2,
+    };
+  };
+
+  return await findNonCollidingPoint();
+}
+
 test("tree-field visibility, mouse manipulation and selected result check", async ({
   page,
 }) => {
   await page.goto("/objekty");
-  const firstItem = page.getByTestId('result-item').first();
+  const firstItem = page.getByTestId("result-item").first();
   await firstItem.locator(".extra .ui.button").click();
 
   await page.locator(".container a:right-of(.ui.header)").click();
 
-  // const vocabField = `[name='metadata.restorationObject.itemTypes']`;
+  const dropdownLocator = page.locator(
+    '.ui.dropdown[name="metadata.restorationObject.itemTypes"]'
+  );
+  const clickPoint = await getClickLocation(dropdownLocator);
+  await page.mouse.click(clickPoint.x, clickPoint.y);
 
-  // await page.click(`[name='metadata.restorationObject.itemTypes']:not(a.label):not(.icon)`);
- 
-
-  
-    const dropdown = await page.$('div[name="metadata.restorationObject.itemTypes"]');
-    
-    if (dropdown) { 
-      const boundingBox = await dropdown.boundingBox();
-      
-      if (boundingBox) { 
-        const clickX = boundingBox.x + boundingBox.width / 2;
-        const clickY = boundingBox.y + boundingBox.height / 2;
-         
-        await page.mouse.click(clickX, clickY);
-      }
-    }
- 
-   
-  page.waitForSelector(".ui.modal.tree-field");
+  await page.waitForSelector(".ui.modal.tree-field");
   await expect(page.locator(".ui.modal.tree-field")).toBeVisible();
 
   const submitButton = page.locator(".actions button:not(.ui.label button)");
@@ -38,7 +72,7 @@ test("tree-field visibility, mouse manipulation and selected result check", asyn
     .locator(".tree-column.column .row")
     .locator("visible=true")
     .count();
-  const randomIndex = await Math.floor(Math.random() * numberOfOptions);
+  const randomIndex = Math.floor(Math.random() * numberOfOptions);
 
   await page
     .locator(".tree-column .row.spaced")
@@ -52,26 +86,26 @@ test("tree-field visibility, mouse manipulation and selected result check", asyn
     .nth(randomIndex)
     .innerText();
 
-  const breadcrumbText = await page.evaluate(() => {
-    const breadcrumb = document.querySelector(".actions .ui.breadcrumb");
-    return breadcrumb ? breadcrumb.innerText.trim() : null;
-  });
+  const lastLabelBreadcrumbText = await page
+    .locator(".ui.label .ui.breadcrumb")
+    .last()
+    .innerText();
 
-  expect(`${breadcrumbText}:has-text("${checkedButtonText}")`).toBeTruthy();
+  expect(lastLabelBreadcrumbText).toContain(checkedButtonText);
 
   await submitButton.click();
 
   await expect(page.locator(".tree-field").first()).toBeHidden();
-  expect(
-    page.locator("a").filter({ hasText: `${checkedButtonText}` })
-  ).toBeTruthy();
+  await expect(
+    page.locator("a").filter({ hasText: checkedButtonText })
+  ).toHaveCount(1);
 });
 
 test("tree-field keyboard manipulation and selected result check", async ({
   page,
 }) => {
   await page.goto("/objekty");
-  const firstItem = page.getByTestId('result-item').first();
+  const firstItem = page.getByTestId("result-item").first();
   await firstItem.locator(".extra .ui.button").click();
 
   await page.locator(".container a:right-of(.ui.header)").click();
@@ -127,7 +161,7 @@ test("tree-field keyboard manipulation and selected result check", async ({
 test("date error 1", async ({ page }) => {
   try {
     await page.goto("/objekty");
-    const firstItem = page.getByTestId('result-item').first();
+    const firstItem = page.getByTestId("result-item").first();
     await firstItem.locator(".extra .ui.button").click();
 
     await page.locator(".container a:right-of(.ui.header)").click();
@@ -156,7 +190,7 @@ test("date error 1", async ({ page }) => {
 test("date error 2", async ({ page }) => {
   try {
     await page.goto("/objekty");
-    const firstItem = page.getByTestId('result-item').first();
+    const firstItem = page.getByTestId("result-item").first();
     await firstItem.locator(".extra .ui.button").click();
 
     await page.locator(".container a:right-of(.ui.header)").click();
@@ -185,7 +219,13 @@ test("date error 2", async ({ page }) => {
 test("valid num", async ({ page }) => {
   try {
     await page.goto("/objekty");
-    const firstItem = page.getByTestId('result-item').first();
+    await page.locator('.title:has-text("category")').click();
+
+    const checkbox = await page.locator('input[type="checkbox"][value="sklo"]');
+
+    await checkbox.click({ force: true });
+
+    const firstItem = page.getByTestId("result-item").first();
     await firstItem.locator(".extra .ui.button").click();
 
     await page.locator(".container a:right-of(.ui.header)").click();
@@ -217,14 +257,15 @@ test("valid num", async ({ page }) => {
 test("array field", async ({ page }) => {
   try {
     await page.goto("/objekty");
-    const firstItem = page.getByTestId('result-item').first();
+
+    const firstItem = page.getByTestId("result-item").first();
     await firstItem.locator(".extra .ui.button").click();
 
     await page.locator(".container a:right-of(.ui.header)").click();
 
     const numberOfFields = await page
       .locator("[name='metadata.restorationWork.supervisors']")
-      .locator("visible=true")
+      .locator(":visible")
       .count();
 
     const buttonSelector =
@@ -233,9 +274,11 @@ test("array field", async ({ page }) => {
     await page.click(buttonSelector);
     await page.waitForSelector(buttonSelector);
 
-    page.waitForSelector(
-      `input[id="metadata.restorationWork.supervisors[${numberOfFields}].fullName"]`
+    await page.waitForSelector(
+      `input[id="metadata.restorationWork.supervisors[${numberOfFields}].fullName"]`,
+      { state: "visible" }
     );
+
     await expect(
       page.locator(
         `input[id="metadata.restorationWork.supervisors[${numberOfFields}].fullName"]`
@@ -250,44 +293,34 @@ test("array field", async ({ page }) => {
 test("successful edit form submit", async ({ page }) => {
   try {
     await page.goto("/objekty");
-    const firstItem = page.getByTestId('result-item').first();
-    const itemName = firstItem
-      .locator(".header a")
-      .textContent();
-    await firstItem.locator(".extra .ui.button").click();
 
+    const firstItem = page.getByTestId("result-item").first();
+    const itemName = (await firstItem.locator(".header a").textContent()) || "";
+
+    await firstItem.locator(".extra .ui.button").click();
     await page.locator(".container a:right-of(.ui.header)").click();
+
     await page
       .locator(`[name='metadata.restorationObject.description']`)
       .fill("Description");
 
-    // await page.click(`[name='metadata.restorationObject.itemTypes']:not(a.label):not(.icon)`);
-    const dropdown = await page.$('div[name="metadata.restorationObject.itemTypes"]');
-    
-    if (dropdown) { 
-      const boundingBox = await dropdown.boundingBox();
-      
-      if (boundingBox) { 
-        const clickX = boundingBox.x + boundingBox.width / 2;
-        const clickY = boundingBox.y + boundingBox.height / 2;
-         
-        await page.mouse.click(clickX, clickY);
-      }
-    }
-    
+    const dropdownLocator = page.locator(
+      '.ui.dropdown[name="metadata.restorationObject.itemTypes"]'
+    );
+    const clickPoint = await getClickLocation(dropdownLocator);
+    await page.mouse.click(clickPoint.x, clickPoint.y);
+
     const treeFieldSubmitButton = page.locator(
       ".actions button:not(.ui.label button)"
     );
 
     const numberOfOptions = await page
-      .locator(".tree-column.column .row")
-      .locator("visible=true")
+      .locator(".tree-column.column .row:visible")
       .count();
-    const randomIndex = await Math.floor(Math.random() * numberOfOptions);
+    const randomIndex = Math.floor(Math.random() * numberOfOptions);
 
     await page
-      .locator(".tree-column .row.spaced")
-      .locator("visible=true")
+      .locator(".tree-column .row.spaced:visible")
       .nth(randomIndex)
       .dblclick();
 
@@ -308,9 +341,7 @@ test("successful edit form submit", async ({ page }) => {
 
     const pagenav = page.waitForNavigation({ waitUntil: "load" });
     await page.getByTestId("submit-button").click();
-
     await pagenav;
-
     await expect(page).toHaveTitle(`${itemName} | Detail`);
   } catch (error) {
     console.error("Error:", error);
