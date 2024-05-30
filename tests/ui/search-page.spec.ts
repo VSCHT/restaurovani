@@ -12,20 +12,17 @@ async function getAgg(accordions, accordionLists, type) {
         .locator(".item:first-child .ui.large.label")
         .nth(0)
         .innerText();
-      console.log(agg);
       if (
         (type === "number" && !isNaN(parseFloat(agg))) ||
         (typeof agg == type && agg !== "true" && agg !== "false") ||
         (type === "boolean" && (agg === "true" || agg === "false"))
-      ) 
-      {
+      ) {
         selectedAgg = accordions.nth(i);
         selectedValue = agg;
         break;
       }
     }
   }
-  console.log(selectedAgg, selectedValue);
   return { selectedAgg, selectedValue };
 }
 
@@ -169,7 +166,7 @@ test("checkbox bool", async ({ page }) => {
 test("clear search results", async ({ page }) => {
   await page.goto(`/objekty/?q=sklo`);
   const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
-  await page.getByTestId('clear-button').click();
+  await page.getByTestId("clear-button").click();
   await pagenav;
 
   await expect(page).not.toHaveURL(/q=sklo/);
