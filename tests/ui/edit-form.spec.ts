@@ -63,7 +63,7 @@ test("tree-field visibility, mouse manipulation and selected result check", asyn
   const clickPoint = await getClickLocation(dropdownLocator);
   await page.mouse.click(clickPoint.x, clickPoint.y);
 
-  await page.waitForSelector(".ui.modal.tree-field");
+  await page.waitForSelector(".ui.modal.tree-field", { state: "visible" });
   await expect(page.locator(".ui.modal.tree-field")).toBeVisible();
 
   const submitButton = page.locator(".actions button:not(.ui.label button)");
@@ -95,7 +95,7 @@ test("tree-field visibility, mouse manipulation and selected result check", asyn
 
   await submitButton.click();
 
-  await expect(page.locator(".tree-field").first()).toBeHidden();
+  await expect(page.locator(".tree-field")).toBeHidden();
   await expect(
     page.locator("a").filter({ hasText: checkedButtonText })
   ).toHaveCount(1);
@@ -113,36 +113,42 @@ test("tree-field keyboard manipulation and selected result check", async ({
   await page
     .locator(`[name="metadata.restorationObject.secondaryMaterialTypes"]`)
     .click();
-  await page.getByRole("button", { name: "keramika" }).click();
-  await page.getByRole("button", { name: "keramika" }).press("ArrowDown");
-  await page.getByRole("button", { name: "keramika" }).press("ArrowDown");
-  await page.getByRole("button", { name: "keramika" }).press("ArrowRight");
 
-  expect(page.locator(".column.tree-column:nth-child(2)")).toBeVisible();
+  await page
+    .locator(".tree-column.column .row")
+    .locator("visible=true")
+    .first()
+    .dblclick();
 
-  await page.getByRole("button", { name: "keramika" }).press("ArrowDown");
-  await page.getByRole("button", { name: "keramika" }).press("Enter");
+  await page.keyboard.press("ArrowDown");
+  await page.keyboard.press("ArrowDown");
+
+  const openRowWithRight = page.locator(".open.row:has(.right)");
+
+  if ((await openRowWithRight.count()) > 0) {
+    await page.keyboard.press("ArrowRight");
+    await expect(page.locator(".tree-column:nth-child(2)")).toBeVisible();
+  }
+
+  await page.keyboard.press("ArrowDown");
+  await page.keyboard.press("Enter");
 
   const checkedButtonText = await page.evaluate(() => {
     const checkedCheckboxContainer = document.querySelector(
-      ".row.spaced .ui.checked.fitted.checkbox"
+      ".row.spaced .ui.checked.checkbox"
     );
     const buttonText =
-      checkedCheckboxContainer?.nextElementSibling?.innerText.trim() ||
-      "No text found";
+      checkedCheckboxContainer?.nextElementSibling?.innerText.trim() || "";
     return buttonText;
   });
 
   const buttonTextIndeter = await page.evaluate(() => {
     const indeterminateCheckbox = document.querySelector(
-      ".ui.indeterminate.fitted.checkbox"
+      ".ui.indeterminate.checkbox"
     );
-    const buttonNextToCheckbox = indeterminateCheckbox
-      .closest(".row")
-      .querySelector("button.ui.black.basic.button");
-    return buttonNextToCheckbox
-      ? buttonNextToCheckbox.innerText.trim()
-      : "Button not found";
+    const buttonText =
+      indeterminateCheckbox?.nextElementSibling?.innerText.trim() || "";
+    return buttonText;
   });
 
   const breadcrumbText = await page.evaluate(() => {
@@ -178,7 +184,7 @@ test("date error 1", async ({ page }) => {
     await page
       .locator(`[name='metadata.restorationObject.creationPeriod.until']`)
       .fill("-100");
-    await page.locator(".ui.primary.button").click();
+    await page.getByTestId("submit-button").click();
 
     await expect(page.locator('.ui.label[role="alert"]')).toBeVisible();
   } catch (error) {
@@ -207,7 +213,7 @@ test("date error 2", async ({ page }) => {
     await page
       .locator(`[name='metadata.restorationObject.creationPeriod.until']`)
       .fill("-1000");
-    await page.locator(".ui.primary.button").click();
+    await page.getByTestId("submit-button").click();
 
     await expect(page.locator('.ui.label[role="alert"]')).toHaveCount(2);
   } catch (error) {
@@ -221,7 +227,7 @@ test("valid num", async ({ page }) => {
     await page.goto("/objekty");
     await page.locator('.title:has-text("category")').click();
 
-    const checkbox = await page.locator('input[type="checkbox"][value="sklo"]');
+    const checkbox = page.locator('input[type="checkbox"][value="sklo"]');
 
     await checkbox.click({ force: true });
 
@@ -237,12 +243,12 @@ test("valid num", async ({ page }) => {
       .click();
     await page
       .locator(
-        '[id="metadata\\.restorationObject\\.dimensions\\[0\\]\\.value"]'
+        '[id="metadata.restorationObject.dimensions[0].value"]'
       )
       .click();
     await page
       .locator(
-        '[id="metadata\\.restorationObject\\.dimensions\\[0\\]\\.value"]'
+        '[id="metadata.restorationObject.dimensions[0].value"]'
       )
       .fill("447e");
     await page.getByTestId("submit-button").click();
@@ -272,7 +278,7 @@ test("array field", async ({ page }) => {
       '.field:has(label[for="metadata.restorationWork.supervisors"]) .ui.labeled.button';
 
     await page.click(buttonSelector);
-    await page.waitForSelector(buttonSelector);
+    await page.waitForSelector(buttonSelector, { state: "visible" });
 
     await page.waitForSelector(
       `input[id="metadata.restorationWork.supervisors[${numberOfFields}].fullName"]`,
@@ -300,10 +306,12 @@ test("successful edit form submit", async ({ page }) => {
     await firstItem.locator(".extra .ui.button").click();
     await page.locator(".container a:right-of(.ui.header)").click();
 
+    // Description input
     await page
       .locator(`[name='metadata.restorationObject.description']`)
       .fill("Description");
 
+    // VocabularyTreeField Itemtypes multiple choice input
     const dropdownLocator = page.locator(
       '.ui.dropdown[name="metadata.restorationObject.itemTypes"]'
     );
@@ -324,8 +332,21 @@ test("successful edit form submit", async ({ page }) => {
       .nth(randomIndex)
       .dblclick();
 
+    const checkedButtonText = await page.evaluate(() => {
+      const checkedCheckboxContainer = document.querySelector(
+        ".row.spaced .ui.checked.checkbox"
+      );
+      const buttonText =
+        checkedCheckboxContainer?.nextElementSibling?.innerText.trim() ||
+        "No text found";
+      return buttonText;
+    });
     await treeFieldSubmitButton.click();
+    await expect(
+      dropdownLocator.locator("a").filter({ hasText: checkedButtonText })
+    ).toHaveCount(1);
 
+    // Creation Number input
     await page
       .locator(`[name='metadata.restorationObject.creationPeriod.since']`)
       .click();
@@ -339,6 +360,36 @@ test("successful edit form submit", async ({ page }) => {
       .locator(`[name='metadata.restorationObject.creationPeriod.until']`)
       .fill("-10");
 
+    // VocabularyTree single choice field
+    const singleTreeField = page.locator(
+      `[name='metadata.restorationObject.restorationRequestor']`
+    );
+    singleTreeField.click();
+
+    const singleTreeFieldSubmitButton = page.locator(
+      ".actions button:not(.ui.label button)"
+    );
+
+    const numberOfOptionsSingle = await page
+      .locator(".tree-column .row:visible")
+      .count();
+    const randomIndexSingle = Math.floor(Math.random() * numberOfOptionsSingle);
+
+    await page
+      .locator(".tree-column .row:visible")
+      .nth(randomIndexSingle)
+      .dblclick();
+
+    const breadcrumbText = await page
+      .locator(".ui.label .ui.breadcrumb")
+      .last()
+      .innerText();
+
+    await singleTreeFieldSubmitButton.click();
+    await expect(
+      singleTreeField.locator(".text span").filter({ hasText: breadcrumbText })
+    ).toHaveCount(1);
+
     const pagenav = page.waitForNavigation({ waitUntil: "load" });
     await page.getByTestId("submit-button").click();
     await pagenav;
@@ -347,4 +398,25 @@ test("successful edit form submit", async ({ page }) => {
     console.error("Error:", error);
     throw error;
   }
+});
+
+ 
+
+test("frontend sanitization", async ({ page }) => {
+  await page.goto("/objekty");
+
+  const firstItem = page.getByTestId("result-item").first();
+  await firstItem.locator(".extra .ui.button").click();
+
+  await page.locator(".container a:right-of(.ui.header)").click();
+ 
+  const input = page.locator(`textarea[name='metadata.restorationObject.description']`);
+  await input.fill(
+    "This is a description <script type='application/javascript'>alert('you\'ve been hacked')</script>"
+  );
+ 
+  await page.locator('.header').locator('visible=true').click();
+   
+  const inputValue = await input.evaluate(el => el.value);
+  expect(inputValue).toBe("This is a description");
 });

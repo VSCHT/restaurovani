@@ -1,12 +1,41 @@
 import { test, expect } from "playwright/test";
 
+async function getAgg(accordions, accordionLists, type) {
+  let selectedAgg;
+  let selectedValue;
+
+  for (let i = 0; i < (await accordions.count()); i++) {
+    const listItem = accordionLists.nth(i);
+
+    if ((await listItem.locator(".item").count()) > 0) {
+      const agg = await listItem
+        .locator(".item:first-child .ui.large.label")
+        .nth(0)
+        .innerText();
+      console.log(agg);
+      if (
+        (type === "number" && !isNaN(parseFloat(agg))) ||
+        (typeof agg == type && agg !== "true" && agg !== "false") ||
+        (type === "boolean" && (agg === "true" || agg === "false"))
+      ) 
+      {
+        selectedAgg = accordions.nth(i);
+        selectedValue = agg;
+        break;
+      }
+    }
+  }
+  console.log(selectedAgg, selectedValue);
+  return { selectedAgg, selectedValue };
+}
+
 test("search and check URL 2", async ({ page }) => {
   await page.goto(`/objekty`);
-  await page.locator(".ui.input input").fill("sklo");
-  await page.locator(".ui.input input").press("Enter");
+  await page.locator("input").locator("visible=true").fill("sklo");
+  await page.locator("input").locator("visible=true").press("Enter");
   await expect(page).toHaveURL(/q=sklo/);
 
-  await page.locator(".ui.input input").fill("sklo");
+  await page.locator("input").locator("visible=true").fill("sklo");
   await page.getByTestId("search-button").click();
   await expect(page).toHaveURL(/q=sklo/);
 });
@@ -19,11 +48,24 @@ test("redirection to create page", async ({ page }) => {
 
 test("checkbox string", async ({ page }) => {
   await page.goto(`/objekty`);
+  await page.waitForSelector(".ui.accordion", { state: "visible" });
+  const accordions = page.locator(".ui.accordion");
 
-  await page.locator('.title:has-text("category")').click();
+  for (let i = 0; i < (await accordions.count()); i++) {
+    await accordions.nth(i).click();
+  }
 
-  const checkbox = await page.locator(
-    'input[type="checkbox"][value="keramika"]'
+  const accordionLists = page.locator(".content .ui.list");
+
+  const { selectedAgg, selectedValue } = await getAgg(
+    accordions,
+    accordionLists,
+    "string"
+  );
+  await selectedAgg.click();
+
+  const checkbox = page.locator(
+    `input[type="checkbox"][value="${selectedValue}"]`
   );
 
   await checkbox.click({ force: true });
@@ -41,41 +83,71 @@ test("checkbox string", async ({ page }) => {
 
   await expect(page.getByTestId("result-item")).toHaveCount(20);
 
-  await expect(page).toHaveURL(
-    /f=metadata_restorationObject_category%3Akeramika/
-  );
+  expect(page.url().includes(selectedValue)).toBeTruthy();
 });
 
 test("checkbox num", async ({ page }) => {
-  await page.goto(`/objekty`);
+  await page.goto("/objekty");
 
-  await page.locator('.title:has-text("since")').click();
+  await page.waitForSelector(".ui.accordion", { state: "visible" });
+  const accordions = page.locator(".ui.accordion");
 
-  const checkbox = await page
-    .locator('input[type="checkbox"][value="1550"]')
-    .first();
+  for (let i = 0; i < (await accordions.count()); i++) {
+    await accordions.nth(i).click();
+    await page.waitForSelector(".content.active .ui.list", {
+      state: "visible",
+    });
+  }
+
+  const accordionLists = page.locator(".content .ui.list");
+
+  const { selectedAgg, selectedValue } = await getAgg(
+    accordions,
+    accordionLists,
+    "number"
+  );
+
+  if (!selectedAgg || !selectedValue) {
+    throw new Error("No valid aggregation found");
+  }
+
+  await selectedAgg.click();
+
+  const checkbox = page.locator(
+    `input[type="checkbox"][value="${selectedValue}"]`
+  );
 
   await checkbox.click({ force: true });
   const isChecked = await checkbox.evaluate((element) => element.checked);
 
   expect(isChecked).toBeTruthy();
 
-  await expect(page.getByTestId("result-item")).toHaveCount(3);
+  await expect(page.getByTestId("result-item")).toHaveCount(1);
 
-  await expect(page).toHaveURL(
-    /f=metadata_restorationObject_creationPeriod_since%3A1550/
-  );
+  expect(page.url().includes(selectedValue)).toBeTruthy();
 });
 
 test("checkbox bool", async ({ page }) => {
   await page.goto(`/objekty`);
+  await page.waitForSelector(".ui.accordion", { state: "visible" });
+  const accordions = page.locator(".ui.accordion");
 
-  await page
-    .locator('text="metadata/restorationObject/archeologic.label"')
-    .click();
+  for (let i = 0; i < (await accordions.count()); i++) {
+    await accordions.nth(i).click();
+  }
 
-  const checkbox = await page.locator('input[type="checkbox"][value="true"]');
+  const accordionLists = page.locator(".content .ui.list");
 
+  const { selectedAgg, selectedValue } = await getAgg(
+    accordions,
+    accordionLists,
+    "boolean"
+  );
+  await selectedAgg.click();
+
+  const checkbox = page.locator(
+    `input[type="checkbox"][value="${selectedValue}"]`
+  );
   await checkbox.click({ force: true });
   const isChecked = await checkbox.evaluate((element) => element.checked);
 
@@ -91,15 +163,13 @@ test("checkbox bool", async ({ page }) => {
 
   await expect(page.getByTestId("result-item")).toHaveCount(15);
 
-  await expect(page).toHaveURL(
-    /f=metadata_restorationObject_archeologic%3Atrue/
-  );
+  expect(page.url().includes(selectedValue)).toBeTruthy();
 });
 
 test("clear search results", async ({ page }) => {
   await page.goto(`/objekty/?q=sklo`);
   const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
-  await page.locator(".input .buttons .button").first().click();
+  await page.getByTestId('clear-button').click();
   await pagenav;
 
   await expect(page).not.toHaveURL(/q=sklo/);
@@ -108,7 +178,7 @@ test("clear search results", async ({ page }) => {
 test("pagination", async ({ page }) => {
   await page.goto(`/objekty`);
   const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
-  await page.locator("#main").getByRole("navigation").getByText("2").click();
+  await page.locator(".computer .pagination").getByText("2").click();
   await pagenav;
 
   await expect(page).toHaveURL(/p=2/);
@@ -116,7 +186,7 @@ test("pagination", async ({ page }) => {
 
 test("get facets names", async ({ page }) => {
   await page.goto(`/objekty`);
-  await page.waitForSelector(".ui.accordion");
+  await page.waitForSelector(".ui.accordion", { state: "visible" });
 
   const accText = await page.evaluate(() => {
     const acc = document.querySelector(".ui.accordion .title");

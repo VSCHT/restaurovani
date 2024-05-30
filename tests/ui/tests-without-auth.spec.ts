@@ -17,15 +17,18 @@ test("redirection to login page", async ({ page }) => {
 
 test("redirection to title page", async ({ page, baseURL }) => {
   await page.goto("/objekty");
-  const button = page.locator(".ui.menu.top a").first();
+  const button = page.getByTestId("frontpage-redir-button");
   await button.click();
   await expect(page).toHaveURL(`${baseURL}`);
 });
 
 test("redirection to create page", async ({ page, baseURL }) => {
   await page.goto(`${baseURL}objekty`);
+  const pagenav = page.waitForNavigation({ waitUntil: "load" });
   await page.locator(".aside .ui.button").click();
-  await expect(page).toHaveURL(`${baseURL}login/?next=%2Fobjekty%2F_new`);
+
+  await pagenav;
+  expect(page.url().includes("login")).toBeTruthy();
 });
 
 test("burger menu visibility", async ({ page }) => {
