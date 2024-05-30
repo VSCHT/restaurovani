@@ -55,7 +55,7 @@ test("successful form submit", async ({ page }) => {
       .fill("test");
 
     const parentSelector =
-      'div.field:has(input[name="metadata.restorationObject.category"])';
+      '.field:has(input[name="metadata.restorationObject.category"])';
 
     const labels = await page.$$(`${parentSelector} label`);
 
@@ -64,7 +64,7 @@ test("successful form submit", async ({ page }) => {
     await labelToClick.click();
 
     const pagenav = page.waitForNavigation({ waitUntil: "networkidle" });
-    await page.locator(".grid-form-create > .ui.button").click();
+    await page.getByTestId("submit-button").click();
 
     await pagenav;
 

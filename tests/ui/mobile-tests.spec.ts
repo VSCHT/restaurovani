@@ -11,13 +11,13 @@ test("burger menu visibility", async ({ page }) => {
 
 test("top menu content visibility", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator(".ui.menu.top.fixed a").first()).toBeHidden();
+  await expect(page.getByTestId("frontpage-redir-button")).toBeHidden();
 });
 
 test("images carousel mobile", async ({ page }) => {
   await page.goto("/objekty");
-  const firstItem = page.getByTestId('result-item').first();
-  
+  const firstItem = page.getByTestId("result-item").first();
+
   await firstItem.locator(".extra .ui.button").click();
 
   await expect(page.locator(".slick-arrow.slick-next")).toBeVisible();
@@ -74,14 +74,14 @@ test("sidebar logout", async ({ page, baseURL }) => {
   await page.goto(`/objekty`);
   await page.locator(".item.toggle-burger").click();
   await expect(page.locator(".sidebar")).toBeVisible();
-  await page.waitForSelector(".sidebar .item .account-dropdown", {
+  await page.waitForSelector(".sidebar .account-dropdown", {
     visible: true,
   });
 
-  await page.locator(".sidebar .item .account-dropdown").click();
+  await page.locator(".sidebar .account-dropdown").click();
   await expect(page.locator(".sidebar .menu.transition")).toBeVisible();
   const pagenav = page.waitForNavigation({ waitUntil: "load" });
-  await page.locator('.sidebar').getByTestId('logout-button').click();
+  await page.locator(".sidebar").getByTestId("logout-button").click();
 
   await pagenav;
   await expect(page).toHaveURL(`${baseURL}`);

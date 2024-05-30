@@ -55,7 +55,7 @@ test("modal images carousel", async ({ page }) => {
 
   await page.locator(".image").first().click();
 
-  await page.waitForSelector(".modal");
+  await page.waitForSelector(".modal", { state: "visible" });
   const firstTitle = (await page.locator(".modal .header").textContent()) || "";
 
   await page.locator(".modal .right").click();
