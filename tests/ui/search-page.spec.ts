@@ -1,30 +1,5 @@
 import { test, expect } from "playwright/test";
-
-async function getAgg(accordions, accordionLists, type) {
-  let selectedAgg;
-  let selectedValue;
-
-  for (let i = 0; i < (await accordions.count()); i++) {
-    const listItem = accordionLists.nth(i);
-
-    if ((await listItem.locator(".item").count()) > 0) {
-      const agg = await listItem
-        .locator(".item:first-child .ui.large.label")
-        .nth(0)
-        .innerText();
-      if (
-        (type === "number" && !isNaN(parseFloat(agg))) ||
-        (typeof agg == type && agg !== "true" && agg !== "false") ||
-        (type === "boolean" && (agg === "true" || agg === "false"))
-      ) {
-        selectedAgg = accordions.nth(i);
-        selectedValue = agg;
-        break;
-      }
-    }
-  }
-  return { selectedAgg, selectedValue };
-}
+import { getAgg } from "./util";
 
 test("search and check URL 2", async ({ page }) => {
   await page.goto(`/objekty`);

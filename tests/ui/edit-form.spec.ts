@@ -1,54 +1,7 @@
-import { test, expect } from "playwright/test";
+import { test, expect, selectors } from "playwright/test";
+import { getAgg, getClickLocation } from "./util";
 
-async function getClickLocation(dropdownLocator) {
-  const dropdownBox = await dropdownLocator.boundingBox();
-  if (!dropdownBox) {
-    throw new Error("Dropdown not found");
-  }
-
-  const labels = await dropdownLocator.locator(".label").elementHandles();
-  const icons = await dropdownLocator.locator(".icon").elementHandles();
-
-  const isPointInsideBox = (point, box) => {
-    return (
-      point.x >= box.x &&
-      point.x <= box.x + box.width &&
-      point.y >= box.y &&
-      point.y <= box.y + box.height
-    );
-  };
-
-  const findNonCollidingPoint = async () => {
-    for (let i = 0; i < 10; i++) {
-      const point = {
-        x: dropdownBox.x + Math.random() * dropdownBox.width,
-        y: dropdownBox.y + Math.random() * dropdownBox.height,
-      };
-
-      let collision = false;
-      for (const element of [...labels, ...icons]) {
-        const box = await element.boundingBox();
-        if (box && isPointInsideBox(point, box)) {
-          collision = true;
-          break;
-        }
-      }
-
-      if (!collision) {
-        return point;
-      }
-    }
-
-    return {
-      x: dropdownBox.x + dropdownBox.width / 2,
-      y: dropdownBox.y + dropdownBox.height / 2,
-    };
-  };
-
-  return await findNonCollidingPoint();
-}
-
-test("tree-field visibility, mouse manipulation and selected result check", async ({
+test("tree-field visibility, mouse manipulation and selected breadcrumb result check", async ({
   page,
 }) => {
   await page.goto("/objekty");
@@ -68,21 +21,25 @@ test("tree-field visibility, mouse manipulation and selected result check", asyn
 
   const submitButton = page.locator(".actions button:not(.ui.label button)");
 
-  const numberOfOptions = await page
-    .locator(".tree-column.column .row")
-    .locator("visible=true")
-    .count();
-  const randomIndex = Math.floor(Math.random() * numberOfOptions);
+  const allOptions = page.locator(".tree-column.row").locator("visible=true");
+  const numberOfOptions = allOptions.count();
+
+  const randomIndex = Math.floor(Math.random() * (await numberOfOptions));
+
+  const wasChecked = await page
+    .locator(".tree-column .row")
+    .nth(randomIndex)
+    .locator(".checkbox input")
+    .evaluate((element) => element.checked);
 
   await page
-    .locator(".tree-column .row.spaced")
+    .locator(".tree-column .row")
     .locator("visible=true")
     .nth(randomIndex)
     .dblclick();
 
   const checkedButtonText = await page
-    .locator(".tree-column .row.spaced")
-    .locator("visible=true")
+    .locator(".tree-column .row")
     .nth(randomIndex)
     .innerText();
 
@@ -91,14 +48,29 @@ test("tree-field visibility, mouse manipulation and selected result check", asyn
     .last()
     .innerText();
 
-  expect(lastLabelBreadcrumbText).toContain(checkedButtonText);
+  wasChecked
+    ? expect(lastLabelBreadcrumbText).not.toContain(checkedButtonText)
+    : expect(lastLabelBreadcrumbText).toContain(checkedButtonText);
 
   await submitButton.click();
 
   await expect(page.locator(".tree-field")).toBeHidden();
-  await expect(
-    page.locator("a").filter({ hasText: checkedButtonText })
-  ).toHaveCount(1);
+
+  if (wasChecked) {
+    await expect(
+      page.locator("a").filter({ hasText: checkedButtonText })
+    ).toHaveCount(0);
+    await expect(
+      page.locator("a").filter({ hasText: checkedButtonText })
+    ).toHaveCount(0);
+  } else {
+    await expect(
+      page.locator("a").filter({ hasText: checkedButtonText })
+    ).toHaveCount(1);
+    await expect(
+      page.locator("a").filter({ hasText: checkedButtonText })
+    ).toHaveCount(1);
+  }
 });
 
 test("tree-field keyboard manipulation and selected result check", async ({
@@ -115,7 +87,7 @@ test("tree-field keyboard manipulation and selected result check", async ({
     .click();
 
   await page
-    .locator(".tree-column.column .row")
+    .locator(".tree-column .row")
     .locator("visible=true")
     .first()
     .dblclick();
@@ -123,19 +95,26 @@ test("tree-field keyboard manipulation and selected result check", async ({
   await page.keyboard.press("ArrowDown");
   await page.keyboard.press("ArrowDown");
 
-  const openRowWithRight = page.locator(".open.row:has(.right)");
+  const openRow = page.locator(".open.row:has(.right)");
 
-  if ((await openRowWithRight.count()) > 0) {
+  if ((await openRow.count()) > 0) {
     await page.keyboard.press("ArrowRight");
     await expect(page.locator(".tree-column:nth-child(2)")).toBeVisible();
   }
 
   await page.keyboard.press("ArrowDown");
+
+  const wasChecked = await page
+    .locator(".tree-column .open.row")
+    .locator("visible=true")
+    .locator(".checkbox input")
+    .evaluate((element) => element.checked);
+
   await page.keyboard.press("Enter");
 
   const checkedButtonText = await page.evaluate(() => {
     const checkedCheckboxContainer = document.querySelector(
-      ".row.spaced .ui.checked.checkbox"
+      ".tree-column .row .ui.checked.checkbox"
     );
     const buttonText =
       checkedCheckboxContainer?.nextElementSibling?.innerText.trim() || "";
@@ -161,7 +140,9 @@ test("tree-field keyboard manipulation and selected result check", async ({
     throw new Error("Breadcrumb does not match.");
   }
 
-  expect(expectedBreadcrumbText == breadcrumbText).toBeTruthy();
+  wasChecked
+    ? expect(expectedBreadcrumbText == breadcrumbText).toBeFalsy()
+    : expect(expectedBreadcrumbText == breadcrumbText).toBeTruthy();
 });
 
 test("date error 1", async ({ page }) => {
@@ -225,9 +206,26 @@ test("date error 2", async ({ page }) => {
 test("valid num", async ({ page }) => {
   try {
     await page.goto("/objekty");
-    await page.locator('.title:has-text("category")').click();
 
-    const checkbox = page.locator('input[type="checkbox"][value="sklo"]');
+    await page.waitForSelector(".ui.accordion", { state: "visible" });
+    const accordions = page.locator(".ui.accordion");
+
+    for (let i = 0; i < (await accordions.count()); i++) {
+      await accordions.nth(i).click();
+    }
+
+    const accordionLists = page.locator(".content .ui.list");
+
+    const { selectedAgg, selectedValue } = await getAgg(
+      accordions,
+      accordionLists,
+      "string"
+    );
+    await selectedAgg.click();
+
+    const checkbox = page.locator(
+      `input[type="checkbox"][value="${selectedValue}"]`
+    );
 
     await checkbox.click({ force: true });
 
@@ -242,14 +240,10 @@ test("valid num", async ({ page }) => {
       )
       .click();
     await page
-      .locator(
-        '[id="metadata.restorationObject.dimensions[0].value"]'
-      )
+      .locator('[id="metadata.restorationObject.dimensions[0].value"]')
       .click();
     await page
-      .locator(
-        '[id="metadata.restorationObject.dimensions[0].value"]'
-      )
+      .locator('[id="metadata.restorationObject.dimensions[0].value"]')
       .fill("447e");
     await page.getByTestId("submit-button").click();
 
@@ -323,28 +317,44 @@ test("successful edit form submit", async ({ page }) => {
     );
 
     const numberOfOptions = await page
-      .locator(".tree-column.column .row:visible")
+      .locator(".tree-column .row:visible")
       .count();
     const randomIndex = Math.floor(Math.random() * numberOfOptions);
 
-    await page
-      .locator(".tree-column .row.spaced:visible")
-      .nth(randomIndex)
-      .dblclick();
+    const selectedOption = page
+      .locator(".tree-column .row:visible")
+      .nth(randomIndex);
 
-    const checkedButtonText = await page.evaluate(() => {
-      const checkedCheckboxContainer = document.querySelector(
-        ".row.spaced .ui.checked.checkbox"
-      );
+    const wasChecked = await selectedOption
+      .locator(".checkbox input")
+      .evaluate((element) => element.checked);
+
+    const checkedButtonText = await selectedOption.evaluate((element) => {
       const buttonText =
-        checkedCheckboxContainer?.nextElementSibling?.innerText.trim() ||
-        "No text found";
+        element
+          .querySelector(".checkbox")
+          .nextElementSibling?.innerText.trim() || "";
       return buttonText;
     });
+
+    await selectedOption.dblclick();
     await treeFieldSubmitButton.click();
-    await expect(
-      dropdownLocator.locator("a").filter({ hasText: checkedButtonText })
-    ).toHaveCount(1);
+
+    if (wasChecked) {
+      await expect(
+        page
+          .locator("a")
+          .locator("visible=true")
+          .filter({ hasText: checkedButtonText })
+      ).toHaveCount(0);
+    } else {
+      await expect(
+        page
+          .locator("a")
+          .locator("visible=true")
+          .filter({ hasText: checkedButtonText })
+      ).toHaveCount(1);
+    }
 
     // Creation Number input
     await page
@@ -400,8 +410,6 @@ test("successful edit form submit", async ({ page }) => {
   }
 });
 
- 
-
 test("frontend sanitization", async ({ page }) => {
   await page.goto("/objekty");
 
@@ -409,14 +417,16 @@ test("frontend sanitization", async ({ page }) => {
   await firstItem.locator(".extra .ui.button").click();
 
   await page.locator(".container a:right-of(.ui.header)").click();
- 
-  const input = page.locator(`textarea[name='metadata.restorationObject.description']`);
-  await input.fill(
-    "This is a description <script type='application/javascript'>alert('you\'ve been hacked')</script>"
+
+  const input = page.locator(
+    `textarea[name='metadata.restorationObject.description']`
   );
- 
-  await page.locator('.header').locator('visible=true').click();
-   
-  const inputValue = await input.evaluate(el => el.value);
+  await input.fill(
+    "This is a description <script type='application/javascript'>alert('you've been hacked')</script>"
+  );
+
+  await page.locator(".header").locator("visible=true").click();
+
+  const inputValue = await input.evaluate((el) => el.value);
   expect(inputValue).toBe("This is a description");
 });
