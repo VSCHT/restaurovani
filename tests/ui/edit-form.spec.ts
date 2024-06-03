@@ -1,5 +1,5 @@
-import { test, expect, selectors } from "playwright/test";
-import { getAgg, getClickLocation } from "./util";
+import { test, expect } from "playwright/test";
+import { getAgg, getClickLocation, getRandomInt } from "./util";
 
 test("tree-field visibility, mouse manipulation and selected breadcrumb result check", async ({
   page,
@@ -24,7 +24,7 @@ test("tree-field visibility, mouse manipulation and selected breadcrumb result c
   const allOptions = page.locator(".tree-column.row").locator("visible=true");
   const numberOfOptions = allOptions.count();
 
-  const randomIndex = Math.floor(Math.random() * (await numberOfOptions));
+  const randomIndex = await getRandomInt(numberOfOptions);
 
   const wasChecked = await page
     .locator(".tree-column .row")
@@ -319,7 +319,8 @@ test("successful edit form submit", async ({ page }) => {
     const numberOfOptions = await page
       .locator(".tree-column .row:visible")
       .count();
-    const randomIndex = Math.floor(Math.random() * numberOfOptions);
+
+    const randomIndex = await getRandomInt(numberOfOptions);
 
     const selectedOption = page
       .locator(".tree-column .row:visible")
@@ -383,7 +384,7 @@ test("successful edit form submit", async ({ page }) => {
     const numberOfOptionsSingle = await page
       .locator(".tree-column .row:visible")
       .count();
-    const randomIndexSingle = Math.floor(Math.random() * numberOfOptionsSingle);
+    const randomIndexSingle = await getRandomInt(numberOfOptionsSingle);
 
     await page
       .locator(".tree-column .row:visible")

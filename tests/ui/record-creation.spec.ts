@@ -1,4 +1,5 @@
 import { test, expect } from "playwright/test";
+import { getRandomInt } from "./util";
 
 let apiContext;
 
@@ -22,14 +23,12 @@ test("get error on unfilled form", async ({ page }) => {
   await page.getByTestId("submit-button").click();
 
   await Promise.all([
-    page.waitForSelector(
-      "#metadata.restorationWork.restorer-error-message",
-      { visible: true }
-    ),
-    page.waitForSelector(
-      "#metadata.restorationObject.title-error-message",
-      { visible: true }
-    ),
+    page.waitForSelector("#metadata.restorationWork.restorer-error-message", {
+      visible: true,
+    }),
+    page.waitForSelector("#metadata.restorationObject.title-error-message", {
+      visible: true,
+    }),
   ]);
 
   const isRestorerErrorMessageVisible = await page.isVisible(
@@ -59,7 +58,7 @@ test("successful form submit", async ({ page }) => {
 
     const labels = await page.$$(`${parentSelector} label`);
 
-    const randomIndex = Math.floor(Math.random() * labels.length);
+    const randomIndex = await getRandomInt(labels.length);
     const labelToClick = labels[randomIndex];
     await labelToClick.click();
 
