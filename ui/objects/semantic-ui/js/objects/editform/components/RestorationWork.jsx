@@ -10,14 +10,13 @@ import {
   RichEditor,
 } from "react-invenio-forms";
 import { Header, Grid } from "semantic-ui-react";
-import { ArrayFieldItem } from "@js/oarepo_ui";
+import { ArrayFieldItem, sanitizeInput } from "@js/oarepo_ui";
 import {
   LocalVocabularySelectField,
   VocabularyTreeSelectField,
 } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import { DaterangePicker } from "./DateRange";
-import { decode } from "html-entities";
 
 export const RestorationWork = ({
   activeIndex,
@@ -28,14 +27,6 @@ export const RestorationWork = ({
   setFieldTouched,
 }) => {
   const fieldPath = "metadata.restorationWork";
-
-  const convertHTMLToTags = (htmlString) => {
-    const regex = /<(?!\/?(strong|b|div|br|p|i|li)\b)[^>]*>[^<]*<\/.*?>/gi;
-    const decodedString = decode(htmlString);
-    const cleanedContent = decodedString.replace(regex, "");
-    const noTags = cleanedContent.replace(/<[^>]*>?/gm, "");
-    return noTags;
-  };
 
   return (
     <AccordionField
@@ -80,17 +71,14 @@ export const RestorationWork = ({
                   toolbar:
                     "bold italic | bullist numlist | outdent indent | undo redo",
                   valid_elements: "strong,b,div,br,p,i,li",
-                  invalid_elements: "style",
                 }}
                 onBlur={async (event, editor) => {
-                  const cleanedContent = await convertHTMLToTags(
-                    editor.getContent()
-                  );
+                  const cleanedContent= await sanitizeInput(editor.getContent())
                   setFieldValue(
-                    "metadata.restorationWork.abstract",
+                    `${fieldPath}.abstract`,
                     cleanedContent
                   );
-                  setFieldTouched("metadata.restorationWork.abstract", true);
+                  setFieldTouched(`${fieldPath}.abstract`, true);
                 }}
               />
             }
