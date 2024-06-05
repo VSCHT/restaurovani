@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2024-03-01T15:34:32.916604\n"
-"PO-Revision-Date: 2024-03-01T15:34:32.916605\n"
+"POT-Creation-Date: 2024-05-22T22:26:34.872632\n"
+"PO-Revision-Date: 2024-05-22T22:26:34.872635\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,33 +24,6 @@ msgid "created.label"
 msgstr ""
 
 msgid "created.hint"
-msgstr ""
-
-msgid "data.help"
-msgstr ""
-
-msgid "data.label"
-msgstr ""
-
-msgid "data.hint"
-msgstr ""
-
-msgid "data/extractedText.label"
-msgstr ""
-
-msgid "data/extractedText.help"
-msgstr ""
-
-msgid "data/extractedText.hint"
-msgstr ""
-
-msgid "data/extractedTimestamp.label"
-msgstr ""
-
-msgid "data/extractedTimestamp.help"
-msgstr ""
-
-msgid "data/extractedTimestamp.hint"
 msgstr ""
 
 msgid "id.help"
@@ -78,6 +51,42 @@ msgid "metadata/category.label"
 msgstr ""
 
 msgid "metadata/category.hint"
+msgstr ""
+
+msgid "metadata/restorationData.help"
+msgstr ""
+
+msgid "metadata/restorationData.label"
+msgstr ""
+
+msgid "metadata/restorationData.hint"
+msgstr ""
+
+msgid "metadata/restorationData/key.label"
+msgstr ""
+
+msgid "metadata/restorationData/key.help"
+msgstr ""
+
+msgid "metadata/restorationData/key.hint"
+msgstr ""
+
+msgid "metadata/restorationData/text.label"
+msgstr ""
+
+msgid "metadata/restorationData/text.help"
+msgstr ""
+
+msgid "metadata/restorationData/text.hint"
+msgstr ""
+
+msgid "metadata/restorationData/timestamp.label"
+msgstr ""
+
+msgid "metadata/restorationData/timestamp.help"
+msgstr ""
+
+msgid "metadata/restorationData/timestamp.hint"
 msgstr ""
 
 msgid "metadata/restorationObject.help"

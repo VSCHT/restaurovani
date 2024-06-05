@@ -17,7 +17,8 @@
             "alias": "objects",
             "module": "objects.records.mappings",
             "index": "objects-objects-1.0.0",
-            "file": "objects/records/mappings/os-v2/objects/objects-1.0.0.json"
+            "file": "objects/records/mappings/os-v2/objects/objects-1.0.0.json",
+            "index-field-args": []
         },
         "requests": {
             "types": {
@@ -61,13 +62,27 @@
                 "config-key": "OBJECTS_REQUESTS_SERVICE_CLASS",
                 "class": "oarepo_requests.services.draft.service.DraftRecordRequestsService",
                 "additional-args": [
-                    "record_service=self.service_records"
+                    "record_service=self.service_records",
+                    "oarepo_requests_service={{oarepo_requests.proxies.current_oarepo_requests_service}}"
                 ],
                 "skip": false
-            }
+            },
+            "additional-resolvers": [
+                "{{oarepo_runtime.records.entity_resolvers.UserResolver}}()",
+                "{{oarepo_runtime.records.entity_resolvers.GroupResolver}}()"
+            ],
+            "additional-ui-resolvers": {
+                "\"user\"": "{{oarepo_requests.resolvers.ui.UserEntityReferenceUIResolver}}(\"user\")",
+                "\"fallback\"": "{{oarepo_requests.resolvers.ui.FallbackEntityReferenceUIResolver}}(\"fallback\")",
+                "\"group\"": "{{oarepo_requests.resolvers.ui.GroupEntityReferenceUIResolver}}(\"group\")"
+            },
+            "ui-serialization-referenced-fields": [
+                "\"created_by\"",
+                "\"receiver\"",
+                "\"topic\""
+            ]
         },
         "searchable": true,
-        "custom-fields": [],
         "permissions": {
             "presets": [
                 "authenticated"
@@ -92,6 +107,7 @@
             "class": "objects.services.records.schema.ObjectsSchema",
             "extra-code": ""
         },
+        "custom-fields": [],
         "pid": {
             "type": "rstr",
             "provider-base-classes": [
@@ -172,19 +188,20 @@
             "suffix-upper": "OBJECTS",
             "suffix-snake": "objects"
         },
-        "draft": {
-            "type": "draft_record",
+        "draft-files": {
+            "type": "draft-file",
             "properties": {},
-            "requests": {
-                "types": {
-                    "publish-draft": {
-                        "base-classes": [
-                            "oarepo_requests.types.publish_draft.PublishDraftRequestType"
-                        ]
-                    }
-                }
-            },
             "searchable": true,
+            "service-config": {
+                "base-classes": [
+                    "common.services.files.RestorationFileServiceConfig"
+                ]
+            },
+            "resource": {
+                "base-classes": [
+                    "oarepo_ui.resources.file_resource.S3RedirectFileResource"
+                ]
+            },
             "tests": {
                 "extra-fixtures": [],
                 "extra-code": "",
@@ -305,15 +322,19 @@
                 "module": "tests"
             }
         },
-        "draft-files": {
-            "type": "draft-file",
+        "draft": {
+            "type": "draft_record",
             "properties": {},
-            "searchable": true,
-            "resource": {
-                "base-classes": [
-                    "oarepo_ui.resources.file_resource.S3RedirectFileResource"
-                ]
+            "requests": {
+                "types": {
+                    "publish-draft": {
+                        "base-classes": [
+                            "oarepo_requests.types.publish_draft.PublishDraftRequestType"
+                        ]
+                    }
+                }
             },
+            "searchable": true,
             "tests": {
                 "extra-fixtures": [],
                 "extra-code": "",
@@ -398,6 +419,10 @@
             "imports": [],
             "additional-args": []
         },
+        "translations": {
+            "module": "objects.translations",
+            "alias": "objects"
+        },
         "json-schema-settings": {
             "generate": true,
             "alias": "objects",
@@ -421,19 +446,6 @@
                 "\"object_key\"": "\"ui\"",
                 "\"identity\"": "{{ flask.g{g.identity} }}"
             }
-        },
-        "files-field": {
-            "generate": true,
-            "field-class": "invenio_records_resources.records.systemfields.FilesField",
-            "file-class": "objects.records.api.ObjectsRecord",
-            "field-args": [
-                "store=False"
-            ],
-            "imports": []
-        },
-        "translations": {
-            "module": "objects.translations",
-            "alias": "objects"
         },
         "record-metadata": {
             "generate": true,
@@ -479,9 +491,10 @@
             "extra-code": "",
             "service-id": "objects",
             "components": [
-                "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}",
+                "{{oarepo_runtime.services.components.OwnersComponent}}",
+                "{{invenio_records_resources.services.records.components.DataComponent}}",
                 "{{oarepo_runtime.services.files.FilesComponent}}",
-                "{{invenio_records_resources.services.records.components.DataComponent}}"
+                "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}"
             ],
             "additional-args": []
         },
@@ -496,6 +509,15 @@
             "extensions": [
                 "{{oarepo_runtime.records.systemfields.mapping.SystemFieldDumperExt}}()",
                 "{{objects.records.dumpers.edtf.ObjectsEDTFIntervalDumperExt}}()"
+            ],
+            "imports": []
+        },
+        "files-field": {
+            "generate": true,
+            "field-class": "invenio_records_resources.records.systemfields.FilesField",
+            "file-class": "objects.records.api.ObjectsRecord",
+            "field-args": [
+                "store=False"
             ],
             "imports": []
         },
@@ -581,6 +603,10 @@
                 "oarepo_published_service.services.config.PublishedServiceConfig",
                 "oarepo_runtime.services.config.service.PermissionsPresetsConfigMixin"
             ],
+            "components": [
+                "{{oarepo_runtime.services.files.FilesComponent}}",
+                "{{oarepo_published_service.services.records.components.bucket.CreatePublishedBucketComponent}}"
+            ],
             "generate": true
         },
         "published-service": {
@@ -614,7 +640,7 @@
         },
         "ui-record-resolver": {
             "generate": true,
-            "function": "oarepo_requests.resolvers.ui.record_entity_reference_ui_resolver"
+            "class": "oarepo_requests.resolvers.ui.RecordEntityReferenceUIResolver"
         },
         "sortable": [],
         "properties": {
@@ -656,31 +682,6 @@
                 },
                 "sample": {
                     "skip": true
-                }
-            },
-            "data": {
-                "type": "object",
-                "marshmallow": {
-                    "generate": true,
-                    "class": "objects.services.records.schema.DataSchema"
-                },
-                "ui": {
-                    "marshmallow": {
-                        "generate": true,
-                        "class": "objects.services.records.ui_schema.DataUISchema"
-                    }
-                },
-                "properties": {
-                    "extractedText": {
-                        "type": "fulltext",
-                        "label.cs": "Extrahovaný text",
-                        "label.en": "Extracted text"
-                    },
-                    "extractedTimestamp": {
-                        "type": "datetime",
-                        "label.cs": "Datum extrakce",
-                        "label.en": "Extraction date"
-                    }
                 }
             },
             "id": {
@@ -729,6 +730,39 @@
                     "category": {
                         "type": "keyword"
                     },
+                    "restorationData": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "marshmallow": {
+                                "generate": true,
+                                "class": "objects.services.records.schema.RestorationDataItemSchema"
+                            },
+                            "ui": {
+                                "marshmallow": {
+                                    "generate": true,
+                                    "class": "objects.services.records.ui_schema.RestorationDataItemUISchema"
+                                }
+                            },
+                            "properties": {
+                                "key": {
+                                    "type": "keyword",
+                                    "label.cs": "Klíč",
+                                    "label.en": "Key"
+                                },
+                                "text": {
+                                    "type": "fulltext",
+                                    "label.cs": "Extrahovaný text",
+                                    "label.en": "Extracted text"
+                                },
+                                "timestamp": {
+                                    "type": "datetime",
+                                    "label.cs": "Datum extrakce",
+                                    "label.en": "Extraction date"
+                                }
+                            }
+                        }
+                    },
                     "restorationObject": {
                         "type": "object",
                         "marshmallow": {
@@ -758,7 +792,7 @@
                                         "default": 100000
                                     }
                                 },
-                                "label.cs": "Kategorie"
+                                "label.cs": "Hlavní materiál"
                             },
                             "colors": {
                                 "type": "array",
@@ -1923,7 +1957,7 @@
                                         "default": 100000
                                     }
                                 },
-                                "label.cs": "Restaurátor"
+                                "label.cs": "Autor(ka)"
                             },
                             "supervisors": {
                                 "type": "array",
@@ -1953,7 +1987,7 @@
                                                     "default": 100000
                                                 }
                                             },
-                                            "label.cs": "Jméno a příjmení vedoucího"
+                                            "label.cs": "Vedoucí práce"
                                         },
                                         "institution": {
                                             "type": "keyword",
