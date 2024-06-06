@@ -60,21 +60,6 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
         <Grid.Column>
           <VocabularyTreeSelectField
             optionsListName="MaterialTypes"
-            fieldPath={`${fieldPath}.materialType`}
-            multiple={false}
-            clearable
-            placeholder="Vyberte typy materiálů"
-            label={
-              <FieldLabel
-                htmlFor={`${fieldPath}.materialType`}
-                label="Typ materiálů"
-              />
-            }
-          />
-        </Grid.Column>{" "}
-        <Grid.Column>
-          <VocabularyTreeSelectField
-            optionsListName="MaterialTypes"
             fieldPath={`${fieldPath}.secondaryMaterialTypes`}
             multiple={true}
             clearable

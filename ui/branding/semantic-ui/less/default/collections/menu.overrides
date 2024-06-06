@@ -1,7 +1,8 @@
 .ui.menu {
   &.top.fixed {
+    padding: 0 10vw 0 10vw;
     @media only screen and (max-width: @mobileSize) {
-      padding-left: 0;
+      padding: 0;
     }
   }
   .ui.container.stackable & a,

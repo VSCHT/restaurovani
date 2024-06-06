@@ -68,6 +68,9 @@
     &.divided .column:nth-child(2) {
       padding: 0 15px;
     }
+    &.spaced:has(h3.header) .column {
+      font-weight: 600;
+    }
   }
 
   &.three {
