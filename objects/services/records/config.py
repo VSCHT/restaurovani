@@ -3,8 +3,14 @@ from invenio_drafts_resources.services import (
 )
 from invenio_drafts_resources.services.records.components import DraftFilesComponent
 from invenio_drafts_resources.services.records.config import is_record
-from invenio_records_resources.services import ConditionalLink, RecordLink
+from invenio_records_resources.services import (
+    ConditionalLink,
+    RecordLink,
+    pagination_links,
+)
 from invenio_records_resources.services.records.components import DataComponent
+from oarepo_runtime.records import has_draft, is_published_record
+from oarepo_runtime.services.components import OwnersComponent
 from oarepo_runtime.services.config.service import PermissionsPresetsConfigMixin
 from oarepo_runtime.services.files import FilesComponent
 
@@ -41,9 +47,10 @@ class ObjectsServiceConfig(
     components = [
         *PermissionsPresetsConfigMixin.components,
         *InvenioRecordDraftsServiceConfig.components,
-        DraftFilesComponent,
-        FilesComponent,
+        OwnersComponent,
         DataComponent,
+        FilesComponent,
+        DraftFilesComponent,
     ]
 
     model = "objects"
@@ -54,6 +61,7 @@ class ObjectsServiceConfig(
     def links_item(self):
         return {
             "draft": RecordLink("{+api}/objects/{id}/draft"),
+            "edit_html": RecordLink("{+ui}/objects/{id}/edit", when=has_draft),
             "files": ConditionalLink(
                 cond=is_record,
                 if_=RecordLink("{+api}/objects/{id}/files"),
@@ -63,16 +71,38 @@ class ObjectsServiceConfig(
             "latest_html": RecordLink("{+ui}/objects/{id}/latest"),
             "publish": RecordLink("{+api}/objects/{id}/draft/actions/publish"),
             "record": RecordLink("{+api}/objects/{id}"),
-            "requests": RecordLink("{+api}/objects/{id}/requests"),
+            "requests": ConditionalLink(
+                cond=is_published_record,
+                if_=RecordLink("{+api}/objects/{id}/requests"),
+                else_=RecordLink("{+api}/objects/{id}/draft/requests"),
+            ),
             "self": ConditionalLink(
-                cond=is_record,
+                cond=is_published_record,
                 if_=RecordLink("{+api}/objects/{id}"),
                 else_=RecordLink("{+api}/objects/{id}/draft"),
             ),
             "self_html": ConditionalLink(
-                cond=is_record,
+                cond=is_published_record,
                 if_=RecordLink("{+ui}/objects/{id}"),
-                else_=RecordLink("{+ui}/objects/{id}/edit"),
+                else_=RecordLink("{+ui}/objects/{id}/preview"),
             ),
             "versions": RecordLink("{+api}/objects/{id}/versions"),
+        }
+
+    @property
+    def links_search(self):
+        return {
+            **pagination_links("{+api}/objects/{?args*}"),
+        }
+
+    @property
+    def links_search_drafts(self):
+        return {
+            **pagination_links("{+api}/user/objects/{?args*}"),
+        }
+
+    @property
+    def links_search_versions(self):
+        return {
+            **pagination_links("{+api}/objects/{id}/versions{?args*}"),
         }

@@ -1,10 +1,11 @@
 from oarepo_requests.types.publish_draft import PublishDraftRequestType
+from oarepo_runtime.i18n import lazy_gettext as _
 
 
 class PublishDraftRequestType(PublishDraftRequestType):
 
-    type_id = "objects_draft_publish_draft"
-    name = "Publish-draft"
+    type_id = "objects_publish_draft"
+    name = _("Publish draft")
 
     available_actions = {
         **PublishDraftRequestType.available_actions,
