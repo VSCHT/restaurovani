@@ -73,11 +73,10 @@ export const RestorationWork = ({
                   valid_elements: "strong,b,div,br,p,i,li",
                 }}
                 onBlur={async (event, editor) => {
-                  const cleanedContent= await sanitizeInput(editor.getContent())
-                  setFieldValue(
-                    `${fieldPath}.abstract`,
-                    cleanedContent
+                  const cleanedContent = await sanitizeInput(
+                    editor.getContent()
                   );
+                  setFieldValue(`${fieldPath}.abstract`, cleanedContent);
                   setFieldTouched(`${fieldPath}.abstract`, true);
                 }}
               />
