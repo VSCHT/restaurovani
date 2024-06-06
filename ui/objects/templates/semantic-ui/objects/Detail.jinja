@@ -133,11 +133,10 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                 <p><b>Vedlejší materiály</b></p>
               </td>
               <td>
-                   {% for value in  metadata.restorationObject.secondaryMaterialTypes %} 
-                        {{ value.title }} 
-                        {% if not loop.last %}, {% endif %}
-                    {% endfor %}
-              </td>
+                {% for value in metadata.restorationObject.secondaryMaterialTypes %} 
+                    {{ value.title }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </td>
             </tr>
             {% endif %} {% if metadata.restorationObject.fabricationTechnologies
             %}
@@ -220,13 +219,11 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                     <td><b>Restauroval(a)</b></td>
                     <td>
                       {% if metadata.restorationWork.restorer %}
-                        {{ metadata.restorationWork.restorer }}
+                          {{ metadata.restorationWork.restorer }}{% if metadata.restorationWork.workType %}, 
+                              {{ metadata.restorationWork.workType.title }}
+                          {% endif %}
                       {% endif %}
-                      {% if metadata.restorationWork.workType %}
-                        {{"," if metadata.restorationWork.restorer }}
-                        {{ metadata.restorationWork.workType.title }}
-                      {% endif %}
-                    </td>
+                  </td>
                   </tr>
                   {% endif %} {% if metadata.restorationWork.supervisors %}
                   <tr>

@@ -1,8 +1,14 @@
 .ui.menu {
   &.top.fixed {
     padding: 0 10vw 0 10vw;
+    & .button:has(.left-arrow){
+      padding: 1rem 0.5rem;
+    }
     @media only screen and (max-width: @mobileSize) {
-      padding: 0;
+      .button:not(.toggle-burger),
+      .item:not(.toggle-burger) {
+        display: none;
+      }
     }
   }
   .ui.container.stackable & a,

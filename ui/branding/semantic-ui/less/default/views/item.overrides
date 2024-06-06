@@ -62,16 +62,6 @@
       display: flex !important;
     }
 
-    .ui.menu.top.fixed & {
-      &:not(.toggle-burger) {
-        display: none;
-      }
-      &:nth-child(2) {
-        padding: 0 5vw;
-        font-size: 0.7rem;
-      }
-    }
-
     & .content .description {
       font-size: 1.1rem;
     }
@@ -95,6 +85,7 @@
     margin: 0.25rem 35% 0.25rem 0em;
   }
 }
+
 @media only screen and (max-width: 767px) {
   .item {
     .ui.items:not(.unstackable) > & > .image + .content {
