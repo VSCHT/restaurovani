@@ -386,19 +386,16 @@ test("successful edit form submit", async ({ page }) => {
       .count();
     const randomIndexSingle = await getRandomInt(numberOfOptionsSingle);
 
-    await page
+    const choiceButton = page
       .locator(".tree-column .row:visible")
-      .nth(randomIndexSingle)
-      .dblclick();
+      .nth(randomIndexSingle);
 
-    const breadcrumbText = await page
-      .locator(".ui.label .ui.breadcrumb")
-      .last()
-      .innerText();
+    await choiceButton.click();
 
-    await singleTreeFieldSubmitButton.click();
+    const choiceText = await choiceButton.innerText();
+
     await expect(
-      singleTreeField.locator(".text span").filter({ hasText: breadcrumbText })
+      singleTreeField.locator(".text span").filter({ hasText: choiceText })
     ).toHaveCount(1);
 
     const pagenav = page.waitForNavigation({ waitUntil: "load" });
