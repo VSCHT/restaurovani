@@ -107,21 +107,21 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                     if loop.index == 1 %}
                     <p>
                       {% if value.dimension.title %}
-                      {{ value.dimension.title }}: {{ (( value.value )|string )[:-2]+" "
-                      }}{{ value.unit }} {% endif %} {% endif %} {% if
+                      {{ value.dimension.title }}: {{ ('%.10f' % value.value).rstrip('0').rstrip('.').replace('.', ',') }}
+                      {{ value.unit }} {% endif %} {% endif %} {% if
                       loop.index == 2 %} <i class="dropdown black icon"></i>{%
                       endif %}
                     </p>
                     {% endfor %}
                   </div>
                   <div class="content">
-                    {% for value in metadata.restorationObject.dimensions %} {%
-                    if loop.index >= 2 %}
-                    <p>
-                      {{ value.dimension.title }}: {{ (( value.value )|string )[:-2]+" "
-                      }}{{ value.unit }}
-                    </p>
-                    {% endif %} {% endfor %}
+                    {% for value in metadata.restorationObject.dimensions %}
+                      {% if loop.index >= 2 %}
+                        <p>
+                            {{ value.dimension.title }}: {{ ('%.10f' % value.value).rstrip('0').rstrip('.').replace('.', ',') }} {{ value.unit }}
+                        </p>
+                        {% endif %}
+                    {% endfor %}
                   </div>
                 </div>
               </td>
