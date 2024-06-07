@@ -70,9 +70,9 @@
 
       {%- block css %}
       {{ webpack['theme.css'] }}
-      {{ webpack['components.css'] }}
-      {{ webpack['branding.css'] }}
       
+
+        {% include config.THEME_CSS_TEMPLATE %}
       
       {%- endblock css %}
       
@@ -121,7 +121,7 @@
 
       {%- block javascript %}
       
-     
+      
         {% include config.THEME_JAVASCRIPT_TEMPLATE %}
         {{ webpack['branding.js'] }}
 

@@ -1,5 +1,3 @@
-// @import '~react-datepicker/dist/react-datepicker';
-
 .field {
   text-align: left;
 
