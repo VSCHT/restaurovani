@@ -15,7 +15,6 @@ import {
 import { withState, buildUID } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
 import { getCaption } from "../../detail";
-import { sanitizeInput } from "@js/oarepo_ui";
 
 const ItemHeader = ({ title, searchUrl, selfLink }) => {
   const viewLink = new URL(
@@ -82,9 +81,13 @@ export const ResultsListItemComponent = ({ result, appName }) => {
 
   const created = _get(result, "created", "<no data>");
   const creationDate = new Date(created).toLocaleDateString();
-  
-  const restDescription = sanitizeInput(_get(result, "metadata.restorationWork.abstract", ""));
-  const objDescription = sanitizeInput(_get(result, "metadata.restorationObject.description", ""));
+
+  const restDescription = _get(result, "metadata.restorationWork.abstract", "");
+  const objDescription = _get(
+    result,
+    "metadata.restorationObject.description",
+    ""
+  );
 
   return (
     <Overridable
@@ -109,9 +112,14 @@ export const ResultsListItemComponent = ({ result, appName }) => {
           />
           <ItemDescription>{restorer}</ItemDescription>
           <ItemDescription>
-            <p>
-              {restDescription.length != 0 ? restDescription : objDescription}
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html:
+                  restDescription.length != 0
+                    ? restDescription
+                    : objDescription,
+              }}
+            ></p>
           </ItemDescription>
           <ItemExtra>
             <Label size="large">Vloženo: {creationDate} </Label>
