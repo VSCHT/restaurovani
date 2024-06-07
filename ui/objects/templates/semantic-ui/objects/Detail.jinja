@@ -73,13 +73,13 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
               </td>
               <td>
                 <div class="ui accordion">
-                  <div class="title active">
+                  <div class="title">
                     {% for value in metadata.restorationObject.itemTypes  %} {%
                     if loop.index == 1 %}
                     <p>
                       {% if value.title %}
                       {{ value.title  }} {% endif %} {% endif %} {% if
-                      loop.index == 2 %} <i class="dropdown black icon"></i>{%
+                      loop.index == 2 %} <i class="caret right icon"></i>{%
                       endif %}
                     </p>
                     {% endfor %}
@@ -102,14 +102,14 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
               </td>
               <td>
                 <div class="ui accordion">
-                  <div class="title active">
+                  <div class="title">
                     {% for value in metadata.restorationObject.dimensions %} {%
                     if loop.index == 1 %}
                     <p>
                       {% if value.dimension.title %}
                       {{ value.dimension.title }}: {{ ('%.10f' % value.value).rstrip('0').rstrip('.').replace('.', ',') }}
                       {{ value.unit }} {% endif %} {% endif %} {% if
-                      loop.index == 2 %} <i class="dropdown black icon"></i>{%
+                      loop.index == 2 %} <i class="caret right icon"></i>{%
                       endif %}
                     </p>
                     {% endfor %}
@@ -146,13 +146,13 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
               </td>
               <td>
                 <div class="ui accordion">
-                  <div class="title active">
+                  <div class="title">
                     {% for value in metadata.restorationObject.fabricationTechnologies %} {%
                     if loop.index == 1 %}
                     <p>
                       {% if value.title %}
                       {{ value.title  }} {% endif %} {% endif %} {% if
-                      loop.index == 2 %} <i class="dropdown black icon"></i>{%
+                      loop.index == 2 %} <i class="caret right icon"></i>{%
                       endif %}
                     </p>
                     {% endfor %}
