@@ -82,16 +82,9 @@ export const ResultsListItemComponent = ({ result, appName }) => {
 
   const created = _get(result, "created", "<no data>");
   const creationDate = new Date(created).toLocaleDateString();
-
-  const restDescription = sanitizeInput(
-    _get(result, "metadata.restorationWork.abstract", ""),
-    []
-  );
-
-  const objDescription = sanitizeInput(
-    _get(result, "metadata.restorationObject.description", ""),
-    []
-  );
+  
+  const restDescription = sanitizeInput(_get(result, "metadata.restorationWork.abstract", ""));
+  const objDescription = sanitizeInput(_get(result, "metadata.restorationObject.description", ""));
 
   return (
     <Overridable
