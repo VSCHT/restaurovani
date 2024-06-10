@@ -12,6 +12,12 @@
     color: white;
     margin: auto 10px;
   }
+  .ui.tree-field h3& {
+    font-size: 1.5rem;
+    font-weight: 500;
+    align-self: center;
+    width: 80%;
+  }
 }
 
 .count(@x, @y) {

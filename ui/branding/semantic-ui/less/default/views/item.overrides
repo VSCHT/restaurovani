@@ -18,7 +18,7 @@
     align-self: center;
   }
 
-  .content {
+  &:not(.spaced) .content {
     flex-direction: column;
     justify-content: space-between;
 

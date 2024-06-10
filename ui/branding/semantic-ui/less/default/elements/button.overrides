@@ -31,6 +31,9 @@
       margin: 0 auto;
       width: auto;
     }
+    & a {
+      color: @whiteColor;
+    }
   }
 
   &.secondary {
@@ -38,6 +41,10 @@
     font-weight: 500;
     justify-content: space-between;
     min-width: 200px;
+    .tree-field .actions & {
+      height: 3rem;
+      font-size: 1rem;
+    }
   }
 
   &.small.transparent {

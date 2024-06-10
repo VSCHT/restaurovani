@@ -45,8 +45,8 @@
       width: 90%;
     }
 
-    p{
-      margin: 0; 
+    p {
+      margin: 0;
     }
   }
 
@@ -114,6 +114,9 @@
   &.double {
     gap: @gapWidth * 5;
   }
+}
+.tree-field .gapped {
+  gap: initial;
 }
 
 @media only screen and (max-width: @mobileSize) {
