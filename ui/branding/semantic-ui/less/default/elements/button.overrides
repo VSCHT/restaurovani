@@ -9,14 +9,16 @@
     color: @whiteColor;
   }
 
+  .menu &:not(.transparent) a {
+    color: @whiteColor;
+  }
+
   &.primary:not(.fluid) {
     width: 20%;
     .main-page & {
       width: 65%;
     }
-    a {
-      color: @whiteColor;
-    }
+
     #form-app & {
       width: 25%;
     }
@@ -123,8 +125,8 @@
     color: @darkestBrown;
   }
 
-  &:has(.left-arrow){
-    padding: 0.5rem 0
+  &:has(.left-arrow) {
+    padding: 0.5rem 0;
   }
 
   @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {

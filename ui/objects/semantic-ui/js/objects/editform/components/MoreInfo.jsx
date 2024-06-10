@@ -14,7 +14,6 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
       includesPaths={[
         `${fieldPath}.colors`,
         `${fieldPath}.fabricationTechnologies`,
-        `${fieldPath}.materialType`,
         `${fieldPath}.secondaryMaterialTypes`,
       ]}
       label="Další údaje"

@@ -27,7 +27,6 @@ export const RestorationWork = ({
   setFieldTouched,
 }) => {
   const fieldPath = "metadata.restorationWork";
-
   return (
     <AccordionField
       includesPaths={[
@@ -70,7 +69,8 @@ export const RestorationWork = ({
                 editorConfig={{
                   toolbar:
                     "bold italic | bullist numlist | outdent indent | undo redo",
-                  valid_elements: "strong,b,div,br,p,i,li",
+                  valid_elements:
+                    "a,abbr,acronym,b,blockquote,br,code,div,table,tbody,td,th,tr,em,h1,h2,h3,h4,h5,i,li,ol,p,pre,span,strike,strong,sub,sup,u,ul",
                 }}
                 onBlur={async (event, editor) => {
                   const cleanedContent = await sanitizeInput(
