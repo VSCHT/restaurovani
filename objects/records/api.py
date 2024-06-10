@@ -7,6 +7,7 @@ from invenio_records_resources.records.systemfields.pid import PIDField, PIDFiel
 from invenio_vocabularies.records.api import Vocabulary
 from oarepo_runtime.records.relations import PIDRelation, RelationsField
 from oarepo_runtime.records.systemfields.has_draftcheck import HasDraftCheckField
+from oarepo_runtime.records.systemfields.owner import OwnersField
 from oarepo_runtime.records.systemfields.record_status import RecordStatusSystemField
 
 from objects.files.api import ObjectsFile, ObjectsFileDraft
@@ -22,6 +23,8 @@ from objects.records.models import (
 class ObjectsParentRecord(ParentRecord):
     model_cls = ObjectsParentMetadata
 
+    owners = OwnersField()
+
 
 class ObjectsIdProvider(DraftRecordIdProviderV2):
     pid_type = "rstr"
@@ -33,7 +36,9 @@ class ObjectsRecord(InvenioRecord):
 
     schema = ConstantField("$schema", "local://objects-1.0.0.json")
 
-    index = IndexField("objects-objects-1.0.0")
+    index = IndexField(
+        "objects-objects-1.0.0",
+    )
 
     pid = PIDField(provider=ObjectsIdProvider, context_cls=PIDFieldContext, create=True)
 
@@ -96,6 +101,9 @@ class ObjectsRecord(InvenioRecord):
 
     parent_record_cls = ObjectsParentRecord
     record_status = RecordStatusSystemField()
+    has_draft = HasDraftCheckField(
+        draft_cls=lambda: ObjectsDraft, config_key="HAS_DRAFT_CUSTOM_FIELD"
+    )
 
     files = FilesField(file_cls=ObjectsFile, store=False, create=False, delete=False)
 
@@ -109,7 +117,7 @@ class ObjectsDraft(InvenioDraft):
 
     schema = ConstantField("$schema", "local://objects-1.0.0.json")
 
-    index = IndexField("objects-objects_draft-1.0.0")
+    index = IndexField("objects-objects_draft-1.0.0", search_alias="objects")
 
     pid = PIDField(
         provider=ObjectsIdProvider,
@@ -185,10 +193,6 @@ class ObjectsDraft(InvenioDraft):
     bucket_id = ModelField(dump=False)
     bucket = ModelField(dump=False)
 
-
-ObjectsRecord.has_draft = HasDraftCheckField(
-    draft_cls=ObjectsDraft, config_key="HAS_DRAFT_CUSTOM_FIELD"
-)
 
 ObjectsFile.record_cls = ObjectsRecord
 

@@ -22,30 +22,6 @@
             "label": "created.label",
             "hint": "created.hint"
         },
-        "data": {
-            "detail": "datum",
-            "input": "datum",
-            "help": "data.help",
-            "label": "data.label",
-            "hint": "data.hint",
-            "children": {
-                "extractedText": {
-                    "detail": "fulltext",
-                    "input": "fulltext",
-                    "help": "data/extractedText.help",
-                    "label": "data/extractedText.label",
-                    "hint": "data/extractedText.hint"
-                },
-                "extractedTimestamp": {
-                    "detail": "datetime",
-                    "input": "datetime",
-                    "help": "data/extractedTimestamp.help",
-                    "label": "data/extractedTimestamp.label",
-                    "hint": "data/extractedTimestamp.hint",
-                    "facet": "data_extractedTimestamp"
-                }
-            }
-        },
         "id": {
             "detail": "keyword",
             "input": "keyword",
@@ -67,6 +43,45 @@
                     "label": "metadata/category.label",
                     "hint": "metadata/category.hint",
                     "facet": "metadata_category"
+                },
+                "restorationData": {
+                    "detail": "array",
+                    "input": "array",
+                    "help": "metadata/restorationData.help",
+                    "label": "metadata/restorationData.label",
+                    "hint": "metadata/restorationData.hint",
+                    "child": {
+                        "detail": "restorationdatum",
+                        "input": "restorationdatum",
+                        "help": "metadata/restorationData.help",
+                        "label": "metadata/restorationData.label",
+                        "hint": "metadata/restorationData.hint",
+                        "children": {
+                            "key": {
+                                "detail": "keyword",
+                                "input": "keyword",
+                                "help": "metadata/restorationData/key.help",
+                                "label": "metadata/restorationData/key.label",
+                                "hint": "metadata/restorationData/key.hint",
+                                "facet": "metadata_restorationData_key"
+                            },
+                            "text": {
+                                "detail": "fulltext",
+                                "input": "fulltext",
+                                "help": "metadata/restorationData/text.help",
+                                "label": "metadata/restorationData/text.label",
+                                "hint": "metadata/restorationData/text.hint"
+                            },
+                            "timestamp": {
+                                "detail": "datetime",
+                                "input": "datetime",
+                                "help": "metadata/restorationData/timestamp.help",
+                                "label": "metadata/restorationData/timestamp.label",
+                                "hint": "metadata/restorationData/timestamp.hint",
+                                "facet": "metadata_restorationData_timestamp"
+                            }
+                        }
+                    }
                 },
                 "restorationObject": {
                     "detail": false,
