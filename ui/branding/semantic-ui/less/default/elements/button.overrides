@@ -31,9 +31,6 @@
       margin: 0 auto;
       width: auto;
     }
-    & a {
-      color: @whiteColor;
-    }
   }
 
   &.secondary {
