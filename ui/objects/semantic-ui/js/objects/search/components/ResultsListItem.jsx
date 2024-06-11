@@ -34,9 +34,13 @@ const DetailsButton = ({ searchUrl, selfLink }) => {
     new URL(searchUrl, window.location.origin)
   );
   return (
-    <Button primary floated="right" aria-label="Zobrazit detail předmětu">
-      <a href={viewLink}>DETAIL</a>
-    </Button>
+    <a
+      className="ui primary button right floated"
+      aria-label="Zobrazit detail předmětu"
+      href={viewLink}
+    >
+      DETAIL
+    </a>
   );
 };
 
