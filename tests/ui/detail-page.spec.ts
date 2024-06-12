@@ -1,5 +1,4 @@
 import { test, expect } from "playwright/test";
-import { getRandomInt } from "./util";
 
 
 test("file download after clicking link", async ({ page }) => {
@@ -14,7 +13,7 @@ test("file download after clicking link", async ({ page }) => {
     const section = page.getByTestId("document-section");
     const numberOfFiles = await section.locator("a").count();
 
-    const randomIndex = await getRandomInt(numberOfFiles);
+    const randomIndex = Math.floor(Math.random() * numberOfFiles);
 
     await section.locator("a").nth(randomIndex).click();
 

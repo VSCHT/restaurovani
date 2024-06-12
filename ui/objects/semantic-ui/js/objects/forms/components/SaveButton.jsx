@@ -13,7 +13,7 @@ export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
       aria-label="tlacitko vytvoreni predmetu"
       disabled={isSubmitting}
       loading={isSubmitting}
-      data-testid='submit-button'
+      data-testid="submit-button"
       onClick={async () => {
         const err = await formik.validateForm();
         if (!formik.isValid) {
@@ -26,11 +26,8 @@ export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
         const res = await save();
 
         edit
-          ? (window.location.href = window.location.href.substring(
-              0,
-              window.location.href.lastIndexOf("/")
-            ))
-          : (window.location.href = `/objekty/${res.id}/edit`);
+          ? (window.location.href = res.links.edit_html)
+          : (window.location.href = res.links.self_html);
       }}
       content={title}
       type="submit"

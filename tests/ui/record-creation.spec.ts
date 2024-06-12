@@ -1,5 +1,4 @@
 import { test, expect } from "playwright/test";
-import { getRandomInt } from "./util";
 
 let apiContext;
 
@@ -58,7 +57,7 @@ test("successful form submit", async ({ page }) => {
 
     const labels = await page.$$(`${parentSelector} label`);
 
-    const randomIndex = await getRandomInt(labels.length);
+    const randomIndex = Math.floor(Math.random() * labels.length);
     const labelToClick = labels[randomIndex];
     await labelToClick.click();
 

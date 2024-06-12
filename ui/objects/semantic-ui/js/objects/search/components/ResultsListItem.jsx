@@ -16,26 +16,18 @@ import { withState, buildUID } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
 import { getCaption } from "../../detail";
 
-const ItemHeader = ({ title, searchUrl, selfLink }) => {
-  const viewLink = new URL(
-    selfLink,
-    new URL(searchUrl, window.location.origin)
-  );
+const ItemHeader = ({ title, selfLink }) => {
   return (
     <Item.Header>
-      <a href={viewLink}>{title}</a>
+      <a href={selfLink}>{title}</a>
     </Item.Header>
   );
 };
 
-const DetailsButton = ({ searchUrl, selfLink }) => {
-  const viewLink = new URL(
-    selfLink,
-    new URL(searchUrl, window.location.origin)
-  );
+const DetailsButton = ({ selfLink }) => {
   return (
     <Button primary floated="right" aria-label="Zobrazit detail předmětu">
-      <a href={viewLink}>DETAIL</a>
+      <a href={selfLink}>DETAIL</a>
     </Button>
   );
 };
@@ -78,7 +70,6 @@ export const ResultsListItemComponent = ({ result, appName }) => {
     "metadata.restorationWork.restorer",
     "<no data>"
   );
-
   const created = _get(result, "created", "<no data>");
   const creationDate = new Date(created).toLocaleDateString();
 
@@ -106,25 +97,16 @@ export const ResultsListItemComponent = ({ result, appName }) => {
         />
         {/* url */}
         <ItemContent>
-          <ItemHeader
-            title={title}
-            searchUrl={searchAppConfig.ui_endpoint}
-            selfLink={`${result.id}`}
-          />
+          <ItemHeader title={title} selfLink={result.links.self_html} />
           <ItemDescription>{restorer}</ItemDescription>
           <ItemDescription>
             <p>
-              {restDescription.length != 0
-                ? restDescription
-                : objDescription}
+              {restDescription.length != 0 ? restDescription : objDescription}
             </p>
           </ItemDescription>
           <ItemExtra>
             <Label size="large">Vloženo: {creationDate} </Label>
-            <DetailsButton
-              searchUrl={searchAppConfig.ui_endpoint}
-              selfLink={`${result.id}`}
-            />
+            <DetailsButton selfLink={result.links.self_html} />
           </ItemExtra>
         </ItemContent>
       </Item>
