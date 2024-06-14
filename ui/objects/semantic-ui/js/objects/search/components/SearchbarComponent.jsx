@@ -26,10 +26,10 @@ export const CustomSB = ({
         queryString !== "" && (
           <Button.Group>
             <Button onClick={handleReset} className="small transparent">
-              <Icon color="black" name="delete" />
+              <Icon color="black" name="delete" data-testid="clear-button"/>
             </Button>
             <Button onClick={onBtnSearchClick} className="small transparent">
-              <Icon color="black" name="search"/>
+              <Icon color="black" name="search" data-testid="search-button"/>
             </Button>
           </Button.Group>
         )

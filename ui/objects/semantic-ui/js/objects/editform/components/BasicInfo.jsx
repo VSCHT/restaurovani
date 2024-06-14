@@ -14,7 +14,6 @@ import {
 } from "react-invenio-forms";
 import { Grid } from "semantic-ui-react";
 import { ArrayFieldItem, sanitizeInput } from "@js/oarepo_ui";
-
 import {
   LocalVocabularySelectField,
   VocabularyTreeSelectField,
