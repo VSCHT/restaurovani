@@ -41,7 +41,7 @@ objects = "objects.ext:ObjectsExt"
 objects = "objects.ext:ObjectsExt"
 
 [project.entry-points."invenio_db.alembic"]
-objects = "common:alembic"
+objects = "objects:alembic"
 
 [project.entry-points."invenio_db.models"]
 objects = "objects.records.models"
@@ -74,9 +74,6 @@ objects_file = "objects.models:ui.json"
 [project.entry-points."oarepo.fixtures"]
 fixtures = "fixtures"
 
-[project.entry-points."invenio_requests.types"]
-objects_delete_record = "objects.records.requests.delete_record.types:DeleteRecordRequestType"
-objects_publish_draft = "objects.records.requests.publish_draft.types:PublishDraftRequestType"
 [project.optional-dependencies]
 tests = [
     "pytest-invenio>=1.4.11",

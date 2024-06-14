@@ -1,19 +1,13 @@
 from oarepo_requests.resolvers.ui import (
-    FallbackEntityReferenceUIResolver,
-    GroupEntityReferenceUIResolver,
     RecordEntityDraftReferenceUIResolver,
     RecordEntityReferenceUIResolver,
-    UserEntityReferenceUIResolver,
 )
 from oarepo_requests.resources.draft.resource import DraftRecordRequestsResource
 from oarepo_requests.services.draft.service import DraftRecordRequestsService
-from oarepo_runtime.records.entity_resolvers import GroupResolver, UserResolver
 
 from objects.files.api import ObjectsFileDraft
 from objects.files.requests.resolvers import ObjectsFileDraftResolver
 from objects.records.api import ObjectsDraft, ObjectsRecord
-from objects.records.requests.delete_record.types import DeleteRecordRequestType
-from objects.records.requests.publish_draft.types import PublishDraftRequestType
 from objects.records.requests.resolvers import ObjectsDraftResolver, ObjectsResolver
 from objects.resources.files.config import (
     ObjectsFileDraftResourceConfig,
@@ -51,15 +45,7 @@ OBJECTS_REQUESTS_RESOURCE_CLASS = DraftRecordRequestsResource
 OBJECTS_REQUESTS_SERVICE_CLASS = DraftRecordRequestsService
 
 
-REQUESTS_REGISTERED_TYPES = [
-    DeleteRecordRequestType(),
-    PublishDraftRequestType(),
-]
-
-
 REQUESTS_ENTITY_RESOLVERS = [
-    UserResolver(),
-    GroupResolver(),
     ObjectsResolver(record_cls=ObjectsRecord, service_id="objects", type_key="objects"),
     ObjectsDraftResolver(
         record_cls=ObjectsDraft, service_id="objects", type_key="objects_draft"
@@ -73,13 +59,10 @@ REQUESTS_ENTITY_RESOLVERS = [
 
 
 ENTITY_REFERENCE_UI_RESOLVERS = {
-    "user": UserEntityReferenceUIResolver("user"),
-    "fallback": FallbackEntityReferenceUIResolver("fallback"),
-    "group": GroupEntityReferenceUIResolver("group"),
     "objects": RecordEntityReferenceUIResolver("objects"),
     "objects_draft": RecordEntityDraftReferenceUIResolver("objects_draft"),
 }
-REQUESTS_UI_SERIALIZATION_REFERENCED_FIELDS = ["created_by", "receiver", "topic"]
+REQUESTS_UI_SERIALIZATION_REFERENCED_FIELDS = []
 
 
 OBJECTS_FILES_RESOURCE_CONFIG = ObjectsFileResourceConfig

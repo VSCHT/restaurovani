@@ -20,69 +20,6 @@
             "file": "objects/records/mappings/os-v2/objects/objects-1.0.0.json",
             "index-field-args": []
         },
-        "requests": {
-            "types": {
-                "delete-record": {
-                    "base-classes": [
-                        "oarepo_requests.types.delete_record.DeleteRecordRequestType"
-                    ],
-                    "module": "objects.records.requests.delete_record.types",
-                    "class": "objects.records.requests.delete_record.types.DeleteRecordRequestType",
-                    "generate": true,
-                    "id": "objects_delete_record",
-                    "actions": {}
-                }
-            },
-            "api-blueprint": {
-                "generate": true,
-                "alias": "objects_requests",
-                "module": "objects.views.requests.api",
-                "function": "objects.views.requests.api.create_api_blueprint",
-                "imports": []
-            },
-            "app-blueprint": {
-                "generate": true,
-                "alias": "objects_requests",
-                "extra_code": "",
-                "module": "objects.views.requests.app",
-                "function": "objects.views.requests.app.create_app_blueprint",
-                "imports": []
-            },
-            "resource": {
-                "generate": true,
-                "config-key": "OBJECTS_REQUESTS_RESOURCE_CLASS",
-                "class": "oarepo_requests.resources.draft.resource.DraftRecordRequestsResource",
-                "additional-args": [
-                    "record_requests_config={{oarepo_requests.resources.draft.config.DraftRecordRequestsResourceConfig}}()"
-                ],
-                "skip": false
-            },
-            "service": {
-                "generate": true,
-                "config-key": "OBJECTS_REQUESTS_SERVICE_CLASS",
-                "class": "oarepo_requests.services.draft.service.DraftRecordRequestsService",
-                "additional-args": [
-                    "record_service=self.service_records",
-                    "oarepo_requests_service={{oarepo_requests.proxies.current_oarepo_requests_service}}"
-                ],
-                "skip": false
-            },
-            "additional-resolvers": [
-                "{{oarepo_runtime.records.entity_resolvers.UserResolver}}()",
-                "{{oarepo_runtime.records.entity_resolvers.GroupResolver}}()"
-            ],
-            "additional-ui-resolvers": {
-                "\"user\"": "{{oarepo_requests.resolvers.ui.UserEntityReferenceUIResolver}}(\"user\")",
-                "\"fallback\"": "{{oarepo_requests.resolvers.ui.FallbackEntityReferenceUIResolver}}(\"fallback\")",
-                "\"group\"": "{{oarepo_requests.resolvers.ui.GroupEntityReferenceUIResolver}}(\"group\")"
-            },
-            "ui-serialization-referenced-fields": [
-                "\"created_by\"",
-                "\"receiver\"",
-                "\"topic\""
-            ]
-        },
-        "searchable": true,
         "permissions": {
             "presets": [
                 "authenticated"
@@ -99,7 +36,6 @@
         "marshmallow": {
             "imports": [],
             "base-classes": [
-                "oarepo_requests.services.schema.RequestsSchemaMixin",
                 "oarepo_runtime.services.schema.marshmallow.BaseRecordSchema"
             ],
             "generate": true,
@@ -108,6 +44,23 @@
             "extra-code": ""
         },
         "custom-fields": [],
+        "searchable": true,
+        "ui": {
+            "marshmallow": {
+                "imports": [],
+                "base-classes": [
+                    "oarepo_requests.services.ui_schema.UIRequestsSerializationMixin",
+                    "oarepo_runtime.services.schema.ui.InvenioUISchema"
+                ],
+                "generate": true,
+                "module": "objects.services.records.ui_schema",
+                "class": "objects.services.records.ui_schema.ObjectsUISchema",
+                "extra-code": ""
+            },
+            "module": "objects.models",
+            "file": "objects/models/ui.json",
+            "alias": "objects"
+        },
         "pid": {
             "type": "rstr",
             "provider-base-classes": [
@@ -131,21 +84,17 @@
             ],
             "extra-code": ""
         },
-        "ui": {
-            "marshmallow": {
-                "imports": [],
-                "base-classes": [
-                    "oarepo_requests.services.ui_schema.UIRequestsSerializationMixin",
-                    "oarepo_runtime.services.schema.ui.InvenioUISchema"
-                ],
-                "generate": true,
-                "module": "objects.services.records.ui_schema",
-                "class": "objects.services.records.ui_schema.ObjectsUISchema",
-                "extra-code": ""
-            },
-            "module": "objects.models",
-            "file": "objects/models/ui.json",
-            "alias": "objects"
+        "search-options": {
+            "base-classes": [
+                "oarepo_runtime.services.search.SearchOptions"
+            ],
+            "module": "objects.services.records.search",
+            "class": "objects.services.records.search.ObjectsSearchOptions",
+            "generate": true,
+            "extra-code": "",
+            "imports": [],
+            "fields": {},
+            "sort-options-field": "sort_options"
         },
         "resource-config": {
             "base-html-url": "/objects/",
@@ -161,18 +110,6 @@
             "imports": [],
             "additional-args": []
         },
-        "search-options": {
-            "base-classes": [
-                "oarepo_runtime.services.search.SearchOptions"
-            ],
-            "generate": true,
-            "module": "objects.services.records.search",
-            "extra-code": "",
-            "class": "objects.services.records.search.ObjectsSearchOptions",
-            "imports": [],
-            "fields": {},
-            "sort-options-field": "sort_options"
-        },
         "module": {
             "qualified": "objects",
             "alias": "objects",
@@ -187,6 +124,11 @@
             "suffix": "objects",
             "suffix-upper": "OBJECTS",
             "suffix-snake": "objects"
+        },
+        "tests": {
+            "extra-fixtures": [],
+            "extra-code": "",
+            "module": "tests"
         },
         "draft-files": {
             "type": "draft-file",
@@ -208,10 +150,15 @@
                 "module": "tests"
             }
         },
-        "tests": {
-            "extra-fixtures": [],
-            "extra-code": "",
-            "module": "tests"
+        "draft": {
+            "type": "draft_record",
+            "properties": {},
+            "searchable": true,
+            "tests": {
+                "extra-fixtures": [],
+                "extra-code": "",
+                "module": "tests"
+            }
         },
         "files": {
             "type": "file",
@@ -294,7 +241,6 @@
                     "type": "keyword"
                 }
             },
-            "searchable": true,
             "marshmallow": {
                 "imports": [
                     {
@@ -306,6 +252,7 @@
                     "InvenioFileSchema"
                 ]
             },
+            "searchable": true,
             "service-config": {
                 "base-classes": [
                     "common.services.files.RestorationFileServiceConfig"
@@ -322,25 +269,6 @@
                 "module": "tests"
             }
         },
-        "draft": {
-            "type": "draft_record",
-            "properties": {},
-            "requests": {
-                "types": {
-                    "publish-draft": {
-                        "base-classes": [
-                            "oarepo_requests.types.publish_draft.PublishDraftRequestType"
-                        ]
-                    }
-                }
-            },
-            "searchable": true,
-            "tests": {
-                "extra-fixtures": [],
-                "extra-code": "",
-                "module": "tests"
-            }
-        },
         "sample": {
             "file": "data/sample_data.yaml"
         },
@@ -349,6 +277,44 @@
             "skip": false
         },
         "model-name": "Objects",
+        "record-resolver": {
+            "generate": true,
+            "module": "objects.records.requests.resolvers",
+            "class": "objects.records.requests.resolvers.ObjectsResolver",
+            "base-classes": [
+                "oarepo_runtime.records.entity_resolvers.RecordResolver"
+            ],
+            "imports": [],
+            "custom-proxy-class": "oarepo_runtime.records.entity_resolvers.RecordProxy"
+        },
+        "ui-record-resolver": {
+            "generate": true,
+            "class": "oarepo_requests.resolvers.ui.RecordEntityReferenceUIResolver"
+        },
+        "record": {
+            "base-classes": [
+                "invenio_drafts_resources.records.api.Record{InvenioRecord}"
+            ],
+            "generate": true,
+            "module": "objects.records.api",
+            "class": "objects.records.api.ObjectsRecord",
+            "imports": [],
+            "extra-code": "",
+            "fields": {}
+        },
+        "resource": {
+            "base-classes": [
+                "invenio_drafts_resources.resources.RecordResource"
+            ],
+            "generate": true,
+            "config-key": "OBJECTS_RECORD_RESOURCE_CLASS",
+            "module": "objects.resources.records.resource",
+            "class": "objects.resources.records.resource.ObjectsResource",
+            "proxy": "current_resource",
+            "extra-code": "",
+            "imports": [],
+            "additional-args": []
+        },
         "config": {
             "generate": true,
             "module": "objects.config",
@@ -395,57 +361,14 @@
             "module": "objects.proxies",
             "generate": true
         },
-        "record": {
-            "base-classes": [
-                "invenio_drafts_resources.records.api.Record{InvenioRecord}"
+        "files-field": {
+            "generate": true,
+            "field-class": "invenio_records_resources.records.systemfields.FilesField",
+            "file-class": "objects.records.api.ObjectsRecord",
+            "field-args": [
+                "store=False"
             ],
-            "generate": true,
-            "module": "objects.records.api",
-            "class": "objects.records.api.ObjectsRecord",
-            "imports": [],
-            "extra-code": "",
-            "fields": {}
-        },
-        "resource": {
-            "base-classes": [
-                "invenio_drafts_resources.resources.RecordResource"
-            ],
-            "generate": true,
-            "config-key": "OBJECTS_RECORD_RESOURCE_CLASS",
-            "module": "objects.resources.records.resource",
-            "class": "objects.resources.records.resource.ObjectsResource",
-            "proxy": "current_resource",
-            "extra-code": "",
-            "imports": [],
-            "additional-args": []
-        },
-        "translations": {
-            "module": "objects.translations",
-            "alias": "objects"
-        },
-        "json-schema-settings": {
-            "generate": true,
-            "alias": "objects",
-            "version": "1.0.0",
-            "module": "objects.records.jsonschemas",
-            "name": "objects-1.0.0.json",
-            "file": "objects/records/jsonschemas/objects-1.0.0.json"
-        },
-        "json-serializer": {
-            "module": "objects.resources.records.ui",
-            "class": "objects.resources.records.ui.ObjectsUIJSONSerializer",
-            "base-classes": [
-                "oarepo_runtime.resources.LocalizedUIJSONSerializer"
-            ],
-            "imports": [],
-            "extra-code": "",
-            "generate": true,
-            "list_schema_cls": "flask_resources.BaseListSchema",
-            "format_serializer_cls": "flask_resources.serializers.JSONSerializer",
-            "schema-context-args": {
-                "\"object_key\"": "\"ui\"",
-                "\"identity\"": "{{ flask.g{g.identity} }}"
-            }
+            "imports": []
         },
         "record-metadata": {
             "generate": true,
@@ -492,9 +415,9 @@
             "service-id": "objects",
             "components": [
                 "{{oarepo_runtime.services.components.OwnersComponent}}",
-                "{{invenio_records_resources.services.records.components.DataComponent}}",
                 "{{oarepo_runtime.services.files.FilesComponent}}",
-                "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}"
+                "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}",
+                "{{invenio_records_resources.services.records.components.DataComponent}}"
             ],
             "additional-args": []
         },
@@ -512,50 +435,33 @@
             ],
             "imports": []
         },
-        "files-field": {
-            "generate": true,
-            "field-class": "invenio_records_resources.records.systemfields.FilesField",
-            "file-class": "objects.records.api.ObjectsRecord",
-            "field-args": [
-                "store=False"
-            ],
-            "imports": []
+        "translations": {
+            "module": "objects.translations",
+            "alias": "objects"
         },
-        "edtf-interval-dumper": {
+        "json-schema-settings": {
             "generate": true,
-            "module": "objects.records.dumpers.edtf",
-            "class": "objects.records.dumpers.edtf.ObjectsEDTFIntervalDumperExt",
-            "base-classes": [
-                "oarepo_runtime.records.dumpers.edtf_interval.EDTFIntervalDumperExt"
-            ],
-            "extra-code": "",
-            "extensions": [],
-            "imports": []
+            "alias": "objects",
+            "version": "1.0.0",
+            "module": "objects.records.jsonschemas",
+            "name": "objects-1.0.0.json",
+            "file": "objects/records/jsonschemas/objects-1.0.0.json"
         },
-        "record-list": {
-            "generate": true,
-            "module": "objects.services.records.results",
-            "class": "objects.services.records.results.ObjectsRecordList",
-            "extra-code": "",
+        "json-serializer": {
+            "module": "objects.resources.records.ui",
+            "class": "objects.resources.records.ui.ObjectsUIJSONSerializer",
             "base-classes": [
-                "oarepo_runtime.services.results.RecordList"
+                "oarepo_runtime.resources.LocalizedUIJSONSerializer"
             ],
-            "components": [],
-            "imports": []
-        },
-        "record-item": {
-            "generate": true,
-            "module": "objects.services.records.results",
-            "class": "objects.services.records.results.ObjectsRecordItem",
+            "imports": [],
             "extra-code": "",
-            "base-classes": [
-                "oarepo_runtime.services.results.RecordItem"
-            ],
-            "components": [
-                "{{oarepo_requests.services.results.RequestsComponent}}()",
-                "{{oarepo_requests.services.results.RequestTypesComponent}}()"
-            ],
-            "imports": []
+            "generate": true,
+            "list_schema_cls": "flask_resources.BaseListSchema",
+            "format_serializer_cls": "flask_resources.serializers.JSONSerializer",
+            "schema-context-args": {
+                "\"object_key\"": "\"ui\"",
+                "\"identity\"": "{{ flask.g{g.identity} }}"
+            }
         },
         "draft-parent-record": {
             "class": "objects.records.api.ObjectsParentRecord",
@@ -621,6 +527,82 @@
             ],
             "imports": []
         },
+        "edtf-interval-dumper": {
+            "generate": true,
+            "module": "objects.records.dumpers.edtf",
+            "class": "objects.records.dumpers.edtf.ObjectsEDTFIntervalDumperExt",
+            "base-classes": [
+                "oarepo_runtime.records.dumpers.edtf_interval.EDTFIntervalDumperExt"
+            ],
+            "extra-code": "",
+            "extensions": [],
+            "imports": []
+        },
+        "record-list": {
+            "generate": true,
+            "module": "objects.services.records.results",
+            "class": "objects.services.records.results.ObjectsRecordList",
+            "extra-code": "",
+            "base-classes": [
+                "oarepo_runtime.services.results.RecordList"
+            ],
+            "components": [],
+            "imports": []
+        },
+        "record-item": {
+            "generate": true,
+            "module": "objects.services.records.results",
+            "class": "objects.services.records.results.ObjectsRecordItem",
+            "extra-code": "",
+            "base-classes": [
+                "oarepo_runtime.services.results.RecordItem"
+            ],
+            "components": [
+                "{{oarepo_requests.services.results.RequestsComponent}}()",
+                "{{oarepo_requests.services.results.RequestTypesComponent}}()"
+            ],
+            "imports": []
+        },
+        "requests": {
+            "types": {},
+            "api-blueprint": {
+                "generate": true,
+                "alias": "objects_requests",
+                "module": "objects.views.requests.api",
+                "function": "objects.views.requests.api.create_api_blueprint",
+                "imports": []
+            },
+            "app-blueprint": {
+                "generate": true,
+                "alias": "objects_requests",
+                "extra_code": "",
+                "module": "objects.views.requests.app",
+                "function": "objects.views.requests.app.create_app_blueprint",
+                "imports": []
+            },
+            "resource": {
+                "generate": true,
+                "config-key": "OBJECTS_REQUESTS_RESOURCE_CLASS",
+                "class": "oarepo_requests.resources.draft.resource.DraftRecordRequestsResource",
+                "additional-args": [
+                    "record_requests_config={{oarepo_requests.resources.draft.config.DraftRecordRequestsResourceConfig}}()"
+                ],
+                "skip": false
+            },
+            "service": {
+                "generate": true,
+                "config-key": "OBJECTS_REQUESTS_SERVICE_CLASS",
+                "class": "oarepo_requests.services.draft.service.DraftRecordRequestsService",
+                "additional-args": [
+                    "record_service=self.service_records",
+                    "oarepo_requests_service={{oarepo_requests.proxies.current_oarepo_requests_service}}"
+                ],
+                "skip": false
+            },
+            "additional-resolvers": [],
+            "additional-ui-resolvers": {},
+            "ui-serialization-referenced-fields": []
+        },
         "parent-record-marshmallow": {
             "module": "objects.services.records.schema",
             "class": "objects.services.records.schema.GeneratedParentSchema",
@@ -628,19 +610,6 @@
             "base-classes": [
                 "invenio_drafts_resources.services.records.schema.ParentSchema{InvenioParentSchema}"
             ]
-        },
-        "record-resolver": {
-            "generate": true,
-            "module": "objects.records.requests.resolvers",
-            "class": "objects.records.requests.resolvers.ObjectsResolver",
-            "base-classes": [
-                "oarepo_runtime.records.entity_resolvers.RecordResolver"
-            ],
-            "imports": []
-        },
-        "ui-record-resolver": {
-            "generate": true,
-            "class": "oarepo_requests.resolvers.ui.RecordEntityReferenceUIResolver"
         },
         "sortable": [],
         "properties": {

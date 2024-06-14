@@ -2,7 +2,6 @@ from invenio_drafts_resources.services import (
     RecordServiceConfig as InvenioRecordDraftsServiceConfig,
 )
 from invenio_drafts_resources.services.records.components import DraftFilesComponent
-from invenio_drafts_resources.services.records.config import is_record
 from invenio_records_resources.services import (
     ConditionalLink,
     RecordLink,
@@ -48,9 +47,9 @@ class ObjectsServiceConfig(
         *PermissionsPresetsConfigMixin.components,
         *InvenioRecordDraftsServiceConfig.components,
         OwnersComponent,
-        DataComponent,
         FilesComponent,
         DraftFilesComponent,
+        DataComponent,
     ]
 
     model = "objects"
@@ -63,7 +62,7 @@ class ObjectsServiceConfig(
             "draft": RecordLink("{+api}/objects/{id}/draft"),
             "edit_html": RecordLink("{+ui}/objects/{id}/edit", when=has_draft),
             "files": ConditionalLink(
-                cond=is_record,
+                cond=is_published_record,
                 if_=RecordLink("{+api}/objects/{id}/files"),
                 else_=RecordLink("{+api}/objects/{id}/draft/files"),
             ),

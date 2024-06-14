@@ -61,7 +61,6 @@ record:
     base-html-url: /objects/
   use:
   - invenio
-  - ./objects-requests.yaml
   - ./objects-custom-fields.yaml
   - ./objects-mapping-settings.yaml
 

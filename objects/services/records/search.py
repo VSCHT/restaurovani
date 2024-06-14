@@ -1,5 +1,4 @@
 from oarepo_runtime.services.search import SearchOptions
-from invenio_records_resources.services import SearchOptions as InvenioSearchOptions
 
 from . import facets
 
@@ -59,14 +58,6 @@ class ObjectsSearchOptions(SearchOptions):
         "metadata_restorationWork_workType": facets.metadata_restorationWork_workType,
         "metadata_submissionStatus": facets.metadata_submissionStatus,
         **getattr(SearchOptions, "facets", {}),
-    }
-
-
-class ObjectsDraftSearchOptions(InvenioSearchOptions):
-
-    facet_groups = {}
-
-    facets = {
         "record_status": facets.record_status,
         "has_draft": facets.has_draft,
     }
