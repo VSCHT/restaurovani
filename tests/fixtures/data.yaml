@@ -1,0 +1,1169 @@
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: -1300
+      until: -920
+    description: Zásobnice 2240 byla převzata s výplní a okolní zeminou ve formě "in
+      situ" zabalena v potravinové folii. Po odstranění balu a vypreparování vnitřní
+      výplně byla uvnitř nalezena mísa. Oba předměty byly zařazeny do knovízské kultury,
+      míse bylo přiřazeno inv. číslo 2240B, zásobnici 2240A. Výplň obsahovala kromě
+      keramických střepů i zbytky kostí z žárového pohřbu a kamenný hrot. Veškerá
+      výplň byla po dokonalém vyschnutí uložena do sáčků a odeslána na proplavení.
+    dimensions:
+    - dimension:
+        id: vyska
+      unit: mm zásobnice
+      value: 265.0
+    - dimension:
+        id: prumer
+      unit: mm zásobnice
+      value: 430.0
+    - dimension:
+        id: prumer
+      unit: mm zásobnice
+      value: 100.0
+    - dimension:
+        id: vyska
+      unit: mm mísa
+      value: 62.0
+    - dimension:
+        id: prumer
+      unit: mm mísy v ústí
+      value: 195.0
+    - dimension:
+        id: prumer
+      unit: mm mísy
+      value: 40.0
+    itemTypes:
+    - id: keramika-zasobnice
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Amforovitá zásobnice a miska
+  restorationWork:
+    abstract: Preparace suchou cestou pomocí špachtle z týkového dřeva. Vyhledané
+      střepy byly lepeny ode dna Dispercollem D3. K doplnění sádrou byly použity otevřené
+      formy z modelíny a u nádoby 2240B z dentálního vosku. Následovala mechanická
+      a barevná retuš, na sádru byla nejprve nanesena štětcem barva skládající se
+      z bílého BALAKRYLu, který byl následně barven temperovými barvami a přírodními
+      minerálními pigmenty.
+    examinationMethods:
+    - id: difra-xrd
+    - id: mikr-svetelny-mikroskop-studium-puvodniho-povrchu
+    - id: mikr-svetelna-polarizacni-mikroskopie-keramicke-vybrusy-nabrusy
+    - id: spektro-xrf
+    restorationMethods: []
+    restorationPeriod:
+      since: '2014-02-01'
+      until: '2014-07-01'
+    restorer: Alblová Daniela
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    - fullName: Zemenová Petra, Ing. Ph.D.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: -2200
+      until: -1700
+    description: Nádoba 1201 byla převzata ve formě „in situ“. Byla slepena ze 45
+      fragmentů, některé střepy nebyly umístěny. Nádobě zcela chybí horní okraj a
+      i na jejím těle jsou značné ztráty. Jedná se o hrncovitou zásobnici, zdobenou
+      pupky. Dochován je pouze jeden, druhý byl pravděpodobně symetricky umístěn na
+      druhé straně.
+    dimensions:
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 360.0
+    itemTypes:
+    - id: keramika-zasobnice
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Únětická hrncovitá zásobnice
+  restorationWork:
+    abstract: Nádoba byla mechanicky očištěna, výplň vlhčena vodou, protože byla pevná.
+      Veškerá výplň byla po dokonalém vyschnutí uložena do sáčků a odeslána na proplavení.
+      po vyhledání bylo lepeno Dispercollem D2, podpůrné lepení pomocí EVAC a špejlí,
+      a následné doplnění sádrou a provedení mechanické retuše. Doplňky ponechány
+      na přání zadavatele bílé. Na závěr uvedeny podmínky uložení.
+    examinationMethods:
+    - id: difra-xrd
+    - id: mikr-svetelny-mikroskop-studium-puvodniho-povrchu
+    - id: mikr-svetelna-polarizacni-mikroskopie-keramicke-vybrusy-nabrusy
+    - id: spektro-xrf
+    - id: tama-dsc
+    restorationMethods: []
+    restorationPeriod:
+      since: '2014-02-01'
+      until: '2014-07-01'
+    restorer: Alblová Daniela
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: 1728
+      until: 1744
+    description: Fajánsový podšálek s motivem granátových jablek a opatřený značkou
+      je datován do období let 1728 až 1744. Byl vyroben v manufaktuře v Bayreuthu
+      v Bavorsku. Podšálek byl nalezen při archeologických výzkumech na Hradčanech
+      v Praze.
+    dimensions:
+    - dimension:
+        id: prumer
+      unit: mm
+      value: 125.0
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 26.0
+    itemTypes:
+    - id: keramika-stolni-keramika
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Fajánsový podšálek
+  restorationWork:
+    abstract: V rámci restaurátorského zásahu proběhla nejdříve dekompozice předmětu.
+      Poté proběhlo čištění jednotlivých fragmentů za pomoci 1 % roztoku detergentu
+      (Spolapon AOS 146), ethanolu a acetonu. Lepení bylo provedeno 10 % a 30 % roztokem
+      Paraloidu B72 v acetonu. Ztráty byly doplněny sádrou (VELOX EN ISO 6873 – typ
+      2). Na závěr byla provedena plastická a barevná retuš barvami UMTON.
+    examinationMethods:
+    - id: difra-xrd
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-02-01'
+      until: '2018-06-01'
+    restorer: Pulcová Veronika
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    - fullName: Kolářová Mária, Ing. Ph.D.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: 1550
+      until: 1640
+    description: Předmět je ukázkou produkce tzv. berounského zboží. Hrnek soudkovitého
+      tvaru s lehce odsazeným dnem na nízké patce byla určena k pití nápojů. Po vnější
+      straně je zdoben jednoduchým geometrickým motivem provedeným žlutou a zelenou
+      engobou, která byla nanášena tzv. kukačkou, nástrojem ve tvaru baňky či konvičky,
+      z nějž engoba vytékala úzkým hrdlem ze seříznutého husího brku. Hrnek byl nalezen
+      při záchranných archeologických výzkumech v Praze na Hradčanech.
+    dimensions:
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 105.0
+    - dimension:
+        id: sirka
+      unit: mm
+      value: 130.0
+    - dimension:
+        id: obvod
+      unit: mm
+      value: 340.0
+    itemTypes:
+    - id: keramika-stolni-keramika
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Hrnek
+  restorationWork:
+    abstract: Během restaurátorského zásahu proběhlo čistění vlažnou vodou (popř.
+      s přídavkem 1% roztoku detergentu SPOLAPONU AOS 146) pomocí kartáčků či houbiček.
+      Dekompozice byla provedena za použití horkovzdušné pistole a pomocí vody. Při
+      lepení bylo užito adhezivum LASCAUX 498 HV. Ztráty byly doplněny sádrou VELOX
+      EN ISO 6873- typ 2 a barevná retuš provedena barvami UMTON.
+    examinationMethods:
+    - id: difra-xrd
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-02-01'
+      until: '2018-06-01'
+    restorer: Pulcová Kateřina
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    - fullName: Kolářová Mária, Ing. Ph.D.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: false
+    category: keramika
+    creationPeriod:
+      since: 1880
+      until: 1890
+    description: Jedná se o párovou vázu z porcelánové manufaktury v Míšni. Druhá
+      váza byla restaurována v rámci bakalářské práce Margarity Gorelikové v roce
+      2016. Obě vázy jsou v soukromém vlastnictví. Vázu lze přibližně datovat podle
+      kobaltové značky pod glazurou na dně podstavce. Váza je bohatě zdobena plastickými
+      i malovanými florálními dekory. V dolní části těla vázy je plastika letícího
+      amorka, který v ruce drží květiny a na zrestaurovaném podstavci je doplněná
+      plastika sedícího dítěte. Váza je barevně dekorována naglazurovými barvami a
+      zlacením.
+    dimensions:
+    - dimension:
+        id: vyska
+      unit: cm
+      value: 24.0
+    - dimension:
+        id: sirka
+      unit: cm
+      value: 21.0
+    itemTypes:
+    - id: keramika-vaza
+    - id: keramika-plastika-dekorace
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: soukromy-vlastnik
+    title: Porcelánová párová váza z Míšně
+  restorationWork:
+    abstract: Restaurátorský záměr byl navržen na základě výsledků provedeného průzkumu
+      předmětu a požadavků zadavatele. Proběhlo lepení (HXTAL–NYL 1), doplnění ztrát(Alteco
+      A+B Epo Putty ) a barevná retuš (Pébéo Ceramic), tak aby se vzhled vázy co nejvíce
+      podobal původnímu stavu při dodržení pravidel restaurátorské etiky.
+    examinationMethods:
+    - id: difra-xrd
+    - id: mikr-svetelny-mikroskop-studium-puvodniho-povrchu
+    - id: spektro-xrf
+    - id: spektro-sem-eds
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-01-01'
+      until: '2018-07-01'
+    restorer: Hubnerová Barbora
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: 1500
+      until: 1550
+    description: 'Jde o nástěnný keramický reliéf ve tvaru lunety opatřený barevnou
+      glazurou. Vnitřní prostor lunety je vyplněn motivem bílého (heraldicky správně:
+      stříbrného) lva na červeném poli obklopeného rostlinnou rozvilinou. Jedná se
+      o dvouocasého tzv. Českého lva. Reliéf vznikl vtlačením do formy.'
+    dimensions:
+    - dimension:
+        id: delka
+      unit: mm
+      value: 447.0
+    - dimension:
+        id: sirka
+      unit: mm
+      value: 332.0
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 85.0
+    itemTypes: []
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Barevný keramický reliéf
+  restorationWork:
+    abstract: Byly vyhledány fragmenty pro doplnění, provedeno čištění dohledaných
+      fragmentů (voda + detergent zn. SPOLAPON AOS 146 – 1 % roztok), mechanické dočištění
+      a chemické dočištění povrchových nánosů 1 % roztok HCl, dále neutralizace, lepení
+      ( LASCAUX® 498 HV) a separace nátěrem separátoru (zn. LUKOPREN®). Následně proběhlo
+      doplnění ztrát (sádra – zn. VELOX®), mechanická retuš a barevná retuš doplňků
+      (tempera UMTON® + latex zn. HET – v podílu 5:1). Na závěr byly navrženy podmínky
+      uložení.
+    examinationMethods:
+    - id: difra-xrd
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-02-01'
+      until: '2018-07-01'
+    restorer: Vejsada Ondřej
+    supervisors:
+    - fullName: Kolářová Mária, Ing. Ph.D.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: 1500
+      until: 1550
+    description: Jde o nástěnný keramický reliéf (kachel) ve tvaru lunety opatřený
+      zelenou glazurou. Vnitřní prostor lunety je vyplněn motivem českého dvouocasého
+      lva obklopeného rostlinnou rozvilinou. Předmět lze datovat do první poloviny
+      16. století.
+    dimensions:
+    - dimension:
+        id: delka
+      unit: mm
+      value: 397.0
+    - dimension:
+        id: sirka
+      unit: mm
+      value: 186.0
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 90.0
+    itemTypes:
+    - id: keramika-obklad-dlazdice-kachle
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Zelený keramický reliéf
+  restorationWork:
+    abstract: Dekompozice torza zelené lunety proběhla za pomoci vody. Fragmenty byly
+      očištěny (voda + detergent zn. SPOLAPON AOS 146 – 1 % roztok). Střepy byly neutralizovány
+      vodou a poté lepeny adhezivem (zn. LASCAUX® 498 HV). Ztráty byly doplněny sádrou
+      (zn. VELOX®). Následně byla provedena mechanická a barevná retuš doplňků (tempera
+      – zn. mistrovské temperové barvy UMTON® + latex zn. HET – v podílu 5:1). V závěru
+      byly navrženy podmínky uložení.
+    examinationMethods:
+    - id: difra-xrd
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-02-01'
+      until: '2018-07-01'
+    restorer: Vejsada Ondřej
+    supervisors:
+    - fullName: Kolářová Mária, Ing. Ph.D.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: 1700
+      until: 1799
+    description: Fajánsový talíř s kobaltovým dekorem nebyl opatřen značkou. Lze jej
+      datovat do 18. století a vyroben byl pravděpodobně v některé z manufaktur ve
+      Francích (v Ansbachu či Norimberku), pro něž byla v průběhu 18. století produkce
+      modro-bílého zboží typickou. Architektonický prvek uvnitř zrcadla talíře odráží
+      dobovou zálibu v orientálních (zejm. východoasijských) motivech. Předmět byl
+      nalezen při archeologických průzkumech v Praze na Hradčanech.
+    dimensions:
+    - dimension:
+        id: prumer
+      unit: mm
+      value: 215.0
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 16.0
+    itemTypes:
+    - id: keramika-stolni-keramika
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Fajánsový talíř
+  restorationWork:
+    abstract: Hlavním požadavkem bylo provést rekonzervaci předmětů a vrátit je do
+      stavu po prvotním restaurování. Proběhla dekompozice předmětu, odebrání vzorků
+      a příslušné analýzy. Předmět byl důkladně vyčištěn vodou a vodou a detergentem
+      (1% roztok SPOLAPON®), proběhlo také čištění (arbocel 15 % roztok peroxidu vodíku).
+      Následně byl předmět slepen pomocí vhodného adheziva (PARALOID B72®), doplněn
+      sádrou (ALABASTER PLASTER®) a retušován pomocí latexu (PROLUX LATEX UNI®) a
+      temperových barev (UMTON®).
+    examinationMethods:
+    - id: difra-xrd
+    - id: mikr-svetelna-mikroskopie-stratigrafie-vrstev
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-02-01'
+      until: '2018-07-01'
+    restorer: Al Samsamová Nagla
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: 1560
+      until: 1650
+    description: Keramická malovaná mísa je ukázkou produkce tzv. berounského zboží.
+      Jde o užitnou stolní keramiku, která sloužila k přípravě pokrmů a ke stolování.
+      Nádoba je bohatě zdobena florálním a geometrickým dekorem za použití žluté a
+      zelené engoby, která byla nanášena tzv. kukačkou, tedy nástrojem baňkovitého
+      tvaru s úzkým hrdlem vyrobeným nejčastěji ze seříznutého husího brku. Vnitřek
+      nádoby je opatřen transparentní glazurou (přes dekor), vnější část je neglazovaná.
+      Předmět byl nalezen při záchranných archeologických výzkumech v Praze na Hradčanech.
+    dimensions:
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 108.0
+    - dimension:
+        id: sirka
+      unit: mm
+      value: 300.0
+    - dimension:
+        id: obvod
+      unit: mm
+      value: 940.0
+    itemTypes:
+    - id: keramika-stolni-keramika
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Hluboká mísa
+  restorationWork:
+    abstract: Během restaurátorského zásahu proběhlo čistění vlažnou vodou (popř.
+      s přídavkem 1% roztoku detergentu SPOLAPONU AOS 146) pomocí kartáčků či houbiček.
+      Dekompozice byla provedena za použití horkovzdušné pistole a pomocí vody. Při
+      lepení bylo užito adhezivum LASCAUX 498 HV. Ztráty byly doplněny sádrou VELOX
+      EN ISO 6873- typ 2 a barevná retuš provedena barvami UMTON.
+    examinationMethods:
+    - id: difra-xrd
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-02-01'
+      until: '2018-06-01'
+    restorer: Pulcová Kateřina
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    - fullName: Kolářová Mária, Ing. Ph.D.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: 1700
+      until: 1799
+    description: Fajánsový šálek s kobaltovým dekorem je datován do období let 1728
+      až 1744. Byl vyroben v manufaktuře v Bayreuthu v Bavorsku. Šálek byl nalezen
+      při archeologických výzkumech na Hradčanech v Praze.
+    dimensions:
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 40.0
+    - dimension:
+        id: prumer
+      unit: mm
+      value: 73.0
+    itemTypes:
+    - id: keramika-stolni-keramika
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Fajánsový šálek
+  restorationWork:
+    abstract: Dekompozice a čištění pomocí 1 % roztoku detergentu (Spolapon AOS 146),
+      ethanolu a acetonu. Lepení 10 % a 30 % roztok Paraloidu B72 v acetonu. Doplnění
+      ztrát sádrou (VELOX EN ISO 6873 – typ 2). Plastická a barevná retuš barvami
+      UMTON.
+    examinationMethods:
+    - id: difra-xrd
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-02-01'
+      until: '2018-06-01'
+    restorer: Pulcová Veronika
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    - fullName: Kolářová Mária, Ing. Ph.D.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: false
+    category: keramika
+    creationPeriod:
+      since: 1700
+      until: 1799
+    description: Fajánsový šál s kobaltovým dekorem z Norimberka. Nebyl opatřen značkou.
+      Lze jej datovat do 18. století a vyroben byl pravděpodobně v některé z manufaktur
+      ve Francích (v Ansbachu či Norimberku), pro něž byla v průběhu 18. století produkce
+      modro-bílého zboží typickou. Předmět byl nalezen při archeologických průzkumech
+      v Praze na Hradčanech.
+    dimensions:
+    - dimension:
+        id: prumer
+      unit: mm
+      value: 162.0
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 41.0
+    itemTypes:
+    - id: keramika-stolni-keramika
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Fajánsový šál
+  restorationWork:
+    abstract: Hlavním požadavkem bylo provést rekonzervaci předmětů a vrátit je do
+      stavu po prvotním restaurování. Proběhla dekompozice předmětu, odebrání vzorků
+      a příslušné analýzy. Předmět byl důkladně vyčištěn vodou a vodou a detergentem
+      (1% roztok SPOLAPON®), proběhlo také čištění (arbocel 15 % roztok peroxidu vodíku).
+      Následně byl předmět slepen pomocí vhodného adheziva (PARALOID B72®), doplněn
+      sádrou (ALABASTER PLASTER®) a retušován pomocí latexu (PROLUX LATEX UNI®) a
+      temperových barev (UMTON®).
+    examinationMethods:
+    - id: difra-xrd
+    - id: mikr-svetelna-mikroskopie-stratigrafie-vrstev
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-02-01'
+      until: '2018-07-01'
+    restorer: Al Samsamová Nagla
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: 1728
+      until: 1760
+    description: Fajánsový nálevkovitý koflík s kobaltovým dekorem a uchem byl vyroben
+      pravděpodobně v Německu. Není opatřen žádnou značkou. Byl nalezen při archeologických
+      výzkumech na Hradčanech v Praze.
+    dimensions:
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 73.0
+    - dimension:
+        id: prumer
+      unit: mm
+      value: 65.0
+    itemTypes:
+    - id: keramika-stolni-keramika
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Fajánsový koflík
+  restorationWork:
+    abstract: V rámci restaurátorského zásahu proběhla nejdříve dekompozice předmětu.
+      Poté proběhlo čištění jednotlivých fragmentů za pomoci 1 % roztoku detergentu
+      (Spolapon AOS 146), ethanolu a acetonu. Lepení bylo provedeno 10 % a 30 % roztokem
+      Paraloidu B72 v acetonu. Ztráty byly doplněny sádrou (VELOX EN ISO 6873 – typ
+      2). Na závěr byla provedena plastická a barevná retuš barvami UMTON.
+    examinationMethods:
+    - id: difra-xrd
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-02-01'
+      until: '2018-06-01'
+    restorer: Pulcová Veronika
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    - fullName: Kolářová Mária, Ing. Ph.D.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: 1728
+      until: 1744
+    description: Fajánsový šálek s motivem granátových jablek s kobaltovou malbou
+      na glazuře byl vyroben pravděpodobně v Německu. Není opatřen žádnou značkou.
+      Šálek byl nalezen při archeologických výzkumech na Hradčanech v Praze.
+    dimensions:
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 39.0
+    - dimension:
+        id: prumer
+      unit: mm
+      value: 74.0
+    itemTypes:
+    - id: keramika-stolni-keramika
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Fajánsový šálek
+  restorationWork:
+    abstract: V rámci restaurátorského zásahu proběhla nejdříve dekompozice předmětu.
+      Poté proběhlo čištění jednotlivých fragmentů za pomoci 1 % roztoku detergentu
+      (Spolapon AOS 146), ethanolu a acetonu. Lepení bylo provedeno 10 % a 30 % roztokem
+      Paraloidu B72 v acetonu. Ztráty byly doplněny sádrou (VELOX EN ISO 6873 – typ
+      2). Na závěr byla provedena plastická a barevná retuš barvami UMTON.
+    examinationMethods:
+    - id: difra-xrd
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-02-01'
+      until: '2018-06-01'
+    restorer: Pulcová Veronika
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    - fullName: Kolářová Mária, Ing. Ph.D.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: 1847
+      until: 1898
+    description: Talíř pochází z produkce továrny Koh-i-noor Hardmuth založené ve
+      Vídni r. 1798 za účelem výroby tzv. jemné kameniny a tuže. Talíř je opatřen
+      světle šedou glazurou s krakelováním a modrým dekorem při okrajích talíře. Předmět
+      byl nalezen při archeologických průzkumech v Praze na Hradčanech (Jelení příkop).
+      Předmět byl převzat k rekonzervaci.
+    dimensions:
+    - dimension:
+        id: prumer
+      unit: mm
+      value: 302.0
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 43.0
+    itemTypes:
+    - id: keramika-stolni-keramika
+    keywords:
+    - pórovina
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Talíř z Koh-i-noor Hardtmuth
+  restorationWork:
+    abstract: Nejprve byl talíř za pomoci teplé vody dekomponován. Následovalo očištění
+      fragmentů vodou s přídavkem detergentu (Spolapon AOS 146), lepení (Dispercoll
+      D3), tvorba sádrových doplňků (Velox®) pomocí otevřených a uzavřených forem
+      z formely, dentálního vosku a keramického plastického těsta. Následovala mechanická
+      a barevná retuš doplňků (vhodný odstín temperové barvy Umton + latex zn. HET).
+      Byly určeny podmínky uložení. Původní sádrové doplňky byly přiloženy v označených
+      sáčcích k zrestaurovanému talíři. Práce proběhla v rámci řešení NAKI II DG18P02OVV028.
+    examinationMethods:
+    - id: difra-xrd
+    - id: mikr-svetelny-mikroskop-studium-puvodniho-povrchu
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-09-01'
+      until: '2019-01-01'
+    restorer: Hubnerová Barbora
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    workType:
+      id: semestralni-projekt-5
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: 1700
+      until: 1799
+    description: Fajánsový šálek s motivem granátových jablek s kobaltovou malbou
+      na Fajánsový šálek s kobaltovou malbou na glazuře byl vyroben pravděpodobně
+      v Německu. Není opatřen žádnou značkou. Byl nalezen při archeologických výzkumech
+      na Hradčanech v Praze.
+    dimensions:
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 43.0
+    - dimension:
+        id: prumer
+      unit: mm
+      value: 74.0
+    itemTypes:
+    - id: keramika-stolni-keramika
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Fajánsový šálek
+  restorationWork:
+    abstract: V rámci restaurátorského zásahu proběhla nejdříve dekompozice předmětu.
+      Poté proběhlo čištění jednotlivých fragmentů za pomoci 1 % roztoku detergentu
+      (Spolapon AOS 146), ethanolu a acetonu. Lepení bylo provedeno 10 % a 30 % roztokem
+      Paraloidu B72 v acetonu. Ztráty byly doplněny sádrou (VELOX EN ISO 6873 – typ
+      2). Na závěr byla provedena plastická a barevná retuš barvami UMTON.
+    examinationMethods:
+    - id: difra-xrd
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-02-01'
+      until: '2018-06-01'
+    restorer: Pulcová Veronika
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    - fullName: Kolářová Mária, Ing. Ph.D.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: false
+    category: keramika
+    creationPeriod:
+      since: 1580
+      until: 1620
+    description: Kameninová holba č. H2341 pravděpodobně z dílen Triebel – Muskau.
+      Je zdobena rytým florálním dekorem a ve spodní třetině je dekorována typickým
+      muskauerským dekorem (kanelováním). Zhruba v horní a dolní třetině je plastický
+      dekor ve formě pupků s dekorem obličejů. Nádoba byla zakoupena v restaurovaném
+      stavu v roce 1886. Střepy byly slepeny a chybějící části doplněny tvrzenými
+      sádrovými doplňky, které byly barevně retušovány. Slepované spoje byly posunuté
+      a střepy na sobě dobře neseděly. Vzniklé spáry mezi střepy byly doplněny voskem.
+      Adhezivum lokálně přetékalo ze spojů a na některých místech chyběly původní
+      doplňky. Barva na doplněných částech byla vybledlá a odřená. Při převzetí nádoby
+      zcela chybělo ucho.
+    dimensions:
+    - dimension:
+        id: prumer
+      unit: mm
+      value: 70.0
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 170.0
+    itemTypes:
+    - id: keramika-stolni-keramika
+    keywords:
+    - kamenina
+    - holba
+    parts:
+    - {}
+    restorationRequestor:
+      id: muzea-muzeum-hlavniho-mesta-prahy
+    title: Kameninová modře glazovaná holba
+  restorationWork:
+    abstract: Restaurátorským záměrem bylo provést analýzy střepové hmoty a glazury,
+      rozebrat, očistit a slepit střepy 30 % roztokem Paraloidu B72 v acetonu. Dále
+      doplnit ztráty mramorovou sádrou a akrylátovým tmelem pomocí forem z keramického
+      plastického těsta a formely. Provést barevnou retuš a na závěr určit podmínky
+      uložení zrestaurovaného předmětu.
+    examinationMethods: []
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    - id: keramika-retus-mechanicka
+    - id: keramika-retus-barevna
+    restorationPeriod:
+      since: '2017-09-01'
+      until: '2017-12-01'
+    restorer: Hubnerová Barbora
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    workType:
+      id: semestralni-projekt-3
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: 1550
+      until: 1650
+    description: Džbán byl nalezen při záchranných archeologických výzkumech v Praze
+      na Hradčanech. Předmět je ukázkou produkce tzv. berounského zboží. Je pokryt
+      transparentní glazurou a zdoben žlutou engobou. která byla nanášena tzv. kukačkou,
+      nástrojem ve tvaru baňky či konvičky, z nějž engoba vytékala úzkým hrdlem ze
+      seříznutého husího brku. Tento způsob práce nedovoluje detailní kresbu, proto
+      je dekor často stylizovaný a zkratkovitý podobně jako v případě tohoto džbánu.
+    dimensions:
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 200.0
+    - dimension:
+        id: obvod
+      unit: mm
+      value: 430.0
+    itemTypes:
+    - id: keramika-stolni-keramika
+    keywords: []
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Džbán
+  restorationWork:
+    abstract: Během restaurátorského zásahu proběhlo čistění vlažnou vodou (popř.
+      s přídavkem 1% roztoku detergentu SPOLAPONU AOS 146) pomocí kartáčků či houbiček.
+      Dekompozice byla provedena za použití horkovzdušné pistole a pomocí vody. Při
+      lepení bylo užito adhezivum LASCAUX 498 HV. Ztráty byly doplněny sádrou VELOX
+      EN ISO 6873- typ 2 a barevná retuš provedena barvami UMTON.
+    examinationMethods:
+    - id: difra-xrd
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus-barevna
+    restorationPeriod:
+      since: '2018-02-01'
+      until: '2018-06-01'
+    restorer: Pulcová Kateřina
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    - fullName: Kolářová Mária, Ing. Ph.D.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: true
+    category: keramika
+    creationPeriod:
+      since: 1550
+      until: 1650
+    description: Keramický cedník, tzv. Siebgefäß, byl nalezen při záchranných archeologických
+      výzkumech v Praze na Hradčanech. Je ukázkou produkce tzv. berounského zboží,
+      byl užíván na cezení a pasírování potravin. Má mísovitý tvar se zaobleným dnem
+      a perforované tělo. Je opatřen dvěma nevýraznými, plochými uchy. Po obou stranách
+      je pokryt lesklou transparentní glazurou. Výzdoba je provedena vpíjenou zelenou
+      a bílou engobou.
+    dimensions:
+    - dimension:
+        id: vyska
+      unit: mm
+      value: 80.0
+    - dimension:
+        id: sirka
+      unit: mm
+      value: 200.0
+    - dimension:
+        id: obvod
+      unit: mm
+      value: 810.0
+    itemTypes:
+    - id: keramika-uzitne-zbozi
+    keywords:
+    - Berounské zboží
+    parts:
+    - {}
+    restorationRequestor:
+      id: ostatni-zadavatele-archeologicky-ustav-av-cr
+    title: Keramický cedník
+  restorationWork:
+    abstract: Během restaurátorského zásahu proběhlo čistění vlažnou vodou (popř.
+      s přídavkem 1% roztoku detergentu SPOLAPONU AOS 146) pomocí kartáčků či houbiček.
+      Dekompozice byla provedena za použití horkovzdušné pistole a pomocí vody. Při
+      lepení bylo užito adhezivum LASCAUX 498 HV. Ztráty byly doplněny sádrou VELOX
+      EN ISO 6873- typ 2 a barevná retuš provedena barvami UMTON.
+    examinationMethods:
+    - id: difra-xrd
+    - id: spektro-xrf
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2018-02-01'
+      until: '2018-06-01'
+    restorer: Pulcová Kateřina
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    - fullName: Kolářová Mária, Ing. Ph.D.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: false
+    category: keramika
+    creationPeriod:
+      since: 1880
+      until: 1890
+    description: Párová váza byla vyrobena v porcelánové manufaktuře v Míšni. Je bohatě
+      zdobena plastickými i malovanými florálními dekory. V dolní části je torzo letícího
+      amorka. K dispozici jsou dva poškozené podstavce, na jednom chybí sedící anděl,
+      víka byla ztracena. Váza je barevně dekorována naglazurovými barvami a zlacením.
+      Vykazuje četná poškození, došlo ke ztrátě uch a četnému poškození plastických
+      dekorů ve formě lístků a květů. Váza byla při převzetí znečištěna prachem.
+    dimensions:
+    - dimension:
+        id: vyska
+      unit: cm
+      value: 24.0
+    - dimension:
+        id: sirka
+      unit: cm
+      value: 21.0
+    itemTypes:
+    - id: keramika-vaza
+    keywords:
+    - porcelán
+    - Míšeň
+    - párová váza
+    - HXTAL-NYL1
+    parts:
+    - {}
+    restorationRequestor:
+      id: soukromy-vlastnik
+    title: Porcelánová párová váza z Míšně
+  restorationWork:
+    abstract: V rámci restaurátorského zásahu proběhlo očištění tekoucí vodou, pro
+      odstranění tmavých skvrn byl použit 30% peroxid vodíku. Ztráty byly doplněny
+      Milliputem. Pomocí vytvořených lukoprenových a epoxidových forem byly odlity
+      sádrové doplňky - postava sedícího anděla, podstavec a ulomené fragmenty těla
+      letícího anděla. V případě obou andělů proběhlo dolepení vymodelovaných částí
+      epoxidovým lepidlem Bison. Při lepení na porcelán byla použita separace 25%
+      roztoku Paraloidu v acetonu. Následovala mechanická retuš, očištění vodou a
+      barevná retuš pigmenty (Kremer, Marabu atd.) smíchanými s 10% Paraloidem B72.
+      Zlacení bylo provedeno přípravkem KOKOLO (dva odstíny). Byla také pořízena kresebná
+      dokumentace.
+    examinationMethods:
+    - id: difra-xrd
+    - id: mikr-svetelny-mikroskop-studium-puvodniho-povrchu
+    - id: spektro-xrf
+    - id: spektro-sem-eds
+    restorationMethods:
+    - id: keramika-cisteni
+    - id: keramika-doplnovani
+    - id: keramika-lepeni
+    - id: keramika-retus
+    restorationPeriod:
+      since: '2015-06-01'
+      until: '2016-07-01'
+    restorer: Gorelíková Margita
+    supervisors:
+    - fullName: Kloužková Alexandra, doc.Ing. CSc.
+      institution: Ústav skla a keramiky, VŠCHT Praha
+    - fullName: Svobodová Ljuba
+      institution: restaurátorka s licencí MK 7604/98
+    workType:
+      id: bakalarska-prace
+---
+metadata:
+  restorationObject:
+    archeologic: false
+    category: keramika
+    creationPeriod:
+      since: 1880
+      until: 1890
+    description: Párová váza byla vyrobena v porcelánové manufaktuře v Míšni. Je bohatě
+      zdobena plastickými i malovanými florálními dekory. V dolní části je torzo letícího
+      amorka. K dispozici jsou dva poškozené podstavce, na jednom chybí sedící anděl,
+      víka byla ztracena. Váza je barevně dekorována naglazurovými barvami a zlacením.
+      Vykazuje četná poškození, došlo ke ztrátě uch a četnému poškození plastických
+      dekorů ve formě lístků a květů. Váza byla při převzetí znečištěna prachem.
+    dimensions:
+    - dimension:
+        id: vyska
+      unit: cm
+      value: 24.0
+    - dimension:
+        id: sirka
+      unit: cm
+      value: 21.0
+    itemTypes:
+    - id: keramika-vaza
+    keywords:
+    - porcelán
+    - Míšeň
+    - párová váza
+    - HXTAL-NYL1
+    parts:
+    - {}
+    restorationRequestor:
+      id: soukromy-vlastnik
+    title: Porcelánová párová váza z Míšně
+  restorationWork:
+    examinationMethods: []
+    restorationMethods: []
+    restorationPeriod:
+      since: '2015-06-01'
+      until: '2016-07-01'
+    supervisors: []
+    workType:
+      id: bakalarska-prace
+
