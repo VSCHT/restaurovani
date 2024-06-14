@@ -41,7 +41,7 @@ objects = "objects.ext:ObjectsExt"
 objects = "objects.ext:ObjectsExt"
 
 [project.entry-points."invenio_db.alembic"]
-objects = "objects:alembic"
+objects = "common:alembic"
 
 [project.entry-points."invenio_db.models"]
 objects = "objects.records.models"
