@@ -31,10 +31,7 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
               clearable
               root={category}
               label={
-                <FieldLabel
-                  htmlFor={`${fieldPath}.colors`}
-                  label="Barva"
-                />
+                <FieldLabel htmlFor={`${fieldPath}.colors`} label="Barva" />
               }
               placeholder="Vyberte barvu"
             />

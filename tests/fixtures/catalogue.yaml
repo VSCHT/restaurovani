@@ -1,0 +1,6 @@
+objects:
+  - source: data.yaml
+  - writer: service
+    service: objects
+  - writer: attachments_service
+    service: objects

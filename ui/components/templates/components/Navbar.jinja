@@ -18,7 +18,8 @@
     </div>
 
     <div class="menu">
-      <button class="ui button" onclick="javascript:history.back()">
+      <button class="ui button" onclick="javascript:history.back()" 
+        data-testid="frontpage-redir-button">
         <img
           class="ui image left-arrow"
           src="{{ url_for('static', filename='images/arrow-left.png') }}"

@@ -4,7 +4,4 @@
             
 @backgroundColor: #545454;
 @tinyHeight: 5px;
-@fullscreenWidth: 100vw;
-@frontIndex: 10;
-@absPosition: absolute;
-@zeroValue: 0;
+@footerWidth: 100vw;
