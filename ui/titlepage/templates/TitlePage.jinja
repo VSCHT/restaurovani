@@ -60,10 +60,4 @@ head_links %} {% block body %}
   <div class="ui segment bg-bottom" aria-hidden="true"></div>
 </main>
 
-{%- block javascript %} {% include config.THEME_JAVASCRIPT_TEMPLATE %}
-
-{{ super() }}
-
-{{ webpack["components.js"] }}
-
-{%- endblock javascript %} {% endblock %}
+{% endblock %}
