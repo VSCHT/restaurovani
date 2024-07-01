@@ -1,11 +1,12 @@
-.ui.checkbox{
-  margin-right: 15px
-}
-
-@media only screen and (max-width: @tabletSize){
-  .ui.checkbox{
-    margin-right: 8px
+.ui.checkbox {
+  margin-right: 15px;
+  .ui.tree-field .columns-container .ui.grid .row.spaced & {
+    padding-right: 0;
   }
 }
 
-
+@media only screen and (max-width: @tabletSize) {
+  .ui.checkbox {
+    margin-right: 8px;
+  }
+}

@@ -27,7 +27,6 @@ export const RestorationWork = ({
   setFieldTouched,
 }) => {
   const fieldPath = "metadata.restorationWork";
-
   return (
     <AccordionField
       includesPaths={[
@@ -104,17 +103,19 @@ export const RestorationWork = ({
                 </Header>
                 <ArrayFieldItem
                   name={`${fieldPath}.supervisors`}
-                  fieldPath={`${fieldPath}.supervisors`}
+                  fieldPathPrefix={`${fieldPath}.supervisors`}
                   indexPath={indexPath}
                   arrayHelpers={arrayHelpers}
                 >
-                  <Grid columns={3} className="gapped">
+                  <Grid columns={1}>
                     <Grid.Column>
-                      <TextField
+                      <LocalVocabularySelectField
                         name={`${fieldPathPrefix}.fullName`}
                         aria-label="Celé jméno"
                         fieldPath={`${fieldPathPrefix}.fullName`}
                         placeholder="Napište celé jméno"
+                        optionsListName="Supervisors"
+                        clearable
                         label={
                           <FieldLabel
                             htmlFor={`${fieldPathPrefix}.fullName`}
@@ -138,15 +139,17 @@ export const RestorationWork = ({
                       />
                     </Grid.Column>
                     <Grid.Column>
-                      <TextField
+                      <LocalVocabularySelectField
                         name={`${fieldPathPrefix}.institution`}
-                        aria-label="Institut"
+                        aria-label="Instituce"
                         fieldPath={`${fieldPathPrefix}.institution`}
-                        placeholder="Institut"
+                        placeholder="Instituce"
+                        optionsListName="Institutions"
+                        clearable
                         label={
                           <FieldLabel
                             htmlFor={`${fieldPathPrefix}.institution`}
-                            label="Institut"
+                            label="Instituce"
                           ></FieldLabel>
                         }
                       />

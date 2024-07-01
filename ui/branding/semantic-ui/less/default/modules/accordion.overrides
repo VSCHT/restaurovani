@@ -13,6 +13,10 @@
       .search-container & {
         color: @brownColor;
       }
+      .detail-page & {
+        color: @darkestBrown;
+        transform: none;
+      }
     }
   }
 

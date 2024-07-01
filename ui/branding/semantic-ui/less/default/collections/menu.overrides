@@ -1,7 +1,15 @@
 .ui.menu {
   &.top.fixed {
+    padding: 0 10vw;
+    .item{
+      padding: 0;
+    }
     @media only screen and (max-width: @mobileSize) {
-      padding-left: 0;
+      padding: 0.5rem 10vw;
+      .button:not(.toggle-burger),
+      .item:not(.toggle-burger) {
+        display: none;
+      }
     }
   }
   .ui.container.stackable & a,

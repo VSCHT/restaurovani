@@ -17,16 +17,19 @@
       </button>
     </div>
 
-    <a class="item" href="/">
-      <button class="ui button" data-testid="frontpage-redir-button">
+    <div class="menu">
+      <button class="ui button" onclick="javascript:history.back()" 
+        data-testid="frontpage-redir-button">
         <img
           class="ui image left-arrow"
           src="{{ url_for('static', filename='images/arrow-left.png') }}"
           alt="arrow back"
-        />RESTAUROVÁNÍ VŠCHT
+        />
       </button>
-    </a>
 
+    <a class="ui button" href="/">RESTAUROVÁNÍ VŠCHT</a>
+      
+    </div>
     <div class="right menu">
       {%- if config.ACCOUNTS and current_user.is_authenticated %}
 

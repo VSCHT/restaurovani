@@ -23,11 +23,33 @@ export const EditObjectForm = () => {
     setActiveIndex(x);
   };
   const edit = _has(record, "updated");
+  
+  const initialValues = {
+    ...record,
+    metadata: {
+      ...record.metadata,
+      restorationObject: {
+        ...record.metadata.restorationObject,
+        creationPeriod: {
+          since: _get(
+            record,
+            "metadata.restorationObject.creationPeriod.since",
+            ""
+          ),
+          until: _get(
+            record,
+            "metadata.restorationObject.creationPeriod.until",
+            ""
+          ),
+        },
+      },
+    },
+  };
 
   return (
     <Container>
       <Formik
-        initialValues={record}
+        initialValues={initialValues}
         onSubmit={() => {}}
         enableReinitialize
         validationSchema={DepositValidationSchemaEdit}
