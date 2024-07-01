@@ -103,53 +103,57 @@ export const RestorationWork = ({
                 </Header>
                 <ArrayFieldItem
                   name={`${fieldPath}.supervisors`}
-                  fieldPath={`${fieldPath}.supervisors`}
+                  fieldPathPrefix={`${fieldPath}.supervisors`}
                   indexPath={indexPath}
                   arrayHelpers={arrayHelpers}
                 >
                   <Grid columns={1}>
-                    <Grid columns={2} className="gapped">
-                      <Grid.Column>
-                        <TextField
-                          name={`${fieldPathPrefix}.fullName`}
-                          aria-label="Celé jméno"
-                          fieldPath={`${fieldPathPrefix}.fullName`}
-                          placeholder="Napište celé jméno"
-                          label={
-                            <FieldLabel
-                              htmlFor={`${fieldPathPrefix}.fullName`}
-                              label="Celé jméno"
-                            ></FieldLabel>
-                          }
-                        />
-                      </Grid.Column>
-                      <Grid.Column>
-                        <TextField
-                          name={`${fieldPathPrefix}.comment`}
-                          aria-label="Komentář"
-                          fieldPath={`${fieldPathPrefix}.comment`}
-                          placeholder="Komentář"
-                          label={
-                            <FieldLabel
-                              htmlFor={`${fieldPathPrefix}.comment`}
-                              label="Komentář"
-                            ></FieldLabel>
-                          }
-                        />
-                      </Grid.Column>
-                    </Grid>
-                    <TextField
-                      name={`${fieldPathPrefix}.institution`}
-                      aria-label="Instituce"
-                      fieldPath={`${fieldPathPrefix}.institution`}
-                      placeholder="Instituce"
-                      label={
-                        <FieldLabel
-                          htmlFor={`${fieldPathPrefix}.institution`}
-                          label="Instituce"
-                        ></FieldLabel>
-                      }
-                    />
+                    <Grid.Column>
+                      <LocalVocabularySelectField
+                        name={`${fieldPathPrefix}.fullName`}
+                        aria-label="Celé jméno"
+                        fieldPath={`${fieldPathPrefix}.fullName`}
+                        placeholder="Napište celé jméno"
+                        optionsListName="Supervisors"
+                        clearable
+                        label={
+                          <FieldLabel
+                            htmlFor={`${fieldPathPrefix}.fullName`}
+                            label="Celé jméno"
+                          ></FieldLabel>
+                        }
+                      />
+                    </Grid.Column>
+                    <Grid.Column>
+                      <TextField
+                        name={`${fieldPathPrefix}.comment`}
+                        aria-label="Komentář"
+                        fieldPath={`${fieldPathPrefix}.comment`}
+                        placeholder="Komentář"
+                        label={
+                          <FieldLabel
+                            htmlFor={`${fieldPathPrefix}.comment`}
+                            label="Komentář"
+                          ></FieldLabel>
+                        }
+                      />
+                    </Grid.Column>
+                    <Grid.Column>
+                      <LocalVocabularySelectField
+                        name={`${fieldPathPrefix}.institution`}
+                        aria-label="Instituce"
+                        fieldPath={`${fieldPathPrefix}.institution`}
+                        placeholder="Instituce"
+                        optionsListName="Institutions"
+                        clearable
+                        label={
+                          <FieldLabel
+                            htmlFor={`${fieldPathPrefix}.institution`}
+                            label="Instituce"
+                          ></FieldLabel>
+                        }
+                      />
+                    </Grid.Column>
                   </Grid>
                 </ArrayFieldItem>
               </>

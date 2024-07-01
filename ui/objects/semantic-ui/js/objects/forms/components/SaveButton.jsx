@@ -24,7 +24,7 @@ export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
         }
 
         const res = await save();
-
+        
         edit
           ? (window.location.href = res.links.edit_html)
           : (window.location.href = res.links.self_html);

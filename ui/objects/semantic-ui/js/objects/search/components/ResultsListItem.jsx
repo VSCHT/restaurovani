@@ -29,7 +29,7 @@ const DetailsButton = ({ selfLink }) => {
     <a
       className="ui primary button right floated"
       aria-label="Zobrazit detail předmětu"
-      href={viewLink}
+      href={selfLink}
     >
       DETAIL
     </a>
