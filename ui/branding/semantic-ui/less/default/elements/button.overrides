@@ -133,6 +133,10 @@
     padding: 0.5rem 0;
   }
 
+  body:has(.main-page) .ui.menu.top &:has(.left-arrow) {
+    display: none;
+  }
+
   @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
     height: 35px;
     padding: 10px;
@@ -201,3 +205,5 @@
 .ui.datepicker .react-datepicker__close-icon {
   font-weight: 800;
 }
+
+
