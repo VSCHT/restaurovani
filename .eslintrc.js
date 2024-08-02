@@ -20,7 +20,7 @@ module.exports = {
       },
       "settings": {
         "react": {
-          "version": "detect"
+          "version": "16"
         }
       },
       "plugins": ["react", "react-hooks", "jsx-a11y"],

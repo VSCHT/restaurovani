@@ -13,7 +13,7 @@ class RestorationVocabularyOptionsComponent(DepositVocabularyOptionsComponent):
 
 class ObjectsResourceConfig(RecordsUIResourceConfig):
     template_folder = "templates"
-    url_prefix = "/objekty/"
+    url_prefix = "/objects/"
     blueprint_name = "objects"
     ui_serializer_class = "objects.resources.records.ui.ObjectsUIJSONSerializer"
     api_service = "objects"
