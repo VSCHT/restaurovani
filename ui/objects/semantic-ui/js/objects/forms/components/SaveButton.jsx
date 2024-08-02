@@ -24,6 +24,11 @@ export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
         }
 
         const res = await save();
+        if (!res) {
+          console.error("BEvalidationErrors", formik.values["BEvalidationErrors"]);
+          console.error("httpErrors", formik.values["httpErrors"]);
+          return;
+        }
         
         edit
           ? (window.location.href = res.links.edit_html)
