@@ -10,7 +10,7 @@ import {
   RichEditor,
 } from "react-invenio-forms";
 import { Header, Grid } from "semantic-ui-react";
-import { ArrayFieldItem, sanitizeInput, validTags } from "@js/oarepo_ui";
+import { ArrayFieldItem, useSanitizeInput } from "@js/oarepo_ui";
 import {
   LocalVocabularySelectField,
   VocabularyTreeSelectField,
@@ -26,6 +26,8 @@ export const RestorationWork = ({
   setFieldValue,
   setFieldTouched,
 }) => {
+  const { sanitizeInput, validEditorTags } = useSanitizeInput();
+
   const fieldPath = "metadata.restorationWork";
   return (
     <AccordionField
@@ -69,10 +71,10 @@ export const RestorationWork = ({
                 editorConfig={{
                   toolbar:
                     "bold italic | bullist numlist | outdent indent | undo redo",
-                  valid_elements: validTags,
+                  valid_elements: validEditorTags,
                 }}
                 onBlur={async (event, editor) => {
-                  const cleanedContent = await sanitizeInput(
+                  const cleanedContent = sanitizeInput(
                     editor.getContent()
                   );
                   setFieldValue(`${fieldPath}.abstract`, cleanedContent);

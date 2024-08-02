@@ -13,7 +13,7 @@ import {
   NumberInput,
 } from "react-invenio-forms";
 import { Grid } from "semantic-ui-react";
-import { ArrayFieldItem, sanitizeInput } from "@js/oarepo_ui";
+import { ArrayFieldItem, useSanitizeInput } from "@js/oarepo_ui";
 import {
   LocalVocabularySelectField,
   VocabularyTreeSelectField,
@@ -31,6 +31,8 @@ export const BasicInfo = ({
   setFieldValue,
   setFieldTouched,
 }) => {
+  const { sanitizeInput } = useSanitizeInput();
+
   const units = [
     { value: "kg", text: "kg" },
     { value: "mg", text: "mg" },
