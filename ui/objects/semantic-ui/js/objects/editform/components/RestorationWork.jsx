@@ -1,6 +1,4 @@
-import React from "react";
-import _isEmpty from "lodash/isEmpty";
-import _cloneDeep from "lodash/cloneDeep";
+import React, { memo } from "react";
 import {
   AccordionField,
   TextField,
@@ -10,6 +8,7 @@ import {
   RichEditor,
 } from "react-invenio-forms";
 import { Header, Grid } from "semantic-ui-react";
+import { getIn } from "formik";
 import { ArrayFieldItem, useSanitizeInput } from "@js/oarepo_ui";
 import {
   LocalVocabularySelectField,
@@ -17,6 +16,8 @@ import {
 } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import { DaterangePicker } from "./DateRange";
+
+const MemoizedRichEditor = memo(RichEditor, () => true);
 
 export const RestorationWork = ({
   activeIndex,
@@ -64,16 +65,17 @@ export const RestorationWork = ({
             name={`${fieldPath}.abstract`}
             aria-label="Popis restaurování"
             fieldPath={`${fieldPath}.abstract`}
+            optimized
             editor={
-              <RichEditor
-                value={values.metadata.restorationWork.abstract}
+              <MemoizedRichEditor
+                inputValue={getIn(values, `${fieldPath}.abstract`, "")}
                 optimized
                 editorConfig={{
                   toolbar:
                     "bold italic | bullist numlist | outdent indent | undo redo",
                   valid_elements: validEditorTags,
                 }}
-                onBlur={async (event, editor) => {
+                onBlur={(event, editor) => {
                   const cleanedContent = sanitizeInput(
                     editor.getContent()
                   );
