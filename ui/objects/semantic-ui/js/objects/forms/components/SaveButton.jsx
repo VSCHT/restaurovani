@@ -4,7 +4,21 @@ import { useDepositApiClient } from "@js/oarepo_ui";
 import _isEmpty from "lodash/isEmpty";
 
 export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
-  const { isSubmitting, save, formik } = useDepositApiClient();
+  const { isSubmitting, preview, formik } = useDepositApiClient();
+
+  const previewRecord = async () => {
+    const err = await formik.validateForm();
+    if (!formik.isValid || !_isEmpty(err)) {
+      return;
+    }
+
+    const res = await preview();
+
+    if (!res) {
+      console.error("BEvalidationErrors", formik.values["BEvalidationErrors"]);
+      console.error("httpErrors", formik.values["httpErrors"]);
+    }
+  }
 
   return (
     <Button
@@ -14,26 +28,7 @@ export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
       disabled={isSubmitting}
       loading={isSubmitting}
       data-testid="submit-button"
-      onClick={async () => {
-        const err = await formik.validateForm();
-        if (!formik.isValid) {
-          return;
-        }
-        if (!_isEmpty(err)) {
-          return;
-        }
-
-        const res = await save();
-        if (!res) {
-          console.error("BEvalidationErrors", formik.values["BEvalidationErrors"]);
-          console.error("httpErrors", formik.values["httpErrors"]);
-          return;
-        }
-        
-        edit
-          ? (window.location.href = res.links.edit_html)
-          : (window.location.href = res.links.self_html);
-      }}
+      onClick={previewRecord}
       content={title}
       type="submit"
     />
