@@ -17,7 +17,7 @@ import {
 import _get from "lodash/get";
 import { DaterangePicker } from "./DateRange";
 
-const MemoizedRichEditor = memo(RichEditor, () => true);
+const MemoizedRichEditor = memo(RichEditor, (prevProps, nextProps) => prevProps.initialValue === nextProps.initialValue);
 
 export const RestorationWork = ({
   activeIndex,
@@ -68,7 +68,7 @@ export const RestorationWork = ({
             optimized
             editor={
               <MemoizedRichEditor
-                inputValue={getIn(values, `${fieldPath}.abstract`, "")}
+                initialValue={getIn(values, `${fieldPath}.abstract`, "")}
                 optimized
                 editorConfig={{
                   toolbar:
