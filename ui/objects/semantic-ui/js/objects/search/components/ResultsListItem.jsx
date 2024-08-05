@@ -74,8 +74,8 @@ export const ResultsListItemComponent = ({ result, appName }) => {
     "metadata.restorationWork.restorer",
     "<no data>"
   );
-  const created = _get(result, "created", "<no data>");
-  const creationDate = new Date(created).toLocaleDateString();
+  const created = _get(result, "created");
+  const creationDate = created.split(" ").slice(0, -1).join(" ");
 
   const restDescription = _get(result, "metadata.restorationWork.abstract", "");
   const objDescription = _get(
