@@ -158,7 +158,9 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
         <!-- desc -->
         {% if metadata.restorationObject.description %}
         <div class="ui left aligned one column grid" aria-label="Popis předmětu">
-          <p>{{ metadata.restorationObject.description }}</p>
+          <p class="overflow-wrap-anywhere">
+            {{ metadata.restorationObject.description|e }}
+          </p>
         </div>
         {% endif %}
 
@@ -237,9 +239,9 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
             <div class="column">
               <b>Restaurátorský zásah/záměr</b>
 
-              <p>
+              <div class="overflow-wrap-anywhere">
                 {{ metadata.restorationWork.abstract|safe }}
-              </p>
+              </div>
             </div>
             {% endif %}
           </div>
