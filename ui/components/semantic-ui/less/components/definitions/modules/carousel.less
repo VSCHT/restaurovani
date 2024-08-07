@@ -24,16 +24,21 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
-.ui.carousel {
-  .slick-track {
-    display: flex;
-    gap: 10px;
+.zoomable-image {
+  &:hover {
+    cursor: -moz-zoom-in; 
+    cursor: -webkit-zoom-in; 
+    cursor: zoom-in;
+    
   }
+}
 
+.ui.carousel {
   .slick-slider {
-    & button:before {
-      color: white;
+    .slick-arrow:before {
+      color: @primaryRed;
       opacity: 1;
+      font-size: 40px;
     }
     .slick-prev {
       left: 14px;
@@ -43,15 +48,28 @@
       right: 14px;
       z-index: 10;
     }
-    .slick-track {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-  }
 
-  .slick-slide.slick-active {
-    max-height: 350px;
+    .slick-list {
+      // padding-left: 55px;
+      // padding-right: 55px;
+
+      .slick-track {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        width: max-content !important;
+        padding: 10px;
+      }
+    }
+
+    .slick-image {
+      max-height: 400px;
+      .zoomable-image();
+
+      &:hover {
+        box-shadow: 0 0 10px @primaryRed;
+      }
+    }
   }
 }
 
