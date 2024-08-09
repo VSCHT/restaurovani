@@ -1,7 +1,16 @@
+i18n:
+  babel_input_translations: []
+  babel_output_translations: i18n/translations
+  babel_source_paths: []
+  i18next_input_translations: []
+  i18next_output_translations: i18n/semantic-ui/translations
+  i18next_source_paths: []
+  languages:
+  - en
 models:
 - api_prefix: objects
   base_model: empty
-  features: [files, drafts, tests, relations, custom_fields, communities, vocabularies,
+  features: [communities, files, drafts, vocabularies, tests, custom_fields, relations,
     requests]
   model_description: Restoration objects
   model_name: objects

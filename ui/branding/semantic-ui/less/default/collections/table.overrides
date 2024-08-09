@@ -19,12 +19,13 @@
   }
 
   & td{
-    padding: 0.2rem
+    padding: 0.2rem 1rem
   }
 
   @media only screen and (max-width: @mobileSize) {
     & tr {
       flex-flow: row;
+      align-items: flex-start;
 
       &:last-child {
         border-right: none;

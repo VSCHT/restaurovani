@@ -12,3 +12,4 @@ common/old_data/data
 .pdm-python
 .DS_Store
 .venv/bin/python
+/requirements-resolved-local.txt

@@ -9,14 +9,16 @@
     color: @whiteColor;
   }
 
+  .menu &:not(.transparent) a {
+    color: @whiteColor;
+  }
+
   &.primary:not(.fluid) {
     width: 20%;
     .main-page & {
       width: 65%;
     }
-    a {
-      color: @whiteColor;
-    }
+
     #form-app & {
       width: 25%;
     }
@@ -36,6 +38,10 @@
     font-weight: 500;
     justify-content: space-between;
     min-width: 200px;
+    .tree-field .actions & {
+      height: 3rem;
+      font-size: 1rem;
+    }
   }
 
   &.small.transparent {
@@ -87,7 +93,7 @@
   }
 
   .ui.menu:not(.sidebar) & {
-    height: 1rem;
+    height: 100%;
 
     &:hover,
     &:active,
@@ -121,6 +127,14 @@
   .ui.sidebar .dropdown & {
     background: white;
     color: @darkestBrown;
+  }
+
+  &:has(.left-arrow) {
+    padding: 0.5rem 0;
+  }
+
+  body:has(.main-page) .ui.menu.top &:has(.left-arrow) {
+    display: none;
   }
 
   @media only screen and (max-width: @tabletSize) and (min-width: @mobileSize) {
@@ -191,3 +205,5 @@
 .ui.datepicker .react-datepicker__close-icon {
   font-weight: 800;
 }
+
+

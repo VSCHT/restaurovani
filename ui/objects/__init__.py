@@ -1,4 +1,4 @@
-from oarepo_ui.resources.components import BabelComponent, FilesComponent
+from oarepo_ui.resources.components import BabelComponent, FilesComponent, AllowedHtmlTagsComponent
 from oarepo_ui.resources.config import RecordsUIResourceConfig
 from oarepo_ui.resources.resource import RecordsUIResource
 
@@ -13,12 +13,17 @@ class RestorationVocabularyOptionsComponent(DepositVocabularyOptionsComponent):
 
 class ObjectsResourceConfig(RecordsUIResourceConfig):
     template_folder = "templates"
-    url_prefix = "/objekty/"
+    url_prefix = "/objects/"
     blueprint_name = "objects"
     ui_serializer_class = "objects.resources.records.ui.ObjectsUIJSONSerializer"
     api_service = "objects"
 
-    components = [BabelComponent, RestorationVocabularyOptionsComponent, FilesComponent]
+    components = [
+        BabelComponent, 
+        RestorationVocabularyOptionsComponent, 
+        FilesComponent, 
+        AllowedHtmlTagsComponent
+    ]
 
     application_id="objects"
 

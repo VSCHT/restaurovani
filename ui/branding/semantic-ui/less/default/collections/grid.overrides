@@ -44,6 +44,10 @@
     .fields & {
       width: 90%;
     }
+
+    p {
+      margin: 0;
+    }
   }
 
   &.two {
@@ -67,6 +71,13 @@
 
     &.divided .column:nth-child(2) {
       padding: 0 15px;
+    }
+    &.spaced:has(h3.header) .column {
+      font-weight: 600;
+    }
+    .invenio-group-field &:not(.row) {
+      margin-bottom: 0;
+      padding-bottom: 0.5rem;
     }
   }
 
@@ -103,6 +114,9 @@
   &.double {
     gap: @gapWidth * 5;
   }
+}
+.tree-field .gapped {
+  gap: initial;
 }
 
 @media only screen and (max-width: @mobileSize) {

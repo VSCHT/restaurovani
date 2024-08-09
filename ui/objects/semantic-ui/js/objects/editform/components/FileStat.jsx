@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Icon,
   Button,
@@ -24,7 +24,7 @@ export const FileStat = ({ apiUrl, record }) => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [activePage, setActivePage] = useState(1);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const response = await fetch(apiUrl);
       if (!response.ok) {
@@ -35,12 +35,12 @@ export const FileStat = ({ apiUrl, record }) => {
     } catch (error) {
       console.error("Error fetching data");
     }
-  };
+  }, [apiUrl]);
 
   // fetching data
   useEffect(() => {
     fetchData();
-  }, [apiUrl]);
+  }, [fetchData]);
 
   if (!data) {
     return <p>Loading...</p>;
@@ -90,6 +90,11 @@ export const FileStat = ({ apiUrl, record }) => {
             },
             { id: "featured", defaultValue: false, isUserInput: true },
           ],
+          onCompletedUpload: (result) => {
+            if (result?.successful.length > 0) {
+              fetchData();
+            }
+          },
         }}
       />
     );
@@ -152,8 +157,11 @@ export const FileStat = ({ apiUrl, record }) => {
           autoExtractImagesFromPDFs: false,
           locale: "cs_CS",
           startEvent: { event: "edit-file", data: { file_key: key } },
-          onSuccessfulUpload: () => fetchData(),
-          onFailedUpload: () => fetchData(),
+          onCompletedUpload: (result) => {
+            if (result?.successful.length > 0) {
+              fetchData();
+            }
+          },
         }}
       />
     );
@@ -295,8 +303,11 @@ export const FileStat = ({ apiUrl, record }) => {
             },
             { id: "featured", defaultValue: false, isUserInput: true },
           ],
-          onSuccessfulUpload: () => fetchData(),
-          onFailedUpload: () => fetchData(),
+          onCompletedUpload: (result) => {
+            if (result?.successful.length > 0) {
+              fetchData();
+            }
+          },
         }}
       />
     );
@@ -321,8 +332,11 @@ export const FileStat = ({ apiUrl, record }) => {
             { id: "featured", defaultValue: false, isUserInput: true },
           ],
           startEvent: { event: "upload-file-without-edit" },
-          onSuccessfulUpload: () => fetchData(),
-          onFailedUpload: () => fetchData(),
+          onCompletedUpload: (result) => {
+            if (result?.successful.length > 0) {
+              fetchData();
+            }
+          },
         }}
       />
     );

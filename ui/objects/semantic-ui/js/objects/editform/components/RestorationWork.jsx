@@ -1,6 +1,4 @@
-import React from "react";
-import _isEmpty from "lodash/isEmpty";
-import _cloneDeep from "lodash/cloneDeep";
+import React, { memo } from "react";
 import {
   AccordionField,
   TextField,
@@ -10,13 +8,16 @@ import {
   RichEditor,
 } from "react-invenio-forms";
 import { Header, Grid } from "semantic-ui-react";
-import { ArrayFieldItem, sanitizeInput, validTags } from "@js/oarepo_ui";
+import { getIn } from "formik";
+import { ArrayFieldItem, useSanitizeInput } from "@js/oarepo_ui";
 import {
   LocalVocabularySelectField,
   VocabularyTreeSelectField,
 } from "@js/oarepo_vocabularies";
 import _get from "lodash/get";
 import { DaterangePicker } from "./DateRange";
+
+const MemoizedRichEditor = memo(RichEditor, (prevProps, nextProps) => prevProps.initialValue === nextProps.initialValue);
 
 export const RestorationWork = ({
   activeIndex,
@@ -26,8 +27,9 @@ export const RestorationWork = ({
   setFieldValue,
   setFieldTouched,
 }) => {
-  const fieldPath = "metadata.restorationWork";
+  const { sanitizeInput, validEditorTags } = useSanitizeInput();
 
+  const fieldPath = "metadata.restorationWork";
   return (
     <AccordionField
       includesPaths={[
@@ -63,17 +65,18 @@ export const RestorationWork = ({
             name={`${fieldPath}.abstract`}
             aria-label="Popis restaurování"
             fieldPath={`${fieldPath}.abstract`}
+            optimized
             editor={
-              <RichEditor
-                value={values.metadata.restorationWork.abstract}
+              <MemoizedRichEditor
+                initialValue={getIn(values, `${fieldPath}.abstract`, "")}
                 optimized
                 editorConfig={{
                   toolbar:
                     "bold italic | bullist numlist | outdent indent | undo redo",
-                  valid_elements: validTags,
+                  valid_elements: validEditorTags,
                 }}
-                onBlur={async (event, editor) => {
-                  const cleanedContent = await sanitizeInput(
+                onBlur={(event, editor) => {
+                  const cleanedContent = sanitizeInput(
                     editor.getContent()
                   );
                   setFieldValue(`${fieldPath}.abstract`, cleanedContent);
@@ -104,17 +107,19 @@ export const RestorationWork = ({
                 </Header>
                 <ArrayFieldItem
                   name={`${fieldPath}.supervisors`}
-                  fieldPath={`${fieldPath}.supervisors`}
+                  fieldPathPrefix={`${fieldPath}.supervisors`}
                   indexPath={indexPath}
                   arrayHelpers={arrayHelpers}
                 >
-                  <Grid columns={3} className="gapped">
+                  <Grid columns={1}>
                     <Grid.Column>
-                      <TextField
+                      <LocalVocabularySelectField
                         name={`${fieldPathPrefix}.fullName`}
                         aria-label="Celé jméno"
                         fieldPath={`${fieldPathPrefix}.fullName`}
                         placeholder="Napište celé jméno"
+                        optionsListName="Supervisors"
+                        clearable
                         label={
                           <FieldLabel
                             htmlFor={`${fieldPathPrefix}.fullName`}
@@ -138,15 +143,17 @@ export const RestorationWork = ({
                       />
                     </Grid.Column>
                     <Grid.Column>
-                      <TextField
+                      <LocalVocabularySelectField
                         name={`${fieldPathPrefix}.institution`}
-                        aria-label="Institut"
+                        aria-label="Instituce"
                         fieldPath={`${fieldPathPrefix}.institution`}
-                        placeholder="Institut"
+                        placeholder="Instituce"
+                        optionsListName="Institutions"
+                        clearable
                         label={
                           <FieldLabel
                             htmlFor={`${fieldPathPrefix}.institution`}
-                            label="Institut"
+                            label="Instituce"
                           ></FieldLabel>
                         }
                       />

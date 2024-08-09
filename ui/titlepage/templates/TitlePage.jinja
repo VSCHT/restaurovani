@@ -1,5 +1,12 @@
-{%- extends "invenio_theme/frontpage.html" %} {% block head_links %} {% endblock
-head_links %} {% block body %}
+{%- extends "invenio_theme/frontpage.html" %} 
+
+{% block head_links %} {% endblock head_links %} 
+
+{%- block topMenu %}
+  <Navbar back_btn_visible={False} />
+{%- endblock topMenu %}
+
+{% block body %}
 
 <main class="pusher main-page">
   <div class="ui segment hero vertical left aligned">

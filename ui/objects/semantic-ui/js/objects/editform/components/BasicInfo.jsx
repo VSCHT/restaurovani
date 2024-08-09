@@ -13,7 +13,7 @@ import {
   NumberInput,
 } from "react-invenio-forms";
 import { Grid } from "semantic-ui-react";
-import { ArrayFieldItem, sanitizeInput } from "@js/oarepo_ui";
+import { ArrayFieldItem, useSanitizeInput } from "@js/oarepo_ui";
 import {
   LocalVocabularySelectField,
   VocabularyTreeSelectField,
@@ -31,6 +31,8 @@ export const BasicInfo = ({
   setFieldValue,
   setFieldTouched,
 }) => {
+  const { sanitizeInput } = useSanitizeInput();
+
   const units = [
     { value: "kg", text: "kg" },
     { value: "mg", text: "mg" },
@@ -159,7 +161,7 @@ export const BasicInfo = ({
           </Grid.Column>
         </Grid>
 
-        {category != "textil" && (
+        {category !== "textil" && (
           <ArrayField
             addButtonLabel="Přidat rozměr"
             fieldPath={`${fieldPath}.dimensions`}
@@ -169,7 +171,7 @@ export const BasicInfo = ({
               return (
                 <ArrayFieldItem
                   name={`${fieldPath}.dimensions`}
-                  fieldPath={`${fieldPath}.dimensions`}
+                  fieldPathPrefix={`${fieldPath}.dimensions`}
                   indexPath={indexPath}
                   arrayHelpers={arrayHelpers}
                 >

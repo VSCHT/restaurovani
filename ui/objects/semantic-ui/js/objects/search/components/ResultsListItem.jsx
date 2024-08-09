@@ -26,9 +26,13 @@ const ItemHeader = ({ title, selfLink }) => {
 
 const DetailsButton = ({ selfLink }) => {
   return (
-    <Button primary floated="right" aria-label="Zobrazit detail předmětu">
-      <a href={selfLink}>DETAIL</a>
-    </Button>
+    <a
+      className="ui primary button right floated"
+      aria-label="Zobrazit detail předmětu"
+      href={selfLink}
+    >
+      DETAIL
+    </a>
   );
 };
 
@@ -70,11 +74,10 @@ export const ResultsListItemComponent = ({ result, appName }) => {
     "metadata.restorationWork.restorer",
     "<no data>"
   );
-  const created = _get(result, "created", "<no data>");
-  const creationDate = new Date(created).toLocaleDateString();
+  const created = _get(result, "created");
+  const creationDate = created.split(" ").slice(0, -1).join(" ");
 
   const restDescription = _get(result, "metadata.restorationWork.abstract", "");
-
   const objDescription = _get(
     result,
     "metadata.restorationObject.description",
@@ -100,9 +103,14 @@ export const ResultsListItemComponent = ({ result, appName }) => {
           <ItemHeader title={title} selfLink={result.links.self_html} />
           <ItemDescription>{restorer}</ItemDescription>
           <ItemDescription>
-            <p>
-              {restDescription.length != 0 ? restDescription : objDescription}
-            </p>
+            <p
+              dangerouslySetInnerHTML={{
+                __html:
+                  restDescription.length != 0
+                    ? restDescription
+                    : objDescription,
+              }}
+            ></p>
           </ItemDescription>
           <ItemExtra>
             <Label size="large">Vloženo: {creationDate} </Label>

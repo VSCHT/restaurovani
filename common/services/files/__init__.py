@@ -9,3 +9,7 @@ class RestorationFileServiceConfig(PermissionsPresetsConfigMixin, FileServiceCon
         ExtractPDFTextProcessor(),
         NoErrorImageProcessor()
     ]
+    components = [
+        *PermissionsPresetsConfigMixin.components,
+        *FileServiceConfig.components,
+    ]

@@ -2,12 +2,21 @@
   h1& {
     font-weight: 300;
   }
+  h3& {
+    font-weight: 600;
+  }
   h4& {
     font-weight: 600;
   }
   .detail-page h3& {
     color: white;
     margin: auto 10px;
+  }
+  .ui.tree-field h3& {
+    font-size: 1.5rem;
+    font-weight: 500;
+    align-self: center;
+    width: 80%;
   }
 }
 

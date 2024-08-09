@@ -11,7 +11,7 @@
 
 @background: @darkBrown;
 @itemVerticalPadding : 10px;
-@itemHorizontalPadding: 10vw ;
+@itemHorizontalPadding: 0;
 @itemTextColor: @white;
 @fontWeight:500;
 @buttonSize:0.8rem;
@@ -21,4 +21,4 @@
 @tabularActiveWeight:normal;
 @tabularBorderColor: @inputBorderColor;
 @buttonVerticalPadding: 0;
- @buttonVerticalPadding:0;
+@buttonVerticalPadding:0;
