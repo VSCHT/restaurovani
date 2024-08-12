@@ -11,12 +11,11 @@ import {
   Grid,
 } from "semantic-ui-react";
 import {
-  ReactWrapperPdf,
-  ReactWrapperImg,
-  EditWrapper,
-  ExtractWrapper,
+  PDFUploader,
+  ImageUploader,
+  FileMetadataEditor,
+  PDFImageExtractor,
 } from "./Uploader";
-import FileManagementDialog from "@oarepo/file-manager";
 
 export const FileStat = ({ apiUrl, record }) => {
   const [data, setData] = useState(null);
@@ -69,37 +68,6 @@ export const FileStat = ({ apiUrl, record }) => {
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
   }
 
-  // button for extracting images from pdf
-  const extractImg = (key, record) => {
-    return (
-      <ExtractWrapper
-        preactComponent={FileManagementDialog}
-        props={{
-          config: { record: record },
-          autoExtractImagesFromPDFs: true,
-          locale: "cs_CS",
-          startEvent: {
-            event: "upload-images-from-pdf",
-            data: { file_key: key },
-          },
-          allowedMetaFields: [
-            {
-              id: "caption",
-              defaultValue: "default_image_name",
-              isUserInput: true,
-            },
-            { id: "featured", defaultValue: false, isUserInput: true },
-          ],
-          onCompletedUpload: (result) => {
-            if (result?.successful.length > 0) {
-              fetchData();
-            }
-          },
-        }}
-      />
-    );
-  };
-
   // delete button
 
   const DeleteButton = ({ apiUrl }) => {
@@ -143,27 +111,6 @@ export const FileStat = ({ apiUrl, record }) => {
           onConfirm={handleDelete}
         />
       </>
-    );
-  };
-
-  // button for file edit
-  const editFile = (key, record) => {
-    return (
-      <EditWrapper
-        fetchData={fetchData}
-        preactComponent={FileManagementDialog}
-        props={{
-          config: { record: record },
-          autoExtractImagesFromPDFs: false,
-          locale: "cs_CS",
-          startEvent: { event: "edit-file", data: { file_key: key } },
-          onCompletedUpload: (result) => {
-            if (result?.successful.length > 0) {
-              fetchData();
-            }
-          },
-        }}
-      />
     );
   };
 
@@ -233,10 +180,19 @@ export const FileStat = ({ apiUrl, record }) => {
               <Grid.Row>
                 <DeleteButton apiUrl={d.links.self} />
 
-                {editFile(d.key, record)}
+                <FileMetadataEditor
+                  fetchData={fetchData}
+                  record={record}
+                  fileKey={d.key}
+                />
 
                 {d.metadata.fileType === "document" &&
-                  extractImg(d.key, record)}
+                  <PDFImageExtractor
+                    fetchData={fetchData}
+                    record={record}
+                    fileKey={d.key}
+                  />
+                }
               </Grid.Row>
             </Table.Cell>
           </Table.Row>
@@ -267,7 +223,10 @@ export const FileStat = ({ apiUrl, record }) => {
             <Tab.Pane>
               <Table>{renderTableBody("photo")}</Table>
 
-              {uploaderImg(record)}
+              <ImageUploader
+                fetchData={fetchData}
+                record={record}
+              />
             </Tab.Pane>
           ),
         },
@@ -277,70 +236,16 @@ export const FileStat = ({ apiUrl, record }) => {
             <Tab.Pane>
               <Table>{renderTableBody("document")}</Table>
 
-              {uploaderPdf(record)}
+              <PDFUploader
+                fetchData={fetchData}
+                record={record}
+              />
             </Tab.Pane>
           ),
         },
       ]}
     />
   );
-
-  // button for img upload
-  const uploaderImg = (record) => {
-    return (
-      <ReactWrapperImg
-        preactComponent={FileManagementDialog}
-        props={{
-          config: { record: record },
-          autoExtractImagesFromPDFs: true,
-          locale: "cs_CZ",
-          allowedFileTypes: ["image/*", "application/pdf"],
-          allowedMetaFields: [
-            {
-              id: "caption",
-              defaultValue: "default_image_name",
-              isUserInput: true,
-            },
-            { id: "featured", defaultValue: false, isUserInput: true },
-          ],
-          onCompletedUpload: (result) => {
-            if (result?.successful.length > 0) {
-              fetchData();
-            }
-          },
-        }}
-      />
-    );
-  };
-
-  // button for docs upload
-  const uploaderPdf = (record) => {
-    return (
-      <ReactWrapperPdf
-        preactComponent={FileManagementDialog}
-        props={{
-          config: { record: record },
-          locale: "cs_CS",
-          autoExtractImagesFromPDFs: false,
-          allowedFileTypes: ["application/pdf"],
-          allowedMetaFields: [
-            {
-              id: "caption",
-              defaultValue: "default_pdf_name",
-              isUserInput: true,
-            },
-            { id: "featured", defaultValue: false, isUserInput: true },
-          ],
-          startEvent: { event: "upload-file-without-edit" },
-          onCompletedUpload: (result) => {
-            if (result?.successful.length > 0) {
-              fetchData();
-            }
-          },
-        }}
-      />
-    );
-  };
 
   return (
     <>
@@ -351,7 +256,10 @@ export const FileStat = ({ apiUrl, record }) => {
             <Tab.Pane>
               <Table>{renderTableBody()}</Table>
 
-              {uploaderImg(record)}
+              <ImageUploader
+                fetchData={fetchData}
+                record={record}
+              />
             </Tab.Pane>
           ),
         },
@@ -361,7 +269,10 @@ export const FileStat = ({ apiUrl, record }) => {
             <Tab.Pane>
               <Table>{renderTableBody()}</Table>
 
-              {uploaderPdf(record)}
+              <PDFUploader
+                fetchData={fetchData}
+                record={record}
+              />
             </Tab.Pane>
           ),
         },

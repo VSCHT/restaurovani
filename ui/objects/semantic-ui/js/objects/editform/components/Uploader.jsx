@@ -1,99 +1,123 @@
-import React, { useEffect, useRef } from "react";
-import { h, render } from "preact";
+import React from "react";
+import { Button, Image } from "semantic-ui-react";
+import FileManagementDialog from "@oarepo/file-manager";
 
-export const ReactWrapperPdf = ({ preactComponent, props }) => {
-  const preactCompRef = useRef();
+export const PDFUploader = ({ fetchData, record }) => {
+  const TriggerComponent = ({ onClick, ...props }) => (
+    <Button onClick={onClick} {...props}>
+      Dodat soubory
+    </Button>
+  );
 
-  useEffect(() => {
-    render(
-      h(preactComponent, {
-        TriggerComponent: ({ onClick, ...props }) =>
-          h(
-            "button",
-            { className: "ui button", onClick: onClick },
-            "Dodat soubory"
-          ),
-        ...props,
-      }),
-      preactCompRef.current
-    );
-  });
-
-  return <div ref={preactCompRef} />;
-};
-
-export const ReactWrapperImg = ({ preactComponent, props }) => {
-  const preactCompRef = useRef();
-
-  useEffect(() => {
-    render(
-      h(preactComponent, {
-        TriggerComponent: ({ onClick, ...props }) =>
-          h(
-            "button",
-            { className: "ui button", onClick: onClick },
-            "Dodat obrázky"
-          ),
-        ...props,
-      }),
-      preactCompRef.current
-    );
-  });
-
-  return <div ref={preactCompRef} />;
-};
-
-export const EditWrapper = ({ preactComponent, props }) => {
-  const preactCompRef = useRef();
-
-  useEffect(() => {
-    const triggerComponent = ({ onClick, ...triggerProps }) =>
-      h(
-        "button",
+  return (
+    <FileManagementDialog 
+      TriggerComponent={TriggerComponent}
+      config={{ record: record }}
+      locale="cs_CZ"
+      autoExtractImagesFromPDFs={false}
+      allowedFileTypes={["application/pdf"]}
+      allowedMetaFields={[
         {
-          className: "ui small transparent button",
-          title: "Editovat",
-          onClick: onClick,
-          ...triggerProps,
+          id: "caption",
+          defaultValue: "default_pdf_name",
+          isUserInput: true,
         },
-        [h("img", { src: "/static/images/edit-icon.png", alt: "Edit Button" })]
-      );
-
-    render(
-      h(preactComponent, { TriggerComponent: triggerComponent, ...props }),
-      preactCompRef.current
-    );
-  }, [preactComponent, props]);
-
-  return <div ref={preactCompRef} />;
+        { id: "featured", defaultValue: false, isUserInput: true },
+      ]}
+      startEvent={{ event: "upload-file-without-edit" }}
+      onCompletedUpload={(result) => {
+        if (result?.successful.length > 0) {
+          fetchData();
+        }
+      }}
+    />
+  );
 };
 
-export const ExtractWrapper = ({ preactComponent, props }) => {
-  const preactCompRef = useRef();
+export const ImageUploader = ({ fetchData, record }) => {
+  const TriggerComponent = ({ onClick, ...props }) => (
+    <Button onClick={onClick} {...props}>
+      Dodat obrázky
+    </Button>
+  );
 
-  useEffect(() => {
-    const triggerComponent = ({ onClick, ...triggerProps }) =>
-      h(
-        "button",
+  return (
+    <FileManagementDialog 
+      TriggerComponent={TriggerComponent}
+      config={{ record: record }}
+      autoExtractImagesFromPDFs={true}
+      locale="cs_CZ"
+      allowedFileTypes={["image/*", "application/pdf"]}
+      allowedMetaFields={[
         {
-          className: "ui small transparent button",
-          title: "Extrahovat obrázky",
-          onClick: onClick,
-          ...triggerProps,
+          id: "caption",
+          defaultValue: "default_image_name",
+          isUserInput: true,
         },
-        [
-          h("img", {
-            src: "/static/images/image-icon.png",
-            alt: "Extract Button",
-          }),
-        ]
-      );
+        { id: "featured", defaultValue: false, isUserInput: true },
+      ]}
+      onCompletedUpload={(result) => {
+        if (result?.successful.length > 0) {
+          fetchData();
+        }
+      }}
+    />
+  );
+};
 
-    render(
-      h(preactComponent, { TriggerComponent: triggerComponent, ...props }),
-      preactCompRef.current
-    );
-  }, [preactComponent, props]);
+export const FileMetadataEditor = ({ fetchData, record, fileKey }) => {
+  const TriggerComponent = ({ onClick, ...props }) => (
+    <Button onClick={onClick} size="small" className="transparent" title="Editovat" {...props}>
+      <Image src="/static/images/edit-icon.png" alt="Edit Button" />
+    </Button>
+  );
 
-  return <div ref={preactCompRef} />;
+  return (
+    <FileManagementDialog 
+      TriggerComponent={TriggerComponent}
+      config={{ record: record }}
+      autoExtractImagesFromPDFs={false}
+      locale="cs_CZ"
+      startEvent={{ event: "edit-file", data: { file_key: fileKey } }}
+      onCompletedUpload={(result) => {
+        if (result?.successful.length > 0) {
+          fetchData();
+        }
+      }}
+    />
+  );
+};
+
+export const PDFImageExtractor = ({ fetchData, record, fileKey }) => {
+  const TriggerComponent = ({ onClick, ...props }) => (
+    <Button onClick={onClick} size="small" className="transparent" title="Extrahovat obrázky" {...props}>
+      <Image src="/static/images/image-icon.png" alt="Extract Button" />
+    </Button>
+  );
+
+  return (
+    <FileManagementDialog
+      TriggerComponent={TriggerComponent}
+      config={{ record: record }}
+      autoExtractImagesFromPDFs={true}
+      locale="cs_CZ"
+      startEvent={{
+        event: "upload-images-from-pdf",
+        data: { file_key: fileKey },
+      }}
+      allowedMetaFields={[
+        {
+          id: "caption",
+          defaultValue: "default_image_name",
+          isUserInput: true,
+        },
+        { id: "featured", defaultValue: false, isUserInput: true },
+      ]}
+      onCompletedUpload={(result) => {
+        if (result?.successful.length > 0) {
+          fetchData();
+        }
+      }}
+    />
+  );
 };
