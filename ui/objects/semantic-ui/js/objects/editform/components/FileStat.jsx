@@ -10,6 +10,7 @@ import {
   Pagination,
   Grid,
 } from "semantic-ui-react";
+import _truncate from "lodash/truncate";
 import {
   PDFUploader,
   ImageUploader,
@@ -95,11 +96,13 @@ export const FileStat = ({ apiUrl, record }) => {
     return (
       <>
         <Button
-          className="small transparent"
+          size="small"
+          className="transparent"
+          icon
           onClick={() => setConfirmOpen(true)}
           title="Smazat"
         >
-          <Icon name="delete" />
+          <Icon name="delete" aria-label="Ikona zavření" />
         </Button>
 
         <Confirm
@@ -122,7 +125,7 @@ export const FileStat = ({ apiUrl, record }) => {
     setActivePage(activePage);
   };
 
-  const renderTableBody = (fileTypeFilter) => {
+  const renderTable = (fileTypeFilter) => {
     const fileName = (d, conc = false) => {
       if (d.metadata && d.metadata?.caption) {
         if (
@@ -130,18 +133,12 @@ export const FileStat = ({ apiUrl, record }) => {
           d.metadata.caption === "default_pdf_name" ||
           Object.values(d.metadata.caption).length === 0
         ) {
-          return d.key.length > 15 && conc
-            ? d.key.substring(0, 15) + "..."
-            : d.key;
+          return conc ? _truncate(d.key, { length: 50 }) : d.key;
         } else {
-          return d.metadata.caption.length > 15 && conc
-            ? d.metadata.caption.substring(0, 15) + "..."
-            : d.metadata.caption;
+          return conc ? _truncate(d.metadata.caption, { length: 50 }) : d.metadata.caption;
         }
       } else {
-        return d.key.length > 15 && conc
-          ? d.key.substring(0, 15) + "..."
-          : d.key;
+        return conc ? _truncate(d.key, { length: 50 }) : d.key;
       }
     };
 
@@ -157,58 +154,69 @@ export const FileStat = ({ apiUrl, record }) => {
     }
 
     return (
-      <Table.Body>
-        {slicedData?.map((d, index) => (
-          <Table.Row key={d.key}>
-            {d.metadata.fileType === "photo" && (
-              <Table.Cell
-                title={fileName(d)}
-                onClick={() => {
-                  setSelectedImage(index);
-                  setModalOpen(true);
-                }}
-              >
-                {fileName(d)}{" "}
-              </Table.Cell>
-            )}
-            {d.metadata.fileType === "document" && (
-              <Table.Cell title={fileName(d)}>{fileName(d, true)}</Table.Cell>
-            )}
-            <Table.Cell>{formatBytes(d.size)}</Table.Cell>
-            <Table.Cell>{d.metadata.fileType}</Table.Cell>
-            <Table.Cell>
-              <Grid.Row>
-                <DeleteButton apiUrl={d.links.self} />
+      <Table>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Název</Table.HeaderCell>
+            <Table.HeaderCell>Velikost</Table.HeaderCell>
+            <Table.HeaderCell>Akce</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
 
-                <FileMetadataEditor
-                  fetchData={fetchData}
-                  record={record}
-                  fileKey={d.key}
-                />
-
-                {d.metadata.fileType === "document" &&
-                  <PDFImageExtractor
+        <Table.Body>
+          {slicedData?.map((d, index) => (
+            <Table.Row key={d.key}>
+              {d.metadata.fileType === "photo" && (
+                <Table.Cell
+                  title={fileName(d)}
+                  onClick={() => {
+                    setSelectedImage(index);
+                    setModalOpen(true);
+                  }}
+                >
+                  {fileName(d)}
+                </Table.Cell>
+              )}
+              {d.metadata.fileType === "document" && (
+                <Table.Cell title={fileName(d)}>{fileName(d, true)}</Table.Cell>
+              )}
+              <Table.Cell>{formatBytes(d.size)}</Table.Cell>
+              <Table.Cell>
+                <Grid.Row centered verticalAlign="middle" columns={d.metadata.fileType === "document" ? 3 : 2}>
+                  <DeleteButton apiUrl={d.links.self} />
+        
+                  <FileMetadataEditor
                     fetchData={fetchData}
                     record={record}
                     fileKey={d.key}
                   />
-                }
-              </Grid.Row>
-            </Table.Cell>
+        
+                  {d.metadata.fileType === "document" &&
+                    <PDFImageExtractor
+                      fetchData={fetchData}
+                      record={record}
+                      fileKey={d.key}
+                    />
+                  }
+                </Grid.Row>
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+        <Table.Footer>
+          <Table.Row>
+            <Table.HeaderCell colSpan="3">
+              {data?.entries?.length > itemsPerPage && (
+                <Pagination
+                  totalPages={Math.ceil(typeAmount?.length / itemsPerPage)}
+                  activePage={activePage}
+                  onPageChange={changePage}
+                />
+              )}
+            </Table.HeaderCell>
           </Table.Row>
-        ))}
-        <Table.Row>
-          <Table.Cell colSpan="5">
-            {data?.entries?.length > itemsPerPage && (
-              <Pagination
-                totalPages={Math.ceil(typeAmount?.length / itemsPerPage)}
-                activePage={activePage}
-                onPageChange={changePage}
-              />
-            )}
-          </Table.Cell>
-        </Table.Row>
-      </Table.Body>
+        </Table.Footer>
+      </Table>
     );
   };
 
@@ -218,10 +226,9 @@ export const FileStat = ({ apiUrl, record }) => {
       panes={[
         {
           menuItem: "Obrázky",
-
           render: () => (
             <Tab.Pane>
-              <Table>{renderTableBody("photo")}</Table>
+              {renderTable("photo")}
 
               <ImageUploader
                 fetchData={fetchData}
@@ -234,7 +241,7 @@ export const FileStat = ({ apiUrl, record }) => {
           menuItem: "Dokumenty",
           render: () => (
             <Tab.Pane>
-              <Table>{renderTableBody("document")}</Table>
+              {renderTable("document")}
 
               <PDFUploader
                 fetchData={fetchData}
@@ -249,34 +256,7 @@ export const FileStat = ({ apiUrl, record }) => {
 
   return (
     <>
-      {renderTabs([
-        {
-          menuItem: "Obrazky",
-          render: () => (
-            <Tab.Pane>
-              <Table>{renderTableBody()}</Table>
-
-              <ImageUploader
-                fetchData={fetchData}
-                record={record}
-              />
-            </Tab.Pane>
-          ),
-        },
-        {
-          menuItem: "Dokumenty",
-          render: () => (
-            <Tab.Pane>
-              <Table>{renderTableBody()}</Table>
-
-              <PDFUploader
-                fetchData={fetchData}
-                record={record}
-              />
-            </Tab.Pane>
-          ),
-        },
-      ])}
+      {renderTabs()}
 
       {/* modal for full screen image */}
       <div>

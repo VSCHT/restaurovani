@@ -13,6 +13,7 @@
     }
   }
   .ui.container.stackable & a,
+  &.tabular .item,
   .item {
     color: gray;
   }

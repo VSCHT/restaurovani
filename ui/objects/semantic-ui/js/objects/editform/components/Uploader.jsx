@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Image } from "semantic-ui-react";
+import { Button, Icon } from "semantic-ui-react";
 import FileManagementDialog from "@oarepo/file-manager";
 
 export const PDFUploader = ({ fetchData, record }) => {
@@ -67,8 +67,8 @@ export const ImageUploader = ({ fetchData, record }) => {
 
 export const FileMetadataEditor = ({ fetchData, record, fileKey }) => {
   const TriggerComponent = ({ onClick, ...props }) => (
-    <Button onClick={onClick} size="small" className="transparent" title="Editovat" {...props}>
-      <Image src="/static/images/edit-icon.png" alt="Edit Button" />
+    <Button onClick={onClick} icon size="small" className="transparent" title="Editovat" {...props}>
+      <Icon name="pencil" link aria-label="Ikona tužky" />
     </Button>
   );
 
@@ -91,7 +91,7 @@ export const FileMetadataEditor = ({ fetchData, record, fileKey }) => {
 export const PDFImageExtractor = ({ fetchData, record, fileKey }) => {
   const TriggerComponent = ({ onClick, ...props }) => (
     <Button onClick={onClick} size="small" className="transparent" title="Extrahovat obrázky" {...props}>
-      <Image src="/static/images/image-icon.png" alt="Extract Button" />
+      <Icon name="images" link aria-label="Ikona obrázku" />
     </Button>
   );
 
