@@ -5,7 +5,7 @@ import FileManagementDialog from "@oarepo/file-manager";
 export const PDFUploader = ({ fetchData, record }) => {
   const TriggerComponent = ({ onClick, ...props }) => (
     <Button onClick={onClick} {...props}>
-      Dodat soubory
+      Nahrát Dokumenty
     </Button>
   );
 
@@ -37,7 +37,7 @@ export const PDFUploader = ({ fetchData, record }) => {
 export const ImageUploader = ({ fetchData, record }) => {
   const TriggerComponent = ({ onClick, ...props }) => (
     <Button onClick={onClick} {...props}>
-      Dodat obrázky
+      Nahrát Obrázky
     </Button>
   );
 
