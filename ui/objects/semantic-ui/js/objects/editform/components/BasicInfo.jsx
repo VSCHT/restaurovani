@@ -104,6 +104,8 @@ export const BasicInfo = ({
                 label="Popis"
               ></FieldLabel>
             }
+            rows={5}
+            style={{ resize: "none" }}
             onBlur={() => {
               const cleanedContent = sanitizeInput(
                 getIn(values, `${fieldPath}.description`)
