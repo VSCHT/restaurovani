@@ -15,14 +15,10 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                 {{ metadata.restorationObject.title }}
               </h3>
               <a
-                class="ui transparent small button"
+                class="ui transparent large icon button"
                 href="{{url_for('objects.edit', pid_value=record.id)}}"
               >
-                <img
-                  src="{{ url_for('static', filename='images/icon_pencil.png') }}"
-                  class="ui image"
-                  alt="Edit icon"
-                />
+                <i class="white link pencil icon" aria-label="Edit icon"></i>
               </a>
             </div>
           </div>
