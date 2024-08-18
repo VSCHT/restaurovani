@@ -154,7 +154,7 @@ export const FileStat = ({ apiUrl, record }) => {
     }
 
     return (
-      <Table>
+      <Table className="file-stat-table">
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Název</Table.HeaderCell>
@@ -203,19 +203,20 @@ export const FileStat = ({ apiUrl, record }) => {
             </Table.Row>
           ))}
         </Table.Body>
-        <Table.Footer>
-          <Table.Row>
-            <Table.HeaderCell colSpan="3">
-              {data?.entries?.length > itemsPerPage && (
+
+        {data?.entries?.length > itemsPerPage && (
+          <Table.Footer>
+            <Table.Row>
+              <Table.HeaderCell colSpan={3} verticalAlign="middle">
                 <Pagination
                   totalPages={Math.ceil(typeAmount?.length / itemsPerPage)}
                   activePage={activePage}
                   onPageChange={changePage}
                 />
-              )}
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Footer>
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Footer>
+        )}
       </Table>
     );
   };
