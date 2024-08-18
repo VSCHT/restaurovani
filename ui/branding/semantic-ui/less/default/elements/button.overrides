@@ -1,6 +1,6 @@
 .ui.button {
   font-size: 1rem;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   height: 2.5rem;

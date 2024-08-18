@@ -71,7 +71,7 @@ export const FileStat = ({ apiUrl, record }) => {
 
   // delete button
 
-  const DeleteButton = ({ apiUrl }) => {
+  const DeleteButton = ({ fileCaption, apiUrl }) => {
     const [confirmOpen, setConfirmOpen] = useState(false);
     const handleDelete = async () => {
       try {
@@ -107,7 +107,8 @@ export const FileStat = ({ apiUrl, record }) => {
 
         <Confirm
           open={confirmOpen}
-          content={"Chcete smazat?"}
+          header={`Smazat soubor${fileCaption ? ` "${fileCaption}"` : ""}`}
+          content={"Jste si jistý? (tato akce je nezvratná)"}
           cancelButton={"Zrušit"}
           confirmButton={"Ano"}
           onCancel={() => setConfirmOpen(false)}
@@ -183,7 +184,10 @@ export const FileStat = ({ apiUrl, record }) => {
               <Table.Cell>{formatBytes(d.size)}</Table.Cell>
               <Table.Cell>
                 <Grid.Row centered verticalAlign="middle" columns={d.metadata.fileType === "document" ? 3 : 2}>
-                  <DeleteButton apiUrl={d.links.self} />
+                  <DeleteButton 
+                    fileCaption={d.metadata?.caption} 
+                    apiUrl={d.links.self} 
+                  />
         
                   <FileMetadataEditor
                     fetchData={fetchData}
