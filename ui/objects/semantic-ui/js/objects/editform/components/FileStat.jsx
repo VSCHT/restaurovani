@@ -169,6 +169,7 @@ export const FileStat = ({ apiUrl, record }) => {
             <Table.Row key={d.key}>
               {d.metadata.fileType === "photo" && (
                 <Table.Cell
+                  className="clickable-text"
                   title={fileName(d)}
                   onClick={() => {
                     setSelectedImage(index);
@@ -179,22 +180,28 @@ export const FileStat = ({ apiUrl, record }) => {
                 </Table.Cell>
               )}
               {d.metadata.fileType === "document" && (
-                <Table.Cell title={fileName(d)}>{fileName(d, true)}</Table.Cell>
+                <Table.Cell
+                  title={fileName(d)}
+                >
+                  <a href={d.links?.content} className="clickable-text">
+                    {fileName(d, true)}
+                  </a>
+                </Table.Cell>
               )}
               <Table.Cell>{formatBytes(d.size)}</Table.Cell>
               <Table.Cell>
                 <Grid.Row centered verticalAlign="middle" columns={d.metadata.fileType === "document" ? 3 : 2}>
-                  <DeleteButton 
-                    fileCaption={d.metadata?.caption} 
-                    apiUrl={d.links.self} 
+                  <DeleteButton
+                    fileCaption={d.metadata?.caption}
+                    apiUrl={d.links.self}
                   />
-        
+
                   <FileMetadataEditor
                     fetchData={fetchData}
                     record={record}
                     fileKey={d.key}
                   />
-        
+
                   {d.metadata.fileType === "document" &&
                     <PDFImageExtractor
                       fetchData={fetchData}
@@ -264,20 +271,24 @@ export const FileStat = ({ apiUrl, record }) => {
       {renderTabs()}
 
       {/* modal for full screen image */}
-      <div>
-        <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
-          <Modal.Content image>
-            <Image src={data?.entries?.[selectedImage]?.links?.content} />
-            {data?.entries?.[selectedImage]?.metadata?.caption}
-
-            <Button
-              icon="close"
-              onClick={() => setModalOpen(false)}
-              className="close-button"
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} centered closeIcon>
+        <Modal.Content as={Grid}>
+          <Grid.Column textAlign="center" verticalAlign="top">
+            <Image
+              as="a"
+              size="huge"
+              src={data?.entries?.[selectedImage]?.links?.content}
+              href={data?.entries?.[selectedImage]?.links?.content}
+              target="_blank"
+              inline
+              className="zoomable"
             />
-          </Modal.Content>
-        </Modal>
-      </div>
+            <p>
+              {data?.entries?.[selectedImage]?.metadata?.caption}
+            </p>
+          </Grid.Column>
+        </Modal.Content>
+      </Modal>
     </>
   );
 };
