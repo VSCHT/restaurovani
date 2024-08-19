@@ -14,20 +14,18 @@ export const MyBucketAggregationValues = withState(
   ({ bucket, onFilterClicked, isSelected, childAggCmps }) => {
 
     return (
-      <>
-        <List.Item key={bucket.key}>
-          <Grid.Row>
-            <Checkbox
-              value={bucket.key}
-              onClick={() => onFilterClicked(bucket.key)}
-              checked={isSelected}
-              id={bucket.key}
-            />
-            <Label size="large">{bucket.label}</Label>{" "}
-            <Label size="large">{bucket.doc_count}</Label> {childAggCmps}
-          </Grid.Row>
-        </List.Item>
-      </>
+      <List.Item key={bucket.key} className="bucket-item">
+        <Grid.Row columns={3}>
+          <Checkbox
+            value={bucket.key}
+            onClick={() => onFilterClicked(bucket.key)}
+            checked={isSelected}
+            id={bucket.key}
+          />
+          <Label size="large">{bucket.label}</Label>
+          <Grid.Column as={Label} size="large" floated="right">{bucket.doc_count}</Grid.Column> {childAggCmps}
+        </Grid.Row>
+      </List.Item>
     );
   }
 );
