@@ -196,12 +196,6 @@
   }
 }
 
-.ui.buttons {
-  position: absolute;
-  left: 130px;
-  top: 10px;
-}
-
 .ui.datepicker .react-datepicker__close-icon {
   font-weight: 800;
 }
