@@ -1,5 +1,5 @@
 oarepo[s3]==12.0.28
-cachetools==5.4.0
+cachetools==5.5.0
 deepmerge==1.1.1
 et-xmlfile==1.1.0
 flask-babelex==0.9.4
@@ -11,10 +11,10 @@ langcodes==3.4.0
 language-data==1.2.0
 marisa-trie==1.2.0
 oarepo-published-service==1.0.3
-oarepo-requests==2.0.1
-oarepo-runtime==1.5.47
-oarepo-ui==5.2.1
-oarepo-vocabularies==2.0.93
+oarepo-requests==2.0.3
+oarepo-runtime==1.5.53
+oarepo-ui==5.2.6
+oarepo-vocabularies==2.0.95
 openpyxl==3.1.5
 pymupdf==1.24.9
 pymupdfb==1.24.9
