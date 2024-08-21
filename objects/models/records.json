@@ -125,41 +125,6 @@
             "suffix-upper": "OBJECTS",
             "suffix-snake": "objects"
         },
-        "tests": {
-            "extra-fixtures": [],
-            "extra-code": "",
-            "module": "tests"
-        },
-        "draft-files": {
-            "type": "draft-file",
-            "properties": {},
-            "searchable": true,
-            "service-config": {
-                "base-classes": [
-                    "common.services.files.RestorationFileServiceConfig"
-                ]
-            },
-            "resource": {
-                "base-classes": [
-                    "oarepo_ui.resources.file_resource.S3RedirectFileResource"
-                ]
-            },
-            "tests": {
-                "extra-fixtures": [],
-                "extra-code": "",
-                "module": "tests"
-            }
-        },
-        "draft": {
-            "type": "draft_record",
-            "properties": {},
-            "searchable": true,
-            "tests": {
-                "extra-fixtures": [],
-                "extra-code": "",
-                "module": "tests"
-            }
-        },
         "files": {
             "type": "file",
             "properties": {
@@ -269,6 +234,41 @@
                 "module": "tests"
             }
         },
+        "draft-files": {
+            "type": "draft-file",
+            "properties": {},
+            "searchable": true,
+            "service-config": {
+                "base-classes": [
+                    "common.services.files.RestorationFileServiceConfig"
+                ]
+            },
+            "resource": {
+                "base-classes": [
+                    "oarepo_ui.resources.file_resource.S3RedirectFileResource"
+                ]
+            },
+            "tests": {
+                "extra-fixtures": [],
+                "extra-code": "",
+                "module": "tests"
+            }
+        },
+        "tests": {
+            "extra-fixtures": [],
+            "extra-code": "",
+            "module": "tests"
+        },
+        "draft": {
+            "type": "draft_record",
+            "properties": {},
+            "searchable": true,
+            "tests": {
+                "extra-fixtures": [],
+                "extra-code": "",
+                "module": "tests"
+            }
+        },
         "sample": {
             "file": "data/sample_data.yaml"
         },
@@ -277,20 +277,6 @@
             "skip": false
         },
         "model-name": "Objects",
-        "record-resolver": {
-            "generate": true,
-            "module": "objects.records.requests.resolvers",
-            "class": "objects.records.requests.resolvers.ObjectsResolver",
-            "base-classes": [
-                "oarepo_runtime.records.entity_resolvers.RecordResolver"
-            ],
-            "imports": [],
-            "custom-proxy-class": "oarepo_runtime.records.entity_resolvers.RecordProxy"
-        },
-        "ui-record-resolver": {
-            "generate": true,
-            "class": "oarepo_requests.resolvers.ui.RecordEntityReferenceUIResolver"
-        },
         "record": {
             "base-classes": [
                 "invenio_drafts_resources.records.api.Record{InvenioRecord}"
@@ -314,6 +300,20 @@
             "extra-code": "",
             "imports": [],
             "additional-args": []
+        },
+        "record-resolver": {
+            "generate": true,
+            "module": "objects.records.requests.resolvers",
+            "class": "objects.records.requests.resolvers.ObjectsResolver",
+            "base-classes": [
+                "oarepo_runtime.records.entity_resolvers.RecordResolver"
+            ],
+            "imports": [],
+            "custom-proxy-class": "oarepo_runtime.records.entity_resolvers.RecordProxy"
+        },
+        "ui-record-resolver": {
+            "generate": true,
+            "class": "oarepo_requests.resolvers.ui.RecordEntityReferenceUIResolver"
         },
         "config": {
             "generate": true,
@@ -361,15 +361,6 @@
             "module": "objects.proxies",
             "generate": true
         },
-        "files-field": {
-            "generate": true,
-            "field-class": "invenio_records_resources.records.systemfields.FilesField",
-            "file-class": "objects.records.api.ObjectsRecord",
-            "field-args": [
-                "store=False"
-            ],
-            "imports": []
-        },
         "record-metadata": {
             "generate": true,
             "module": "objects.records.models",
@@ -415,9 +406,9 @@
             "service-id": "objects",
             "components": [
                 "{{oarepo_runtime.services.components.OwnersComponent}}",
-                "{{oarepo_runtime.services.files.FilesComponent}}",
+                "{{invenio_records_resources.services.records.components.DataComponent}}",
                 "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}",
-                "{{invenio_records_resources.services.records.components.DataComponent}}"
+                "{{oarepo_runtime.services.files.FilesComponent}}"
             ],
             "additional-args": []
         },
@@ -434,10 +425,6 @@
                 "{{objects.records.dumpers.edtf.ObjectsEDTFIntervalDumperExt}}()"
             ],
             "imports": []
-        },
-        "translations": {
-            "module": "objects.translations",
-            "alias": "objects"
         },
         "json-schema-settings": {
             "generate": true,
@@ -463,12 +450,26 @@
                 "\"identity\"": "{{ flask.g{g.identity} }}"
             }
         },
+        "translations": {
+            "module": "objects.translations",
+            "alias": "objects"
+        },
+        "files-field": {
+            "generate": true,
+            "field-class": "invenio_records_resources.records.systemfields.FilesField",
+            "file-class": "objects.records.api.ObjectsRecord",
+            "field-args": [
+                "store=False"
+            ],
+            "imports": []
+        },
         "draft-parent-record": {
             "class": "objects.records.api.ObjectsParentRecord",
             "base-classes": [
                 "invenio_drafts_resources.records.api.ParentRecord"
             ],
             "imports": [],
+            "fields": {},
             "module": "objects.records.api",
             "generate": true
         },
@@ -563,6 +564,14 @@
             ],
             "imports": []
         },
+        "parent-record-marshmallow": {
+            "module": "objects.services.records.schema",
+            "class": "objects.services.records.schema.GeneratedParentSchema",
+            "generate": true,
+            "base-classes": [
+                "invenio_drafts_resources.services.records.schema.ParentSchema{InvenioParentSchema}"
+            ]
+        },
         "requests": {
             "types": {},
             "api-blueprint": {
@@ -602,14 +611,6 @@
             "additional-resolvers": [],
             "additional-ui-resolvers": {},
             "ui-serialization-referenced-fields": []
-        },
-        "parent-record-marshmallow": {
-            "module": "objects.services.records.schema",
-            "class": "objects.services.records.schema.GeneratedParentSchema",
-            "generate": true,
-            "base-classes": [
-                "invenio_drafts_resources.services.records.schema.ParentSchema{InvenioParentSchema}"
-            ]
         },
         "sortable": [],
         "properties": {
@@ -1932,40 +1933,111 @@
                                 "type": "array",
                                 "label.cs": "Vedoucí práce",
                                 "items": {
-                                    "type": "object",
+                                    "type": "vocabulary",
+                                    "vocabulary-type": "names",
                                     "label.cs": "Vedoucí práce",
+                                    "imports": [
+                                        {
+                                            "import": "invenio_vocabularies.records.api.Vocabulary"
+                                        }
+                                    ],
+                                    "model": "vocabularies",
+                                    "keys": [
+                                        "id",
+                                        "title"
+                                    ],
                                     "marshmallow": {
-                                        "generate": true,
-                                        "class": "objects.services.records.schema.SupervisorsItemSchema"
+                                        "unknown": "INCLUDE",
+                                        "generate": false,
+                                        "class": "objects.services.records.schema.ColorsItemSchema"
                                     },
                                     "ui": {
                                         "marshmallow": {
-                                            "generate": true,
-                                            "class": "objects.services.records.ui_schema.SupervisorsItemUISchema"
-                                        }
+                                            "unknown": "INCLUDE",
+                                            "generate": false,
+                                            "class": "objects.services.records.ui_schema.ColorsItemUISchema"
+                                        },
+                                        "detail": "vocabulary_item",
+                                        "edit": "vocabulary_item"
+                                    },
+                                    "pid-field": "Vocabulary.pid.with_type_ctx(\"names\")",
+                                    "facets": {
+                                        "args": [
+                                            "vocabulary='names'"
+                                        ]
                                     },
                                     "properties": {
-                                        "comment": {
-                                            "type": "keyword",
-                                            "label.cs": "Poznámka k vedoucímu"
-                                        },
-                                        "fullName": {
-                                            "type": "keyword",
-                                            "facets": {
-                                                "facet-groups": {
-                                                    "default": 100000
+                                        "id": {
+                                            "marshmallow": {
+                                                "field-class": "marshmallow.fields.String",
+                                                "validators": [],
+                                                "imports": []
+                                            },
+                                            "ui": {
+                                                "marshmallow": {
+                                                    "field-class": "marshmallow.fields.String",
+                                                    "validators": [],
+                                                    "imports": []
                                                 }
                                             },
-                                            "label.cs": "Vedoucí práce"
-                                        },
-                                        "institution": {
                                             "type": "keyword",
-                                            "facets": {
-                                                "facet-groups": {
-                                                    "default": 100000
+                                            "mapping": {
+                                                "fields": {
+                                                    "text": {
+                                                        "type": "search_as_you_type"
+                                                    }
                                                 }
                                             },
-                                            "label.cs": "Instituce vedoucího práce"
+                                            "sample": {
+                                                "skip": true
+                                            }
+                                        },
+                                        "title": {
+                                            "marshmallow": {
+                                                "generate": false,
+                                                "field": "{{invenio_vocabularies.services.schema.i18n_strings}}",
+                                                "field-class": "marshmallow.fields.Nested",
+                                                "validators": [],
+                                                "class": "invenio_vocabularies.services.records.schema.TitleSchema"
+                                            },
+                                            "ui": {
+                                                "marshmallow": {
+                                                    "field": "{{oarepo_vocabularies.services.ui_schema.VocabularyI18nStrUIField}}()",
+                                                    "generate": false
+                                                }
+                                            },
+                                            "mapping": {
+                                                "dynamic": true,
+                                                "properties": {
+                                                    "en": {
+                                                        "type": "search_as_you_type",
+                                                        "copy_to": "title_sort"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object",
+                                            "propertyNames": {
+                                                "pattern": "^[a-z]{2}$"
+                                            },
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "@v": {
+                                            "type": "keyword",
+                                            "marshmallow": {
+                                                "field-name": "_version",
+                                                "field-class": "marshmallow.fields.String"
+                                            },
+                                            "ui": {
+                                                "marshmallow": {
+                                                    "field-name": "_version",
+                                                    "field-class": "marshmallow.fields.String"
+                                                }
+                                            },
+                                            "facets": {
+                                                "facet": false
+                                            }
                                         }
                                     }
                                 }
@@ -2086,6 +2158,62 @@
                     },
                     "submissionStatus": {
                         "type": "keyword"
+                    }
+                }
+            },
+            "pid": {
+                "type": "object",
+                "facets": {
+                    "searchable": true,
+                    "facet": false
+                },
+                "ui": {
+                    "marshmallow": {
+                        "generate": false,
+                        "class": "objects.services.records.ui_schema.FakeUIPIDSchema",
+                        "skip": true,
+                        "read": false,
+                        "write": false
+                    }
+                },
+                "marshmallow": {
+                    "generate": false,
+                    "class": "objects.services.records.schema.FakePIDSchema",
+                    "skip": true,
+                    "read": false,
+                    "write": false
+                },
+                "sample": {
+                    "skip": true
+                },
+                "properties": {
+                    "obj_type": {
+                        "type": "keyword",
+                        "facets": {
+                            "searchable": true,
+                            "facet": false
+                        }
+                    },
+                    "pid_type": {
+                        "type": "keyword",
+                        "facets": {
+                            "searchable": true,
+                            "facet": false
+                        }
+                    },
+                    "pk": {
+                        "type": "integer",
+                        "facets": {
+                            "searchable": true,
+                            "facet": false
+                        }
+                    },
+                    "status": {
+                        "type": "keyword",
+                        "facets": {
+                            "searchable": true,
+                            "facet": false
+                        }
                     }
                 }
             },

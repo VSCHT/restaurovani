@@ -121,7 +121,7 @@ class RestorationWorkSchema(DictOnlySchema):
 
     restorer = ma_fields.String()
 
-    supervisors = ma_fields.List(ma_fields.Nested(lambda: SupervisorsItemSchema()))
+    supervisors = ma_fields.List(ma_fields.Nested(lambda: ColorsItemSchema()))
 
     workType = ma_fields.Nested(lambda: ColorsItemSchema())
 
@@ -164,17 +164,6 @@ class RestorationPeriodSchema(DictOnlySchema):
     since = ma_fields.String(validate=[validate_date("%Y-%m-%d")])
 
     until = ma_fields.String(validate=[validate_date("%Y-%m-%d")])
-
-
-class SupervisorsItemSchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    comment = ma_fields.String()
-
-    fullName = ma_fields.String()
-
-    institution = ma_fields.String()
 
 
 class FilesOptionsSchema(ma.Schema):

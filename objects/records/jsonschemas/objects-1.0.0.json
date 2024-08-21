@@ -254,13 +254,13 @@
                             "items": {
                                 "type": "object",
                                 "properties": {
-                                    "comment": {
+                                    "id": {
                                         "type": "string"
                                     },
-                                    "fullName": {
-                                        "type": "string"
+                                    "title": {
+                                        "type": "object"
                                     },
-                                    "institution": {
+                                    "@v": {
                                         "type": "string"
                                     }
                                 }
@@ -283,6 +283,23 @@
                     }
                 },
                 "submissionStatus": {
+                    "type": "string"
+                }
+            }
+        },
+        "pid": {
+            "type": "object",
+            "properties": {
+                "obj_type": {
+                    "type": "string"
+                },
+                "pid_type": {
+                    "type": "string"
+                },
+                "pk": {
+                    "type": "integer"
+                },
+                "status": {
                     "type": "string"
                 }
             }

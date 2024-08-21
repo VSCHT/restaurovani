@@ -10,23 +10,10 @@ restorationWork:
       facets:
         facet-groups: [ default ]
     supervisors[]:
-      type: object
+      type: vocabulary
       label.cs: Vedoucí práce
       ^label.cs: Vedoucí práce
-      properties:
-        fullName:
-          type: keyword
-          label.cs: Vedoucí práce
-          facets:
-            facet-groups: [ default ]
-        comment:
-          type: keyword
-          label.cs: Poznámka k vedoucímu
-        institution:
-          type: keyword
-          label.cs: Instituce vedoucího práce
-          facets:
-            facet-groups: [ default ]
+      vocabulary-type: names
 
     workType:
       type: vocabulary

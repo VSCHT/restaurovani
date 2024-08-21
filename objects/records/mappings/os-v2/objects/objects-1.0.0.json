@@ -365,15 +365,26 @@
                             "supervisors": {
                                 "type": "object",
                                 "properties": {
-                                    "comment": {
+                                    "id": {
+                                        "fields": {
+                                            "text": {
+                                                "type": "search_as_you_type"
+                                            }
+                                        },
                                         "type": "keyword",
                                         "ignore_above": 1024
                                     },
-                                    "fullName": {
-                                        "type": "keyword",
-                                        "ignore_above": 1024
+                                    "title": {
+                                        "dynamic": true,
+                                        "properties": {
+                                            "en": {
+                                                "type": "search_as_you_type",
+                                                "copy_to": "title_sort"
+                                            }
+                                        },
+                                        "type": "object"
                                     },
-                                    "institution": {
+                                    "@v": {
                                         "type": "keyword",
                                         "ignore_above": 1024
                                     }
@@ -410,6 +421,26 @@
                         }
                     },
                     "submissionStatus": {
+                        "type": "keyword",
+                        "ignore_above": 1024
+                    }
+                }
+            },
+            "pid": {
+                "type": "object",
+                "properties": {
+                    "obj_type": {
+                        "type": "keyword",
+                        "ignore_above": 1024
+                    },
+                    "pid_type": {
+                        "type": "keyword",
+                        "ignore_above": 1024
+                    },
+                    "pk": {
+                        "type": "integer"
+                    },
+                    "status": {
                         "type": "keyword",
                         "ignore_above": 1024
                     }

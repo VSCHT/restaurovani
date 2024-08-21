@@ -96,7 +96,7 @@ class RestorationWorkUISchema(DictOnlySchema):
 
     restorer = ma_fields.String()
 
-    supervisors = ma_fields.List(ma_fields.Nested(lambda: SupervisorsItemUISchema()))
+    supervisors = ma_fields.List(ma_fields.Nested(lambda: ColorsItemUISchema()))
 
     workType = ma_fields.Nested(lambda: ColorsItemUISchema())
 
@@ -139,14 +139,3 @@ class RestorationPeriodUISchema(DictOnlySchema):
     since = LocalizedDate()
 
     until = LocalizedDate()
-
-
-class SupervisorsItemUISchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    comment = ma_fields.String()
-
-    fullName = ma_fields.String()
-
-    institution = ma_fields.String()
