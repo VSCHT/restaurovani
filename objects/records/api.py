@@ -90,6 +90,11 @@ class ObjectsRecord(InvenioRecord):
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("RestorationMethods"),
         ),
+        supervisors=PIDRelation(
+            "metadata.restorationWork.supervisors",
+            keys=["id", "title"],
+            pid_field=Vocabulary.pid.with_type_ctx("names"),
+        ),
         workType=PIDRelation(
             "metadata.restorationWork.workType",
             keys=["id", "title"],
@@ -173,6 +178,11 @@ class ObjectsDraft(InvenioDraft):
             "metadata.restorationWork.restorationMethods",
             keys=["id", "title"],
             pid_field=Vocabulary.pid.with_type_ctx("RestorationMethods"),
+        ),
+        supervisors=PIDRelation(
+            "metadata.restorationWork.supervisors",
+            keys=["id", "title"],
+            pid_field=Vocabulary.pid.with_type_ctx("names"),
         ),
         workType=PIDRelation(
             "metadata.restorationWork.workType",

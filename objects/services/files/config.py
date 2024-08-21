@@ -25,6 +25,8 @@ class ObjectsFileServiceConfig(RestorationFileServiceConfig):
     components = [*RestorationFileServiceConfig.components, DataComponent]
 
     model = "objects"
+    allowed_mimetypes = []
+    allowed_extensions = []
     allow_upload = False
 
     @property
@@ -38,7 +40,7 @@ class ObjectsFileServiceConfig(RestorationFileServiceConfig):
         return {
             "commit": FileLink("{+api}/objects/{id}/files/{key}/commit"),
             "content": FileLink("{+api}/objects/{id}/files/{key}/content"),
-            "preview": FileLink("{+ui}/objects/files/{key}/preview"),
+            "preview": FileLink("{+ui}/objects/{id}/files/{key}/preview"),
             "self": FileLink("{+api}/objects/{id}/files/{key}"),
         }
 
@@ -71,5 +73,6 @@ class ObjectsFileDraftServiceConfig(RestorationFileServiceConfig):
         return {
             "commit": FileLink("{+api}/objects/{id}/draft/files/{key}/commit"),
             "content": FileLink("{+api}/objects/{id}/draft/files/{key}/content"),
+            "preview": FileLink("{+ui}/objects/{id}/files/{key}/preview"),
             "self": FileLink("{+api}/objects/{id}/draft/files/{key}"),
         }

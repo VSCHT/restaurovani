@@ -47,9 +47,9 @@ class ObjectsServiceConfig(
         *PermissionsPresetsConfigMixin.components,
         *InvenioRecordDraftsServiceConfig.components,
         OwnersComponent,
-        FilesComponent,
-        DraftFilesComponent,
         DataComponent,
+        DraftFilesComponent,
+        FilesComponent,
     ]
 
     model = "objects"
