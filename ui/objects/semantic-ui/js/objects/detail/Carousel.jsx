@@ -10,29 +10,25 @@ export const ImgCarousel = ({
     // className: "",
     infinite: false,
     speed: 100,
+    focusOnSelect: true,
     swipeToSlide: true,
-    slidesToShow: 3,
+    slidesToShow: imagesCollection.length <= 3 ? imagesCollection.length : 3,
     lazyLoad: true,
-    // centerMode: true,
+    centerMode: false,
     // adaptiveHeight: true,
     // variableWidth: true,
     responsive: [
       {
+        breakpoint: 1920,
+        settings: {
+          slidesToShow: imagesCollection.length <= 2 ? imagesCollection.length : 2,
+        }
+      },
+      {
         breakpoint: 992,
         settings: {
-          slidesToShow: 3,
-        }
-      },
-      {
-        breakpoint: 530,
-        settings: {
-          slidesToShow: 2,
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
+          slidesToShow: imagesCollection.length <= 1 ? imagesCollection.length : 1,
+          centerMode: true,
         }
       }
     ],
@@ -58,25 +54,25 @@ export const ImgCarousel = ({
     );
   };
 
-  const isVariableWidth = imagesCollection.length == 1;
-  const sliderSettings = { ...settings, variableWidth: isVariableWidth };
-
   return (
     <>
       <Suspense fallback={<Loader size="big" active />}>
-        <Slider {...sliderSettings}>
+        <Slider {...settings}>
           {imagesCollection?.map((image, index) => {
             return (
-              <Image
-                key={index}
-                src={image.links.content}
-                alt={getCaption(selectedImage)}
-                className="slick-image"
-                onClick={() => {
-                  setSelectedImageIndex(index);
-                  setModalOpen(true);
-                }}
-              />
+              <Grid key={image.key} columns={1} centered padded>
+                <Image
+                  as={Grid.Row}
+                  src={image.links.content}
+                  alt={getCaption(image)}
+                  className="slick-image"
+                  onClick={() => {
+                    setSelectedImageIndex(index);
+                    setModalOpen(true);
+                  }}
+                />
+                <Grid.Row as="span" className="carousel-img-caption">{getCaption(image)}</Grid.Row>
+              </Grid>
             );
           })}
         </Slider>
@@ -85,8 +81,9 @@ export const ImgCarousel = ({
       <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
         <Modal.Content image>
           <Button icon="chevron left" color="black" onClick={handlePrevImage} />
-          <Grid columns={1}>
+          <Grid columns={1} centered>
             <Image
+              as="a"
               src={selectedImage?.links?.content}
               href={selectedImage?.links?.content}
               className="zoomable-image"

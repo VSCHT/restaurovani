@@ -7,35 +7,29 @@ import $ from 'jquery'
 const imgGalleryComp = document.getElementById("images-carousel");
 const filesDivComp = document.getElementById("details-docs");
 
-let imagesCollection = [];
-let filesCollection = [];
-let data;
-
-const fetchImages = async () => {
+const fetchFiles = async () => {
   try {
     const apiUrl = imgGalleryComp.dataset.photos.replace(/"/g, "");
     const response = await fetch(apiUrl);
+    const data = await response.json();
 
-    data = await response.json();
+    const imagesCollection = [];
+    const filesCollection = [];
 
-    await Promise.all(
-      data?.entries?.map(async (item) => {
+    await Promise.allSettled(
+      data?.entries?.map((item) => {
         if (
           item?.metadata?.fileType === "photo" ||
           item?.mimetype?.startsWith("image")
         ) {
           imagesCollection.push(item);
-
-          const response = await fetch(item.links.content);
-
-          const blob = await response.blob();
-          return URL.createObjectURL(blob);
         } else {
           filesCollection.push(item);
         }
-        return null;
       })
     );
+
+    return { imagesCollection, filesCollection };
   } catch (error) {
     console.error("Error fetching images");
   }
@@ -58,16 +52,20 @@ export const getCaption = (d) => {
 
 async function fetchAndRender() {
   try {
-    await fetchImages();
+    const { imagesCollection, filesCollection } = await fetchFiles();
 
-    ReactDOM.render(
-      <ImgCarousel imagesCollection={imagesCollection} />,
-      imgGalleryComp
-    );
-    ReactDOM.render(
-      <FilesSection filesCollection={filesCollection} />,
-      filesDivComp
-    );
+    if (imagesCollection.length > 0) {
+      ReactDOM.render(
+        <ImgCarousel imagesCollection={imagesCollection} />,
+        imgGalleryComp
+      );
+    }
+    if (filesCollection.length > 0) {
+      ReactDOM.render(
+        <FilesSection filesCollection={filesCollection} />,
+        filesDivComp
+      );
+    }
   } catch (error) {
     console.error("Error rendering component");
   }

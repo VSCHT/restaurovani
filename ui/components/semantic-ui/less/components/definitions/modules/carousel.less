@@ -50,25 +50,30 @@
     }
 
     .slick-list {
-      // padding-left: 55px;
-      // padding-right: 55px;
-
       .slick-track {
         display: flex;
         gap: 10px;
         align-items: center;
-        width: max-content !important;
+        // width: max-content !important;
         padding: 10px;
       }
     }
 
     .slick-image {
-      max-height: 400px;
       .zoomable-image();
 
       &:hover {
         box-shadow: 0 0 10px @primaryRed;
       }
+
+      & > img {
+        max-height: 400px;
+      }
+    }
+
+    .carousel-img-caption {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
     }
   }
 }
