@@ -1,0 +1,868 @@
+name: Ďurovič, Michal
+id: 02901
+given_name: Michal
+family_name: Ďurovič
+identifiers:
+- identifier: 02901
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Kloužková, Alexandra
+id: '10708'
+given_name: Alexandra
+family_name: Kloužková
+identifiers:
+- identifier: '10708'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav skla a keramiky
+  id: '107'
+---
+name: Kotlík, Petr
+id: '14805'
+given_name: Petr
+family_name: Kotlík
+identifiers:
+- identifier: '14805'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Vávrová, Petra
+id: '14808'
+given_name: Petra
+family_name: Vávrová
+identifiers:
+- identifier: '14808'
+  scheme: uct-teacher-number
+affiliations:
+- name: Aplikační sféra (externisti vyučující nebo OR)
+  id: 099
+---
+name: Škrdlantová, Markéta
+id: '14804'
+given_name: Markéta
+family_name: Škrdlantová
+identifiers:
+- identifier: '14804'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Kučerová, Irena
+id: '14803'
+given_name: Irena
+family_name: Kučerová
+identifiers:
+- identifier: '14803'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Doubravová, Kateřina
+id: '14801'
+given_name: Kateřina
+family_name: Doubravová
+identifiers:
+- identifier: '14801'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Novák, Michal
+id: '60430'
+given_name: Michal
+family_name: Novák
+identifiers:
+- identifier: '60430'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Drábková, Klára
+id: '14844'
+given_name: Klára
+family_name: Drábková
+identifiers:
+- identifier: '14844'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Knotek, Vítězslav
+id: '60935'
+given_name: Vítězslav
+family_name: Knotek
+identifiers:
+- identifier: '60935'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Kalousková, Radka
+id: '11217'
+given_name: Radka
+family_name: Kalousková
+identifiers:
+- identifier: '11217'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav polymerů
+  id: '112'
+---
+name: Ohlídalová, Martina
+id: '14811'
+given_name: Martina
+family_name: Ohlídalová
+identifiers:
+- identifier: '14811'
+  scheme: uct-teacher-number
+affiliations:
+- name: Aplikační sféra (externisti vyučující nebo OR)
+  id: 099
+---
+name: Hrdlička, Zdeněk
+id: '60407'
+given_name: Zdeněk
+family_name: Hrdlička
+identifiers:
+- identifier: '60407'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav polymerů
+  id: '112'
+---
+name: Bílková, Lenka
+id: '60417'
+given_name: Lenka
+family_name: Bílková
+identifiers:
+- identifier: '60417'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Havlín, Jakub
+id: '60418'
+given_name: Jakub
+family_name: Havlín
+identifiers:
+- identifier: '60418'
+  scheme: uct-teacher-number
+affiliations:
+- name: Centrální laboratoře
+  id: '980'
+---
+name: Panagiotis, Manoudis
+id: '60452'
+given_name: Manoudis
+family_name: Panagiotis
+identifiers:
+- identifier: '60452'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Michalcová, Alena
+id: '60457'
+given_name: Alena
+family_name: Michalcová
+identifiers:
+- identifier: '60457'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav kovových materiálů a korozního inženýrství
+  id: '106'
+---
+name: Hodková, Dorothea
+id: '14825'
+given_name: Dorothea
+family_name: Hodková
+identifiers:
+- identifier: '14825'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Štěpničková, Barbora
+id: '60772'
+given_name: Barbora
+family_name: Štěpničková
+identifiers:
+- identifier: '60772'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Bureš Víchová, Jana
+id: '14840'
+given_name: Jana
+family_name: Bureš Víchová
+identifiers:
+- identifier: '14840'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Bartl, Benjamin
+id: '60944'
+given_name: Benjamin
+family_name: Bartl
+identifiers:
+- identifier: '60944'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Polonská, Adéla
+id: '61190'
+given_name: Adéla
+family_name: Polonská
+identifiers:
+- identifier: '61190'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav skla a keramiky
+  id: '107'
+---
+name: Šulcová, Veronika
+id: '14855'
+given_name: Veronika
+family_name: Šulcová
+identifiers:
+- identifier: '14855'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Koubová, Pavlína
+id: '14861'
+given_name: Pavlína
+family_name: Koubová
+identifiers:
+- identifier: '14861'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Krejčí, Jan
+id: '14858'
+given_name: Jan
+family_name: Krejčí
+identifiers:
+- identifier: '14858'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Strachotová, Kristýna Charlotte
+id: '10638'
+given_name: Kristýna Charlotte
+family_name: Strachotová
+identifiers:
+- identifier: '10638'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav kovových materiálů a korozního inženýrství
+  id: '106'
+---
+name: Nagyová, Dominika
+id: '62412'
+given_name: Dominika
+family_name: Nagyová
+identifiers:
+- identifier: '62412'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Malinovská, Andrea
+id: '14893'
+given_name: Andrea
+family_name: Malinovská
+identifiers:
+- identifier: '14893'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Špotová, Eliška
+id: '14894'
+given_name: Eliška
+family_name: Špotová
+identifiers:
+- identifier: '14894'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Hurtová, Alena
+id: '60945'
+given_name: Alena
+family_name: Hurtová
+identifiers:
+- identifier: '60945'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Svobodová, Ljuba
+id: '60617'
+given_name: Ljuba
+family_name: Svobodová
+identifiers:
+- identifier: '60617'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Bayer, Karol
+id: '60307'
+given_name: Karol
+family_name: Bayer
+identifiers:
+- identifier: '60307'
+  scheme: uct-teacher-number
+affiliations:
+- name: Univerzita Pardubice
+  id: '036'
+---
+name: Ekrt, Boris
+id: '61319'
+given_name: Boris
+family_name: Ekrt
+identifiers:
+- identifier: '61319'
+  scheme: uct-teacher-number
+affiliations:
+- name: Aplikační sféra (externisti vyučující nebo OR)
+  id: 099
+---
+name: Hložek, Martin
+id: '61461'
+given_name: Martin
+family_name: Hložek
+identifiers:
+- identifier: '61461'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Bílková, Lenka
+id: '61500'
+given_name: Lenka
+family_name: Bílková
+identifiers:
+- identifier: '61500'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Šťastný, Pavel
+id: '61675'
+given_name: Pavel
+family_name: Šťastný
+identifiers:
+- identifier: '61675'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Zlámalová Cílová, Zuzana
+id: '60444'
+given_name: Zuzana
+family_name: Zlámalová Cílová
+identifiers:
+- identifier: '60444'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav skla a keramiky
+  id: '107'
+---
+name: Novotná, Miroslava
+id: '21803'
+given_name: Miroslava
+family_name: Novotná
+identifiers:
+- identifier: '21803'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav energetiky
+  id: '218'
+---
+name: Paulusová, Hana
+id: '60303'
+given_name: Hana
+family_name: Paulusová
+identifiers:
+- identifier: '60303'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Drncová, Daniela
+id: '60304'
+given_name: Daniela
+family_name: Drncová
+identifiers:
+- identifier: '60304'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Panošová Hucková, Martina
+id: '60306'
+given_name: Martina
+family_name: Panošová Hucková
+identifiers:
+- identifier: '60306'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Hnulíková, Blanka
+id: '61086'
+given_name: Blanka
+family_name: Hnulíková
+identifiers:
+- identifier: '61086'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Plátková, Adéla
+id: '61482'
+given_name: Adéla
+family_name: Plátková
+identifiers:
+- identifier: '61482'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Fialová, Anna
+id: '61462'
+given_name: Anna
+family_name: Fialová
+identifiers:
+- identifier: '61462'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Dvořáková, Pavla
+id: '62022'
+given_name: Pavla
+family_name: Dvořáková
+identifiers:
+- identifier: '62022'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav skla a keramiky
+  id: '107'
+---
+name: Bacílková, Bronislava
+id: '60310'
+given_name: Bronislava
+family_name: Bacílková
+identifiers:
+- identifier: '60310'
+  scheme: uct-teacher-number
+affiliations:
+- name: Aplikační sféra (externisti vyučující nebo OR)
+  id: 099
+---
+name: Heidingsfeld, Viktor
+id: '14806'
+given_name: Viktor
+family_name: Heidingsfeld
+identifiers:
+- identifier: '14806'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Šimůnková, Eva
+id: '60419'
+given_name: Eva
+family_name: Šimůnková
+identifiers:
+- identifier: '60419'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Kuneš, Petr
+id: '61807'
+given_name: Petr
+family_name: Kuneš
+identifiers:
+- identifier: '61807'
+  scheme: uct-teacher-number
+affiliations:
+- name: Aplikační sféra (externisti vyučující nebo OR)
+  id: 099
+---
+name: Rohanová, Dana
+id: '10710'
+given_name: Dana
+family_name: Rohanová
+identifiers:
+- identifier: '10710'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav skla a keramiky
+  id: '107'
+---
+name: Kouřil, Milan
+id: '10606'
+given_name: Milan
+family_name: Kouřil
+identifiers:
+- identifier: '10606'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav kovových materiálů a korozního inženýrství
+  id: '106'
+---
+name: Sýkorová, Hana
+id: '61027'
+given_name: Hana
+family_name: Sýkorová
+identifiers:
+- identifier: '61027'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav biochemie a mikrobiologie
+  id: '320'
+---
+name: Děd, Jiří
+id: '10607'
+given_name: Jiří
+family_name: Děd
+identifiers:
+- identifier: '10607'
+  scheme: uct-teacher-number
+affiliations:
+- name: Aplikační sféra (externisti vyučující nebo OR)
+  id: 099
+---
+name: Kotlík, Bohumil
+id: '60493'
+given_name: Bohumil
+family_name: Kotlík
+identifiers:
+- identifier: '60493'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Scholtz, Vladimír
+id: '44425'
+given_name: Vladimír
+family_name: Scholtz
+identifiers:
+- identifier: '44425'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav fyziky a měřicí techniky
+  id: '444'
+---
+name: Msallamová, Šárka
+id: '10133'
+given_name: Šárka
+family_name: Msallamová
+identifiers:
+- identifier: '10133'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav kovových materiálů a korozního inženýrství
+  id: '106'
+---
+name: Holubová, Barbora
+id: '61446'
+given_name: Barbora
+family_name: Holubová
+identifiers:
+- identifier: '61446'
+  scheme: uct-teacher-number
+affiliations:
+- name: Aplikační sféra (externisti vyučující nebo OR)
+  id: 099
+---
+name: Sedláčková, Hedvika
+id: '61455'
+given_name: Hedvika
+family_name: Sedláčková
+identifiers:
+- identifier: '61455'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Mašek Benetková, Barbora
+id: '148'
+given_name: Barbora
+family_name: Mašek Benetková
+identifiers:
+- identifier: '148'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Prokopová, Irena
+id: '11213'
+given_name: Irena
+family_name: Prokopová
+identifiers:
+- identifier: '11213'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav polymerů
+  id: '112'
+---
+name: Suchý, Ondřej
+id: '61674'
+given_name: Ondřej
+family_name: Suchý
+identifiers:
+- identifier: '61674'
+  scheme: uct-teacher-number
+affiliations:
+- name: Aplikační sféra (externisti vyučující nebo OR)
+  id: 099
+---
+name: Korbelová, Barbora
+id: '61969'
+given_name: Barbora
+family_name: Korbelová
+identifiers:
+- identifier: '61969'
+  scheme: uct-teacher-number
+affiliations:
+- name: Středočeské muzeum v Roztokách u Prahy
+  id: '704'
+---
+name: Krejčí Slavíková, Monika
+id: '61188'
+given_name: Monika
+family_name: Krejčí Slavíková
+identifiers:
+- identifier: '61188'
+  scheme: uct-teacher-number
+affiliations:
+- name: Centrální laboratoře
+  id: '980'
+---
+name: Nováková, Martina
+id: '14857'
+given_name: Martina
+family_name: Nováková
+identifiers:
+- identifier: '14857'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Limpouch, Ondřej
+id: '14882'
+given_name: Ondřej
+family_name: Limpouch
+identifiers:
+- identifier: '14882'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Dyková, Barbora
+id: '14802'
+given_name: Barbora
+family_name: Dyková
+identifiers:
+- identifier: '14802'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Dytrychová, Eva
+id: '61162'
+given_name: Eva
+family_name: Dytrychová
+identifiers:
+- identifier: '61162'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Kaplanová, Marie
+id: '60634'
+given_name: Marie
+family_name: Kaplanová
+identifiers:
+- identifier: '60634'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Spiwok, Vojtěch
+id: '32031'
+given_name: Vojtěch
+family_name: Spiwok
+identifiers:
+- identifier: '32031'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav biochemie a mikrobiologie
+  id: '320'
+---
+name: Bayerová, Tatiana
+id: '60440'
+given_name: Tatiana
+family_name: Bayerová
+identifiers:
+- identifier: '60440'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Michoinová, Dagmar
+id: '61817'
+given_name: Dagmar
+family_name: Michoinová
+identifiers:
+- identifier: '61817'
+  scheme: uct-teacher-number
+affiliations:
+- name: Aplikační sféra (externisti vyučující nebo OR)
+  id: 099
+---
+name: Szemályová, Dana
+id: '63117'
+given_name: Dana
+family_name: Szemályová
+identifiers:
+- identifier: '63117'
+  scheme: uct-teacher-number
+affiliations:
+- name: Aplikační sféra (externisti vyučující nebo OR)
+  id: 099
+---
+name: Parschová, Helena
+id: '21808'
+given_name: Helena
+family_name: Parschová
+identifiers:
+- identifier: '21808'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav energetiky
+  id: '218'
+---
+name: Antušková, Václava
+id: '61603'
+given_name: Václava
+family_name: Antušková
+identifiers:
+- identifier: '61603'
+  scheme: uct-teacher-number
+affiliations:
+- name: Ústav chemické technologie restaurování památek
+  id: '148'
+---
+name: Machovič, Vladimír
+id: '30302'
+given_name: Vladimír
+family_name: Machovič
+identifiers:
+- identifier: '30302'
+  scheme: uct-teacher-number
+affiliations:
+- name: Centrální laboratoře
+  id: '980'
+---
+name: Vojtěchovský, Radek
+id: '60753'
+given_name: Radek
+family_name: Vojtěchovský
+identifiers:
+- identifier: '60753'
+  scheme: uct-teacher-number
+affiliations:
+- name: oponent
+  id: '600'
+---
+name: Kottová, Jitka
+id: '61968'
+given_name: Jitka
+family_name: Kottová
+identifiers:
+- identifier: '61968'
+  scheme: uct-teacher-number
+affiliations:
+- name: Západočeská univerzita v Plzni
+  id: '057'
+---
+name: Dervnošková, Jana
+id: '61207'
+given_name: Jana
+family_name: Dervnošková
+identifiers:
+- identifier: '61207'
+  scheme: uct-teacher-number
+affiliations:
+- name: Aplikační sféra (externisti vyučující nebo OR)
+  id: 099
+---
+name: Chocholatý, Ondřej
+id: '62221'
+given_name: Ondřej
+family_name: Chocholatý
+identifiers:
+- identifier: '62221'
+  scheme: uct-teacher-number
+affiliations:
+- name: Západočeská univerzita v Plzni
+  id: '057'
