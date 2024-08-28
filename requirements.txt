@@ -11,9 +11,9 @@ langcodes==3.4.0
 language-data==1.2.0
 marisa-trie==1.2.0
 oarepo-published-service==1.0.3
-oarepo-requests==2.0.3
-oarepo-runtime==1.5.53
-oarepo-ui==5.2.6
+oarepo-requests==2.0.7
+oarepo-runtime==1.5.57
+oarepo-ui==5.2.8
 oarepo-vocabularies==2.0.95
 openpyxl==3.1.5
 pymupdf==1.24.9
