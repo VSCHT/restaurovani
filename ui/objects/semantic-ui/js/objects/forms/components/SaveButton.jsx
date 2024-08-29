@@ -15,8 +15,8 @@ export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
     const res = await preview();
 
     if (!res) {
-      console.error("BEvalidationErrors", formik.values["BEvalidationErrors"]);
-      console.error("httpErrors", formik.values["httpErrors"]);
+      console.error("BEvalidationErrors", formik.errors["BEvalidationErrors"]);
+      console.error("httpErrors", formik.errors["httpErrors"]);
     }
   }
 
