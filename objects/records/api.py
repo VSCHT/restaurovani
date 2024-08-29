@@ -4,7 +4,7 @@ from invenio_drafts_resources.records.api import Record as InvenioRecord
 from invenio_records.systemfields import ConstantField, ModelField
 from invenio_records_resources.records.systemfields import FilesField, IndexField
 from invenio_records_resources.records.systemfields.pid import PIDField, PIDFieldContext
-from invenio_vocabularies.records.api import Vocabulary
+from oarepo_vocabularies.records.api import Vocabulary
 from oarepo_runtime.records.relations import PIDRelation, RelationsField
 from oarepo_runtime.records.systemfields.has_draftcheck import HasDraftCheckField
 from oarepo_runtime.records.systemfields.owner import OwnersField
