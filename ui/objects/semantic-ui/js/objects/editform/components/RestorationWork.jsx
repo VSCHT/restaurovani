@@ -110,7 +110,7 @@ export const RestorationWork = ({
         <ArrayField
           addButtonLabel="Přidat vedoucího"
           fieldPath={`${fieldPath}.supervisors`}
-          defaultNewValue={{ supervisor: {}, comment: "" }}
+          defaultNewValue=""
         >
           {({ arrayHelpers, indexPath }) => {
             const fieldPathPrefix = `${fieldPath}.supervisors[${indexPath}]`;
@@ -148,7 +148,7 @@ export const RestorationWork = ({
                         }
                         serializeSuggestions={serializeNamesSuggestions}
                         serializeSelectedItem = {
-                          ({ id, ...rest }) => ({ id: id.toString(), ...rest })
+                          ({ id }) => ({ id })
                         }
                         // onValueChange={({ e, data, formikProps }, selectedSuggestions) => {
                         //   let vocabularyItem = selectedSuggestions.find(
@@ -166,7 +166,7 @@ export const RestorationWork = ({
                         // }}
                       />
                     </Grid.Column>
-                    <Grid.Column>
+                    {/* <Grid.Column>
                       <TextField
                         name={`${fieldPathPrefix}.comment`}
                         aria-label="Komentář"
@@ -179,7 +179,7 @@ export const RestorationWork = ({
                           ></FieldLabel>
                         }
                       />
-                    </Grid.Column>
+                    </Grid.Column> */}
                     {/* <Grid.Column>
                       <LocalVocabularySelectField
                         name={`${fieldPathPrefix}.institution`}

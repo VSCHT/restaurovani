@@ -3577,7 +3577,7 @@ files = [
 
 [[package]]
 name = "oarepo-vocabularies"
-version = "2.0.95"
+version = "2.0.96"
 summary = "Support for custom fields and hierarchy on Invenio vocabularies"
 groups = ["default"]
 dependencies = [
@@ -3588,8 +3588,8 @@ dependencies = [
     "openpyxl",
 ]
 files = [
-    {file = "oarepo_vocabularies-2.0.95-py3-none-any.whl", hash = "sha256:9a8d2548a4d4f9cc239fe641d7df3223206508d21679d470426dbd1ccb06aba1"},
-    {file = "oarepo_vocabularies-2.0.95.tar.gz", hash = "sha256:d8190147bc98b16eb026f843abeaeef1e7244ace3fea70ce60cd40397d47866b"},
+    {file = "oarepo_vocabularies-2.0.96-py3-none-any.whl", hash = "sha256:21fe372001bdf1177ec5b165d79d89af55c3b9920484b85141c4655df3b569d9"},
+    {file = "oarepo_vocabularies-2.0.96.tar.gz", hash = "sha256:1eb687877d57b8f71cb2624fd0e9071b963e127e2f0e17f272c7472ab211765f"},
 ]
 
 [[package]]
