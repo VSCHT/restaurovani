@@ -1,0 +1,20 @@
+POST https://127.0.0.1:5000/api/objects
+Content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "metadata": {
+    "restorationObject": {
+      "category": "keramika",
+      "title": "Nefertiti"
+    },
+    "restorationWork": {
+      "restorer": "Alice",
+      "supervisors": [
+        {
+          "id": "10708"
+        }
+      ]
+    }
+  }
+}
