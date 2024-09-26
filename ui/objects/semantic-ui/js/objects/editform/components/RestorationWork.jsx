@@ -3,36 +3,20 @@ import {
   AccordionField,
   TextField,
   FieldLabel,
-  ArrayField,
   RichInputField,
   RichEditor,
 } from "react-invenio-forms";
-import { Header, Grid } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import { getIn } from "formik";
-import { ArrayFieldItem, useSanitizeInput } from "@js/oarepo_ui";
+import { useSanitizeInput } from "@js/oarepo_ui";
 import {
   LocalVocabularySelectField,
   VocabularyTreeSelectField,
-  VocabularySelectField,
 } from "@js/oarepo_vocabularies";
-import _get from "lodash/get";
 import { DaterangePicker } from "./DateRange";
+import { SupervisorsArrayField } from "./SupervisorsArrayField";
 
 const MemoizedRichEditor = memo(RichEditor, (prevProps, nextProps) => prevProps.initialValue === nextProps.initialValue);
-
-const serializeNamesSuggestions = (suggestions) =>
-  suggestions.map((item) => {
-    const key = item.id;
-    return {
-      text: `${item.name} (${item?.data?.affiliations?.[0].name})`,
-      value: item.id,
-      key: key,
-      data: item,
-      id: item.id,
-      title: item.name,
-      name: item.name,
-    };
-  });
 
 export const RestorationWork = ({
   activeIndex,
@@ -107,101 +91,8 @@ export const RestorationWork = ({
             }
           />
         </Grid.Column>
-        <ArrayField
-          addButtonLabel="Přidat vedoucího"
-          fieldPath={`${fieldPath}.supervisors`}
-          defaultNewValue=""
-        >
-          {({ arrayHelpers, indexPath }) => {
-            const fieldPathPrefix = `${fieldPath}.supervisors[${indexPath}]`;
-            const existingName = _get(values, `${fieldPathPrefix}.data.name`);
-            const existingAffiliation = _get(values, `${fieldPathPrefix}.data.affiliations[0].name`);
-            return (
-              <>
-                <Header as="h4">
-                  Vedoucí: {existingName == null ? indexPath + 1 : existingName}
-                  <Header.Subheader content={existingAffiliation} />
-                </Header>
-                <ArrayFieldItem
-                  name={`${fieldPath}.supervisors`}
-                  fieldPathPrefix={`${fieldPath}.supervisors`}
-                  indexPath={indexPath}
-                  arrayHelpers={arrayHelpers}
-                >
-                  <Grid columns={1}>
-                    <Grid.Column>
-                      <VocabularySelectField
-                        name={`${fieldPathPrefix}`}
-                        suggestionAPIHeaders={{
-                          Accept: "application/vnd.inveniordm.v1+json",
-                        }}
-                        aria-label="Celé jméno a instituce"
-                        fieldPath={`${fieldPathPrefix}`}
-                        placeholder="Vyberte jméno vedoucího a jeho/její instituci"
-                        type="names"
-                        clearable
-                        label={
-                          <FieldLabel
-                            htmlFor={`${fieldPathPrefix}`}
-                            label="Celé jméno a instituce"
-                          ></FieldLabel>
-                        }
-                        serializeSuggestions={serializeNamesSuggestions}
-                        serializeSelectedItem = {
-                          ({ id }) => ({ id })
-                        }
-                        // onValueChange={({ e, data, formikProps }, selectedSuggestions) => {
-                        //   let vocabularyItem = selectedSuggestions.find(
-                        //     (o) => o.value === data.value
-                        //   );
-                        //   if (vocabularyItem) {
-                        //     const { id, title, data: { affiliations } } = vocabularyItem;
-                        //     formikProps.form.setFieldValue(
-                        //       fieldPath,
-                        //       { id, title, institution: affiliations?.[0].name }
-                        //     );
-                        //   } else {
-                        //     formikProps.form.setFieldValue(fieldPath, null);
-                        //   }
-                        // }}
-                      />
-                    </Grid.Column>
-                    {/* <Grid.Column>
-                      <TextField
-                        name={`${fieldPathPrefix}.comment`}
-                        aria-label="Komentář"
-                        fieldPath={`${fieldPathPrefix}.comment`}
-                        placeholder="Komentář"
-                        label={
-                          <FieldLabel
-                            htmlFor={`${fieldPathPrefix}.comment`}
-                            label="Komentář"
-                          ></FieldLabel>
-                        }
-                      />
-                    </Grid.Column> */}
-                    {/* <Grid.Column>
-                      <LocalVocabularySelectField
-                        name={`${fieldPathPrefix}.institution`}
-                        aria-label="Instituce"
-                        fieldPath={`${fieldPathPrefix}.institution`}
-                        placeholder="Instituce"
-                        optionsListName="Institutions"
-                        clearable
-                        label={
-                          <FieldLabel
-                            htmlFor={`${fieldPathPrefix}.institution`}
-                            label="Instituce"
-                          ></FieldLabel>
-                        }
-                      />
-                    </Grid.Column> */}
-                  </Grid>
-                </ArrayFieldItem>
-              </>
-            );
-          }}
-        </ArrayField>
+
+        <SupervisorsArrayField fieldPath={fieldPath} />
 
         <Grid.Column>
           <DaterangePicker

@@ -79,6 +79,18 @@ export const FileMetadataEditor = ({ fetchData, record, fileKey }) => {
       autoExtractImagesFromPDFs={false}
       locale="cs_CZ"
       startEvent={{ event: "edit-file", data: { file_key: fileKey } }}
+      allowedMetaFields={[
+        {
+          id: "caption",
+          defaultValue: "default_image_name",
+          isUserInput: true,
+        },
+        { 
+          id: "featured", 
+          defaultValue: false, 
+          isUserInput: true 
+        },
+      ]}
       onCompletedUpload={(result) => {
         if (result?.successful.length > 0) {
           fetchData();

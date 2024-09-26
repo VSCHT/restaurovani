@@ -1,3 +1,4 @@
+import React, { useContext } from "react";
 import {
   List,
   Checkbox,
@@ -7,8 +8,8 @@ import {
   Grid,
 } from "semantic-ui-react";
 import { withState } from "react-searchkit";
-import React from "react";
-
+import Overridable from "react-overridable";
+import { AppContext } from "react-searchkit";
 
 export const MyBucketAggregationValues = withState(
   ({ bucket, onFilterClicked, isSelected, childAggCmps }) => {
@@ -30,15 +31,20 @@ export const MyBucketAggregationValues = withState(
   }
 );
 
-export const MyBucketAggregation = withState(({ title, containerCmp }) => {
+export const MyBucketAggregation = withState(({ agg, title, containerCmp }) => {
   const [activeIndex, setActiveIndex] = React.useState("");
+  const { buildUID } = useContext(AppContext);
 
   const handleClick = (index) => {
     setActiveIndex((prevIndex) => (prevIndex === index ? -1 : index));
   };
 
   return (
-    <>
+    <Overridable
+      id={buildUID(`BucketAggregation.element.${agg.aggName}`)}
+      aggName={agg.aggName}
+      aggTitle={agg.title}
+    >
       <Accordion>
         <Accordion.Title
           active={activeIndex === title}
@@ -53,6 +59,6 @@ export const MyBucketAggregation = withState(({ title, containerCmp }) => {
           {containerCmp}
         </Accordion.Content>
       </Accordion>
-    </>
+    </Overridable>
   );
 });

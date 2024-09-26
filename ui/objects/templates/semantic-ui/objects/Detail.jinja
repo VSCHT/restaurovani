@@ -251,10 +251,12 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
     </div>
   </div>
 
-  {%- endblock page_body %} {%- block javascript %}
-
-  {{ super() }}
+<pre>{{ metadata|pprint }}</pre>
+{%- endblock page_body %} 
   
-  {{ webpack["objects_img_gallery.js"] }}
-  {% endblock %}
+  
+{%- block javascript %}
+{{ super() }}
+{{ webpack["objects_img_gallery.js"] }}
+{% endblock %}
 </div>
