@@ -53,6 +53,7 @@ class ObjectsSearchOptions(SearchOptions):
         "metadata_restorationWork_supervisors": facets.metadata_restorationWork_supervisors,
         "metadata_restorationWork_workType": facets.metadata_restorationWork_workType,
         "metadata_submissionStatus": facets.metadata_submissionStatus,
+        "metadata_version": facets.metadata_version,
         **getattr(SearchOptions, "facets", {}),
         "record_status": facets.record_status,
         "has_draft": facets.has_draft,

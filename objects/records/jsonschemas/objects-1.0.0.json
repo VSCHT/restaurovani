@@ -257,8 +257,36 @@
                                     "id": {
                                         "type": "string"
                                     },
-                                    "title": {
-                                        "type": "object"
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "affiliations": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "identifiers": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "identifier": {
+                                                                "type": "string"
+                                                            },
+                                                            "scheme": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
                                     },
                                     "@v": {
                                         "type": "string"
@@ -283,6 +311,9 @@
                     }
                 },
                 "submissionStatus": {
+                    "type": "string"
+                },
+                "version": {
                     "type": "string"
                 }
             }

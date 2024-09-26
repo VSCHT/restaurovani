@@ -8,6 +8,7 @@ dependencies = [
     "PyMuPDF",
     "invenio-drafts-resources>=1.0.4",
     "json5",
+    "oarepo-global-search>=1.0.23",
     "oarepo-published-service>=1.0.0",
     "oarepo-requests>=1.0.2",
     "oarepo-runtime",
@@ -32,7 +33,8 @@ ui_objects = "ui.objects:create_blueprint"
 objects = "objects.views.records.app:create_app_blueprint"
 objects_file = "objects.views.files.app:create_app_blueprint"
 objects_file_draft = "objects.views.draft_files.app:create_app_blueprint"
-objects_requests = "objects.views.requests.api:create_api_blueprint"
+objects_requests = "objects.views.requests.app:create_app_blueprint"
+objects_request_types = "objects.views.request_types.app:create_app_blueprint"
 
 [project.entry-points."invenio_base.api_apps"]
 objects = "objects.ext:ObjectsExt"
@@ -53,6 +55,7 @@ objects = "objects.views.records.api:create_api_blueprint"
 objects_file = "objects.views.files.api:create_api_blueprint"
 objects_file_draft = "objects.views.draft_files.api:create_api_blueprint"
 objects_requests = "objects.views.requests.api:create_api_blueprint"
+objects_request_types = "objects.views.request_types.api:create_api_blueprint"
 
 [project.entry-points."invenio_search.mappings"]
 objects = "objects.records.mappings"

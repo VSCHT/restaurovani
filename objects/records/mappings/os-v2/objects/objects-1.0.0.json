@@ -366,23 +366,38 @@
                                 "type": "object",
                                 "properties": {
                                     "id": {
-                                        "fields": {
-                                            "text": {
-                                                "type": "search_as_you_type"
-                                            }
-                                        },
                                         "type": "keyword",
                                         "ignore_above": 1024
                                     },
-                                    "title": {
-                                        "dynamic": true,
+                                    "name": {
+                                        "type": "keyword",
+                                        "ignore_above": 1024
+                                    },
+                                    "affiliations": {
+                                        "type": "object",
                                         "properties": {
-                                            "en": {
-                                                "type": "search_as_you_type",
-                                                "copy_to": "title_sort"
+                                            "id": {
+                                                "type": "keyword",
+                                                "ignore_above": 1024
+                                            },
+                                            "identifiers": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "identifier": {
+                                                        "type": "keyword",
+                                                        "ignore_above": 1024
+                                                    },
+                                                    "scheme": {
+                                                        "type": "keyword",
+                                                        "ignore_above": 1024
+                                                    }
+                                                }
+                                            },
+                                            "name": {
+                                                "type": "keyword",
+                                                "ignore_above": 1024
                                             }
-                                        },
-                                        "type": "object"
+                                        }
                                     },
                                     "@v": {
                                         "type": "keyword",
@@ -421,6 +436,10 @@
                         }
                     },
                     "submissionStatus": {
+                        "type": "keyword",
+                        "ignore_above": 1024
+                    },
+                    "version": {
                         "type": "keyword",
                         "ignore_above": 1024
                     }

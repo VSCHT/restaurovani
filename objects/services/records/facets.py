@@ -138,6 +138,10 @@ metadata_submissionStatus = TermsFacet(
     field="metadata.submissionStatus", label=_("metadata/submissionStatus.label")
 )
 
+metadata_version = TermsFacet(
+    field="metadata.version", label=_("metadata/version.label")
+)
+
 
 record_status = TermsFacet(field="record_status", label=_("record_status"))
 
