@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2024-08-21T15:23:24.563690\n"
-"PO-Revision-Date: 2024-08-21T15:23:24.563696\n"
+"POT-Creation-Date: 2024-09-26T12:27:35.552551\n"
+"PO-Revision-Date: 2024-09-26T12:27:35.552570\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -593,13 +593,73 @@ msgstr ""
 msgid "metadata/restorationWork/supervisors/id.hint"
 msgstr ""
 
-msgid "metadata/restorationWork/supervisors/title.help"
+msgid "metadata/restorationWork/supervisors/name.help"
 msgstr ""
 
-msgid "metadata/restorationWork/supervisors/title.label"
+msgid "metadata/restorationWork/supervisors/name.label"
 msgstr ""
 
-msgid "metadata/restorationWork/supervisors/title.hint"
+msgid "metadata/restorationWork/supervisors/name.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations.help"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations.label"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/id.help"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/id.label"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/id.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/identifiers.help"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/identifiers.label"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/identifiers.hint"
+msgstr ""
+
+msgid ""
+"metadata/restorationWork/supervisors/affiliations/identifiers/identifier.help"
+msgstr ""
+
+msgid ""
+"metadata/restorationWork/supervisors/affiliations/identifiers/identifier.label"
+msgstr ""
+
+msgid ""
+"metadata/restorationWork/supervisors/affiliations/identifiers/identifier.hint"
+msgstr ""
+
+msgid ""
+"metadata/restorationWork/supervisors/affiliations/identifiers/scheme.help"
+msgstr ""
+
+msgid ""
+"metadata/restorationWork/supervisors/affiliations/identifiers/scheme.label"
+msgstr ""
+
+msgid ""
+"metadata/restorationWork/supervisors/affiliations/identifiers/scheme.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/name.help"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/name.label"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/name.hint"
 msgstr ""
 
 msgid "metadata/restorationWork/supervisors/@v.help"
@@ -654,6 +714,15 @@ msgid "metadata/submissionStatus.label"
 msgstr ""
 
 msgid "metadata/submissionStatus.hint"
+msgstr ""
+
+msgid "metadata/version.label"
+msgstr "Verze zdroje"
+
+msgid "metadata/version.hint"
+msgstr "Zapište verzi (první, druhá…)."
+
+msgid "metadata/version.help"
 msgstr ""
 
 msgid "pid.help"

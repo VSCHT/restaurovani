@@ -4,11 +4,11 @@ from invenio_drafts_resources.records.api import Record as InvenioRecord
 from invenio_records.systemfields import ConstantField, ModelField
 from invenio_records_resources.records.systemfields import FilesField, IndexField
 from invenio_records_resources.records.systemfields.pid import PIDField, PIDFieldContext
-from oarepo_vocabularies.records.api import Vocabulary
 from oarepo_runtime.records.relations import PIDRelation, RelationsField
 from oarepo_runtime.records.systemfields.has_draftcheck import HasDraftCheckField
 from oarepo_runtime.records.systemfields.owner import OwnersField
 from oarepo_runtime.records.systemfields.record_status import RecordStatusSystemField
+from oarepo_vocabularies.records.api import Vocabulary
 
 from objects.files.api import ObjectsFile, ObjectsFileDraft
 from objects.records.dumpers.dumper import ObjectsDraftDumper, ObjectsDumper
@@ -92,7 +92,7 @@ class ObjectsRecord(InvenioRecord):
         ),
         supervisors=PIDRelation(
             "metadata.restorationWork.supervisors",
-            keys=["id", "title"],
+            keys=["id", "name", "affiliations"],
             pid_field=Vocabulary.pid.with_type_ctx("names"),
         ),
         workType=PIDRelation(
@@ -181,7 +181,7 @@ class ObjectsDraft(InvenioDraft):
         ),
         supervisors=PIDRelation(
             "metadata.restorationWork.supervisors",
-            keys=["id", "title"],
+            keys=["id", "name", "affiliations"],
             pid_field=Vocabulary.pid.with_type_ctx("names"),
         ),
         workType=PIDRelation(

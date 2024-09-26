@@ -593,12 +593,72 @@
                                         "label": "metadata/restorationWork/supervisors/id.label",
                                         "hint": "metadata/restorationWork/supervisors/id.hint"
                                     },
-                                    "title": {
-                                        "detail": false,
-                                        "input": false,
-                                        "help": "metadata/restorationWork/supervisors/title.help",
-                                        "label": "metadata/restorationWork/supervisors/title.label",
-                                        "hint": "metadata/restorationWork/supervisors/title.hint"
+                                    "name": {
+                                        "detail": "keyword",
+                                        "input": "keyword",
+                                        "help": "metadata/restorationWork/supervisors/name.help",
+                                        "label": "metadata/restorationWork/supervisors/name.label",
+                                        "hint": "metadata/restorationWork/supervisors/name.hint"
+                                    },
+                                    "affiliations": {
+                                        "detail": "array",
+                                        "input": "array",
+                                        "help": "metadata/restorationWork/supervisors/affiliations.help",
+                                        "label": "metadata/restorationWork/supervisors/affiliations.label",
+                                        "hint": "metadata/restorationWork/supervisors/affiliations.hint",
+                                        "child": {
+                                            "detail": "affiliation",
+                                            "input": "affiliation",
+                                            "help": "metadata/restorationWork/supervisors/affiliations.help",
+                                            "label": "metadata/restorationWork/supervisors/affiliations.label",
+                                            "hint": "metadata/restorationWork/supervisors/affiliations.hint",
+                                            "children": {
+                                                "id": {
+                                                    "detail": "keyword",
+                                                    "input": "keyword",
+                                                    "help": "metadata/restorationWork/supervisors/affiliations/id.help",
+                                                    "label": "metadata/restorationWork/supervisors/affiliations/id.label",
+                                                    "hint": "metadata/restorationWork/supervisors/affiliations/id.hint"
+                                                },
+                                                "identifiers": {
+                                                    "detail": "array",
+                                                    "input": "array",
+                                                    "help": "metadata/restorationWork/supervisors/affiliations/identifiers.help",
+                                                    "label": "metadata/restorationWork/supervisors/affiliations/identifiers.label",
+                                                    "hint": "metadata/restorationWork/supervisors/affiliations/identifiers.hint",
+                                                    "child": {
+                                                        "detail": "identifier",
+                                                        "input": "identifier",
+                                                        "help": "metadata/restorationWork/supervisors/affiliations/identifiers.help",
+                                                        "label": "metadata/restorationWork/supervisors/affiliations/identifiers.label",
+                                                        "hint": "metadata/restorationWork/supervisors/affiliations/identifiers.hint",
+                                                        "children": {
+                                                            "identifier": {
+                                                                "detail": "keyword",
+                                                                "input": "keyword",
+                                                                "help": "metadata/restorationWork/supervisors/affiliations/identifiers/identifier.help",
+                                                                "label": "metadata/restorationWork/supervisors/affiliations/identifiers/identifier.label",
+                                                                "hint": "metadata/restorationWork/supervisors/affiliations/identifiers/identifier.hint"
+                                                            },
+                                                            "scheme": {
+                                                                "detail": "keyword",
+                                                                "input": "keyword",
+                                                                "help": "metadata/restorationWork/supervisors/affiliations/identifiers/scheme.help",
+                                                                "label": "metadata/restorationWork/supervisors/affiliations/identifiers/scheme.label",
+                                                                "hint": "metadata/restorationWork/supervisors/affiliations/identifiers/scheme.hint"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "name": {
+                                                    "detail": "keyword",
+                                                    "input": "keyword",
+                                                    "help": "metadata/restorationWork/supervisors/affiliations/name.help",
+                                                    "label": "metadata/restorationWork/supervisors/affiliations/name.label",
+                                                    "hint": "metadata/restorationWork/supervisors/affiliations/name.hint"
+                                                }
+                                            }
+                                        }
                                     },
                                     "@v": {
                                         "detail": "keyword",
@@ -651,6 +711,14 @@
                     "label": "metadata/submissionStatus.label",
                     "hint": "metadata/submissionStatus.hint",
                     "facet": "metadata_submissionStatus"
+                },
+                "version": {
+                    "detail": "keyword",
+                    "input": "keyword",
+                    "help": "metadata/version.help",
+                    "label": "metadata/version.label",
+                    "hint": "metadata/version.hint",
+                    "facet": "metadata_version"
                 }
             }
         },
