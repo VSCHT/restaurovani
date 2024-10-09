@@ -200,8 +200,8 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                     <td>
                       {% for value in metadata.restorationWork.supervisors %}
                       <div>
-                        {{ value.fullName }} {{"-" if value.institution}}
-                        {{ value.institution }}{% if not loop.last %}, {% endif %}
+                        {{ value.name }} 
+                        {% if value.affiliations[0] %}({{ value.affiliations[0].name }}){% endif %}{% if not loop.last %}, {% endif %}
                       </div>
 
                       {% endfor %}
@@ -250,8 +250,6 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
       </div>
     </div>
   </div>
-
-<pre>{{ metadata|pprint }}</pre>
 {%- endblock page_body %} 
   
   
