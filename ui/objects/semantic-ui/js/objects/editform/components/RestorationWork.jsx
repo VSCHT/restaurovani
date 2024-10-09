@@ -123,7 +123,7 @@ export const RestorationWork = ({
           <VocabularyTreeSelectField
             fieldPath={`${fieldPath}.examinationMethods`}
             multiple={true}
-            optionsListName="ExaminationMethods"
+            vocabulary="ExaminationMethods"
             placeholder="Vyberte metody průzkumu"
             clearable
             label={
@@ -138,7 +138,7 @@ export const RestorationWork = ({
           <VocabularyTreeSelectField
             fieldPath={`${fieldPath}.restorationMethods`}
             multiple={true}
-            optionsListName="RestorationMethods"
+            vocabulary="RestorationMethods"
             root={category}
             placeholder="Vyberte metody restaurování"
             clearable

@@ -55,10 +55,6 @@
     }
   }
 
-  .field & {
-    width: 30%;
-  }
-
   &.close-btn {
     background: none;
     margin-top: 0;

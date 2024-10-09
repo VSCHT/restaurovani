@@ -25,7 +25,7 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
         {category == "sklo" && (
           <Grid.Column>
             <VocabularyTreeSelectField
-              optionsListName="Colors"
+              vocabulary="Colors"
               fieldPath={`${fieldPath}.colors`}
               multiple={true}
               clearable
@@ -39,7 +39,7 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
         )}
         <Grid.Column>
           <VocabularyTreeSelectField
-            optionsListName="FabricationTechnologies"
+            vocabulary="FabricationTechnologies"
             fieldPath={`${fieldPath}.fabricationTechnologies`}
             placeholder="Vyberte technologie výroby"
             multiple={true}
@@ -55,7 +55,7 @@ export const MoreInfo = ({ activeIndex, handleActive, category }) => {
         </Grid.Column>{" "}
         <Grid.Column>
           <VocabularyTreeSelectField
-            optionsListName="MaterialTypes"
+            vocabulary="MaterialTypes"
             fieldPath={`${fieldPath}.secondaryMaterialTypes`}
             multiple={true}
             clearable
