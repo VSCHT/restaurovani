@@ -1,5 +1,4 @@
 import React from "react";
-import _isEmpty from "lodash/isEmpty";
 import { TextField, FieldLabel, RadioField } from "react-invenio-forms";
 
 import { Container, Label, Form, Grid, Header } from "semantic-ui-react";

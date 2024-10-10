@@ -277,14 +277,14 @@ export const FileStat = ({ apiUrl, record }) => {
           <Grid.Column textAlign="center" verticalAlign="top">
             <Image
               as="a"
-              size="huge"
+              size="big"
               src={data?.entries?.[selectedImage]?.links?.content}
               href={data?.entries?.[selectedImage]?.links?.content}
               target="_blank"
               inline
               className="zoomable"
             />
-            <p>
+            <p className="overflow-wrap-anywhere">
               {data?.entries?.[selectedImage]?.metadata?.caption}
             </p>
           </Grid.Column>
