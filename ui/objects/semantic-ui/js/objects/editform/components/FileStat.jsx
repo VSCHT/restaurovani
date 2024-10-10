@@ -43,7 +43,7 @@ export const FileStat = ({ apiUrl, record }) => {
   }, [fetchData]);
 
   if (!data) {
-    return <p>Loading...</p>;
+    return <p>Načítání...</p>;
   }
 
   // converting file size
@@ -127,19 +127,19 @@ export const FileStat = ({ apiUrl, record }) => {
   };
 
   const renderTable = (fileTypeFilter) => {
-    const fileName = (d, conc = false) => {
+    const fileName = (d, truncate = false) => {
       if (d.metadata && d.metadata?.caption) {
         if (
           d.metadata.caption === "default_image_name" ||
           d.metadata.caption === "default_pdf_name" ||
           Object.values(d.metadata.caption).length === 0
         ) {
-          return conc ? _truncate(d.key, { length: 50 }) : d.key;
+          return truncate ? _truncate(d.key, { length: 35, omission: "…" }) : d.key;
         } else {
-          return conc ? _truncate(d.metadata.caption, { length: 50 }) : d.metadata.caption;
+          return truncate ? _truncate(d.metadata.caption, { length: 35, omission: "…" }) : d.metadata.caption;
         }
       } else {
-        return conc ? _truncate(d.key, { length: 50 }) : d.key;
+        return truncate ? _truncate(d.key, { length: 35, omission: "…" }) : d.key;
       }
     };
 
@@ -169,21 +169,22 @@ export const FileStat = ({ apiUrl, record }) => {
             <Table.Row key={d.key}>
               {d.metadata.fileType === "photo" && (
                 <Table.Cell
-                  className="clickable-text"
+                  className="clickable-text overflow-wrap-anywhere"
                   title={fileName(d)}
                   onClick={() => {
                     setSelectedImage(index);
                     setModalOpen(true);
                   }}
                 >
-                  {fileName(d)}
+                  {fileName(d, true)}
                 </Table.Cell>
               )}
               {d.metadata.fileType === "document" && (
                 <Table.Cell
+                  className="clickable-text"
                   title={fileName(d)}
                 >
-                  <a href={d.links?.content} className="clickable-text">
+                  <a href={d.links?.content} className="overflow-wrap-anywhere">
                     {fileName(d, true)}
                   </a>
                 </Table.Cell>
