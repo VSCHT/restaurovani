@@ -104,6 +104,8 @@ export const BasicInfo = ({
                 label="Popis"
               ></FieldLabel>
             }
+            rows={5}
+            style={{ resize: "none" }}
             onBlur={() => {
               const cleanedContent = sanitizeInput(
                 getIn(values, `${fieldPath}.description`)
@@ -115,7 +117,7 @@ export const BasicInfo = ({
         </Grid.Column>
         <Grid.Column>
           <VocabularyTreeSelectField
-            optionsListName="ItemTypes"
+            vocabulary="ItemTypes"
             fieldPath={`${fieldPath}.itemTypes`}
             multiple={true}
             clearable
@@ -241,7 +243,7 @@ export const BasicInfo = ({
         </Grid.Column>
         <Grid.Column>
           <VocabularyTreeSelectField
-            optionsListName="Requestors"
+            vocabulary="Requestors"
             fieldPath={`${fieldPath}.restorationRequestor`}
             multiple={false}
             clearable

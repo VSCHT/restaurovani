@@ -15,14 +15,10 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                 {{ metadata.restorationObject.title }}
               </h3>
               <a
-                class="ui transparent small button"
+                class="ui transparent large icon button"
                 href="{{url_for('objects.edit', pid_value=record.id)}}"
               >
-                <img
-                  src="{{ url_for('static', filename='images/icon_pencil.png') }}"
-                  class="ui image"
-                  alt="Edit icon"
-                />
+                <i class="white link pencil icon" aria-label="Edit icon"></i>
               </a>
             </div>
           </div>
@@ -204,8 +200,8 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                     <td>
                       {% for value in metadata.restorationWork.supervisors %}
                       <div>
-                        {{ value.fullName }} {{"-" if value.institution}}
-                        {{ value.institution }}{% if not loop.last %}, {% endif %}
+                        {{ value.name }} 
+                        {% if value.affiliations[0] %}({{ value.affiliations[0].name }}){% endif %}{% if not loop.last %}, {% endif %}
                       </div>
 
                       {% endfor %}
@@ -254,11 +250,11 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
       </div>
     </div>
   </div>
-
-  {%- endblock page_body %} {%- block javascript %}
-
-  {{ super() }}
+{%- endblock page_body %} 
   
-  {{ webpack["objects_img_gallery.js"] }}
-  {% endblock %}
+  
+{%- block javascript %}
+{{ super() }}
+{{ webpack["objects_img_gallery.js"] }}
+{% endblock %}
 </div>

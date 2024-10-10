@@ -7,9 +7,8 @@ from invenio_records_resources.services import (
     RecordLink,
     pagination_links,
 )
-from invenio_records_resources.services.records.components import DataComponent
 from oarepo_runtime.records import has_draft, is_published_record
-from oarepo_runtime.services.components import OwnersComponent
+from oarepo_runtime.services.components import CustomFieldsComponent, OwnersComponent
 from oarepo_runtime.services.config.service import PermissionsPresetsConfigMixin
 from oarepo_runtime.services.files import FilesComponent
 
@@ -47,9 +46,9 @@ class ObjectsServiceConfig(
         *PermissionsPresetsConfigMixin.components,
         *InvenioRecordDraftsServiceConfig.components,
         OwnersComponent,
-        FilesComponent,
         DraftFilesComponent,
-        DataComponent,
+        CustomFieldsComponent,
+        FilesComponent,
     ]
 
     model = "objects"
@@ -59,6 +58,11 @@ class ObjectsServiceConfig(
     @property
     def links_item(self):
         return {
+            "applicable-requests": ConditionalLink(
+                cond=is_published_record,
+                if_=RecordLink("{+api}/objects/{id}/requests/applicable"),
+                else_=RecordLink("{+api}/objects/{id}/draft/requests/applicable"),
+            ),
             "draft": RecordLink("{+api}/objects/{id}/draft"),
             "edit_html": RecordLink("{+ui}/objects/{id}/edit", when=has_draft),
             "files": ConditionalLink(

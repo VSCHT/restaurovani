@@ -35,6 +35,27 @@ class ObjectsMetadataUISchema(Schema):
 
     submissionStatus = ma_fields.String()
 
+    version = ma_fields.String()
+
+
+class RestorationWorkUISchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.RAISE
+
+    abstract = ma_fields.String()
+
+    examinationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemUISchema()))
+
+    restorationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemUISchema()))
+
+    restorationPeriod = ma_fields.Nested(lambda: RestorationPeriodUISchema())
+
+    restorer = ma_fields.String()
+
+    supervisors = ma_fields.List(ma_fields.Nested(lambda: SupervisorsItemUISchema()))
+
+    workType = ma_fields.Nested(lambda: ColorsItemUISchema())
+
 
 class RestorationObjectUISchema(DictOnlySchema):
     class Meta:
@@ -71,6 +92,30 @@ class RestorationObjectUISchema(DictOnlySchema):
     title = ma_fields.String()
 
 
+class SupervisorsItemUISchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.INCLUDE
+
+    _id = ma_fields.String(data_key="id", attribute="id")
+
+    _version = String(data_key="@v", attribute="@v")
+
+    affiliations = ma_fields.List(ma_fields.Nested(lambda: AffiliationsItemUISchema()))
+
+    name = ma_fields.String()
+
+
+class AffiliationsItemUISchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.RAISE
+
+    _id = ma_fields.String(data_key="id", attribute="id")
+
+    identifiers = ma_fields.List(ma_fields.Nested(lambda: IdentifiersItemUISchema()))
+
+    name = ma_fields.String()
+
+
 class DimensionsItemUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
@@ -80,25 +125,6 @@ class DimensionsItemUISchema(DictOnlySchema):
     unit = ma_fields.String()
 
     value = ma_fields.Float()
-
-
-class RestorationWorkUISchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    abstract = ma_fields.String()
-
-    examinationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemUISchema()))
-
-    restorationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemUISchema()))
-
-    restorationPeriod = ma_fields.Nested(lambda: RestorationPeriodUISchema())
-
-    restorer = ma_fields.String()
-
-    supervisors = ma_fields.List(ma_fields.Nested(lambda: SupervisorsItemUISchema()))
-
-    workType = ma_fields.Nested(lambda: ColorsItemUISchema())
 
 
 class ColorsItemUISchema(DictOnlySchema):
@@ -121,6 +147,15 @@ class CreationPeriodUISchema(DictOnlySchema):
     until = ma_fields.Integer()
 
 
+class IdentifiersItemUISchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.RAISE
+
+    identifier = ma_fields.String()
+
+    scheme = ma_fields.String()
+
+
 class RestorationDataItemUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
@@ -139,14 +174,3 @@ class RestorationPeriodUISchema(DictOnlySchema):
     since = LocalizedDate()
 
     until = LocalizedDate()
-
-
-class SupervisorsItemUISchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    comment = ma_fields.String()
-
-    fullName = ma_fields.String()
-
-    institution = ma_fields.String()

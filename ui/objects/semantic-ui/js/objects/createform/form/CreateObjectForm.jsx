@@ -1,5 +1,4 @@
 import React from "react";
-import _isEmpty from "lodash/isEmpty";
 import { TextField, FieldLabel, RadioField } from "react-invenio-forms";
 
 import { Container, Label, Form, Grid, Header } from "semantic-ui-react";
@@ -7,7 +6,7 @@ import { DepositValidationSchemaDraft } from "../../forms/deposit/DepositValidat
 import { useFormConfig, useDepositApiClient } from "@js/oarepo_ui";
 import { Formik, ErrorMessage } from "formik";
 import _get from "lodash/get";
-import { SaveButton } from "../../forms/components";
+import { CreateButton } from "../../forms/components";
 
 const categories = [
   { value: "sklo", label: "Sklo", id: "0" },
@@ -91,7 +90,7 @@ const CreateObjectFormContent = ({ errors }) => {
           </Form>
         </Grid.Column>
       </Grid>
-      <SaveButton />
+      <CreateButton />
     </Grid>
   );
 };

@@ -1,6 +1,6 @@
 .ui.button {
   font-size: 1rem;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   height: 2.5rem;
@@ -53,10 +53,6 @@
       background: @radialBg;
       color: black;
     }
-  }
-
-  .field & {
-    width: 30%;
   }
 
   &.close-btn {
@@ -194,12 +190,6 @@
       }
     }
   }
-}
-
-.ui.buttons {
-  position: absolute;
-  left: 130px;
-  top: 10px;
 }
 
 .ui.datepicker .react-datepicker__close-icon {

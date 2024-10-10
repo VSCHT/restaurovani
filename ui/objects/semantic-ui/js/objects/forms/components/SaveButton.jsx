@@ -1,9 +1,11 @@
 import React from "react";
 import { Button } from "semantic-ui-react";
-import { useDepositApiClient } from "@js/oarepo_ui";
 import _isEmpty from "lodash/isEmpty";
+import {
+  useDepositApiClient,
+} from "@js/oarepo_ui";
 
-export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
+export const SaveButton = () => {
   const { isSubmitting, preview, formik } = useDepositApiClient();
 
   const previewRecord = async () => {
@@ -15,8 +17,8 @@ export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
     const res = await preview();
 
     if (!res) {
-      console.error("BEvalidationErrors", formik.values["BEvalidationErrors"]);
-      console.error("httpErrors", formik.values["httpErrors"]);
+      console.error("BEvalidationErrors", formik.errors["BEvalidationErrors"]);
+      console.error("httpErrors", formik.errors["httpErrors"]);
     }
   }
 
@@ -24,12 +26,12 @@ export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
     <Button
       primary
       name="save"
-      aria-label="tlacitko vytvoreni predmetu"
+      aria-label="Tlačítko pro uložení předmětu"
       disabled={isSubmitting}
       loading={isSubmitting}
       data-testid="submit-button"
       onClick={previewRecord}
-      content={title}
+      content="ULOŽIT"
       type="submit"
     />
   );

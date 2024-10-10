@@ -1,0 +1,77 @@
+name: Ústav chemické technologie restaurování památek
+id: '148'
+identifiers:
+- identifier: '148'
+  scheme: uct-institution-number
+---
+name: Ústav skla a keramiky
+id: '107'
+identifiers:
+- identifier: '107'
+  scheme: uct-institution-number
+---
+name: Aplikační sféra (externisti vyučující nebo OR)
+id: 099
+identifiers:
+- identifier: 099
+  scheme: uct-institution-number
+---
+name: Ústav polymerů
+id: '112'
+identifiers:
+- identifier: '112'
+  scheme: uct-institution-number
+---
+name: oponent
+id: '600'
+identifiers:
+- identifier: '600'
+  scheme: uct-institution-number
+---
+name: Centrální laboratoře
+id: '980'
+identifiers:
+- identifier: '980'
+  scheme: uct-institution-number
+---
+name: Ústav kovových materiálů a korozního inženýrství
+id: '106'
+identifiers:
+- identifier: '106'
+  scheme: uct-institution-number
+---
+name: Univerzita Pardubice
+id: '036'
+identifiers:
+- identifier: '036'
+  scheme: uct-institution-number
+---
+name: Ústav energetiky
+id: '218'
+identifiers:
+- identifier: '218'
+  scheme: uct-institution-number
+---
+name: Ústav biochemie a mikrobiologie
+id: '320'
+identifiers:
+- identifier: '320'
+  scheme: uct-institution-number
+---
+name: Ústav fyziky a měřicí techniky
+id: '444'
+identifiers:
+- identifier: '444'
+  scheme: uct-institution-number
+---
+name: Středočeské muzeum v Roztokách u Prahy
+id: '704'
+identifiers:
+- identifier: '704'
+  scheme: uct-institution-number
+---
+name: Západočeská univerzita v Plzni
+id: '057'
+identifiers:
+- identifier: '057'
+  scheme: uct-institution-number

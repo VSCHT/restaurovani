@@ -122,19 +122,10 @@ metadata_restorationWork_restorer = TermsFacet(
     label=_("metadata/restorationWork/restorer.label"),
 )
 
-metadata_restorationWork_supervisors_comment = TermsFacet(
-    field="metadata.restorationWork.supervisors.comment",
-    label=_("metadata/restorationWork/supervisors/comment.label"),
-)
-
-metadata_restorationWork_supervisors_fullName = TermsFacet(
-    field="metadata.restorationWork.supervisors.fullName",
-    label=_("metadata/restorationWork/supervisors/fullName.label"),
-)
-
-metadata_restorationWork_supervisors_institution = TermsFacet(
-    field="metadata.restorationWork.supervisors.institution",
-    label=_("metadata/restorationWork/supervisors/institution.label"),
+metadata_restorationWork_supervisors = VocabularyFacet(
+    field="metadata.restorationWork.supervisors",
+    label=_("metadata/restorationWork/supervisors.label"),
+    vocabulary="names",
 )
 
 metadata_restorationWork_workType = VocabularyFacet(
@@ -145,6 +136,10 @@ metadata_restorationWork_workType = VocabularyFacet(
 
 metadata_submissionStatus = TermsFacet(
     field="metadata.submissionStatus", label=_("metadata/submissionStatus.label")
+)
+
+metadata_version = TermsFacet(
+    field="metadata.version", label=_("metadata/version.label")
 )
 
 

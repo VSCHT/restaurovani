@@ -254,13 +254,41 @@
                             "items": {
                                 "type": "object",
                                 "properties": {
-                                    "comment": {
+                                    "id": {
                                         "type": "string"
                                     },
-                                    "fullName": {
+                                    "name": {
                                         "type": "string"
                                     },
-                                    "institution": {
+                                    "affiliations": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "identifiers": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "identifier": {
+                                                                "type": "string"
+                                                            },
+                                                            "scheme": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "@v": {
                                         "type": "string"
                                     }
                                 }
@@ -283,6 +311,26 @@
                     }
                 },
                 "submissionStatus": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "pid": {
+            "type": "object",
+            "properties": {
+                "obj_type": {
+                    "type": "string"
+                },
+                "pid_type": {
+                    "type": "string"
+                },
+                "pk": {
+                    "type": "integer"
+                },
+                "status": {
                     "type": "string"
                 }
             }

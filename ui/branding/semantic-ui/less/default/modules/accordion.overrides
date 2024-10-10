@@ -74,4 +74,8 @@
       color: @brownColor;
     }
   }
+
+  .bucket-item .ui.label {
+    font-weight: 300;
+  }
 }
