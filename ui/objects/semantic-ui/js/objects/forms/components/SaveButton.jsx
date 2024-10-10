@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "semantic-ui-react";
-import { useDepositApiClient } from "@js/oarepo_ui";
 import _isEmpty from "lodash/isEmpty";
 import _unset from "lodash/unset";
 import _has from "lodash/has";
@@ -8,6 +7,7 @@ import _isObject from "lodash/isObject";
 import _forEach from "lodash/forEach";
 import _isArray from "lodash/isArray";
 import {
+  useDepositApiClient,
   OARepoDepositSerializer,
 } from "@js/oarepo_ui";
 
@@ -44,7 +44,7 @@ const RESTORATION_KEY_PATHS_TO_REMOVE = [
   "metadata.restorationWork.supervisors.name",
 ]
 
-export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
+export const SaveButton = () => {
   const { isSubmitting, preview, formik } = useDepositApiClient({ 
     serializer: RestorationDepositSerializer, 
     keysToRemove: RESTORATION_KEY_PATHS_TO_REMOVE 
@@ -68,12 +68,12 @@ export const SaveButton = ({ title = "VYTVOŘIT", edit = false }) => {
     <Button
       primary
       name="save"
-      aria-label="tlacitko vytvoreni predmetu"
+      aria-label="Tlačítko pro uložení předmětu"
       disabled={isSubmitting}
       loading={isSubmitting}
       data-testid="submit-button"
       onClick={previewRecord}
-      content={title}
+      content="ULOŽIT"
       type="submit"
     />
   );

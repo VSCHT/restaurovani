@@ -22,7 +22,6 @@ export const EditObjectForm = () => {
   const handleActive = (x) => {
     setActiveIndex(x);
   };
-  const edit = _has(record, "updated");
   
   const initialValues = {
     ...record,
@@ -95,7 +94,7 @@ export const EditObjectForm = () => {
               />
             </Overridable>
 
-            <SaveButton title="ULOŽIT" edit={edit} />
+            <SaveButton />
           </Grid>
         )}
       </Formik>
