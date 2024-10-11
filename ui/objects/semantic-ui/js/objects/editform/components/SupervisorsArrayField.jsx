@@ -69,23 +69,6 @@ export const SupervisorsArrayField = ({
                       ></FieldLabel>
                     }
                     serializeSuggestions={serializeNamesSuggestions}
-                    // serializeSelectedItem={
-                    //   ({ id }) => ({ id })
-                    // }
-                    // onValueChange={({ e, data, formikProps }, selectedSuggestions) => {
-                    //   let vocabularyItem = selectedSuggestions.find(
-                    //     (o) => o.value === data.value
-                    //   );
-                    //   if (vocabularyItem) {
-                    //     const { id, title, data: { affiliations } } = vocabularyItem;
-                    //     formikProps.form.setFieldValue(
-                    //       fieldPath,
-                    //       { id, title, institution: affiliations?.[0].name }
-                    //     );
-                    //   } else {
-                    //     formikProps.form.setFieldValue(fieldPath, null);
-                    //   }
-                    // }}
                   />
                 </Grid.Column>
                 {/* <Grid.Column>
