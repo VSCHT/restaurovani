@@ -37,6 +37,18 @@
   text-overflow: ellipsis;
 }
 
+.form-feedback-wrapper {
+  width: 600px;
+
+  @media only screen and (min-width: @mobileSize) and (max-width: @tabletSize) {
+    width: 70%;
+  }
+
+  @media only screen and (max-width: @mobileSize) {
+    width: 95%;
+  }
+}
+
 .white {
   color: white;
 }
