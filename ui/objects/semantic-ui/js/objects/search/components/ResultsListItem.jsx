@@ -57,15 +57,13 @@ export const ResultsListItemComponent = ({ result, appName }) => {
           (item) => item.metadata.featured == true
         );
         const rImg = imageEntries?.[0];
-        fImg.length == 1 ? setObjectImages(fImg[0]) : setObjectImages(rImg);
+        fImg.length > 0 ? setObjectImages(fImg[0]) : setObjectImages(rImg);
       })
 
       .catch(() => {
         setObjectImages([]);
       });
   }, [result]);
-
-  const searchAppConfig = useContext(SearchConfigurationContext);
 
   const title = _get(result, "metadata.restorationObject.title", "<no title>");
 

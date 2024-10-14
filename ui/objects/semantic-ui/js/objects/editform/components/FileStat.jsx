@@ -10,13 +10,13 @@ import {
   Pagination,
   Grid,
 } from "semantic-ui-react";
+import _truncate from "lodash/truncate";
 import {
-  ReactWrapperPdf,
-  ReactWrapperImg,
-  EditWrapper,
-  ExtractWrapper,
+  PDFUploader,
+  ImageUploader,
+  FileMetadataEditor,
+  PDFImageExtractor,
 } from "./Uploader";
-import FileManagementDialog from "@oarepo/file-manager";
 
 export const FileStat = ({ apiUrl, record }) => {
   const [data, setData] = useState(null);
@@ -43,7 +43,7 @@ export const FileStat = ({ apiUrl, record }) => {
   }, [fetchData]);
 
   if (!data) {
-    return <p>Loading...</p>;
+    return <p>Načítání...</p>;
   }
 
   // converting file size
@@ -69,40 +69,9 @@ export const FileStat = ({ apiUrl, record }) => {
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
   }
 
-  // button for extracting images from pdf
-  const extractImg = (key, record) => {
-    return (
-      <ExtractWrapper
-        preactComponent={FileManagementDialog}
-        props={{
-          config: { record: record },
-          autoExtractImagesFromPDFs: true,
-          locale: "cs_CS",
-          startEvent: {
-            event: "upload-images-from-pdf",
-            data: { file_key: key },
-          },
-          allowedMetaFields: [
-            {
-              id: "caption",
-              defaultValue: "default_image_name",
-              isUserInput: true,
-            },
-            { id: "featured", defaultValue: false, isUserInput: true },
-          ],
-          onCompletedUpload: (result) => {
-            if (result?.successful.length > 0) {
-              fetchData();
-            }
-          },
-        }}
-      />
-    );
-  };
-
   // delete button
 
-  const DeleteButton = ({ apiUrl }) => {
+  const DeleteButton = ({ fileCaption, apiUrl }) => {
     const [confirmOpen, setConfirmOpen] = useState(false);
     const handleDelete = async () => {
       try {
@@ -127,43 +96,25 @@ export const FileStat = ({ apiUrl, record }) => {
     return (
       <>
         <Button
-          className="small transparent"
+          size="small"
+          className="transparent"
+          icon
           onClick={() => setConfirmOpen(true)}
           title="Smazat"
         >
-          <Icon name="delete" />
+          <Icon name="delete" aria-label="Ikona zavření" />
         </Button>
 
         <Confirm
           open={confirmOpen}
-          content={"Chcete smazat?"}
+          header={`Smazat soubor${fileCaption ? ` "${fileCaption}"` : ""}`}
+          content={"Jste si jistý? (tato akce je nezvratná)"}
           cancelButton={"Zrušit"}
           confirmButton={"Ano"}
           onCancel={() => setConfirmOpen(false)}
           onConfirm={handleDelete}
         />
       </>
-    );
-  };
-
-  // button for file edit
-  const editFile = (key, record) => {
-    return (
-      <EditWrapper
-        fetchData={fetchData}
-        preactComponent={FileManagementDialog}
-        props={{
-          config: { record: record },
-          autoExtractImagesFromPDFs: false,
-          locale: "cs_CS",
-          startEvent: { event: "edit-file", data: { file_key: key } },
-          onCompletedUpload: (result) => {
-            if (result?.successful.length > 0) {
-              fetchData();
-            }
-          },
-        }}
-      />
     );
   };
 
@@ -175,26 +126,20 @@ export const FileStat = ({ apiUrl, record }) => {
     setActivePage(activePage);
   };
 
-  const renderTableBody = (fileTypeFilter) => {
-    const fileName = (d, conc = false) => {
+  const renderTable = (fileTypeFilter) => {
+    const fileName = (d, truncate = false) => {
       if (d.metadata && d.metadata?.caption) {
         if (
           d.metadata.caption === "default_image_name" ||
           d.metadata.caption === "default_pdf_name" ||
           Object.values(d.metadata.caption).length === 0
         ) {
-          return d.key.length > 15 && conc
-            ? d.key.substring(0, 15) + "..."
-            : d.key;
+          return truncate ? _truncate(d.key, { length: 35, omission: "…" }) : d.key;
         } else {
-          return d.metadata.caption.length > 15 && conc
-            ? d.metadata.caption.substring(0, 15) + "..."
-            : d.metadata.caption;
+          return truncate ? _truncate(d.metadata.caption, { length: 35, omission: "…" }) : d.metadata.caption;
         }
       } else {
-        return d.key.length > 15 && conc
-          ? d.key.substring(0, 15) + "..."
-          : d.key;
+        return truncate ? _truncate(d.key, { length: 35, omission: "…" }) : d.key;
       }
     };
 
@@ -210,49 +155,81 @@ export const FileStat = ({ apiUrl, record }) => {
     }
 
     return (
-      <Table.Body>
-        {slicedData?.map((d, index) => (
-          <Table.Row key={d.key}>
-            {d.metadata.fileType === "photo" && (
-              <Table.Cell
-                title={fileName(d)}
-                onClick={() => {
-                  setSelectedImage(index);
-                  setModalOpen(true);
-                }}
-              >
-                {fileName(d)}{" "}
-              </Table.Cell>
-            )}
-            {d.metadata.fileType === "document" && (
-              <Table.Cell title={fileName(d)}>{fileName(d, true)}</Table.Cell>
-            )}
-            <Table.Cell>{formatBytes(d.size)}</Table.Cell>
-            <Table.Cell>{d.metadata.fileType}</Table.Cell>
-            <Table.Cell>
-              <Grid.Row>
-                <DeleteButton apiUrl={d.links.self} />
-
-                {editFile(d.key, record)}
-
-                {d.metadata.fileType === "document" &&
-                  extractImg(d.key, record)}
-              </Grid.Row>
-            </Table.Cell>
+      <Table className="file-stat-table">
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Název</Table.HeaderCell>
+            <Table.HeaderCell>Velikost</Table.HeaderCell>
+            <Table.HeaderCell>Akce</Table.HeaderCell>
           </Table.Row>
-        ))}
-        <Table.Row>
-          <Table.Cell colSpan="5">
-            {data?.entries?.length > itemsPerPage && (
-              <Pagination
-                totalPages={Math.ceil(typeAmount?.length / itemsPerPage)}
-                activePage={activePage}
-                onPageChange={changePage}
-              />
-            )}
-          </Table.Cell>
-        </Table.Row>
-      </Table.Body>
+        </Table.Header>
+
+        <Table.Body>
+          {slicedData?.map((d, index) => (
+            <Table.Row key={d.key}>
+              {d.metadata.fileType === "photo" && (
+                <Table.Cell
+                  className="clickable-text overflow-wrap-anywhere"
+                  title={fileName(d)}
+                  onClick={() => {
+                    setSelectedImage(index);
+                    setModalOpen(true);
+                  }}
+                >
+                  {fileName(d, true)}
+                </Table.Cell>
+              )}
+              {d.metadata.fileType === "document" && (
+                <Table.Cell
+                  className="clickable-text"
+                  title={fileName(d)}
+                >
+                  <a href={d.links?.content} className="overflow-wrap-anywhere">
+                    {fileName(d, true)}
+                  </a>
+                </Table.Cell>
+              )}
+              <Table.Cell>{formatBytes(d.size)}</Table.Cell>
+              <Table.Cell>
+                <Grid.Row centered verticalAlign="middle" columns={d.metadata.fileType === "document" ? 3 : 2}>
+                  <DeleteButton
+                    fileCaption={d.metadata?.caption}
+                    apiUrl={d.links.self}
+                  />
+
+                  <FileMetadataEditor
+                    fetchData={fetchData}
+                    record={record}
+                    fileKey={d.key}
+                  />
+
+                  {d.metadata.fileType === "document" &&
+                    <PDFImageExtractor
+                      fetchData={fetchData}
+                      record={record}
+                      fileKey={d.key}
+                    />
+                  }
+                </Grid.Row>
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+
+        {data?.entries?.length > itemsPerPage && (
+          <Table.Footer>
+            <Table.Row>
+              <Table.HeaderCell colSpan={3} verticalAlign="middle">
+                <Pagination
+                  totalPages={Math.ceil(typeAmount?.length / itemsPerPage)}
+                  activePage={activePage}
+                  onPageChange={changePage}
+                />
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Footer>
+        )}
+      </Table>
     );
   };
 
@@ -262,12 +239,14 @@ export const FileStat = ({ apiUrl, record }) => {
       panes={[
         {
           menuItem: "Obrázky",
-
           render: () => (
             <Tab.Pane>
-              <Table>{renderTableBody("photo")}</Table>
+              {renderTable("photo")}
 
-              {uploaderImg(record)}
+              <ImageUploader
+                fetchData={fetchData}
+                record={record}
+              />
             </Tab.Pane>
           ),
         },
@@ -275,9 +254,12 @@ export const FileStat = ({ apiUrl, record }) => {
           menuItem: "Dokumenty",
           render: () => (
             <Tab.Pane>
-              <Table>{renderTableBody("document")}</Table>
+              {renderTable("document")}
 
-              {uploaderPdf(record)}
+              <PDFUploader
+                fetchData={fetchData}
+                record={record}
+              />
             </Tab.Pane>
           ),
         },
@@ -285,103 +267,29 @@ export const FileStat = ({ apiUrl, record }) => {
     />
   );
 
-  // button for img upload
-  const uploaderImg = (record) => {
-    return (
-      <ReactWrapperImg
-        preactComponent={FileManagementDialog}
-        props={{
-          config: { record: record },
-          autoExtractImagesFromPDFs: true,
-          locale: "cs_CZ",
-          allowedFileTypes: ["image/*", "application/pdf"],
-          allowedMetaFields: [
-            {
-              id: "caption",
-              defaultValue: "default_image_name",
-              isUserInput: true,
-            },
-            { id: "featured", defaultValue: false, isUserInput: true },
-          ],
-          onCompletedUpload: (result) => {
-            if (result?.successful.length > 0) {
-              fetchData();
-            }
-          },
-        }}
-      />
-    );
-  };
-
-  // button for docs upload
-  const uploaderPdf = (record) => {
-    return (
-      <ReactWrapperPdf
-        preactComponent={FileManagementDialog}
-        props={{
-          config: { record: record },
-          locale: "cs_CS",
-          autoExtractImagesFromPDFs: false,
-          allowedFileTypes: ["application/pdf"],
-          allowedMetaFields: [
-            {
-              id: "caption",
-              defaultValue: "default_pdf_name",
-              isUserInput: true,
-            },
-            { id: "featured", defaultValue: false, isUserInput: true },
-          ],
-          startEvent: { event: "upload-file-without-edit" },
-          onCompletedUpload: (result) => {
-            if (result?.successful.length > 0) {
-              fetchData();
-            }
-          },
-        }}
-      />
-    );
-  };
-
   return (
     <>
-      {renderTabs([
-        {
-          menuItem: "Obrazky",
-          render: () => (
-            <Tab.Pane>
-              <Table>{renderTableBody()}</Table>
-
-              {uploaderImg(record)}
-            </Tab.Pane>
-          ),
-        },
-        {
-          menuItem: "Dokumenty",
-          render: () => (
-            <Tab.Pane>
-              <Table>{renderTableBody()}</Table>
-
-              {uploaderPdf(record)}
-            </Tab.Pane>
-          ),
-        },
-      ])}
+      {renderTabs()}
 
       {/* modal for full screen image */}
-      <div>
-        <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
-          <Modal.Content image>
-            <Image src={data?.entries?.[selectedImage]?.links?.content} />
-            {data?.entries?.[selectedImage]?.metadata?.caption}
-
-            <Button
-              icon="close"
-              onClick={() => setModalOpen(false)}
-              className="close-button"
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} centered closeIcon>
+        <Modal.Content as={Grid}>
+          <Grid.Column textAlign="center" verticalAlign="top">
+            <Image
+              as="a"
+              size="big"
+              src={data?.entries?.[selectedImage]?.links?.content}
+              href={data?.entries?.[selectedImage]?.links?.content}
+              target="_blank"
+              inline
+              className="zoomable"
             />
-          </Modal.Content>
-        </Modal>
-      </div>
+            <p className="overflow-wrap-anywhere">
+              {data?.entries?.[selectedImage]?.metadata?.caption}
+            </p>
+          </Grid.Column>
+        </Modal.Content>
+      </Modal>
     </>
   );
 };

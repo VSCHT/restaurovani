@@ -3,19 +3,18 @@ import {
   AccordionField,
   TextField,
   FieldLabel,
-  ArrayField,
   RichInputField,
   RichEditor,
 } from "react-invenio-forms";
-import { Header, Grid } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import { getIn } from "formik";
-import { ArrayFieldItem, useSanitizeInput } from "@js/oarepo_ui";
+import { useSanitizeInput } from "@js/oarepo_ui";
 import {
   LocalVocabularySelectField,
   VocabularyTreeSelectField,
 } from "@js/oarepo_vocabularies";
-import _get from "lodash/get";
 import { DaterangePicker } from "./DateRange";
+import { SupervisorsArrayField } from "./SupervisorsArrayField";
 
 const MemoizedRichEditor = memo(RichEditor, (prevProps, nextProps) => prevProps.initialValue === nextProps.initialValue);
 
@@ -92,78 +91,8 @@ export const RestorationWork = ({
             }
           />
         </Grid.Column>
-        <ArrayField
-          addButtonLabel="Přidat vedoucího"
-          fieldPath={`${fieldPath}.supervisors`}
-          defaultNewValue={{ fullName: "", comment: "", institution: "" }}
-        >
-          {({ arrayHelpers, indexPath }) => {
-            const fieldPathPrefix = `${fieldPath}.supervisors[${indexPath}]`;
-            const existingName = _get(values, `${fieldPathPrefix}.fullName`);
-            return (
-              <>
-                <Header as="h4">
-                  Vedoucí {existingName == null ? indexPath + 1 : existingName}
-                </Header>
-                <ArrayFieldItem
-                  name={`${fieldPath}.supervisors`}
-                  fieldPathPrefix={`${fieldPath}.supervisors`}
-                  indexPath={indexPath}
-                  arrayHelpers={arrayHelpers}
-                >
-                  <Grid columns={1}>
-                    <Grid.Column>
-                      <LocalVocabularySelectField
-                        name={`${fieldPathPrefix}.fullName`}
-                        aria-label="Celé jméno"
-                        fieldPath={`${fieldPathPrefix}.fullName`}
-                        placeholder="Napište celé jméno"
-                        optionsListName="Supervisors"
-                        clearable
-                        label={
-                          <FieldLabel
-                            htmlFor={`${fieldPathPrefix}.fullName`}
-                            label="Celé jméno"
-                          ></FieldLabel>
-                        }
-                      />
-                    </Grid.Column>
-                    <Grid.Column>
-                      <TextField
-                        name={`${fieldPathPrefix}.comment`}
-                        aria-label="Komentář"
-                        fieldPath={`${fieldPathPrefix}.comment`}
-                        placeholder="Komentář"
-                        label={
-                          <FieldLabel
-                            htmlFor={`${fieldPathPrefix}.comment`}
-                            label="Komentář"
-                          ></FieldLabel>
-                        }
-                      />
-                    </Grid.Column>
-                    <Grid.Column>
-                      <LocalVocabularySelectField
-                        name={`${fieldPathPrefix}.institution`}
-                        aria-label="Instituce"
-                        fieldPath={`${fieldPathPrefix}.institution`}
-                        placeholder="Instituce"
-                        optionsListName="Institutions"
-                        clearable
-                        label={
-                          <FieldLabel
-                            htmlFor={`${fieldPathPrefix}.institution`}
-                            label="Instituce"
-                          ></FieldLabel>
-                        }
-                      />
-                    </Grid.Column>
-                  </Grid>
-                </ArrayFieldItem>
-              </>
-            );
-          }}
-        </ArrayField>
+
+        <SupervisorsArrayField fieldPath={fieldPath} />
 
         <Grid.Column>
           <DaterangePicker
@@ -194,7 +123,7 @@ export const RestorationWork = ({
           <VocabularyTreeSelectField
             fieldPath={`${fieldPath}.examinationMethods`}
             multiple={true}
-            optionsListName="ExaminationMethods"
+            vocabulary="ExaminationMethods"
             placeholder="Vyberte metody průzkumu"
             clearable
             label={
@@ -209,7 +138,7 @@ export const RestorationWork = ({
           <VocabularyTreeSelectField
             fieldPath={`${fieldPath}.restorationMethods`}
             multiple={true}
-            optionsListName="RestorationMethods"
+            vocabulary="RestorationMethods"
             root={category}
             placeholder="Vyberte metody restaurování"
             clearable

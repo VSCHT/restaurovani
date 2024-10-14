@@ -75,9 +75,7 @@ export const DepositValidationSchemaEdit = Yup.object().shape({
       restorer: Yup.string().required(requiredMessage),
       supervisors: Yup.array().of(
         Yup.object().shape({
-          fullName: Yup.string(),
-          comment: Yup.string(),
-          institution: Yup.string(),
+          id: Yup.string().required(requiredMessage),
         })
       ),
       restorationPeriod: Yup.object().shape({

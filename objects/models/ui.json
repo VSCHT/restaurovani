@@ -578,35 +578,94 @@
                             "label": "metadata/restorationWork/supervisors.label",
                             "hint": "metadata/restorationWork/supervisors.hint",
                             "child": {
-                                "detail": "supervisor",
-                                "input": "supervisor",
+                                "detail": "vocabulary_item",
+                                "edit": "vocabulary_item",
+                                "input": "vocabulary",
                                 "help": "metadata/restorationWork/supervisors.help",
                                 "label": "metadata/restorationWork/supervisors.label",
                                 "hint": "metadata/restorationWork/supervisors.hint",
+                                "facet": "metadata_restorationWork_supervisors",
                                 "children": {
-                                    "comment": {
+                                    "id": {
                                         "detail": "keyword",
                                         "input": "keyword",
-                                        "help": "metadata/restorationWork/supervisors/comment.help",
-                                        "label": "metadata/restorationWork/supervisors/comment.label",
-                                        "hint": "metadata/restorationWork/supervisors/comment.hint",
-                                        "facet": "metadata_restorationWork_supervisors_comment"
+                                        "help": "metadata/restorationWork/supervisors/id.help",
+                                        "label": "metadata/restorationWork/supervisors/id.label",
+                                        "hint": "metadata/restorationWork/supervisors/id.hint"
                                     },
-                                    "fullName": {
+                                    "name": {
                                         "detail": "keyword",
                                         "input": "keyword",
-                                        "help": "metadata/restorationWork/supervisors/fullName.help",
-                                        "label": "metadata/restorationWork/supervisors/fullName.label",
-                                        "hint": "metadata/restorationWork/supervisors/fullName.hint",
-                                        "facet": "metadata_restorationWork_supervisors_fullName"
+                                        "help": "metadata/restorationWork/supervisors/name.help",
+                                        "label": "metadata/restorationWork/supervisors/name.label",
+                                        "hint": "metadata/restorationWork/supervisors/name.hint"
                                     },
-                                    "institution": {
+                                    "affiliations": {
+                                        "detail": "array",
+                                        "input": "array",
+                                        "help": "metadata/restorationWork/supervisors/affiliations.help",
+                                        "label": "metadata/restorationWork/supervisors/affiliations.label",
+                                        "hint": "metadata/restorationWork/supervisors/affiliations.hint",
+                                        "child": {
+                                            "detail": "affiliation",
+                                            "input": "affiliation",
+                                            "help": "metadata/restorationWork/supervisors/affiliations.help",
+                                            "label": "metadata/restorationWork/supervisors/affiliations.label",
+                                            "hint": "metadata/restorationWork/supervisors/affiliations.hint",
+                                            "children": {
+                                                "id": {
+                                                    "detail": "keyword",
+                                                    "input": "keyword",
+                                                    "help": "metadata/restorationWork/supervisors/affiliations/id.help",
+                                                    "label": "metadata/restorationWork/supervisors/affiliations/id.label",
+                                                    "hint": "metadata/restorationWork/supervisors/affiliations/id.hint"
+                                                },
+                                                "identifiers": {
+                                                    "detail": "array",
+                                                    "input": "array",
+                                                    "help": "metadata/restorationWork/supervisors/affiliations/identifiers.help",
+                                                    "label": "metadata/restorationWork/supervisors/affiliations/identifiers.label",
+                                                    "hint": "metadata/restorationWork/supervisors/affiliations/identifiers.hint",
+                                                    "child": {
+                                                        "detail": "identifier",
+                                                        "input": "identifier",
+                                                        "help": "metadata/restorationWork/supervisors/affiliations/identifiers.help",
+                                                        "label": "metadata/restorationWork/supervisors/affiliations/identifiers.label",
+                                                        "hint": "metadata/restorationWork/supervisors/affiliations/identifiers.hint",
+                                                        "children": {
+                                                            "identifier": {
+                                                                "detail": "keyword",
+                                                                "input": "keyword",
+                                                                "help": "metadata/restorationWork/supervisors/affiliations/identifiers/identifier.help",
+                                                                "label": "metadata/restorationWork/supervisors/affiliations/identifiers/identifier.label",
+                                                                "hint": "metadata/restorationWork/supervisors/affiliations/identifiers/identifier.hint"
+                                                            },
+                                                            "scheme": {
+                                                                "detail": "keyword",
+                                                                "input": "keyword",
+                                                                "help": "metadata/restorationWork/supervisors/affiliations/identifiers/scheme.help",
+                                                                "label": "metadata/restorationWork/supervisors/affiliations/identifiers/scheme.label",
+                                                                "hint": "metadata/restorationWork/supervisors/affiliations/identifiers/scheme.hint"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "name": {
+                                                    "detail": "keyword",
+                                                    "input": "keyword",
+                                                    "help": "metadata/restorationWork/supervisors/affiliations/name.help",
+                                                    "label": "metadata/restorationWork/supervisors/affiliations/name.label",
+                                                    "hint": "metadata/restorationWork/supervisors/affiliations/name.hint"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "@v": {
                                         "detail": "keyword",
                                         "input": "keyword",
-                                        "help": "metadata/restorationWork/supervisors/institution.help",
-                                        "label": "metadata/restorationWork/supervisors/institution.label",
-                                        "hint": "metadata/restorationWork/supervisors/institution.hint",
-                                        "facet": "metadata_restorationWork_supervisors_institution"
+                                        "help": "metadata/restorationWork/supervisors/@v.help",
+                                        "label": "metadata/restorationWork/supervisors/@v.label",
+                                        "hint": "metadata/restorationWork/supervisors/@v.hint"
                                     }
                                 }
                             }
@@ -652,6 +711,51 @@
                     "label": "metadata/submissionStatus.label",
                     "hint": "metadata/submissionStatus.hint",
                     "facet": "metadata_submissionStatus"
+                },
+                "version": {
+                    "detail": "keyword",
+                    "input": "keyword",
+                    "help": "metadata/version.help",
+                    "label": "metadata/version.label",
+                    "hint": "metadata/version.hint",
+                    "facet": "metadata_version"
+                }
+            }
+        },
+        "pid": {
+            "detail": false,
+            "input": false,
+            "help": "pid.help",
+            "label": "pid.label",
+            "hint": "pid.hint",
+            "children": {
+                "obj_type": {
+                    "detail": "keyword",
+                    "input": "keyword",
+                    "help": "pid/obj_type.help",
+                    "label": "pid/obj_type.label",
+                    "hint": "pid/obj_type.hint"
+                },
+                "pid_type": {
+                    "detail": "keyword",
+                    "input": "keyword",
+                    "help": "pid/pid_type.help",
+                    "label": "pid/pid_type.label",
+                    "hint": "pid/pid_type.hint"
+                },
+                "pk": {
+                    "detail": "integer",
+                    "input": "integer",
+                    "help": "pid/pk.help",
+                    "label": "pid/pk.label",
+                    "hint": "pid/pk.hint"
+                },
+                "status": {
+                    "detail": "keyword",
+                    "input": "keyword",
+                    "help": "pid/status.help",
+                    "label": "pid/status.label",
+                    "hint": "pid/status.hint"
                 }
             }
         },

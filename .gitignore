@@ -13,3 +13,8 @@ common/old_data/data
 .DS_Store
 .venv/bin/python
 /requirements-resolved-local.txt
+*.ipynb
+osoby_spojene_s_pracemi_s_ustavy.csv
+
+http-client.private.env.json
+todo.md

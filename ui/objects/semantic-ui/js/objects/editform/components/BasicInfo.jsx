@@ -12,7 +12,7 @@ import {
   MultiInput,
   NumberInput,
 } from "react-invenio-forms";
-import { Grid } from "semantic-ui-react";
+import { Grid, FormField } from "semantic-ui-react";
 import { ArrayFieldItem, useSanitizeInput } from "@js/oarepo_ui";
 import {
   LocalVocabularySelectField,
@@ -55,6 +55,7 @@ export const BasicInfo = ({
         `${fieldPath}.creationPeriod.since`,
         `${fieldPath}.creationPeriod.until`,
         `${fieldPath}.restorationRequestor`,
+        `${fieldPath}.files.enabled`,
       ]}
       label="Údaje"
       active={activeIndex === 0}
@@ -104,6 +105,8 @@ export const BasicInfo = ({
                 label="Popis"
               ></FieldLabel>
             }
+            rows={5}
+            style={{ resize: "none" }}
             onBlur={() => {
               const cleanedContent = sanitizeInput(
                 getIn(values, `${fieldPath}.description`)
@@ -115,7 +118,7 @@ export const BasicInfo = ({
         </Grid.Column>
         <Grid.Column>
           <VocabularyTreeSelectField
-            optionsListName="ItemTypes"
+            vocabulary="ItemTypes"
             fieldPath={`${fieldPath}.itemTypes`}
             multiple={true}
             clearable
@@ -241,7 +244,7 @@ export const BasicInfo = ({
         </Grid.Column>
         <Grid.Column>
           <VocabularyTreeSelectField
-            optionsListName="Requestors"
+            vocabulary="Requestors"
             fieldPath={`${fieldPath}.restorationRequestor`}
             multiple={false}
             clearable
@@ -255,7 +258,10 @@ export const BasicInfo = ({
           />
         </Grid.Column>
         <Grid.Column>
-          <FileStat apiUrl={record?.links?.files} record={record} />
+          <FormField>
+            <FieldLabel htmlFor="files.enabled" label="Nahrát soubory" />
+            <FileStat apiUrl={record?.links?.files} record={record} />
+          </FormField>
         </Grid.Column>
       </Grid>
     </AccordionField>

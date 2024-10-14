@@ -10,29 +10,25 @@ export const ImgCarousel = ({
     // className: "",
     infinite: false,
     speed: 100,
+    focusOnSelect: true,
     swipeToSlide: true,
-    slidesToShow: 3,
+    slidesToShow: imagesCollection.length <= 3 ? imagesCollection.length : 3,
     lazyLoad: true,
-    // centerMode: true,
+    centerMode: false,
     // adaptiveHeight: true,
     // variableWidth: true,
     responsive: [
       {
+        breakpoint: 1920,
+        settings: {
+          slidesToShow: imagesCollection.length <= 2 ? imagesCollection.length : 2,
+        }
+      },
+      {
         breakpoint: 992,
         settings: {
-          slidesToShow: 3,
-        }
-      },
-      {
-        breakpoint: 530,
-        settings: {
-          slidesToShow: 2,
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
+          slidesToShow: imagesCollection.length <= 1 ? imagesCollection.length : 1,
+          centerMode: true,
         }
       }
     ],
@@ -58,53 +54,71 @@ export const ImgCarousel = ({
     );
   };
 
-  const isVariableWidth = imagesCollection.length == 1;
-  const sliderSettings = { ...settings, variableWidth: isVariableWidth };
-
   return (
     <>
       <Suspense fallback={<Loader size="big" active />}>
-        <Slider {...sliderSettings}>
+        <Slider {...settings}>
           {imagesCollection?.map((image, index) => {
+            const caption = getCaption(image);
             return (
-              <Image
-                key={index}
-                src={image.links.content}
-                alt={getCaption(selectedImage)}
-                className="slick-image"
-                onClick={() => {
-                  setSelectedImageIndex(index);
-                  setModalOpen(true);
-                }}
-              />
+              <Grid key={image.key} columns={1} centered padded>
+                <Image
+                  as={Grid.Row}
+                  src={image.links.content}
+                  alt={caption}
+                  className="slick-image zoomable-image"
+                  onClick={() => {
+                    setSelectedImageIndex(index);
+                    setModalOpen(true);
+                  }}
+                />
+                <Grid.Row as="span" className="carousel-img-caption overflow-wrap-anywhere">{caption}</Grid.Row>
+              </Grid>
             );
           })}
         </Slider>
       </Suspense>
 
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
-        <Modal.Content image>
-          <Button icon="chevron left" color="black" onClick={handlePrevImage} />
-          <Grid columns={1}>
-            <Image
-              src={selectedImage?.links?.content}
-              href={selectedImage?.links?.content}
-              className="zoomable-image"
-              target="_blank"
-            />
-            <Header as="h4">{getCaption(selectedImage)}</Header>
+      <Modal 
+        open={modalOpen} 
+        onClose={() => setModalOpen(false)}
+        closeIcon
+      >
+        <Modal.Content>
+          <Grid columns={3}>
+            <Grid.Column width={1} verticalAlign="middle" textAlign="left">
+              <Button 
+                icon="chevron left" 
+                size="large"
+                color="black"
+                className="transparent"
+                onClick={handlePrevImage}
+              />
+            </Grid.Column>
+            <Grid.Column width={14}>
+              <Grid columns={1} textAlign="center" verticalAlign="middle">
+                <Image
+                  as="a"
+                  verticalAlign="bottom"
+                  src={selectedImage?.links?.content}
+                  href={selectedImage?.links?.content}
+                  className="modal-content-image zoomable-image"
+                  target="_blank"
+                />
+                <Header as="h4" textAlign="center" className="overflow-wrap-anywhere">{getCaption(selectedImage)}</Header>
+              </Grid>
+            </Grid.Column>
+            <Grid.Column width={1} verticalAlign="middle" textAlign="right">
+              <Button
+                icon="chevron right"
+                size="large"
+                color="black"
+                className="transparent"
+                onClick={handleNextImage}
+              />
+            </Grid.Column>
           </Grid>
-          <Button
-            icon="chevron right"
-            color="black"
-            onClick={handleNextImage}
-          />
         </Modal.Content>
-        <Button
-          icon="close"
-          onClick={() => setModalOpen(false)}
-          className="close transparent"
-        />
       </Modal>
     </>
   );

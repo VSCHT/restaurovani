@@ -6,6 +6,18 @@
     justify-content: space-between;
   }
 
+  & > .close {
+    width: auto;
+    top: @contentPadding;
+    right: @contentPadding;
+  }
+
+  .modal-content-image > img {
+    max-width: fill-available;
+    max-width: -webkit-fill-available;
+    max-width: -moz-available;
+  }
+
   @media only screen and (max-width: @mobileSize) {
     & .image.content {
       flex-direction: row;

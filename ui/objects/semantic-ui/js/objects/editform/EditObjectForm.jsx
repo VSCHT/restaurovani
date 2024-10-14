@@ -1,18 +1,16 @@
 import React from "react";
-import _isEmpty from "lodash/isEmpty";
-import _cloneDeep from "lodash/cloneDeep";
 
 import { Container, Grid, Header } from "semantic-ui-react";
 import { DepositValidationSchemaEdit } from "../forms/deposit/DepositValidationSchema";
 import { useFormConfig } from "@js/oarepo_ui";
 import { Formik } from "formik";
 import _get from "lodash/get";
-import _has from "lodash/has";
 import Overridable from "react-overridable";
 import { SaveButton } from "../forms/components/";
 import { BasicInfo } from "./components/BasicInfo";
 import { RestorationWork } from "./components/RestorationWork";
 import { MoreInfo } from "./components/MoreInfo";
+import { ScrollableFormFeedback } from "./components/ScrollableFormFeedback";
 
 export const EditObjectForm = () => {
   const { record } = useFormConfig();
@@ -22,7 +20,6 @@ export const EditObjectForm = () => {
   const handleActive = (x) => {
     setActiveIndex(x);
   };
-  const edit = _has(record, "updated");
   
   const initialValues = {
     ...record,
@@ -95,7 +92,9 @@ export const EditObjectForm = () => {
               />
             </Overridable>
 
-            <SaveButton title="ULOŽIT" edit={edit} />
+            <ScrollableFormFeedback />
+
+            <SaveButton />
           </Grid>
         )}
       </Formik>

@@ -1,3 +1,5 @@
+@import "globals/site.variables";
+
 @font-face {
   font-family: source-sans-pro;
   src: url("@less/fonts/SourceSans3-VariableFont_wght.ttf");
@@ -6,4 +8,59 @@
 
 .overflow-wrap-anywhere {
   overflow-wrap: anywhere;
+}
+
+.zoomable {
+  cursor: -moz-zoom-in; 
+  cursor: -webkit-zoom-in; 
+  cursor: zoom-in;
+}
+
+.zoomable-image {
+  &:hover {
+    .zoomable();
+  }
+}
+
+.clickable-text {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: @primaryRed;
+  }
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.form-feedback-wrapper {
+  width: 600px;
+
+  @media only screen and (min-width: @mobileSize) and (max-width: @tabletSize) {
+    width: 70%;
+  }
+
+  @media only screen and (max-width: @mobileSize) {
+    width: 95%;
+  }
+}
+
+.white {
+  color: white;
+}
+
+.text-small {
+  font-weight: 300;
+}
+
+.text-medium {
+  font-weight: 400;
+}
+
+.text-big {
+  font-weight: 500;
 }
