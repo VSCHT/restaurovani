@@ -20,6 +20,7 @@
             "file": "objects/records/mappings/os-v2/objects/objects-1.0.0.json",
             "index-field-args": []
         },
+        "searchable": true,
         "custom-fields": [],
         "permissions": {
             "presets": [
@@ -44,23 +45,6 @@
             "class": "objects.services.records.schema.ObjectsSchema",
             "extra-code": ""
         },
-        "searchable": true,
-        "ui": {
-            "marshmallow": {
-                "imports": [],
-                "base-classes": [
-                    "oarepo_requests.services.ui_schema.UIRequestsSerializationMixin",
-                    "oarepo_runtime.services.schema.ui.InvenioUISchema"
-                ],
-                "generate": true,
-                "module": "objects.services.records.ui_schema",
-                "class": "objects.services.records.ui_schema.ObjectsUISchema",
-                "extra-code": ""
-            },
-            "module": "objects.models",
-            "file": "objects/models/ui.json",
-            "alias": "objects"
-        },
         "pid": {
             "type": "rstr",
             "provider-base-classes": [
@@ -83,6 +67,22 @@
                 "create=True"
             ],
             "extra-code": ""
+        },
+        "ui": {
+            "marshmallow": {
+                "imports": [],
+                "base-classes": [
+                    "oarepo_requests.services.ui_schema.UIRequestsSerializationMixin",
+                    "oarepo_runtime.services.schema.ui.InvenioUISchema"
+                ],
+                "generate": true,
+                "module": "objects.services.records.ui_schema",
+                "class": "objects.services.records.ui_schema.ObjectsUISchema",
+                "extra-code": ""
+            },
+            "module": "objects.models",
+            "file": "objects/models/ui.json",
+            "alias": "objects"
         },
         "search-options": {
             "base-classes": [
@@ -110,6 +110,26 @@
             "imports": [],
             "additional-args": []
         },
+        "record": {
+            "imports": [
+                {
+                    "import": "oarepo_runtime.records.systemfields.SyntheticSystemField"
+                },
+                {
+                    "import": "common.records.selectors.CreationPeriodSelector"
+                }
+            ],
+            "fields": {
+                "creationPeriod": "SyntheticSystemField(\n    selector=CreationPeriodSelector(),\n    key=\"syntheticFields.creationPeriod\",\n)\n"
+            },
+            "base-classes": [
+                "invenio_drafts_resources.records.api.Record{InvenioRecord}"
+            ],
+            "generate": true,
+            "module": "objects.records.api",
+            "class": "objects.records.api.ObjectsRecord",
+            "extra-code": ""
+        },
         "module": {
             "qualified": "objects",
             "alias": "objects",
@@ -124,6 +144,41 @@
             "suffix": "objects",
             "suffix-upper": "OBJECTS",
             "suffix-snake": "objects"
+        },
+        "draft-files": {
+            "type": "draft-file",
+            "properties": {},
+            "searchable": true,
+            "service-config": {
+                "base-classes": [
+                    "common.services.files.RestorationFileServiceConfig"
+                ]
+            },
+            "resource": {
+                "base-classes": [
+                    "oarepo_ui.resources.file_resource.S3RedirectFileResource"
+                ]
+            },
+            "tests": {
+                "extra-fixtures": [],
+                "extra-code": "",
+                "module": "tests"
+            }
+        },
+        "tests": {
+            "extra-fixtures": [],
+            "extra-code": "",
+            "module": "tests"
+        },
+        "draft": {
+            "type": "draft_record",
+            "properties": {},
+            "searchable": true,
+            "tests": {
+                "extra-fixtures": [],
+                "extra-code": "",
+                "module": "tests"
+            }
         },
         "files": {
             "type": "file",
@@ -206,6 +261,7 @@
                     "type": "keyword"
                 }
             },
+            "searchable": true,
             "marshmallow": {
                 "imports": [
                     {
@@ -217,7 +273,6 @@
                     "InvenioFileSchema"
                 ]
             },
-            "searchable": true,
             "service-config": {
                 "base-classes": [
                     "common.services.files.RestorationFileServiceConfig"
@@ -228,41 +283,6 @@
                     "oarepo_ui.resources.file_resource.S3RedirectFileResource"
                 ]
             },
-            "tests": {
-                "extra-fixtures": [],
-                "extra-code": "",
-                "module": "tests"
-            }
-        },
-        "draft-files": {
-            "type": "draft-file",
-            "properties": {},
-            "searchable": true,
-            "service-config": {
-                "base-classes": [
-                    "common.services.files.RestorationFileServiceConfig"
-                ]
-            },
-            "resource": {
-                "base-classes": [
-                    "oarepo_ui.resources.file_resource.S3RedirectFileResource"
-                ]
-            },
-            "tests": {
-                "extra-fixtures": [],
-                "extra-code": "",
-                "module": "tests"
-            }
-        },
-        "tests": {
-            "extra-fixtures": [],
-            "extra-code": "",
-            "module": "tests"
-        },
-        "draft": {
-            "type": "draft_record",
-            "properties": {},
-            "searchable": true,
             "tests": {
                 "extra-fixtures": [],
                 "extra-code": "",
@@ -277,44 +297,6 @@
             "skip": false
         },
         "model-name": "Objects",
-        "record-resolver": {
-            "generate": true,
-            "module": "objects.records.requests.resolvers",
-            "class": "objects.records.requests.resolvers.ObjectsResolver",
-            "base-classes": [
-                "oarepo_runtime.records.entity_resolvers.RecordResolver"
-            ],
-            "imports": [],
-            "custom-proxy-class": "oarepo_runtime.records.entity_resolvers.RecordProxy"
-        },
-        "ui-record-resolver": {
-            "generate": true,
-            "class": "oarepo_requests.resolvers.ui.RecordEntityReferenceUIResolver"
-        },
-        "record": {
-            "base-classes": [
-                "invenio_drafts_resources.records.api.Record{InvenioRecord}"
-            ],
-            "generate": true,
-            "module": "objects.records.api",
-            "class": "objects.records.api.ObjectsRecord",
-            "imports": [],
-            "extra-code": "",
-            "fields": {}
-        },
-        "resource": {
-            "base-classes": [
-                "invenio_drafts_resources.resources.RecordResource"
-            ],
-            "generate": true,
-            "config-key": "OBJECTS_RECORD_RESOURCE_CLASS",
-            "module": "objects.resources.records.resource",
-            "class": "objects.resources.records.resource.ObjectsResource",
-            "proxy": "current_resource",
-            "extra-code": "",
-            "imports": [],
-            "additional-args": []
-        },
         "config": {
             "generate": true,
             "module": "objects.config",
@@ -361,6 +343,66 @@
             "module": "objects.proxies",
             "generate": true
         },
+        "resource": {
+            "base-classes": [
+                "invenio_drafts_resources.resources.RecordResource"
+            ],
+            "generate": true,
+            "config-key": "OBJECTS_RECORD_RESOURCE_CLASS",
+            "module": "objects.resources.records.resource",
+            "class": "objects.resources.records.resource.ObjectsResource",
+            "proxy": "current_resource",
+            "extra-code": "",
+            "imports": [],
+            "additional-args": []
+        },
+        "record-resolver": {
+            "generate": true,
+            "module": "objects.records.requests.resolvers",
+            "class": "objects.records.requests.resolvers.ObjectsResolver",
+            "base-classes": [
+                "oarepo_runtime.records.entity_resolvers.RecordResolver"
+            ],
+            "imports": [],
+            "custom-proxy-class": "oarepo_runtime.records.entity_resolvers.RecordProxy"
+        },
+        "ui-record-resolver": {
+            "generate": true,
+            "class": "oarepo_requests.resolvers.ui.RecordEntityReferenceUIResolver"
+        },
+        "files-field": {
+            "generate": true,
+            "field-class": "invenio_records_resources.records.systemfields.FilesField",
+            "file-class": "objects.records.api.ObjectsRecord",
+            "field-args": [
+                "store=False"
+            ],
+            "imports": []
+        },
+        "json-schema-settings": {
+            "generate": true,
+            "alias": "objects",
+            "version": "1.0.0",
+            "module": "objects.records.jsonschemas",
+            "name": "objects-1.0.0.json",
+            "file": "objects/records/jsonschemas/objects-1.0.0.json"
+        },
+        "json-serializer": {
+            "module": "objects.resources.records.ui",
+            "class": "objects.resources.records.ui.ObjectsUIJSONSerializer",
+            "base-classes": [
+                "oarepo_runtime.resources.LocalizedUIJSONSerializer"
+            ],
+            "imports": [],
+            "extra-code": "",
+            "generate": true,
+            "list_schema_cls": "flask_resources.BaseListSchema",
+            "format_serializer_cls": "flask_resources.serializers.JSONSerializer",
+            "schema-context-args": {
+                "\"object_key\"": "\"ui\"",
+                "\"identity\"": "{{ flask.g{g.identity} }}"
+            }
+        },
         "record-metadata": {
             "generate": true,
             "module": "objects.records.models",
@@ -406,9 +448,9 @@
             "service-id": "objects",
             "components": [
                 "{{oarepo_runtime.services.components.OwnersComponent}}",
-                "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}",
+                "{{oarepo_runtime.services.files.FilesComponent}}",
                 "{{oarepo_runtime.services.components.CustomFieldsComponent}}",
-                "{{oarepo_runtime.services.files.FilesComponent}}"
+                "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}"
             ],
             "additional-args": []
         },
@@ -430,36 +472,39 @@
             "module": "objects.translations",
             "alias": "objects"
         },
-        "json-schema-settings": {
+        "edtf-interval-dumper": {
             "generate": true,
-            "alias": "objects",
-            "version": "1.0.0",
-            "module": "objects.records.jsonschemas",
-            "name": "objects-1.0.0.json",
-            "file": "objects/records/jsonschemas/objects-1.0.0.json"
-        },
-        "json-serializer": {
-            "module": "objects.resources.records.ui",
-            "class": "objects.resources.records.ui.ObjectsUIJSONSerializer",
+            "module": "objects.records.dumpers.edtf",
+            "class": "objects.records.dumpers.edtf.ObjectsEDTFIntervalDumperExt",
             "base-classes": [
-                "oarepo_runtime.resources.LocalizedUIJSONSerializer"
+                "oarepo_runtime.records.dumpers.edtf_interval.EDTFIntervalDumperExt"
             ],
-            "imports": [],
             "extra-code": "",
-            "generate": true,
-            "list_schema_cls": "flask_resources.BaseListSchema",
-            "format_serializer_cls": "flask_resources.serializers.JSONSerializer",
-            "schema-context-args": {
-                "\"object_key\"": "\"ui\"",
-                "\"identity\"": "{{ flask.g{g.identity} }}"
-            }
+            "extensions": [],
+            "imports": []
         },
-        "files-field": {
+        "record-list": {
             "generate": true,
-            "field-class": "invenio_records_resources.records.systemfields.FilesField",
-            "file-class": "objects.records.api.ObjectsRecord",
-            "field-args": [
-                "store=False"
+            "module": "objects.services.records.results",
+            "class": "objects.services.records.results.ObjectsRecordList",
+            "extra-code": "",
+            "base-classes": [
+                "oarepo_runtime.services.results.RecordList"
+            ],
+            "components": [],
+            "imports": []
+        },
+        "record-item": {
+            "generate": true,
+            "module": "objects.services.records.results",
+            "class": "objects.services.records.results.ObjectsRecordItem",
+            "extra-code": "",
+            "base-classes": [
+                "oarepo_runtime.services.results.RecordItem"
+            ],
+            "components": [
+                "{{oarepo_requests.services.results.RequestsComponent}}()",
+                "{{oarepo_requests.services.results.RequestTypesComponent}}()"
             ],
             "imports": []
         },
@@ -528,41 +573,13 @@
             ],
             "imports": []
         },
-        "edtf-interval-dumper": {
+        "parent-record-marshmallow": {
+            "module": "objects.services.records.schema",
+            "class": "objects.services.records.schema.GeneratedParentSchema",
             "generate": true,
-            "module": "objects.records.dumpers.edtf",
-            "class": "objects.records.dumpers.edtf.ObjectsEDTFIntervalDumperExt",
             "base-classes": [
-                "oarepo_runtime.records.dumpers.edtf_interval.EDTFIntervalDumperExt"
-            ],
-            "extra-code": "",
-            "extensions": [],
-            "imports": []
-        },
-        "record-list": {
-            "generate": true,
-            "module": "objects.services.records.results",
-            "class": "objects.services.records.results.ObjectsRecordList",
-            "extra-code": "",
-            "base-classes": [
-                "oarepo_runtime.services.results.RecordList"
-            ],
-            "components": [],
-            "imports": []
-        },
-        "record-item": {
-            "generate": true,
-            "module": "objects.services.records.results",
-            "class": "objects.services.records.results.ObjectsRecordItem",
-            "extra-code": "",
-            "base-classes": [
-                "oarepo_runtime.services.results.RecordItem"
-            ],
-            "components": [
-                "{{oarepo_requests.services.results.RequestsComponent}}()",
-                "{{oarepo_requests.services.results.RequestTypesComponent}}()"
-            ],
-            "imports": []
+                "invenio_drafts_resources.services.records.schema.ParentSchema{InvenioParentSchema}"
+            ]
         },
         "requests": {
             "types": {},
@@ -641,14 +658,6 @@
                 ],
                 "skip": false
             }
-        },
-        "parent-record-marshmallow": {
-            "module": "objects.services.records.schema",
-            "class": "objects.services.records.schema.GeneratedParentSchema",
-            "generate": true,
-            "base-classes": [
-                "invenio_drafts_resources.services.records.schema.ParentSchema{InvenioParentSchema}"
-            ]
         },
         "sortable": [],
         "properties": {
@@ -1999,30 +2008,6 @@
                                                         },
                                                         "name": {
                                                             "type": "keyword"
-                                                        },
-                                                        "identifiers": {
-                                                            "type": "array",
-                                                            "items": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                    "identifier": {
-                                                                        "type": "keyword"
-                                                                    },
-                                                                    "scheme": {
-                                                                        "type": "keyword"
-                                                                    }
-                                                                },
-                                                                "marshmallow": {
-                                                                    "generate": true,
-                                                                    "class": "objects.services.records.schema.IdentifiersItemSchema"
-                                                                },
-                                                                "ui": {
-                                                                    "marshmallow": {
-                                                                        "generate": true,
-                                                                        "class": "objects.services.records.ui_schema.IdentifiersItemUISchema"
-                                                                    }
-                                                                }
-                                                            }
                                                         }
                                                     },
                                                     "marshmallow": {
@@ -2092,30 +2077,6 @@
                                                 "properties": {
                                                     "id": {
                                                         "type": "keyword"
-                                                    },
-                                                    "identifiers": {
-                                                        "type": "array",
-                                                        "items": {
-                                                            "type": "object",
-                                                            "marshmallow": {
-                                                                "generate": true,
-                                                                "class": "objects.services.records.schema.IdentifiersItemSchema"
-                                                            },
-                                                            "ui": {
-                                                                "marshmallow": {
-                                                                    "generate": true,
-                                                                    "class": "objects.services.records.ui_schema.IdentifiersItemUISchema"
-                                                                }
-                                                            },
-                                                            "properties": {
-                                                                "identifier": {
-                                                                    "type": "keyword"
-                                                                },
-                                                                "scheme": {
-                                                                    "type": "keyword"
-                                                                }
-                                                            }
-                                                        }
                                                     },
                                                     "name": {
                                                         "type": "keyword"
@@ -2327,6 +2288,30 @@
                         "facets": {
                             "searchable": true,
                             "facet": false
+                        }
+                    }
+                }
+            },
+            "syntheticFields": {
+                "type": "object",
+                "marshmallow": {
+                    "generate": true,
+                    "class": "objects.services.records.schema.SyntheticFieldsSchema"
+                },
+                "ui": {
+                    "marshmallow": {
+                        "generate": true,
+                        "class": "objects.services.records.ui_schema.SyntheticFieldsUISchema"
+                    }
+                },
+                "properties": {
+                    "creationPeriod": {
+                        "type": "edtf-interval",
+                        "facets": {
+                            "facet-class": "oarepo_runtime.services.facets.year_histogram.YearAutoHistogramFace",
+                            "facet-groups": {
+                                "default": 100000
+                            }
                         }
                     }
                 }

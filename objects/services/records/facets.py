@@ -2,6 +2,7 @@
 
 from invenio_records_resources.services.records.facets import TermsFacet
 from oarepo_runtime.i18n import lazy_gettext as _
+from oarepo_runtime.services.facets import YearAutoHistogramFacet
 from oarepo_runtime.services.facets.date import DateTimeFacet
 from oarepo_vocabularies.services.facets import VocabularyFacet
 
@@ -146,3 +147,7 @@ metadata_version = TermsFacet(
 record_status = TermsFacet(field="record_status", label=_("record_status"))
 
 has_draft = TermsFacet(field="has_draft", label=_("has_draft"))
+
+syntheticFields_creationPeriod = YearAutoHistogramFacet(
+    field="syntheticFields.creationPeriod", label=_("syntheticFields/creationPeriod.label")
+)

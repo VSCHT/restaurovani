@@ -23,6 +23,7 @@ class ObjectsSearchOptions(SearchOptions):
             "metadata_restorationWork_restorationMethods": facets.metadata_restorationWork_restorationMethods,
             "metadata_restorationWork_restorer": facets.metadata_restorationWork_restorer,
             "metadata_restorationWork_workType": facets.metadata_restorationWork_workType,
+            "syntheticFields_creationPeriod": facets.syntheticFields_creationPeriod,
             **getattr(SearchOptions, "facet_groups", {}).get("default", {}),
         },
     }
@@ -54,6 +55,7 @@ class ObjectsSearchOptions(SearchOptions):
         "metadata_restorationWork_workType": facets.metadata_restorationWork_workType,
         "metadata_submissionStatus": facets.metadata_submissionStatus,
         "metadata_version": facets.metadata_version,
+        "syntheticFields_creationPeriod": facets.syntheticFields_creationPeriod,
         **getattr(SearchOptions, "facets", {}),
         "record_status": facets.record_status,
         "has_draft": facets.has_draft,

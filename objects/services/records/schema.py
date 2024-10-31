@@ -1,4 +1,5 @@
 import marshmallow as ma
+from edtf import Interval as EDTFInterval
 from invenio_drafts_resources.services.records.schema import (
     ParentSchema as InvenioParentSchema,
 )
@@ -7,9 +8,13 @@ from marshmallow import Schema
 from marshmallow import fields as ma_fields
 from marshmallow.fields import String
 from marshmallow.utils import get_value
-from marshmallow_utils.fields import SanitizedUnicode
+from marshmallow_utils.fields import SanitizedUnicode, TrimmedString
 from oarepo_runtime.services.schema.marshmallow import BaseRecordSchema, DictOnlySchema
-from oarepo_runtime.services.schema.validation import validate_date, validate_datetime
+from oarepo_runtime.services.schema.validation import (
+    CachedMultilayerEDTFValidator,
+    validate_date,
+    validate_datetime,
+)
 
 
 class GeneratedParentSchema(InvenioParentSchema):
@@ -23,6 +28,8 @@ class ObjectsSchema(BaseRecordSchema):
         unknown = ma.RAISE
 
     metadata = ma_fields.Nested(lambda: ObjectsMetadataSchema())
+
+    syntheticFields = ma_fields.Nested(lambda: SyntheticFieldsSchema())
     parent = ma.fields.Nested(GeneratedParentSchema)
     files = ma.fields.Nested(
         lambda: FilesOptionsSchema(), load_default={"enabled": True}
@@ -63,25 +70,6 @@ class ObjectsMetadataSchema(Schema):
     version = ma_fields.String()
 
 
-class RestorationWorkSchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    abstract = ma_fields.String()
-
-    examinationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemSchema()))
-
-    restorationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemSchema()))
-
-    restorationPeriod = ma_fields.Nested(lambda: RestorationPeriodSchema())
-
-    restorer = ma_fields.String()
-
-    supervisors = ma_fields.List(ma_fields.Nested(lambda: SupervisorsItemSchema()))
-
-    workType = ma_fields.Nested(lambda: ColorsItemSchema())
-
-
 class RestorationObjectSchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
@@ -117,6 +105,36 @@ class RestorationObjectSchema(DictOnlySchema):
     title = ma_fields.String()
 
 
+class RestorationWorkSchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.RAISE
+
+    abstract = ma_fields.String()
+
+    examinationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemSchema()))
+
+    restorationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemSchema()))
+
+    restorationPeriod = ma_fields.Nested(lambda: RestorationPeriodSchema())
+
+    restorer = ma_fields.String()
+
+    supervisors = ma_fields.List(ma_fields.Nested(lambda: SupervisorsItemSchema()))
+
+    workType = ma_fields.Nested(lambda: ColorsItemSchema())
+
+
+class DimensionsItemSchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.RAISE
+
+    dimension = ma_fields.Nested(lambda: ColorsItemSchema())
+
+    unit = ma_fields.String()
+
+    value = ma_fields.Float()
+
+
 class SupervisorsItemSchema(DictOnlySchema):
     class Meta:
         unknown = ma.INCLUDE
@@ -136,20 +154,7 @@ class AffiliationsItemSchema(DictOnlySchema):
 
     _id = ma_fields.String(data_key="id", attribute="id")
 
-    identifiers = ma_fields.List(ma_fields.Nested(lambda: IdentifiersItemSchema()))
-
     name = ma_fields.String()
-
-
-class DimensionsItemSchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    dimension = ma_fields.Nested(lambda: ColorsItemSchema())
-
-    unit = ma_fields.String()
-
-    value = ma_fields.Float()
 
 
 class ColorsItemSchema(DictOnlySchema):
@@ -172,15 +177,6 @@ class CreationPeriodSchema(DictOnlySchema):
     until = ma_fields.Integer()
 
 
-class IdentifiersItemSchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    identifier = ma_fields.String()
-
-    scheme = ma_fields.String()
-
-
 class RestorationDataItemSchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
@@ -199,6 +195,15 @@ class RestorationPeriodSchema(DictOnlySchema):
     since = ma_fields.String(validate=[validate_date("%Y-%m-%d")])
 
     until = ma_fields.String(validate=[validate_date("%Y-%m-%d")])
+
+
+class SyntheticFieldsSchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.RAISE
+
+    creationPeriod = TrimmedString(
+        validate=[CachedMultilayerEDTFValidator(types=(EDTFInterval,))]
+    )
 
 
 class FilesOptionsSchema(ma.Schema):

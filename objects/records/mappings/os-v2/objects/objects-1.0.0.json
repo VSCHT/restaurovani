@@ -380,19 +380,6 @@
                                                 "type": "keyword",
                                                 "ignore_above": 1024
                                             },
-                                            "identifiers": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "identifier": {
-                                                        "type": "keyword",
-                                                        "ignore_above": 1024
-                                                    },
-                                                    "scheme": {
-                                                        "type": "keyword",
-                                                        "ignore_above": 1024
-                                                    }
-                                                }
-                                            },
                                             "name": {
                                                 "type": "keyword",
                                                 "ignore_above": 1024
@@ -464,6 +451,10 @@
                         "ignore_above": 1024
                     }
                 }
+            },
+            "syntheticFields": {
+                "type": "object",
+                "enabled": false
             },
             "updated": {
                 "type": "date",
