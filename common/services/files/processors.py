@@ -31,7 +31,7 @@ class ExtractPDFTextProcessor(FileProcessor):
                 text = re.sub(r'\s+\n[\s\n]*', '\n', text)
                 lines = text.split('\n')
                 filtered_lines = []
-                # remove line numbers and short lines
+                # remove page numbers and short lines
                 for line in lines:
                     line = line.strip()
                     if len(line)<5:
