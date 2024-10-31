@@ -1,5 +1,5 @@
 import marshmallow as ma
-from edtf import Interval as EDTFInterval
+from edtf import Date as EDTFDate
 from invenio_drafts_resources.services.records.schema import (
     ParentSchema as InvenioParentSchema,
 )
@@ -202,7 +202,7 @@ class SyntheticFieldsSchema(DictOnlySchema):
         unknown = ma.RAISE
 
     creationPeriod = TrimmedString(
-        validate=[CachedMultilayerEDTFValidator(types=(EDTFInterval,))]
+        validate=[CachedMultilayerEDTFValidator(types=(EDTFDate,))]
     )
 
 

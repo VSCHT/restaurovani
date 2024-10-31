@@ -2294,6 +2294,9 @@
             },
             "syntheticFields": {
                 "type": "object",
+                "facets": {
+                    "searchable": true
+                },
                 "marshmallow": {
                     "generate": true,
                     "class": "objects.services.records.schema.SyntheticFieldsSchema"
@@ -2306,9 +2309,10 @@
                 },
                 "properties": {
                     "creationPeriod": {
-                        "type": "edtf-interval",
+                        "type": "edtf",
                         "facets": {
-                            "facet-class": "oarepo_runtime.services.facets.year_histogram.YearAutoHistogramFace",
+                            "searchable": true,
+                            "facet-class": "oarepo_runtime.services.facets.year_histogram.YearAutoHistogramFacet",
                             "facet-groups": {
                                 "default": 100000
                             }

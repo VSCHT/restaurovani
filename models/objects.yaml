@@ -59,13 +59,16 @@ record:
           type: keyword
 
     syntheticFields:
-      type: object
+      facets:
+        searchable: true
       properties:
         creationPeriod:
-          type: edtf-interval
+#          type: edtf-interval
+          type: edtf
           facets:
             facet-groups: [ default ]
-            facet-class: oarepo_runtime.services.facets.year_histogram.YearAutoHistogramFace
+            facet-class: oarepo_runtime.services.facets.year_histogram.YearAutoHistogramFacet
+            searchable: true
   record:
     imports:
       - import: oarepo_runtime.records.systemfields.SyntheticSystemField

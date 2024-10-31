@@ -454,7 +454,12 @@
             },
             "syntheticFields": {
                 "type": "object",
-                "enabled": false
+                "properties": {
+                    "creationPeriod": {
+                        "type": "date",
+                        "format": "strict_date||yyyy-MM||yyyy"
+                    }
+                }
             },
             "updated": {
                 "type": "date",

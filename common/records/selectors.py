@@ -11,7 +11,8 @@ class CreationPeriodSelector(Selector):
         if creationPeriod:
             start = creationPeriod.get("since", '')
             end = creationPeriod.get("until", '')
-            return [start]
-            # return [f"{start}/{end}"]  - todo: edtf interval does not seem to work
+            if start or end:
+                return [start or end]
+            # return [f"{start}/{end}"]  # todo: edtf interval does not seem to work
         return []
 

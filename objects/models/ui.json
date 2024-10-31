@@ -737,11 +737,12 @@
             "hint": "syntheticFields.hint",
             "children": {
                 "creationPeriod": {
-                    "detail": "edtf-interval",
-                    "input": "edtf-interval",
+                    "detail": "edtf",
+                    "input": "edtf",
                     "help": "syntheticFields/creationPeriod.help",
                     "label": "syntheticFields/creationPeriod.label",
-                    "hint": "syntheticFields/creationPeriod.hint"
+                    "hint": "syntheticFields/creationPeriod.hint",
+                    "facet": "syntheticFields_creationPeriod"
                 }
             }
         },

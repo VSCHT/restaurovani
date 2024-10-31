@@ -8,7 +8,7 @@ from oarepo_runtime.services.schema.ui import (
     InvenioUISchema,
     LocalizedDate,
     LocalizedDateTime,
-    LocalizedEDTFInterval,
+    LocalizedEDTF,
 )
 from oarepo_vocabularies.services.ui_schema import VocabularyI18nStrUIField
 
@@ -172,4 +172,4 @@ class SyntheticFieldsUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
-    creationPeriod = LocalizedEDTFInterval()
+    creationPeriod = LocalizedEDTF()
