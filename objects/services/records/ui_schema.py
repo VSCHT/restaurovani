@@ -8,6 +8,7 @@ from oarepo_runtime.services.schema.ui import (
     InvenioUISchema,
     LocalizedDate,
     LocalizedDateTime,
+    LocalizedEDTF,
 )
 from oarepo_vocabularies.services.ui_schema import VocabularyI18nStrUIField
 
@@ -17,6 +18,8 @@ class ObjectsUISchema(UIRequestsSerializationMixin, InvenioUISchema):
         unknown = ma.RAISE
 
     metadata = ma_fields.Nested(lambda: ObjectsMetadataUISchema())
+
+    syntheticFields = ma_fields.Nested(lambda: SyntheticFieldsUISchema())
 
 
 class ObjectsMetadataUISchema(Schema):
@@ -36,25 +39,6 @@ class ObjectsMetadataUISchema(Schema):
     submissionStatus = ma_fields.String()
 
     version = ma_fields.String()
-
-
-class RestorationWorkUISchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    abstract = ma_fields.String()
-
-    examinationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemUISchema()))
-
-    restorationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemUISchema()))
-
-    restorationPeriod = ma_fields.Nested(lambda: RestorationPeriodUISchema())
-
-    restorer = ma_fields.String()
-
-    supervisors = ma_fields.List(ma_fields.Nested(lambda: SupervisorsItemUISchema()))
-
-    workType = ma_fields.Nested(lambda: ColorsItemUISchema())
 
 
 class RestorationObjectUISchema(DictOnlySchema):
@@ -92,6 +76,36 @@ class RestorationObjectUISchema(DictOnlySchema):
     title = ma_fields.String()
 
 
+class RestorationWorkUISchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.RAISE
+
+    abstract = ma_fields.String()
+
+    examinationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemUISchema()))
+
+    restorationMethods = ma_fields.List(ma_fields.Nested(lambda: ColorsItemUISchema()))
+
+    restorationPeriod = ma_fields.Nested(lambda: RestorationPeriodUISchema())
+
+    restorer = ma_fields.String()
+
+    supervisors = ma_fields.List(ma_fields.Nested(lambda: SupervisorsItemUISchema()))
+
+    workType = ma_fields.Nested(lambda: ColorsItemUISchema())
+
+
+class DimensionsItemUISchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.RAISE
+
+    dimension = ma_fields.Nested(lambda: ColorsItemUISchema())
+
+    unit = ma_fields.String()
+
+    value = ma_fields.Float()
+
+
 class SupervisorsItemUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.INCLUDE
@@ -111,20 +125,7 @@ class AffiliationsItemUISchema(DictOnlySchema):
 
     _id = ma_fields.String(data_key="id", attribute="id")
 
-    identifiers = ma_fields.List(ma_fields.Nested(lambda: IdentifiersItemUISchema()))
-
     name = ma_fields.String()
-
-
-class DimensionsItemUISchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    dimension = ma_fields.Nested(lambda: ColorsItemUISchema())
-
-    unit = ma_fields.String()
-
-    value = ma_fields.Float()
 
 
 class ColorsItemUISchema(DictOnlySchema):
@@ -147,15 +148,6 @@ class CreationPeriodUISchema(DictOnlySchema):
     until = ma_fields.Integer()
 
 
-class IdentifiersItemUISchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    identifier = ma_fields.String()
-
-    scheme = ma_fields.String()
-
-
 class RestorationDataItemUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
@@ -174,3 +166,10 @@ class RestorationPeriodUISchema(DictOnlySchema):
     since = LocalizedDate()
 
     until = LocalizedDate()
+
+
+class SyntheticFieldsUISchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.RAISE
+
+    creationPeriod = LocalizedEDTF()

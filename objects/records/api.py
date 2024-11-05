@@ -5,11 +5,13 @@ from invenio_records.systemfields import ConstantField, ModelField
 from invenio_records_resources.records.systemfields import FilesField, IndexField
 from invenio_records_resources.records.systemfields.pid import PIDField, PIDFieldContext
 from oarepo_runtime.records.relations import PIDRelation, RelationsField
+from oarepo_runtime.records.systemfields import SyntheticSystemField
 from oarepo_runtime.records.systemfields.has_draftcheck import HasDraftCheckField
 from oarepo_runtime.records.systemfields.owner import OwnersField
 from oarepo_runtime.records.systemfields.record_status import RecordStatusSystemField
 from oarepo_vocabularies.records.api import Vocabulary
 
+from common.records.selectors import CreationPeriodSelector
 from objects.files.api import ObjectsFile, ObjectsFileDraft
 from objects.records.dumpers.dumper import ObjectsDraftDumper, ObjectsDumper
 from objects.records.models import (
@@ -43,6 +45,11 @@ class ObjectsRecord(InvenioRecord):
     pid = PIDField(provider=ObjectsIdProvider, context_cls=PIDFieldContext, create=True)
 
     dumper = ObjectsDumper()
+
+    creationPeriod = SyntheticSystemField(
+        selector=CreationPeriodSelector(),
+        key="syntheticFields.creationPeriod",
+    )
 
     relations = RelationsField(
         colors=PIDRelation(
@@ -132,6 +139,11 @@ class ObjectsDraft(InvenioDraft):
     )
 
     dumper = ObjectsDraftDumper()
+
+    creationPeriod = SyntheticSystemField(
+        selector=CreationPeriodSelector(),
+        key="syntheticFields.creationPeriod",
+    )
 
     relations = RelationsField(
         colors=PIDRelation(

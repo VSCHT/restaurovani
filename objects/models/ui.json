@@ -620,36 +620,6 @@
                                                     "label": "metadata/restorationWork/supervisors/affiliations/id.label",
                                                     "hint": "metadata/restorationWork/supervisors/affiliations/id.hint"
                                                 },
-                                                "identifiers": {
-                                                    "detail": "array",
-                                                    "input": "array",
-                                                    "help": "metadata/restorationWork/supervisors/affiliations/identifiers.help",
-                                                    "label": "metadata/restorationWork/supervisors/affiliations/identifiers.label",
-                                                    "hint": "metadata/restorationWork/supervisors/affiliations/identifiers.hint",
-                                                    "child": {
-                                                        "detail": "identifier",
-                                                        "input": "identifier",
-                                                        "help": "metadata/restorationWork/supervisors/affiliations/identifiers.help",
-                                                        "label": "metadata/restorationWork/supervisors/affiliations/identifiers.label",
-                                                        "hint": "metadata/restorationWork/supervisors/affiliations/identifiers.hint",
-                                                        "children": {
-                                                            "identifier": {
-                                                                "detail": "keyword",
-                                                                "input": "keyword",
-                                                                "help": "metadata/restorationWork/supervisors/affiliations/identifiers/identifier.help",
-                                                                "label": "metadata/restorationWork/supervisors/affiliations/identifiers/identifier.label",
-                                                                "hint": "metadata/restorationWork/supervisors/affiliations/identifiers/identifier.hint"
-                                                            },
-                                                            "scheme": {
-                                                                "detail": "keyword",
-                                                                "input": "keyword",
-                                                                "help": "metadata/restorationWork/supervisors/affiliations/identifiers/scheme.help",
-                                                                "label": "metadata/restorationWork/supervisors/affiliations/identifiers/scheme.label",
-                                                                "hint": "metadata/restorationWork/supervisors/affiliations/identifiers/scheme.hint"
-                                                            }
-                                                        }
-                                                    }
-                                                },
                                                 "name": {
                                                     "detail": "keyword",
                                                     "input": "keyword",
@@ -756,6 +726,23 @@
                     "help": "pid/status.help",
                     "label": "pid/status.label",
                     "hint": "pid/status.hint"
+                }
+            }
+        },
+        "syntheticFields": {
+            "detail": "syntheticfield",
+            "input": "syntheticfield",
+            "help": "syntheticFields.help",
+            "label": "syntheticFields.label",
+            "hint": "syntheticFields.hint",
+            "children": {
+                "creationPeriod": {
+                    "detail": "edtf",
+                    "input": "edtf",
+                    "help": "syntheticFields/creationPeriod.help",
+                    "label": "syntheticFields/creationPeriod.label",
+                    "hint": "syntheticFields/creationPeriod.hint",
+                    "facet": "syntheticFields_creationPeriod"
                 }
             }
         },

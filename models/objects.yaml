@@ -58,6 +58,27 @@ record:
         submissionStatus:
           type: keyword
 
+    syntheticFields:
+      facets:
+        searchable: true
+      properties:
+        creationPeriod:
+#          type: edtf-interval
+          type: edtf
+          facets:
+            facet-groups: [ default ]
+            facet-class: oarepo_runtime.services.facets.year_histogram.YearAutoHistogramFacet
+            searchable: true
+  record:
+    imports:
+      - import: oarepo_runtime.records.systemfields.SyntheticSystemField
+      - import: common.records.selectors.CreationPeriodSelector
+    fields:
+      creationPeriod: |
+        SyntheticSystemField(
+            selector=CreationPeriodSelector(),
+            key="syntheticFields.creationPeriod",
+        )
   resource-config:
     base-html-url: /objects/
   use:

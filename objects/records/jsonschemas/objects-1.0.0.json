@@ -268,20 +268,6 @@
                                                 "id": {
                                                     "type": "string"
                                                 },
-                                                "identifiers": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "identifier": {
-                                                                "type": "string"
-                                                            },
-                                                            "scheme": {
-                                                                "type": "string"
-                                                            }
-                                                        }
-                                                    }
-                                                },
                                                 "name": {
                                                     "type": "string"
                                                 }
@@ -332,6 +318,15 @@
                 },
                 "status": {
                     "type": "string"
+                }
+            }
+        },
+        "syntheticFields": {
+            "type": "object",
+            "properties": {
+                "creationPeriod": {
+                    "type": "string",
+                    "format": "date"
                 }
             }
         },
