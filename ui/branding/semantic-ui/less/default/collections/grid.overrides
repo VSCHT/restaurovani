@@ -93,7 +93,7 @@
     align-items: center;
   }
   &.gapped.grid-form-create {
-    width: 60%;
+    max-width: 800px;
   }
 
   &:has(.mt-20) {
