@@ -55,7 +55,7 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                   {% if metadata.restorationObject.stylePeriod.startYear %}
                   {{ metadata.restorationObject.stylePeriod.startYear }}
                   {% endif %} {% if
-                  metadata.restorationObject.stylePeriod.endYear %} -
+                  metadata.restorationObject.stylePeriod.endYear %} —
                   {{ metadata.restorationObject.stylePeriod.endYear }}
                   {% endif %}
                   {{ metadata.restorationObject.stylePeriod.period.title }}
@@ -192,6 +192,20 @@ metadata.restorationObject.title ~ " | " ~ _("Detail") %} {% extends
                           {% endif %}
                       {% endif %}
                   </td>
+                  </tr>
+                  {% endif %} {% if metadata.restorationWork.restorationPeriod %}
+                  <tr>
+                    <td><b>Období restaurování</b></td>
+                    <td>
+                      <p>
+                        {% if metadata.restorationWork.restorationPeriod.since %}
+                        {{ metadata.restorationWork.restorationPeriod.since }}
+                        {% endif %} {% if
+                        metadata.restorationWork.restorationPeriod.until %} —
+                        {{ metadata.restorationWork.restorationPeriod.until }}
+                        {% endif %}
+                      </p>
+                    </td>
                   </tr>
                   {% endif %} {% if metadata.restorationWork.supervisors %}
                   <tr>
