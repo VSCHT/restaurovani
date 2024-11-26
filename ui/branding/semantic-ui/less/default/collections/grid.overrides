@@ -93,7 +93,7 @@
     align-items: center;
   }
   &.gapped.grid-form-create {
-    width: 80%;
+    width: 60%;
   }
 
   &:has(.mt-20) {

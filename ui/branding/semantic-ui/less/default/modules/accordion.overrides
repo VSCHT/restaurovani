@@ -56,10 +56,11 @@
     transform: rotate(270deg);
   }
 
+  &.styled {
+    width: 60%;
+  }
+
   @media only screen and (min-width: @mobileSize) and (max-width: @tabletSize) {
-    &.styled {
-      width: 70%;
-    }
     &:not(.styled) .title:not(.ui) {
       font-size: 1rem;
       padding: 0.7em 0em;
