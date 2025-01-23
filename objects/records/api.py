@@ -38,9 +38,7 @@ class ObjectsRecord(InvenioRecord):
 
     schema = ConstantField("$schema", "local://objects-1.0.0.json")
 
-    index = IndexField(
-        "objects-objects-1.0.0",
-    )
+    index = IndexField("objects-objects-1.0.0", search_alias="objects")
 
     pid = PIDField(provider=ObjectsIdProvider, context_cls=PIDFieldContext, create=True)
 
@@ -129,7 +127,9 @@ class ObjectsDraft(InvenioDraft):
 
     schema = ConstantField("$schema", "local://objects-1.0.0.json")
 
-    index = IndexField("objects-objects_draft-1.0.0", search_alias="objects")
+    index = IndexField(
+        "objects-objects_draft-1.0.0", search_alias="objects"
+    )
 
     pid = PIDField(
         provider=ObjectsIdProvider,

@@ -17,11 +17,12 @@
             "alias": "objects",
             "module": "objects.records.mappings",
             "index": "objects-objects-1.0.0",
-            "file": "objects/records/mappings/os-v2/objects/objects-1.0.0.json",
-            "index-field-args": []
+            "index-field-args": [
+                "search_alias=\"objects\""
+            ],
+            "file": "objects/records/mappings/os-v2/objects/objects-1.0.0.json"
         },
         "searchable": true,
-        "custom-fields": [],
         "permissions": {
             "presets": [
                 "authenticated"
@@ -45,6 +46,7 @@
             "class": "objects.services.records.schema.ObjectsSchema",
             "extra-code": ""
         },
+        "custom-fields": [],
         "pid": {
             "type": "rstr",
             "provider-base-classes": [
@@ -145,6 +147,21 @@
             "suffix-upper": "OBJECTS",
             "suffix-snake": "objects"
         },
+        "draft": {
+            "type": "draft_record",
+            "properties": {},
+            "searchable": true,
+            "tests": {
+                "extra-fixtures": [],
+                "extra-code": "",
+                "module": "tests"
+            }
+        },
+        "tests": {
+            "extra-fixtures": [],
+            "extra-code": "",
+            "module": "tests"
+        },
         "draft-files": {
             "type": "draft-file",
             "properties": {},
@@ -159,21 +176,6 @@
                     "oarepo_ui.resources.file_resource.S3RedirectFileResource"
                 ]
             },
-            "tests": {
-                "extra-fixtures": [],
-                "extra-code": "",
-                "module": "tests"
-            }
-        },
-        "tests": {
-            "extra-fixtures": [],
-            "extra-code": "",
-            "module": "tests"
-        },
-        "draft": {
-            "type": "draft_record",
-            "properties": {},
-            "searchable": true,
             "tests": {
                 "extra-fixtures": [],
                 "extra-code": "",
@@ -247,18 +249,23 @@
                         "skip": true
                     }
                 },
-                "fileType": {
-                    "type": "keyword",
-                    "enum": [
-                        "photo",
-                        "document"
-                    ]
-                },
-                "featured": {
-                    "type": "boolean"
-                },
-                "caption": {
-                    "type": "keyword"
+                "metadata": {
+                    "type": "object",
+                    "properties": {
+                        "fileType": {
+                            "type": "keyword",
+                            "enum": [
+                                "photo",
+                                "document"
+                            ]
+                        },
+                        "featured": {
+                            "type": "boolean"
+                        },
+                        "caption": {
+                            "type": "keyword"
+                        }
+                    }
                 }
             },
             "searchable": true,
@@ -293,6 +300,7 @@
             "file": "data/sample_data.yaml"
         },
         "ext-resource": {
+            "service-kwargs": {},
             "generate": true,
             "skip": false
         },
@@ -379,6 +387,10 @@
             ],
             "imports": []
         },
+        "translations": {
+            "module": "objects.translations",
+            "alias": "objects"
+        },
         "json-schema-settings": {
             "generate": true,
             "alias": "objects",
@@ -449,10 +461,11 @@
             "components": [
                 "{{oarepo_runtime.services.components.OwnersComponent}}",
                 "{{oarepo_runtime.services.files.FilesComponent}}",
-                "{{oarepo_runtime.services.components.CustomFieldsComponent}}",
-                "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}"
+                "{{invenio_drafts_resources.services.records.components.DraftFilesComponent}}",
+                "{{oarepo_runtime.services.components.CustomFieldsComponent}}"
             ],
-            "additional-args": []
+            "additional-args": [],
+            "search-item-links-template-cls": "invenio_records_resources.services.LinksTemplate"
         },
         "record-dumper": {
             "generate": true,
@@ -467,10 +480,6 @@
                 "{{objects.records.dumpers.edtf.ObjectsEDTFIntervalDumperExt}}()"
             ],
             "imports": []
-        },
-        "translations": {
-            "module": "objects.translations",
-            "alias": "objects"
         },
         "edtf-interval-dumper": {
             "generate": true,
@@ -701,6 +710,20 @@
                     "skip": true
                 }
             },
+            "deletion_status": {
+                "type": "keyword",
+                "marshmallow": {
+                    "read": false,
+                    "write": false
+                },
+                "facets": {
+                    "searchable": true,
+                    "facet": false
+                },
+                "sample": {
+                    "skip": true
+                }
+            },
             "id": {
                 "type": "keyword",
                 "marshmallow": {
@@ -716,6 +739,34 @@
                         "read": false,
                         "write": false
                     }
+                },
+                "sample": {
+                    "skip": true
+                }
+            },
+            "is_deleted": {
+                "type": "boolean",
+                "facets": {
+                    "searchable": true,
+                    "facet": false
+                },
+                "marshmallow": {
+                    "read": false,
+                    "write": false
+                },
+                "sample": {
+                    "skip": true
+                }
+            },
+            "is_published": {
+                "type": "boolean",
+                "facets": {
+                    "searchable": true,
+                    "facet": false
+                },
+                "marshmallow": {
+                    "read": false,
+                    "write": false
                 },
                 "sample": {
                     "skip": true
@@ -2338,6 +2389,132 @@
                 },
                 "sample": {
                     "skip": true
+                }
+            },
+            "version_id": {
+                "type": "integer",
+                "marshmallow": {
+                    "read": false,
+                    "write": false
+                },
+                "facets": {
+                    "searchable": true,
+                    "facet": false
+                },
+                "sample": {
+                    "skip": true
+                }
+            },
+            "versions": {
+                "type": "object",
+                "facets": {
+                    "searchable": true,
+                    "facet": false
+                },
+                "ui": {
+                    "marshmallow": {
+                        "generate": false,
+                        "class": "objects.services.records.ui_schema.FakeVersionsUISchema",
+                        "skip": true,
+                        "read": false,
+                        "write": false
+                    }
+                },
+                "marshmallow": {
+                    "generate": false,
+                    "class": "objects.services.records.schema.FakeVersionsSchema",
+                    "skip": true,
+                    "read": false,
+                    "write": false
+                },
+                "sample": {
+                    "skip": true
+                },
+                "properties": {
+                    "index": {
+                        "type": "integer",
+                        "marshmallow": {
+                            "read": false,
+                            "write": false
+                        },
+                        "facets": {
+                            "searchable": true,
+                            "facet": false
+                        },
+                        "sample": {
+                            "skip": true
+                        }
+                    },
+                    "is_latest": {
+                        "type": "boolean",
+                        "facets": {
+                            "searchable": true,
+                            "facet": false
+                        },
+                        "marshmallow": {
+                            "read": false,
+                            "write": false
+                        },
+                        "sample": {
+                            "skip": true
+                        }
+                    },
+                    "is_latest_draft": {
+                        "type": "boolean",
+                        "facets": {
+                            "searchable": true,
+                            "facet": false
+                        },
+                        "marshmallow": {
+                            "read": false,
+                            "write": false
+                        },
+                        "sample": {
+                            "skip": true
+                        }
+                    },
+                    "latest_id": {
+                        "type": "keyword",
+                        "marshmallow": {
+                            "read": false,
+                            "write": false
+                        },
+                        "facets": {
+                            "searchable": true,
+                            "facet": false
+                        },
+                        "sample": {
+                            "skip": true
+                        }
+                    },
+                    "latest_index": {
+                        "type": "integer",
+                        "marshmallow": {
+                            "read": false,
+                            "write": false
+                        },
+                        "facets": {
+                            "searchable": true,
+                            "facet": false
+                        },
+                        "sample": {
+                            "skip": true
+                        }
+                    },
+                    "next_draft_id": {
+                        "type": "keyword",
+                        "marshmallow": {
+                            "read": false,
+                            "write": false
+                        },
+                        "facets": {
+                            "searchable": true,
+                            "facet": false
+                        },
+                        "sample": {
+                            "skip": true
+                        }
+                    }
                 }
             }
         }
