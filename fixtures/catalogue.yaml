@@ -77,7 +77,7 @@ languages:
     en: Languages
   vocabulary: languages
   writer: vocabulary
-- source: ./files/Languages.yaml
+- source: ./files/languages.yaml
 affiliations:
 - pid_type: affiliations
   title:
