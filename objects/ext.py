@@ -107,19 +107,6 @@ class ObjectsExt:
         )
 
     @cached_property
-    def published_service_records(self):
-        from objects.services.records.published.config import (
-            ObjectsPublishedServiceConfig,
-        )
-        from objects.services.records.published.service import ObjectsPublishedService
-
-        return ObjectsPublishedService(
-            config=ObjectsPublishedServiceConfig(
-                proxied_drafts_config=self.service_records.config
-            ),
-        )
-
-    @cached_property
     def service_files(self):
         service_config = config.OBJECTS_FILES_SERVICE_CONFIG
         if hasattr(service_config, "build"):
@@ -137,17 +124,6 @@ class ObjectsExt:
         return config.OBJECTS_FILES_RESOURCE_CLASS(
             service=self.service_files,
             config=config.OBJECTS_FILES_RESOURCE_CONFIG(),
-        )
-
-    @cached_property
-    def published_service_files(self):
-        from objects.services.files.published.config import (
-            ObjectsFilePublishedServiceConfig,
-        )
-        from objects.services.files.published.service import ObjectsFilePublishedService
-
-        return ObjectsFilePublishedService(
-            config=ObjectsFilePublishedServiceConfig(),
         )
 
     @cached_property

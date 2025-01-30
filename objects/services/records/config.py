@@ -63,9 +63,9 @@ class ObjectsServiceConfig(
 
         return process_service_configs(self) + [
             OwnersComponent,
-            FilesComponent,
             DraftFilesComponent,
             CustomFieldsComponent,
+            FilesComponent,
         ]
 
     model = "objects"

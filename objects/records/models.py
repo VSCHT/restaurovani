@@ -24,7 +24,7 @@ class ObjectsMetadata(db.Model, RecordMetadataBase, ParentRecordMixin):
 
     __parent_record_model__ = ObjectsParentMetadata
     bucket_id = db.Column(UUIDType, db.ForeignKey(Bucket.id))
-    bucket = db.relationship(Bucket)
+    bucket = db.relationship(Bucket, foreign_keys=[bucket_id])
 
 
 class ObjectsDraftMetadata(db.Model, DraftMetadataBase, ParentRecordMixin):
@@ -34,7 +34,7 @@ class ObjectsDraftMetadata(db.Model, DraftMetadataBase, ParentRecordMixin):
 
     __parent_record_model__ = ObjectsParentMetadata
     bucket_id = db.Column(UUIDType, db.ForeignKey(Bucket.id))
-    bucket = db.relationship(Bucket)
+    bucket = db.relationship(Bucket, foreign_keys=[bucket_id])
 
 
 class ObjectsParentState(db.Model, ParentRecordStateMixin):
