@@ -14,7 +14,7 @@ oarepo-global-search==1.0.31
 oarepo-published-service==1.0.3
 oarepo-requests==2.3.14
 oarepo-runtime==1.5.87
-oarepo-ui==5.2.33
+oarepo-ui==5.2.34
 oarepo-vocabularies==2.1.14
 oarepo-workflows==1.1.5
 openpyxl==3.1.5
