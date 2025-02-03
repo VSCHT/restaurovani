@@ -15,7 +15,7 @@ common/old_data/data*
 /requirements-resolved-local.txt
 *.ipynb
 osoby_spojene_s_pracemi_s_ustavy.csv
-STDOWNER_UCIT.csv
+STDOWNER*.csv
 files-new/
 
 http-client.private.env.json
