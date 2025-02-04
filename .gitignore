@@ -17,6 +17,8 @@ common/old_data/data*
 osoby_spojene_s_pracemi_s_ustavy.csv
 STDOWNER*.csv
 files-new/
+names.yaml
+affiliations.yaml
 
 http-client.private.env.json
 todo.md
