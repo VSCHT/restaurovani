@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2024-06-14T15:47:44.305742\n"
-"PO-Revision-Date: 2024-06-14T15:47:44.305743\n"
+"POT-Creation-Date: 2025-01-30T09:49:09.420426\n"
+"PO-Revision-Date: 2025-01-30T09:49:09.420428\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,6 +26,15 @@ msgstr ""
 msgid "created.hint"
 msgstr ""
 
+msgid "deletion_status.help"
+msgstr ""
+
+msgid "deletion_status.label"
+msgstr ""
+
+msgid "deletion_status.hint"
+msgstr ""
+
 msgid "id.help"
 msgstr ""
 
@@ -33,6 +42,24 @@ msgid "id.label"
 msgstr ""
 
 msgid "id.hint"
+msgstr ""
+
+msgid "is_deleted.help"
+msgstr ""
+
+msgid "is_deleted.label"
+msgstr ""
+
+msgid "is_deleted.hint"
+msgstr ""
+
+msgid "is_published.help"
+msgstr ""
+
+msgid "is_published.label"
+msgstr ""
+
+msgid "is_published.hint"
 msgstr ""
 
 msgid "metadata.help"
@@ -584,31 +611,58 @@ msgstr ""
 msgid "metadata/restorationWork/supervisors.hint"
 msgstr ""
 
-msgid "metadata/restorationWork/supervisors/comment.label"
+msgid "metadata/restorationWork/supervisors/id.help"
 msgstr ""
 
-msgid "metadata/restorationWork/supervisors/comment.help"
+msgid "metadata/restorationWork/supervisors/id.label"
 msgstr ""
 
-msgid "metadata/restorationWork/supervisors/comment.hint"
+msgid "metadata/restorationWork/supervisors/id.hint"
 msgstr ""
 
-msgid "metadata/restorationWork/supervisors/fullName.label"
+msgid "metadata/restorationWork/supervisors/name.help"
 msgstr ""
 
-msgid "metadata/restorationWork/supervisors/fullName.help"
+msgid "metadata/restorationWork/supervisors/name.label"
 msgstr ""
 
-msgid "metadata/restorationWork/supervisors/fullName.hint"
+msgid "metadata/restorationWork/supervisors/name.hint"
 msgstr ""
 
-msgid "metadata/restorationWork/supervisors/institution.label"
+msgid "metadata/restorationWork/supervisors/affiliations.help"
 msgstr ""
 
-msgid "metadata/restorationWork/supervisors/institution.help"
+msgid "metadata/restorationWork/supervisors/affiliations.label"
 msgstr ""
 
-msgid "metadata/restorationWork/supervisors/institution.hint"
+msgid "metadata/restorationWork/supervisors/affiliations.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/id.help"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/id.label"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/id.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/name.help"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/name.label"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/affiliations/name.hint"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/@v.help"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/@v.label"
+msgstr ""
+
+msgid "metadata/restorationWork/supervisors/@v.hint"
 msgstr ""
 
 msgid "metadata/restorationWork/workType.label"
@@ -656,6 +710,78 @@ msgstr ""
 msgid "metadata/submissionStatus.hint"
 msgstr ""
 
+msgid "metadata/version.label"
+msgstr ""
+
+msgid "metadata/version.hint"
+msgstr ""
+
+msgid "metadata/version.help"
+msgstr ""
+
+msgid "pid.help"
+msgstr ""
+
+msgid "pid.label"
+msgstr ""
+
+msgid "pid.hint"
+msgstr ""
+
+msgid "pid/obj_type.help"
+msgstr ""
+
+msgid "pid/obj_type.label"
+msgstr ""
+
+msgid "pid/obj_type.hint"
+msgstr ""
+
+msgid "pid/pid_type.help"
+msgstr ""
+
+msgid "pid/pid_type.label"
+msgstr ""
+
+msgid "pid/pid_type.hint"
+msgstr ""
+
+msgid "pid/pk.help"
+msgstr ""
+
+msgid "pid/pk.label"
+msgstr ""
+
+msgid "pid/pk.hint"
+msgstr ""
+
+msgid "pid/status.help"
+msgstr ""
+
+msgid "pid/status.label"
+msgstr ""
+
+msgid "pid/status.hint"
+msgstr ""
+
+msgid "syntheticFields.help"
+msgstr ""
+
+msgid "syntheticFields.label"
+msgstr ""
+
+msgid "syntheticFields.hint"
+msgstr ""
+
+msgid "syntheticFields/creationPeriod.help"
+msgstr ""
+
+msgid "syntheticFields/creationPeriod.label"
+msgstr ""
+
+msgid "syntheticFields/creationPeriod.hint"
+msgstr ""
+
 msgid "updated.help"
 msgstr ""
 
@@ -663,4 +789,76 @@ msgid "updated.label"
 msgstr ""
 
 msgid "updated.hint"
+msgstr ""
+
+msgid "version_id.help"
+msgstr ""
+
+msgid "version_id.label"
+msgstr ""
+
+msgid "version_id.hint"
+msgstr ""
+
+msgid "versions.help"
+msgstr ""
+
+msgid "versions.label"
+msgstr ""
+
+msgid "versions.hint"
+msgstr ""
+
+msgid "versions/index.help"
+msgstr ""
+
+msgid "versions/index.label"
+msgstr ""
+
+msgid "versions/index.hint"
+msgstr ""
+
+msgid "versions/is_latest.help"
+msgstr ""
+
+msgid "versions/is_latest.label"
+msgstr ""
+
+msgid "versions/is_latest.hint"
+msgstr ""
+
+msgid "versions/is_latest_draft.help"
+msgstr ""
+
+msgid "versions/is_latest_draft.label"
+msgstr ""
+
+msgid "versions/is_latest_draft.hint"
+msgstr ""
+
+msgid "versions/latest_id.help"
+msgstr ""
+
+msgid "versions/latest_id.label"
+msgstr ""
+
+msgid "versions/latest_id.hint"
+msgstr ""
+
+msgid "versions/latest_index.help"
+msgstr ""
+
+msgid "versions/latest_index.label"
+msgstr ""
+
+msgid "versions/latest_index.hint"
+msgstr ""
+
+msgid "versions/next_draft_id.help"
+msgstr ""
+
+msgid "versions/next_draft_id.label"
+msgstr ""
+
+msgid "versions/next_draft_id.hint"
 msgstr ""

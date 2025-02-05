@@ -10,4 +10,5 @@
 @headerBackground: @basicColor;
 @actionBackground: @basicColor;
 @closeHitbox:8vw;
-@innerCloseTop:0.5rem;
+@innerCloseTop: 1rem;
+@innerCloseRight: 0;

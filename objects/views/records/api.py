@@ -45,18 +45,5 @@ def init_addons_objects_requests(state):
 
     from objects import config
 
-    for er in getattr(config, "REQUESTS_ENTITY_RESOLVERS", []):
+    for er in getattr(config, "OBJECTS_ENTITY_RESOLVERS", []):
         requests.entity_resolvers_registry.register_type(er)
-
-
-def init_addons_objects_published_service(state):
-    """Init app."""
-    app = state.app
-    ext = app.extensions["objects"]
-
-    # register service
-    sregistry = app.extensions["invenio-records-resources"].registry
-    sregistry.register(
-        ext.published_service_records,
-        service_id=ext.published_service_records.config.service_id,
-    )

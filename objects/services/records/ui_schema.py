@@ -8,6 +8,7 @@ from oarepo_runtime.services.schema.ui import (
     InvenioUISchema,
     LocalizedDate,
     LocalizedDateTime,
+    LocalizedEDTF,
 )
 from oarepo_vocabularies.services.ui_schema import VocabularyI18nStrUIField
 
@@ -16,7 +17,17 @@ class ObjectsUISchema(UIRequestsSerializationMixin, InvenioUISchema):
     class Meta:
         unknown = ma.RAISE
 
+    deletion_status = ma_fields.String()
+
+    is_deleted = ma_fields.Boolean()
+
+    is_published = ma_fields.Boolean()
+
     metadata = ma_fields.Nested(lambda: ObjectsMetadataUISchema())
+
+    syntheticFields = ma_fields.Nested(lambda: SyntheticFieldsUISchema())
+
+    version_id = ma_fields.Integer()
 
 
 class ObjectsMetadataUISchema(Schema):
@@ -34,6 +45,8 @@ class ObjectsMetadataUISchema(Schema):
     restorationWork = ma_fields.Nested(lambda: RestorationWorkUISchema())
 
     submissionStatus = ma_fields.String()
+
+    version = ma_fields.String()
 
 
 class RestorationObjectUISchema(DictOnlySchema):
@@ -71,17 +84,6 @@ class RestorationObjectUISchema(DictOnlySchema):
     title = ma_fields.String()
 
 
-class DimensionsItemUISchema(DictOnlySchema):
-    class Meta:
-        unknown = ma.RAISE
-
-    dimension = ma_fields.Nested(lambda: ColorsItemUISchema())
-
-    unit = ma_fields.String()
-
-    value = ma_fields.Float()
-
-
 class RestorationWorkUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
@@ -99,6 +101,39 @@ class RestorationWorkUISchema(DictOnlySchema):
     supervisors = ma_fields.List(ma_fields.Nested(lambda: SupervisorsItemUISchema()))
 
     workType = ma_fields.Nested(lambda: ColorsItemUISchema())
+
+
+class DimensionsItemUISchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.RAISE
+
+    dimension = ma_fields.Nested(lambda: ColorsItemUISchema())
+
+    unit = ma_fields.String()
+
+    value = ma_fields.Float()
+
+
+class SupervisorsItemUISchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.INCLUDE
+
+    _id = ma_fields.String(data_key="id", attribute="id")
+
+    _version = String(data_key="@v", attribute="@v")
+
+    affiliations = ma_fields.List(ma_fields.Nested(lambda: AffiliationsItemUISchema()))
+
+    name = ma_fields.String()
+
+
+class AffiliationsItemUISchema(DictOnlySchema):
+    class Meta:
+        unknown = ma.RAISE
+
+    _id = ma_fields.String(data_key="id", attribute="id")
+
+    name = ma_fields.String()
 
 
 class ColorsItemUISchema(DictOnlySchema):
@@ -141,12 +176,8 @@ class RestorationPeriodUISchema(DictOnlySchema):
     until = LocalizedDate()
 
 
-class SupervisorsItemUISchema(DictOnlySchema):
+class SyntheticFieldsUISchema(DictOnlySchema):
     class Meta:
         unknown = ma.RAISE
 
-    comment = ma_fields.String()
-
-    fullName = ma_fields.String()
-
-    institution = ma_fields.String()
+    creationPeriod = LocalizedEDTF()

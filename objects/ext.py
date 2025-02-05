@@ -3,6 +3,7 @@ from functools import cached_property
 
 from oarepo_requests.proxies import current_oarepo_requests_service
 from oarepo_requests.resources.draft.config import DraftRecordRequestsResourceConfig
+from oarepo_requests.resources.draft.types.config import DraftRequestTypesResourceConfig
 
 from objects import config
 
@@ -16,6 +17,7 @@ class ObjectsExt:
 
     def init_app(self, app):
         """Flask application initialization."""
+        self.app = app
 
         self.init_config(app)
         if not self.is_inherited():
@@ -32,7 +34,9 @@ class ObjectsExt:
                 if isinstance(app.config.get(identifier), list):
                     app.config[identifier] += getattr(config, identifier)
                 elif isinstance(app.config.get(identifier), dict):
-                    app.config[identifier].update(getattr(config, identifier))
+                    for k, v in getattr(config, identifier).items():
+                        if k not in app.config[identifier]:
+                            app.config[identifier][k] = v
                 else:
                     app.config.setdefault(identifier, getattr(config, identifier))
 
@@ -52,8 +56,15 @@ class ObjectsExt:
 
     @cached_property
     def service_records(self):
+        service_config = config.OBJECTS_RECORD_SERVICE_CONFIG
+        if hasattr(service_config, "build"):
+            config_class = service_config.build(self.app)
+        else:
+            config_class = service_config()
+
+        service_kwargs = {"config": config_class}
         return config.OBJECTS_RECORD_SERVICE_CLASS(
-            config=config.OBJECTS_RECORD_SERVICE_CONFIG(),
+            **service_kwargs,
             files_service=self.service_files,
             draft_files_service=self.service_draft_files,
         )
@@ -66,37 +77,46 @@ class ObjectsExt:
         )
 
     @cached_property
-    def service_requests(self):
+    def service_record_requests(self):
         return config.OBJECTS_REQUESTS_SERVICE_CLASS(
             record_service=self.service_records,
             oarepo_requests_service=current_oarepo_requests_service,
         )
 
     @cached_property
-    def resource_requests(self):
+    def resource_record_requests(self):
         return config.OBJECTS_REQUESTS_RESOURCE_CLASS(
-            service=self.service_requests,
+            service=self.service_record_requests,
             config=config.OBJECTS_RECORD_RESOURCE_CONFIG(),
             record_requests_config=DraftRecordRequestsResourceConfig(),
         )
 
     @cached_property
-    def published_service_records(self):
-        from objects.services.records.published.config import (
-            ObjectsPublishedServiceConfig,
+    def service_record_request_types(self):
+        return config.OBJECTS_REQUEST_TYPES_SERVICE_CLASS(
+            record_service=self.service_records,
+            oarepo_requests_service=current_oarepo_requests_service,
         )
-        from objects.services.records.published.service import ObjectsPublishedService
 
-        return ObjectsPublishedService(
-            config=ObjectsPublishedServiceConfig(
-                proxied_drafts_config=self.service_records.config
-            ),
+    @cached_property
+    def resource_record_request_types(self):
+        return config.OBJECTS_REQUEST_TYPES_RESOURCE_CLASS(
+            service=self.service_record_request_types,
+            config=config.OBJECTS_RECORD_RESOURCE_CONFIG(),
+            record_requests_config=DraftRequestTypesResourceConfig(),
         )
 
     @cached_property
     def service_files(self):
+        service_config = config.OBJECTS_FILES_SERVICE_CONFIG
+        if hasattr(service_config, "build"):
+            config_class = service_config.build(self.app)
+        else:
+            config_class = service_config()
+
+        service_kwargs = {"config": config_class}
         return config.OBJECTS_FILES_SERVICE_CLASS(
-            config=config.OBJECTS_FILES_SERVICE_CONFIG(),
+            **service_kwargs,
         )
 
     @cached_property
@@ -107,20 +127,16 @@ class ObjectsExt:
         )
 
     @cached_property
-    def published_service_files(self):
-        from objects.services.files.published.config import (
-            ObjectsFilePublishedServiceConfig,
-        )
-        from objects.services.files.published.service import ObjectsFilePublishedService
-
-        return ObjectsFilePublishedService(
-            config=ObjectsFilePublishedServiceConfig(),
-        )
-
-    @cached_property
     def service_draft_files(self):
+        service_config = config.OBJECTS_DRAFT_FILES_SERVICE_CONFIG
+        if hasattr(service_config, "build"):
+            config_class = service_config.build(self.app)
+        else:
+            config_class = service_config()
+
+        service_kwargs = {"config": config_class}
         return config.OBJECTS_DRAFT_FILES_SERVICE_CLASS(
-            config=config.OBJECTS_DRAFT_FILES_SERVICE_CONFIG(),
+            **service_kwargs,
         )
 
     @cached_property

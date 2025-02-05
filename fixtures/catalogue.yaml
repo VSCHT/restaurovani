@@ -77,4 +77,20 @@ languages:
     en: Languages
   vocabulary: languages
   writer: vocabulary
-- source: ./files/Languages.yaml
+- source: ./files/languages.yaml
+affiliations:
+- pid_type: affiliations
+  title:
+    cs: Afiliace
+    en: Affiliations
+  vocabulary: affiliations
+  writer: vocabulary
+- source: ./files/affiliations.yaml
+names:
+- pid_type: names
+  title:
+    cs: Jména
+    en: Names
+  vocabulary: names
+  writer: vocabulary
+- source: ./files/names.yaml

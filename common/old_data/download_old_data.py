@@ -305,22 +305,11 @@ def convert_work(object_id, restoration_work, vocabulary, part_id, methods, file
     ret["restorationPeriod"] = restoration_work.pop("restorationPeriod", None)
     supervisors = ret["supervisors"] = []
     for sup in restoration_work.pop("supervisor", []):
-        institution = sup.pop("institution", {})
         supervisors.append(
             {
-                "comment": sup.pop("comment", None),
-                "institution": institution.pop("name", None),
-                "fullName": trim(sup.pop("name", None)),
+                "id": sup.pop("code", None),
             }
         )
-        sup.pop("code", None),
-        if institution != {}:
-            raise AssertionError(
-                f"Expected empty institution after conversion, got {institution}"
-            )
-
-        if sup != {}:
-            raise AssertionError(f"Expected empty sup after conversion, got {sup}")
 
     ret["workType"] = vocabulary.convert(
         "WorkTypes", restoration_work.pop("workType", None)

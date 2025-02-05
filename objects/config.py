@@ -3,9 +3,11 @@ from oarepo_requests.resolvers.ui import (
     RecordEntityReferenceUIResolver,
 )
 from oarepo_requests.resources.draft.resource import DraftRecordRequestsResource
+from oarepo_requests.resources.draft.types.resource import DraftRequestTypesResource
 from oarepo_requests.services.draft.service import DraftRecordRequestsService
+from oarepo_requests.services.draft.types.service import DraftRecordRequestTypesService
 
-from objects.files.api import ObjectsFileDraft
+from objects.files.api import ObjectsFile, ObjectsFileDraft
 from objects.files.requests.resolvers import ObjectsFileDraftResolver
 from objects.records.api import ObjectsDraft, ObjectsRecord
 from objects.records.requests.resolvers import ObjectsDraftResolver, ObjectsResolver
@@ -39,13 +41,21 @@ OBJECTS_RECORD_SERVICE_CONFIG = ObjectsServiceConfig
 OBJECTS_RECORD_SERVICE_CLASS = ObjectsService
 
 
+OAREPO_PRIMARY_RECORD_SERVICE = {
+    ObjectsRecord: "objects",
+    ObjectsDraft: "objects",
+    ObjectsFile: "objects_file",
+    ObjectsFileDraft: "objects_file_draft",
+}
+
+
 OBJECTS_REQUESTS_RESOURCE_CLASS = DraftRecordRequestsResource
 
 
 OBJECTS_REQUESTS_SERVICE_CLASS = DraftRecordRequestsService
 
 
-REQUESTS_ENTITY_RESOLVERS = [
+OBJECTS_ENTITY_RESOLVERS = [
     ObjectsResolver(record_cls=ObjectsRecord, service_id="objects", type_key="objects"),
     ObjectsDraftResolver(
         record_cls=ObjectsDraft, service_id="objects", type_key="objects_draft"
@@ -63,6 +73,12 @@ ENTITY_REFERENCE_UI_RESOLVERS = {
     "objects_draft": RecordEntityDraftReferenceUIResolver("objects_draft"),
 }
 REQUESTS_UI_SERIALIZATION_REFERENCED_FIELDS = []
+
+
+OBJECTS_REQUEST_TYPES_RESOURCE_CLASS = DraftRequestTypesResource
+
+
+OBJECTS_REQUEST_TYPES_SERVICE_CLASS = DraftRecordRequestTypesService
 
 
 OBJECTS_FILES_RESOURCE_CONFIG = ObjectsFileResourceConfig

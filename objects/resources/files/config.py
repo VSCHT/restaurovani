@@ -29,6 +29,15 @@ class ObjectsFileResourceConfig(FileResourceConfig):
             **entrypoint_response_handlers,
         }
 
+    @property
+    def error_handlers(self):
+        entrypoint_error_handlers = {}
+        for x in importlib_metadata.entry_points(
+            group="invenio.objects_files.error_handlers"
+        ):
+            entrypoint_error_handlers.update(x.load())
+        return {**super().error_handlers, **entrypoint_error_handlers}
+
 
 class ObjectsFileDraftResourceConfig(FileResourceConfig):
     """ObjectsFileDraft resource config."""
@@ -50,3 +59,12 @@ class ObjectsFileDraftResourceConfig(FileResourceConfig):
             **super().response_handlers,
             **entrypoint_response_handlers,
         }
+
+    @property
+    def error_handlers(self):
+        entrypoint_error_handlers = {}
+        for x in importlib_metadata.entry_points(
+            group="invenio.objects_draft_files.error_handlers"
+        ):
+            entrypoint_error_handlers.update(x.load())
+        return {**super().error_handlers, **entrypoint_error_handlers}

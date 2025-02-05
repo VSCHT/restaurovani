@@ -280,13 +280,13 @@ files = [
 
 [[package]]
 name = "cachetools"
-version = "5.4.0"
+version = "5.5.0"
 requires_python = ">=3.7"
 summary = "Extensible memoizing collections and decorators"
 groups = ["default"]
 files = [
-    {file = "cachetools-5.4.0-py3-none-any.whl", hash = "sha256:3ae3b49a3d5e28a77a0be2b37dbcb89005058959cb2323858c2657c4a8cab474"},
-    {file = "cachetools-5.4.0.tar.gz", hash = "sha256:b8adc2e7c07f105ced7bc56dbb6dfbe7c4a00acce20e2227b3f355be89bc6827"},
+    {file = "cachetools-5.5.0-py3-none-any.whl", hash = "sha256:02134e8439cdc2ffb62023ce1debca2944c3f289d66bb17ead3ab3dede74b292"},
+    {file = "cachetools-5.5.0.tar.gz", hash = "sha256:2cc24fb4cbe39633fb7badd9db9ca6295d766d9c2995f245725a46715d050f2a"},
 ]
 
 [[package]]
@@ -3524,7 +3524,7 @@ files = [
 
 [[package]]
 name = "oarepo-requests"
-version = "2.0.1"
+version = "2.0.7"
 summary = ""
 groups = ["default"]
 dependencies = [
@@ -3532,18 +3532,20 @@ dependencies = [
     "oarepo-runtime",
 ]
 files = [
-    {file = "oarepo_requests-2.0.1-py3-none-any.whl", hash = "sha256:cbb2da0b8096cee8017f91879d90774c1e967fe2a78e907e6b0b25ce531e2b02"},
-    {file = "oarepo_requests-2.0.1.tar.gz", hash = "sha256:992006ea7d3bdb0a0615246fdb95e28dbe4c698657ab5151b4a6cb01c714bed4"},
+    {file = "oarepo_requests-2.0.7-py3-none-any.whl", hash = "sha256:096f264f1326f5dd0cbee96998b1f78a9f54f7d7b37b1446550f1590b47dc7a7"},
+    {file = "oarepo_requests-2.0.7.tar.gz", hash = "sha256:8430668dc6f750e947e30e9b3dfcd480900478433b78e3b52feedf39612933a8"},
 ]
 
 [[package]]
 name = "oarepo-runtime"
-version = "1.5.47"
+version = "1.5.57"
 summary = "A set of runtime extensions of Invenio repository"
 groups = ["default"]
 dependencies = [
     "deepmerge",
+    "deprecated",
     "flask-babelex",
+    "idutils",
     "langcodes",
     "marshmallow",
     "openpyxl",
@@ -3551,13 +3553,13 @@ dependencies = [
     "tqdm",
 ]
 files = [
-    {file = "oarepo_runtime-1.5.47-py3-none-any.whl", hash = "sha256:57630fa6fbe55f65297c02cb695c910acc44490e90cef7f1100af7722b5d64a6"},
-    {file = "oarepo_runtime-1.5.47.tar.gz", hash = "sha256:cef3d1eaae9c660f7a78cd2abc4205c4d60cd29cb13c1fe897e125bcb59e3749"},
+    {file = "oarepo_runtime-1.5.57-py3-none-any.whl", hash = "sha256:d34b8031b29a285efcd51ed04f499760158ef97c8f64ddd70445a66ad20f0c5e"},
+    {file = "oarepo_runtime-1.5.57.tar.gz", hash = "sha256:4c541e6df31956db48d6c5be29fe963439edeba0f099cee1455f91b095e83766"},
 ]
 
 [[package]]
 name = "oarepo-ui"
-version = "5.2.1"
+version = "5.2.8"
 requires_python = ">=3.10"
 summary = "UI module for invenio 3.5+"
 groups = ["default"]
@@ -3569,13 +3571,13 @@ dependencies = [
     "oarepo-runtime",
 ]
 files = [
-    {file = "oarepo_ui-5.2.1-py2.py3-none-any.whl", hash = "sha256:207259b45c8587ad929112b2be24e110944039266b90b94592b243e5c9bbc515"},
-    {file = "oarepo_ui-5.2.1.tar.gz", hash = "sha256:35756bd1f9fd353e93ad74fbdc6ed32beb45c09663837b46f7f056dfe4d9ff0d"},
+    {file = "oarepo_ui-5.2.8-py2.py3-none-any.whl", hash = "sha256:cbca58fe2cd2083f4e9d1dbca10eab278cec52d30a9ee957c3c1f6949f3f455f"},
+    {file = "oarepo_ui-5.2.8.tar.gz", hash = "sha256:749f4a7e6b8695ac03548fa5c3cb782b5a72ff23df1c590c3f949468620dea04"},
 ]
 
 [[package]]
 name = "oarepo-vocabularies"
-version = "2.0.93"
+version = "2.0.96"
 summary = "Support for custom fields and hierarchy on Invenio vocabularies"
 groups = ["default"]
 dependencies = [
@@ -3586,8 +3588,8 @@ dependencies = [
     "openpyxl",
 ]
 files = [
-    {file = "oarepo_vocabularies-2.0.93-py3-none-any.whl", hash = "sha256:4958b019375d0188eedaf986720849149c7014ff6049cc4fbabf6d56f1a714bf"},
-    {file = "oarepo_vocabularies-2.0.93.tar.gz", hash = "sha256:89e3b993e4c4941a71980643e9a95fcd8b6bdeca52e38a493864bd7173c56d9e"},
+    {file = "oarepo_vocabularies-2.0.96-py3-none-any.whl", hash = "sha256:21fe372001bdf1177ec5b165d79d89af55c3b9920484b85141c4655df3b569d9"},
+    {file = "oarepo_vocabularies-2.0.96.tar.gz", hash = "sha256:1eb687877d57b8f71cb2624fd0e9071b963e127e2f0e17f272c7472ab211765f"},
 ]
 
 [[package]]
